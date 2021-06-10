@@ -1,0 +1,10 @@
+version: "3"
+services:
+  server:
+    build:
+      context: server-camera # Switch to server-sensor for part 2
+    ports:
+      - "10000:80" # Note that this port is not exposed on the server
+  victim:
+    build:
+      context: victim

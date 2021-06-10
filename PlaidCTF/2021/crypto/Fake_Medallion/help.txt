@@ -1,0 +1,20 @@
+Here's a brief help manual.
+
+You have 6 options for communication with us:
+    - {"option": "help"}
+        This shows the current manual.
+    - {"option": "money_for_med"}
+        You purchase a medallion for $1000. You can use a medallion for 
+        a game of razzle, if you'd like.
+    - {"option": "med_for_money", "med_id": <med_id>}
+        You trade in a medallion for $999. If you attempt to use a fake 
+        medallion, we will call the cops on you.
+    - {"option": "med_for_med", "med_id": <med_id>}
+        You simply want a new medallion. You can trade in your old one for
+        a new one for just $1. Previous medallions are voided.
+    - {"option": "play_razzle", "med_id": <med_id>}
+        Try your luck at our razzle game for the cost of one medallion.
+    - {"option": "op_on_med", ...}
+        You can optionally play around with your medallion via our bank.
+If you have more questions, you can look through the source code we released.
+

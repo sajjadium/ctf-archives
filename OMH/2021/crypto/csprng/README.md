@@ -1,0 +1,1 @@
+Ever since I learned about cryptography, I'm almost sure someone is listening in on my conversations. But this ends today! I got myself a very nice elliptic curve library and a high entropy randomness generator. Nothing can stop me from conversing about crypto in secret anymore!

@@ -1,0 +1,1 @@
+d8.exe ./codes/omnitmize.me.js

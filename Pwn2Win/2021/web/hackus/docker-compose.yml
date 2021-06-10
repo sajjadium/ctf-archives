@@ -1,0 +1,37 @@
+# This is a deployment file if you want to test locally (only the CodiMD instance is available).
+# In the real challenge's instance, a user and a secret note were created.
+# The secret note (flag) is located at "https://hackus.xyz/s/secret-note" and can only be accessed by this user.
+# You can report URLs at "https://report.hackus.xyz/" and the authenticated user will access them.
+# To start the server use "docker-compose up -d".
+version: "3"
+services:
+  database:
+    image: mariadb:10
+    environment:
+      - MYSQL_USER=hackmd
+      - MYSQL_PASSWORD=change_password
+      - MYSQL_DATABASE=hackmd
+      - MYSQL_RANDOM_ROOT_PASSWORD=true
+    volumes:
+      - "database-data:/var/lib/mysql"
+    restart: always
+  codimd:
+    image: hackmdio/hackmd:2.4.1
+    environment:
+      - CMD_DB_URL=mysql://hackmd:change_password@database/hackmd
+      - CMD_USECDN=false
+      - CMD_ALLOW_ANONYMOUS=true
+      - CMD_ALLOW_PDF_EXPORT=false
+      - CMD_AUTO_VERSION_CHECK=false
+      - CMD_IMAGE_UPLOAD_TYPE=imgur
+      - CMD_IMGUR_CLIENTID=0035467289f7f45
+    depends_on:
+      - database
+    ports:
+      - "80:3000"
+    volumes:
+      - upload-data:/home/hackmd/app/public/uploads
+    restart: always
+volumes:
+  database-data: {}
+  upload-data: {}

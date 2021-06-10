@@ -1,0 +1,8 @@
+(library
+ (name pppiv_lib)
+ (libraries async_rpc_kernel core_kernel core_kernel.uopt)
+ (ocamlopt_flags
+  (:standard -S))
+ (preprocess
+  (pps ppx_jane))
+ (inline_tests))

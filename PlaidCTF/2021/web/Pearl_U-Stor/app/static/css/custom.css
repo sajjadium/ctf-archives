@@ -1,0 +1,232 @@
+@font-face {
+    font-family: Crewniverse;
+    src: url('/static/crewniverse_font.otf');
+    font-weight: bold;
+}
+
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fffff2;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #53D2CE;
+    color: #666;
+    transition: all 0.3s;
+    padding: 20px;    
+    border-width: 0 10px 0 0;
+    border-color: #ffdf7b;
+    border-style: solid;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+}
+
+#sidebar ul.components {
+    padding: 20px 10px;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: black;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: black;
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+
+    border-style: solid;
+    border-width: 0 0 0 8px;
+    border-color: #FCD1B8;
+
+    background-color: #fffff2;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+
+/* ===== Sidebar ===== */
+.sidebar-header {
+    font-family: Crewniverse;
+    color: #fffff2;
+}
+
+/* ===== File submission ===== */
+.custom-file-input {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    margin: 0;
+    opacity: 0;
+}
+
+.custom-file-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #C1FFF0;
+    border: 1px solid #ced4da;
+    color: #8e8e8e !important;
+    border-color: #53D2CE !important;
+    border-radius: .25rem;
+}
+
+.custom-file-label::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: block;
+    height: calc(calc(2.25rem + 2px) - 1px * 2);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    content: "Browse";
+    background-color: #c1fff0 !important;
+    color: #8e8e8e !important;
+    border-color: #53D2CE !important;
+    border-left: 1px solid #ced4da;
+    border-radius: 0 .25rem .25rem 0;
+}
+
+.btn-pearl, .btn-pearl:hover, .btn-pearl:active, .btn-pearl:visited {
+    background-color: #c1fff0 !important;
+    color: #8e8e8e !important;
+    border-color: #53D2CE !important;
+}
+
+.form-error {
+    color: #53d2ce !important;
+}
+
+/* ===== File list ===== */
+tr {
+    font-weight: 100;
+}
+
+td {
+    padding-bottom: 10px
+}
+
+.file-list {
+    margin-left: 30px;
+}
+
+.pearl-icon {
+    padding-top:10px;
+}
+
+.pearl-speech {
+    padding-left:35px;
+}
+
+
+.speech-bubble {
+	position: relative;
+	background: #49b3fd;
+	border-radius: .4em;
+    color: white;
+    padding:10px 15px;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	border: 28px solid transparent;
+	border-right-color: #49b3fd;
+	border-left: 0;
+	margin-top: -14px;
+	margin-left: -28px;
+    left: 10px;
+    top: 60%;
+    border-bottom: 0;
+}
+
+/* ===== */

@@ -1,0 +1,3 @@
+FROM httpd:2.4.46-alpine
+
+ADD emulador.tar.gz /usr/local/apache2/htdocs/

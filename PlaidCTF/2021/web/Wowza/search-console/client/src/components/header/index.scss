@@ -1,0 +1,49 @@
+@use "~react-pwn/palette.scss";
+
+.header {
+    display: grid;
+    grid-template:
+        ". title auth" max-content
+        / 1fr 600px 1fr;
+
+    width: 100%;
+    box-shadow: 1px 0px 3px 2px palette.$color-neutral-05;
+    background-color: palette.$color-neutral-02;
+    margin-bottom: 32px;
+
+    .title {
+        justify-content: center;
+        display: flex;
+        grid-area: title;
+        cursor: pointer;
+        align-items: center;
+        column-gap: 16px;
+
+        .wowza {
+            font-family: "Yahoo";
+            font-size: 48px;
+            color: #720e9e;
+        }
+
+        .console {
+            color: palette.$color-neutral-07;
+        }
+    }
+
+    .auth {
+        grid-area: auth;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+
+        div {
+            padding: 16px;
+            cursor: pointer;
+
+            &:hover {
+                color: palette.$color-neutral-06;
+            }
+        }
+    }
+}

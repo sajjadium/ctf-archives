@@ -1,0 +1,56 @@
+# Challange remote environment is running on Windows Server 2019 downloaded from:
+# https://www.microsoft.com/pt-br/evalcenter/evaluate-windows-server-2019
+#
+# Some drivers copied from the remote environment can be found at .\drivers\ for reference
+# Your x64 PE must be compatible with redistributable files provided in .\x64-redist\
+# 
+
+C:\Users\Administrator>systeminfo
+
+Host Name:                 WIN-VSNUTB056GI
+OS Name:                   Microsoft Windows Server 2019 Datacenter Evaluation
+OS Version:                10.0.17763 N/A Build 17763
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Server
+OS Build Type:             Multiprocessor Free
+Registered Owner:          N/A
+Registered Organization:   N/A
+Product ID:                00431-20000-00000-AA848
+Original Install Date:     5/25/2021, 2:40:51 PM
+System Boot Time:          5/27/2021, 4:22:35 PM
+System Manufacturer:       Microsoft Corporation
+System Model:              Virtual Machine
+System Type:               x64-based PC
+Processor(s):              4 Processor(s) Installed.
+                           [01]: Intel64 Family 6 Model 85 Stepping 7 GenuineIntel ~2594 Mhz
+                           [02]: Intel64 Family 6 Model 85 Stepping 7 GenuineIntel ~2594 Mhz
+                           [03]: Intel64 Family 6 Model 85 Stepping 7 GenuineIntel ~2594 Mhz
+                           [04]: Intel64 Family 6 Model 85 Stepping 7 GenuineIntel ~2594 Mhz
+BIOS Version:              American Megatrends Inc. 090007 , 5/18/2018
+Windows Directory:         C:\Windows
+System Directory:          C:\Windows\system32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-us;English (United States)
+Input Locale:              en-us;English (United States)
+Time Zone:                 (UTC-08:00) Pacific Time (US & Canada)
+Total Physical Memory:     2,048 MB
+Available Physical Memory: 1,034 MB
+Virtual Memory: Max Size:  3,200 MB
+Virtual Memory: Available: 2,345 MB
+Virtual Memory: In Use:    855 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    WORKGROUP
+Logon Server:              \\WIN-VSNUTB056GI
+Hotfix(s):                 3 Hotfix(s) Installed.
+                           [01]: KB4514366
+                           [02]: KB4512577
+                           [03]: KB4512578
+Network Card(s):           1 NIC(s) Installed.
+                           [01]: Microsoft Hyper-V Network Adapter
+                                 Connection Name: Ethernet 2
+                                 DHCP Enabled:    Yes
+                                 DHCP Server:     192.168.1.1
+                                 IP address(es)
+                                 [01]: 169.254.129.7
+                                 [02]: fe80::fdf2:733d:cb1d:8107
+Hyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.

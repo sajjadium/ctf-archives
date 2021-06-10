@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>BONZ</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bonzi.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/emojiCursor.js') }}"></script>
+    </head>
+
+    <body onload="document.getElementById('darude').play();">
+      <audio id="darude" autoplay>
+        <source src="/static/darude-midi.mp3" type="audio/mpeg">
+        Oops
+      </audio>
+
+        <main role="main" class="container">
+            <div class="row justify-content-md-center" style="background-image:url('/static/images/leaf.png'); background-size: contain; background-repeat: repeat-x;">
+              <butteryfly>
+                <img src="/static/images/butterfly.png">
+              </butteryfly>
+                <nav class="navbar navbar-expand-lg navbar-custom" style="font-weight:bold; text-shadow: black 0.1em 0.1em 0.2em;">
+                    <ul class="navbar-nav">
+                      <li class="nav-item button-box">
+                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('buddy') }}">Get a Friend</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">About TheBONZ</a>
+                      </li>
+                    </ul>
+                  </nav>
+            </div>
+
+            <div class="row justify-content-md-center mb-3">
+                <h1 class="preview-box px-5 bonz-text">TheBONZ</h1>
+            </div>
+
+            <div class="row justify-content-md-center mb-3 flavortext">
+                {% block flavortext %}Take a minute... and find a meme!{% endblock %}
+            </div>
+
+            
+            {% block content %}{% endblock %}
+        </main>
+
+
+        <footer class="footer">
+          <div class="container">
+            <hr class="pb-0 mb-0">
+            <span class="pt-0 mt-0">providing dank memes since 1999</span>
+          </div>
+        </footer>
+    </body>
+</html>

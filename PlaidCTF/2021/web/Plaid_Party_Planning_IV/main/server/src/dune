@@ -1,0 +1,12 @@
+(library
+ (name pppiv_server_lib)
+ (libraries
+  caqti-async
+  caqti-driver-postgresql
+  core
+  cohttp-async
+  async
+  async_rpc_websocket
+  pppiv_lib)
+ (preprocess
+  (pps ppx_jane)))

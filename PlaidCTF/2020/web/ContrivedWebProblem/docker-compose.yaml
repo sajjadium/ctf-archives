@@ -1,0 +1,99 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:10.4
+    volumes:
+      - "./services/postgres/:/docker-entrypoint-initdb.d/"
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: "${P_PSQL_PASS}"
+      POSTGRES_DB: "${P_PSQL_DB}"
+      POSTGRES_USER: "${P_PSQL_USER}"
+    networks:
+      default:
+        ipv4_address: 172.32.54.32
+  rabbit:
+    image: rabbit
+    restart: always
+    build:
+      context: "./services/rabbit"
+      dockerfile: "./rabbit.dockerfile"
+    environment:
+      username: "test"
+      password: "test"
+    networks:
+      default:
+        ipv4_address: 172.32.56.72
+  ftp:
+    image: ftp
+    restart: always
+    build:
+      context: "./services/ftp"
+      dockerfile: "./ftp.dockerfile"
+    networks:
+      default:
+        ipv4_address: 172.32.0.21
+  server:
+    restart: always
+    image: server
+    build:
+      context: "./services/server"
+      dockerfile: ../../services.dockerfile
+      args:
+        FLAG: "${P_FLAG}"
+    environment:
+      API: "api:4101"
+    ports:
+     - "8080:8080"
+    networks:
+      default:
+        ipv4_address: 172.32.80.80
+  api:
+    restart: always
+    image: api
+    build:
+      context: "./services/api"
+      dockerfile: ../../services.dockerfile
+      args:
+        FLAG: "${P_FLAG}"
+    environment:
+      P_PSQL_PASS: "${P_PSQL_PASS}"
+      P_PSQL_USER: "${P_PSQL_USER:-postgres}"
+      P_PSQL_HOST: "postgres"
+      P_PSQL_PORT: "5432"
+      P_FTP_HOST: "ftp"
+      P_FTP_PORT: "21"
+      P_FTP_USER: "anonymous"
+      P_FTP_PASS: "anonymous"
+      P_RABBIT_HOST: "rabbit"
+      P_RABBIT_USER: "test"
+      P_RABBIT_PASS: "test"
+    networks:
+      default:
+        ipv4_address: 172.32.41.01
+  email:
+    restart: always
+    image: email
+    build:
+      context: "./services/email"
+      dockerfile: "../../services.dockerfile"
+      args:
+        FLAG: "${P_FLAG}"
+    environment:
+      P_SENGRID_USER: "${P_SENDGRID_USER:-apikey}"
+      P_SENDGRID_PASS: "${P_SENDGRID_PASS}"
+      P_RABBIT_HOST: "rabbit"
+      P_RABBIT_USER: "test"
+      P_RABBIT_PASS: "test"
+    networks:
+      default:
+        ipv4_address: 172.32.0.25
+volumes:
+  pgdata:
+  flag:
+networks:
+  default:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.32.0.0/16

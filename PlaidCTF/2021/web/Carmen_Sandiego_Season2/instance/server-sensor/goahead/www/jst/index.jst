@@ -1,0 +1,23 @@
+<html>
+
+<head>
+	<title>IoT Hub</title>
+	<link rel="stylesheet" href="/pub/styles.css" />
+</head>
+
+<body class="dashboard">
+	<header>
+        <h1><span class="iot">IoT</span>HUB</h1>
+		<form action="/action/logout" method="POST"><input class="logout" type="submit" value="Log Out" /></form>
+	</header>
+	<main>
+        <div class="group">
+            <h2>Sensors</h2>
+            <div id="sensor-list"></div>
+        </div>
+	</main>
+
+	<script nonce="<% nonce(); %>" src="/main.js"></script>
+</body>
+
+</html>

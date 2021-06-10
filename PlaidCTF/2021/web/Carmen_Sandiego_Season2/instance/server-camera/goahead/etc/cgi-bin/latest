@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+import os
+import json
+
+results = {
+	"cameras": {}
+}
+
+for file in os.listdir("/var/www/goahead/data/snapshot"):
+	with open("/var/www/goahead/data/snapshot/" + file, "r") as f:
+		results["cameras"][file] = "/data/snapshot/" + file
+
+print("Content-Type: application/json")
+print()
+print(json.dumps(results))

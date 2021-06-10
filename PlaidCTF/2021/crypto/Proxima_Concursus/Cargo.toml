@@ -1,0 +1,12 @@
+[package]
+name = "proxima-concursus"
+version = "0.1.0"
+authors = ["f0xtr0t"]
+edition = "2018"
+
+[dependencies]
+hex = "0.4.2"
+
+[profile.release]
+opt-level = 3
+overflow-checks = true

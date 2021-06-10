@@ -1,0 +1,213 @@
+diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
+index 75fc9d9d1826..042eacb39ba3 100644
+--- a/content/browser/BUILD.gn
++++ b/content/browser/BUILD.gn
+@@ -1299,6 +1299,8 @@ jumbo_source_set("browser") {
+     "picture_in_picture/picture_in_picture_session.h",
+     "picture_in_picture/picture_in_picture_window_controller_impl.cc",
+     "picture_in_picture/picture_in_picture_window_controller_impl.h",
++    "plaidstore/plaidstore_impl.h",
++    "plaidstore/plaidstore_impl.cc",
+     "portal/portal.cc",
+     "portal/portal.h",
+     "portal/portal_navigation_throttle.cc",
+diff --git a/content/browser/browser_interface_binders.cc b/content/browser/browser_interface_binders.cc
+index 361e52b1c203..14748ef44d2a 100644
+--- a/content/browser/browser_interface_binders.cc
++++ b/content/browser/browser_interface_binders.cc
+@@ -86,6 +86,7 @@
+ #include "third_party/blink/public/mojom/payments/payment_app.mojom.h"
+ #include "third_party/blink/public/mojom/permissions/permission.mojom.h"
+ #include "third_party/blink/public/mojom/picture_in_picture/picture_in_picture.mojom.h"
++#include "third_party/blink/public/mojom/plaidstore/plaidstore.mojom.h"
+ #include "third_party/blink/public/mojom/presentation/presentation.mojom.h"
+ #include "third_party/blink/public/mojom/quota/quota_dispatcher_host.mojom.h"
+ #include "third_party/blink/public/mojom/sms/sms_receiver.mojom.h"
+@@ -109,6 +110,7 @@
+ #include "third_party/blink/public/mojom/serial/serial.mojom.h"
+ #endif
+ 
++
+ #if defined(OS_ANDROID)
+ #include "content/browser/android/date_time_chooser_android.h"
+ #include "content/browser/android/text_suggestion_host_android.h"
+@@ -660,6 +662,10 @@ void PopulateFrameBinders(RenderFrameHostImpl* host,
+   map->Add<blink::mojom::SerialService>(base::BindRepeating(
+       &RenderFrameHostImpl::BindSerialService, base::Unretained(host)));
+ #endif  // !defined(OS_ANDROID)
++
++  map->Add<blink::mojom::PlaidStore>(
++      base::BindRepeating(&RenderFrameHostImpl::CreatePlaidStore,
++                          base::Unretained(host)));
+ }
+ 
+ void PopulateBinderMapWithContext(
+diff --git a/content/browser/frame_host/render_frame_host_impl.cc b/content/browser/frame_host/render_frame_host_impl.cc
+index e55e2d990da4..df6e6e62dbae 100644
+--- a/content/browser/frame_host/render_frame_host_impl.cc
++++ b/content/browser/frame_host/render_frame_host_impl.cc
+@@ -80,6 +80,7 @@
+ #include "content/browser/permissions/permission_controller_impl.h"
+ #include "content/browser/permissions/permission_service_context.h"
+ #include "content/browser/permissions/permission_service_impl.h"
++#include "content/browser/plaidstore/plaidstore_impl.h"
+ #include "content/browser/portal/portal.h"
+ #include "content/browser/presentation/presentation_service_impl.h"
+ #include "content/browser/push_messaging/push_messaging_manager.h"
+@@ -6619,6 +6620,11 @@ void RenderFrameHostImpl::CreateInstalledAppProvider(
+   InstalledAppProviderImpl::Create(this, std::move(receiver));
+ }
+ 
++void RenderFrameHostImpl::CreatePlaidStore(
++    mojo::PendingReceiver<blink::mojom::PlaidStore> receiver) {
++  PlaidStoreImpl::Create(this, std::move(receiver));
++}
++
+ void RenderFrameHostImpl::CreateDedicatedWorkerHostFactory(
+     mojo::PendingReceiver<blink::mojom::DedicatedWorkerHostFactory> receiver) {
+   // Allocate the worker in the same process as the creator.
+diff --git a/content/browser/frame_host/render_frame_host_impl.h b/content/browser/frame_host/render_frame_host_impl.h
+index 0769246d348b..38b071339833 100644
+--- a/content/browser/frame_host/render_frame_host_impl.h
++++ b/content/browser/frame_host/render_frame_host_impl.h
+@@ -102,6 +102,7 @@
+ #include "third_party/blink/public/mojom/notifications/notification_service.mojom-forward.h"
+ #include "third_party/blink/public/mojom/payments/payment_app.mojom.h"
+ #include "third_party/blink/public/mojom/permissions/permission.mojom.h"
++#include "third_party/blink/public/mojom/plaidstore/plaidstore.mojom.h"
+ #include "third_party/blink/public/mojom/portal/portal.mojom-forward.h"
+ #include "third_party/blink/public/mojom/presentation/presentation.mojom.h"
+ #include "third_party/blink/public/mojom/scroll/scroll_into_view_params.mojom.h"
+@@ -1183,6 +1184,9 @@ class CONTENT_EXPORT RenderFrameHostImpl
+   void CreateInstalledAppProvider(
+       mojo::PendingReceiver<blink::mojom::InstalledAppProvider> receiver);
+ 
++  void CreatePlaidStore(
++      mojo::PendingReceiver<blink::mojom::PlaidStore> receiver);
++
+ #if defined(OS_ANDROID)
+   void BindNFCReceiver(mojo::PendingReceiver<device::mojom::NFC> receiver);
+ #endif
+diff --git a/content/browser/plaidstore/plaidstore_impl.cc b/content/browser/plaidstore/plaidstore_impl.cc
+new file mode 100644
+index 000000000000..3f6304173ceb
+--- /dev/null
++++ b/content/browser/plaidstore/plaidstore_impl.cc
+@@ -0,0 +1,47 @@
++#include "content/browser/plaidstore/plaidstore_impl.h"
++#include "content/public/browser/render_frame_host.h"
++#include "mojo/public/cpp/bindings/self_owned_receiver.h"
++
++namespace content {
++
++PlaidStoreImpl::PlaidStoreImpl(
++    RenderFrameHost *render_frame_host)
++    : render_frame_host_(render_frame_host) {}
++
++PlaidStoreImpl::~PlaidStoreImpl() {}
++
++void PlaidStoreImpl::StoreData(
++    const std::string &key,
++    const std::vector<uint8_t> &data) {
++  if (!render_frame_host_->IsRenderFrameLive()) {
++    return;
++  }
++  data_store_[key] = data;
++}
++
++void PlaidStoreImpl::GetData(
++    const std::string &key,
++    uint32_t count,
++    GetDataCallback callback) {
++  if (!render_frame_host_->IsRenderFrameLive()) {
++    std::move(callback).Run({});
++    return;
++  }
++  auto it = data_store_.find(key);
++  if (it == data_store_.end()) {
++    std::move(callback).Run({});
++    return;
++  }
++  std::vector<uint8_t> result(it->second.begin(), it->second.begin() + count);
++  std::move(callback).Run(result);
++}
++
++// static
++void PlaidStoreImpl::Create(
++    RenderFrameHost *render_frame_host,
++    mojo::PendingReceiver<blink::mojom::PlaidStore> receiver) {
++  mojo::MakeSelfOwnedReceiver(std::make_unique<PlaidStoreImpl>(render_frame_host),
++                              std::move(receiver));
++}
++
++} // namespace content
+diff --git a/content/browser/plaidstore/plaidstore_impl.h b/content/browser/plaidstore/plaidstore_impl.h
+new file mode 100644
+index 000000000000..42363c1ddf09
+--- /dev/null
++++ b/content/browser/plaidstore/plaidstore_impl.h
+@@ -0,0 +1,35 @@
++#include <string>
++#include <vector>
++
++#include "third_party/blink/public/mojom/plaidstore/plaidstore.mojom.h"
++
++namespace content {
++
++class RenderFrameHost;
++
++class PlaidStoreImpl : public blink::mojom::PlaidStore {
++ public:
++  explicit PlaidStoreImpl(RenderFrameHost *render_frame_host);
++
++  static void Create(
++      RenderFrameHost* render_frame_host,
++      mojo::PendingReceiver<blink::mojom::PlaidStore> receiver);
++
++  ~PlaidStoreImpl() override;
++
++  // PlaidStore overrides:
++  void StoreData(
++      const std::string &key,
++      const std::vector<uint8_t> &data) override;
++
++  void GetData(
++      const std::string &key,
++      uint32_t count,
++      GetDataCallback callback) override;
++
++ private:
++  RenderFrameHost* render_frame_host_;
++  std::map<std::string, std::vector<uint8_t> > data_store_;
++};
++
++} // namespace content
+diff --git a/third_party/blink/public/mojom/BUILD.gn b/third_party/blink/public/mojom/BUILD.gn
+index c33e993abf2c..583393dacc49 100644
+--- a/third_party/blink/public/mojom/BUILD.gn
++++ b/third_party/blink/public/mojom/BUILD.gn
+@@ -101,6 +101,7 @@ mojom("mojom_platform") {
+     "permissions/permission_automation.mojom",
+     "permissions/permission_status.mojom",
+     "picture_in_picture/picture_in_picture.mojom",
++    "plaidstore/plaidstore.mojom",
+     "plugins/plugin_registry.mojom",
+     "presentation/presentation.mojom",
+     "push_messaging/push_messaging.mojom",
+diff --git a/third_party/blink/public/mojom/plaidstore/plaidstore.mojom b/third_party/blink/public/mojom/plaidstore/plaidstore.mojom
+new file mode 100644
+index 000000000000..b1e02580b1dd
+--- /dev/null
++++ b/third_party/blink/public/mojom/plaidstore/plaidstore.mojom
+@@ -0,0 +1,11 @@
++module blink.mojom;
++
++// This interface provides a data store
++interface PlaidStore {
++
++  // Stores data in the data store
++  StoreData(string key, array<uint8> data);
++
++  // Gets data from the data store
++  GetData(string key, uint32 count) => (array<uint8> data);
++};

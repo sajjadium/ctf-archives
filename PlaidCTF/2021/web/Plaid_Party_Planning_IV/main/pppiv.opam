@@ -1,0 +1,19 @@
+opam-version: "2.0"
+maintainer: "acc.plaidctf@strikeskids.com"
+synopsis: "Plaid Party Planning IV"
+homepage: "https://www.plaidctf.com/"
+bug-reports: "https://www.plaidctf.com/"
+authors: [
+	"strikeskids"
+]
+depends: [
+	"ocaml"
+	"dune" {>= "2.8.2"}
+	"async"
+	"async_rpc_websocket"
+	"bonsai" {>= "v0.15~preview.124.17+507"}
+	"cohttp-async"
+	"core"
+	"caqti-async"
+	"caqti-driver-postgresql"
+]

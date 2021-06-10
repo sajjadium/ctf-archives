@@ -1,0 +1,60 @@
+@import "../utils/variables.scss";
+
+.nav {
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+
+    &>input {
+        flex-basis: 0px;
+        flex-grow: 1;
+    }
+}
+
+main.kind-forum {
+    .nav {
+        align-self: start;
+        margin-left: 16px;
+
+        &>input {
+            flex-basis: unset;
+            flex-grow: unset;
+
+            background: none;
+            text-decoration: underline;
+            color: blue;
+
+            background: unset !important;
+            box-shadow: unset;
+        }
+    }
+}
+
+main.kind-bug-portal {
+    .nav {
+        margin-top: -30px;
+        margin-bottom: 30px;
+        height: 60px !important;
+
+        &>input {
+            margin: 0px 8px;
+
+            &:first-child {
+                margin-left: 0px;
+            }
+
+            &:last-child {
+                margin-right: 0px;
+            }
+        }
+    }
+}
+
+main.kind-forum.css-materialize {
+    .nav {
+        &>input {
+            color: $mat-blue;
+        }
+    }
+}

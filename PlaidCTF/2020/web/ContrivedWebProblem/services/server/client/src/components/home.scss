@@ -1,0 +1,171 @@
+@import "../utils/variables";
+
+.home {
+    .submit-button {
+        width: 100%;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .post {
+        min-height: 120px;
+        margin: 8px 0px;
+        width: unset;
+    }
+
+    .messages {
+        margin-top: 8px;
+    }
+}
+
+
+main.kind-note-app .home {
+    .messages {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: minmax(max-content, 80px);
+        grid-column-gap: 8px;
+        grid-row-gap: 8px;
+
+        .message {
+            background-color: $yellow;
+        }
+    }
+}
+
+main.kind-forum .home {
+    .messages {
+        .forum-message {
+            border: 1px solid $black;
+            .forum-header {
+                background: $black;
+                color: $white;
+            }
+
+            .forum-body {
+                padding: 8px;
+            }
+
+            margin-bottom: 8px;
+        }
+    }
+}
+
+
+main.css-materialize {
+    .message {
+        color: $mat-black;
+    }
+}
+
+
+main.kind-forum.css-materialize {
+    .messages {
+        .forum-message {
+            border: 1px solid $mat-light;
+
+            .forum-header {
+                background: $mat-light;
+                color: $mat-black;
+            }
+        }
+    }
+}
+
+main.kind-forum.css-bootstrap {
+    .messages {
+        .forum-message {
+            .forum-header {
+                background: linear-gradient(0deg, $black, #222222, $white);
+            }
+        }
+    }
+}
+
+main.kind-bug-portal {
+    .post-title {
+        width: unset;
+    }
+    .sub-header {
+        font-size: 20px;
+        margin-top: 12px;
+    }
+    .messages {
+        .bug-message {
+            border: 2px solid $black;
+            border-radius: 2px;
+            padding: 0px;
+            margin: 8px 0px;
+
+            .bug-header {
+                font-size: 20px;
+                font-weight: bold;
+                &::before {
+                    content: "Bug Reported On ";
+                    font-weight: normal;
+                }
+                font-style: italic;
+            }
+
+            .bug-body {
+                padding: 8px;
+            }
+        }
+    }
+}
+
+main.kind-bug-portal.css-pure {
+    .sub-header {
+        color: $pure-indigo;
+    }
+    .messages {
+        .bug-message {
+            .bug-header {
+                background: $pure-green;
+            }
+        }
+    }
+}
+
+main.kind-bug-portal.css-materialize {
+    .sub-header {
+        text-align: center;
+        font-size: 32px;
+        margin-top: 16px;
+    }
+
+    .messages {
+        .bug-message {
+            background-color: $mat-purple;
+
+            .bug-header {
+                padding: 0px 8px;
+                font-size: 26px;
+            }
+        }
+    }
+}
+
+main.kind-bug-portal.css-bootstrap {
+    .messages {
+        .bug-message {
+            background: linear-gradient(0deg, #ffffff, #ffffff 25%, #e6e6e6);
+            border: 1.5px solid #e6e6e6;
+            border-radius: 4px;
+            margin: 24px 0px;
+
+            .bug-header {
+                padding: 4px 8px;
+            }
+
+            .bug-body {
+                text-align: center;
+                font-size: 18px;
+            }
+        }
+    }
+}

@@ -1,0 +1,6 @@
+(executables
+ (names pppiv)
+ (libraries core pppiv_server_lib)
+ (preprocess
+  (pps ppx_jane))
+ (promote (until-clean)))

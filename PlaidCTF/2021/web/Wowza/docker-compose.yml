@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+    search-console:
+        restart: always
+        image: wowza-search-console
+        ports:
+            - "${SEARCH_CONSOLE_PORT:-16284}:6284"
+        environment:
+            - "PORT=6284"
+        dns:
+            - 8.8.8.8
+            - 1.1.1.1
+    site-search:
+        restart: always
+        image: wowza-site-search
+        ports:
+            - "${SITE_SEARCH_PORT:-16285}:6285"
+        environment:
+            - "PORT=6285"
+            - "CONSOLE_URL=http://search-console:6284"
+            - "FLAG=${FLAG}"

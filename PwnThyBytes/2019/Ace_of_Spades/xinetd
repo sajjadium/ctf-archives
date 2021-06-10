@@ -1,0 +1,16 @@
+service ace_of_spades
+{
+    type = UNLISTED
+    disable = no
+    socket_type = stream
+    protocol = tcp
+    port = 13375
+    wait = no
+    user = ace_of_spades
+    bind = 0.0.0.0
+    server = /home/ace_of_spades/ace_of_spades
+    flags = REUSE
+    per_source = 3
+    rlimit_cpu = 3
+    nice = 18
+}

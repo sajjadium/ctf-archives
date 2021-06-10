@@ -1,0 +1,220 @@
+<html>
+	<style>
+* {
+	font-family: "Roboto", sans-serif;
+}
+
+body {
+	margin: 0px;
+}
+
+header {
+	background: #E0013A;
+	color: #ffffff;
+	padding: 12px 24px;
+}
+
+main {
+	padding: 12px 24px;
+	color: #444444;
+}
+
+.input-area {
+	display: flex;
+}
+
+#url-input {
+	width: 400px;
+	padding: 2px 0px;
+	border: 0px;
+	border-bottom: 2px solid #888888;
+	outline: none;
+	font-size: 16px;
+	margin-right: 12px;
+	color: #444444;
+}
+
+#url-input:focus {
+	border-bottom-color: #2979FF;
+}
+
+#url-input:disabled {
+	border-bottom-color: #cccccc;
+	color: #888888;
+	background: transparent;
+}
+
+#submit {
+	padding: 8px 12px;
+	background: #4CAF50;
+	color: #ffffff;
+	border: none;
+	border-radius: 4px;
+	outline: none;
+	cursor: pointer;
+}
+
+#submit:hover {
+	background: #66BB6A;
+}
+
+#submit:active {
+	background: #43A047;
+}
+
+#submit:disabled {
+	background: #bdbdbd;
+	cursor: not-allowed;
+}
+
+#status {
+	margin-top: 24px;
+}
+
+#status-pow,
+#status-queued,
+#status-processing {
+	display: none;
+}
+
+#target-ip,
+#sensor-port,
+#sensor-token,
+#time-remaining {
+	font-weight: 600;
+	color: #222222;
+}
+
+code {
+	font-family: monospace;
+}
+	</style>
+
+	<body>
+		<header>
+			<h1>Carmen Sandiego Submission Portal</h1>
+		</header>
+		<main>
+			<p>
+				This server will spin up a private instance for you.
+				You will have access to it for one minute.
+				The admin will log in and then go to the URL you provide here.
+				The admin can reach the IoT Hub interface at <code>iot.hub</code>.
+			</p>
+			<p>
+				<i>Want to automate?  Try the <a download href="/runner.js">runner script</a>!</i>
+			</p>
+			<div class="input-area">
+				<input id="url-input" type="text" placeholder="URL for the admin to visit" />
+				<button id="submit">Submit</button>
+			</div>
+			<div id="status">
+				<div id="status-pow">Solving proof of work...</div>
+				<div id="status-queued">Queued; there are <span id="queue-count">0</span> jobs ahead of yours.</div>
+				<div id="status-processing">
+					<div>Processing your job now.</div>
+					<br />
+					<div>Target IP: <span id="target-ip">1.1.1.1</span></div>
+					<div>Sensor interface port: <span id="sensor-port">9999</span></div>
+					<div>Sensor interface token: <span id="sensor-token">asdf</span></div>
+					<br />
+					<div>Your instance will <span id="processing-verb">shut down</span> <span id="time-remaining">in 10 seconds</span>.</div>
+				</div>
+			</div>
+		</main>
+	</body>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+const socket = io();
+
+const urlInput = document.querySelector("#url-input");
+const submitButton = document.querySelector("#submit");
+const statusPow = document.querySelector("#status-pow");
+const statusQueued = document.querySelector("#status-queued");
+const queueCount = document.querySelector("#queue-count");
+const statusProcessing = document.querySelector("#status-processing");
+const targetIp = document.querySelector("#target-ip");
+const sensorPort = document.querySelector("#sensor-port");
+const sensorToken = document.querySelector("#sensor-token");
+const processingVerb = document.querySelector("#processing-verb");
+const timeRemaining = document.querySelector("#time-remaining");
+
+let instanceStateChangeTime = 0;
+
+setInterval(() => {
+	let secondsRemaining = Math.floor((instanceStateChangeTime - Date.now()) / 1000);
+	timeRemaining.innerText = secondsRemaining > 2 ? `in ${secondsRemaining} seconds` : "imminently";
+}, 250);
+
+submitButton.addEventListener("click", async () => {
+	let url = urlInput.value;
+	urlInput.disabled = true;
+	submitButton.disabled = true;
+	socket.emit("submitJob", { url });
+});
+
+socket.on("challenge", (challenge) => {
+	statusPow.style.display = "block";
+	statusQueued.style.display = "none";
+	statusProcessing.style.display = "none";
+	let response = solveChallenge(challenge);
+	socket.emit("submitChallenge", response);
+});
+
+socket.on("position", (position) => {
+	statusPow.style.display = "none";
+	statusQueued.style.display = "block";
+	statusProcessing.style.display = "none";
+	queueCount.innerText = position.toString();
+});
+
+socket.on("accepted", ({ response, launchingAt }) => {
+	statusPow.style.display = "none";
+	statusQueued.style.display = "none";
+	statusProcessing.style.display = "block";
+	targetIp.innerText = response.targetIp;
+	sensorPort.innerText = response.sensorPort;
+	sensorToken.innerText = response.sensorToken;
+	processingVerb.innerText = "be launched";
+	instanceStateChangeTime = launchingAt;
+});
+
+socket.on("processing", ({ response, until }) => {
+	statusPow.style.display = "none";
+	statusQueued.style.display = "none";
+	statusProcessing.style.display = "block";
+	targetIp.innerText = response.targetIp;
+	sensorPort.innerText = response.sensorPort;
+	sensorToken.innerText = response.sensorToken;
+	processingVerb.innerText = "shut down";
+	instanceStateChangeTime = until;
+});
+
+socket.on("done", () => {
+	urlInput.disabled = false;
+	submitButton.disabled = false;
+	statusPow.style.display = "none";
+	statusQueued.style.display = "none";
+	statusProcessing.style.display = "none";
+});
+
+function solveChallenge(challenge) {
+	let counter = 0;
+
+	while (true) {
+		if (counter % 1000 === 0) console.log(counter);
+		let digest = sha256.update(challenge.prefix + counter).array();
+		let value = (digest[0] << 24) | (digest[1] << 16) | (digest[2] << 8) | (digest[3] << 0);
+		value >>>= 32 - challenge.difficulty;
+
+		if (value === 0) {
+			return counter.toString();
+		}
+
+		counter++;
+	}
+}
+	</script>
+</html>

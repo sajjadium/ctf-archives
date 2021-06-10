@@ -1,0 +1,37 @@
+https://github.com/v8/v8/tree/50dd84ca317ae35c926ed34d001a72b62aea6662
+diff --git a/src/compiler/escape-analysis.cc b/src/compiler/escape-analysis.cc
+index b3f684ea61..ae2cbdabca 100644
+--- a/src/compiler/escape-analysis.cc
++++ b/src/compiler/escape-analysis.cc
+@@ -726,29 +726,8 @@ void ReduceNode(const Operator* op, EscapeAnalysisTracker::Scope* current,
+       break;
+     }
+     case IrOpcode::kCheckMaps: {
+-      CheckMapsParameters params = CheckMapsParametersOf(op);
+-      Node* checked = current->ValueInput(0);
+-      const VirtualObject* vobject = current->GetVirtualObject(checked);
+-      Variable map_field;
+-      Node* map;
+-      if (vobject && !vobject->HasEscaped() &&
+-          vobject->FieldAt(HeapObject::kMapOffset).To(&map_field) &&
+-          current->Get(map_field).To(&map)) {
+-        if (map) {
+-          Type const map_type = NodeProperties::GetType(map);
+-          if (map_type.IsHeapConstant() &&
+-              params.maps().contains(
+-                  map_type.AsHeapConstant()->Ref().AsMap().object())) {
+-            current->MarkForDeletion();
+-            break;
+-          }
+-        } else {
+-          // If the variable has no value, we have not reached the fixed-point
+-          // yet.
+-          break;
+-        }
+-      }
+-      current->SetEscaped(checked);
++      //OmniTmizer - Improving performance
++      current->MarkForDeletion();
+       break;
+     }
+     case IrOpcode::kCompareMaps: {

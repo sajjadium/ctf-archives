@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<br> 
+
+<form id="form" action="{{ url_for('index') }}" method="post" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.recaptcha }}
+
+    <div class="form-row">
+    <div class="form-group col-4">
+        {{ form.myfile(id="myfile", class="custom-file-input") }}
+        <label id="myfilelabel" class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+        <small class="form-text form-error">{% for field, error in form.errors.items() %}{{ ', '.join(error) }} {% endfor %}{% for error in errors %}{{ error }} {% endfor %}</small>
+    </div>
+    <div class="col">
+        <button id="recaptcha-submit" class="btn btn-pearl">Submit</button>
+    </div>
+    </div>
+</form>
+
+<hr>
+
+<table class="file-list">
+    <tbody>
+        {% for f in files %}
+            <tr>
+                <td class="pearl-icon"><img src="{{ url_for('static', filename='images/pearl-icon.png') }}" width=50px></td>
+                <td class="pearl-speech">
+                    <a href="{{ url_for('get_file', filename=f) }}">
+                        <div class="speech-bubble align-middle">
+                            {{ f }}
+                        </div>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+$("#myfile").on("change",function () {
+    $("#myfilelabel").text($("#myfile")[0].files[0].name);
+});
+</script>
+
+{% endblock %}

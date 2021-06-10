@@ -1,0 +1,90 @@
+diff --git a/src/goahead.h b/src/goahead.h
+index d0fd6cc..995f2a2 100644
+--- a/src/goahead.h
++++ b/src/goahead.h
+@@ -1983,6 +1983,8 @@ typedef struct Webs {
+     char            *uploadVar;         /**< Current upload form variable name */
+ #endif
+     void            *ssl;               /**< SSL context */
++
++    char            *cspNonce;          /**< Nonce used for CSP */
+ } Webs;
+
+ #if ME_GOAHEAD_LEGACY
+@@ -3416,6 +3418,7 @@ PUBLIC int websJstOpen(void);
+     @stability Stable
+  */
+ PUBLIC int websJstWrite(int jid, Webs *wp, int argc, char **argv);
++PUBLIC int websJstNonce(int jid, Webs *wp, int argc, char **argv);
+ #endif
+
+ /*************************************** SSL ***********************************/
+diff --git a/src/http.c b/src/http.c
+index 6e9c5be..f1eb539 100644
+--- a/src/http.c
++++ b/src/http.c
+@@ -428,6 +428,16 @@ static void initWebs(Webs *wp, int flags, int reuse)
+     } else {
+         bufCreate(&wp->rxbuf, ME_GOAHEAD_LIMIT_HEADERS, ME_GOAHEAD_LIMIT_HEADERS + ME_GOAHEAD_LIMIT_PUT);
+     }
++
++    char randbuf[16];
++    websGetRandomBytes(randbuf, 16, 0);
++
++    wp->cspNonce = walloc(33);
++    for (int i = 0; i < 16; i++) {
++        wp->cspNonce[2 * i] = "0123456789abcdef"[(randbuf[i] >> 0) & 0xf];
++        wp->cspNonce[2 * i + 1] = "0123456789abcdef"[(randbuf[i] >> 4) & 0xf];
++    }
++    wp->cspNonce[32] = 0;
+ }
+
+
+@@ -518,6 +528,8 @@ static void termWebs(Webs *wp, int reuse)
+         websFreeUpload(wp);
+     }
+ #endif
++
++    wfree(wp->cspNonce);
+ }
+
+
+@@ -1919,6 +1931,7 @@ PUBLIC void websWriteHeaders(Webs *wp, ssize length, cchar *location)
+             websWriteHeader(wp, "X-Frame-Options", "%s", ME_GOAHEAD_XFRAME_HEADER);
+         }
+ #endif
++        websWriteHeader(wp, "Content-Security-Policy", "default-src 'self'; script-src 'nonce-%s'; img-src *", wp->cspNonce);
+     }
+ }
+
+diff --git a/src/jst.c b/src/jst.c
+index a1834e2..665f09e 100644
+--- a/src/jst.c
++++ b/src/jst.c
+@@ -177,6 +177,7 @@ PUBLIC int websJstOpen(void)
+ {
+     websJstFunctions = hashCreate(WEBS_HASH_INIT * 2);
+     websDefineJst("write", websJstWrite);
++    websDefineJst("nonce", websJstNonce);
+     websDefineHandler("jst", 0, jstHandler, closeJst, 0);
+     return 0;
+ }
+@@ -214,6 +215,18 @@ PUBLIC int websJstWrite(int jid, Webs *wp, int argc, char **argv)
+     return 0;
+ }
+
++/*
++    Javascript, write CSP nonce. <% nonce(); %>
++ */
++PUBLIC int websJstNonce(int jid, Webs *wp, int argc, char **argv)
++{
++    if (websWriteBlock(wp, wp->cspNonce, 32) < 0) {
++        return -1;
++    }
++
++    return 0;
++}
++
+
+ /*
+     Find s2 in s1. We skip leading white space in s1.  Return a pointer to the location in s1 after s2 ends.

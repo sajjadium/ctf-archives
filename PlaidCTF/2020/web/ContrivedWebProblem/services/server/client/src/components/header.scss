@@ -1,0 +1,51 @@
+@import "../utils/variables";
+
+.header {
+    display: grid;
+    grid-template:
+    ". header ." minmax(max-content, 80px) /
+    1fr 800px 1fr;
+
+    align-items: center;
+
+    .header-content {
+        grid-area: header;
+    }
+
+    font-size: 32px;
+}
+
+.kind-note-app .header {
+
+    .header-content {
+        text-align: center;
+        color: $pure-light;
+    }
+}
+
+main.kind-forum {
+    .header {
+        grid-template:
+            "header" max-content /
+            1fr;
+        padding: 4px;
+        padding-left: 16px;
+    }
+}
+
+main.kind-bug-portal {
+    .header {
+        grid-template:
+            ". header ." minmax(max-content, 150px) /
+            1fr 800px 1fr;
+        text-align: center;
+    }
+}
+
+main.css-pure .header {
+    background-color: $pure-indigo;
+}
+
+main.css-materialize .header {
+    background-color: $mat-purple;
+}

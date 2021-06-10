@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  apachehost:
+    container_name: apachehost
+    build:
+      context: ./
+      dockerfile: ./Dockerfile-apache
+
+  challhost:
+    container_name: challhost
+    build:
+      context: ./
+      dockerfile: ./Dockerfile-chall
+    links:
+      - apachehost
+    ports:
+      - 1337:1337

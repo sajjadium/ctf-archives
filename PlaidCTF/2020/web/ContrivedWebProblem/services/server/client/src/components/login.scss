@@ -1,0 +1,18 @@
+.login {
+    input {
+        width: 100%;
+    }
+}
+
+main.css-bootstrap {
+    .login {
+        .form {
+            display: flex;
+
+            input {
+                flex-basis: 0;
+                flex-grow: 1;
+            }
+        }
+    }
+}

@@ -1,0 +1,30 @@
+@use "~react-pwn/palette.scss";
+
+.bh-frame {
+    margin-bottom: 16px;
+}
+
+.site {
+    border-radius: 4px;
+    background: palette.$color-neutral-01;
+
+    .site-domain {
+        background: palette.$color-primary-02;
+        padding: 8px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+    }
+
+    .site-content {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 16px;
+    }
+
+    &.pending-site {
+        .site-domain {
+            background: palette.$color-secondary-02;
+        }
+    }
+}

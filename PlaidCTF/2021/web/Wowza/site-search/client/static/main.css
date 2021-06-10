@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'yahoo';
+    src: url('/static/Yahoo.ttf') format('truetype');
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Lato;
+    background-color: var(--color-not-white);
+
+    /* I couldn't be bothered to setup scss... */
+    --border-radius: 16px;
+    --color-purple: #720e9e;
+    --color-gray: #444444;
+    --color-light-gray: #aaaaaa;
+    --color-not-white: #fdfdfd;
+}
+
+input {
+    background-color: var(--color-not-white);
+}
+
+.head {
+    display: flex;
+}
+
+.head .logo {
+    font-family: 'yahoo';
+    color: var(--color-purple);
+    font-size: 24px;
+    justify-self: center;
+    padding: 16px 24px;
+}
+
+.head .search-bar {
+    justify-self: center;
+    display: flex;
+    align-items: center;
+}
+
+#domain-search, #query-search {
+    padding: 16px;
+    border: 1px solid var(--color-gray);
+    outline: none;
+    max-height: 48px;
+    font-size: 16px;
+}
+
+#domain-search {
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+    border-right: 0px;
+}
+
+.divider {
+    width: 0px;
+    width: 0px;
+    height: 32px;
+    box-shadow: 0 0 0 1px var(--color-light-gray);
+    align-self: center;
+}
+
+#query-search {
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-left: 0px;
+    min-width: 300px;
+}
+
+
+.result-list {
+    margin-left: 200px;
+}
+
+.result-list:empty::before {
+    content: "No results found";
+    font-style: italic;
+    font-size: 24px;
+    margin: 48px 0px;
+    display: block;
+    color: var(--color-light-gray);
+}
+
+.result {
+    max-width: 600px;
+    margin: 32px 0px;
+}
+
+.result a {
+    display: block;
+    font-size: 20px;
+    text-decoration: none;
+    margin-bottom: 8px;
+}
+
+.result a:hover {
+    text-decoration: underline;
+}
+
+.result .description {
+    font-size: 14px;
+}
+
+.result .description::after {
+    content: "...";
+    color: var(--color-light-gray);
+}

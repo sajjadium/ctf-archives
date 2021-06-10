@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -eu
+
+if grep -qe "external" -e "unsafe" /input/exploit.ml; then
+	echo "unsafe!"
+	exit 1
+fi
+
+echo "open! Sos" > user/exploit.ml
+cat /input/exploit.ml >> user/exploit.ml
+dune exec user/exploit.exe

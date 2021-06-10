@@ -1,0 +1,13 @@
+diff --git a/lib/tsc.js b/lib/tsc.js
+index 1a32bce669..aa0a1ede43 100644
+--- a/lib/tsc.js
++++ b/lib/tsc.js
+@@ -38635,7 +38635,7 @@ var ts;
+             if (!type || !mapper || mapper === identityMapper) {
+                 return type;
+             }
+-            if (instantiationDepth === 50 || instantiationCount >= 5000000) {
++            if (instantiationDepth === 50000 || instantiationCount >= 5000000000) {
+                 error(currentNode, ts.Diagnostics.Type_instantiation_is_excessively_deep_and_possibly_infinite);
+                 return errorType;
+             }

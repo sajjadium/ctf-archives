@@ -1,0 +1,10 @@
+(library
+ (name pppiv_client_lib)
+ (libraries
+  core_kernel
+  js_of_ocaml
+  bonsai.web
+  pppiv_lib
+  virtual_dom.input_widgets)
+ (preprocess
+  (pps js_of_ocaml-ppx ppx_jane ppx_pattern_bind)))

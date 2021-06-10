@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+      - "5000:5000"
+    environment:
+      - HOST=0.0.0.0
+      - FLAG=${FLAG}

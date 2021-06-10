@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block flavortext %}bonz was here{% endblock %}
+
+
+{% block content %}
+<div class="row justify-content-md-center">
+    <img src="{{ url_for('static', filename='images/bonz-best.png') }}" width="300px">
+</div>
+
+<div class="row justify-content-md-center">
+    <div class="col text-center">
+        <p>Welcome to the world of <b>t̶͇͊ḥ̶̒e̷̛̮̲͛ ̶͇̿b̴̛̩ơ̷̡͇̂ñ̷̡z̷̺̕͝</b>! In every ACS file is a friend, and we want you to have one too!</p>
+        <p>Head on over to our <a href="{{ url_for('buddy') }}">buddy page</a> and find a friend <i>forever</i>!</p>
+    </div>
+</div>
+{% endblock %}

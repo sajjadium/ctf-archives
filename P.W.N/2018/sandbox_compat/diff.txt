@@ -1,0 +1,109 @@
+diff -u original/kernel_entry.S project/kernel_entry.S
+--- original/kernel_entry.S	2018-10-24 20:48:03.939520203 +0200
++++ project/kernel_entry.S	2018-10-11 01:57:41.678669987 +0200
+@@ -47,7 +47,11 @@
+ 
+ 	;; setup stack
+ 	mov	rsp, 0xdeadbeefdeaddead
++	
++	;; save rsp and flags, clear direction bit
++	pushf
+ 	push	rbx
++	cld
+ 
+ 	;; call kernel function
+ 	mov	rax, 0xdeadbeefdeadc0de
+@@ -55,6 +59,7 @@
+ 
+ 	;; restore rsp back to rbx
+ 	pop	rbx
++	popf
+ 	mov	rsp, rbx
+ 
+ 	;; trampoline to 32-bit code (segment selector 0xf)
+diff -u original/sandbox.c project/sandbox.c
+--- original/sandbox.c	2018-10-24 20:57:59.712840008 +0200
++++ project/sandbox.c	2018-10-11 19:14:00.128579988 +0200
+@@ -160,33 +160,45 @@
+ static void install_seccomp(void)
+ {
+   struct sock_filter filter[] = {
+-    /* No syscalls must be made if instruction pointer is lower than 4G.
+-     * That should not be necessary, but better be safe. */
++    /* No syscalls must be made if instruction pointer is lower than 4G. */
+     VALIDATE_IP,
+-    /* Grab the system call number. */
++    /* forbidden syscalls. */
+     EXAMINE_SYSCALL,
+-    /* List allowed syscalls. */
+-    ALLOW_SYSCALL(read),
+-    ALLOW_SYSCALL(write),
+-    ALLOW_SYSCALL(open),
+-    ALLOW_SYSCALL(close),
+-    ALLOW_SYSCALL(mprotect),
+-    ALLOW_SYSCALL(exit_group),
+-    KILL_PROCESS,
++    DENY_SYSCALL(clone),
++    DENY_SYSCALL(execve),
++    DENY_SYSCALL(execveat),
++    DENY_SYSCALL(bind),
++    DENY_SYSCALL(connect),
++    DENY_SYSCALL(accept),
++    DENY_SYSCALL(chdir),
++    DENY_SYSCALL(unlink),
++    ALLOW_PROCESS,
+   };
+ 
+   struct sock_fprog prog = {
+     .len = (unsigned short)ARRAY_SIZE(filter),
+     .filter = filter,
+   };
+-
+-  struct rlimit limit;
+-  if (getrlimit(RLIMIT_NPROC, &limit) != 0)
+-    err(1, "getrlimit");
+-
+-  limit.rlim_cur = 0;
+-  if (setrlimit(RLIMIT_NPROC, &limit) != 0)
+-    err(1, "setrlimit");
++  
++  struct rlimit limit;    
++    
++  /* set some RAM (8MiB) and CPU (1s) resource limits */
++  if (getrlimit(RLIMIT_AS, &limit) != 0) {
++    err(1, "getrlimit(RLIMIT_AS)");
++  }
++  limit.rlim_cur = 0x800000;
++  limit.rlim_max = 0x800000;
++  if (setrlimit(RLIMIT_AS, &limit) != 0) {
++    err(1, "setrlimit(RLIMIT_AS)");
++  }
++  if (getrlimit(RLIMIT_CPU, &limit) != 0) {
++    err(1, "getrlimit(RLIMIT_CPU)");
++  }
++  limit.rlim_cur = 1;
++  limit.rlim_max = 1;
++  if (setrlimit(RLIMIT_CPU, &limit) != 0) {
++    err(1, "setrlimit(RLIMIT_CPU)");
++  }
+ 
+   if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) != 0)
+     err(1, "prctl(NO_NEW_PRIVS)");
+diff -u original/seccomp-bpf.h project/seccomp-bpf.h
+--- original/seccomp-bpf.h	2018-10-24 20:58:12.389506389 +0200
++++ project/seccomp-bpf.h	2018-10-11 03:33:13.109019868 +0200
+@@ -97,7 +97,14 @@
+ 	BPF_JUMP(BPF_JMP+BPF_JEQ+BPF_K, __NR_##name, 0, 1), \
+ 	BPF_STMT(BPF_RET+BPF_K, SECCOMP_RET_ALLOW)
+ 
++#define DENY_SYSCALL(name) \
++	BPF_JUMP(BPF_JMP+BPF_JEQ+BPF_K, __NR_##name, 0, 1), \
++	BPF_STMT(BPF_RET+BPF_K, SECCOMP_RET_KILL)
++    
+ #define KILL_PROCESS \
+ 	BPF_STMT(BPF_RET+BPF_K, SECCOMP_RET_KILL)
+ 
++#define ALLOW_PROCESS \
++	BPF_STMT(BPF_RET+BPF_K, SECCOMP_RET_ALLOW)
++
+ #endif /* _SECCOMP_BPF_H_ */

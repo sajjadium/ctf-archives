@@ -1,0 +1,9 @@
+(executables
+ (names pppiv)
+ (modes js)
+ (libraries core_kernel bonsai.web pppiv_client_lib)
+ (preprocess
+  (pps ppx_jane))
+ (promote
+  (until-clean)
+  (into ../static)))

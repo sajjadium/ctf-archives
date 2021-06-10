@@ -1,0 +1,73 @@
+@import "../utils/variables.scss";
+
+body {
+    #main {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+
+main {
+    flex-grow: 1;
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+
+    .site-content {
+        width: 800px;
+        align-self: center;
+    }
+
+    h1 {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+main.kind-forum {
+    font-family: monospace !important;
+
+    input {
+        font-family: monospace !important;
+    }
+
+    .site-content {
+        margin: 0px 16px;
+        align-self: stretch;
+    }
+
+    h1 {
+        text-align: left;
+    }
+}
+
+main.css-pure {
+    background: $white;
+
+    h1 {
+        color: $pure-orange;
+    }
+}
+
+main.css-materialize {
+    background: $mat-black;
+
+    color: $mat-light;
+
+    input[type=text], input[type=password], textarea {
+        color: $mat-light !important;
+    }
+
+    h1 {
+        color: $mat-blue;
+        font-size: 20px;
+    }
+}
+
+.css-pure .card {
+    border-radius: 2px;
+    padding: 8px;
+}

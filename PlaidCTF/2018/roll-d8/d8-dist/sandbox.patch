@@ -1,0 +1,162 @@
+diff --git a/src/d8.cc b/src/d8.cc
+index 0f2ba42..5a915b5 100644
+--- a/src/d8.cc
++++ b/src/d8.cc
+@@ -1731,115 +1731,9 @@ Local<String> Shell::Stringify(Isolate* isolate, Local<Value> value) {
+ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+   Local<ObjectTemplate> global_template = ObjectTemplate::New(isolate);
+   global_template->Set(
+-      String::NewFromUtf8(isolate, "print", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, Print));
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "printErr", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, PrintErr));
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "write", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, Write));
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "read", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, Read));
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "readbuffer", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, ReadBuffer));
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "readline", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, ReadLine));
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "load", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, Load));
+-  global_template->Set(
+       String::NewFromUtf8(isolate, "setTimeout", NewStringType::kNormal)
+           .ToLocalChecked(),
+       FunctionTemplate::New(isolate, SetTimeout));
+-  // Some Emscripten-generated code tries to call 'quit', which in turn would
+-  // call C's exit(). This would lead to memory leaks, because there is no way
+-  // we can terminate cleanly then, so we need a way to hide 'quit'.
+-  if (!options.omit_quit) {
+-    global_template->Set(
+-        String::NewFromUtf8(isolate, "quit", NewStringType::kNormal)
+-            .ToLocalChecked(),
+-        FunctionTemplate::New(isolate, Quit));
+-  }
+-  Local<ObjectTemplate> test_template = ObjectTemplate::New(isolate);
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "testRunner", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      test_template);
+-  test_template->Set(
+-      String::NewFromUtf8(isolate, "notifyDone", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, NotifyDone));
+-  test_template->Set(
+-      String::NewFromUtf8(isolate, "waitUntilDone", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, WaitUntilDone));
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "version", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, Version));
+-  global_template->Set(
+-      Symbol::GetToStringTag(isolate),
+-      String::NewFromUtf8(isolate, "global", NewStringType::kNormal)
+-          .ToLocalChecked());
+-
+-  // Bind the Realm object.
+-  Local<ObjectTemplate> realm_template = ObjectTemplate::New(isolate);
+-  realm_template->Set(
+-      String::NewFromUtf8(isolate, "current", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, RealmCurrent));
+-  realm_template->Set(
+-      String::NewFromUtf8(isolate, "owner", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, RealmOwner));
+-  realm_template->Set(
+-      String::NewFromUtf8(isolate, "global", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, RealmGlobal));
+-  realm_template->Set(
+-      String::NewFromUtf8(isolate, "create", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, RealmCreate));
+-  realm_template->Set(
+-      String::NewFromUtf8(isolate, "createAllowCrossRealmAccess",
+-                          NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, RealmCreateAllowCrossRealmAccess));
+-  realm_template->Set(
+-      String::NewFromUtf8(isolate, "navigate", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, RealmNavigate));
+-  realm_template->Set(
+-      String::NewFromUtf8(isolate, "dispose", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, RealmDispose));
+-  realm_template->Set(
+-      String::NewFromUtf8(isolate, "switch", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, RealmSwitch));
+-  realm_template->Set(
+-      String::NewFromUtf8(isolate, "eval", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, RealmEval));
+-  realm_template->SetAccessor(
+-      String::NewFromUtf8(isolate, "shared", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      RealmSharedGet, RealmSharedSet);
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "Realm", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      realm_template);
+
+   Local<ObjectTemplate> performance_template = ObjectTemplate::New(isolate);
+   performance_template->Set(
+@@ -1851,42 +1745,6 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+           .ToLocalChecked(),
+       performance_template);
+
+-  Local<FunctionTemplate> worker_fun_template =
+-      FunctionTemplate::New(isolate, WorkerNew);
+-  Local<Signature> worker_signature =
+-      Signature::New(isolate, worker_fun_template);
+-  worker_fun_template->SetClassName(
+-      String::NewFromUtf8(isolate, "Worker", NewStringType::kNormal)
+-          .ToLocalChecked());
+-  worker_fun_template->ReadOnlyPrototype();
+-  worker_fun_template->PrototypeTemplate()->Set(
+-      String::NewFromUtf8(isolate, "terminate", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, WorkerTerminate, Local<Value>(),
+-                            worker_signature));
+-  worker_fun_template->PrototypeTemplate()->Set(
+-      String::NewFromUtf8(isolate, "postMessage", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, WorkerPostMessage, Local<Value>(),
+-                            worker_signature));
+-  worker_fun_template->PrototypeTemplate()->Set(
+-      String::NewFromUtf8(isolate, "getMessage", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, WorkerGetMessage, Local<Value>(),
+-                            worker_signature));
+-  worker_fun_template->InstanceTemplate()->SetInternalFieldCount(1);
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "Worker", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      worker_fun_template);
+-
+-  Local<ObjectTemplate> os_templ = ObjectTemplate::New(isolate);
+-  AddOSMethods(isolate, os_templ);
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "os", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      os_templ);
+-
+   return global_template;
+ }

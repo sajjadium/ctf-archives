@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package dyrpto;
+
+message Message {
+  required int32 id = 1;
+  required string msg = 2;
+}
+

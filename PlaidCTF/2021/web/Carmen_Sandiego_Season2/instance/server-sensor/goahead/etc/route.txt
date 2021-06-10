@@ -1,0 +1,7 @@
+route uri=/pub
+route uri=/action/login methods=POST handler=action redirect=200@/ redirect=401@/pub/login.html
+route uri=/action/logout methods=POST handler=action redirect=200@/pub/login.html
+route uri=/ auth=form handler=continue redirect=401@/pub/login.html
+route uri=/cgi-bin handler=cgi
+route uri=/jst extensions=jst handler=jst
+route uri=/

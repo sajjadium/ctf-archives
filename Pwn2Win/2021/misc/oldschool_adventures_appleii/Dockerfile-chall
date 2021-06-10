@@ -1,0 +1,24 @@
+FROM ubuntu:20.04
+RUN apt-get update
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/Sao_Paulo
+RUN apt-get install -y tzdata
+
+RUN apt-get install default-jre-headless npm libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb hashcash python python3 -y
+RUN useradd --create-home --shell /bin/bash stevej
+RUN mkdir /home/stevej/stuff/
+RUN rm /usr/bin/grep
+
+ADD files.tar.gz /home/stevej/stuff/
+
+RUN chown stevej:stevej /home/stevej/stuff/
+WORKDIR /home/stevej/
+USER stevej
+RUN npm install cypress@7.3.0
+
+WORKDIR /home/stevej/stuff/
+ENTRYPOINT ["python", "server-cypress.py"] 
+EXPOSE 1337
+
+

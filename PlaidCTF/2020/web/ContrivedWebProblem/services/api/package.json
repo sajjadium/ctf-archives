@@ -1,0 +1,31 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@types/isomorphic-fetch": "^0.0.35",
+    "amqplib": "^0.5.5",
+    "bcrypt": "^4.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "ftp": "^0.3.10",
+    "isomorphic-fetch": "^2.2.1",
+    "nconf": "^0.10.0",
+    "pg": "^8.0.2"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.13",
+    "@types/bcrypt": "^3.0.0",
+    "@types/body-parser": "^1.19.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/express": "^4.17.6",
+    "@types/ftp": "^0.3.31",
+    "@types/nconf": "^0.10.0",
+    "@types/pg": "^7.14.3"
+  }
+}

@@ -1,0 +1,9 @@
+[package]
+name = "dep"
+version = "0.8.0"
+authors = ["Jay 'f0xtr0t' Bosamiya <jaybosamiya AT cmu DOT edu>"]
+edition = "2018"
+
+[dependencies]
+rustyline = "8.0.0"
+nom = "5.1.2"

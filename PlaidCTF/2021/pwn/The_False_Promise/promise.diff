@@ -1,0 +1,17 @@
+diff --git a/src/builtins/promise-jobs.tq b/src/builtins/promise-jobs.tq
+index 80e98f373b..ad5eb093e8 100644
+--- a/src/builtins/promise-jobs.tq
++++ b/src/builtins/promise-jobs.tq
+@@ -23,10 +23,8 @@ PromiseResolveThenableJob(implicit context: Context)(
+   // debugger is active, to make sure we expose spec compliant behavior.
+   const nativeContext = LoadNativeContext(context);
+   const promiseThen = *NativeContextSlot(ContextSlot::PROMISE_THEN_INDEX);
+-  const thenableMap = thenable.map;
+-  if (TaggedEqual(then, promiseThen) && IsJSPromiseMap(thenableMap) &&
+-      !IsPromiseHookEnabledOrDebugIsActiveOrHasAsyncEventDelegate() &&
+-      IsPromiseSpeciesLookupChainIntact(nativeContext, thenableMap)) {
++  if (TaggedEqual(then, promiseThen) &&
++      !IsPromiseHookEnabledOrDebugIsActiveOrHasAsyncEventDelegate()) {
+     // We know that the {thenable} is a JSPromise, which doesn't require
+     // any special treatment and that {then} corresponds to the initial
+     // Promise.prototype.then method. So instead of allocating a temporary

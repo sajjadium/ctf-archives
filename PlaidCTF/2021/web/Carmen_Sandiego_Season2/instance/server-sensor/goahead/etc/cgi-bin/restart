@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+
+from time import sleep
+from os import getenv, listdir
+import socket
+
+sensor = getenv("CGI_sensor")
+
+if not sensor or len(sensor) > 512:
+	print("Status: 400")
+	print("Content-Type: text/html")
+	print()
+	print("<h1>Bad Request</h1>")
+	print("<p>You must provide a valid sensor name.</p>")
+else:
+	sensor_list = listdir("/var/www/goahead/data/latest")
+
+	if sensor in sensor_list:
+		sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
+		sock.connect("/sensor/sensor.sock")
+		sock.sendall(f"sensor:off {sensor}\n".encode("ascii"))
+		sleep(5)
+		sock.sendall(f"sensor:on {sensor}\n".encode("ascii"))
+		print("Status: 200")
+		print("Content-Type: text/html")
+		print()
+		print("<h1>Success</h1>")
+		print(f"<p>The sensor <b>{sensor}</b> was successfully restarted.</p>")
+	else:
+		print("Status: 404")
+		print("Content-Type: text/html")
+		print()
+		print("<h1>Not Found</h1>")
+		print(f"<p>The sensor <b>{sensor}</b> was not found.</p>")

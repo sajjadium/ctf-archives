@@ -1,0 +1,34 @@
+FROM ocaml/opam:alpine-ocaml-4.11-flambda AS build
+
+WORKDIR /home/opam/pppiv
+
+ENV OPAMJOBS=2
+
+ADD ./main/pins.sh .
+RUN ./pins.sh && opam update
+ADD ./main/pppiv.opam .
+RUN opam pin add -yn pppiv . && \
+	opam depext pppiv && \
+	opam install ocaml-embed-file && \
+	opam install --deps-only pppiv
+
+COPY --chown=opam:nogroup ./main .
+RUN sudo chown -R opam:nogroup . && \
+	opam config exec dune build && \
+	opam depext -l pppiv > depexts
+
+FROM nginx:alpine
+
+WORKDIR /pppiv
+
+COPY --from=build /home/opam/pppiv/depexts .
+RUN cat depexts | xargs apk --no-cache --update add apache2-utils
+
+COPY --from=build /home/opam/pppiv/client/static /usr/share/nginx/html
+COPY ./static /usr/share/nginx/html
+COPY --from=build /home/opam/pppiv/server/bin/pppiv.exe .
+
+COPY ./docker/start-server.sh .
+COPY ./docker/nginx.conf /etc/nginx/conf.d/default.conf
+
+CMD [ "/pppiv/start-server.sh" ]

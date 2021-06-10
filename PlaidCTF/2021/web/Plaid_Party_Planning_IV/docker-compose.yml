@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  server:
+    build: 
+      context: .
+      dockerfile: docker/Dockerfile.server
+    environment:
+      DBURL: postgresql://pppiv@db/postgres
+      NOPROTECT: "yes"
+    restart: always
+    ports:
+      - 8000:80
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    secrets:
+      - ppp-basic-auth
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres-password
+      PGDATA: /var/lib/postgresql/data/pgdata
+    secrets:
+      - postgres-password
+      - flag
+    restart: always
+    volumes:
+      - ./database-data:/var/lib/postgresql/data
+      - ./docker/postgres-setup.sh:/docker-entrypoint-initdb.d/postgres-setup.sh
+secrets:
+  postgres-password:
+    file: secrets/postgres-password
+  flag:
+    file: secrets/flag
+  ppp-basic-auth:
+    file: secrets/ppp-basic-auth

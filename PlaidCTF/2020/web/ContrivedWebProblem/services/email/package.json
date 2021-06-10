@@ -1,0 +1,19 @@
+{
+  "name": "email",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.5",
+    "nconf": "^0.10.0",
+    "nodemailer": "^6.4.6"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.13",
+    "@types/nconf": "^0.10.0",
+    "@types/nodemailer": "^6.4.0"
+  }
+}

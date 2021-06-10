@@ -1,0 +1,1 @@
+export type Loadable<T> = { value?: T; loading: boolean };

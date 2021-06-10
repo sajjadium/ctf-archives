@@ -1,0 +1,10 @@
+version: '3'
+services:
+  grocery_shop:
+    build:
+      context: .
+    working_dir: /home/ctf
+    container_name: gshop
+    ports:
+      - "7778:9998"
+    entrypoint: "/usr/sbin/xinetd -dontfork"

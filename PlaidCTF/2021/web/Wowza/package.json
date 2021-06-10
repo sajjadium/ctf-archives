@@ -1,0 +1,25 @@
+{
+    "private": true,
+    "workspaces": [
+        "search-console/*",
+        "site-search/*"
+    ],
+    "devDependencies": {
+        "concurrently": "^6.0.1",
+        "nodemon": "^2.0.7",
+        "ts-node": "^9.1.1",
+        "typescript": "^4.2.4"
+    },
+    "scripts": {
+        "watch:search-console:server": "concurrently --kill-others 'tsc --build -w search-console/server' 'nodemon search-console/server'",
+        "watch:site-search:server": "concurrently --kill-others 'tsc --build -w site-search/server' 'nodemon site-search/server'",
+        "watch": "concurrently --kill-others 'yarn watch:search-console:server' 'yarn watch:site-search:server'",
+
+        "docker:base": "docker build . -f Dockerfile -t 'wowza-base'",
+        "docker:search-console": "docker build . -f search-console/Dockerfile -t 'wowza-search-console'",
+        "docker:site-search": "docker build . -f site-search/Dockerfile -t 'wowza-site-search'",
+        "docker:all": "yarn docker:base && yarn docker:search-console && yarn docker:site-search",
+
+        "tar": "tar -cvzf wowza.tgz .dockerignore docker-compose.yml Dockerfile package.json tsconfig.json yarn.lock search-console/client/{index.html,package.json,tsconfig.json,webpack.config.js,src} search-console/server/{client,index.js,package.json,tsconfig.json,src} search-console/Dockerfile site-search/client site-search/server/{index.js,package.json,tsconfig.json,src} site-search/Dockerfile"
+    }
+}

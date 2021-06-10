@@ -1,0 +1,23 @@
+version: "3"
+services:
+  server:
+    hostname: iot.hub
+    image: sensor-goahead:latest
+    ports:
+      - "${SENSOR_PORT:-9999}:9999"
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - SENSOR_TOKEN
+      - ADMIN_PASSWORD
+      - FLAG
+  victim:
+    image: sensor-victim:latest
+    depends_on:
+      - server
+    environment:
+      - TARGET_HOST=iot.hub
+      - ATTACKER_URL
+      - ADMIN_PASSWORD
+    cap_add:
+      - SYS_ADMIN

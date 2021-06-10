@@ -1,0 +1,22 @@
+Welcome to the Carnival! 
+
+Here's how you play games here. Since too many players forge their own
+version of our previous generation of Carnival tokens, we now use the new 
+tokens called "Medallions". You have a few options:
+    - Purchase a medallion for $1000.
+    - Get $999 in cash back for a medallion.
+    - Use a medallion to play games.
+Although not necessary for our business, we still offer some internal 
+operations for medallions. If you just wanna have some fun at the Carnival,
+you probably don't need them (~unless you have some peculiar sense of fun):
+    - Refresh/void all previous medallions in exchange for a new one, for $1.
+    - Test on medallions internally: flipping bits, viewing bits, you name it!
+If you attempt to cheat at our Carnival, we will NOT hesitate before
+calling the cops on you. Be warned! 
+
+Also, we communicate only via JSON. Hope that's easy for ya. Here's an example
+sequence of messages we will understand:
+{"option": "help"}
+{"option": "money_for_med"}
+{"option": "play_razzle", "med_id": <med_id from previous result>}
+

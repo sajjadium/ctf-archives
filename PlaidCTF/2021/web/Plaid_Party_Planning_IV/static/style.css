@@ -1,0 +1,319 @@
+:root {
+	--bg: #132539;
+	--room: black;
+	--fg: white;
+	--text-disabled: #929292;
+	--action: #21773c;
+	--action-active: #32b95c;
+	--action-disabled: #3b463e;
+}
+
+html {
+	font-size: 16px;
+	color: var(--fg);
+	font-family: "Tahoma", sans-serif;
+}
+
+body {
+	background-color: var(--bg);
+}
+
+
+#info-messages {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
+}
+
+#info-messages.hidden {
+	display: none;
+}
+
+.info-messages-contents {
+	position: relative;
+	padding: 0.5em;
+	margin: 0.5em;
+	border-radius: 0.2em;
+	background-color: var(--action);
+}
+
+.close-info-messages {
+	cursor: pointer;
+	position: absolute;
+	font-size: 0.7rem;
+	line-height: 1em;
+	top: 0;
+	right: 0.2em;
+}
+
+.close-info-messages:before {
+	content: "×";
+}
+
+.header {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 0.5em;
+}
+
+.left-side, .right-side {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	flex: 1;
+}
+
+.left-side {
+	justify-content: flex-start;
+}
+
+.left-side > :first-child {
+	margin-left: 0;
+}
+
+.right-side {
+	justify-content: flex-end;
+}
+
+.right-side > :last-child {
+	margin-right: 0;
+}
+
+.action {
+	margin: 0 0.5em;
+	padding: 0.5em;
+	background-color: var(--action);
+	border-radius: 0.2em;
+	cursor: pointer;
+}
+
+.action:active {
+	background-color: var(--action-active);
+}
+
+.action.disabled {
+	background-color: var(--action-disabled);
+	color: var(--text-disabled);
+	cursor: not-allowed;
+}
+
+.header .score {
+	font-size: 2em;
+	text-align: center;
+	font-family: impact;
+	position: relative;
+	line-height: 1em;
+}
+.score-increment {
+	width: 2em;
+	margin: 0 0.5em;
+	opacity: 0%;
+	font-family: impact;
+}
+.score-increment.show {
+	animation: 2s score-changed ease-out;
+}
+.score-increment.show1 {
+	animation: 2s score-changed ease-out;
+}
+.score-increment.show2 {
+	animation: 2s score-changed2 ease-out;
+}
+@keyframes score-changed {
+	from { opacity: 100%; } 
+	to { opacity: 0%; } 
+}
+@keyframes score-changed2 {
+	from { opacity: 100%; } 
+	to { opacity: 0%; } 
+}
+
+
+.scoreboard {
+	max-width: 30em;
+	margin: 0 auto;
+	display: grid;
+	grid-column-gap: 1em;
+	grid-row-gap: .5em;
+	grid-template-columns: [rank] minmax(2em, auto) [team] 1fr [score] auto;
+}
+.scoreboard > .sep {
+	grid-column: 1 / -1;
+	border-bottom: solid 1px var(--fg);
+}
+.scoreboard > .rank {
+	grid-column: rank;
+	justify-self: right;
+}
+.scoreboard > .score {
+	grid-column: score;
+	justify-self: right;
+}
+.scoreboard > .team {
+	grid-column: team;
+}
+
+.set-team {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.set-team > input[type="text"] {
+	margin-top: 2em;
+	margin-bottom: 1em;
+	font-size: 2em;
+	width: 10em;
+	padding: 0.2em;
+}
+.set-team > button {
+	width: fit-content;
+	font-size: 1em;
+	padding: 0.5em;
+}
+
+
+.videoconference {
+	display: grid;
+	grid-template-rows: [rooms-start] repeat(5, auto) [rooms-end];
+	grid-template-columns: [games] minmax(12rem, 1fr) repeat(2, minmax(auto, 2fr)) [people] minmax(12rem, 1fr) [col-end];
+	grid-gap: 0.5em;
+}
+
+@media only screen and (max-width: 60em) {
+	.videoconference {
+		grid-template-columns: [games] minmax(12rem, 1fr) minmax(auto, 2fr) [people] minmax(12rem, 1fr) [col-end];
+	}
+}
+
+.unplaced-games {
+	grid-column: games;
+	grid-row: rooms-start / -1;
+}
+
+.unplaced-people {
+	grid-column: people;
+	grid-row: rooms-start / -1;
+}
+
+
+/* Unplaced games and people */
+
+.unplaced-games, .unplaced-people {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	grid-row-gap: .5em;
+}
+
+.unplaced-game, .unplaced-person {
+	box-sizing: border-box;
+	border-radius: .25em;
+	background-color: var(--action);
+	padding: .5em;
+	align-items: center;
+	display: flex;
+}
+
+.unplaced-game > .game-icon, .unplaced-person > .avatar {
+	margin-right: 0.5em;
+	height: 2em;
+	width: 2em;
+	border-radius: 5px;
+	overflow: hidden;
+	flex: none;
+}
+
+.avatar > video {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* Room contents */
+
+.room {
+	border: 3px solid var(--action-disabled);
+	background-color: var(--room);
+	position: relative;
+
+	min-width: 18rem;
+}
+
+.room-score {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 0.7em;
+	background-color: var(--action-disabled);
+	border-bottom-left-radius: 0.4em;
+	padding: 0.2em 0.4em;
+}
+
+.room.drop-target {
+	border-color: var(--action);
+}
+
+
+.room-games {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	height: 2.5em;
+	align-items: center;
+}
+
+.room-game > .game-icon {
+	width: 2em;
+	height: 2em;
+	border-radius: 5px;
+}
+
+
+.room-people-container {
+	position: relative;
+}
+
+.room-people-sizing {
+	padding-top: 56.25%;
+}
+
+.room-people {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+
+	display: grid;
+}
+
+.room-person {
+	position: relative;
+}
+
+.room-person > .avatar {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+}
+
+.room-person > .person-name, .room-person > .person-score {
+	position: absolute;
+	padding: 0.2em 0.5em;
+	background-color: var(--bg);
+	opacity: 70%;
+	font-size: 0.7em;
+}
+
+.room-person > .person-name {
+	top: 0;
+	left: 0;
+}
+
+.room-person > .person-score {
+	top: 0;
+	right: 0;
+}

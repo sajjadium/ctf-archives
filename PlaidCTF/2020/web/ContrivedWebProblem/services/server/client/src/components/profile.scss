@@ -1,0 +1,73 @@
+@import "../utils/variables.scss";
+
+.profile {
+    .profile-form {
+        display: grid;
+        grid-template:
+            ". image ." max-content
+            "selector selector selector" max-content
+            "url url submit" max-content /
+            1fr 1fr 1fr;
+
+        &>* {
+            margin-bottom: 8px;
+        }
+
+        .profile-pic {
+            padding: 8px;
+            margin: 8px;
+            grid-area: image;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                padding: 8px;
+                border-width: 4px;
+                border-radius: 6px;
+                border-style: solid;
+            }
+        }
+
+        #profile-upload {
+            opacity: 0;
+            position: absolute;
+            width: 1px;
+            height: 1px;
+        }
+
+        .file-label {
+            grid-area: selector;
+            width: unset;
+            justify-self: stretch;
+        }
+
+        input[type=text] {
+            grid-area: url;
+            width: unset;
+            justify-self: stretch;
+        }
+
+        .set-button {
+            grid-area: submit;
+            width: unset;
+            justify-self: stretch;
+        }
+    }
+}
+
+main.css-pure .profile-form {
+    .profile-pic {
+        img {
+            border-color: $pure-red;
+        }
+    }
+}
+
+main.css-materialize .profile-form {
+    .profile-pic {
+        img {
+            border-color: $mat-blue;
+        }
+    }
+}

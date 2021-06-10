@@ -1,0 +1,10 @@
+version: '3'
+services:
+  grevenge:
+    build:
+      context: .
+    working_dir: /home/ctf
+    container_name: vmrevenge
+    ports:
+      - "6666:9997"
+    entrypoint: "/usr/sbin/xinetd -dontfork"

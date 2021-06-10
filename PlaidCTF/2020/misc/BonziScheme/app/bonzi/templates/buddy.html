@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block flavortext %}A friend in every file!{% endblock %}
+
+{% block content %}
+<div class="row justify-content-md-center mt-4 mb-4">
+    <marquee><img src="{{ url_for('static', filename='images/icon.png') }}" width=20px> <a href="{{ url_for('static', filename='bonz.acs') }}">Download a bonz friend Now - FREE!!!!!</a></marquee>
+</div>
+
+<div class="row justify-content-md-center mt-3 mb-3">
+    <div class="col-sm text-center">
+        <h5><b>How does it work?</b></h5> 
+        <p>Give us an ACS file and your favorite number and we'll extract an image of your friend!<br/>
+        If you need an example file, you can download one above.<br/>
+        <small class="text-muted">To be extra nice, we'll dress up your buddy with a flag in the character description - you won't see it though!</small></p>
+    </div>
+</div>
+
+<div class="row justify-content-md-center">
+    <div class="col col-lg-4" id="acsform">
+        <form action="{{ url_for('buddy') }}" method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.acsfile.label }}
+                {{ form.acsfile }}
+            </div>
+            <div class="form-group">
+                {{ form.imgidx.label }}
+                {{ form.imgidx }}
+            </div>
+            <div class="form-group">
+                {{ form.recaptcha }}
+            </div>
+            <div id="submit">
+                {{ form.submit }}
+            </div>
+        </form>
+    </div>
+
+    <div class="col col-lg-5">
+        <div class="row justify-content-md-center preview-header">
+            PREVIEW
+        </div>
+        <div class="row justify-content-md-center h-100 preview-box">
+                {% if image %}
+                <div class="col align-self-center d-flex justify-content-center my-5">
+                    <img id="buddy" src="{{ url_for('download_file', filename=image) }}" height=100% width=auto>
+                {% elif error_message %}
+                        <div class="col align-self-center m-3 px-5">
+                        {% for field, errors in error_message.items() %}
+                            {% for error in errors %}
+                                <error>{{ error }}</error><br/>
+                            {% endfor %}
+                        {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

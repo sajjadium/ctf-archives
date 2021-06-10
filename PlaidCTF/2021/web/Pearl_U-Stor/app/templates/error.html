@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table>
+    <tbody>
+        <tr>
+            <td class="pearl-icon"><img src="{{ url_for('static', filename='images/pearl-icon.png') }}" width=50px></td>
+            <td class="pearl-speech">
+                <div class="speech-bubble align-middle">
+                    {{ message }} 🙊
+                </div>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="pearl-icon"><img src="{{ url_for('static', filename='images/pearl-icon.png') }}" width=50px></td>
+            <td class="pearl-speech">
+                <div class="speech-bubble align-middle">
+                    <span style="font-size:40px">🌺</span>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,151 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0px;
+	font-family: sans-serif;
+}
+
+header {
+	padding: 48px 24px 12px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+}
+
+h1 {
+	font-size: 24px;
+	color: #8c8c8c;
+	font-style: italic;
+	margin: 0px;
+}
+
+h1 .iot {
+	color: #c90018;
+}
+
+header form {
+	display: contents;
+}
+
+.logout {
+	text-decoration: none;
+	color: #0066ff;
+	border: 0px;
+	background: transparent;
+	font-size: 16px;
+	outline: none;
+	cursor: pointer;
+}
+
+.login main {
+	background: #ededed;
+	height: 600px;
+	position: relative;
+}
+
+.login .lens {
+	position: absolute;
+	top: 60px;
+	height: 480px;
+	left: 40%;
+	transform: translateX(-50%);
+	z-index: 1;
+}
+
+.login form {
+	background: #ffffff;
+	border: 1px solid #9d9d9d;
+	border-top: 6px solid #c90018;
+	position: absolute;
+	top: 100px;
+	bottom: 100px;
+	right: 200px;
+	width: 300px;
+	border-radius: 6px;
+	padding: 12px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	z-index: 2;
+}
+
+.login input[type=text],
+.login input[type=password] {
+	margin-top: 24px;
+	font-size: 14px;
+	width: 100%;
+	padding: 6px;
+}
+
+.login input[type=submit] {
+	margin-top: 48px;
+	margin-bottom: 48px;
+	padding: 8px;
+	background: #c90018;
+	border: 0px;
+	border-radius: 4px;
+	color: #ffffff;
+}
+
+.dashboard .group {
+	margin: 12px 24px;
+	border: 1px solid #9d9d9d;
+	border-radius: 8px;
+	padding: 8px 12px 12px;
+	background: #ededed;
+	min-height: 100px;
+}
+
+.dashboard h2 {
+	margin: 0px 0px 8px;
+	color: #505050;
+	font-size: 14px;
+}
+
+.dashboard #camera-list,
+.dashboard #sensor-list {
+	display: flex;
+}
+
+.dashboard .camera,
+.dashboard .sensor {
+	background: #dbdbdb;
+	padding: 12px;
+	display: inline-block;
+	margin-right: 6px;
+	position: relative;
+}
+
+.dashboard .camera img {
+	max-width: 150px;
+	height: 100px;
+}
+
+.dashboard .camera .name {
+	text-align: center;
+	padding: 0px 8px;
+}
+
+.dashboard .sensor .value {
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #c90018;
+	font-size: 32px;
+	font-weight: 600;
+}
+
+.dashboard .sensor .name {
+	text-align: center;
+}
+
+.dashboard .restart {
+	position: absolute;
+	right: 4px;
+	bottom: 4px;
+	color: #808080;
+	cursor: pointer;
+}
