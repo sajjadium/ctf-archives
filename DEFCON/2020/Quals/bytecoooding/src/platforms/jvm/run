@@ -1,0 +1,8 @@
+#!/bin/bash
+
+cp bytecode Bytecode.class
+
+(sleep 5; kill -9 -1) &
+
+java Bytecode
+

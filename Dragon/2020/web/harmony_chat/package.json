@@ -1,0 +1,19 @@
+{
+  "name": "harmony",
+  "version": "1.0.0",
+  "description": "Harmony Chat",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gynvael Coldwind",
+  "license": "CTF",
+  "dependencies": {
+    "ajv": "^6.12.6",
+    "express": "^4.17.1",
+    "ftpd": "^0.2.16",
+    "javascript-serializer": "^1.0.0",
+    "tslib": "^2.0.3",
+    "ws": "^7.3.0"
+  }
+}

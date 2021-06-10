@@ -1,0 +1,1 @@
+I really do not understand what this is about, but my cousin told me that once he managed to got a flag out of this. I was able to copy from my cousin's shell parts of his interactions with the server. You can find them in interaction1.txt and interaction2.txt. Unfortunately, they are incomplete.

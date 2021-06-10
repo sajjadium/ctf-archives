@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+    chall:
+      build: .
+      ports:
+        - "5333:5333"
+      volumes:
+        - ./share:/home/ctf/
+        - ./xinetd:/etc/xinetd.d/ctf

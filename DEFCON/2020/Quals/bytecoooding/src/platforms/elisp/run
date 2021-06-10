@@ -1,0 +1,11 @@
+#!/bin/bash
+
+(sleep 5; kill -9 -1) &
+
+BYTECODE=$(python3 -c "print(''.join(map(lambda b: f\"\\\\{hex(b)[1:]}\", open('bytecode', 'rb').read())),end='')")
+
+CONSTANTS="[97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 string insert-file-contents print buffer-string]"
+
+SCRIPT="(progn (defalias 'code (make-byte-code nil \"$BYTECODE\" $CONSTANTS 20)) (code))"
+
+emacs --batch --eval="$SCRIPT"

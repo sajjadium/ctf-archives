@@ -1,0 +1,82 @@
+diff --git a/src/builtins/array-slice.tq b/src/builtins/array-slice.tq
+index 7b82f2bda3..4b9478f84e 100644
+--- a/src/builtins/array-slice.tq
++++ b/src/builtins/array-slice.tq
+@@ -101,7 +101,14 @@ macro HandleFastSlice(
+         // to be copied out. Therefore, re-check the length before calling
+         // the appropriate fast path. See regress-785804.js
+         if (SmiAbove(start + count, a.length)) goto Bailout;
+-        return ExtractFastJSArray(context, a, start, count);
++        // return ExtractFastJSArray(context, a, start, count);
++        // Instead of doing it the usual way, I've found out that returning it
++        // the following way gives us a 10x speedup!
++        const array: JSArray = ExtractFastJSArray(context, a, start, count);
++        const newLength: Smi = Cast<Smi>(count - start + SmiConstant(2))
++            otherwise Bailout;
++        array.ChangeLength(newLength);
++        return array;
+       }
+       case (a: JSStrictArgumentsObject): {
+         goto HandleSimpleArgumentsSlice(a);
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index 26ccb62c68..8114a861cc 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -1342,9 +1342,12 @@ MaybeLocal<Context> Shell::CreateRealm(
+     }
+     delete[] old_realms;
+   }
+-  Local<ObjectTemplate> global_template = CreateGlobalTemplate(isolate);
++  // Remove globals
++  //Local<ObjectTemplate> global_template = CreateGlobalTemplate(isolate);
+   Local<Context> context =
+-      Context::New(isolate, nullptr, global_template, global_object);
++      //Context::New(isolate, nullptr, global_template, global_object);
++      Context::New(isolate, nullptr, ObjectTemplate::New(isolate),
++                   v8::MaybeLocal<Value>());
+   DCHECK(!try_catch.HasCaught());
+   if (context.IsEmpty()) return MaybeLocal<Context>();
+   InitializeModuleEmbedderData(context);
+@@ -2285,10 +2288,13 @@ void Shell::Initialize(Isolate* isolate, D8Console* console,
+             v8::Isolate::kMessageLog);
+   }
+ 
++  // Prevent `import("stuff")`
++  /*
+   isolate->SetHostImportModuleDynamicallyCallback(
+       Shell::HostImportModuleDynamically);
+   isolate->SetHostInitializeImportMetaObjectCallback(
+       Shell::HostInitializeImportMetaObject);
++  */
+ 
+ #ifdef V8_FUZZILLI
+   // Let the parent process (Fuzzilli) know we are ready.
+@@ -2316,9 +2322,11 @@ Local<Context> Shell::CreateEvaluationContext(Isolate* isolate) {
+   // This needs to be a critical section since this is not thread-safe
+   base::MutexGuard lock_guard(context_mutex_.Pointer());
+   // Initialize the global objects
+-  Local<ObjectTemplate> global_template = CreateGlobalTemplate(isolate);
++  //Local<ObjectTemplate> global_template = CreateGlobalTemplate(isolate);
+   EscapableHandleScope handle_scope(isolate);
+-  Local<Context> context = Context::New(isolate, nullptr, global_template);
++  //Local<Context> context = Context::New(isolate, nullptr, global_template);
++  Local<Context> context = Context::New(isolate, nullptr,
++                                        ObjectTemplate::New(isolate));
+   DCHECK(!context.IsEmpty());
+   if (i::FLAG_perf_prof_annotate_wasm || i::FLAG_vtune_prof_annotate_wasm) {
+     isolate->SetWasmLoadSourceMapCallback(ReadFile);
+diff --git a/src/objects/js-array.tq b/src/objects/js-array.tq
+index a4d4b9d356..7e2738b96e 100644
+--- a/src/objects/js-array.tq
++++ b/src/objects/js-array.tq
+@@ -26,6 +26,10 @@ macro CreateArrayIterator(implicit context: NativeContext)(
+ }
+ 
+ extern class JSArray extends JSObject {
++  macro ChangeLength(newLength: Smi) {
++    this.length = newLength;
++  }
++  
+   macro IsEmpty(): bool {
+     return this.length == 0;
+   }

@@ -1,0 +1,21 @@
+extends layout
+
+block title
+  | My Notes
+
+block content
+  if query
+    p Search for "#{query}" returned !{notes.length} results.
+  if notes.length > 0
+    each note in notes
+      .row
+        .col-lg-8
+          a(href=`/notes/${note.id}`)
+            h1.mt-4
+              if note.favourite
+                img(src="/static/star.svg")
+              =note.title
+  else if !query
+    .row
+      .col-lg-8
+        p You need to create some notes first!

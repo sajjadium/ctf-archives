@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #212121;
+  font-size: 32px;
+  font-family: Helvetica, sans-serif;
+}
+
+.parent {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center
+}
+
+.content {
+  padding: 50px;
+  background-color: #BBB;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

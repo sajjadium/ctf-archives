@@ -1,0 +1,18 @@
+extends layout
+
+block title
+  | New Note
+
+block content
+  form.form(action='/notes/new', method='POST')
+    input(type='hidden', name='_csrf', value=csrfToken)
+    div.mb-3
+      input.form-control(type='text', name='title', placeholder='Title')
+    div.mb-3
+      textarea.form-control(name='content', placeholder='Content', rows=20)
+    div.mb-3
+      div.form-check
+        input.form-check-input(name='favourite', type='checkbox', id='favourite')
+        label.form-check-label(for='favourite') Favourite
+    div.mb-3
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') Add

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+exec 2>/dev/null
+
+# create a temp directory for this connection
+TEMP_DIR=$(mktemp -d)
+chmod o+rx "$TEMP_DIR"
+
+cleanup() {
+    rm -rf "$TEMP_DIR"
+    exit 0
+}
+
+trap cleanup EXIT ERR INT TERM
+
+# Copy the files to the new temp directory
+cp -p /service/* "$TEMP_DIR"
+
+cd "$TEMP_DIR"
+/schitzo 300 "$TEMP_DIR/manchester" -f ./os -t 300
+#/schitzo 300 "$TEMP_DIR/manchester" -f ./os -t 240

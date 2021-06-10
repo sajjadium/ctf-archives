@@ -1,0 +1,1 @@
+Looks like you're stuck outside of your vehicle. Can you at least play some cool jams? OOO note: with the high number of unsolved pwnables, we've simplified this one for you. The car doesn't support ASLR and has been modded to running a stock Ubuntu 20.04 docker on amd64.

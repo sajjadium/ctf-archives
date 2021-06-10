@@ -1,0 +1,26 @@
+<script src="mojo_bindings.js"></script>
+<script src="third_party/blink/public/mojom/csp/cat_service_provider.mojom.js"></script>
+<script>
+const fact = new blink.mojom.CATServiceProviderPtr();
+Mojo.bindInterface(blink.mojom.CATServiceProvider.name, mojo.makeRequest(fact).handle);
+
+const wait = time => new Promise(res => setTimeout(res, time));
+
+(async () => {
+  const ptr = new blink.mojom.CATServicePtr();
+  fact.register(mojo.makeRequest(ptr), blink.mojom.CATServiceType.kDirty);
+
+  ptr.initialize();
+
+  await wait(1000);
+
+  const { id } = (await rawPtrs[i].addCAT({
+    data: [1, 2, 3, 4]
+  })).result;
+
+  await wait(1000);
+
+  ptr.processCAT({ id });
+})();
+
+</script>

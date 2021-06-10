@@ -1,0 +1,4 @@
+#!/bin/sh
+
+exec 2>/dev/null
+timeout -k1 240 stdbuf -i0 -o0 -e0 python3 -u /root/service.py

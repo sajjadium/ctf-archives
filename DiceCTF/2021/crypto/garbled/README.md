@@ -1,0 +1,1 @@
+My friend gave me a weird circuit to evaluate, but I forgot to ask her for the input. I know the circuit is supposed to return true, but everything's been garbled and I can't make heads or tails of it.

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+cd /
+exec 2>>/tmp/errors
+
+
+timeout -k1 60 stdbuf -i0 -o0 -e0 /qemooo /liccheck.bin
+printf "\n\n"
+sleep .2
+#timeout -k1 10 /qemooo /liccheck.bin

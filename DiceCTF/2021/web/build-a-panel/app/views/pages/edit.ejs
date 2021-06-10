@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ("../partials/head") %>
+    <script src="/submit.js"></script>
+</head>
+<body class="container">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+        
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    Build a Panel
+                </a>
+        
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/create">Create</a></li>
+                    <li><a href="/panel/edit">Edit</a></li>
+                </ul>
+            </div>
+        
+        </div>
+    </nav>
+            
+    <main>
+    <div class="row">  
+        <div class="jumbotron">
+            <h1>Edit your widgets</h1>
+        </div>
+    </div>
+    </main>
+    <div>
+        <h2>Please put information about the new widget</h2>
+        <form id="edit-form">
+            <input type="text" name="name" placeholder="name" />
+            <input type="text" name="type" placeholder="type" />
+            <button type="submit">Edit</button>
+        </form>
+        
+    </div>
+</body>
+</html>

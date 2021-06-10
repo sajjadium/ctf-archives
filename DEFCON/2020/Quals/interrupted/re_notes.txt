@@ -1,0 +1,11 @@
+Our hardware team has done substantial reverse engineering on the radiation hardened hardware recovered from a prototype satellite for the Space Vault 9000 system. Here are some of the notes they've taken:
+
+It appears there is a UART on the device, at 1,600 baud give or take.
+
+A timer controller is used to maintain time on the device. The timer device counts in clock cycles. Every instruction takes 1 cycle to execute. The timer counter is a free running counter that decreases from the counter set value. The timer can trigger an interrupt when the counter reaches 0 if the Interrupt Enable bit is set. 
+
+The reference clock is of terrible quality with a significant amount of drift from real time -- it seems the designers intended 10MHz as the clock speed but they must have used a really poor quality crystal reference.
+
+The processor does not have an FPU and appears to execute 1 instruction per clock cycle. we have found a suitable emulation of the hardware and have included it in our files. Good Luck!
+
+Find the flag at: 0xa2008000

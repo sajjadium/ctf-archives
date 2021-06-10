@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <script async>
+    (async () => {
+      const id = window.location.pathname.split('/')[2];
+      if (! id) window.location = window.origin;
+      const res = await fetch(`${window.origin}/api/data/${id}`);
+      const { data, type } = await res.json();
+      if (! data || ! type ) window.location = window.origin;
+      if (type === 'link') return window.location = data;
+      if (document.readyState !== "complete")
+        await new Promise((r) => { window.addEventListener('load', r); });
+      document.title = 'Paste';
+      document.querySelector('div').textContent = data;
+    })()
+  </script>
+</head>
+<body>
+  <div style="font-family: monospace"></div>
+</bod>
+</html>

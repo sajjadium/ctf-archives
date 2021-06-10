@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  form.form-signin(action='/login', method='POST')
+    input(type='hidden', name='_csrf', value=csrfToken)
+    .mb-3
+      input.form-control(id='name', type='text', name='name', placeholder='Username')
+    .mb-3
+      input.form-control(id='password', type='password', name='password', placeholder='Password')
+    .mb-3
+      button.btn.btn-lg.btn-primary.btn-block(id='submit', type='submit') Login

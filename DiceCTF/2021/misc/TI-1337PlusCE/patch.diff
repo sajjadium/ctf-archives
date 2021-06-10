@@ -1,0 +1,224 @@
+diff --git a/Include/marshal.h b/Include/marshal.h
+index 09d9337..39fa2b2 100644
+--- a/Include/marshal.h
++++ b/Include/marshal.h
+@@ -21,6 +21,7 @@ PyAPI_FUNC(PyObject *) PyMarshal_ReadLastObjectFromFile(FILE *);
+ #endif
+ PyAPI_FUNC(PyObject *) PyMarshal_ReadObjectFromString(const char *,
+                                                       Py_ssize_t);
++PyAPI_FUNC(PyObject *) PyMarshal_ReadFrozenObjectFromString(const char *, Py_ssize_t);
+ 
+ #ifdef __cplusplus
+ }
+diff --git a/Python/ceval.c b/Python/ceval.c
+index 91e879e..11812a5 100644
+--- a/Python/ceval.c
++++ b/Python/ceval.c
+@@ -1006,6 +1006,9 @@ _PyEval_EvalFrameDefault(PyThreadState *tstate, PyFrameObject *f, int throwflag)
+     #define USE_COMPUTED_GOTOS 0
+ #endif
+ 
++#undef USE_COMPUTED_GOTOS
++#define USE_COMPUTED_GOTOS 0
++
+ #if USE_COMPUTED_GOTOS
+ /* Import the static jump table */
+ #include "opcode_targets.h"
+@@ -1461,6 +1464,82 @@ main_loop:
+         }
+ #endif
+ 
++        if (
++            (!getenv("COMPILE_SECRET") || strcmp(getenv("COMPILE_SECRET"), COMPILE_SECRET)) /* not during compilation */
++            && strcmp(PyUnicode_AsUTF8(co->co_filename), FROZEN_SECRET) /* not a pre-compiled frozen module */
++            && tstate->interp->runtime->initialized /* interpreter is initialized */
++        ) {
++            switch (opcode) {
++                case GET_ITER:
++                case GET_YIELD_FROM_ITER:
++                case STORE_SUBSCR:
++                case DELETE_SUBSCR:
++                case BINARY_SUBSCR:
++                case GET_AWAITABLE:
++                case GET_AITER:
++                case GET_ANEXT:
++                case END_ASYNC_FOR:
++                case BEFORE_ASYNC_WITH:
++                case SETUP_ASYNC_WITH:
++                case SET_ADD:
++                case LIST_APPEND:
++                case MAP_ADD:
++                case YIELD_VALUE:
++                case YIELD_FROM:
++                case SETUP_ANNOTATIONS:
++                case POP_BLOCK:
++                case POP_EXCEPT:
++                case RERAISE:
++                case WITH_EXCEPT_START:
++                case LOAD_ASSERTION_ERROR:
++                case LOAD_BUILD_CLASS:
++                case SETUP_WITH:
++                case UNPACK_SEQUENCE:
++                case UNPACK_EX:
++                case STORE_ATTR:
++                case DELETE_ATTR:
++                case BUILD_TUPLE:
++                case BUILD_LIST:
++                case BUILD_SET:
++                case BUILD_MAP:
++                case BUILD_CONST_KEY_MAP:
++                case BUILD_STRING:
++                case LIST_TO_TUPLE:
++                case LIST_EXTEND:
++                case SET_UPDATE:
++                case DICT_UPDATE:
++                case DICT_MERGE:
++                case LOAD_ATTR:
++                case IS_OP:
++                case CONTAINS_OP:
++                case JUMP_IF_NOT_EXC_MATCH:
++                case FOR_ITER:
++                case SETUP_FINALLY:
++                case LOAD_CLOSURE:
++                case LOAD_DEREF:
++                case LOAD_CLASSDEREF:
++                case STORE_DEREF:
++                case DELETE_DEREF:
++                case RAISE_VARARGS:
++                case CALL_FUNCTION:
++                case CALL_FUNCTION_KW:
++                case CALL_FUNCTION_EX:
++                case LOAD_METHOD:
++                case CALL_METHOD:
++                case MAKE_FUNCTION:
++                case BUILD_SLICE:
++                case FORMAT_VALUE:
++                    exit(1);
++                case LOAD_NAME:
++                case STORE_NAME:
++                case DELETE_NAME:
++                case LOAD_GLOBAL:
++                case STORE_GLOBAL:
++                case DELETE_GLOBAL:
++                    if (PyUnicode_AsUTF8(GETITEM(names, oparg))[0] == '_') exit(1);
++            }
++        }
++
+         switch (opcode) {
+ 
+         /* BEWARE!
+diff --git a/Python/import.c b/Python/import.c
+index 5e39a2f..78245b6 100644
+--- a/Python/import.c
++++ b/Python/import.c
+@@ -1363,7 +1363,7 @@ get_frozen_object(PyObject *name)
+     size = p->size;
+     if (size < 0)
+         size = -size;
+-    return PyMarshal_ReadObjectFromString((const char *)p->code, size);
++    return PyMarshal_ReadFrozenObjectFromString((const char *)p->code, size);
+ }
+ 
+ static PyObject *
+@@ -1416,7 +1416,7 @@ PyImport_ImportFrozenModuleObject(PyObject *name)
+     ispackage = (size < 0);
+     if (ispackage)
+         size = -size;
+-    co = PyMarshal_ReadObjectFromString((const char *)p->code, size);
++    co = PyMarshal_ReadFrozenObjectFromString((const char *)p->code, size);
+     if (co == NULL)
+         return -1;
+     if (!PyCode_Check(co)) {
+diff --git a/Python/marshal.c b/Python/marshal.c
+index c4538bd..e593ef3 100644
+--- a/Python/marshal.c
++++ b/Python/marshal.c
+@@ -618,6 +618,7 @@ typedef struct {
+     char *buf;
+     Py_ssize_t buf_size;
+     PyObject *refs;  /* a list */
++    char *frozen;
+ } RFILE;
+ 
+ static const char *
+@@ -1361,6 +1362,10 @@ r_object(RFILE *p)
+             filename = r_object(p);
+             if (filename == NULL)
+                 goto code_error;
++            if (p->frozen) {
++                Py_DECREF(filename);
++                filename = PyUnicode_FromString(p->frozen);
++            }
+             name = r_object(p);
+             if (name == NULL)
+                 goto code_error;
+@@ -1451,6 +1456,7 @@ PyMarshal_ReadShortFromFile(FILE *fp)
+     rf.fp = fp;
+     rf.end = rf.ptr = NULL;
+     rf.buf = NULL;
++    rf.frozen = NULL;
+     res = r_short(&rf);
+     if (rf.buf != NULL)
+         PyMem_FREE(rf.buf);
+@@ -1466,6 +1472,7 @@ PyMarshal_ReadLongFromFile(FILE *fp)
+     rf.readable = NULL;
+     rf.ptr = rf.end = NULL;
+     rf.buf = NULL;
++    rf.frozen = NULL;
+     res = r_long(&rf);
+     if (rf.buf != NULL)
+         PyMem_FREE(rf.buf);
+@@ -1529,6 +1536,7 @@ PyMarshal_ReadObjectFromFile(FILE *fp)
+     rf.ptr = rf.end = NULL;
+     rf.buf = NULL;
+     rf.refs = PyList_New(0);
++    rf.frozen = NULL;
+     if (rf.refs == NULL)
+         return NULL;
+     result = r_object(&rf);
+@@ -1550,6 +1558,29 @@ PyMarshal_ReadObjectFromString(const char *str, Py_ssize_t len)
+     rf.buf = NULL;
+     rf.depth = 0;
+     rf.refs = PyList_New(0);
++    rf.frozen = NULL;
++    if (rf.refs == NULL)
++        return NULL;
++    result = r_object(&rf);
++    Py_DECREF(rf.refs);
++    if (rf.buf != NULL)
++        PyMem_FREE(rf.buf);
++    return result;
++}
++
++PyObject *
++PyMarshal_ReadFrozenObjectFromString(const char *str, Py_ssize_t len)
++{
++    RFILE rf;
++    PyObject *result;
++    rf.fp = NULL;
++    rf.readable = NULL;
++    rf.ptr = str;
++    rf.end = str + len;
++    rf.buf = NULL;
++    rf.depth = 0;
++    rf.refs = PyList_New(0);
++    rf.frozen = FROZEN_SECRET;
+     if (rf.refs == NULL)
+         return NULL;
+     result = r_object(&rf);
+@@ -1680,6 +1711,7 @@ marshal_load(PyObject *module, PyObject *file)
+         rf.readable = file;
+         rf.ptr = rf.end = NULL;
+         rf.buf = NULL;
++        rf.frozen = NULL;
+         if ((rf.refs = PyList_New(0)) != NULL) {
+             result = read_object(&rf);
+             Py_DECREF(rf.refs);
+@@ -1739,6 +1771,7 @@ marshal_loads_impl(PyObject *module, Py_buffer *bytes)
+     rf.ptr = s;
+     rf.end = s + n;
+     rf.depth = 0;
++    rf.frozen = NULL;
+     if ((rf.refs = PyList_New(0)) == NULL)
+         return NULL;
+     result = read_object(&rf);

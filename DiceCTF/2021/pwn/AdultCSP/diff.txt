@@ -1,0 +1,367 @@
+diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
+index a767b69..be70808 100644
+--- a/content/browser/BUILD.gn
++++ b/content/browser/BUILD.gn
+@@ -595,6 +595,8 @@ source_set("browser") {
+     "cache_storage/legacy/legacy_cache_storage_manager.cc",
+     "cache_storage/legacy/legacy_cache_storage_manager.h",
+     "cache_storage/scoped_writable_entry.h",
++    "cat_service_impl.cc",
++    "cat_service_impl.h",
+     "can_commit_status.h",
+     "child_process_launcher.cc",
+     "child_process_launcher.h",
+diff --git a/content/browser/browser_interface_binders.cc b/content/browser/browser_interface_binders.cc
+index aba99de..9a8ccbf 100644
+--- a/content/browser/browser_interface_binders.cc
++++ b/content/browser/browser_interface_binders.cc
+@@ -601,6 +601,10 @@ void PopulateFrameBinders(RenderFrameHostImpl* host, mojo::BinderMap* map) {
+   map->Add<blink::mojom::GeolocationService>(base::BindRepeating(
+       &RenderFrameHostImpl::GetGeolocationService, base::Unretained(host)));
+ 
++  map->Add<blink::mojom::CATServiceProvider>(
++      base::BindRepeating(&RenderFrameHostImpl::GetCATServiceProvider, base::Unretained(host))
++    );
++
+   map->Add<blink::mojom::IdleManager>(base::BindRepeating(
+       &RenderFrameHostImpl::BindIdleManager, base::Unretained(host)));
+ 
+diff --git a/content/browser/cat_service_impl.cc b/content/browser/cat_service_impl.cc
+new file mode 100644
+index 0000000..adb800a
+--- /dev/null
++++ b/content/browser/cat_service_impl.cc
+@@ -0,0 +1,140 @@
++// Copyright 2021 The Chromium Authors. All rights reserved.
++// Use of this source code is governed by a BSD-style license that can be
++// found in the LICENSE file.
++
++#include "content/browser/cat_service_impl.h"
++
++#include "mojo/public/cpp/bindings/self_owned_receiver.h"
++#include "content/public/browser/browser_task_traits.h"
++#include "content/public/browser/browser_thread.h"
++#include "base/task/post_task.h"
++
++#include <unistd.h>
++
++namespace content {
++
++CATServiceProviderImpl::CATServiceProviderImpl() {
++  id_ = base::UnguessableToken::Create();
++}
++
++CATServiceProviderImpl::~CATServiceProviderImpl() {}
++
++void CATServiceProviderImpl::Bind(mojo::PendingReceiver<blink::mojom::CATServiceProvider> receiver) {
++  receiver_set_.Add(this, std::move(receiver)); 
++}
++
++base::UnguessableToken CATServiceProviderImpl::GetID() {
++  return id_;
++}
++void CATServiceProviderImpl::Register(mojo::PendingReceiver<blink::mojom::CATService> service, blink::mojom::CATServiceType type) {
++  base::PostTask(
++    FROM_HERE, {content::BrowserThread::IO}, 
++    base::BindOnce(&CATServiceProviderImpl::RegisterOnIO, base::Unretained(this), std::move(service), type)
++  );
++
++  usleep(50 * 1000);
++}
++
++void CATServiceProviderImpl::RegisterOnIO(mojo::PendingReceiver<blink::mojom::CATService> service, blink::mojom::CATServiceType type) {
++  mojo::MakeSelfOwnedReceiver(
++    std::make_unique<CATServiceImpl>(this, type),
++    std::move(service)
++  );
++}
++
++// content::CATServiceImpl
++
++CATServiceImpl::CATServiceImpl(CATServiceProviderImpl* parent, blink::mojom::CATServiceType type): type_(type), state_(kStart), parent_(parent) {}
++
++CATServiceImpl::~CATServiceImpl() {}
++
++bool CATServiceImpl::AssertState(CATServiceState state) {
++  if(state_ != state) {
++    mojo::ReportBadMessage("CATService invalid state");
++    return true;
++  }
++  return false;
++}
++
++void CATServiceImpl::Initialize() {
++  if(this->AssertState(kStart)) return;
++  state_ = kProcessing;
++}
++
++void CATServiceImpl::AddCAT(blink::mojom::CATDataPtr data, AddCATCallback callback) {
++  if(this->AssertState(kProcessing)) return;
++  
++  cat_map_[id] = std::make_unique<CAT>();
++
++  std::move(callback).Run(blink::mojom::CATId::New(id++));
++}
++
++void CATServiceImpl::ProcessCAT(blink::mojom::CATIdPtr data, ProcessCATCallback callback) {
++  if(this->AssertState(kProcessing)) return;
++  
++  auto it = cat_map_.find(data->id);
++
++  if(it == cat_map_.end()) {
++    mojo::ReportBadMessage("CATService id not found");
++    return;
++  }
++
++  base::PostTask(
++    FROM_HERE, {content::BrowserThread::UI}, 
++    base::BindOnce(&CATServiceImpl::ProcessCATOnUI, base::Unretained(this), base::Unretained(it->second.get()), std::move(callback))
++  );
++}
++
++void CATServiceImpl::ProcessCATOnUI(CAT* cat, ProcessCATCallback callback) {
++  switch(type_) {
++    case blink::mojom::CATServiceType::kRaw: 
++    case blink::mojom::CATServiceType::kDirty: 
++      break;
++    case blink::mojom::CATServiceType::kFormData:
++      cat->parent_id = parent_->GetID();
++      // TODO(notdeghost): add form data parsing
++      LOG(ERROR) << "invalid ProcessCATOnUI: " << type_;
++      break;
++    case blink::mojom::CATServiceType::kChunked:       
++      memset(&cat->data, cat->data[0], 8);
++      break;
++    case blink::mojom::CATServiceType::kFiller:
++      memset(&cat->data, 0x41, sizeof(cat->data));
++      break;
++  }
++
++  std::move(callback).Run(blink::mojom::CATData::New(std::vector<uint8_t>(cat->data, cat->data + sizeof(cat->data))));
++
++  if(type_ == blink::mojom::CATServiceType::kDirty) {
++    Terminate();
++  }
++}
++
++void CATServiceImpl::Destroy(blink::mojom::CATIdPtr data) {
++  if(this->AssertState(kProcessing)) return;
++  
++  auto it = cat_map_.find(data->id);
++
++  if(it == cat_map_.end()) {
++    mojo::ReportBadMessage("CATService id not found");
++    return;
++  }
++  
++  if(type_ == blink::mojom::CATServiceType::kDirty) {
++    cat_map_bk_[data->id] = std::move(it->second);
++    cat_map_.erase(data->id);
++  } else {
++    cat_map_.erase(data->id);
++  }
++}
++
++void CATServiceImpl::Terminate() {
++  if(this->AssertState(kProcessing)) return;
++  state_ = kTerminated;
++  
++  if(type_ == blink::mojom::CATServiceType::kDirty) {
++    Terminate();
++  }
++}
++
++} // namespace content
+diff --git a/content/browser/cat_service_impl.h b/content/browser/cat_service_impl.h
+new file mode 100644
+index 0000000..5de3f5b
+--- /dev/null
++++ b/content/browser/cat_service_impl.h
+@@ -0,0 +1,73 @@
++// Copyright 2021 The Chromium Authors. All rights reserved.
++// Use of this source code is governed by a BSD-style license that can be
++// found in the LICENSE file.
++
++#ifndef CONTENT_BROWSER_CAT_SERVICE_PROVIDER_IMPL_H_
++#define CONTENT_BROWSER_CAT_SERVICE_PROVIDER_IMPL_H_
++
++#include "base/unguessable_token.h"
++#include "mojo/public/cpp/bindings/receiver_set.h"
++#include "third_party/blink/public/mojom/csp/cat_service_provider.mojom.h"
++
++namespace content {
++
++// lives on the UI thread
++class CATServiceProviderImpl : public blink::mojom::CATServiceProvider {
++ public:
++  CATServiceProviderImpl();
++  ~CATServiceProviderImpl() override;
++
++  void Bind(mojo::PendingReceiver<blink::mojom::CATServiceProvider> receiver);
++  base::UnguessableToken GetID();
++
++  // blink::mojom::CATServiceProvider
++  void Register(mojo::PendingReceiver<blink::mojom::CATService> service, blink::mojom::CATServiceType type) override;
++
++ private:
++  void RegisterOnIO(mojo::PendingReceiver<blink::mojom::CATService> service, blink::mojom::CATServiceType type);
++
++	base::UnguessableToken id_;
++	mojo::ReceiverSet<blink::mojom::CATServiceProvider> receiver_set_;
++};
++
++enum CATServiceState {
++	kStart = 0,
++	kProcessing = 1,
++	kTerminated = 2
++};
++
++struct CAT {
++  uint8_t data[0x40] = {0};
++	base::UnguessableToken parent_id;
++};
++
++// lives on the IO thread
++class CATServiceImpl : public blink::mojom::CATService {
++ public:
++  CATServiceImpl(CATServiceProviderImpl* parent, blink::mojom::CATServiceType type); 
++	~CATServiceImpl() override;
++
++	// blink::mojom::CatService
++	void Initialize() override;
++	void AddCAT(blink::mojom::CATDataPtr data, AddCATCallback callback) override;
++	void ProcessCAT(blink::mojom::CATIdPtr id, ProcessCATCallback callback) override;
++	void Destroy(blink::mojom::CATIdPtr id) override;	
++	void Terminate() override;	
++
++ private:
++	bool AssertState(CATServiceState state);
++  void ProcessCATOnUI(CAT* cat, ProcessCATCallback callback);
++
++  blink::mojom::CATServiceType type_;
++	CATServiceState state_;
++	// TODO(notdeghost): Make `parent` a weak pointer to prevent unexploitable UAF on RenderFrameHostImpl destruction.
++	CATServiceProviderImpl*	parent_;
++
++  std::map<uint64_t, std::unique_ptr<CAT>> cat_map_;
++  std::map<uint64_t, std::unique_ptr<CAT>> cat_map_bk_;
++  uint64_t id = 0;
++};
++
++}
++
++#endif
+diff --git a/content/browser/renderer_host/render_frame_host_impl.cc b/content/browser/renderer_host/render_frame_host_impl.cc
+index 2734133..2789c99 100644
+--- a/content/browser/renderer_host/render_frame_host_impl.cc
++++ b/content/browser/renderer_host/render_frame_host_impl.cc
+@@ -236,6 +236,7 @@
+ #include "third_party/blink/public/mojom/frame/media_player_action.mojom.h"
+ #include "third_party/blink/public/mojom/frame/user_activation_update_types.mojom.h"
+ #include "third_party/blink/public/mojom/geolocation/geolocation_service.mojom.h"
++#include "third_party/blink/public/mojom/csp/cat_service_provider.mojom.h"
+ #include "third_party/blink/public/mojom/loader/pause_subresource_loading_handle.mojom.h"
+ #include "third_party/blink/public/mojom/loader/resource_load_info.mojom.h"
+ #include "third_party/blink/public/mojom/loader/url_loader_factory_bundle.mojom.h"
+@@ -8311,6 +8312,14 @@ void RenderFrameHostImpl::GetGeolocationService(
+   geolocation_service_->Bind(std::move(receiver));
+ }
+ 
++void RenderFrameHostImpl::GetCATServiceProvider(
++    mojo::PendingReceiver<blink::mojom::CATServiceProvider> receiver) {
++  if(!cat_service_provider_) {
++    cat_service_provider_ = std::make_unique<CATServiceProviderImpl>();
++  }
++  cat_service_provider_->Bind(std::move(receiver));
++}
++
+ void RenderFrameHostImpl::GetDeviceInfoService(
+     mojo::PendingReceiver<blink::mojom::DeviceAPIService> receiver) {
+   GetContentClient()->browser()->CreateDeviceInfoService(this,
+diff --git a/content/browser/renderer_host/render_frame_host_impl.h b/content/browser/renderer_host/render_frame_host_impl.h
+index d9f46c1..a9979e5 100644
+--- a/content/browser/renderer_host/render_frame_host_impl.h
++++ b/content/browser/renderer_host/render_frame_host_impl.h
+@@ -34,6 +34,7 @@
+ #include "base/time/time.h"
+ #include "build/build_config.h"
+ #include "content/browser/accessibility/browser_accessibility_manager.h"
++#include "content/browser/cat_service_impl.h"
+ #include "content/browser/bad_message.h"
+ #include "content/browser/browser_interface_broker_impl.h"
+ #include "content/browser/can_commit_status.h"
+@@ -183,6 +184,7 @@ class CacheStorage;
+ class DeviceAPIService;
+ class GeolocationService;
+ class WebUsbService;
++class CATServiceProvider;
+ }  // namespace mojom
+ }  // namespace blink
+ 
+@@ -1356,6 +1358,9 @@ class CONTENT_EXPORT RenderFrameHostImpl
+ 
+   void GetGeolocationService(
+       mojo::PendingReceiver<blink::mojom::GeolocationService> receiver);
++  
++  void GetCATServiceProvider(
++      mojo::PendingReceiver<blink::mojom::CATServiceProvider> receiver);
+ 
+   void GetDeviceInfoService(
+       mojo::PendingReceiver<blink::mojom::DeviceAPIService> receiver);
+@@ -2915,6 +2920,9 @@ class CONTENT_EXPORT RenderFrameHostImpl
+   // GeolocationService which provides Geolocation.
+   std::unique_ptr<GeolocationServiceImpl> geolocation_service_;
+ 
++  // CATServiceProvider which provides CAT services.
++  std::unique_ptr<CATServiceProviderImpl> cat_service_provider_;
++
+   // IdleManager which provides Idle status.
+   std::unique_ptr<IdleManagerImpl> idle_manager_;
+ 
+diff --git a/third_party/blink/public/mojom/BUILD.gn b/third_party/blink/public/mojom/BUILD.gn
+index c5fbd6b..192fdef 100644
+--- a/third_party/blink/public/mojom/BUILD.gn
++++ b/third_party/blink/public/mojom/BUILD.gn
+@@ -47,6 +47,7 @@ mojom("mojom_platform") {
+     "cookie_store/cookie_store.mojom",
+     "crash/crash_memory_metrics_reporter.mojom",
+     "credentialmanager/credential_manager.mojom",
++    "csp/cat_service_provider.mojom",
+     "css/preferred_color_scheme.mojom",
+     "css/preferred_contrast.mojom",
+     "device/device.mojom",
+diff --git a/third_party/blink/public/mojom/csp/cat_service_provider.mojom b/third_party/blink/public/mojom/csp/cat_service_provider.mojom
+new file mode 100644
+index 0000000..ee20ec0
+--- /dev/null
++++ b/third_party/blink/public/mojom/csp/cat_service_provider.mojom
+@@ -0,0 +1,29 @@
++module blink.mojom;
++
++enum CATServiceType {
++  kDirty,
++  kFormData,
++  kRaw,
++  kChunked,
++  kFiller,
++};
++
++struct CATData {
++  array<uint8> data;
++};
++
++struct CATId {
++  uint64 id;
++};
++
++interface CATServiceProvider {
++  Register(pending_receiver<CATService> service, CATServiceType type);
++};
++
++interface CATService {
++  Initialize();
++  AddCAT(CATData data) => (CATId result);
++  ProcessCAT(CATId id) => (CATData result);
++  Destroy(CATId id);
++  Terminate();
++};

@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title
+      block title
+        | Scratchpad
+    link(rel='stylesheet', href='/static/bootstrap.min.css', integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2', crossorigin='anonymous')
+  body
+    header
+      nav.navbar.navbar-dark.bg-dark.navbar-expand-lg
+        a.navbar-brand(href='/') Scratchpad
+
+        if session && session.userId
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href='/notes') Your Notes
+            li.nav-item
+              a.nav-link(href='/notes/new') Add Note
+            li.nav-item
+              a.nav-link(href='/logout') Logout
+          form.form-inline(action='/notes')
+            input.form-control.mr-sm-2(type="search", name="q", placeholder="Search", value=query)
+        else
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href='/register') Register
+            li.nav-item
+              a.nav-link(href='/login') Login
+
+    main.py-5.bg-light(role='main')
+      .container
+        if error
+          .alert.alert-danger= error
+
+        if notice
+          .alert.alert-success= notice
+
+        block content
