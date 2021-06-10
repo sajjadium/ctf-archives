@@ -1,0 +1,26 @@
+; Line 1: default map name
+Veridian Forest
+
+; Line 2: one-line description
+There are lots of horizontal rows of trees
+
+; Line 3-6: up / left / down / right map names
+gray.map
+none
+colour.map
+none
+
+; Next 20 lines: map data
+tttttttt   ttttttttt
+t                  t
+t tttttttt    tttttt
+t                  t
+ttttttt     tttttt t
+t                  t
+t  tttttttttttt    t
+t                  t
+t    tt         tttt
+tttt ttt   ttttttttt
+
+; Final line: encounter table file
+chartreuse.enc

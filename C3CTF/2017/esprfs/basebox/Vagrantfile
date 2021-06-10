@@ -1,0 +1,38 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/artful64"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 1024 
+    vb.cpus = 2
+    # workaround for slow start due to network configuration
+    vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+  end
+
+  config.vm.provision "file", source: "esprfs.ko", destination: "$HOME/esprfs.ko"
+
+  config.vm.synced_folder ".", "/vagrant", disabled: true 
+  config.ssh.insert_key = false
+
+  config.vm.provision :shell, inline: <<-EOS
+    echo "kernel.unprivileged_bpf_disabled=1" > /etc/sysctl.d/00-dontpwnme.conf
+    echo 'nameserver 8.8.8.8' > /etc/resolv.conf
+    apt-get -y update
+    apt-get -y upgrade
+    apt-get -y remove virtualbox-guest-module
+    apt-get -y remove virtualbox-guest-utils
+    rm -rf /lib/modules/**/kernel/ubuntu/vbox
+    mkdir /home/vagrant/test_dir
+    insmod /home/vagrant/esprfs.ko
+    mount -t espr none /home/vagrant/test_dir
+    echo '34C3_FLAG' > /home/vagrant/flag
+    chown root /home/vagrant/flag
+    chmod 0600 /home/vagrant/flag
+    # cleanup
+    rm -rf /home/vagrant/.bash_history
+    apt-get -y autoremove
+    apt-get -y clean
+    rm -rf /var/lib/apt/lists/*
+    dd if=/dev/zero of=/EMPTY bs=1M count=2048
+    rm /EMPTY
+  EOS
+end

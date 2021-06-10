@@ -1,0 +1,22 @@
+(version 1)
+(debug deny)
+
+(allow process-fork)
+(allow process-exec* (path "/Users/machbook/machbook"))
+(allow process-exec* (path "/bin/sh"))
+(allow process-exec* (path "/bin/ls"))
+(allow process-exec* (path "/bin/cat"))
+
+(allow file-read-metadata (path "/bin/ls"))
+(allow file-read-metadata (path "/bin/cat"))
+
+(allow file-read-data (path "/Users/machbook"))
+(allow file-read-data (path "/Users/machbook/flag"))
+
+(allow file-read-metadata (path "/Users/machbook"))
+
+(allow file-read-metadata
+    (subpath "/usr/lib")
+)
+
+(deny default)

@@ -1,0 +1,26 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "babyvm"
+
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.linked_clone = true
+    vb.memory = 512
+    vb.cpus = 1
+
+    vb.customize ["sharedfolder", "remove", :id, "--name", "vagrant"]
+    vb.customize ["sharedfolder", "add", :id, "--name", "vagrant",
+            "--hostpath", Dir.pwd + '/files',
+            "--readonly"]
+  end
+  
+  config.vm.provision :shell, inline: <<-EOS
+    # lockdown root account and SSH password login
+    rm -f /etc/sudoers
+    passwd -d root
+    passwd -d ubuntu
+    passwd -d vagrant
+    true
+  EOS
+end

@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  houseofcats:
+    build: .
+    volumes:
+      - ./share:/home/HouseofCats:ro
+      - ./xinetd:/etc/xinetd.d/houseofcats:ro
+    ports:
+      - "10101:10101"
+    expose:
+      - "10101"

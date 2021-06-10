@@ -1,0 +1,21 @@
+@startuml
+title Rot Away Rust protocol specification
+autonumber "<b>[00]"
+actor "Client A" as CA
+database Server
+actor "Client B" as CB
+CA   --> CB : ID_A
+note left : ID_A, K_AS
+note right : ID_B, K_BS
+CA   <-- CB : session_id, ID_A, ID_B, AES_GCM(nonce_b || session_id || ID_A || ID_B, K_BS) || tag_2
+CA  -> Server : session_id, ID_A, ID_B, AES_GCM(nonce_a || session_id || ID_A || ID_B, K_AS)||tag_3, AES_GCM(nonce_b || session_id || ID_A || ID_B, K_BS)||tag_2
+note left of Server : K_AS, K_BS
+note left of Server : K_AB
+CA  <- Server : session_id, AES_GCM(nonce_a || K_AB, K_AS) || tag_4_1, AES_GCM(nonce_b || K_AB, K_BS)||tag_4_2
+note left : K_AB
+CA  --> CB : session_id, AES_GCM(nonce_b || K_AB, K_BS)||tag_4_2
+note right : K_AB
+CA  <-- CB : session_id, AES_GCM(message, K_AB)||tag_6
+
+
+@enduml

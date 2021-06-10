@@ -1,0 +1,11 @@
+version: '2.4'
+
+services:
+    gambling_problem_2:
+        build: .
+        restart: always
+        ports:
+            - 25880:9124
+        read_only: true
+        cpus: '0.50'
+        mem_limit: '128M'

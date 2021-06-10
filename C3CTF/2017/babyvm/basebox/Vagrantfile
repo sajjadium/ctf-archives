@@ -1,0 +1,57 @@
+require './vagrant-reboot'
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/debian-9"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = 2048
+    vb.cpus = 2
+    # workaround for slow start due to network configuration
+    vb.customize ["modifyvm", :id, "--cableconnected1", "on"]
+  end
+  
+  config.ssh.insert_key = false
+
+  config.vm.provision :shell, inline: <<-EOS
+    echo 'nameserver 8.8.8.8' > /etc/resolv.conf
+
+    apt-get -y update
+    apt-get -y upgrade
+
+    apt-get -y install build-essential linux-image-amd64 linux-headers-amd64 vim curl git wget
+
+    VBOX_VERSION=5.2.4
+    if [ -e /vagrant/VBoxGuestAdditions_${VBOX_VERSION}.iso ]; then
+      cp /vagrant/VBoxGuestAdditions_${VBOX_VERSION}.iso /guestadditions.iso
+    else
+      wget http://download.virtualbox.org/virtualbox/${VBOX_VERSION}/VBoxGuestAdditions_${VBOX_VERSION}.iso -O /guestadditions.iso
+    fi
+  EOS
+
+  config.vm.provision :unix_reboot
+
+  config.vm.provision :shell, inline: <<-EOS
+    # install newest guest additions
+    mkdir /tmp/isomount
+    mount -t iso9660 -o loop /guestadditions.iso /tmp/isomount
+    echo Installing guest additions for `uname -a`
+    /tmp/isomount/VBoxLinuxAdditions.run
+    exit 0
+  EOS
+
+  config.vm.provision :unix_reboot
+
+  config.vm.provision :shell, inline: <<-EOS
+    echo "kernel.unprivileged_bpf_disabled=1" > /etc/sysctl.d/00-dontpwnme.conf
+    sed -i 's/set timeout=5/set timeout=0/g' /boot/grub/grub.cfg
+
+    # cleanup
+    rm -rf /guestadditions.iso /home/vagrant/.bash_history /home/vagrant/.vbox_version /home/vagrant/.wget-hsts
+    apt-get -y remove build-essential make linux-headers-generic 
+    apt-get -y autoremove 
+    apt-get -y clean
+    rm -rf /var/lib/apt/lists/*
+    dd if=/dev/zero of=/EMPTY bs=1M count=2048
+    rm /EMPTY
+  EOS
+end

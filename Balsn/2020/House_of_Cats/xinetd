@@ -1,0 +1,12 @@
+service houseofcats
+{
+	disable = no
+	type = UNLISTED
+	wait = no
+	server = /home/HouseofCats/run.sh
+	socket_type = stream
+	protocol = tcp
+	user = root
+	port = 10101
+	flags = REUSE
+}

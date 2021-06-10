@@ -1,0 +1,26 @@
+; Line 1: default map name
+Colour Town
+
+; Line 2: one-line description
+The first town! There are two houses here: Red's (m)om is on the west and his Blue's mom is on the east.
+
+; Line 3-6: up / left / down / right map names
+chartreuse.map
+victory.map
+route21.map
+lab.map
+
+; Next 20 lines: map data
+tttt ttt   ttttttttt
+tttt      t######ttt
+tt ####    #   i#ttt
+^  #m #    #    #ttt
+   #  #    #D####   
+^  ##D#             
+tt                 t
+tttt             ttt
+tttt             ttt
+ttttttt    ttttttttt
+
+; Final line: encounter table file
+none

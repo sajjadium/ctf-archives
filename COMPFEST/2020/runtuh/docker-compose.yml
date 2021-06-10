@@ -1,0 +1,9 @@
+version: '2.4'
+
+services:
+  app:
+    build: .
+    ports:
+     - 20202:8000
+    privileged: true
+    mem_limit: '256M'

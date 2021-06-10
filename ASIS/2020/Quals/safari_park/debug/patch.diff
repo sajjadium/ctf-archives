@@ -1,0 +1,57 @@
+diff --git a/Source/JavaScriptCore/runtime/ArrayPrototype.cpp b/Source/JavaScriptCore/runtime/ArrayPrototype.cpp
+index eaa0f1f2a97..a8656d3172d 100644
+--- a/Source/JavaScriptCore/runtime/ArrayPrototype.cpp
++++ b/Source/JavaScriptCore/runtime/ArrayPrototype.cpp
+@@ -53,6 +53,7 @@ EncodedJSValue JSC_HOST_CALL arrayProtoFuncSplice(JSGlobalObject*, CallFrame*);
+ EncodedJSValue JSC_HOST_CALL arrayProtoFuncUnShift(JSGlobalObject*, CallFrame*);
+ EncodedJSValue JSC_HOST_CALL arrayProtoFuncIndexOf(JSGlobalObject*, CallFrame*);
+ EncodedJSValue JSC_HOST_CALL arrayProtoFuncLastIndexOf(JSGlobalObject*, CallFrame*);
++EncodedJSValue JSC_HOST_CALL arrayProtoFuncShrink(JSGlobalObject*, CallFrame*);
+ 
+ // ------------------------------ ArrayPrototype ----------------------------
+ 
+@@ -99,6 +100,7 @@ void ArrayPrototype::finishCreation(VM& vm, JSGlobalObject* globalObject)
+     JSC_BUILTIN_FUNCTION_WITHOUT_TRANSITION(vm.propertyNames->builtinNames().somePublicName(), arrayPrototypeSomeCodeGenerator, static_cast<unsigned>(PropertyAttribute::DontEnum));
+     JSC_NATIVE_INTRINSIC_FUNCTION_WITHOUT_TRANSITION("indexOf", arrayProtoFuncIndexOf, static_cast<unsigned>(PropertyAttribute::DontEnum), 1, ArrayIndexOfIntrinsic);
+     JSC_NATIVE_FUNCTION_WITHOUT_TRANSITION("lastIndexOf", arrayProtoFuncLastIndexOf, static_cast<unsigned>(PropertyAttribute::DontEnum), 1);
++    JSC_NATIVE_FUNCTION_WITHOUT_TRANSITION("shrink", arrayProtoFuncShrink, static_cast<unsigned>(PropertyAttribute::DontEnum), 1);
+     JSC_BUILTIN_FUNCTION_WITHOUT_TRANSITION(vm.propertyNames->builtinNames().filterPublicName(), arrayPrototypeFilterCodeGenerator, static_cast<unsigned>(PropertyAttribute::DontEnum));
+     JSC_BUILTIN_FUNCTION_WITHOUT_TRANSITION(vm.propertyNames->builtinNames().flatPublicName(), arrayPrototypeFlatCodeGenerator, static_cast<unsigned>(PropertyAttribute::DontEnum));
+     JSC_BUILTIN_FUNCTION_WITHOUT_TRANSITION(vm.propertyNames->builtinNames().flatMapPublicName(), arrayPrototypeFlatMapCodeGenerator, static_cast<unsigned>(PropertyAttribute::DontEnum));
+@@ -1463,6 +1465,36 @@ EncodedJSValue JSC_HOST_CALL arrayProtoFuncLastIndexOf(JSGlobalObject* globalObj
+     return JSValue::encode(jsNumber(-1));
+ }
+ 
++EncodedJSValue JSC_HOST_CALL arrayProtoFuncShrink(JSGlobalObject* globalObject, CallFrame* callFrame)
++{
++    VM& vm = globalObject->vm();
++    auto scope = DECLARE_THROW_SCOPE(vm);
++
++    JSObject* thisObject = callFrame->thisValue().toThis(globalObject, ECMAMode::strict()).toObject(globalObject);
++    EXCEPTION_ASSERT(!!scope.exception() == !thisObject);
++    if (UNLIKELY(!thisObject))
++        return encodedJSValue();
++
++    JSValue newLengthValue = callFrame->uncheckedArgument(0);
++    int64_t newLength = newLengthValue.toInteger(globalObject);
++    int64_t length = static_cast<int64_t>(toLength(globalObject, thisObject));
++    RETURN_IF_EXCEPTION(scope, encodedJSValue());
++
++    JSValue result;
++    if (newLength <= length) {
++        ArrayStorage *storage = thisObject->butterfly()->arrayStorage();
++        storage->setVectorLength(newLength);
++        storage->setLength(newLength);
++        result = jsNumber(newLength);
++    } else {
++        throwRangeError(globalObject, scope, "New size is bigger than original array size."_s);
++        return encodedJSValue();
++    }
++
++    scope.release();
++    return JSValue::encode(result);
++}
++
+ static bool moveElements(JSGlobalObject* globalObject, VM& vm, JSArray* target, unsigned targetOffset, JSArray* source, unsigned sourceLength)
+ {
+     auto scope = DECLARE_THROW_SCOPE(vm);

@@ -1,0 +1,8 @@
+version: '3'
+services:
+  babypwn:
+    security_opt:
+      - seccomp=./allow_personality.json
+    build: docker/
+    ports:
+      - "1990:6666"

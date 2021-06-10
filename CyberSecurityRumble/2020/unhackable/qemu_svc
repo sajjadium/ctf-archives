@@ -1,0 +1,11 @@
+service unhackable
+{
+	type         = UNLISTED
+	protocol     = tcp
+	socket_type  = stream
+	port         = 1337
+	server       = /home/run.sh
+	user         = ctf
+	wait         = no
+	env          = PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+}

@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  babystack:
+    build: ./
+    volumes:
+      - ./share:/home/babystack:ro
+      - ./xinetd:/etc/xinetd.d/babystack:ro
+    ports:
+      - "10102:10101"
+    expose:
+      - "10101"

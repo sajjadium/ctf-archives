@@ -1,0 +1,16 @@
+service sandbox_king 
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/compfest12/sandbox
+        server_args = /home/compfest12/king
+        socket_type = stream
+        protocol = tcp
+        user = compfest12
+        port = 1337
+        flags = REUSE
+        per_source = 5
+        rlimit_cpu = 3
+        nice = 18
+}

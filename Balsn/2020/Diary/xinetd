@@ -1,0 +1,13 @@
+service diary
+{
+	    disable = no
+		type = UNLISTED
+		wait = no
+		server = /home/Diary/run.sh
+		socket_type = stream
+		protocol = tcp
+		user = Diary
+		port = 10101
+		flags = REUSE
+}
+

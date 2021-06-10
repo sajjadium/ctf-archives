@@ -1,0 +1,25 @@
+commit 430071ed28001ad0112d90b287734e8db8a0bbd8
+Author: Stephen Roettger <stephen.roettger@gmail.com>
+Date:   Sun Dec 16 19:52:37 2018 +0100
+
+    open files ro to play more nicely with ro environments
+
+diff --git a/src/base/platform/platform-posix.cc b/src/base/platform/platform-posix.cc
+index 6223701b35..43ebed7f75 100644
+--- a/src/base/platform/platform-posix.cc
++++ b/src/base/platform/platform-posix.cc
+@@ -446,12 +446,12 @@ class PosixMemoryMappedFile final : public OS::MemoryMappedFile {
+ 
+ // static
+ OS::MemoryMappedFile* OS::MemoryMappedFile::open(const char* name) {
+-  if (FILE* file = fopen(name, "r+")) {
++  if (FILE* file = fopen(name, "r")) {
+     if (fseek(file, 0, SEEK_END) == 0) {
+       long size = ftell(file);  // NOLINT(runtime/int)
+       if (size >= 0) {
+         void* const memory =
+-            mmap(OS::GetRandomMmapAddr(), size, PROT_READ | PROT_WRITE,
++            mmap(OS::GetRandomMmapAddr(), size, PROT_READ,
+                  MAP_SHARED, fileno(file), 0);
+         if (memory != MAP_FAILED) {
+           return new PosixMemoryMappedFile(file, memory, size);

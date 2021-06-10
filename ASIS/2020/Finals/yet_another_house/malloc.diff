@@ -1,0 +1,34 @@
+diff --git a/malloc.c b/malloc.c
+index ee87ddb..4a4ba97 100644
+--- a/malloc.c
++++ b/malloc.c
+@@ -3026,6 +3026,7 @@ tcache_init(void)
+# define MAYBE_INIT_TCACHE() \
+if (__glibc_unlikely (tcache == NULL)) \
+tcache_init();
++
+
+#else  /* !USE_TCACHE */
+# define MAYBE_INIT_TCACHE()
+@@ -3046,7 +3047,9 @@ __libc_malloc (size_t bytes)
+
+_Static_assert (PTRDIFF_MAX <= SIZE_MAX / 2,
+"PTRDIFF_MAX is not more than half of SIZE_MAX");
+-
++       if(global_max_fast > 0x80) {
++               malloc_printerr("malloc(): MAKE GLIBC GREAT AGAIN.");
++       }
+void *(*hook) (size_t, const void *)
+= atomic_forced_read (__malloc_hook);
+if (__builtin_expect (hook != NULL, 0))
+@@ -3108,6 +3111,10 @@ __libc_free (void *mem)
+mstate ar_ptr;
+mchunkptr p;                          /* chunk corresponding to mem */
+
++       if (global_max_fast > 0x80) {
++               malloc_printerr("free(): MAKE GLIBC GREAT AGAIN");
++       }
++
+void (*hook) (void *, const void *)
+= atomic_forced_read (__free_hook);
+if (__builtin_expect (hook != NULL, 0))

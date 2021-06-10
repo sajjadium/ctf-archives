@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  hoc:
+    build: ./
+    volumes:
+      - ./share:/home/hoc:ro
+    ports:
+      - "54321:54321"
+    expose:
+      - "54321"

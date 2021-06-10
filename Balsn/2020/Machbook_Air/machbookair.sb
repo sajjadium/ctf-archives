@@ -1,0 +1,15 @@
+(version 1)
+(deny default)
+
+(allow process-exec* 
+    (path "/Users/ctf/machbookair/machbookair"))
+
+(allow file-write* file-read-data file-read-metadata
+    (subpath "/Users/ctf/machbookair/tmp"))
+
+(allow file-read-data 
+    (path "/dev/urandom")
+    (path "/Users/ctf/machbookair/flag"))
+
+(allow file-read-metadata
+    (subpath "/usr/lib"))

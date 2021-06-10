@@ -1,0 +1,74 @@
+diff --git a/src/builtins/builtins-string.tq b/src/builtins/builtins-string.tq
+index 3ef8fc2a9b..739a6edd05 100644
+--- a/src/builtins/builtins-string.tq
++++ b/src/builtins/builtins-string.tq
+@@ -81,7 +81,7 @@ namespace string {
+         const kMaxStringLengthFitsSmi: constexpr bool =
+             kStringMaxLengthUintptr < kSmiMaxValue;
+         StaticAssert(kMaxStringLengthFitsSmi);
+-        if (index >= length) goto IfOutOfBounds;
++        // if (index >= length) goto IfOutOfBounds;
+         goto IfInBounds(string, index, length);
+       }
+       case (indexHeapNumber: HeapNumber): {
+diff --git a/src/builtins/builtins-typed-array.cc b/src/builtins/builtins-typed-array.cc
+index fdadc7a554..1f01f831f0 100644
+--- a/src/builtins/builtins-typed-array.cc
++++ b/src/builtins/builtins-typed-array.cc
+@@ -131,13 +131,15 @@ BUILTIN(TypedArrayPrototypeFill) {
+     if (!num->IsUndefined(isolate)) {
+       ASSIGN_RETURN_FAILURE_ON_EXCEPTION(
+           isolate, num, Object::ToInteger(isolate, num));
+-      start = CapRelativeIndex(num, 0, len);
++      //start = CapRelativeIndex(num, 0, len);
++      start = CapRelativeIndex(num, 0, 100000000);
+ 
+       num = args.atOrUndefined(isolate, 3);
+       if (!num->IsUndefined(isolate)) {
+         ASSIGN_RETURN_FAILURE_ON_EXCEPTION(
+             isolate, num, Object::ToInteger(isolate, num));
+-        end = CapRelativeIndex(num, 0, len);
++        //end = CapRelativeIndex(num, 0, len);
++        end = CapRelativeIndex(num, 0, 100000000);
+       }
+     }
+   }
+@@ -151,8 +153,8 @@ BUILTIN(TypedArrayPrototypeFill) {
+   DCHECK_GE(start, 0);
+   DCHECK_LT(start, len);
+   DCHECK_GE(end, 0);
+-  DCHECK_LE(end, len);
+-  DCHECK_LE(count, len);
++  //DCHECK_LE(end, len);
++  //DCHECK_LE(count, len);
+ 
+   return ElementsAccessor::ForKind(kind)->Fill(array, obj_value, start, end);
+ }
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index d6d21bf5fa..013be0ee1d 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -2175,9 +2175,8 @@ Local<Context> Shell::CreateEvaluationContext(Isolate* isolate) {
+   // This needs to be a critical section since this is not thread-safe
+   base::MutexGuard lock_guard(context_mutex_.Pointer());
+   // Initialize the global objects
+-  Local<ObjectTemplate> global_template = CreateGlobalTemplate(isolate);
+   EscapableHandleScope handle_scope(isolate);
+-  Local<Context> context = Context::New(isolate, nullptr, global_template);
++  Local<Context> context = Context::New(isolate, nullptr, ObjectTemplate::New(isolate)); //strip globals, not possible to call eg. read()
+   DCHECK(!context.IsEmpty());
+   if (i::FLAG_perf_prof_annotate_wasm || i::FLAG_vtune_prof_annotate_wasm) {
+     isolate->SetWasmLoadSourceMapCallback(ReadFile);
+diff --git a/src/objects/elements.cc b/src/objects/elements.cc
+index 4be8e0f0bd..b80fa20d8e 100644
+--- a/src/objects/elements.cc
++++ b/src/objects/elements.cc
+@@ -3156,7 +3156,7 @@ class TypedElementsAccessor
+     Handle<JSTypedArray> typed_array = Handle<JSTypedArray>::cast(receiver);
+     DCHECK(!typed_array->WasDetached());
+     DCHECK_LE(start, end);
+-    DCHECK_LE(end, typed_array->length());
++    //DCHECK_LE(end, typed_array->length());
+     DisallowHeapAllocation no_gc;
+     ElementType scalar = FromHandle(value);
+     ElementType* data = static_cast<ElementType*>(typed_array->DataPtr());

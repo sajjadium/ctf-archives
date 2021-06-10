@@ -1,0 +1,17 @@
+// Square root approximation
+def sqrt(x : real) : real {
+
+   // Newton's method
+   def x(y : real) : real {
+      return 0.5 * (y + x/y);
+   }
+   
+   var y : real = x;
+   var i : int = 30;
+   while(i > 0){
+      set y = x(y);
+      set i = i - 1;
+   }
+      
+   return y;
+}

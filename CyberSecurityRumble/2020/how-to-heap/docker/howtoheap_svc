@@ -1,0 +1,11 @@
+service howtoheap
+{
+    type         = UNLISTED
+    protocol     = tcp
+    socket_type  = stream
+    port         = 1337
+    server       = /home/ctf/howtoheap
+    user         = ctf
+    wait         = no
+    env          = PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+}

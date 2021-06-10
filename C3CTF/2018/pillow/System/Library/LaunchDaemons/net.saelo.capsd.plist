@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>net.saelo.capsd</string>
+    <key>Program</key>
+    <string>/sbin/capsd</string>
+    <key>KeepAlive</key>
+    <true/>
+    <key>POSIXSpawnType</key>
+    <string>Interactive</string>
+    <key>MachServices</key>
+    <dict>
+        <key>net.saelo.capsd</key>
+        <true/>
+        <key>net.saelo.capsd.xpc</key>
+        <true/>
+    </dict>
+</dict>
+</plist>

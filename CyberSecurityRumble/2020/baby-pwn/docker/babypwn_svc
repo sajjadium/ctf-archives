@@ -1,0 +1,12 @@
+service babypwn
+{
+    type         = UNLISTED
+    protocol     = tcp
+    socket_type  = stream
+    port         = 6666
+    server       = /usr/bin/setarch
+    server_args  = x86_64 --addr-no-randomize /home/ctf/babypwn
+    user         = ctf
+    wait         = no
+    env          = PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+}

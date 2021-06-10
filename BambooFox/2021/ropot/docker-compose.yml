@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  ropot:
+    build: ./
+    volumes:
+      - ./share:/home/ropot:ro
+      - ./xinetd:/etc/xinetd.d/ropot:ro
+    ports:
+      - "10100:10101"
+    expose:
+      - "10101"

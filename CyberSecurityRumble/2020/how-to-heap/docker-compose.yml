@@ -1,0 +1,6 @@
+version: '3'
+services:
+  how-to-heap:
+    build: docker/
+    ports:
+      - "8263:1337"

@@ -1,0 +1,12 @@
+service ropot
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/ropot/run.sh
+        socket_type = stream
+        protocol = tcp
+        user = ropot
+        port = 10101
+        flags = REUSE
+}

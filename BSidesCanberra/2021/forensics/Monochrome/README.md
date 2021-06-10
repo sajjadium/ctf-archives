@@ -1,0 +1,1 @@
+Sifting through the ruins of the CTFd-apocolypse, we've come across an old storage unit. We've reconstructed the file system and have come across an ancient image file format. Perhaps here is another clue on the path to enlightenment?

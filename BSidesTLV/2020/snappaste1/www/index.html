@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Snappaste (Part 1)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link id="stylesheet" rel="stylesheet" href="light.min.css">
+    <style>
+      .site {
+        display: flex;
+        min-height: calc(100vh - 40px);
+        flex-direction: column;
+      }
+
+      .site-content {
+        flex: 1;
+      }
+
+      #paste-form {
+        margin: 20px 0;
+      }
+
+      #paste-form input[type=submit] {
+        margin-top: 20px;
+      }
+
+      #paste-result {
+        margin: 20px 0;
+      }
+
+      footer {
+        text-align: center;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body class="site">
+    <header>
+      <h1>
+        <a href="."><img src="logo.png" alt="logo" width="32px"> Snappaste (Part 1)</a>
+      </h1>
+    </header>
+
+    <main class="site-content">
+      <div>The number one snapping paste tool since 2020! Pasted text can only be accessed once.</div>
+
+      <form id="paste-form">
+        <textarea
+          name="paste-content"
+          id="paste-content"
+          placeholder="Paste your precious text here..."
+          rows="16"
+          required
+        ></textarea>
+
+        <label for="paste-name">Paste name</label>
+        <input
+          type="paste-name"
+          name="paste-name"
+          id="paste-name"
+          placeholder="My awesome paste"
+          required>
+
+        <input type="submit" id="paste-submit" value="Paste now!">
+      </form>
+
+      <div class="hidden" id="paste-result">
+        Here's your paste link:<br>
+        <span id="paste-result-link"></span><br>
+        <br>
+        Remember, the paste can only be viewed once!
+      </div>
+    </main>
+
+    <footer>
+      Here is a footer! <a href="https://bsidestlv.com/" target="_blank">BSidesTLV 2020</a> | <a href="https://ctf20.bsidestlv.com/" target="_blank">CTF</a>
+    </footer>
+
+    <script src="pako_deflate.min.js"></script>
+    <script>
+      function toBytesInt32(num) {
+        arr = new Uint8Array([
+          (num & 0x000000ff),
+          (num & 0x0000ff00) >> 8,
+          (num & 0x00ff0000) >> 16,
+          (num & 0xff000000) >> 24
+        ]);
+        return arr.buffer;
+      }
+
+      async function paste() {
+        const metadata_str = JSON.stringify({
+          name: document.getElementById('paste-name').value,
+          date: new Date().toISOString()
+        });
+        const metadata = new TextEncoder().encode(metadata_str);
+        const str = document.getElementById('paste-content').value;
+        const data = new TextEncoder().encode(str);
+        const data_compressed = pako.deflate(data);
+        const metadata_size = toBytesInt32(metadata.length);
+        const data_compressed_size = toBytesInt32(data_compressed.length);
+        const data_decompressed_size = toBytesInt32(data.length);
+        const response = await fetch('paste', {
+          method: 'POST',
+          body: new Blob([
+            metadata_size,
+            data_compressed_size,
+            data_decompressed_size,
+            metadata,
+            data_compressed
+          ])
+        });
+        const text = await response.text();
+        if (response.ok) {
+          const url = location.protocol + '//' + location.host + location.pathname + '?view=' + text;
+          document.getElementById('paste-result-link').textContent = url;
+          document.getElementById('paste-result').classList.remove('hidden');
+          document.getElementById('paste-form').classList.add('hidden');
+        } else {
+          alert('Error: ' + text);
+        }
+      }
+
+      async function view(id) {
+        const response = await fetch('view/' + id);
+        if (response.ok) {
+          const text = await response.text();
+          const [metadataJson, data] = text.split('\0', 2);
+          const metadata = JSON.parse(metadataJson || '{}');
+          console.log(metadata['date']);
+          document.getElementById('paste-name').value = metadata['name'];
+          document.getElementById('paste-content').value = data;
+        } else {
+          alert('Error: ' + response.status + ' ' + response.statusText);
+        }
+      }
+
+      const viewId = new URLSearchParams(window.location.search).get('view');
+      if (!viewId) {
+        document.getElementById('paste-form').onsubmit = () => {
+          document.getElementById('paste-submit').disabled = true;
+          paste().catch(reason => alert(reason.message));
+          return false;
+        };
+      } else {
+        document.getElementById('paste-submit').style.display = 'none';
+        document.getElementById('paste-name').readOnly = true;
+        document.getElementById('paste-name').value = 'loading...';
+        document.getElementById('paste-content').readOnly = true;
+        document.getElementById('paste-content').value = 'loading...';
+        view(viewId).catch(reason => alert(reason.message));
+      }
+    </script>
+  </body>
+</html>

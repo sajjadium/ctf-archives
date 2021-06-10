@@ -1,0 +1,1 @@
+gcc graph.c -o graph -g -O0 -static

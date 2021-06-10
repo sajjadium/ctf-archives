@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  diary:
+    build: .
+    volumes:
+      - ./share:/home/Diary:ro
+      - ./xinetd:/etc/xinetd.d/diary:ro
+    ports:
+      - "10101:10101"
+    expose:
+      - "10101"

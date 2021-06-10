@@ -1,0 +1,11 @@
+(version 1)
+(deny default)
+
+(allow process-exec* 
+    (path "/Users/ctf/machbookpro/machbookpro"))
+
+(allow file-read-data 
+    (path "/Users/ctf/machbookpro/flag"))
+
+(allow file-read-metadata
+    (subpath "/usr/lib"))

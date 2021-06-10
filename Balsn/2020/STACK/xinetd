@@ -1,0 +1,13 @@
+service stack
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/STACK/run.sh
+        socket_type = stream
+        protocol = tcp
+        user = STACK
+        bind = 0.0.0.0
+        port = 10101
+        flags = REUSE
+}

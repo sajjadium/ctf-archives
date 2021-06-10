@@ -1,0 +1,11 @@
+version: '2.4'
+
+services:
+    tcache_king:
+        build: .
+        restart: always
+        ports:
+            - 20978:9124
+        read_only: true
+        cpus: '0.50'
+        mem_limit: '128M'

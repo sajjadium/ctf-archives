@@ -1,0 +1,3 @@
+After a hard day's walking, you stop at a likely-looking grotto to rest for the night. There you find the remains of a camp - you are not the first to have stopped here. Half-hidden in the bushes, you find a magic container, and what looks like the diary of someone trying to pry it open...
+
+Update: If you get stuck on level3, message an admin on discord.

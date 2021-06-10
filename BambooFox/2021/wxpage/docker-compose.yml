@@ -1,0 +1,22 @@
+note:
+    build: ./
+    environment:
+        - OLDPWD=/home
+        - XDG_RUNTIME_DIR=/run/user/1000
+        - LESSOPEN=| /usr/bin/lesspipe %s
+        - LANG=en_US
+        - SHLVL=1
+        - SHELL=/bin/bash
+        - FLAG=/
+        - ROOT=/
+        - TCP_PORT=54321
+        - PORT=54321
+        - X_PORT=54321
+        - SERVICE=note
+        - XPC_FLAGS=0x0
+        - TMPDIR=/tmp
+        - RBENV_SHELL=bash
+    ports:
+        - "54321:54321"
+    expose:
+        - "54321"
