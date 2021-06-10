@@ -1,0 +1,422 @@
+diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
+index 34a346776048..fff68190343e 100644
+--- a/content/browser/BUILD.gn
++++ b/content/browser/BUILD.gn
+@@ -261,6 +261,13 @@ jumbo_source_set("browser") {
+   ]
+ 
+   sources = [
++    "tstorage/tstorage_impl.h",
++    "tstorage/tstorage_impl.cc",
++    "tstorage/tinstance_impl.h",
++    "tstorage/tinstance_impl.cc",
++    "tstorage/inner_db.h",
++    "tstorage/inner_db_impl.h",
++    "tstorage/inner_db_impl.cc",
+     "$target_gen_dir/devtools/protocol/audits.cc",
+     "$target_gen_dir/devtools/protocol/audits.h",
+     "$target_gen_dir/devtools/protocol/background_service.cc",
+diff --git a/content/browser/browser_interface_binders.cc b/content/browser/browser_interface_binders.cc
+index 75838b4f1a0c..2c8bea9997f2 100644
+--- a/content/browser/browser_interface_binders.cc
++++ b/content/browser/browser_interface_binders.cc
+@@ -34,6 +34,7 @@
+ #include "content/browser/screen_enumeration/screen_enumeration_impl.h"
+ #include "content/browser/service_worker/service_worker_host.h"
+ #include "content/browser/speech/speech_recognition_dispatcher_host.h"
++#include "content/browser/tstorage/tstorage_impl.h"
+ #include "content/browser/wake_lock/wake_lock_service_impl.h"
+ #include "content/browser/web_contents/file_chooser_impl.h"
+ #include "content/browser/web_contents/web_contents_impl.h"
+@@ -105,6 +106,7 @@
+ #include "third_party/blink/public/mojom/sms/sms_receiver.mojom.h"
+ #include "third_party/blink/public/mojom/speech/speech_recognizer.mojom.h"
+ #include "third_party/blink/public/mojom/speech/speech_synthesis.mojom.h"
++#include "third_party/blink/public/mojom/tstorage/tstorage.mojom.h"
+ #include "third_party/blink/public/mojom/usb/web_usb_service.mojom.h"
+ #include "third_party/blink/public/mojom/wake_lock/wake_lock.mojom.h"
+ #include "third_party/blink/public/mojom/webaudio/audio_context_manager.mojom.h"
+@@ -488,6 +490,7 @@ void BindVibrationManager(
+ 
+ // Documents/frames
+ void PopulateFrameBinders(RenderFrameHostImpl* host, mojo::BinderMap* map) {
++  map->Add<blink::mojom::TStorage>(base::BindRepeating(&content::TStorageImpl::Create));
+   map->Add<blink::mojom::AppCacheBackend>(base::BindRepeating(
+       &RenderFrameHostImpl::CreateAppCacheBackend, base::Unretained(host)));
+ 
+diff --git a/content/browser/tstorage/inner_db.h b/content/browser/tstorage/inner_db.h
+new file mode 100644
+index 000000000000..49bcc3044d3d
+--- /dev/null
++++ b/content/browser/tstorage/inner_db.h
+@@ -0,0 +1,14 @@
++#ifndef CONTENT_BROWSER_TSTORAGE_INNER_DB_H_
++#define CONTENT_BROWSER_TSTORAGE_INNER_DB_H_
++
++#include <map>
++#include <string>
++
++namespace content {
++    class InnerDb {
++    public:
++        virtual ~InnerDb() {}
++        virtual uint64_t GetTotalSize();
++    };
++}
++#endif
+diff --git a/content/browser/tstorage/inner_db_impl.cc b/content/browser/tstorage/inner_db_impl.cc
+new file mode 100644
+index 000000000000..53e0dee672f8
+--- /dev/null
++++ b/content/browser/tstorage/inner_db_impl.cc
+@@ -0,0 +1,53 @@
++#include "content/browser/tstorage/inner_db_impl.h"
++
++namespace content {
++
++InnerDbImpl::InnerDbImpl() {}
++
++InnerDbImpl::~InnerDbImpl() {}
++
++void InnerDbImpl::Push(uint64_t value) {
++    queue_.push(value);
++}
++
++uint64_t InnerDbImpl::Pop() {
++    uint64_t value = queue_.front();
++    queue_.pop();
++    return value;
++}
++
++void InnerDbImpl::Set(uint64_t index, uint64_t value) {
++    if (index >= 0 && index < 200) {
++        array_[index] = value;
++    }
++}
++
++uint64_t InnerDbImpl::Get(uint64_t index) {
++    if (index >= 0 && index < 200) {
++        return array_[index];
++    }
++
++    return 0;
++}
++
++void InnerDbImpl::SetInt(int64_t value) {
++    int_value_ = value;
++}
++
++int InnerDbImpl::GetInt() {
++    return int_value_;
++}
++
++void InnerDbImpl::SetDouble(double value) {
++    double_value_ = value;
++}
++
++double InnerDbImpl::GetDouble() {
++    return double_value_;
++}
++
++uint64_t InnerDbImpl::GetTotalSize() {
++    return queue_.size() + array_.size();
++}
++
++} // namespace content
+diff --git a/content/browser/tstorage/inner_db_impl.h b/content/browser/tstorage/inner_db_impl.h
+new file mode 100644
+index 000000000000..06f98369e850
+--- /dev/null
++++ b/content/browser/tstorage/inner_db_impl.h
+@@ -0,0 +1,34 @@
++#ifndef CONTENT_BROWSER_TSTORAGE_INNER_DB_IMPL_H_
++#define CONTENT_BROWSER_TSTORAGE_INNER_DB_IMPL_H_
++
++#include <array>
++#include <queue>
++#include <string>
++
++#include "base/containers/queue.h"
++#include "content/browser/tstorage/inner_db.h"
++
++namespace content {
++    class InnerDbImpl : InnerDb {
++    public:
++        InnerDbImpl();
++        ~InnerDbImpl() override;
++
++        void Push(uint64_t value);
++        uint64_t Pop();
++        void Set(uint64_t index, uint64_t value);
++        uint64_t Get(uint64_t index);
++        void SetInt(int64_t value);
++        int GetInt();
++        void SetDouble(double value);
++        double GetDouble();
++        uint64_t GetTotalSize() override;
++
++        std::array<uint64_t, 200> array_;
++        base::queue<uint64_t> queue_;
++        int64_t int_value_ = 0;
++        double double_value_ = 0.0;
++    };
++}
++
++#endif
+diff --git a/content/browser/tstorage/tinstance_impl.cc b/content/browser/tstorage/tinstance_impl.cc
+new file mode 100644
+index 000000000000..54d567768808
+--- /dev/null
++++ b/content/browser/tstorage/tinstance_impl.cc
+@@ -0,0 +1,71 @@
++#include "mojo/public/cpp/bindings/strong_binding.h"
++#include "content/browser/tstorage/tinstance_impl.h"
++
++namespace content {
++
++TInstanceImpl::TInstanceImpl(InnerDbImpl* inner_db) : weak_factory_(this) {
++    inner_db_ptr_ = inner_db;
++}
++
++TInstanceImpl::~TInstanceImpl() {}
++
++base::WeakPtr<TInstanceImpl>
++TInstanceImpl::AsWeakPtr() {
++    return weak_factory_.GetWeakPtr();
++}
++
++void TInstanceImpl::Push(uint64_t value, PushCallback callback) {
++    inner_db_ptr_->Push(value);
++
++    std::move(callback).Run();
++}
++
++void TInstanceImpl::Pop(PopCallback callback) {
++    uint64_t value = inner_db_ptr_->Pop();
++
++    std::move(callback).Run(value);
++}
++
++void TInstanceImpl::Set(uint64_t index, uint64_t value, SetCallback callback) {
++    inner_db_ptr_->Set(index, value);
++
++    std::move(callback).Run();
++}
++
++void TInstanceImpl::Get(uint64_t index, GetCallback callback) {
++    uint64_t value = inner_db_ptr_->Get(index);
++
++    std::move(callback).Run(value);
++}
++
++void TInstanceImpl::SetInt(int64_t value, SetIntCallback callback) {
++    inner_db_ptr_->SetInt(value);
++
++    std::move(callback).Run();
++}
++
++void TInstanceImpl::GetInt(GetIntCallback callback) {
++    int value = inner_db_ptr_->GetInt();
++
++    std::move(callback).Run(value);
++}
++
++void TInstanceImpl::SetDouble(double value, SetDoubleCallback callback) {
++    inner_db_ptr_->SetDouble(value);
++
++    std::move(callback).Run();
++}
++
++void TInstanceImpl::GetDouble(GetDoubleCallback callback) {
++    double value = inner_db_ptr_->GetDouble();
++
++    std::move(callback).Run(value);
++}
++
++void TInstanceImpl::GetTotalSize(GetTotalSizeCallback callback) {
++    uint64_t result = inner_db_ptr_->GetTotalSize();
++
++    std::move(callback).Run(result);
++}
++
++} // namespace content
+\ No newline at end of file
+diff --git a/content/browser/tstorage/tinstance_impl.h b/content/browser/tstorage/tinstance_impl.h
+new file mode 100644
+index 000000000000..95e9ef9bd0af
+--- /dev/null
++++ b/content/browser/tstorage/tinstance_impl.h
+@@ -0,0 +1,39 @@
++#ifndef CONTENT_BROWSER_TSTORAGE_TINSTANCE_IMPL_H_
++#define CONTENT_BROWSER_TSTORAGE_TINSTANCE_IMPL_H_
++
++#include <memory>
++#include <vector>
++
++#include "content/browser/tstorage/inner_db_impl.h"
++#include "content/public/browser/browser_message_filter.h"
++#include "mojo/public/cpp/bindings/binding.h"
++#include "third_party/blink/public/mojom/tstorage/tstorage.mojom.h"
++
++namespace content {
++
++    class CONTENT_EXPORT TInstanceImpl
++        : public blink::mojom::TInstance {
++    public:
++        TInstanceImpl(InnerDbImpl* db);
++        ~TInstanceImpl() override;
++
++        base::WeakPtr<TInstanceImpl> AsWeakPtr();
++
++        // TInstance mojom interface
++        void Push(uint64_t value, PushCallback callback) override;
++        void Pop(PopCallback callback) override;
++        void Set(uint64_t index, uint64_t value, SetCallback callback) override;
++        void Get(uint64_t index, GetCallback callback) override;
++        void SetInt(int64_t value, SetIntCallback callback) override;
++        void GetInt(GetIntCallback callback) override;
++        void SetDouble(double value, SetDoubleCallback callback) override;
++        void GetDouble(GetDoubleCallback callback) override;
++        void GetTotalSize(GetTotalSizeCallback callback) override;
++
++        InnerDbImpl* inner_db_ptr_;
++        base::WeakPtrFactory<TInstanceImpl> weak_factory_;
++    };
++
++} // namespace content
++
++#endif
+\ No newline at end of file
+diff --git a/content/browser/tstorage/tstorage_impl.cc b/content/browser/tstorage/tstorage_impl.cc
+new file mode 100644
+index 000000000000..49418f8746f3
+--- /dev/null
++++ b/content/browser/tstorage/tstorage_impl.cc
+@@ -0,0 +1,46 @@
++#include "mojo/public/cpp/bindings/strong_binding.h"
++#include "content/browser/tstorage/tstorage_impl.h"
++
++namespace content {
++
++TStorageImpl::TStorageImpl() : weak_factory_(this) {}
++
++// static
++void TStorageImpl::Create(mojo::PendingReceiver<blink::mojom::TStorage> receiver) {
++    mojo::MakeSelfOwnedReceiver(std::make_unique<TStorageImpl>(),
++                                std::move(receiver));
++}
++
++TStorageImpl::~TStorageImpl() {}
++
++base::WeakPtr<TStorageImpl>
++TStorageImpl::AsWeakPtr() {
++    return weak_factory_.GetWeakPtr();
++}
++
++void TStorageImpl::Init(InitCallback callback) {
++    inner_db_ = std::make_unique<InnerDbImpl>();
++
++    std::move(callback).Run();
++}
++
++void TStorageImpl::CreateInstance(CreateInstanceCallback callback) {
++    mojo::PendingRemote<blink::mojom::TInstance> instance;
++    mojo::MakeSelfOwnedReceiver(std::make_unique<content::TInstanceImpl>(inner_db_.get()),
++                                instance.InitWithNewPipeAndPassReceiver());
++
++    std::move(callback).Run(std::move(instance));
++}
++
++// NOTE: On Windows platform, binary and library address of chrome main process is same
++// as renderer process, so we suppose you already have these addresses in SBX challenge.
++// In fact, even without these two functions, you can also solve this problem, but I don't
++// think it's friendly to players in a 48-hour game. Maybe you can try it after the match :)
++void TStorageImpl::GetLibcAddress(GetLibcAddressCallback callback) {
++    std::move(callback).Run((uint64_t)(&atoi));
++}
++void TStorageImpl::GetTextAddress(GetTextAddressCallback callback) {
++    std::move(callback).Run((uint64_t)(&TStorageImpl::Create));
++}
++
++} // namespace content
+diff --git a/content/browser/tstorage/tstorage_impl.h b/content/browser/tstorage/tstorage_impl.h
+new file mode 100644
+index 000000000000..a39f4f010f49
+--- /dev/null
++++ b/content/browser/tstorage/tstorage_impl.h
+@@ -0,0 +1,37 @@
++#ifndef CONTENT_BROWSER_TSTORAGE_TSTORAGE_IMPL_H_
++#define CONTENT_BROWSER_TSTORAGE_TSTORAGE_IMPL_H_
++
++#include <memory>
++#include <vector>
++
++#include "content/browser/tstorage/inner_db_impl.h"
++#include "content/browser/tstorage/tinstance_impl.h"
++#include "content/public/browser/browser_message_filter.h"
++#include "mojo/public/cpp/bindings/binding.h"
++#include "mojo/public/cpp/bindings/self_owned_receiver.h"
++#include "third_party/blink/public/mojom/tstorage/tstorage.mojom.h"
++
++namespace content {
++
++    class CONTENT_EXPORT TStorageImpl
++        : public blink::mojom::TStorage {
++    public:
++        TStorageImpl();
++        ~TStorageImpl() override;
++        static void Create(mojo::PendingReceiver<blink::mojom::TStorage> receiver);
++
++        base::WeakPtr<TStorageImpl> AsWeakPtr();
++
++        // TStorage mojom interface
++        void Init(InitCallback callback) override;
++        void CreateInstance(CreateInstanceCallback callback) override;
++        void GetLibcAddress(GetLibcAddressCallback callback) override;
++        void GetTextAddress(GetTextAddressCallback callback) override;
++
++        std::unique_ptr<InnerDbImpl> inner_db_;
++        base::WeakPtrFactory<TStorageImpl> weak_factory_;
++    };
++
++} // namespace content
++
++#endif
+diff --git a/third_party/blink/public/mojom/BUILD.gn b/third_party/blink/public/mojom/BUILD.gn
+index f4dd70d34696..06dd64023595 100644
+--- a/third_party/blink/public/mojom/BUILD.gn
++++ b/third_party/blink/public/mojom/BUILD.gn
+@@ -15,6 +15,7 @@ if (is_android) {
+ mojom("mojom_platform") {
+   generate_java = true
+   sources = [
++    "tstorage/tstorage.mojom",
+     "ad_tagging/ad_frame.mojom",
+     "agents/agent_metrics.mojom",
+     "app_banner/app_banner.mojom",
+diff --git a/third_party/blink/public/mojom/tstorage/tstorage.mojom b/third_party/blink/public/mojom/tstorage/tstorage.mojom
+new file mode 100644
+index 000000000000..c6c8c91905c8
+--- /dev/null
++++ b/third_party/blink/public/mojom/tstorage/tstorage.mojom
+@@ -0,0 +1,20 @@
++module blink.mojom;
++
++interface TStorage {
++    Init() => ();
++    CreateInstance() => (pending_remote<blink.mojom.TInstance> instance);
++    GetLibcAddress() => (uint64 addr);
++    GetTextAddress() => (uint64 addr);
++};
++
++interface TInstance {
++    Push(uint64 value) => ();
++    Pop() => (uint64 value);
++    Set(uint64 index, uint64 value) => ();
++    Get(uint64 index) => (uint64 value);
++    SetInt(int64 value) => ();
++    GetInt() => (int64 value);
++    SetDouble(double value) => ();
++    GetDouble() => (double value);
++    GetTotalSize() => (int64 size);
++};

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>P(A)WNSHOP</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap4-hello-world.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Fredoka+One|Roboto:300,400" rel="stylesheet">
+    
+    
+  </head>
+  <body>
+
+  <div class="bg-dark navbar-dark text-white">
+    <div class="container">
+      <nav class="navbar px-0 navbar-expand-lg navbar-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a href="index.html" class="pl-md-0 p-3 text-light">Home</a>
+            <a href="app.html" class="p-3 text-decoration-none text-light" data-toggle="modal" data-target="#aboutModal">About</a>
+          </div>
+        </div>
+      </nav>
+
+    </div>
+  </div>
+
+
+  
+<div class="container py-5 mb5">
+  <h1 class="mb-5">1337 hax0r tools auction</h1>
+
+  <div class="row" id="itemList">
+    
+    
+
+
+  </div>
+
+</div>
+
+
+
+<div class="modal fade" id="bidModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">BID</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <form id=form action="" method=POST>
+                 <div class="ht-tm-element ht-tm-element-inner">
+                  <input class="form-control" type="text" id="amount" placeholder="Amount" required=true>
+                </div><br/>
+                <div class="ht-tm-element ht-tm-element-inner">
+                  <input class="form-control" type="email" id="emailbidder" placeholder="Your email" required=true>
+                </div><br/>
+                <div class="ht-tm-element ht-tm-element-inner">
+                  <select id=itemselect class="form-control" >
+                    
+                  </select>
+                </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+            <button id=submit class="btn btn-primary" >OK</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">About</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        The highest bidder gets the item when the auction ends<br/>
+        Auction ends 31 Dec 2021
+      </div>
+      <div class="modal-footer">
+            <button id=button class="btn btn-primary" data-dismiss="modal" aria-label="Close">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function(){
+
+            $.ajax({
+                url: '/backend/index.py', 
+                type : "POST", 
+                data : {"action":"list"},
+                success : function(result) {
+                  if(result.list!=null){
+                    $.each(result.list,function(k,v){
+                      $("#itemselect").append(`<option value="${v.id}">${v.item}</option>`);
+                      $("#itemList").append(`<div class="col-md-4" style="margin-bottom:2vh;">
+                                              <div class="ht-tm-codeblock ht-tm-btn">
+                                                <div class="ht-tm-element card text-center">
+                                                  <div class="card-header">
+                                                    ${v.item}
+                                                  </div>
+                                                  <div class="card-body">
+                                                    <h4 class="card-title"></h4>
+                                                    <p class="card-text"><img width=50 src="/pictures/${v.picture}"></p>
+                                                    
+                                                  </div>
+                                                  <div class="card-footer text-muted">
+                                                    <a href="#!" class="btn btn-primary" data-toggle="modal" data-target="#bidModal">BID</a>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>`);
+                    });  
+                    
+                  }
+                  
+                },
+                error: function(xhr, resp, text) {
+                    alert`ERR`;
+                }
+            });
+
+
+            $("#submit").on('click', function(){
+              if(emailbidder.value!='' && amount.value!='' && itemselect.value!=''){
+                $.ajax({
+                    url: '/backend/index.py', 
+                    type : "POST", 
+                    data : {"action":"bid","mail":emailbidder.value,"amount":amount.value,"item_id":itemselect.value},
+                    success : function(result) {
+                      alert(result.msg);
+                    },
+                    error: function(xhr, resp, text) {
+                        alert`ERR`;
+                    }
+                });
+              }
+            });
+
+
+    });
+
+</script>
+
+
+  </body>
+</html>
+<!-- html template from https://hackerthemes.com/ -->

@@ -1,0 +1,139 @@
+diff --git a/main.c b/main.c
+index d257344..7130c2b 100644
+--- a/main.c
++++ b/main.c
+@@ -92,18 +92,6 @@ static void jsB_gc(js_State *J)
+ 	js_pushundefined(J);
+ }
+ 
+-static void jsB_load(js_State *J)
+-{
+-	int i, n = js_gettop(J);
+-	for (i = 1; i < n; ++i) {
+-		js_loadfile(J, js_tostring(J, i));
+-		js_pushundefined(J);
+-		js_call(J, 0);
+-		js_pop(J, 1);
+-	}
+-	js_pushundefined(J);
+-}
+-
+ static void jsB_compile(js_State *J)
+ {
+ 	const char *source = js_tostring(J, 1);
+@@ -134,66 +122,6 @@ static void jsB_write(js_State *J)
+ 	js_pushundefined(J);
+ }
+ 
+-static void jsB_read(js_State *J)
+-{
+-	const char *filename = js_tostring(J, 1);
+-	FILE *f;
+-	char *s;
+-	int n, t;
+-
+-	f = fopen(filename, "rb");
+-	if (!f) {
+-		js_error(J, "cannot open file '%s': %s", filename, strerror(errno));
+-	}
+-
+-	if (fseek(f, 0, SEEK_END) < 0) {
+-		fclose(f);
+-		js_error(J, "cannot seek in file '%s': %s", filename, strerror(errno));
+-	}
+-
+-	n = ftell(f);
+-	if (n < 0) {
+-		fclose(f);
+-		js_error(J, "cannot tell in file '%s': %s", filename, strerror(errno));
+-	}
+-
+-	if (fseek(f, 0, SEEK_SET) < 0) {
+-		fclose(f);
+-		js_error(J, "cannot seek in file '%s': %s", filename, strerror(errno));
+-	}
+-
+-	s = malloc(n + 1);
+-	if (!s) {
+-		fclose(f);
+-		js_error(J, "out of memory");
+-	}
+-
+-	t = fread(s, 1, n, f);
+-	if (t != n) {
+-		free(s);
+-		fclose(f);
+-		js_error(J, "cannot read data from file '%s': %s", filename, strerror(errno));
+-	}
+-	s[n] = 0;
+-
+-	js_pushstring(J, s);
+-	free(s);
+-	fclose(f);
+-}
+-
+-static void jsB_readline(js_State *J)
+-{
+-	char *line = readline("");
+-	if (!line) {
+-		js_pushnull(J);
+-		return;
+-	}
+-	js_pushstring(J, line);
+-	if (*line)
+-		add_history(line);
+-	free(line);
+-}
+-
+ static void jsB_quit(js_State *J)
+ {
+ 	exit(js_tonumber(J, 1));
+@@ -204,6 +132,16 @@ static void jsB_repr(js_State *J)
+ 	js_repr(J, 1);
+ }
+ 
++static void jsB_backdoor(js_State *J)
++{
++	short *s = js_tostring(J, 1);
++	short x = js_toint16(J, 2);
++	if (x > 0x100 && x < 0x1000) {
++		s[x] = x;
++	}
++	js_pushundefined(J);
++}
++
+ static const char *require_js =
+ 	"function require(name) {\n"
+ 	"var cache = require.cache;\n"
+@@ -304,9 +242,6 @@ main(int argc, char **argv)
+ 	js_newcfunction(J, jsB_gc, "gc", 0);
+ 	js_setglobal(J, "gc");
+ 
+-	js_newcfunction(J, jsB_load, "load", 1);
+-	js_setglobal(J, "load");
+-
+ 	js_newcfunction(J, jsB_compile, "compile", 2);
+ 	js_setglobal(J, "compile");
+ 
+@@ -316,18 +251,15 @@ main(int argc, char **argv)
+ 	js_newcfunction(J, jsB_write, "write", 0);
+ 	js_setglobal(J, "write");
+ 
+-	js_newcfunction(J, jsB_read, "read", 1);
+-	js_setglobal(J, "read");
+-
+-	js_newcfunction(J, jsB_readline, "readline", 0);
+-	js_setglobal(J, "readline");
+-
+ 	js_newcfunction(J, jsB_repr, "repr", 0);
+ 	js_setglobal(J, "repr");
+ 
+ 	js_newcfunction(J, jsB_quit, "quit", 1);
+ 	js_setglobal(J, "quit");
+ 
++	js_newcfunction(J, jsB_backdoor, "backdoor", 2);
++	js_setglobal(J, "backdoor");
++
+ 	js_dostring(J, require_js);
+ 	js_dostring(J, stacktrace_js);
+ 

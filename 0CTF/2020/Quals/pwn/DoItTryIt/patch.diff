@@ -1,0 +1,198 @@
+diff --git a/bin/ch/WScriptJsrt.cpp b/bin/ch/WScriptJsrt.cpp
+index 4bfb7c2f8..8e7022dd8 100644
+--- a/bin/ch/WScriptJsrt.cpp
++++ b/bin/ch/WScriptJsrt.cpp
+@@ -1071,146 +1071,9 @@ bool WScriptJsrt::InstallObjectsOnObject(JsValueRef object, const char* name,
+ bool WScriptJsrt::Initialize()
+ {
+     HRESULT hr = S_OK;
+-    char CH_BINARY_LOCATION[2048];
+-#ifdef CHAKRA_STATIC_LIBRARY
+-    const char* LINK_TYPE = "static";
+-#else
+-    const char* LINK_TYPE = "shared";
+-#endif
+-#ifdef HAS_ICU
+-    int icuVersion = PlatformAgnostic::ICUHelpers::GetICUMajorVersion();
+-#else
+-    int icuVersion = -1;
+-#endif
+-
+-    JsValueRef wscript;
+-    IfJsrtErrorFail(ChakraRTInterface::JsCreateObject(&wscript), false);
+-
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Echo", EchoCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Quit", QuitCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "LoadScriptFile", LoadScriptFileCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "LoadScript", LoadScriptCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "LoadModule", LoadModuleCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "SetTimeout", SetTimeoutCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "ClearTimeout", ClearTimeoutCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Attach", AttachCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Detach", DetachCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "DumpFunctionPosition", DumpFunctionPositionCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "RequestAsyncBreak", RequestAsyncBreakCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "LoadBinaryFile", LoadBinaryFileCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "LoadTextFile", LoadTextFileCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Flag", FlagCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "RegisterModuleSource", RegisterModuleSourceCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "GetModuleNamespace", GetModuleNamespace));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "GetProxyProperties", GetProxyPropertiesCallback));
+-
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "SerializeObject", SerializeObject));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Deserialize", Deserialize));
+-
+-    // ToDo Remove
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Edit", EmptyCallback));
+-
+-    // Platform
+-    JsValueRef platformObject;
+-    IfJsrtErrorFail(ChakraRTInterface::JsCreateObject(&platformObject), false);
+-    JsPropertyIdRef platformProperty;
+-    IfJsrtErrorFail(CreatePropertyIdFromString("Platform", &platformProperty), false);
+-
+-    // Set CPU arch
+-    JsPropertyIdRef archProperty;
+-    IfJsrtErrorFail(CreatePropertyIdFromString("ARCH", &archProperty), false);
+-    JsValueRef archValue;
+-    IfJsrtErrorFail(ChakraRTInterface::JsCreateString(
+-        CPU_ARCH_TEXT, strlen(CPU_ARCH_TEXT), &archValue), false);
+-    IfJsrtErrorFail(ChakraRTInterface::JsSetProperty(platformObject, archProperty,
+-        archValue, true), false);
+-
+-    // Set Build Type
+-    JsPropertyIdRef buildProperty;
+-    IfJsrtErrorFail(CreatePropertyIdFromString("BUILD_TYPE", &buildProperty), false);
+-    JsValueRef buildValue;
+-#ifdef _DEBUG
+-#define BUILD_TYPE_STRING_CH "Debug" // (O0)
+-#elif defined(ENABLE_DEBUG_CONFIG_OPTIONS)
+-#define BUILD_TYPE_STRING_CH "Test" // (O3 with debug config options)
+-#else
+-#define BUILD_TYPE_STRING_CH "Release" // (O3)
+-#endif
+-    IfJsrtErrorFail(ChakraRTInterface::JsCreateString(
+-        BUILD_TYPE_STRING_CH, strlen(BUILD_TYPE_STRING_CH), &buildValue), false);
+-    IfJsrtErrorFail(ChakraRTInterface::JsSetProperty(platformObject, buildProperty,
+-        buildValue, true), false);
+-#undef BUILD_TYPE_STRING_CH
+-
+-    // Set Link Type [static / shared]
+-    JsPropertyIdRef linkProperty;
+-    IfJsrtErrorFail(CreatePropertyIdFromString("LINK_TYPE", &linkProperty), false);
+-    JsValueRef linkValue;
+-    IfJsrtErrorFail(ChakraRTInterface::JsCreateString(
+-        LINK_TYPE, strlen(LINK_TYPE), &linkValue), false);
+-    IfJsrtErrorFail(ChakraRTInterface::JsSetProperty(platformObject, linkProperty,
+-      linkValue, true), false);
+-
+-    // Set Binary Location
+-    JsValueRef binaryPathValue;
+-    PlatformAgnostic::SystemInfo::GetBinaryLocation(CH_BINARY_LOCATION, sizeof(CH_BINARY_LOCATION));
+-
+-    JsPropertyIdRef binaryPathProperty;
+-    IfJsrtErrorFail(CreatePropertyIdFromString("BINARY_PATH", &binaryPathProperty), false);
+-
+-    IfJsrtErrorFail(ChakraRTInterface::JsCreateString(
+-        CH_BINARY_LOCATION,
+-        strlen(CH_BINARY_LOCATION), &binaryPathValue), false);
+-    IfJsrtErrorFail(ChakraRTInterface::JsSetProperty(
+-        platformObject, binaryPathProperty, binaryPathValue, true), false);
+-
+-    // Set destination OS
+-    JsPropertyIdRef osProperty;
+-    IfJsrtErrorFail(CreatePropertyIdFromString("OS", &osProperty), false);
+-    JsValueRef osValue;
+-    IfJsrtErrorFail(ChakraRTInterface::JsCreateString(
+-        DEST_PLATFORM_TEXT, strlen(DEST_PLATFORM_TEXT), &osValue), false);
+-    IfJsrtErrorFail(ChakraRTInterface::JsSetProperty(platformObject, osProperty,
+-        osValue, true), false);
+-
+-    // set Internationalization library
+-    JsPropertyIdRef intlLibraryProp;
+-    IfJsrtErrorFail(CreatePropertyIdFromString("INTL_LIBRARY", &intlLibraryProp), false);
+-    JsValueRef intlLibraryStr;
+-    IfJsrtErrorFail(ChakraRTInterface::JsCreateString(INTL_LIBRARY_TEXT, strlen(INTL_LIBRARY_TEXT), &intlLibraryStr), false);
+-    IfJsrtErrorFail(ChakraRTInterface::JsSetProperty(platformObject, intlLibraryProp, intlLibraryStr, true), false);
+-    JsPropertyIdRef icuVersionProp;
+-    IfJsrtErrorFail(CreatePropertyIdFromString("ICU_VERSION", &icuVersionProp), false);
+-    JsValueRef icuVersionNum;
+-    IfJsrtErrorFail(ChakraRTInterface::JsIntToNumber(icuVersion, &icuVersionNum), false);
+-    IfJsrtErrorFail(ChakraRTInterface::JsSetProperty(platformObject, icuVersionProp, icuVersionNum, true), false);
+-
+-    IfJsrtErrorFail(ChakraRTInterface::JsSetProperty(wscript, platformProperty,
+-        platformObject, true), false);
+-
+-    JsValueRef argsObject;
+-
+-    if (!CreateArgumentsObject(&argsObject))
+-    {
+-        return false;
+-    }
+-
+-    JsPropertyIdRef argsName;
+-    IfJsrtErrorFail(CreatePropertyIdFromString("Arguments", &argsName), false);
+-    IfJsrtErrorFail(ChakraRTInterface::JsSetProperty(wscript, argsName, argsObject, true), false);
+-
+-    JsPropertyIdRef wscriptName;
+-    IfJsrtErrorFail(CreatePropertyIdFromString("WScript", &wscriptName), false);
+ 
+     JsValueRef global;
+     IfJsrtErrorFail(ChakraRTInterface::JsGetGlobalObject(&global), false);
+-    IfJsrtErrorFail(ChakraRTInterface::JsSetProperty(global, wscriptName, wscript, true), false);
+-
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(global, "print", EchoCallback));
+-
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(global, "read", LoadTextFileCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(global, "readbuffer", LoadBinaryFileCallback));
+-    IfFalseGo(WScriptJsrt::InstallObjectsOnObject(global, "readline", ReadLineStdinCallback));
+ 
+     JsValueRef console;
+     IfJsrtErrorFail(ChakraRTInterface::JsCreateObject(&console), false);
+@@ -1222,31 +1085,6 @@ bool WScriptJsrt::Initialize()
+ 
+     IfJsrtErrorFail(InitializeModuleInfo(nullptr), false);
+ 
+-    // When the command-line argument `-Test262` is set,
+-    // WScript will have the extra support API below and $262 will be
+-    // added to global scope
+-    if (HostConfigFlags::flags.Test262)
+-    {
+-        IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Broadcast", BroadcastCallback));
+-        IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "ReceiveBroadcast", ReceiveBroadcastCallback));
+-        IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Report", ReportCallback));
+-        IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "GetReport", GetReportCallback));
+-        IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Leaving", LeavingCallback));
+-        IfFalseGo(WScriptJsrt::InstallObjectsOnObject(wscript, "Sleep", SleepCallback));
+-
+-        // $262
+-        const char Test262[] =
+-            #include "262.js"
+-        ;
+-
+-        JsValueRef Test262ScriptRef;
+-        IfJsrtErrorFailLogAndRetFalse(ChakraRTInterface::JsCreateString(Test262, strlen(Test262), &Test262ScriptRef));
+-
+-        JsValueRef fname;
+-        IfJsrtErrorFailLogAndRetFalse(ChakraRTInterface::JsCreateString("262", strlen("262"), &fname));
+-        IfJsrtErrorFailLogAndRetFalse(ChakraRTInterface::JsRun(Test262ScriptRef, WScriptJsrt::GetNextSourceContext(), fname, JsParseScriptAttributeNone, nullptr));
+-    }
+-
+ Error:
+     return hr == S_OK;
+ }
+diff --git a/lib/Backend/LinearScan.cpp b/lib/Backend/LinearScan.cpp
+index ff88cae62..652ed3ef7 100644
+--- a/lib/Backend/LinearScan.cpp
++++ b/lib/Backend/LinearScan.cpp
+@@ -2981,9 +2981,9 @@ LinearScan::ProcessEHRegionBoundary(IR::Instr * instr)
+     }
+ 
+     // Spill everything upon entry to the try region and upon a Leave.
++    IR::Instr* insertionInstr = instr->m_opcode != Js::OpCode::Leave ? instr : instr->m_prev;
+     FOREACH_SLIST_ENTRY_EDITING(Lifetime *, lifetime, this->activeLiveranges, iter)
+     {
+-        IR::Instr* insertionInstr = instr->m_opcode != Js::OpCode::Leave ? instr : instr->m_prev;
+         this->activeRegs.Clear(lifetime->reg);
+         if (lifetime->IsInt())
+         {

@@ -1,0 +1,80 @@
+@font-face {
+	src: url("./AmongUs.ttf") format("truetype");
+	font-family: AmongUs;
+}
+* {
+	box-sizing: border-box;
+	font-family: AmongUs, monospace, serif;
+}
+body {
+	margin: 0;
+}
+.nav-top {
+	width: 100%;
+}
+.points {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #ff6347;
+}
+li {
+	float: left;
+	width: 50%;
+	outline: none;
+}
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 15px;
+	font-size: 1.5em;
+	text-decoration: none;
+	outline: none;
+}
+li a:hover {
+	background-color: #ff2600;
+}
+.main {
+	border: 2px solid #ccc;
+	padding: 2em;
+	margin: 0;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+.in {
+	border: 1px solid #ccc;
+	padding: 7px;
+	outline: none;
+}
+.ftags {
+	margin: 9px 0px;
+}
+input[type="submit"] {
+	display: block;
+	margin: 15px auto;
+	padding: 5px;
+	background-color: #ccc;
+	width: 50%;
+}
+textarea {
+	resize: vertical;
+	height: 250px;
+	width: 300px;
+}
+.resp {
+	text-align: center;
+}
+.error {
+	color: #ff6347;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em;
+}

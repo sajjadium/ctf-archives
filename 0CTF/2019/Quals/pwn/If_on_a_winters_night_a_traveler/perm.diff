@@ -1,0 +1,388 @@
+diff --git a/src/Makefile b/src/Makefile
+index 38bb1090d..00023892e 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -1582,6 +1582,7 @@ BASIC_SRC = \
+ 	buffer.c \
+ 	charset.c \
+ 	crypt.c \
++	crypt_perm.c \
+ 	crypt_zip.c \
+ 	dict.c \
+ 	diff.c \
+@@ -1695,6 +1696,7 @@ OBJ_COMMON = \
+ 	objects/buffer.o \
+ 	objects/blowfish.o \
+ 	objects/crypt.o \
++	objects/crypt_perm.o \
+ 	objects/crypt_zip.o \
+ 	objects/dict.o \
+ 	objects/diff.o \
+@@ -1820,6 +1822,7 @@ PRO_AUTO = \
+ 	buffer.pro \
+ 	charset.pro \
+ 	crypt.pro \
++	crypt_perm.pro \
+ 	crypt_zip.pro \
+ 	dict.pro \
+ 	diff.pro \
+@@ -1993,7 +1996,7 @@ CCC = $(CCC_NF) $(ALL_CFLAGS)
+ # A shell script is used to try linking without unnecessary libraries.
+ $(VIMTARGET): auto/config.mk objects $(OBJ) version.c version.h
+ 	$(CCC) version.c -o objects/version.o
+-	@LINK="$(PURIFY) $(SHRPENV) $(CClink) $(ALL_LIB_DIRS) $(LDFLAGS) \
++	@LINK="$(PURIFY) $(SHRPENV) $(CClink) $(ALL_LIB_DIRS) $(LDFLAGS) -no-pie \
+ 		-o $(VIMTARGET) $(OBJ) $(ALL_LIBS)" \
+ 		MAKE="$(MAKE)" LINK_AS_NEEDED=$(LINK_AS_NEEDED) \
+ 		sh $(srcdir)/link.sh
+@@ -2957,6 +2960,9 @@ objects/charset.o: charset.c
+ objects/crypt.o: crypt.c
+ 	$(CCC) -o $@ crypt.c
+ 
++objects/crypt_perm.o: crypt_perm.c
++	$(CCC) -o $@ crypt_perm.c
++
+ objects/crypt_zip.o: crypt_zip.c
+ 	$(CCC) -o $@ crypt_zip.c
+ 
+@@ -3410,6 +3416,10 @@ objects/crypt.o: crypt.c vim.h protodef.h auto/config.h feature.h os_unix.h \
+  auto/osdef.h ascii.h keymap.h term.h macros.h option.h beval.h \
+  proto/gui_beval.pro structs.h regexp.h gui.h alloc.h ex_cmds.h spell.h \
+  proto.h globals.h farsi.h arabic.h
++objects/crypt_perm.o: crypt_perm.c vim.h protodef.h auto/config.h feature.h \
++ os_unix.h auto/osdef.h ascii.h keymap.h term.h macros.h option.h beval.h \
++ proto/gui_beval.pro structs.h regexp.h gui.h alloc.h ex_cmds.h spell.h \
++ proto.h globals.h farsi.h arabic.h
+ objects/crypt_zip.o: crypt_zip.c vim.h protodef.h auto/config.h feature.h \
+  os_unix.h auto/osdef.h ascii.h keymap.h term.h macros.h option.h beval.h \
+  proto/gui_beval.pro structs.h regexp.h gui.h alloc.h ex_cmds.h spell.h \
+diff --git a/src/crypt.c b/src/crypt.c
+index dfbf02ca5..902183ab1 100644
+--- a/src/crypt.c
++++ b/src/crypt.c
+@@ -119,6 +119,20 @@ static cryptmethod_T cryptmethods[CRYPT_M_COUNT] = {
+ 	crypt_blowfish_encode, crypt_blowfish_decode,
+     },
+ 
++    /* Permutation; very very weak */
++    {
++	"perm",
++	"VimCrypt~04!",
++	0,
++	0,
++	FALSE,
++	FALSE,
++	NULL,
++	crypt_perm_init,
++	crypt_perm_encode, crypt_perm_decode,
++	NULL, NULL,
++	crypt_perm_encode, crypt_perm_decode,
++    },
+     /* NOTE: when adding a new method, use some random bytes for the magic key,
+      * to avoid that a text file is recognized as encrypted. */
+ };
+@@ -528,10 +542,10 @@ crypt_get_key(
+     {
+ 	cmdline_star = TRUE;
+ 	cmdline_row = msg_row;
+-	p1 = getcmdline_prompt(NUL, round == 0
+-		? (char_u *)_("Enter encryption key: ")
+-		: (char_u *)_("Enter same key again: "), 0, EXPAND_NOTHING,
+-		NULL);
++	// to avoid interactive step, without loss of generality
++	p1 = alloc(8);
++	p1[0] = 'a';
++	p1[1] = NUL;
+ 	cmdline_star = FALSE;
+ 
+ 	if (p1 == NULL)
+diff --git a/src/crypt_perm.c b/src/crypt_perm.c
+index e69de29bb..96caa691f 100644
+--- a/src/crypt_perm.c
++++ b/src/crypt_perm.c
+@@ -0,0 +1,207 @@
++/* vi:set ts=8 sts=4 sw=4 noet:
++ *
++ * VIM - Vi IMproved	by Bram Moolenaar
++ *
++ * Do ":help uganda"  in Vim to read copying and usage conditions.
++ * Do ":help credits" in Vim to see a list of people who contributed.
++ * See README.txt for an overview of the Vim source code.
++ */
++
++/*
++ * crypt_perm.c: Permutation encryption support.
++ */
++#include "vim.h"
++
++#if defined(FEAT_CRYPT) || defined(PROTO)
++// "...literature itself is merely the permutation of a finite set of elements and functions..."
++// "...but constantly straining to escape from the bonds of this finite quantity..."
++/* 
++ * Just a weird homemade permutation algorithm. 
++ * At least it's reversible.
++ * TODO: Add support for large file. Currently it only works for small file.
++ */
++
++/* The state of encryption, referenced by cryptstate_T. */
++typedef struct {
++    int key;
++    int shift;
++    int step;
++    int orig_size;
++    int size;
++    int cur_idx;
++    char_u *buffer;
++} perm_state_T;
++
++    int
++is_prime(int p)
++{
++    // since p should be small
++    int tmp;
++    tmp = 2;
++    while (tmp*tmp<=p)
++    {
++        if (p%tmp==0)
++            return FALSE;
++        tmp++;
++    }
++    return TRUE;
++}
++
++    void
++crypt_perm_init(
++    cryptstate_T    *state,
++    char_u	    *key,
++    char_u	    *salt UNUSED,
++    int		    salt_len UNUSED,
++    char_u	    *seed UNUSED,
++    int		    seed_len UNUSED)
++{
++    char_u	*p;
++    perm_state_T	*ps;
++
++    ps = (perm_state_T *)alloc(sizeof(perm_state_T));
++    ps->key = 0;
++    state->method_state = ps;
++
++    for (p = key; *p != NUL; ++p)
++    {
++    ps->key = 131*ps->key + *p;
++    }
++}
++
++    void
++crypt_perm_encode(
++    cryptstate_T *state,
++    char_u	*from,
++    size_t	len,
++    char_u	*to)
++{
++    perm_state_T *ps = state->method_state;
++    size_t	i;
++
++    /* 
++     * A dirty way to introduce IV: using the first 4 bytes and keeping them unchanged 
++     */
++    if (len<=4)
++    {
++        for (i = 0; i < len; ++i)
++            to[i] = from[i];
++        return;
++    }
++
++    unsigned int iv;
++
++    for (i = 0; i < 4; ++i)
++    {
++        to[i] = from[i];
++        iv = (iv<<8) + from[i];
++    }
++    ps->orig_size = len-4;
++    ps->size = ps->orig_size;
++    /* We need a prime order for reversibility */
++    while (!is_prime(ps->size))
++        ps->size++;
++
++    ps->shift = ps->key % (len-4);
++    if (ps->shift > 0)
++        ps->buffer = alloc(ps->shift);
++    /* Xor with iv so that we have different value for addition and multiplication */
++    ps->step = ps->key ^ iv;
++    /* Do not forget the corner case */
++    if (ps->step % ps->size == 0)
++        ps->step++;
++    ps->cur_idx = 0;
++
++    /* Step 1: Addition */
++    for (i = 0; i < ps->shift; ++i)
++        ps->buffer[i] = from[len-ps->shift+i];
++    for (i = len-1; i >= 4+ps->shift; --i)
++        from[i] = from[i-ps->shift];
++    for (i = 0; i < ps->shift; ++i)
++        from[i+4] = ps->buffer[i];
++
++    /* Step 2: Multiplication */
++    i = 4;
++    while (i < len)
++    {
++        if (ps->cur_idx < ps->orig_size)
++        {
++            to[i] = from[ps->cur_idx+4];
++            i++;
++        }
++        ps->cur_idx = (ps->cur_idx+ps->step)%ps->size;
++    }
++
++    /* We should recover the "from" array */
++    for (i = 0; i < ps->shift; ++i)
++        ps->buffer[i] = from[i+4];
++    for (i = 4+ps->shift; i < len; ++i)
++        from[i-ps->shift] = from[i];
++    for (i = 0; i < ps->shift; ++i)
++        from[len-ps->shift+i] = ps->buffer[i];
++
++    if (ps->shift > 0)
++        vim_free(ps->buffer);
++}
++
++    void
++crypt_perm_decode(
++    cryptstate_T *state,
++    char_u	*from,
++    size_t	len,
++    char_u	*to)
++{
++    perm_state_T *ps = state->method_state;
++    size_t	i;
++
++    if (len<=4)
++    {
++        for (i = 0; i < len; ++i)
++            to[i] = from[i];
++        return;
++    }
++
++    unsigned int iv;
++    for (i = 0; i < 4; ++i)
++    {
++        to[i] = from[i];
++        iv = (iv<<8) + from[i];
++    }
++    ps->orig_size = len-4;
++    ps->size = ps->orig_size;
++    while (!is_prime(ps->size))
++        ps->size++;
++
++    ps->shift = ps->key % (len-4);
++    if (ps->shift > 0)
++        ps->buffer = alloc(ps->shift);
++    ps->step = ps->key ^ iv;
++    if (ps->step % ps->size == 0)
++        ps->step++;
++    ps->cur_idx = 0;
++
++    /* Step 1: Inverse of Multiplication */
++    i = 4;
++    while (i < len)
++    {
++        if (ps->cur_idx < ps->orig_size)
++        {
++            to[ps->cur_idx+4] = from[i];
++            i++;
++        }
++        ps->cur_idx = (ps->cur_idx+ps->step)%ps->size;
++    }
++
++    /* Step 2: Inverse of Addition */
++    for (i = 0; i < ps->shift; ++i)
++        ps->buffer[i] = to[i+4];
++    for (i = 4+ps->shift; i < len; ++i)
++        to[i-ps->shift] = to[i];
++    for (i = 0; i < ps->shift; ++i)
++        to[len-ps->shift+i] = ps->buffer[i];
++
++    if (ps->shift > 0)
++        vim_free(ps->buffer);
++}
++
++#endif /* FEAT_CRYPT */
+diff --git a/src/memline.c b/src/memline.c
+index eaa3b65ab..0e4082ead 100644
+--- a/src/memline.c
++++ b/src/memline.c
+@@ -64,12 +64,14 @@ typedef struct pointer_entry	PTR_EN;	    /* block/line-count pair */
+ #define BLOCK0_ID1_C0  'c'		    /* block 0 id 1 'cm' 0 */
+ #define BLOCK0_ID1_C1  'C'		    /* block 0 id 1 'cm' 1 */
+ #define BLOCK0_ID1_C2  'd'		    /* block 0 id 1 'cm' 2 */
++#define BLOCK0_ID1_C3  'D'		    /* block 0 id 1 'cm' 3 */
+ 
+ #if defined(FEAT_CRYPT)
+ static int id1_codes[] = {
+     BLOCK0_ID1_C0,  /* CRYPT_M_ZIP */
+     BLOCK0_ID1_C1,  /* CRYPT_M_BF */
+     BLOCK0_ID1_C2,  /* CRYPT_M_BF2 */
++    BLOCK0_ID1_C3,  /* CRYPT_M_PERM */
+ };
+ #endif
+ 
+@@ -914,7 +916,8 @@ ml_check_b0_id(ZERO_BL *b0p)
+ 	    || (b0p->b0_id[1] != BLOCK0_ID1
+ 		&& b0p->b0_id[1] != BLOCK0_ID1_C0
+ 		&& b0p->b0_id[1] != BLOCK0_ID1_C1
+-		&& b0p->b0_id[1] != BLOCK0_ID1_C2)
++		&& b0p->b0_id[1] != BLOCK0_ID1_C2
++		&& b0p->b0_id[1] != BLOCK0_ID1_C3)
+ 	    )
+ 	return FAIL;
+     return OK;
+diff --git a/src/option.c b/src/option.c
+index 3ab355f6c..4d4563bbd 100644
+--- a/src/option.c
++++ b/src/option.c
+@@ -3245,7 +3245,7 @@ static char *(p_bg_values[]) = {"light", "dark", NULL};
+ static char *(p_nf_values[]) = {"bin", "octal", "hex", "alpha", NULL};
+ static char *(p_ff_values[]) = {FF_UNIX, FF_DOS, FF_MAC, NULL};
+ #ifdef FEAT_CRYPT
+-static char *(p_cm_values[]) = {"zip", "blowfish", "blowfish2", NULL};
++static char *(p_cm_values[]) = {"zip", "blowfish", "blowfish2", "perm", NULL};
+ #endif
+ #ifdef FEAT_CMDL_COMPL
+ static char *(p_wop_values[]) = {"tagfile", NULL};
+diff --git a/src/proto.h b/src/proto.h
+index 92d971469..ccf97c4f2 100644
+--- a/src/proto.h
++++ b/src/proto.h
+@@ -60,6 +60,7 @@ extern int _stricoll(char *a, char *b);
+ # ifdef FEAT_CRYPT
+ #  include "blowfish.pro"
+ #  include "crypt.pro"
++#  include "crypt_perm.pro"
+ #  include "crypt_zip.pro"
+ # endif
+ # include "buffer.pro"
+diff --git a/src/proto/crypt_perm.pro b/src/proto/crypt_perm.pro
+index e69de29bb..2e0c27eea 100644
+--- a/src/proto/crypt_perm.pro
++++ b/src/proto/crypt_perm.pro
+@@ -0,0 +1,5 @@
++/* crypt_perm.c */
++void crypt_perm_init(cryptstate_T *state, char_u *key, char_u *salt, int salt_len, char_u *seed, int seed_len);
++void crypt_perm_encode(cryptstate_T *state, char_u *from, size_t len, char_u *to);
++void crypt_perm_decode(cryptstate_T *state, char_u *from, size_t len, char_u *to);
++/* vim: set ft=c : */
+diff --git a/src/structs.h b/src/structs.h
+index 0f37b8f66..ab72e7979 100644
+--- a/src/structs.h
++++ b/src/structs.h
+@@ -1907,7 +1907,8 @@ typedef struct {
+ # define CRYPT_M_ZIP	0
+ # define CRYPT_M_BF	1
+ # define CRYPT_M_BF2	2
+-# define CRYPT_M_COUNT	3 /* number of crypt methods */
++# define CRYPT_M_PERM	3
++# define CRYPT_M_COUNT	4 /* number of crypt methods */
+ #endif
+ 
+ 

@@ -1,0 +1,1 @@
+Upon investigating some malicous blockchain workings, we found out a binary was being exploited to money launder. We took a look at it, and found a note by the author of the binary saying something about "maleficarum". Any clue what that is?

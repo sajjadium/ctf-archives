@@ -1,0 +1,4 @@
+var a = "This is a PoC!"
+System.print(a)
+var b = [1, 2, 3]
+b[0x80000000] = 0x123

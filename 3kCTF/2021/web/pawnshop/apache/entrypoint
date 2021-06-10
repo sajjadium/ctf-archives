@@ -1,0 +1,7 @@
+#!/bin/sh
+sleep 15
+chmod +x /var/www/html/index.py
+chmod +x /var/www/html/admin.py
+python3 /elastic_init.py
+rm /elastic_init.py
+exec "$@"

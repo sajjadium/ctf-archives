@@ -1,0 +1,23 @@
+diff --git a/src/builtins/typed-array-set.tq b/src/builtins/typed-array-set.tq
+index b5c9dcb261..babe7da3f0 100644
+--- a/src/builtins/typed-array-set.tq
++++ b/src/builtins/typed-array-set.tq
+@@ -70,7 +70,7 @@ TypedArrayPrototypeSet(
+     // 7. Let targetBuffer be target.[[ViewedArrayBuffer]].
+     // 8. If IsDetachedBuffer(targetBuffer) is true, throw a TypeError
+     //   exception.
+-    const utarget = typed_array::EnsureAttached(target) otherwise IsDetached;
++    const utarget = %RawDownCast<AttachedJSTypedArray>(target);
+ 
+     const overloadedArg = arguments[0];
+     try {
+@@ -86,8 +86,7 @@ TypedArrayPrototypeSet(
+       // 10. Let srcBuffer be typedArray.[[ViewedArrayBuffer]].
+       // 11. If IsDetachedBuffer(srcBuffer) is true, throw a TypeError
+       //   exception.
+-      const utypedArray =
+-          typed_array::EnsureAttached(typedArray) otherwise IsDetached;
++      const utypedArray = %RawDownCast<AttachedJSTypedArray>(typedArray);
+ 
+       TypedArrayPrototypeSetTypedArray(
+           utarget, utypedArray, targetOffset, targetOffsetOverflowed)

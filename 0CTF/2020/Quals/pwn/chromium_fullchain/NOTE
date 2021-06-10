@@ -1,0 +1,9 @@
+commit: 154ef649b0423799ad03df155dc42c67cc7dc7b1
+
+```
+cd /Your-Path-To-Chromium/src/
+git apply ~/chromium_fullchain/chromium_diff.diff
+
+cd /Your-Path-To-Chromium/src/v8
+git apply ~/chromium_fullchain/v8.diff
+```

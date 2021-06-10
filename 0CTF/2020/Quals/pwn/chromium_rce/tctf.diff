@@ -1,0 +1,96 @@
+diff --git a/src/builtins/typed-array-set.tq b/src/builtins/typed-array-set.tq
+index b5c9dcb261..babe7da3f0 100644
+--- a/src/builtins/typed-array-set.tq
++++ b/src/builtins/typed-array-set.tq
+@@ -70,7 +70,7 @@ TypedArrayPrototypeSet(
+     // 7. Let targetBuffer be target.[[ViewedArrayBuffer]].
+     // 8. If IsDetachedBuffer(targetBuffer) is true, throw a TypeError
+     //   exception.
+-    const utarget = typed_array::EnsureAttached(target) otherwise IsDetached;
++    const utarget = %RawDownCast<AttachedJSTypedArray>(target);
+ 
+     const overloadedArg = arguments[0];
+     try {
+@@ -86,8 +86,7 @@ TypedArrayPrototypeSet(
+       // 10. Let srcBuffer be typedArray.[[ViewedArrayBuffer]].
+       // 11. If IsDetachedBuffer(srcBuffer) is true, throw a TypeError
+       //   exception.
+-      const utypedArray =
+-          typed_array::EnsureAttached(typedArray) otherwise IsDetached;
++      const utypedArray = %RawDownCast<AttachedJSTypedArray>(typedArray);
+ 
+       TypedArrayPrototypeSetTypedArray(
+           utarget, utypedArray, targetOffset, targetOffsetOverflowed)
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index 117df1cc52..9c6ca7275d 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -1339,9 +1339,9 @@ MaybeLocal<Context> Shell::CreateRealm(
+     }
+     delete[] old_realms;
+   }
+-  Local<ObjectTemplate> global_template = CreateGlobalTemplate(isolate);
+   Local<Context> context =
+-      Context::New(isolate, nullptr, global_template, global_object);
++      Context::New(isolate, nullptr, ObjectTemplate::New(isolate),
++                   v8::MaybeLocal<Value>());
+   DCHECK(!try_catch.HasCaught());
+   if (context.IsEmpty()) return MaybeLocal<Context>();
+   InitializeModuleEmbedderData(context);
+@@ -2260,10 +2260,7 @@ void Shell::Initialize(Isolate* isolate, D8Console* console,
+             v8::Isolate::kMessageLog);
+   }
+ 
+-  isolate->SetHostImportModuleDynamicallyCallback(
+-      Shell::HostImportModuleDynamically);
+-  isolate->SetHostInitializeImportMetaObjectCallback(
+-      Shell::HostInitializeImportMetaObject);
++  // `import("xx")` is not allowed
+ 
+ #ifdef V8_FUZZILLI
+   // Let the parent process (Fuzzilli) know we are ready.
+@@ -2285,9 +2282,9 @@ Local<Context> Shell::CreateEvaluationContext(Isolate* isolate) {
+   // This needs to be a critical section since this is not thread-safe
+   base::MutexGuard lock_guard(context_mutex_.Pointer());
+   // Initialize the global objects
+-  Local<ObjectTemplate> global_template = CreateGlobalTemplate(isolate);
+   EscapableHandleScope handle_scope(isolate);
+-  Local<Context> context = Context::New(isolate, nullptr, global_template);
++  Local<Context> context = Context::New(isolate, nullptr,
++                                        ObjectTemplate::New(isolate));
+   DCHECK(!context.IsEmpty());
+   if (i::FLAG_perf_prof_annotate_wasm || i::FLAG_vtune_prof_annotate_wasm) {
+     isolate->SetWasmLoadSourceMapCallback(ReadFile);
+diff --git a/src/parsing/parser-base.h b/src/parsing/parser-base.h
+index 3519599a88..f1ba0fb445 100644
+--- a/src/parsing/parser-base.h
++++ b/src/parsing/parser-base.h
+@@ -1907,10 +1907,8 @@ ParserBase<Impl>::ParsePrimaryExpression() {
+       return ParseTemplateLiteral(impl()->NullExpression(), beg_pos, false);
+ 
+     case Token::MOD:
+-      if (flags().allow_natives_syntax() || extension_ != nullptr) {
+-        return ParseV8Intrinsic();
+-      }
+-      break;
++      // Directly call %ArrayBufferDetach without `--allow-native-syntax` flag
++      return ParseV8Intrinsic();
+ 
+     default:
+       break;
+diff --git a/src/parsing/parser.cc b/src/parsing/parser.cc
+index 9577b37397..2206d250d7 100644
+--- a/src/parsing/parser.cc
++++ b/src/parsing/parser.cc
+@@ -357,6 +357,11 @@ Expression* Parser::NewV8Intrinsic(const AstRawString* name,
+   const Runtime::Function* function =
+       Runtime::FunctionForName(name->raw_data(), name->length());
+ 
++  // Only %ArrayBufferDetach allowed
++  if (function->function_id != Runtime::kArrayBufferDetach) {
++    return factory()->NewUndefinedLiteral(kNoSourcePosition);
++  }
++
+   // Be more permissive when fuzzing. Intrinsics are not supported.
+   if (FLAG_fuzzing) {
+     return NewV8RuntimeFunctionForFuzzing(function, args, pos);

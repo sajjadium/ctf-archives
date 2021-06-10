@@ -1,0 +1,15 @@
+service vim
+{
+	disable = no
+	type = UNLISTED
+	flags = REUSE
+	wait = no
+	socket_type = stream
+	protocol = tcp
+	bind = 0.0.0.0
+	rlimit_cpu = 60
+	port = 10001
+	user = calvino
+	server = /home/calvino/service.py
+}
+
