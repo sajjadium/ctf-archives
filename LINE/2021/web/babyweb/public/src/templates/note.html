@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="mt-5">Note</h1>
+<div class="lead">
+  <h3 class="mt-5">Create Note</h3>
+  <div class="mb-3">
+    <form method="POST">
+      <input name="title" class="form-control">
+      <textarea name="content" class="form-control"rows="3"></textarea>
+      <input type="submit" value="CREATE">
+    </form>
+  </div>
+  <h3 class="mt-5">Note List</h3>
+  <div class="mb-3">
+    {% for note in notes %}
+        <li><a href="/note/{{ note[1] }}">{{ note[2] }}</a></li>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

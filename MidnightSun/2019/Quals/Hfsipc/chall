@@ -1,0 +1,10 @@
+#!/bin/bash
+qemu-system-x86_64 \
+    -m 128M \
+    -cpu max,+smap,+smep,check \
+    -kernel ./bzImage \
+    -initrd rootfs.img.gz \
+    -append 'root=/dev/ram rw console=ttyS0 rdinit=/sbin/init loglevel=3 oops=panic panic=1' \
+    -no-reboot \
+    -nographic \
+    -monitor /dev/null

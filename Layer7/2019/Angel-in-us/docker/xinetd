@@ -1,0 +1,12 @@
+service Angel
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/Angel/problem
+        socket_type = stream
+        protocol = tcp
+        user = Angel
+        port = 3000
+        flags = REUSE
+}

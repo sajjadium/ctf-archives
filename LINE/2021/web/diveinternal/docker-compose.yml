@@ -1,0 +1,43 @@
+version: "2"
+services:
+    nginx:
+        build:
+            context: ./nginx/
+        container_name: linectf_diveinternal_nginx
+        restart: always  
+        image: linectf_diveinternal_nginx
+        ports:
+            - "12004:80"
+        networks:
+            - ctf-network
+    public:
+        build:
+            context: ./public/
+            target: production 
+        container_name: linectf_diveinternal_public
+        restart: always  
+        image: linectf_diveinternal_public
+        networks:
+            - ctf-network
+    redis:
+        image: "redis:alpine"
+        restart: always 
+        container_name: linectf_diveinternal_redis
+        networks:
+            - ctf-network
+    private:
+        build: ./private/
+        container_name: linectf_diveinternal_private
+        restart: always 
+        image: linectf_diveinternal_private
+        networks:
+            - ctf-network
+        environment:
+            - FLASK_APP=main.py
+            - 'RUN=flask run --host=0.0.0.0 --port=5000'
+            - ENV=PROD
+            - FLASK_DEBUG=0
+            - CHKTIME=6
+            - DBFILE=database/master.db
+networks:
+   ctf-network:

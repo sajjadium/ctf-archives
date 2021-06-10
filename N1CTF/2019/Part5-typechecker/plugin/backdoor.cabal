@@ -1,0 +1,33 @@
+cabal-version:       2.4
+name:                backdoor
+version:             0.1.0.0
+description:         CTF Challenge
+license:             MIT
+license-file:        LICENSE
+author:              shiki7
+maintainer:          i@shiki7.me
+build-type:          Simple
+
+library
+  exposed-modules:     GHC.Types.Backdoor
+                     , GHC.Types.Backdoor.Solver
+  build-depends:       base ^>=4.12.0.0
+                     , ghc == 8.6.5
+                     , ghc-boot == 8.6.5
+                     , ghc-tcplugins-extra
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+executable cnc
+  main-is:             Main.hs
+  other-modules:       Checker
+                     , Executor
+  build-depends:       base ^>=4.12.0.0
+                     , ghc == 8.6.5
+                     , ghc-boot == 8.6.5
+                     , ghc-paths
+                     , unix
+                     , process
+  hs-source-dirs:      chal
+  ghc-options:         -O3
+  default-language:    Haskell2010

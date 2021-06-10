@@ -1,0 +1,7 @@
+#! /bin/bash
+
+if [ "$1" = "debug" ] ; then
+    cd bin && ./qemu-system-i386 -s -S -m 16 -k en-us -rtc base=localtime -nographic -drive file=../dos.img -boot order=c
+else
+    cd bin && ./qemu-system-i386 -m 16 -k en-us -rtc base=localtime -nographic -drive file=../dos.img -boot order=c
+fi

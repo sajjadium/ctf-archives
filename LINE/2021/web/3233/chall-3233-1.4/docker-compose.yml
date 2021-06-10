@@ -1,0 +1,18 @@
+version: '3'
+
+services: 
+  front:
+    build: ./3233-front
+    ports: 
+      - 13233:80
+  
+  server:
+    build: ./3233-server
+    environment: 
+      - PASSWORD
+
+  admin:
+    build: ./agent
+    environment: 
+      - FLAG
+      - PASSWORD

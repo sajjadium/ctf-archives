@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action="/search" method="GET">
+    <div class="field has-addons">
+        <p class="control is-expanded">
+            <input class="input" type="text" placeholder="Search your note" name="q">
+        </p>
+        <p class="control">
+            <button class="button is-success" type="submit">
+            Search
+            </button>
+        </p>
+        {% if is_search %}
+            <p class="control">
+                <a class="button is-success is-outlined" href="{{ url_for('search', q=request.args.get('q'), download='') }}">
+                Download
+                </a>
+            </p>
+        {% endif %}
+    </div>
+</form>
+{% if is_search %}
+    <div class="is-size-5 has-text-left mb-5">Search result of <strong>{{ request.args.get('q') }}</strong></div>
+{% endif %}
+{% for note in notes %}
+<div class="box has-text-left">
+    <a href="{{ url_for('note', note_id=note.id) }}"><h3 class="title is-4 has-text-success">{{ note.title }}</h3></a>
+    <p class="content">{{ note.content }}</p>
+</div>
+{% endfor %}
+{% if is_search %}
+<div class="has-text-right">
+    <a href="{{ url_for('index') }}" class="has-text-success">←Back to top</a>
+</div>
+{% endif %}
+{% endblock content %}

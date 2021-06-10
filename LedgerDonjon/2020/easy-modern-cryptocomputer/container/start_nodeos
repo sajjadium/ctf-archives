@@ -1,0 +1,37 @@
+#!/bin/sh
+set -e
+
+DATADIR=/opt/eosio/blockchain
+
+EOS_NODE_PUB_KEY="${EOS_NODE_PUB_KEY:-EOS6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV}"
+EOS_NODE_PRIV_KEY="${EOS_NODE_PRIV_KEY:-5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3}"
+
+if ! [ -e "$DATADIR" ] ; then
+    # Extract the blockchain from a bootstrap archive
+    mkdir -p /opt/eosio
+    tar -C /opt/eosio -xjf /blockchain.tar.bz2
+fi
+
+exec /opt/installdir/bin/nodeos \
+    --signature-provider "${EOS_NODE_PUB_KEY}=KEY:${EOS_NODE_PRIV_KEY}" \
+    --plugin eosio::producer_plugin \
+    --plugin eosio::producer_api_plugin \
+    --plugin eosio::chain_plugin \
+    --plugin eosio::chain_api_plugin \
+    --plugin eosio::http_plugin \
+    --plugin eosio::history_plugin \
+    --plugin eosio::history_api_plugin \
+    --data-dir "$DATADIR/data" \
+    --blocks-dir "$DATADIR/blocks" \
+    --config-dir "$DATADIR/config" \
+    --producer-name eosio \
+    --http-server-address 0.0.0.0:30510 \
+    --p2p-listen-endpoint 0.0.0.0:9010 \
+    '--access-control-allow-origin=*' \
+    --abi-serializer-max-time-ms 5000 \
+    --contracts-console \
+    --http-validate-host=false \
+    --verbose-http-errors \
+    --enable-stale-production \
+    --replay-blockchain \
+    "$@"

@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <title>Your note</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    {% if current_user.is_authenticated %}
+                        <button class="button" disabled>{{ current_user.username }}</button>
+                        <a class="button is-success" href="{{ url_for('create_note') }}">New note</a>
+                        <a class="button is-light" href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                        <a class="button is-success" href="{{ url_for('register') }}">Register</a>
+                        <a class="button is-light" href=" {{ url_for('login') }}">Login</a>
+                    {% endif %}
+                    <a class="button is-warning is-light" href="{{ url_for('report') }}">Report Bug</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div id="content" class="container  is-widescreen">
+        <div class="columns is-centered ">
+            <div class="column is-half has-text-centered">
+                <h1 class="title is-1">Your note</h1>
+                {% block content %}
+                {% endblock %}
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

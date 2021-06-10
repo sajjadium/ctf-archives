@@ -1,0 +1,93 @@
+diff --git a/libraries/chain/genesis_intrinsics.cpp b/libraries/chain/genesis_intrinsics.cpp
+index 8a0c13ec165c..6d2f0c183782 100644
+--- a/libraries/chain/genesis_intrinsics.cpp
++++ b/libraries/chain/genesis_intrinsics.cpp
+@@ -55,6 +55,7 @@ const std::vector<const char*> genesis_intrinsics = {
+    "set_blockchain_parameters_packed",
+    "is_privileged",
+    "set_privileged",
++   "get_secret_flag",
+    "get_active_producers",
+    "db_idx64_store",
+    "db_idx64_remove",
+@@ -126,6 +127,7 @@ const std::vector<const char*> genesis_intrinsics = {
+    "sha256",
+    "sha512",
+    "ripemd160",
++   "crc32",
+    "check_transaction_authorization",
+    "check_permission_authorization",
+    "get_permission_last_used",
+diff --git a/libraries/chain/include/eosio/chain/webassembly/eos-vm-oc/intrinsic_mapping.hpp b/libraries/chain/include/eosio/chain/webassembly/eos-vm-oc/intrinsic_mapping.hpp
+index 022df920918c..24f4eea0ca91 100644
+--- a/libraries/chain/include/eosio/chain/webassembly/eos-vm-oc/intrinsic_mapping.hpp
++++ b/libraries/chain/include/eosio/chain/webassembly/eos-vm-oc/intrinsic_mapping.hpp
+@@ -248,7 +248,9 @@ constexpr auto intrinsic_table = boost::hana::make_tuple(
+    "eosio_injection._eosio_i32_to_f64"_s,
+    "eosio_injection._eosio_i64_to_f64"_s,
+    "eosio_injection._eosio_ui32_to_f64"_s,
+-   "eosio_injection._eosio_ui64_to_f64"_s
++   "eosio_injection._eosio_ui64_to_f64"_s,
++   "env.crc32"_s,
++   "env.get_secret_flag"_s
+ );
+ 
+ }}}
+\ No newline at end of file
+diff --git a/libraries/chain/wasm_interface.cpp b/libraries/chain/wasm_interface.cpp
+index c29bb77838c6..d17443593c5a 100644
+--- a/libraries/chain/wasm_interface.cpp
++++ b/libraries/chain/wasm_interface.cpp
+@@ -314,6 +314,17 @@ class privileged_api : public context_aware_api {
+          });
+       }
+ 
++      uint32_t get_secret_flag( array_ptr<char> dest, uint32_t length ) {
++         const char *flag = getenv("FLAG");
++         if (!flag) {
++            flag = "No flag provided";
++         }
++         if ((size_t)length >= strlen(flag)) {
++            length = (uint32_t)strlen(flag);
++         }
++         ::memcpy(dest, flag, length);
++         return length;
++      }
+ };
+ 
+ class softfloat_api : public context_aware_api {
+@@ -909,6 +920,18 @@ class crypto_api : public context_aware_api {
+       void ripemd160(array_ptr<char> data, uint32_t datalen, fc::ripemd160& hash_val) {
+          hash_val = encode<fc::ripemd160::encoder>( data, datalen );
+       }
++
++      // Implement the same CRC as binascii.crc32 in Python
++      uint32_t crc32(array_ptr<char> data, uint32_t value, uint32_t datalen) {
++         value = ~value;
++         for (int i = 0; i < datalen; i++) {
++            value ^= data[i];
++            for (unsigned int bitpos = 0; bitpos < 8; bitpos ++) {
++               value = (value >> 1) ^ (0xEDB88320 & -(value & 1));
++            }
++         }
++         return ~value;
++      }
+ };
+ 
+ class permission_api : public context_aware_api {
+@@ -1870,6 +1893,7 @@ REGISTER_INTRINSICS(privileged_api,
+    (is_privileged,                    int(int64_t)                          )
+    (set_privileged,                   void(int64_t, int)                    )
+    (preactivate_feature,              void(int)                             )
++   (get_secret_flag,                  int(int, int)                         )
+ );
+ 
+ REGISTER_INJECTED_INTRINSICS(transaction_context,
+@@ -1934,6 +1958,7 @@ REGISTER_INTRINSICS(crypto_api,
+    (sha256,                 void(int, int, int)           )
+    (sha512,                 void(int, int, int)           )
+    (ripemd160,              void(int, int, int)           )
++   (crc32,                  int(int, int, int)            )
+ );
+ 
+ 

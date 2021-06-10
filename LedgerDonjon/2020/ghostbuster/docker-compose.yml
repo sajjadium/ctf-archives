@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+
+  ghostbuster:
+    build: ghostbuster
+    networks:
+      - ghostbuster
+    security_opt:
+      - seccomp=unconfined
+    volumes:
+      - ./secret.txt:/home/ghostbuster/secret.txt
+
+  ghostbuster_ssh:
+    build: ghostbuster
+    networks:
+      - ghostbuster
+    ports:
+      - "3000:22"
+    security_opt:
+      - seccomp=unconfined
+    user: root
+    command: ["/usr/sbin/sshd", "-4", "-D"]
+
+networks:
+  ghostbuster:
+    name: ghostbuster

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="box">
+        <h4 class="title is-4">Report Bug</h4>
+        <form method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" name="url" placeholder="URL">
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" name="proof" placeholder="send the nonce">
+                </div>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <button class="button is-success">
+                    Report
+                    </button>
+                </p>
+            </div>
+            <div class="notification is-success is-light has-text-left">
+                <p>Admin will only visit page under this site's domain.</p>
+                {% if pow_prefix %}
+                <p>Please send the PoW nonce.<br/> <strong>npm install -g proof-of-work && <br>proof-of-work {{pow_prefix}} {{pow_complexity}}</strong> </p> 
+                {% endif %}
+            </div>
+            {% if msg %}
+            <div class="notification is-success is-light">
+                {{msg}}
+            </div>
+            {% endif %}
+        </form>
+</div>
+<div class="has-text-right">
+    <a href="{{ url_for('index') }}" class="has-text-success">←Back to top</a>
+</div>
+{% endblock content %}

@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+    query_firewall:
+        build: .
+        ports:
+            - '10008:5555'
+        stdin_open: true
+        tty: true
+        volumes:
+            - ./flag:/flag
+            - ./client:/home/ctf/client
+            - ./data.db:/home/ctf/data.db
+            - ./firewall.sqlext:/home/ctf/firewall.sqlext

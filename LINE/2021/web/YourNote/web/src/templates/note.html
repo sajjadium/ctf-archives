@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if note %}
+<div class="box has-text-left">
+    <h3 class="title is-4 has-text-success">{{ note.title }}</h3>
+    <p class="content">{{ note.content }}</p>
+</div>
+{% endif %}
+{% if get_flashed_messages() %}
+<div class="notification is-danger is-light">
+    {{ get_flashed_messages()[0] }}
+</div>
+{% endif %}
+<div class="has-text-right">
+    <a href="{{ url_for('index') }}" class="has-text-success">←Back to top</a>
+</div>
+{% endblock content %}

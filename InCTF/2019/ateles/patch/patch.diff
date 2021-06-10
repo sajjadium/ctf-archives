@@ -1,0 +1,14 @@
+diff -r 3d02a4c69a81 js/src/jit/CodeGenerator.cpp
+--- a/js/src/jit/CodeGenerator.cpp	Thu Sep 19 06:59:14 2019 +0300
++++ b/js/src/jit/CodeGenerator.cpp	Fri Sep 20 15:35:07 2019 +0530
+@@ -9177,7 +9177,9 @@
+ void CodeGenerator::visitInitializedLength(LInitializedLength* lir) {
+   Address initLength(ToRegister(lir->elements()),
+                      ObjectElements::offsetOfInitializedLength());
+-  masm.load32(initLength, ToRegister(lir->output()));
++  Register out = ToRegister(lir->output());
++  masm.load32(initLength, out);
++  masm.addq(Imm32(2), out);
+ }
+ 
+ void CodeGenerator::visitSetInitializedLength(LSetInitializedLength* lir) {

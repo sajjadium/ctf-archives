@@ -1,0 +1,8 @@
+qemu-system-x86_64 -cpu kvm64,+smep,+smap \
+  -m 128M \
+  -kernel ./bzImage \
+  -initrd ./initramfs.cpio \
+  -nographic \
+  -monitor /dev/null \
+  -no-reboot \
+  -append "root=/dev/ram rw rdinit=/root/init console=ttyS0 loglevel=3 oops=panic panic=1"

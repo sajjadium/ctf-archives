@@ -1,0 +1,77 @@
+{% extends "backend/default_templates/base.html" %}
+
+{% block content %}
+
+<!-- Page Content -->
+<div class="container">
+  <div id="success" class="alert alert-success mt-3" hidden></div>
+  <div id="error" class="alert alert-danger mt-3" hidden></div>
+  <div class="row justify-content-center pt-5">
+    <div class="card">
+      <div id="card" class="card-body">
+        <form id="form" action="javascript:signup()">
+          <div class="form-group">
+            <label for="usernameInput">Username</label>
+            <input type="text" name="username" class="form-control" id="usernameInput" required>
+          </div>
+          <div class="form-group">
+            <label for="emailInput">Email</label>
+            <input type="email" name="email" class="form-control" id="emailInput" required>
+          </div>
+          <div class="form-group">
+            <label for="password1Input">Password</label>
+            <input type="password" name="password" class="form-control" id="password1Input" required>
+          </div>
+          <div class="form-group">
+            <label for="password2Input">Confirm password</label>
+            <input type="password" name="password2" class="form-control" id="password2Input" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign up</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+  function signup() {
+    data = {
+      "username": document.getElementById("usernameInput").value,
+      "email": document.getElementById("emailInput").value,
+      "password": document.getElementById("password1Input").value,
+      "password2": document.getElementById("password2Input").value
+    }
+
+    fetch("/signup", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }).then(res => {
+      if (res.status != 200) {
+        res.json().then((json) => {
+          document.getElementById("error").innerText = json.message;
+          document.getElementById("error").removeAttribute("hidden");
+        }).catch(() => {
+          document.getElementById("error").innerText = "An unexpected error occurred";
+          document.getElementById("error").removeAttribute("hidden");
+        });;
+      } else {
+        res.json().then((json) => {
+          document.getElementById("success").innerText = json.message + " Redirecting...";
+          document.getElementById("success").removeAttribute("hidden");
+        });
+        setTimeout(function() {
+          location = "/signin";
+        }, 2000);
+      }
+    });
+  };
+</script>
+
+{% endblock %}

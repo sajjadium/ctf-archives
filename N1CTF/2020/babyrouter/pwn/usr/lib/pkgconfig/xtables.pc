@@ -1,0 +1,13 @@
+
+prefix=/home/project/5_ugw/cbb/public/src/iptables-1.4.12/src/install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+xtlibdir=${exec_prefix}/lib/xtables
+includedir=${prefix}/include
+
+Name:		xtables
+Description:	Shared Xtables code for extensions and iproute2
+Version:	1.4.12.2
+Cflags:		-I${includedir}
+Libs:		-L${libdir} -lxtables
+Libs.private:	-ldl

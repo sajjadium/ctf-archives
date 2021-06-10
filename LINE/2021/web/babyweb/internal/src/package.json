@@ -1,0 +1,19 @@
+{
+    "scripts": {
+        "start": "nodemon --exec babel-node server.js"
+    },
+    "main": "server.js",
+    "dependencies": {
+        "jsonwebtoken": "^8.5.1",
+        "uuid": "^8.3.2"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.12.10",
+        "@babel/core": "^7.12.10",
+        "@babel/node": "^7.12.10",
+        "@babel/polyfill": "^7.12.1",
+        "@babel/preset-env": "^7.12.11",
+        "babel-loader": "^8.2.2",
+        "nodemon": "^2.0.7"
+    }
+}

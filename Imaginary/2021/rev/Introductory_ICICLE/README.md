@@ -1,0 +1,1 @@
+Introducing ICICLE (Imaginary Ctf Instruction Collection for Learning assEmbly)! It's a programming challenge, so I didn't want to use an existing language and give some people an unfair advantage, so I made my own! See the spec and implement an interpreter to run the provided file, and get the flag.

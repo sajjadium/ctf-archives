@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Corporate E-login</title>
+	<link rel="stylesheet" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="d-flex align-items-center">
+
+<div class="container text-center">
+	<?php if ($notification) {
+	echo '<div class="alert alert-' . $notification->type . '">' . htmlspecialchars($notification->text) . '</div>';
+	} ?>
+
+<form class="form-signin" method="post" action="">
+	<img class="mb-4" src="/images/logo.png" id="spin-img" alt="" width="80" height="80">
+	<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+	<label for="inputEmail" class="sr-only">Email address</label>
+	<input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required autofocus>
+	<label for="inputPassword" class="sr-only">Password</label>
+	<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+	<label for="inputPasswordMFA" class="sr-only">MFA token value</label>
+	<input type="text" inputmode="numeric" id="inputPasswordMFA" name="mfa" class="form-control" placeholder="MFA token value" required>
+
+	<button class="btn btn-lg btn-dark btn-block" type="submit">Sign in</button>
+	<p class="mt-5 mb-3 text-muted">&copy; <?= date('Y') ?></p>
+</form>
+</div>
+</body>
+</html>

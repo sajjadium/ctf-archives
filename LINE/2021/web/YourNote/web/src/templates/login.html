@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="box">
+    <h4 class="title is-4">Login</h4>
+    <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="field">
+            <div class="control">
+                <input class="input" type="text" name="username" placeholder="Username">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <input class="input" type="password" name="password" placeholder="Password">
+            </div>
+        </div>
+        <div class="field">
+        <p class="control">
+            <button type="submit" class="button is-success">
+            Login
+            </button>
+        </p>
+        </div>
+    </form>
+        {% if get_flashed_messages() %}
+        <div class="notification is-danger is-light">
+            {{ get_flashed_messages()[0] }}
+        </div>
+        {% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,33 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1>Subscribe!! Insert email! Thank you for your mock data!</h1>
+        <form action="apis/addsub" method="GET">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value="test@test.com">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            
+                <button class="btn btn-primary" >Send my greetings</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+        integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+        crossorigin="anonymous" />
+    <title>Chall</title>
+    <script>
+        function send(value) {
+            fetch('/', { method: 'POST', body: 'p=' + value })
+                .then(res => {
+                    if (!res.ok) throw new Error('could not vote')
+                    return res.text()
+                })
+                .then(res => {
+                    update()
+                }).catch(error => {
+                    console.log(error)
+                })
+        }
+        function update() {
+            fetch('/votes').then(res => res.json()).then(res => {
+                document.getElementById('good-button').innerText = `${res.good} good 👍`;
+                document.getElementById('bad-button').innerText = `${res.bad} bad 👎`;
+            })
+        }
+        window.onload = update
+    </script>
+    <style>
+        .container {
+            height: 100vh;
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h4>This challenge is</h4>
+            <button onclick="send('good')" id="good-button" class="button-primary">- good 👍</button>
+            <button onclick="send('bad')" id="bad-button">- bad 👎</button>
+        </div>
+    </div>
+</body>
+
+</html>

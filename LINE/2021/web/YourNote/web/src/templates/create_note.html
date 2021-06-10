@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="box">
+    <h4 class="title is-4">New note</h4>
+    <form action="/note" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="field">
+            <div class="control">
+                <input class="input" type="text" name="title" placeholder="Title">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <textarea class="textarea" name="content" placeholder="e.g. Hello world"></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <p class="control">
+                <button class="button is-success">
+                Submit
+                </button>
+            </p>
+        </div>
+    </form>
+    {% if get_flashed_messages() %}
+    <div class="notification is-danger is-light">
+        {{ get_flashed_messages()[0] }}
+    </div>
+    {% endif %}
+</div>
+<div class="has-text-right">
+    <a href="{{ url_for('index') }}" class="has-text-success">←Back to top</a>
+</div>
+{% endblock content %}

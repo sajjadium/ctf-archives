@@ -1,0 +1,11 @@
+resolver: lts-14.1  # GHC 8.6.5
+
+packages:
+- '.'
+
+extra-deps: []
+
+flags: {}
+
+extra-package-dbs: []
+

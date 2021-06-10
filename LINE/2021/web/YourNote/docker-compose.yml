@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  yournote-web:
+    restart: always
+    build: web
+    container_name: yournote-web
+    ports:
+      - '80:80'
+    env_file: '.env'
+    depends_on:
+      - yournote-db
+
+  yournote-db:
+    image: mysql:5.7
+    container_name: yournote-db
+    env_file: '.env'
+    volumes:
+      - './db/data:/var/lib/mysql'
+
+  # yournote-admin:
+  #   restart: always
+  #   build: crawler
+  #   container_name: yournote-admin
+  #   env_file: '.env'
+  #   depends_on: 
+  #     - yournote-web

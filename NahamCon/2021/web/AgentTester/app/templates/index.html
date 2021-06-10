@@ -1,0 +1,56 @@
+{% extends "backend/default_templates/base.html" %}
+
+{% block content %}
+
+<!-- Page Content -->
+<div class="container">
+    {% if success %}
+    <div class="alert alert-success mt-3">{{success}}</div>
+    {% endif %}
+    {% if error %}
+    <div class="alert alert-danger mt-3">{{error}}</div>
+    {% endif %}
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Welcome {{ user }}, give your website a try!</h3>
+                </div>
+            </div><br>
+            <form onsubmit="submit_form(event)">
+                <div class="form-group">
+                    <label for="userAgentInput">User Agent</label>
+                    <input type="text" class="form-control" id="userAgentInput" placeholder="AgentTester v1" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <script type="text/javascript">
+            function submit_form(e) {
+                e.preventDefault();
+                data = {
+                    "uAgent": document.getElementById("userAgentInput").value,
+                }
+
+                if (data.uAgent == "") {
+                    alert("Missing data.")
+                    return
+                }
+
+                var ws = new WebSocket("ws://" + location.host + "/req");
+                ws.onopen = function () {
+                    ws.send(data.uAgent);
+                };
+                ws.onmessage = function (evt) {
+                    alert(evt.data);
+                };
+            }
+        </script>
+    </div>
+
+</div>
+
+
+{% endblock %}

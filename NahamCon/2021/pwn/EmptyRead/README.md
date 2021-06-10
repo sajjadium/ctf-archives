@@ -1,0 +1,1 @@
+We are working on a simple service to store email addresses. Currently you can only store 10 addresses, but that should be enough for now. One of our beta testers complained about a few bugs, but we think they were just reading too much into it. 

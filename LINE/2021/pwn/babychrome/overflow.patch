@@ -1,0 +1,45 @@
+diff --git a/src/compiler/simplified-lowering.cc b/src/compiler/simplified-lowering.cc
+index da7d0b0fde..f91eea1693 100644
+--- a/src/compiler/simplified-lowering.cc
++++ b/src/compiler/simplified-lowering.cc
+@@ -186,12 +186,12 @@ bool CanOverflowSigned32(const Operator* op, Type left, Type right,
+   // We assume the inputs are checked Signed32 (or known statically to be
+   // Signed32). Technically, the inputs could also be minus zero, which we treat
+   // as 0 for the purpose of this function.
+-  if (left.Maybe(Type::MinusZero())) {
+-    left = Type::Union(left, type_cache->kSingletonZero, type_zone);
+-  }
+-  if (right.Maybe(Type::MinusZero())) {
+-    right = Type::Union(right, type_cache->kSingletonZero, type_zone);
+-  }
++//  if (left.Maybe(Type::MinusZero())) {
++//    left = Type::Union(left, type_cache->kSingletonZero, type_zone);
++//  }
++//  if (right.Maybe(Type::MinusZero())) {
++//    right = Type::Union(right, type_cache->kSingletonZero, type_zone);
++//  }
+   left = Type::Intersect(left, Type::Signed32(), type_zone);
+   right = Type::Intersect(right, Type::Signed32(), type_zone);
+   if (left.IsNone() || right.IsNone()) return false;
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index fe68106a55..90f2810140 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -2417,7 +2417,7 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+   Local<ObjectTemplate> global_template = ObjectTemplate::New(isolate);
+   global_template->Set(Symbol::GetToStringTag(isolate),
+                        String::NewFromUtf8Literal(isolate, "global"));
+-  global_template->Set(isolate, "version",
++/*  global_template->Set(isolate, "version",
+                        FunctionTemplate::New(isolate, Version));
+
+   global_template->Set(isolate, "print", FunctionTemplate::New(isolate, Print));
+@@ -2462,7 +2462,7 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+                          Shell::CreateAsyncHookTemplate(isolate));
+   }
+
+-  return global_template;
++*/  return global_template;
+ }
+
+ Local<ObjectTemplate> Shell::CreateOSTemplate(Isolate* isolate) {

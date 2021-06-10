@@ -1,0 +1,10 @@
+
+prefix=/home/project/5_ugw/cbb/public/src/iptables-1.4.12/src/install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name:		libiptc
+Description:	iptables v4/v6 ruleset ADT and kernel interface
+Version:	1.4.12.2
+Requires:	libip4tc libip6tc

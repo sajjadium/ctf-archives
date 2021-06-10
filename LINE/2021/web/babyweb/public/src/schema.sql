@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS note (uid TEXT, id TEXT, title TEXT, content TEXT);

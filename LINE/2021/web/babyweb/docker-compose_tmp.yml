@@ -1,0 +1,35 @@
+version: "3.1"
+
+services:
+  babyweb_public:
+    restart: always
+    build: ./public
+    container_name: linectf_babyweb_public
+    image: linectf_babyweb_public
+    environment:
+      - USERNAME_HEADER=USERNAME_HEADER_DUMMY
+      - PASSWORD_HEADER=PASSWORD_HEADER_DUMMY
+      - USERNAME_ADMIN=USERNAME_ADMIN_DUMMY
+      - PASSWORD_ADMIN=PASSWORD_ADMIN_DUMMY
+      - INTERNAL_HOST=babyweb_internal:8443
+    expose:
+      - "12000"
+  babyweb_internal:
+    restart: always
+    build: ./internal
+    container_name: linectf_babyweb_internal
+    image: linectf_babyweb_internal
+    environment:
+      - USERNAME_HEADER=USERNAME_HEADER_DUMMY
+      - PASSWORD_HEADER=PASSWORD_HEADER_DUMMY
+      - USERNAME_ADMIN=USERNAME_ADMIN_DUMMY
+      - PASSWORD_ADMIN=PASSWORD_ADMIN_DUMMY
+      - FLAG=LINECTF{this_is_fake}
+    expose:
+      - "8443"
+  babyweb_httpd:
+    build: ./httpd/
+    container_name: linectf_babyweb_httpd
+    image: linectf_babyweb_httpd
+    ports:
+      - "12001:80"

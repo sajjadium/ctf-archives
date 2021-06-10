@@ -1,0 +1,14 @@
+<html>
+   <head>
+     <title>Steg as a service</title>
+   </head>
+   <body>
+      <b>Steg as a service</b><br><br>
+      <div>Select a file, enter the passphrase, and we'll try to extract hidden contents using your file and passphrase!</div><br>
+      <form action="./stegsolver" method="POST" enctype="multipart/form-data">
+         Steg file: <input type="file" name="file" /><br><br>
+         Passphrase: <input type="password" name="passphrase" />
+         <input type="submit" value="Extract data"/>
+      </form>   
+   </body>
+</html>

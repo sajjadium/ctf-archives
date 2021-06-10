@@ -1,0 +1,24 @@
+I hope you love writing N-day exploits, because this is one of the toughest ones yet!
+
+This was a vulnerability used during Tianfu Cup 2019 - CVE-2019-13735
+
+    Bug report: https://bugs.chromium.org/p/chromium/issues/detail?id=1025468
+
+    Patch commit: https://chromium-review.googlesource.com/c/v8/v8/+/1944154
+
+WARNING: This is an extremely difficult challenge. It will more than likely take you the entire 36 hours to solve.
+
+HINT: There are a couple of different ways to exploit this vulnerability. You will likely be required to make use of both the garbage collector and the JIT compiler. Playing around with the PoC and a debug build is a good way to gain some initial understanding.
+
+nc 35.186.153.116 1337
+
+Flag is located at /home/ctf/flag.txt
+
+Challenge files (exact same as the d8 binary hosted on the server): https://drive.google.com/file/d/1Jg30aUHhV6JXPAnh9mRZjJB8T-PAtrYP/view?usp=sharing
+
+The d8 binary on the server is a release build of commit 28fb79c8f5112219a82f979081941fa33b83ecd6.
+
+commit 28fb79c8f5112219a82f979081941fa33b83ecd6
+
+You will need to build V8 yourself, follow the steps here: https://v8.dev/docs/build
+

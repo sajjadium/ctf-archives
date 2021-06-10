@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+    <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <style>
+    .css-1cknq6w { 
+      width: 50px; 
+      height: 50px; 
+      text-align:center; 
+    } 
+    .css-15m9pmi {
+      width: 50px; 
+      height: 50px; 
+    }
+  </style>
+  <script>
+    setTimeout(function(){
+      loadDoc()
+    }, 500); 
+    setInterval(function(){
+      loadDoc()
+    }, 5000);
+
+    function loadDoc() {
+    var xhttp = new XMLHttpRequest();
+
+
+    xhttp.open("GET", "/apis/coin", true);
+    xhttp.setRequestHeader('Lang', 'en');
+
+    xhttp.onload = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var obj = JSON.parse(this.responseText);
+
+
+        const cointarget = ['BTCUSDT','XRPUSDT','ADAUSDT','LINKUSDT'];
+
+        for (var i in obj ){
+          if(cointarget.includes(obj[i].symbol)){
+            
+            document.getElementById(obj[i].symbol+'_Price').innerHTML = obj[i].price;
+            document.getElementById(obj[i].symbol+'_Symbol').innerHTML = obj[i].symbol;
+            
+          };
+
+        }
+      }
+    };
+    xhttp.send();
+  }
+  </script>
+    <div class="jumbotron">
+        <h1>BEWARE your coin</h1>
+        <p>youngcha~ youngcha~ </p>
+    </div>
+    <div class="jumbotron" id>
+      <table class='table table-hover'>
+        <thead><tr><th scope="col">Coin</th><th scope="col">Symbol</th><th scope="col">Value</th></tr></thead>
+        <tbody>
+          <tr>
+            <td> <div class="css-1cknq6w"><img class="lozad-load css-15m9pmi lozad-loaded" src='images/BTC.png'></div>
+
+            </td> 
+            <td id="BTCUSDT_Symbol">
+
+            </td>
+            <td id="BTCUSDT_Price">
+
+            </td>
+          </tr>
+          <tr>
+            <td> <div class="css-1cknq6w"><img class="lozad-load css-15m9pmi lozad-loaded" src='images/XRP.png'></div>
+
+            </td> 
+            <td id="XRPUSDT_Symbol" >
+
+            </td>
+            <td id="XRPUSDT_Price">
+
+            </td>
+          </tr>
+          <tr> 
+            <td> <div class="css-1cknq6w"><img class="lozad-load css-15m9pmi lozad-loaded" src='images/ADA.png'></div>
+
+            </td> 
+            <td id="ADAUSDT_Symbol">
+
+            </td>
+            <td id="ADAUSDT_Price" >
+
+            </td>
+          </tr>
+          <tr>
+            <td> <div class="css-1cknq6w"><img class="lozad-load css-15m9pmi lozad-loaded" src='images/LINK.png'></div>
+
+            </td> 
+            <td id="LINKUSDT_Symbol" >
+
+            </td>
+            <td id="LINKUSDT_Price" >
+
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
+
+
+</main>
+
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>
