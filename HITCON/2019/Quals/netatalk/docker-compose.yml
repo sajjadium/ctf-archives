@@ -1,0 +1,10 @@
+afpd:
+    build: ./
+    volumes:
+        - ./share:/home/ctf:ro
+        - ./xinetd:/etc/xinetd.d/afpd:ro
+        - ./tmp:/tmp:ro
+    ports:
+        - "48763:5566"
+    expose:
+        - "5556"

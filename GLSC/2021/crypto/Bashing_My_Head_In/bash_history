@@ -1,0 +1,7 @@
+cd ~
+ls -a
+touch password
+python3 passwordgen.py 32 > password
+zip --password $(cat password) data.zip flag.txt
+cat password
+srm -vz password

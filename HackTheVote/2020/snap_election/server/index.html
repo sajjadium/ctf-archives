@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tally Ballot Results</title>
+    <link rel="stylesheet" href="/static/98.css">
+<style>
+body {
+  background: #c0c0c0;
+}
+.window{
+  position: fixed;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+.title-bar-text {
+}
+.window1 {
+  left: 30%;
+  top: 30%;
+}
+.icon {
+  margin-right: 20px;
+  vertical-align: middle;
+}
+</style>
+  </head>
+  <body>
+    <div class="window window1" style="width: 400px; height">
+      <div class="title-bar" onmousedown="dragStart(this, event)">
+        <div class="title-bar-text">Ballot Tally System</div>
+        <div class="title-bar-controls">
+          <button onclick="closeWindow(this)" aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p>Upload Ballot CSV Results File</p>
+        <form method="post" action="/tally" enctype="multipart/form-data">
+          <input type="file" name="file" style="margin-bottom: 10px">
+          <br/>
+          <button onclick="return upload()">Tally Results</button>
+        </form>
+      </div>
+    </div>
+    <script>
+
+function getRandInt(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+function closeWindow(el) {
+  let w = el.parentElement.parentElement.parentElement;
+  w.remove();
+}
+
+function make_window(title, body) {
+  let w = document.createElement('div');
+
+  w.innerHTML=`
+  <div class="window" style="width: 300px;
+    left: calc( 20% + ${getRandInt(0,500)}px );
+    top: calc( 20% + ${getRandInt(0,500)}px );">
+      <div class="title-bar" onmousedown="dragStart(this, event)">
+        <div class="title-bar-text">${title}</div>
+        <div class="title-bar-controls">
+          <button onclick="closeWindow(this)" aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        ${body}
+      </div>
+    </div>
+`;
+  document.body.append(w.children[0]);
+}
+
+let oldx = null;
+let oldy = null;
+let dragEl = null;
+
+function dragStart(el,ev) {
+  dragEl = el.parentElement;
+  oldx = ev.screenX;
+  oldy = ev.screenY;
+  // TODO limit to top
+  el.style.left = `${el.offsetLeft}px`;
+  el.style.top = `${el.offsetTop}px`;
+}
+
+window.onmouseup = function(ev) {
+  if (dragEl === null)
+    return;
+  dragEl = null;
+}
+
+window.onmousemove = function(ev) {
+  if (dragEl === null)
+    return;
+  let el = dragEl;
+  let dx = ev.screenX - oldx;
+  let dy = ev.screenY - oldy;
+
+  oldx = ev.screenX;
+  oldy = ev.screenY;
+
+  el.style.left = `${el.offsetLeft + dx}px`;
+  el.style.top = `${el.offsetTop + dy}px`;
+
+}
+
+function process_result(res) {
+  if (res.error) {
+    make_window('Error Tallying Ballot',
+        `<img class="icon" src="static/Error.png">${res.error}`
+    );
+    return;
+  }
+
+  let html = '';
+  for (let b of res) {
+    let opts = `<b>${b.options.join(' vs ')}</b>`;
+    html += `<p>${opts}</p><p>${b.winner} Wins!</p>`
+  }
+
+    make_window('Tally Results', html);
+}
+
+function upload() {
+  let csv = document.forms[0].file.files[0];
+  let formData = new FormData();
+
+  formData.append("file", csv);
+  fetch('/tally', {method: "POST", body: formData})
+  .then(x=>x.json())
+  .then(process_result)
+  return false;
+}
+    </script>
+  </body>
+</html>
+

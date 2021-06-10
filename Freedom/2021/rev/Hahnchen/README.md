@@ -1,0 +1,1 @@
+This person came up to me and started saying something to me, but I had no idea what he was saying. It was something like, "thahadefat_wahadefas_ehedefegg-traohaodefaordihidefinahadefary"; can you decipher what they said?

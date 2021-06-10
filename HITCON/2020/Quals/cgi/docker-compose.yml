@@ -1,0 +1,15 @@
+version: '3.5'
+
+services:
+    cgi:
+        build:
+            context: .
+            network: host
+        volumes:
+            - ./share:/home/ctf:ro
+            - ./share/cgi.conf:/etc/nginx/sites-enabled/cgi.conf:ro
+            - ./tmp:/tmp:ro
+        ports:
+            - "5566:5566"
+        expose:
+            - "5566"

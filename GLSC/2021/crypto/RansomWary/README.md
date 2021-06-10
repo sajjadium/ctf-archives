@@ -1,0 +1,1 @@
+Oh yeah, the ransomware said that it encrypted my computer with "Military Grade AES-256-ECB Encryption" if that helps with anything. P.S. I do have an original copy of the header of the file before it was encrypted. 

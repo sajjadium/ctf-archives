@@ -1,0 +1,91 @@
+diff --git a/os/services/rpl-border-router/native/border-router-native.c b/os/services/rpl-border-router/native/border-router-native.c
+index 2adebe121..e7fb198d5 100644
+--- a/os/services/rpl-border-router/native/border-router-native.c
++++ b/os/services/rpl-border-router/native/border-router-native.c
+@@ -107,7 +107,7 @@ PROCESS_THREAD(border_router_process, ev, data)
+ 
+   PROCESS_PAUSE();
+ 
+-  process_start(&border_router_cmd_process, NULL);
++  // process_start(&border_router_cmd_process, NULL);
+ 
+   LOG_INFO("RPL-Border router started\n");
+ 
+diff --git a/os/services/rpl-border-router/native/tun-bridge.c b/os/services/rpl-border-router/native/tun-bridge.c
+index 289a32185..d1b3917f6 100644
+--- a/os/services/rpl-border-router/native/tun-bridge.c
++++ b/os/services/rpl-border-router/native/tun-bridge.c
+@@ -103,14 +103,7 @@ ssystem(const char *fmt, ...)
+ void
+ cleanup(void)
+ {
+-  ssystem("ifconfig %s down", slip_config_tundev);
+-#ifndef linux
+-  ssystem("sysctl -w net.ipv6.conf.all.forwarding=1");
+-#endif
+-  ssystem("netstat -nr"
+-	  " | awk '{ if ($2 == \"%s\") print \"route delete -net \"$1; }'"
+-	  " | sh",
+-	  slip_config_tundev);
++    close(tunfd);
+ }
+ /*---------------------------------------------------------------------------*/
+ void
+@@ -151,28 +144,12 @@ devopen(const char *dev, int flags)
+ int
+ tun_alloc(char *dev)
+ {
+-  struct ifreq ifr;
+-  int fd, err;
++  int fd;
+ 
+-  if((fd = open("/dev/net/tun", O_RDWR)) < 0) {
++  if((fd = open("/dev/null", O_RDWR)) < 0) {
+     return -1;
+   }
+ 
+-  memset(&ifr, 0, sizeof(ifr));
+-
+-  /* Flags: IFF_TUN   - TUN device (no Ethernet headers)
+-   *        IFF_NO_PI - Do not provide packet information
+-   */
+-  ifr.ifr_flags = IFF_TUN | IFF_NO_PI;
+-  if(*dev != 0) {
+-    strncpy(ifr.ifr_name, dev, IFNAMSIZ);
+-  }
+-
+-  if((err = ioctl(fd, TUNSETIFF, (void *)&ifr)) < 0) {
+-    close(fd);
+-    return err;
+-  }
+-  strcpy(dev, ifr.ifr_name);
+   return fd;
+ }
+ #else
+@@ -205,7 +182,7 @@ tun_init()
+ 
+   slip_init();
+ 
+-  LOG_INFO("Opening tun interface:%s\n", slip_config_tundev);
++  //LOG_INFO("Opening tun interface:%s\n", slip_config_tundev);
+ 
+   tunfd = tun_alloc(slip_config_tundev);
+ 
+@@ -215,14 +192,14 @@ tun_init()
+ 
+   select_set_callback(tunfd, &tun_select_callback);
+ 
+-  fprintf(stderr, "opened %s device ``/dev/%s''\n",
+-          "tun", slip_config_tundev);
++  //fprintf(stderr, "opened %s device ``/dev/%s''\n",
++  //        "tun", slip_config_tundev);
+ 
+   atexit(cleanup);
+   signal(SIGHUP, sigcleanup);
+   signal(SIGTERM, sigcleanup);
+   signal(SIGINT, sigcleanup);
+-  ifconf(slip_config_tundev, slip_config_ipaddr);
++  // ifconf(slip_config_tundev, slip_config_ipaddr);
+ }
+ /*---------------------------------------------------------------------------*/
+ static int

@@ -1,0 +1,15 @@
+service super_hexagon
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/super_hexagon/run.sh
+        socket_type = stream
+        protocol = tcp
+        user = super_hexagon
+        port = 6666
+        flags = REUSE
+        per_source = 5
+        rlimit_cpu = 10
+        nice = 18
+}

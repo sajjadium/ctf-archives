@@ -1,0 +1,383 @@
+diff -Naur '--exclude=tests' '--exclude=roms' '--exclude=capstone' '--exclude=docs' ../temp/qemu-3.0.0/hw/arm/hitcon.c qemu/hw/arm/hitcon.c
+--- ../temp/qemu-3.0.0/hw/arm/hitcon.c	1969-12-31 16:00:00.000000000 -0800
++++ qemu/hw/arm/hitcon.c	2018-10-19 10:49:59.412023642 -0700
+@@ -0,0 +1,208 @@
++#include "qemu/osdep.h"
++#include "qapi/error.h"
++#include "qemu-common.h"
++#include "cpu.h"
++#include "hw/sysbus.h"
++#include "hw/devices.h"
++#include "hw/boards.h"
++#include "hw/arm/arm.h"
++#include "hw/misc/arm_integrator_debug.h"
++#include "net/net.h"
++#include "exec/address-spaces.h"
++#include "sysemu/sysemu.h"
++#include "qemu/error-report.h"
++#include "hw/char/pl011.h"
++#include "hw/loader.h"
++#include "hw/intc/arm_gic_common.h"
++
++typedef struct MemMapEntry {
++    hwaddr base;
++    hwaddr size;
++} MemMapEntry;
++
++enum {
++    VIRT_FLASH,
++    VIRT_CPUPERIPHS,
++    VIRT_MEM,
++    VIRT_SECURE_MEM,
++    VIRT_UART,
++};
++
++#define RAMLIMIT_GB 3
++#define RAMLIMIT_BYTES (RAMLIMIT_GB * 1024ULL * 1024 * 1024)
++static const MemMapEntry memmap[] = {
++    /* Space up to 0x8000000 is reserved for a boot ROM */
++    [VIRT_FLASH] =              {          0, 0x08000000 },
++    [VIRT_CPUPERIPHS] =         { 0x08000000, 0x00020000 },
++    [VIRT_UART] =               { 0x09000000, 0x00001000 },
++    [VIRT_SECURE_MEM] =         { 0x0e000000, 0x01000000 },
++    [VIRT_MEM] =                { 0x40000000, RAMLIMIT_BYTES },
++};
++
++static const char *valid_cpus[] = {
++    ARM_CPU_TYPE_NAME("hitcon"),
++};
++
++static bool cpu_type_valid(const char *cpu)
++{
++    int i;
++    for (i = 0; i < ARRAY_SIZE(valid_cpus); i++) {
++        if (strcmp(cpu, valid_cpus[i]) == 0) {
++            return true;
++        }
++    }
++    return false;
++}
++
++static void create_one_flash(const char *name, hwaddr flashbase,
++                             hwaddr flashsize, const char *file,
++                             MemoryRegion *sysmem)
++{
++    /* Create and map a single flash device. We use the same
++     * parameters as the flash devices on the Versatile Express board.
++     */
++    DriveInfo *dinfo = drive_get_next(IF_PFLASH);
++    DeviceState *dev = qdev_create(NULL, "cfi.pflash01");
++    SysBusDevice *sbd = SYS_BUS_DEVICE(dev);
++    const uint64_t sectorlength = 256 * 1024;
++
++    if (dinfo) {
++        qdev_prop_set_drive(dev, "drive", blk_by_legacy_dinfo(dinfo),
++                            &error_abort);
++    }
++
++    qdev_prop_set_uint32(dev, "num-blocks", flashsize / sectorlength);
++    qdev_prop_set_uint64(dev, "sector-length", sectorlength);
++    qdev_prop_set_uint8(dev, "width", 4);
++    qdev_prop_set_uint8(dev, "device-width", 2);
++    qdev_prop_set_bit(dev, "big-endian", false);
++    qdev_prop_set_uint16(dev, "id0", 0x89);
++    qdev_prop_set_uint16(dev, "id1", 0x18);
++    qdev_prop_set_uint16(dev, "id2", 0x00);
++    qdev_prop_set_uint16(dev, "id3", 0x00);
++    qdev_prop_set_string(dev, "name", name);
++    qdev_init_nofail(dev);
++
++    memory_region_add_subregion(sysmem, flashbase,
++                                sysbus_mmio_get_region(SYS_BUS_DEVICE(dev), 0));
++
++    if (file) {
++        char *fn;
++        int image_size;
++
++        if (drive_get(IF_PFLASH, 0, 0)) {
++            error_report("The contents of the first flash device may be "
++                         "specified with -bios or with -drive if=pflash... "
++                         "but you cannot use both options at once");
++            exit(1);
++        }
++        fn = qemu_find_file(QEMU_FILE_TYPE_BIOS, file);
++        if (!fn) {
++            error_report("Could not find ROM image '%s'", file);
++            exit(1);
++        }
++        image_size = load_image_mr(fn, sysbus_mmio_get_region(sbd, 0));
++        g_free(fn);
++        if (image_size < 0) {
++            error_report("Could not load ROM image '%s'", file);
++            exit(1);
++        }
++    }
++}
++
++static void create_uart(int uart, MemoryRegion *mem, Chardev *chr)
++{
++    hwaddr base = memmap[uart].base;
++    DeviceState *dev = qdev_create(NULL, "pl011");
++    SysBusDevice *s = SYS_BUS_DEVICE(dev);
++    qdev_prop_set_chr(dev, "chardev", chr);
++    qdev_init_nofail(dev);
++    memory_region_add_subregion(mem, base, sysbus_mmio_get_region(s, 0));
++}
++
++static struct arm_boot_info bootinfo;
++
++static void hitcon_init(MachineState *machine)
++{
++    MemoryRegion *sysmem = get_system_memory();
++    MemoryRegion *secure_sysmem = NULL;
++
++    if (!cpu_type_valid(machine->cpu_type)) {
++        error_report("mach-hitcon: CPU type %s not supported", machine->cpu_type);
++        exit(1);
++    }
++
++    if (machine->ram_size != memmap[VIRT_MEM].size) {
++        error_report("mach-virt: NS RAM must be %dGB", RAMLIMIT_GB);
++        exit(1);
++    }
++
++    if(!bios_name) {
++        error_report("mach-hitcon: BIOS bin does not exist");
++        exit(1);
++    }
++
++    // prepare secure memory
++    secure_sysmem = g_new(MemoryRegion, 1);
++    memory_region_init(secure_sysmem, OBJECT(machine), "secure-memory", UINT64_MAX);
++    memory_region_add_subregion_overlap(secure_sysmem, 0, sysmem, -1);
++
++    // prepare cpu
++    Object *cpuobj = object_new(ARM_CPU_TYPE_NAME("hitcon"));
++    object_property_set_int(cpuobj, (0x9 << 8), "mp-affinity", NULL);
++    object_property_set_bool(cpuobj, true, "has_el3", NULL);
++    object_property_set_bool(cpuobj, true, "has_el2", NULL);
++    object_property_set_bool(cpuobj, false, "pmu", NULL);
++    object_property_find(cpuobj, "reset-cbar", NULL);
++    object_property_set_int(cpuobj, memmap[VIRT_CPUPERIPHS].base, "reset-cbar", &error_abort);
++    object_property_set_link(cpuobj, OBJECT(sysmem), "memory", &error_abort);
++    object_property_set_link(cpuobj, OBJECT(secure_sysmem), "secure-memory", &error_abort);
++    object_property_set_bool(cpuobj, true, "realized", &error_fatal);
++    object_unref(cpuobj);
++
++    // prepare ram / rom
++    MemoryRegion *ram = g_new(MemoryRegion, 1);
++    memory_region_allocate_system_memory(ram, NULL, "mach-hitcon.ram", machine->ram_size);
++    memory_region_add_subregion(sysmem, memmap[VIRT_MEM].base, ram);
++
++    hwaddr flashsize = memmap[VIRT_FLASH].size / 2;
++    hwaddr flashbase = memmap[VIRT_FLASH].base;
++    create_one_flash("hitcon.flash0", flashbase, flashsize, bios_name, secure_sysmem);
++    create_one_flash("hitcon.flash1", flashbase + flashsize, flashsize, NULL, sysmem);
++
++    MemoryRegion *secram = g_new(MemoryRegion, 1);
++    hwaddr base = memmap[VIRT_SECURE_MEM].base;
++    hwaddr size = memmap[VIRT_SECURE_MEM].size;
++    memory_region_init_ram(secram, NULL, "hitcon.secure-ram", size, &error_fatal);
++    memory_region_add_subregion(secure_sysmem, base, secram);
++
++    // GIC & UART
++    create_uart(VIRT_UART, sysmem, serial_hd(0));
++
++
++    // prepare boot info
++    bootinfo.ram_size = machine->ram_size;
++    bootinfo.nb_cpus = 1;
++    bootinfo.board_id = -1;
++    bootinfo.firmware_loaded = true;
++    bootinfo.loader_start = memmap[VIRT_MEM].base;
++    bootinfo.kernel_filename = machine->kernel_filename;
++    bootinfo.kernel_cmdline = machine->kernel_cmdline;
++    bootinfo.initrd_filename = machine->initrd_filename;
++    bootinfo.skip_dtb_autoload = true;
++    arm_load_kernel(ARM_CPU(first_cpu), &bootinfo);
++}
++
++static void hitcon_machine_init(MachineClass *mc)
++{
++    mc->desc = "HITCON CTF Virtual Machine";
++    mc->init = hitcon_init;
++    mc->max_cpus = 1;
++    mc->min_cpus = 1;
++    mc->default_cpus = 1;
++    mc->default_ram_size = RAMLIMIT_BYTES;
++    mc->ignore_memory_transaction_failures = true;
++    mc->default_cpu_type = ARM_CPU_TYPE_NAME("hitcon");
++}
++
++DEFINE_MACHINE("hitcon", hitcon_machine_init)
+diff -Naur '--exclude=tests' '--exclude=roms' '--exclude=capstone' '--exclude=docs' ../temp/qemu-3.0.0/hw/arm/Makefile.objs qemu/hw/arm/Makefile.objs
+--- ../temp/qemu-3.0.0/hw/arm/Makefile.objs	2018-08-14 12:10:34.000000000 -0700
++++ qemu/hw/arm/Makefile.objs	2018-09-11 00:59:23.915929581 -0700
+@@ -1,4 +1,4 @@
+-obj-y += boot.o virt.o sysbus-fdt.o
++obj-y += boot.o virt.o sysbus-fdt.o hitcon.o
+ obj-$(CONFIG_ACPI) += virt-acpi-build.o
+ obj-$(CONFIG_DIGIC) += digic_boards.o
+ obj-$(CONFIG_EXYNOS4) += exynos4_boards.o
+diff -Naur '--exclude=tests' '--exclude=roms' '--exclude=capstone' '--exclude=docs' ../temp/qemu-3.0.0/hw/char/pl011.c qemu/hw/char/pl011.c
+--- ../temp/qemu-3.0.0/hw/char/pl011.c	2018-08-14 12:10:34.000000000 -0700
++++ qemu/hw/char/pl011.c	2018-10-19 16:34:07.692477202 -0700
+@@ -94,6 +94,7 @@
+         r = s->rsr;
+         break;
+     case 6: /* UARTFR */
++        usleep(10);
+         r = s->flags;
+         break;
+     case 8: /* UARTILPR */
+diff -Naur '--exclude=tests' '--exclude=roms' '--exclude=capstone' '--exclude=docs' ../temp/qemu-3.0.0/target/arm/cpu64.c qemu/target/arm/cpu64.c
+--- ../temp/qemu-3.0.0/target/arm/cpu64.c	2018-08-14 12:10:35.000000000 -0700
++++ qemu/target/arm/cpu64.c	2018-10-19 16:26:20.955912362 -0700
+@@ -256,6 +256,127 @@
+     }
+ }
+ 
++#define FLAG "/home/super_hexagon/flag/"
++
++static uint64_t hitcon_flag_word_idx_read(CPUARMState *env,
++        const ARMCPRegInfo *ri, int idx)
++{
++    int el = arm_current_el(env);
++    bool is_secure = arm_is_secure(env);
++    assert(el >= 0 && el <= 3);
++    const char *flag_name;
++    if (el == 3) {
++        flag_name = FLAG"6";
++    } else if (el == 2) {
++        flag_name = FLAG"3";
++    } else if (el == 1) {
++        if (is_secure) {
++            flag_name = FLAG"5";
++        } else {
++            flag_name = FLAG"2";
++        }
++    } else {
++        if (is_secure) {
++            flag_name = FLAG"4";
++        } else {
++            flag_name = FLAG"1";
++        }
++    }
++    int fd = open(flag_name, O_RDONLY);
++    assert(fd >= 0);
++    assert(idx >= 0 && idx < 8);
++    uint32_t value[8];
++    memset(value, 0, sizeof(value));
++    read(fd, &value, sizeof(value));
++    close(fd);
++    return value[idx];
++}
++
++static uint64_t hitcon_flag_word_0_read(CPUARMState *env, const ARMCPRegInfo *ri)
++{
++    return hitcon_flag_word_idx_read(env, ri, 0);
++}
++
++static uint64_t hitcon_flag_word_1_read(CPUARMState *env, const ARMCPRegInfo *ri)
++{
++    return hitcon_flag_word_idx_read(env, ri, 1);
++}
++
++static uint64_t hitcon_flag_word_2_read(CPUARMState *env, const ARMCPRegInfo *ri)
++{
++    return hitcon_flag_word_idx_read(env, ri, 2);
++}
++
++static uint64_t hitcon_flag_word_3_read(CPUARMState *env, const ARMCPRegInfo *ri)
++{
++    return hitcon_flag_word_idx_read(env, ri, 3);
++}
++
++static uint64_t hitcon_flag_word_4_read(CPUARMState *env, const ARMCPRegInfo *ri)
++{
++    return hitcon_flag_word_idx_read(env, ri, 4);
++}
++
++static uint64_t hitcon_flag_word_5_read(CPUARMState *env, const ARMCPRegInfo *ri)
++{
++    return hitcon_flag_word_idx_read(env, ri, 5);
++}
++
++static uint64_t hitcon_flag_word_6_read(CPUARMState *env, const ARMCPRegInfo *ri)
++{
++    return hitcon_flag_word_idx_read(env, ri, 6);
++}
++
++static uint64_t hitcon_flag_word_7_read(CPUARMState *env, const ARMCPRegInfo *ri)
++{
++    return hitcon_flag_word_idx_read(env, ri, 7);
++}
++
++static void aarch64_hitcon_initfn(Object *obj)
++{
++    ARMCPU *cpu = ARM_CPU(obj);
++
++    aarch64_a57_initfn(obj);
++
++    ARMCPRegInfo hitcon_flag_reginfo[] = {
++        { .name = "FLAG_WORD_0", .state = ARM_CP_STATE_BOTH,
++          .opc0 = 3, .opc1 = 3, .crn = 15, .crm = 12, .opc2 = 0,
++          .access = PL0_RW,
++          .readfn = hitcon_flag_word_0_read, .writefn = arm_cp_write_ignore },
++        { .name = "FLAG_WORD_1", .state = ARM_CP_STATE_BOTH,
++          .opc0 = 3, .opc1 = 3, .crn = 15, .crm = 12, .opc2 = 1,
++          .access = PL0_RW,
++          .readfn = hitcon_flag_word_1_read, .writefn = arm_cp_write_ignore },
++        { .name = "FLAG_WORD_2", .state = ARM_CP_STATE_BOTH,
++          .opc0 = 3, .opc1 = 3, .crn = 15, .crm = 12, .opc2 = 2,
++          .access = PL0_RW,
++          .readfn = hitcon_flag_word_2_read, .writefn = arm_cp_write_ignore },
++        { .name = "FLAG_WORD_3", .state = ARM_CP_STATE_BOTH,
++          .opc0 = 3, .opc1 = 3, .crn = 15, .crm = 12, .opc2 = 3,
++          .access = PL0_RW,
++          .readfn = hitcon_flag_word_3_read, .writefn = arm_cp_write_ignore },
++        { .name = "FLAG_WORD_4", .state = ARM_CP_STATE_BOTH,
++          .opc0 = 3, .opc1 = 3, .crn = 15, .crm = 12, .opc2 = 4,
++          .access = PL0_RW,
++          .readfn = hitcon_flag_word_4_read, .writefn = arm_cp_write_ignore },
++        { .name = "FLAG_WORD_5", .state = ARM_CP_STATE_BOTH,
++          .opc0 = 3, .opc1 = 3, .crn = 15, .crm = 12, .opc2 = 5,
++          .access = PL0_RW,
++          .readfn = hitcon_flag_word_5_read, .writefn = arm_cp_write_ignore },
++        { .name = "FLAG_WORD_6", .state = ARM_CP_STATE_BOTH,
++          .opc0 = 3, .opc1 = 3, .crn = 15, .crm = 12, .opc2 = 6,
++          .access = PL0_RW,
++          .readfn = hitcon_flag_word_6_read, .writefn = arm_cp_write_ignore },
++        { .name = "FLAG_WORD_7", .state = ARM_CP_STATE_BOTH,
++          .opc0 = 3, .opc1 = 3, .crn = 15, .crm = 12, .opc2 = 7,
++          .access = PL0_RW,
++          .readfn = hitcon_flag_word_7_read, .writefn = arm_cp_write_ignore },
++        REGINFO_SENTINEL
++    };
++
++    define_arm_cp_regs(cpu, hitcon_flag_reginfo);
++}
++
+ typedef struct ARMCPUInfo {
+     const char *name;
+     void (*initfn)(Object *obj);
+@@ -266,6 +387,7 @@
+     { .name = "cortex-a57",         .initfn = aarch64_a57_initfn },
+     { .name = "cortex-a53",         .initfn = aarch64_a53_initfn },
+     { .name = "max",                .initfn = aarch64_max_initfn },
++    { .name = "hitcon",             .initfn = aarch64_hitcon_initfn },
+     { .name = NULL }
+ };
+ 
+diff -Naur '--exclude=tests' '--exclude=roms' '--exclude=capstone' '--exclude=docs' ../temp/qemu-3.0.0/target/arm/op_helper.c qemu/target/arm/op_helper.c
+--- ../temp/qemu-3.0.0/target/arm/op_helper.c	2018-08-14 12:10:35.000000000 -0700
++++ qemu/target/arm/op_helper.c	2018-10-19 17:53:05.141725519 -0700
+@@ -433,7 +433,7 @@
+ 
+     cs->exception_index = EXCP_HLT;
+     cs->halted = 1;
+-    cpu_loop_exit(cs);
++    exit(0);
+ }
+ 
+ void HELPER(wfe)(CPUARMState *env)

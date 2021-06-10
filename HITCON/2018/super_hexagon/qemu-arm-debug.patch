@@ -1,0 +1,51 @@
+diff -Naur qemu/target/arm/cpu64.c qemu-arm-debug/target/arm/cpu64.c
+--- qemu/target/arm/cpu64.c	2018-10-19 18:44:40.960612534 -0700
++++ qemu-arm-debug/target/arm/cpu64.c	2018-10-19 18:44:16.709191908 -0700
+@@ -452,17 +452,20 @@
+     return g_strdup("aarch64");
+ }
+ 
++void arm_cpu_set_pc(CPUState *cs, vaddr value);
++gchar *arm_gdb_arch_name(CPUState *cs);
++
+ static void aarch64_cpu_class_init(ObjectClass *oc, void *data)
+ {
+     CPUClass *cc = CPU_CLASS(oc);
+ 
+     cc->cpu_exec_interrupt = arm_cpu_exec_interrupt;
+-    cc->set_pc = aarch64_cpu_set_pc;
+-    cc->gdb_read_register = aarch64_cpu_gdb_read_register;
+-    cc->gdb_write_register = aarch64_cpu_gdb_write_register;
+-    cc->gdb_num_core_regs = 34;
+-    cc->gdb_core_xml_file = "aarch64-core.xml";
+-    cc->gdb_arch_name = aarch64_gdb_arch_name;
++    cc->set_pc = arm_cpu_set_pc;
++    cc->gdb_read_register = arm_cpu_gdb_read_register;
++    cc->gdb_write_register = arm_cpu_gdb_write_register;
++    cc->gdb_num_core_regs = 26;
++    cc->gdb_core_xml_file = "arm-core.xml";
++    cc->gdb_arch_name = arm_gdb_arch_name;
+ }
+ 
+ static void aarch64_cpu_register(const ARMCPUInfo *info)
+diff -Naur qemu/target/arm/cpu.c qemu-arm-debug/target/arm/cpu.c
+--- qemu/target/arm/cpu.c	2018-10-19 18:44:40.960612534 -0700
++++ qemu-arm-debug/target/arm/cpu.c	2018-10-19 18:44:16.705192007 -0700
+@@ -37,7 +37,7 @@
+ #include "disas/capstone.h"
+ #include "fpu/softfloat.h"
+ 
+-static void arm_cpu_set_pc(CPUState *cs, vaddr value)
++void arm_cpu_set_pc(CPUState *cs, vaddr value)
+ {
+     ARMCPU *cpu = ARM_CPU(cs);
+ 
+@@ -1907,7 +1907,7 @@
+ }
+ #endif
+ 
+-static gchar *arm_gdb_arch_name(CPUState *cs)
++gchar *arm_gdb_arch_name(CPUState *cs)
+ {
+     ARMCPU *cpu = ARM_CPU(cs);
+     CPUARMState *env = &cpu->env;

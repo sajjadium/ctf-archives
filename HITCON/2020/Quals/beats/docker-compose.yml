@@ -1,0 +1,19 @@
+version: "2.2"
+services:
+    beats:
+        build: ./
+        volumes:
+            - ./share:/home/beats:ro
+            - ./xinetd:/etc/xinetd.d/beats:ro
+            - ./tmp:/tmp:ro
+        ports:
+            - "4869:4869"
+        expose:
+            - "4869"
+        cpus: 1
+        mem_limit: 2048M
+        shm_size: 32M
+        ulimits:
+            nproc: 4096
+            nice: 0
+

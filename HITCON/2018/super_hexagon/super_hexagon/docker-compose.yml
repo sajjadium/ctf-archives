@@ -1,0 +1,10 @@
+super_hexagon:
+    build: ./
+    volumes:
+        - ./share:/home/super_hexagon:ro
+        - ./xinetd:/etc/xinetd.d/super_hexagon:ro
+        - ./tmp:/tmp:ro
+    ports:
+        - "6666:6666"
+    expose:
+        - "6666"

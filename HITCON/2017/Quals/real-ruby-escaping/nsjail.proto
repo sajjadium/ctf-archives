@@ -1,0 +1,39 @@
+name: "ruby"
+mode: LISTEN
+hostname: "ruby"
+chroot_dir: "/"
+cwd: "/home/ruby"
+
+port: 31337
+bindhost: "0.0.0.0"
+max_conns_per_ip: 10
+
+time_limit: 180
+max_cpus: 1
+
+log_file: "/dev/null"
+
+rlimit_as: 65536
+rlimit_core: 0
+rlimit_cpu: 10
+rlimit_fsize: 0
+rlimit_nofile: 32
+
+uidmap {
+    inside_id: "1001"
+    outside_id: "1001"
+    count: 1
+}
+
+gidmap {
+    inside_id: "1001"
+    outside_id: "1001"
+    count: 1
+}
+
+exec_bin {
+    path: "/usr/bin/script"
+    arg: "-qfec"
+    arg: "/home/ruby/server.rb"
+    arg: "/dev/null"
+}

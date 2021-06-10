@@ -1,0 +1,29 @@
+limit_req_zone $binary_remote_addr zone=request_limit_per_ip:10m rate=2r/s;
+limit_conn_zone $binary_remote_addr zone=connection_limit_per_ip:10m;
+
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        limit_req zone=request_limit_per_ip burst=4 nodelay;
+        limit_conn connection_limit_per_ip 4;
+        client_body_timeout 10s;
+        client_header_timeout 10s;
+        keepalive_timeout 5 5;
+        send_timeout 10s;
+
+        root /var/www/html;
+
+        index index.php;
+
+        server_name _;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass 127.0.0.1:9000;
+        }
+}

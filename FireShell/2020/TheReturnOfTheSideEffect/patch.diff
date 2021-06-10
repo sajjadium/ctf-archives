@@ -1,0 +1,27 @@
+--- DFGAbstractInterpreterInlines.h	2020-03-19 13:12:31.165313000 -0700
++++ DFGAbstractInterpreterInlines__patch.h	2020-03-16 10:34:40.464185700 -0700
+@@ -1779,10 +1779,10 @@
+     case CompareGreater:
+     case CompareGreaterEq:
+     case CompareEq: {
+-        bool isClobbering = node->isBinaryUseKind(UntypedUse);
++    //    bool isClobbering = node->isBinaryUseKind(UntypedUse);
+         
+-        if (isClobbering)
+-            didFoldClobberWorld();
++   //     if (isClobbering)
++   //         didFoldClobberWorld();
+         
+         JSValue leftConst = forNode(node->child1()).value();
+         JSValue rightConst = forNode(node->child2()).value();
+@@ -1905,8 +1905,8 @@
+             }
+         }
+ 
+-        if (isClobbering)
+-            clobberWorld();
++    //    if (isClobbering)
++    //        clobberWorld();
+         setNonCellTypeForNode(node, SpecBoolean);
+         break;
+     }

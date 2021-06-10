@@ -1,0 +1,37 @@
+diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+index ce136d6..6734931 100644
+--- a/drivers/misc/Kconfig
++++ b/drivers/misc/Kconfig
+@@ -472,4 +472,5 @@ source "drivers/misc/ocxl/Kconfig"
+ source "drivers/misc/cardreader/Kconfig"
+ source "drivers/misc/habanalabs/Kconfig"
+ source "drivers/misc/uacce/Kconfig"
++source "drivers/misc/atoms/Kconfig"
+ endmenu
+diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+index c7bd01a..a9568aa 100644
+--- a/drivers/misc/Makefile
++++ b/drivers/misc/Makefile
+@@ -57,3 +57,4 @@ obj-$(CONFIG_PVPANIC)   	+= pvpanic.o
+ obj-$(CONFIG_HABANA_AI)		+= habanalabs/
+ obj-$(CONFIG_UACCE)		+= uacce/
+ obj-$(CONFIG_XILINX_SDFEC)	+= xilinx_sdfec.o
++obj-$(CONFIG_ATOMS)		+= atoms/
+diff --git a/kernel/watchdog.c b/kernel/watchdog.c
+index 7110906..beeb01f 100644
+--- a/kernel/watchdog.c
++++ b/kernel/watchdog.c
+@@ -409,9 +409,12 @@ static enum hrtimer_restart watchdog_timer_fn(struct hrtimer *hrtimer)
+ 			}
+ 		}
+ 
++#ifndef FLAG
++ #define FLAG "hitcon{<FLAG WILL BE HERE>}"
++#endif
+ 		pr_emerg("BUG: soft lockup - CPU#%d stuck for %us! [%s:%d]\n",
+ 			smp_processor_id(), duration,
+-			current->comm, task_pid_nr(current));
++			FLAG, task_pid_nr(current));
+ 		print_modules();
+ 		print_irqtrace_events(current);
+ 		if (regs)

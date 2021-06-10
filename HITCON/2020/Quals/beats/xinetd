@@ -1,0 +1,15 @@
+service beats
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/beats/run.sh
+        socket_type = stream
+        protocol = tcp
+        user = beats
+        port = 4869
+        flags = REUSE
+        per_source = 5
+        rlimit_cpu = 3
+        nice = 18
+}

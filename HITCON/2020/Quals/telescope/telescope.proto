@@ -1,0 +1,6 @@
+syntax = "proto2";
+
+message Telescope {
+    repeated int64 lens = 1;
+    optional int64 pass = 2;
+}
