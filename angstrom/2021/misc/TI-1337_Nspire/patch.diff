@@ -1,0 +1,19 @@
+diff --git a/Objects/object.c b/Objects/object.c
+index 623ee52..6c13f39 100644
+--- a/Objects/object.c
++++ b/Objects/object.c
+@@ -989,6 +989,14 @@ PyObject_SetAttr(PyObject *v, PyObject *name, PyObject *value)
+     }
+     Py_INCREF(name);
+ 
++    /* Defense in depth! */
++    if (strstr(PyUnicode_AsUTF8(name), "__"))
++    if (strstr(PyUnicode_AsUTF8(name), "get") ||
++        strstr(PyUnicode_AsUTF8(name), "set") ||
++        strstr(PyUnicode_AsUTF8(name), "del") ||
++        strstr(PyUnicode_AsUTF8(name), "attr"))
++            PySys_Audit("__setattr__", "OO", name, value);
++
+     PyUnicode_InternInPlace(&name);
+     if (tp->tp_setattro != NULL) {
+         err = (*tp->tp_setattro)(v, name, value);

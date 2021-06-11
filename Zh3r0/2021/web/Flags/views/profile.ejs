@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+  
+<html lang="en">
+    <head>
+        <style>
+            body
+            {
+                margin: 0;
+                overflow: hidden;
+                background: #061928;
+                color: #bac2bc;
+                font-size: xx-large;
+            }
+            .form
+            {
+                justify-content: space-between;
+                margin: auto;
+                width: 50%;
+                height: 100%;
+                padding: 5% 5%;
+            }
+
+            .form input
+            {
+                background-color: #bac2bc;
+                color: #061928;
+                font-size: x-large;
+                width: 100%;
+            }
+
+            .form button
+            {
+                margin:auto;
+                background-color: #bac2bc;
+                border-radius: 20px;
+                border: none;
+                color: #061928;
+                padding: 1% 5%;
+                text-align: center;
+                display: flex;
+                font-size: x-large;
+            }
+
+            .form button:hover
+            {
+                margin:auto;
+                background-color: #061928;
+                border-radius: 20px;
+                border: none;
+                color: #bac2bc;
+                cursor: pointer;
+                padding: 1% 5%;
+                text-align: center;
+                display: flex;
+                font-size: x-large;
+            }
+
+            .navbar
+            {
+                display: flex;
+                justify-content: space-between;
+                margin: auto;
+                border: solid #bac2bc;
+            }
+            .navbar a
+            {
+                color:#bac2bc;
+                display:flex;
+                text-decoration: none;
+                justify-content: space-between;
+            }
+
+            .message
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #bac2bc;
+                color: #061928;
+            }
+
+            #left
+            {
+                text-align: center;
+                color: #061928;
+            }
+
+            #right
+            {
+                float: right;
+                text-align: center;
+            }
+
+            .message a
+            {
+                color: #061928;
+                text-decoration: none;
+            }
+
+            .message a:hover
+            {
+                text-decoration:underline;
+            }
+
+            .flagDisplay
+            {
+                display:flex;
+                margin: auto;
+                width: 70%;
+                height: 100%;
+                padding: 5% 5%;
+            }
+
+        </style>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <meta http-equiv='Content-Security-Policy' content="script-src 'nonce-<%=bytes%>'; object-src 'none'; base-uri 'none'require-trusted-types-for 'script'; frame-src 'none'">
+        <title>Login</title>
+        <style>
+            .flag
+            {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
+            <a id="logout" href="/logout">Logout</a>
+            <a id="report" href="/report/<%=profile%>">Report Profile</a>
+        </div>
+        <div class="flagDisplay">
+            <p>Your flag is</p>
+            <%- flagProfile %>
+        </div>
+        <div class="form">
+            <form action="/check" method="post">
+                <fieldset>
+                    <legend>Check if your flag matches the admin's</legend>
+                    <div class="flag">
+                        <input type="flag" name="flag" value="<%= flag %>">
+                    </div>
+                        <button type="submit" name="submit" value="submit">Check</button>
+                </fieldset>
+            </form>
+            <form action="/flag" method="post">
+                <fieldset>
+                    <legend>Change flag value: </legend>
+                    <input type="flag" id="flag" name="flag">
+                    <br><br>
+                    <button type="submit" id="submit" value="submit">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

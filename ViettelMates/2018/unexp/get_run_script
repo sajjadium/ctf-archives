@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# drop permissions
+chmod -R 755 $2
+su -s /bin/bash -c "timeout 60 /app/vuln_app < $1" nobody
+# remove temporary payload
+rm -rf $2
+

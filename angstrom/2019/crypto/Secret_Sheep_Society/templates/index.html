@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>Secret Sheep Society</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+  <body>
+    <div class="courier mh4 mh5-m mh7-l mv4">
+      <p class="f3">Secret Sheep Society Portal</p>
+      <pre>
+           __  _
+       .-.'  `; `-._  __  _
+      (_,         .-:'  `; `-._
+    ,'o"(        (_,           )
+   (__,-'      ,'o"(            )
+      (       (__,-'            )
+       `-'._.--._(             )
+          |||  |||`-'._.--._.-'
+                     |||  |||
+      </pre>
+      {% if session %}
+        <p style="line-height: 2">
+          Welcome, <span class="f6 light-red bg-light-gray ph2 pv1 br2">{{ session['handle'] }}</span>.
+          {% if session['admin'] %}
+            The flag is <span class="f6 mid-gray bg-light-gray ph2 pv1 br2">{{ flag }}</span>.
+          {% else %}
+            Unfortunately, only sheep in the highest echelons have access to the flag.
+          {% endif %}
+        </p>
+        <div class="mv3">
+          <form method="post" action="/exit">
+            <input class="courier b ph3 pv2 input-reset ba b--black pointer" type="submit" value="Exit">
+          </form>
+        </div>
+      {% else %}
+        <form method="post" action="/enter">
+          <input class="courier pa2 ba" type="text" name="handle" placeholder="Handle">
+          <input class="courier b ph3 pv2 input-reset ba b--black pointer" type="submit" value="Enter">
+        </form>
+      {% endif %}
+    </div>
+  </body>
+</html>

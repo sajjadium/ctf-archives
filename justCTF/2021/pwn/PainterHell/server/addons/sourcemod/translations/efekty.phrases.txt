@@ -1,0 +1,174 @@
+﻿"Phrases"
+{
+	"NoEffects"
+	{
+		"en"		"{community}You don't have {darkslategray}effects"
+		"pl"		"{community}Nie masz żadnych {darkslategray}efektów"
+	}
+	"NoColors"
+	{
+		"en"		"{community}You don't have {darkslategray}colors"
+		"pl"		"{community}Nie masz żadnego {darkslategray}koloru"
+	}
+	"InfoAddColor"
+	{
+		"en"		"{community}Color was added to menu"
+		"pl"		"{community}Kolor został dodany do menu"
+	}
+	
+	"AccessToVip"
+	{
+		"en"		"{community}You don't have access for this commend, becouse you don't have {darkslategray}VIP {community}in this server"
+		"pl"		"{community}Aby mieć dostęp do tej komendy musisz posiadać {darkslategray}VIPa {community}na serwerz"
+	}
+	
+	"MenuTitleMain"
+	{
+		"en"		"Main menu"
+		"pl"		"Główne menu"
+	}
+	"MenuTitleSheen"
+	{
+		"en"		"Select sheen from the list"
+		"pl"		"Wybierz blask z listy"
+	}
+	"MenuTitleKillstreaker"
+	{
+		"en"		"Select effect from the list"
+		"pl"		"Wybierz efekt z listy"
+	}
+	"MenuTitleWeapons"
+	{
+		"en"		"Choose"
+		"pl"		"Wybierz"
+	}
+	"MenuTitleClass"
+	{
+		"en"		"Wybierz postać na której dać efekt"
+		"pl"		"Select class to add the effect"
+	}
+	"MenuTitleHats"
+	{
+		"en"		"Choose your hat for give effect"
+		"pl"		"Wybierz czapkę, na którą chcesz efekt"
+	}
+	"MenuTitleDelete"
+	{
+		"en"		"Remove effect from yours hat"
+		"pl"		"Usuń efekt z czapki"
+	}
+	"MenuTitleEffects"
+	{
+		"#format"	"{1:d}"
+		"en"		"Choose effect unusual ({1})"
+		"pl"		"Wybierz efekt unusual ({1})"
+	}
+	"MenuTitlePaints"
+	{
+		"en"		"Choose color for your hat"
+		"pl"		"Wybierz jaki chcesz kolor na czapke"
+	}
+	"MenuTitleColorDelete"
+	{
+		"en"		"Choose color to remove"
+		"pl"		"Wybierz kolor do usunięcia"
+	}
+	"MenuTitleColors"
+	{
+		"en"		"Choose your option"
+		"pl"		"Wybierz swoją opcje"
+	}
+	
+	"Waiting"
+	{
+		"en"		"{community}Wait! Loading information about your hats!"
+		"pl"		"{community}Poczekaj! Trwa ładowanie informacji o twoich czapkach!"
+	}
+
+	"Replay"
+	{
+		"en"		"{community}Enter the command again!"
+		"pl"		"{community}Wpisz jeszcze raz tą komende!"
+	}
+	
+	"RemoveEffect"
+	{
+		"#format"	"{1:s}"
+		"en"		"{community}You have removed {darkslategray}{1} {community}effect from your hat"
+		"pl"		"{community}Usunąłeś efekt z czapki {darkslategray}{1}"
+	}
+	
+	"RemoveColor"
+	{
+		"#format"	"{1:s}"
+		"en"		"{community}You have removed {darkslategray}{1} {community}color from menu"
+		"pl"		"{community}Usunąłeś kolor {darkslategray}{1} {community}z menu"
+	}
+	
+	"InfoAfterBuy"
+	{
+		"en"		"{community}Effect in hat will work after class change!"
+		"pl"		"{community}Efekt na czapce będzie działać po zmianie klasy!"
+	}
+	
+	"TooMany"
+	{
+		"#format"	"{1:d}"
+		"en"		"{community}You have too much Effects [{1}]"
+		"pl"		"{community}Masz za dużo Efektów [{1}]"
+	}
+	"TooManyColors"
+	{
+		"#format"	"{1:d}"
+		"en"		"{community}You have too much Colors [{1}]"
+		"pl"		"{community}Masz za dużo Kolorów [{1}]"
+	}
+	
+	"InfoSteamApi1"
+	{
+		"en"		"{community}Information downloaded successfully"
+		"pl"		"{community}Informacje pobrane pomyślnie"
+	}
+	"InfoSteamApi2"
+	{
+		"en"		"{community}The steamid parameter was invalid or missing"
+		"pl"		"{community}Paramter steamid jest nieprawidłowy"
+	}
+	"InfoSteamApi3"
+	{
+		"en"		"{community}Backpack is private"
+		"pl"		"{community}Twój plecak jest prywatny"
+	}
+	"InfoSteamApi4"
+	{
+		"en"		"{community}The Steam ID given does not exist"
+		"pl"		"{community}Twój Steam ID nie istnieje w bazie"
+	}
+	"InfoSteamApi5"
+	{
+		"en"		"{community}Error in Valve servers"
+		"pl"		"{community}Błąd z serwerami Valve"
+	}
+	
+	"WebInfoAddColor"
+	{
+		"en"		"Color saved!"
+		"pl"		"Kolor zapisany!"
+	}
+	"WebTooManyColors"
+	{
+		"#format"	"{1:d}"
+		"en"		"Too many colors [{1}]"
+		"pl"		"Za dużo kolorów [{1}]"
+	}
+	"WebBadClient"
+	{
+		"en"		"No player in server!"
+		"pl"		"Brak gracza na serwerze!"
+	}
+	"WebBadData"
+	{
+		"en"		"Bad data!"
+		"pl"		"Złe dane!"
+	}
+}

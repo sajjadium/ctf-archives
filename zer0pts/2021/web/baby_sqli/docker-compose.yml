@@ -1,0 +1,8 @@
+version: '3'
+services:
+  babysqli:
+    build: ./
+    restart: always
+    ports:
+      - 8004:8888
+    entrypoint: "/etc/init.sh"

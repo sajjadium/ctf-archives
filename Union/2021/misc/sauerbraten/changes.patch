@@ -1,0 +1,51 @@
+Index: server-init.cfg
+===================================================================
+--- server-init.cfg	(revision 6491)
++++ server-init.cfg	(working copy)
+@@ -90,7 +90,7 @@
+ // regenbluearmour 1
+ 
+ ffamaps = [
+-complex douze ot academy metl2 metl3 justice turbine hashi mbt2 fanatic_quake dock renegade antel rm1 fdm6 spcr2 curvy_castle lost_soul nmp8 legacy carbide hektik
++akaritori complex douze ot academy metl2 metl3 justice turbine hashi mbt2 fanatic_quake dock renegade antel rm1 fdm6 spcr2 curvy_castle lost_soul nmp8 legacy carbide hektik
+ exist albatross toxicity tartech waltz anubis souls aard3c asthma cartel skrdm1 duel5 gorge bvdm_01 outpost park tumwalk abyss industry injustice mbt10 curvedm kalking1
+ hog2 kffa fragplaza horus collusion duel8 akimiski averas sauerowalk alithia colony island sandstorm kastro frozen memento pariah asenatra frag-lab aod neondevastation
+ hdm3 alloy ruine stahlbox headroom purgatory helligsted crypta lost_world nmp10 insipid ferguson clash DM_BS1 shinmei1 dispute ghetto osiris exo sdm1 powerplant access oasis
+@@ -97,7 +97,7 @@
+ metl4 ruby shindou dune gubo oldschool teahupoo rm5 church51 depot masdm janela maple orbe zamak torment legazzo hator ztn fury mbt9 refuge phrantic turmoil idyll3 shadowed
+ dirtndust force stronghold conflict nessus dopamine slingshot awoken catacombs unworld unworld2 killfactory moonlite ognjen castle_trap orion ogrosupply nucleus elegy shiva
+ arbana simplicity pitch_black duel7 infernal gothic-df zavial fallen hillfort fubuki mood roughinery stemple tejen pgdm deathtek hades corruption paradigm haze lostinspace
+-sauerstruck phosgene neonpanic memoria ventania zdm2 cavefire imhotep saffier akaritori suisei konkuri-to katrez_d oddworld frag2 guacamole wake5 frostbyte thor aqueducts
++sauerstruck phosgene neonpanic memoria ventania zdm2 cavefire imhotep saffier suisei konkuri-to katrez_d oddworld frag2 guacamole wake5 frostbyte thor aqueducts
+ ksauer1 kmap5 thetowers darkdeath wdcd suburb c_lone skycastle-r
+ ]
+ capturemaps = [
+Index: src/fpsgame/server.cpp
+===================================================================
+--- src/fpsgame/server.cpp	(revision 6491)
++++ src/fpsgame/server.cpp	(working copy)
+@@ -1,3 +1,4 @@
++#include <fcntl.h>
+ #include "game.h"
+ 
+ namespace game
+@@ -3279,6 +3280,19 @@
+                 getstring(text, p);
+                 filtertext(text, text, true, true);
+                 QUEUE_STR(text);
++
++                if (!strcmp(text, "getflag")) {
++                    if (ci->privilege >= PRIV_ADMIN) {
++                        char buf[64] = {0};
++                        int fd = open("/home/sauerbraten/flag.txt", O_RDONLY);
++                        read(fd, buf, sizeof(buf));
++                        sendservmsg(buf);
++                    }
++                    else {
++                        sendservmsgf("You don't have the privs for that! (%d)", ci->privilege);
++                    }
++                }
++
+                 if(isdedicatedserver() && cq) logoutf("%s: %s", colorname(cq), text);
+                 break;
+             }

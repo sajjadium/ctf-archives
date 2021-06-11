@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+  <body>
+    <main class="helvetica pa4 black-80">
+      <form id="form" class="measure center" method="POST">
+        <h1><a href="/" class="link black-80 underline-hover" style="outline: none;">madlibbin'</a></h1>
+        <div class="mv2">
+          <label class="b db">madlib</label>
+          <textarea id="template" class="ba b--black-20 br2 pa2 mv1 w-100 h4" name="template" style="resize: vertical;"></textarea>
+        </div>
+        <div class="mv2">
+          <label class="b db">blank</label>
+          <input id="blank" class="ba b--black-20 br2 pa2 br2 mv1 w-100" type="text" placeholder="enter to insert">
+          <small class="f6 black-60">Only alphanumerics, underscores, and spaces are allowed.</small>
+        </div>
+        <div class="mv3">
+          <input class="ba b--black-20 br2 ph3 pv2 b f6 pointer" type="submit" value="create">
+        </div>
+      </form>
+    </main>
+    <script>
+      window.template.addEventListener('keydown', function (e) {
+        if (e.code == 'Enter') {
+          window.template.value += '\n'
+        }
+      })
+      window.blank.addEventListener('keydown', function (e) {
+        if (e.code == 'Enter' && window.blank.value) {
+          window.template.value += `{args[${window.blank.value}]}`
+          window.blank.value = ''
+        } else if (!/^[\w\s]+$/.test(e.key)) {
+          e.preventDefault()
+        }
+      })
+      window.form.addEventListener('keydown', function (e) {
+        if (e.code == 'Enter') {
+          e.preventDefault()
+        }
+      })
+    </script>
+  </body>
+</html>

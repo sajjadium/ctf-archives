@@ -1,0 +1,2 @@
+- paste flag at the top of `Flag.hx`
+- check with `haxe --run Flag`

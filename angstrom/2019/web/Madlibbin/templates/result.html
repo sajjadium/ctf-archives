@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+  <body>
+    <main class="helvetica pa4 black-80">
+      <div class="measure center">
+        <h1><a href="/" class="link black-80 underline-hover" style="outline: none;">madlibbin'</a></h1>
+        <div style="white-space: pre-wrap;">{{ stuff }}</div>
+        <div class="mv3">
+          <button id="back" class="ba b--black-20 br2 ph3 pv2 b f6 pointer">back</button>
+        </div>
+      </form>
+    </main>
+    <script>
+      window.back.addEventListener('click', function (e) {
+        window.location = window.location.pathname
+      })
+    </script>
+  </body>
+</html>

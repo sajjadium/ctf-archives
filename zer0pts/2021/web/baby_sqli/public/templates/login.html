@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+    </head>
+
+    <body>
+        <h1>Login</h1>
+        <form action="/login" method="post">
+            {% if msg %}
+            <p style="color:red">{{msg}}</p>
+            {% endif %}
+            <label for="username">Username: </label>
+            <input id="username" name="username" type="text" placeholder="Username (letters, digits, underscores and whitespaces)"><br>
+            <label for="password">Password: </label>
+            <input id="password" name="password" type="password" placeholder="Password"><br>
+            <input type="submit" value="Login">
+        </form>
+    </body>
+</html>

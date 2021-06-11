@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="bson.bundle.js"></script>
+		<script>
+			function getFlag(e, form) {
+				fetch('/add-flag?' + new URLSearchParams(new FormData(form).entries()))
+				.then(res=>res.arrayBuffer())
+				.then((obj)=>{out.innerText = BSON.deserialize(obj).flag})
+				e.preventDefault()
+			}
+			let counter = 0
+			let s = 16
+			onload = function() {
+				setInterval(function() {
+					let r = document.querySelector(":root")
+					r.style.setProperty('--shadow-x',[-s,s,-s,s,s,-s,s,-s][counter%8]+'px')
+					r.style.setProperty('--shadow-y',[s,s,s,s,-s,-s,-s,-s][counter%8]+'px')
+					r.style.setProperty('--glow-color',`hsl(${(counter%20)*18},100%,50%)`)
+					counter++
+				},250)
+			}
+			
+		</script>
+		<style>
+			:root {
+				--glow-color: hsl(0,100%,50%);
+				--shadow-x: 2px;
+				--shadow-y: 2px;
+			}
+			html {
+				min-height: 100%;
+				background: linear-gradient(210deg,yellow,purple);
+				font-family: comic sans ms;
+				text-align: center;
+				display:flex;
+				align-items: center;
+				justify-content: center;
+				overflow-x: hidden;
+				overflow-y: hidden;
+			}
+			input {
+				box-shadow: var(--shadow-x) var(--shadow-y) 8px var(--glow-color);
+			}
+			input {
+				background: linear-gradient(to right,lightgoldenrodyellow,limegreen);
+				border: 3px dashed green;
+				box-shadow: var(--shadow-x) var(--shadow-y) 8px var(--glow-color);
+				transition: transform 10s ease;
+			}
+			input:hover {
+				transform: scale(10)
+			}
+			input:active {
+				background: red
+			}
+			h1, h2, form {
+				text-shadow: var(--shadow-x) var(--shadow-y) 8px var(--glow-color);
+			}
+			h1 {font-size: 64px;}
+			h2 {font-size: 48px;}
+			form, input {
+				font-size: 36px;
+			}
+			body {
+				width: fit-content;
+				transition: transform 2s ease;
+			}
+			body:hover {
+				transform: rotate(720deg);
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Welcome to Watered Down Watermark as a Service!</h1>
+		<form method='get' action='/screenshot'>
+			URL: <input name='url'>
+			<input type='submit'>
+		</form>
+		<h2>We can also retrieve the flag, but only if you're an admin!</h2>
+		<form method='get' action='/add-flag' onsubmit='getFlag(event,this)'>
+			<input hidden name='object' value='BQAAAAA='>
+			<input hidden name='compressed' value='0'>
+			<input type='submit' value="Get the flag!">
+		</form>
+		<p id="out"></p>
+	</body>
+</html>

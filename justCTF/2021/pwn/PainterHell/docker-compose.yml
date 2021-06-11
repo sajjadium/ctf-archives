@@ -1,0 +1,51 @@
+version: '2'
+
+services:
+  server:
+    build: server
+    restart: always
+    environment:
+      - SRCDS_PW=changeme
+    volumes:
+      - ./flag.txt:/flag.txt:ro
+    ports:
+      - 27015:27015/udp
+      - 27015:27015/tcp
+      - 80:80
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
+  web:
+    build: web
+    restart: always
+    volumes:
+      - ./flag.txt:/flag.txt:ro
+    environment:
+      - GUNICORN_WORKERS=2
+      - GUNICORN_TIMEOUT=5
+    network_mode: "service:server"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
+  mysql:
+    build: mysql
+    restart: always
+    volumes:
+      - ./flag.txt:/flag.txt:ro
+    environment:
+      - MYSQL_USER=tf2
+      - MYSQL_DATABASE=tf2
+      - MYSQL_ROOT_PASSWORD=securepass
+      - MYSQL_PASSWORD=securepass
+    network_mode: "service:server"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"

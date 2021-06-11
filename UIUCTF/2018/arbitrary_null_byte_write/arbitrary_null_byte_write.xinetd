@@ -1,0 +1,12 @@
+service arbitrary_null_byte_write
+{
+    disable     = no
+    type        = UNLISTED
+    socket_type = stream
+    protocol    = tcp
+    user        = arbitrary_null_byte_write
+    wait        = no
+    bind        = 0.0.0.0
+    server      = /home/arbitrary_null_byte_write/arbitrary_null_byte_write
+    port        = 60010
+}

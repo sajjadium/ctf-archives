@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
+  <body>
+    <main class="helvetica pa4 black-80">
+      <form id="form" class="measure center" method="GET">
+        <h1><a href="/" class="link black-80 underline-hover" style="outline: none;">madlibbin'</a></h1>
+        {% for blank in blanks %}
+        <div class="mv2">
+          <label class="b db">{{ blank }}</label>
+          <input name="{{ blank }}" class="ba b--black-20 br2 pa2 br2 mv1 w-100" type="text">
+        </div>
+        {% endfor %}
+        <div class="mv3">
+          <input class="ba b--black-20 br2 ph3 pv2 b f6 pointer" type="submit" value="view">
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

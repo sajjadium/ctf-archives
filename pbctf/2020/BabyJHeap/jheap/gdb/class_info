@@ -1,0 +1,18 @@
+add-symbol-file structs.o 0x100
+
+# Get class name of an object on heap
+define obj_class
+  set $cls=(void*)(((long long)((*(oop)$arg0)._metadata._compressed_klass) << 3) + 0x800000000L)
+  printf "$cls = class %s (%p)\n", *(char**)($cls + 0x18) + 6, $cls
+end
+
+# Get a class and name from its compressed klass number
+define class_from_id
+  set $cls=(void*)(((long long)$arg0 << 3) + 0x800000000L)
+  printf "$cls = class %s (%p)\n", *(char**)($cls + 0x18) + 6, $cls
+end
+
+# Get a class name from a clazz struct
+define class_name
+  x/s *(char**)($arg0 + 0x18) + 6
+end

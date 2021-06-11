@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+  
+<html lang="en">
+    <head>
+        <style>
+            body
+            {
+                margin: 0;
+                overflow: hidden;
+                background: #061928;
+                color: #bac2bc;
+                font-size: xx-large;
+            }
+            .form
+            {
+                display: flex;
+                justify-content: space-between;
+                margin: auto;
+                width: 50%;
+                height: 100%;
+                padding: 10% 10%;
+            }
+
+            .form button
+            {
+                margin:auto;
+                background-color: #bac2bc;
+                border-radius: 20px;
+                border: none;
+                color: #061928;
+                padding: 1% 5%;
+                text-align: center;
+                display: flex;
+                font-size: x-large;
+            }
+
+            .form button:hover
+            {
+                margin:auto;
+                background-color: #061928;
+                border-radius: 20px;
+                border: none;
+                color: #bac2bc;
+                cursor: pointer;
+                padding: 1% 5%;
+                text-align: center;
+                display: flex;
+                font-size: x-large;
+            }
+
+            .navbar
+            {
+                display: flex;
+                justify-content: space-between;
+                margin: auto;
+                border: solid #bac2bc;
+            }
+            .navbar a
+            {
+                color:#bac2bc;
+                display:flex;
+                text-decoration: none;
+                justify-content: space-between;
+            }
+
+            .message
+            {
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #bac2bc;
+                color: #061928;
+            }
+
+            #left
+            {
+                text-align: center;
+                color: #061928;
+            }
+
+            #right
+            {
+                float: right;
+                text-align: center;
+            }
+
+            .message a
+            {
+                color: #061928;
+                text-decoration: none;
+            }
+
+            .message a:hover
+            {
+                text-decoration:underline;
+            }
+        </style>
+        <script>
+            function Hide(HideID) 
+            {
+                HideID.style.display = "none"; 
+            }
+        </script>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="/register">Register</a>
+        </div>
+        <div class="form">
+            <form method="post" action="/login">
+                <fieldset>
+                        <legend>Login</legend>
+                        <label for="username">Username</label>
+                        <input type="name" id="username" name="username" id="username">&nbsp;&nbsp;
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" id="password">
+                        <br><br>
+                        <button type="submit" id="submit" value="submit">Login</button>
+                </fieldset>
+            </form>
+        </div>
+        <div class="message" id="messageBar">
+            <div id="right">
+                <a href="#" onclick="Hide(messageBar);">X</a>
+            </div>
+            <div id="left">
+                <%= message %>
+            </div>
+        </div>
+    </body>
+</html>

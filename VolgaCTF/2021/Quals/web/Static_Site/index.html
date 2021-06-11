@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Static Site</title>
+    <link rel="stylesheet" href="./static/bootstrap.min.css">
+  </head>
+
+  <body class="text-center">
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="mt-5">
+          <h3 class="masthead-brand">Static Site</h3>
+      </header>
+
+      <main role="main" class="mt-5">
+        <p class="lead"><img src="./static/hacker.gif"/></p>
+        <p class="lead pt-5">
+          Ok, hackers, I created a static site with a strict Content-Security-Policy.
+        </p>
+        <p class="lead">
+          It is simply impossible to steal my cookies now!
+        </p>
+        <p class="lead">
+          But, you can still try:
+        </p>
+        <p>
+          <form id="form" class="form-inline justify-content-center" method="POST" action="https://bot-static-site.volgactf-task.ru/">
+            <div class="form-group">
+              <label for="url">URL</label>
+              <input type="url" name="url" id="url" class="form-control mx-sm-3">
+              <input type="submit" class="btn btn-secondary g-recaptcha" data-sitekey="6LdN230aAAAAAPsMXHWZ9szidC6tbkSzWDarMqmL" data-callback="onSubmit" data-action="submit">
+            </div>
+          </form>
+        </p>
+      </main>
+    </div>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="./static/captcha.js"></script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+scoreboard players set @a localChecks 0
+
+execute as @a[scores={search=1}] if block ~0 ~-1 ~150 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~1 ~-1 ~150 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~2 ~-1 ~150 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~0 ~-1 ~151 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~2 ~-1 ~151 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~0 ~-1 ~152 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~2 ~-1 ~152 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~0 ~-1 ~153 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~2 ~-1 ~153 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~0 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~1 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~2 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~4 ~-1 ~152 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~6 ~-1 ~152 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~5 ~-1 ~153 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~4 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~6 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~8 ~-1 ~150 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~9 ~-1 ~150 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~10 ~-1 ~150 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~8 ~-1 ~151 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~10 ~-1 ~151 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~8 ~-1 ~152 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~9 ~-1 ~152 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~10 ~-1 ~152 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~8 ~-1 ~153 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~10 ~-1 ~153 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~8 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~9 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~10 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~12 ~-1 ~150 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~13 ~-1 ~150 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~14 ~-1 ~150 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~12 ~-1 ~151 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~14 ~-1 ~151 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~12 ~-1 ~152 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~14 ~-1 ~152 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~12 ~-1 ~153 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~14 ~-1 ~153 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~12 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~13 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+execute as @a[scores={search=1}] if block ~14 ~-1 ~154 minecraft:white_concrete run scoreboard players add @a localChecks 1
+
+execute as @a[scores={search=1}] if score @s localChecks matches 42 run scoreboard players add @s checksPassed 1

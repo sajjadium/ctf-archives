@@ -1,0 +1,107 @@
+
+  A = arch
+  A == ARCH_I386 ? next : kill
+
+  A = sys_number
+  A == fork ? kill : next
+  A == waitpid ? kill : next
+  A == wait4 ? kill : next
+  A == alarm ? kill : next
+  A == oldfstat ? kill : next
+  A == mknod ? kill : next
+  A == break ? kill : next
+  A == oldstat ? kill : next
+  A == lseek ? kill : next
+  A == getpid ? kill : next
+  A == pause ? kill : next
+  A == stty ? kill : next
+  A == times ? kill : next
+  A == prof ? kill : next
+  A == brk ? kill : next
+  A == getgid ? kill : next
+  A == signal ? kill : next
+  A == sigaction ? kill : next
+  A == sigreturn ? kill : next
+  A == rt_sigreturn ? kill : next
+  A == rt_sigaction ? kill : next
+  A == sigprocmask ? kill : next
+  A == fcntl ? kill : next
+  A == lock ? kill : next
+  A == ioctl ? kill : next
+  A == fsync ? kill : next
+  A == setpgid ? kill : next
+  A == access ? kill : next
+  A == nice ? kill : next
+  A == ftime ? kill : next
+  A == kill ? kill : next
+  A == sync ? kill : next
+  A == rename ? kill : next
+  A == creat ? kill : next
+  A == link ? kill : next
+  A == unlink ? kill : next
+  A == mkdir ? kill : next
+  A == execve ? kill : next
+  A == execveat ? kill : next
+  A == chdir ? kill : next
+  A == ptrace ? kill : next
+  A == rmdir ? kill : next
+  A == ulimit ? kill : next
+  A == oldolduname ? kill : next
+  A == umask ? kill : next
+  A == setsid ? kill : next
+  A == sgetmask ? kill : next
+  A == ssetmask ? kill : next
+  A == sigsuspend ? kill : next
+  A == sigpending ? kill : next
+  A == select ? kill : next
+  A == symlink ? kill : next
+  A == oldlstat ? kill : next
+  A == readlink ? kill : next
+  A == uselib ? kill : next
+  A == reboot ? kill : next
+  A == mmap ? kill : next
+  A == munmap ? kill : next
+  A == mprotect ? kill : next
+  A == mremap ? kill : next
+  A == truncate ? kill : next
+  A == ftruncate ? kill : next
+  A == setpriority ? kill : next
+  A == profil ? kill : next
+  A == statfs ? kill : next
+  A == fstatfs ? kill : next
+  A == ioperm ? kill : next
+  A == stat ? kill : next
+  A == lstat ? kill : next
+  A == fstat ? kill : next
+  A == uname ? kill : next
+  A == exit_group ? allow : next
+  A >= clone ? kill : next
+
+  A == open ? check_perm : addr_check
+
+check_perm:
+  A = args[2]
+  A == 0 ? addr_check : kill
+
+addr_check:
+  A == open ? check_firstarg : next
+  A == read ? check_secarg : next
+  A == readdir ? check_secarg : next
+  A == write ? check_secarg : allow
+
+check_firstarg:
+  A = args[0]
+  goto check_arg
+
+check_secarg:
+  A = args[1]
+  goto check_arg
+
+check_arg:
+  A < 0x30000000 ? kill : allow
+
+allow:
+  return ALLOW
+
+kill:
+  return KILL_PROCESS

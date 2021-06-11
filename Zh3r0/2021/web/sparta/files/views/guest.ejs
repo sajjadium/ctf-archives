@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="">
+<meta name="description" content="">
+
+
+<link rel="icon" href="http://www.phpkida.com/wp-content/uploads/2015/11/phpkida-new-logo-150x150.png" sizes="32x32" />
+<link rel="icon" href="http://www.phpkida.com/wp-content/uploads/2015/11/phpkida-new-logo.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="http://www.phpkida.com/wp-content/uploads/2015/11/phpkida-new-logo.png" />
+<meta name="msapplication-TileImage" content="http://www.phpkida.com/wp-content/uploads/2015/11/phpkida-new-logo.png" />
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,300' rel='stylesheet' type='text/css'>
+
+<style>
+body {
+    background: #304352;   
+    font-family: 'Source Sans Pro', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    position: relative;
+}
+
+html,body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 100%;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 3rem;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  padding-bottom: 8px;
+  font-weight: 300;
+  text-align:center;
+}
+
+
+/*---------------------------------------
+   Modal Contact           
+-----------------------------------------*/
+.contact-form{
+	width:600px;
+	margin:auto;
+}
+.contact-form .contact-content {
+  background-image: url('sparta_guest.jpg');
+  border: none;
+  border-radius: 2px;
+  text-align: center;
+  padding: 30px 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.contact-header {
+  border-bottom: 0px;
+}
+
+.contact-form .contact-title {
+  color: #ffffff;
+}
+
+.contact-form form {
+  padding: 20px;
+}
+
+.contact-form form input {
+  height: 50px;
+}
+
+.contact-form .form-control {
+  background: transparent;
+  border: 1px solid #f0f0f0;
+  border-radius: 0px;
+  box-shadow: none;
+  color: #ffffff;
+  font-size: 20px;
+  margin-bottom: 20px;
+  transition: all 0.4s ease-in-out;
+}
+
+.contact-form .form-control:focus {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: #ffffff;
+}
+
+.contact-form form input[type="submit"] {
+  background: #1dc9e3;
+  border: 3px solid transparent;
+  border-radius: 100px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-top: 30px;
+}
+
+.contact-form form input[type="submit"]:hover {
+  background: transparent;
+  border-color: #1dc9e3;
+  color: #ffffff;
+}
+
+.contact-form .form-control::-moz-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+.contact-form .form-control:-ms-input-placeholder {
+  color: #ffffff;
+}
+.contact-form .form-control::-webkit-input-placeholder {
+  color: #ffffff;
+}
+
+.modal.fade .contact-form{
+  -webkit-perspective: 1300px;
+     -moz-perspective: 1300px;
+          perspective: 1300px;
+}
+
+.modal.fade .contact-content{
+  -webkit-transform-style: preserve-3d;
+     -moz-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform: translateZ(-3000px) rotateY(90deg);
+     -moz-transform: translateZ(-3000px) rotateY(90deg);
+      -ms-transform: translateZ(-3000px) rotateY(90deg);
+          transform: translateZ(-3000px) rotateY(90deg);
+  opacity: 0;
+}
+
+.modal.fade.in .contact-content{
+    -webkit-animation: slit .7s forwards ease-out;
+    -moz-animation: slit .7s forwards ease-out;
+    animation: slit .7s forwards ease-out;
+}
+
+@-webkit-keyframes slit {
+  50% { -webkit-transform: translateZ(-250px) rotateY(60deg); opacity: .5; -webkit-animation-timing-function: ease-out;}
+  100% { -webkit-transform: translateZ(0) rotateY(0deg); opacity: 1; }
+}
+
+@-moz-keyframes slit {
+  50% { -moz-transform: translateZ(-250px) rotateY(60deg); opacity: .5; -moz-animation-timing-function: ease-out;}
+  100% { -moz-transform: translateZ(0) rotateY(0deg); opacity: 1; }
+}
+
+@keyframes slit {
+  50% { transform: translateZ(-250px) rotateY(60deg); opacity: 1; animation-timing-function: ease-in;}
+  100% { transform: translateZ(0) rotateY(0deg); opacity: 1; }
+}
+
+p{text-align:center; margin-top:40px; padding:40px 0px; clear:both;}
+.download{
+	padding:10px 30px;
+	background-color:#006699;
+	color:#000000;
+	font-size:24px;
+	text-transform:uppercase;
+	text-decoration:none;
+	margin-top:2px;
+	border-radius:10px;
+}
+
+@media (max-width:650px)
+{
+	.contact-form{width:100%;}
+	.contact-form .contact-content{padding: 5px 30px;}
+}
+</style>
+</head>
+<body>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-67816487-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+
+<!-- Contact section -->
+<div class="contact-form">
+	<div class="contact-content">
+		<div class="contact-header">
+			<h2 class="contact-title">Hi Guest! Should we give you a name?</h2>
+		</div>
+		<form action="#" method="post">
+			<input name="username" type="text" class="form-control" id="username" placeholder="Username" required />
+			<input name="country" type="text" class="form-control" id="country" placeholder="Country" required />
+			<input name="city" type="text" class="form-control" id="city" placeholder="City" required />
+			<textarea name="message" rows="3" class="form-control" id="message" placeholder="Introduction message" required></textarea>
+			<input name="submit" type="submit" class="form-control" id="submit" value="Add your info" />
+		</form>
+	</div>
+</div>
+</body>
+</html>

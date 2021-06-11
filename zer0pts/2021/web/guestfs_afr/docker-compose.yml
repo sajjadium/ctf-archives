@@ -1,0 +1,7 @@
+version: "3"
+services:
+  guestfs_dist:
+    build:
+      context: .
+    ports:
+      - 8080:80

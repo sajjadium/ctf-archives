@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+	<head>
+		<title>JASON</title>
+		<style>
+		html {
+			background: url(https://avatars.githubusercontent.com/u/16807306?v=4);
+		}
+		* {
+			font-family: 'Comic Sans MS';
+		}
+		h1 {
+			text-align: center;
+			font-size: 10em;
+			color: blue;
+			text-shadow: 10px 10px red;
+			transition: text-shadow 0.5s;
+			margin-bottom: 0.1em;
+		}
+		h1:hover {
+			text-shadow: 0 0 red;
+		}
+		main {
+			width: 100%;
+			display: flex;
+		}
+		section {
+			flex-grow: 1;
+			flex-basis: 0;
+		}
+		h2 {
+			text-align: center;
+			font-size: 3em;
+			color: green;
+			text-shadow: 3px 3px orange;
+			transition: text-shadow 0.5s;
+		}
+		h2:hover {
+			text-shadow: 0 0 orange;
+		}
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 1em;
+		}
+		li {
+			background-color: black;
+			color: white;
+			text-align: center;
+			border: 1px solid blue;
+			padding: 0.5em;
+		}
+		article {
+			width: 30em;
+			background-color: yellow;
+			height: 10em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			margin: auto;
+		}
+		input, button {
+			font-size: 1.5em;
+		}
+		p {
+			margin-bottom: 0;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>JASON</h1>
+		<article>
+			<form method='post' action='/passcode'>
+				<input type='submit' name='passcode' value='0'>
+				<input type='submit' name='passcode' value='1'>
+				<input type='submit' name='passcode' value='2'>
+				<input type='submit' name='passcode' value='3'>
+				<input type='submit' name='passcode' value='4'>
+				<input type='submit' name='passcode' value='5'>
+				<input type='submit' name='passcode' value='6'>
+				<input type='submit' name='passcode' value='7'>
+				<input type='submit' name='passcode' value='8'>
+				<input type='submit' name='passcode' value='9'>
+				<input type='submit' name='passcode' value='CLEAR'>
+			</form>
+			<form method='post' action='/visit'>
+				<p>Send me a cool site to visit: </p><input type="text" name="site"><button>SUBMIT</button>
+			</form>
+		</article>
+		<main>
+			<section>
+				<h2>LANGUAGES</h2>
+				<ul id='languages'>
+					<li>Permission denied.</li>
+				</ul>
+			</section>
+			<section>
+				<h2>FRIENDS</h2>
+				<ul id='friends'>
+					<li>Permission denied.</li>
+				</ul>
+			</section>
+			<section>
+				<h2>FLAGS</h2>
+				<ul id='flags'>
+					<li>Permission denied.</li>
+				</ul>
+			</section>
+		</main>
+		<script>
+		function load (data) {
+			window[data.category].innerHTML = data.items.map(i => `<li>${i}</li>`).join('')
+		}
+		</script>
+		<script src="/languages?callback=load"></script>
+		<script src="/friends?callback=load"></script>
+		<script src="/flags?callback=load"></script>
+	</body>
+</html>

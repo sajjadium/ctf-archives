@@ -1,0 +1,9 @@
+sr         = 16000 
+nfft       = 512
+window     = 0.025
+hop        = 0.01
+nmels      = 40
+hidden     = 768
+num_layer  = 3
+proj       = 256
+model_path = './speech_id_checkpoint/final_epoch_950_batch_id_141.model'

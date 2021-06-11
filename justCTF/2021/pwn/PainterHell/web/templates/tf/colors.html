@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Nadaj kolor na czapkę!</title>
+
+		<script type="text/javascript" src="{% static 'js/jquery-1.10.0.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/farbtastic.js' %}"></script>
+		<link rel="stylesheet" href="{% static 'css/farbtastic.css' %}" type="text/css" />
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var red = true, blue = true, last_color = '#8ead25';
+				function dozwolony_kolor(color) {
+					var n = color.replace("#","");
+					return (parseInt(n, 16) < 197379)? '#030303': color;
+				}
+				
+				function ustaw_kolory(color) {
+					if(red == true)
+					{
+						$('#rgb1').val(color);
+						$('#kolor1').css('background-color', color);
+					}
+					if(blue == true)
+					{
+						$('#rgb2').val(color);
+						$('#kolor2').css('background-color', color);
+					}
+				}
+			
+				$('#farbtastic').farbtastic(function(color) {
+					color = dozwolony_kolor(color);
+					ustaw_kolory(color);
+					last_color = color;
+				});
+				
+				$('#red').click(function() {
+					red = $(this).is(':checked');
+					ustaw_kolory(last_color);
+				});
+				
+				$('#blue').click(function() {
+					blue = $(this).is(':checked');
+					ustaw_kolory(last_color);
+				});
+				$.farbtastic('#farbtastic').setColor('#8ead25');
+			});
+		</script>
+		<style>
+		body {
+			background: url('{% static 'img/blackboard.png' %}') no-repeat center center fixed;
+			margin: 0;
+			text-align: center;
+			
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+		div {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.clear {
+			clear: both;
+			font-size: 0;
+			height: 0;
+			line-height: 0;
+			margin: 0;
+			padding: 0;
+		}
+		#obrazek {
+			width: 380px; 
+			height: 410px; 
+			background-image: url('{% static 'img/puszka.png' %}');
+		}
+		.info {
+			font-family: TF2 Professor;
+			font-size: 40px;
+			color: #dcded3;
+		}
+		.btn {
+			-webkit-border-radius: 5px;
+			-webkit-border-top-right-radius: 0;
+			-moz-border-radius: 5px;
+			-moz-border-radius-topright: 0;
+			border-radius: 5px;
+			border-top-right-radius: 0;
+			text-shadow: 1px 1px 1px #3d3d3d;
+			line-height: 16px;
+			margin: 0 2px;
+			position: relative;
+			background: #7e7e7e;
+			padding: 8px 10px;
+			display: inline;
+			color: #fff !important;
+			text-decoration: none;
+			cursor: pointer;
+			border: 1px solid #999;
+		}
+		.btn:hover{
+			background: #cea940;
+		}
+		input[type=text] {
+			background: #fefefe;
+			border: 2px solid #ddd;
+			box-shadow: none;
+			-moz-border-radius: 5px;
+			-khtml-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius: 5px;
+			color: #393939;
+			cursor: pointer;
+			font-size: 15px;
+			padding: 6px 5px;
+			text-align: left;
+		}
+		@font-face
+		{
+			font-family: TF2 Professor;
+			src: url('{% static 'font/tf2professor.ttf' %}');
+		}
+		</style>
+	</head>
+	<body>
+		<div style="width: 90%;">
+			<div class="clear"></div>
+			<div style="height: 450px;">
+				<div style="float: left; height: 390px; width: 400px;">
+					<div id="obrazek" style="float: left; position: relative;"></div>
+					<div id="kolor1" style="height: 270px; width: 250px; position: relative; z-index: -1; top: 80px; left: 20px;"></div>
+					<div style="float: left; position: relative; left: 150px; top: -35px"><form><input type="checkbox" id="red" name="red" value="1" checked="checked"><span class="info">RED</span></form></div>
+				</div>
+				<div style="float: right; height: 390px; width: 400px;">
+					<div id="obrazek" style="float: left; position: relative;"></div>
+					<div id="kolor2" style="height: 270px; width: 250px; position: relative; z-index: -1; top: 80px; left: 20px;"></div>
+					<div style="float: left; position: relative; left: 150px; top: -35px"><form><input type="checkbox" id="blue" name="blue" value="1" checked="checked"><span class="info">BLUE</span></form></div>
+				</div>
+			</div>
+			<div style="height: 0;">
+				<div id="farbtastic" style="position: relative; top: -350px;"></div>
+			</div>
+			<div class="clear"></div>
+			<div>
+				<form method="post">
+					<input type="hidden" id="rgb1" name="rgb1">
+					<input type="hidden" id="rgb2" name="rgb2">
+					<div style="display: inline; position: relative; left: -150px;">
+						<span class="info">Nazwij swoją farbę: </span>
+						<input type="text" name="nazwa" maxlength="15" value="nazwa">
+					</div>
+					<input type="submit" class="btn" style="position: relative; left: -25px;" value="Zapisz">
+					{% if msg %}
+						<div class="info" style="color: orange;">{{ msg }}</div>
+					{% endif %}
+				</form>
+				<br>
+				<div class="info">
+					<span style="color: #cea169;">1.</span> Wybierz kolor farby<br>
+					<span style="color: #cea169;">2.</span> Podaj nazwę farby<br>
+					<span style="color: #cea169;">3.</span> Naciśnij "Zapisz", farba zostanie automatycznie dodana do twojej listy<br>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

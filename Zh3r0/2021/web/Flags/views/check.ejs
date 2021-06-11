@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  
+<html lang="en">
+    <head>
+        <style>
+            body
+            {
+                margin: 0;
+                overflow: hidden;
+                background: #061928;
+                color: #bac2bc;
+                font-size: xx-large;
+            }
+
+            .navbar
+            {
+                display: flex;
+                justify-content: space-between;
+                margin: auto;
+                border: solid #bac2bc;
+            }
+            .navbar a
+            {
+                color:#bac2bc;
+                display:flex;
+                text-decoration: none;
+                justify-content: space-between;
+            }
+            .message
+            {
+                display: flex;
+                justify-content: space-between;
+                margin: auto;
+                padding: 10% 10%;
+                width: 50%;
+                height: 100%;
+                font-family: Arial, Helvetica, sans-serif;
+                background-color: #061928;
+                color: #bac2bc;
+                text-align: center;
+            }
+        </style>
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="navbar">
+            <a id="profile" href="<%= profile %>">Go back to profile</a>
+        </div>
+        <div class="message">
+            <h2><%= message %></h2>
+        </div>
+    </body>
+</html>

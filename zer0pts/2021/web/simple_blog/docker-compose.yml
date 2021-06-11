@@ -1,0 +1,18 @@
+version: '3'
+services:
+  challenge:
+    build: ./challenge/web
+    ports:
+      - 8003:80
+    links:
+      - redis
+    restart: always
+  worker:
+    build: ./challenge/worker
+    links:
+      - challenge
+      - redis
+    restart: always
+  redis:
+    build: ./challenge/redis
+    restart: always

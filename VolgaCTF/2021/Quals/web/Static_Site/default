@@ -1,0 +1,18 @@
+server {
+    listen 443 ssl;
+    resolver 8.8.8.8;
+    server_name static-site.volgactf-task.ru;
+
+    ssl_certificate      /etc/letsencrypt/live/volgactf-task.ru/fullchain1.pem;
+    ssl_certificate_key  /etc/letsencrypt/live/volgactf-task.ru/privkey1.pem;
+
+    add_header Content-Security-Policy "default-src 'self'; object-src 'none'; frame-src https://www.google.com/recaptcha/; font-src https://fonts.gstatic.com/; style-src 'self' https://fonts.googleapis.com/; script-src 'self' https://www.google.com/recaptcha/api.js https://www.gstatic.com/recaptcha/" always;
+   
+    location / {
+      root /var/www/html;
+    }
+
+    location /static/ {
+      proxy_pass https://volga-static-site.s3.amazonaws.com$uri;
+    }
+}

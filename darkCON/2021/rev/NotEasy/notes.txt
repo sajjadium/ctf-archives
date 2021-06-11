@@ -1,0 +1,7 @@
+You need colour in terminal for optimum usage. (Non legacy Powershell/Command Prompt)
+
+Activate Colour ==>
+reg add HKEY_CURRENT_USER\Console /v VirtualTerminalLevel /t REG_DWORD /d 0x00000001 /f
+
+Dectivate Colour ==>
+reg add HKEY_CURRENT_USER\Console /v VirtualTerminalLevel /t REG_DWORD /d 0x00000000 /

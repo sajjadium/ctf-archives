@@ -1,0 +1,53 @@
+from flask import Flask, jsonify, request, make_response, send_file
+from tempfile import mkdtemp
+from werkzeug.utils import secure_filename
+import os
+import os.path
+from subprocess import Popen
+
+app = Flask(__name__)
+
+@app.route("/api/runner", methods=['POST'])
+def encode():
+    if 'file' not in request.files:
+        return make_response(jsonify({'status': 400, 'message': 'Can\'t find file field in request!'}), 400)
+    f = request.files['file']
+    # temporarily save your payload on our server
+    tempdir = mkdtemp()
+    filename = secure_filename(f.filename)
+    filepath = os.path.join(tempdir, filename)
+    f.save(filepath)
+    # run your payload against the vuln app
+    p = Popen('/app/run.sh ' + filepath + ' ' + tempdir, shell=True)
+    return jsonify({'status': 200, 'message': 'We retrieved your payload and ran it with our binary, good luck!'})
+
+@app.route('/get_binary')
+def get_binary():
+    # return current binary
+    return send_file('/app/vuln_app')
+
+@app.route('/get_run_script')
+def get_run_script():
+    # return current running script
+    return send_file('/app/run.sh')
+
+@app.route('/get_backend')
+def get_backend():
+    # return this file
+    return send_file('/app/main.py')
+
+# Everything not declared before (not a Flask route / API endpoint)...
+@app.route('/<path:path>')
+def route_frontend(path):
+    # ...could be a static file needed by the front end that
+    # doesn't use the `static` path (like in `<script src="bundle.js">`)
+    file_path = os.path.join(app.static_folder, path)
+    if os.path.isfile(file_path):
+        return send_file(file_path)
+    # ...or should be handled by the SPA's "router" in the front end
+    else:
+        index_path = os.path.join(app.static_folder, 'index.html')
+        return send_file(index_path)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=80)
