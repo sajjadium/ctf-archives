@@ -1,0 +1,21 @@
+// Trust No One
+
+CHIP BlackBox {
+    IN in[128];
+    OUT out[128];
+
+    PARTS:
+    Xor(a=in[0..31], b=in[96..127], out=red);
+    Xor(a=in[32..63], b=in[64..95], out=king);
+    Xor(a=in[64..95], b=in[96..127], out=dave);
+    Concat(a=in[0..31], b=dave, c=red, d=king, out=ayk);
+    Switch(a=ayk[3..6], b=ayk[19..22]);
+    Switch(a=ayk[54..61], b=ayk[32..39]);
+    Switch(a=ayk[63..70], b=ayk[120..127]);
+    Switch(a=ayk[95..98], b=ayk[81..84]);
+    Xor(a=ayk[0..31], b=ayk[64..95], out=earl);
+    Xor(a=ayk[64..95], b=ayk[96..127], out=cosmo);
+    Xor(a=ayk[32..63], b=ayk[96..127], out=abbott);
+    Concat(a=abbott, b=comso, c=ayk[0..31], d=earl, out=phoenix);
+    Reverse(in=phoenix, out=out);
+}

@@ -1,0 +1,1 @@
+I was the first programmer to join and the first woman they hired. Male engineers were already working on the project, but they were hardware engineers and it wasn’t their thing. I had it as my background. I think [the lab] just figured that I could handle the unknown.

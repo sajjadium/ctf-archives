@@ -1,0 +1,15 @@
+service cache
+{
+    disable = no
+    type = UNLISTED
+    wait = no
+    server = /home/cache/run.sh
+    socket_type = stream
+    protocol = tcp
+    user = cache
+    port = 1337
+    flags = REUSE
+    per_source = 5
+    rlimit_cpu = 3
+    nice = 18
+}

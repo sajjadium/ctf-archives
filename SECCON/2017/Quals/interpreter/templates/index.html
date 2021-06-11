@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Interpreter</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="container-wrapper">
+    <div class="row mt-5 t-c">
+      <div class="col-sm-12">
+        <div class="content">
+          <h2>Interpreter v1.0</h2>
+          <button class="btn btn-outline-primary btn-lg _upload">Upload a script</button>
+        </div>
+      </div>
+      <div class="col-sm-12 t-c mt-5">
+        <div class="content">
+          <div class="panel">
+            <pre class="result"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="file" name="script" class="hidden">
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const $uploadBtn = $('._upload');
+    const $uploadScript = $('input[name="script"]');
+    const $scriptFilename = $('input[name="filename"]');
+    const $scriptResult = $('.result');
+
+    function startLoading($obj, msg) {
+      $obj.text(msg);
+    }
+
+    function endLoading($obj, msg) {
+      $obj.text(msg)
+    }
+
+    $uploadBtn.on('click', () => {
+      $uploadScript.click();
+    });
+
+    $uploadScript.on('change', () => {
+      const formData = new FormData();
+      const script = $uploadScript[0].files[0];
+
+      if (script === undefined) {
+        return false;
+      }
+
+      formData.append('script', script);
+      startLoading($uploadBtn, 'uploading...');
+      $.ajax({
+        url: '{{ url_for('upload_script') }}',
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success(res) {
+          $uploadScript[0].value = '';
+          $scriptResult.text(res);
+        },
+        complete() {
+          setTimeout(() => endLoading($uploadBtn, 'Upload a script'), 1000);
+        },
+        error() {
+          $scriptResult.text('');
+        }
+      });
+    });
+  });
+</script>
+</body>
+</html>

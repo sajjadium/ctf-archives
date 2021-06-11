@@ -1,0 +1,496 @@
+diff --git a/hw/arm/Kconfig b/hw/arm/Kconfig
+index 188419dc1e..33061cdb7e 100644
+--- a/hw/arm/Kconfig
++++ b/hw/arm/Kconfig
+@@ -17,6 +17,7 @@ config ARM_VIRT
+     select PL011 # UART
+     select PL031 # RTC
+     select PL061 # GPIO
++    select PL666 # SDMA
+     select PLATFORM_BUS
+     select SMBIOS
+     select VIRTIO_MMIO
+diff --git a/hw/arm/virt.c b/hw/arm/virt.c
+index 7dc96abf72..d5da2fd406 100644
+--- a/hw/arm/virt.c
++++ b/hw/arm/virt.c
+@@ -149,10 +149,13 @@ static const MemMapEntry base_memmap[] = {
+     [VIRT_SMMU] =               { 0x09050000, 0x00020000 },
+     [VIRT_PCDIMM_ACPI] =        { 0x09070000, MEMORY_HOTPLUG_IO_LEN },
+     [VIRT_ACPI_GED] =           { 0x09080000, ACPI_GED_EVT_SEL_LEN },
++    // PL 666
++    [VIRT_SDMA] =                { 0x09090000, 0x00001000 },
+     [VIRT_MMIO] =               { 0x0a000000, 0x00000200 },
+     /* ...repeating for a total of NUM_VIRTIO_TRANSPORTS, each of that size */
+     [VIRT_PLATFORM_BUS] =       { 0x0c000000, 0x02000000 },
+     [VIRT_SECURE_MEM] =         { 0x0e000000, 0x01000000 },
++    [VIRT_SECURE_DMA] =         { 0x0f000000, 0x00800000 },
+     [VIRT_PCIE_MMIO] =          { 0x10000000, 0x2eff0000 },
+     [VIRT_PCIE_PIO] =           { 0x3eff0000, 0x00010000 },
+     [VIRT_PCIE_ECAM] =          { 0x3f000000, 0x01000000 },
+@@ -185,6 +188,7 @@ static const int a15irqmap[] = {
+     [VIRT_GPIO] = 7,
+     [VIRT_SECURE_UART] = 8,
+     [VIRT_ACPI_GED] = 9,
++    [VIRT_SDMA] = 10,
+     [VIRT_MMIO] = 16, /* ...to 16 + NUM_VIRTIO_TRANSPORTS - 1 */
+     [VIRT_GIC_V2M] = 48, /* ...to 48 + NUM_GICV2M_SPIS - 1 */
+     [VIRT_SMMU] = 74,    /* ...to 74 + NUM_SMMU_IRQS - 1 */
+@@ -721,6 +725,64 @@ static void create_gic(VirtMachineState *vms)
+     }
+ }
+ 
++// create the secstore device
++static void create_sdma(const VirtMachineState *vms, int dma,
++                        MemoryRegion *mem)
++{
++
++    char *nodename;
++
++    // reserved secure memory region
++    MemoryRegion *secram = g_new(MemoryRegion, 1);
++    hwaddr membase = vms->memmap[VIRT_SECURE_DMA].base;
++    hwaddr memsize = vms->memmap[VIRT_SECURE_DMA].size;
++    
++    memory_region_init_ram(secram, NULL, "virt.secure-dma", memsize,
++                           &error_fatal);
++    memory_region_add_subregion(mem, membase, secram);
++
++    // add reserved memory to device tree
++    nodename = g_strdup_printf("/secram@%" PRIx64, membase);
++    qemu_fdt_add_subnode(vms->fdt, nodename);
++    qemu_fdt_setprop_string(vms->fdt, nodename, "device_type", "memory");
++    qemu_fdt_setprop_sized_cells(vms->fdt, nodename, "reg", 2, membase, 2, memsize);
++    qemu_fdt_setprop_string(vms->fdt, nodename, "status", "disabled");
++    qemu_fdt_setprop_string(vms->fdt, nodename, "secure-status", "okay");
++
++    g_free(nodename);
++
++    hwaddr base = vms->memmap[dma].base;
++    hwaddr size = vms->memmap[dma].size;
++
++    int irq = vms->irqmap[dma];
++    const char compat[] = "gym,pl666\0gym,nocell";
++
++    DeviceState *dev = qdev_create(NULL, "pl666"); 
++    SysBusDevice *s = SYS_BUS_DEVICE(dev);
++    object_property_set_link(OBJECT(dev), OBJECT(mem), "apmem",
++                             &error_fatal);
++    object_property_set_link(OBJECT(dev), OBJECT(secram), "secmem",
++                             &error_fatal);
++    qdev_init_nofail(dev);
++
++    memory_region_add_subregion(mem, base,
++                                sysbus_mmio_get_region(s, 0));
++    sysbus_connect_irq(s, 0, qdev_get_gpio_in(vms->gic, irq));
++
++    // add the device to the devicetree
++    nodename = g_strdup_printf("/pl666@%" PRIx64, base);
++    qemu_fdt_add_subnode(vms->fdt, nodename);
++    qemu_fdt_setprop(vms->fdt, nodename, "compatible",
++                         compat, sizeof(compat));
++    qemu_fdt_setprop_sized_cells(vms->fdt, nodename, "reg",
++                                     2, base, 2, size);
++    qemu_fdt_setprop_cells(vms->fdt, nodename, "interrupts",
++                               GIC_FDT_IRQ_TYPE_SPI, irq,
++                               GIC_FDT_IRQ_FLAGS_LEVEL_HI);
++    g_free(nodename);
++
++}
++
+ static void create_uart(const VirtMachineState *vms, int uart,
+                         MemoryRegion *mem, Chardev *chr)
+ {
+@@ -1833,12 +1895,16 @@ static void machvirt_init(MachineState *machine)
+     fdt_add_pmu_nodes(vms);
+ 
+     create_uart(vms, VIRT_UART, sysmem, serial_hd(0));
+-
++    
++    if (1) {
++    create_sdma(vms, VIRT_SDMA, sysmem);
++    }
+     if (vms->secure) {
+         create_secure_ram(vms, secure_sysmem);
+         create_uart(vms, VIRT_SECURE_UART, secure_sysmem, serial_hd(1));
+     }
+ 
++
+     vms->highmem_ecam &= vms->highmem && (!firmware_loaded || aarch64);
+ 
+     create_rtc(vms);
+diff --git a/hw/dma/Kconfig b/hw/dma/Kconfig
+index 5c61b67bc0..766dbe7a3a 100644
+--- a/hw/dma/Kconfig
++++ b/hw/dma/Kconfig
+@@ -7,6 +7,9 @@ config PL080
+ config PL330
+     bool
+ 
++config PL666
++    bool
++
+ config I82374
+     bool
+     select I8257
+diff --git a/hw/dma/Makefile.objs b/hw/dma/Makefile.objs
+index f4b1cfe26d..0c330689ef 100644
+--- a/hw/dma/Makefile.objs
++++ b/hw/dma/Makefile.objs
+@@ -2,6 +2,7 @@ common-obj-$(CONFIG_PUV3) += puv3_dma.o
+ common-obj-$(CONFIG_RC4030) += rc4030.o
+ common-obj-$(CONFIG_PL080) += pl080.o
+ common-obj-$(CONFIG_PL330) += pl330.o
++common-obj-$(CONFIG_PL666) += pl666.o
+ common-obj-$(CONFIG_I82374) += i82374.o
+ common-obj-$(CONFIG_I8257) += i8257.o
+ common-obj-$(CONFIG_XILINX_AXI) += xilinx_axidma.o
+diff --git a/hw/dma/pl666.c b/hw/dma/pl666.c
+new file mode 100644
+index 0000000000..5b15a05dcf
+--- /dev/null
++++ b/hw/dma/pl666.c
+@@ -0,0 +1,312 @@
++#include "qemu/osdep.h"
++#include "hw/sysbus.h"
++#include "migration/vmstate.h"
++#include "exec/address-spaces.h"
++#include "qemu/log.h"
++#include "qemu/module.h"
++#include "hw/hw.h"
++#include "hw/irq.h"
++#include "hw/qdev-properties.h"
++#include "qapi/error.h"
++
++#include "hw/core/cpu.h"
++
++//#include "target/arm/internals.h"
++
++#include "trace.h"
++
++#define PL666_CONF_EN 0x0001
++
++#define PL666_LLI_SIZE 0xffff0000
++#define PL666_LLI_FLAG 0x0000ffff
++#define PL666_LLI_MORE 0x0001
++#define PL666_LLI_READ 0x0002
++
++typedef struct PL666lli {
++    uint64_t src;
++    uint64_t dest;
++    uint32_t size;
++    uint32_t ctrl;
++} PL666lli;
++
++typedef struct PL666State {
++    SysBusDevice parent_obj;
++
++    MemoryRegion iomem;
++    uint8_t int_val;
++    uint8_t int_mask;
++    uint32_t conf;
++
++    uint64_t lli_address;
++
++    uint32_t ctrl;
++    /* Flag to avoid recursive DMA invocations.  */
++    int running;
++    qemu_irq irq;
++
++    MemoryRegion *apmem;
++    AddressSpace apmem_as;
++
++    MemoryRegion *secmem;
++    AddressSpace secmem_as;
++} PL666State;
++
++#define PL666(obj) OBJECT_CHECK(PL666State, (obj), "pl666")
++
++static const uint32_t pl666_id[] = {
++    0x66, 0x16, 0x04, 0x00, 0x0D, 0xF0, 0x05, 0xB1
++};
++
++static char buff[0x1000] = {};
++
++static void pl666_irq(PL666State *s){
++   qemu_set_irq(s->irq, !!(s->int_val & s->int_mask));
++}
++
++// Uses the emulated mmu to resolve guest virtual addresses
++hwaddr arm_cpu_get_phys_page_attrs_debug(CPUState *cs, uint64_t addr,
++                                         MemTxAttrs *attrs);
++
++// Implements the dma transaction
++static void pl666_run(PL666State *s){
++
++    MemTxAttrs tx = {};
++    MemTxResult res;
++    PL666lli llitem;
++    hwaddr addr;
++    s->int_mask = 0;
++    s->ctrl = 0;
++
++
++    if ((s->conf & PL666_CONF_EN) == 0){
++        return;
++    }
++
++    if (s->running) {
++        return;
++    }
++    s->running = 1;
++   
++    // resolve the lli address
++    hwaddr lli = arm_cpu_get_phys_page_attrs_debug(current_cpu, s->lli_address, &tx);
++    trace_pl666_run(s->lli_address, lli, (uint64_t)current_cpu);
++
++    if (lli == -1){
++        s->ctrl = -1;
++        goto out;
++    } 
++
++
++    do {
++        // read the lli item
++        res = address_space_read(&s->apmem_as, lli, MEMTXATTRS_UNSPECIFIED, (char*)&llitem, sizeof(llitem));
++        lli += sizeof(llitem);
++        if (res != MEMTX_OK){
++            s->ctrl = -2;
++            goto out;
++        }
++
++        if (llitem.size > 0x1000){
++            s->ctrl = -3;
++            goto out;
++        }
++
++        memset(buff, 0, sizeof(buff));
++        // copy to/from secstore
++        if (llitem.ctrl & PL666_LLI_READ){
++            addr = arm_cpu_get_phys_page_attrs_debug(current_cpu, llitem.dest, &tx);
++            trace_pl666_run(llitem.dest, addr, llitem.size);
++
++            if (addr == -1){
++                s->ctrl = -4;
++                goto out;
++            } 
++
++            res = address_space_read(&s->secmem_as, llitem.src + s->secmem->addr, MEMTXATTRS_UNSPECIFIED, buff, llitem.size);
++            if (res != MEMTX_OK){
++                s->ctrl = -5;
++                goto out;
++            }
++            res = address_space_write(&s->apmem_as, addr, MEMTXATTRS_UNSPECIFIED, buff, llitem.size);
++            if (res != MEMTX_OK){
++                s->ctrl = -6;
++                goto out;
++            }
++        } else {
++            addr = arm_cpu_get_phys_page_attrs_debug(current_cpu, llitem.src, &tx);
++            trace_pl666_run(llitem.src, addr, llitem.size);
++
++            if (addr == -1){
++                s->ctrl = -4;
++                goto out;
++            } 
++
++            res = address_space_read(&s->apmem_as, addr, MEMTXATTRS_UNSPECIFIED, buff, llitem.size);
++            if (res != MEMTX_OK){
++                s->ctrl = -7;
++                goto out;
++            }
++            res = address_space_write(&s->secmem_as, llitem.dest + s->secmem->addr, MEMTXATTRS_UNSPECIFIED, buff, llitem.size);
++            if (res != MEMTX_OK){
++                s->ctrl = -8;
++                goto out;
++            }
++        }
++
++    } while (llitem.ctrl & PL666_LLI_MORE);
++
++out:
++    s->int_mask = 1;
++    s->int_val = 1;
++    s->running = 0;
++    return;
++
++}
++
++// MMIO read
++static uint64_t pl666_read(void *opaque, hwaddr offset,
++                           unsigned size)
++{
++    PL666State *s = (PL666State*)opaque;
++
++    trace_pl666_read((int)offset);
++
++    if (offset >= 0xfe0 && offset < 0x1000) {
++        return pl666_id[(offset - 0xfe0) >> 2];
++    }
++    switch (offset>>2) {
++        case 0:
++            // interrupt cause
++            return s->int_mask;
++        case 1:
++            // interrupt cause
++            return s->int_val;
++        case 2:
++            // configuration
++            return s->conf;
++        case 3:
++            // debug register
++            return s->ctrl;
++        default:
++            qemu_log_mask(LOG_GUEST_ERROR, "%s: Bad offset %x\n", __func__,  (int)offset);
++    
++    }
++    return 0;
++}
++
++// MMIO write
++static void pl666_write(void *opaque, hwaddr offset,
++                        uint64_t value, unsigned size)
++{
++    PL666State *s = (PL666State*)opaque;
++    trace_pl666_write((int)offset, value);
++    switch (offset>>2) {
++        case 0:
++            // Set irq
++            s->int_val = !!value;
++            s->int_mask = !!value;
++            break;
++        case 1:
++            // Clear irq
++            s->int_val &= ~value;
++            break;
++        case 2:
++            // configuration register
++            s->conf = value;
++            if (s->conf & PL666_CONF_EN) {
++                pl666_run(s);
++            }
++            break;
++        case 3:
++            // lower 4 bytes of the lli address
++            s->lli_address = value;
++            break;
++        case 4:
++            // upper 4 bytes of the lli address
++            s->lli_address |= (uint64_t)value<<32;
++            break;
++        default:
++            qemu_log_mask(LOG_GUEST_ERROR, "%s: Bad offset %x\n", __func__, (int)offset);
++    
++    }
++    pl666_irq(s);
++}
++
++static const MemoryRegionOps pl666_ops = {
++    .read = pl666_read,
++    .write = pl666_write,
++    .endianness = DEVICE_NATIVE_ENDIAN,
++};
++
++
++static void pl666_reset(DeviceState *dev)
++{
++    PL666State *s = PL666(dev);
++
++    trace_pl666_reset();
++
++    s->conf = 0;
++    s->running = 0;
++    
++    s->int_val = 0;
++    s->int_mask = 0;
++    s->lli_address = 0;
++}
++
++static void pl666_init(Object *obj)
++{
++    trace_pl666_init();
++    SysBusDevice *sbd = SYS_BUS_DEVICE(obj);
++    PL666State *s = PL666(obj);
++
++    memory_region_init_io(&s->iomem, OBJECT(s), &pl666_ops, s, "pl666", 0x1000);
++    sysbus_init_mmio(sbd, &s->iomem);
++    sysbus_init_irq(sbd, &s->irq);
++}
++
++static void pl666_realize(DeviceState *dev, Error **errp)
++{
++    PL666State *s = PL666(dev);
++
++    trace_pl666_realize();
++    if (!s->apmem || !s->secmem) {
++        error_setg(errp, "PL666 mem region not set");
++        return;
++    }
++
++    address_space_init(&s->apmem_as, s->apmem, "pl666-apmem");
++    address_space_init(&s->secmem_as, s->secmem, "pl666-secmem");
++}
++
++static Property pl666_properties[] = {
++    DEFINE_PROP_LINK("apmem", PL666State, apmem,
++                     TYPE_MEMORY_REGION, MemoryRegion *),
++    DEFINE_PROP_LINK("secmem", PL666State, secmem,
++                     TYPE_MEMORY_REGION, MemoryRegion *),
++    DEFINE_PROP_END_OF_LIST(),
++};
++
++static void pl666_class_init(ObjectClass *oc, void *data)
++{
++    DeviceClass *dc = DEVICE_CLASS(oc);
++
++    //dc->vmsd = &vmstate_pl666; //lets hope this works
++    dc->realize = pl666_realize;
++    device_class_set_props(dc, pl666_properties);
++    dc->reset = pl666_reset;
++}
++
++static const TypeInfo pl666_info = {
++    .name          = "pl666",
++    .parent        = TYPE_SYS_BUS_DEVICE,
++    .instance_size = sizeof(PL666State),
++    .instance_init = pl666_init,
++    .class_init    = pl666_class_init,
++};
++
++static void pl666_register_types(void)
++{
++    type_register_static(&pl666_info);
++}
++
++type_init(pl666_register_types)
+diff --git a/hw/dma/trace-events b/hw/dma/trace-events
+index 44893995f6..f13d190c2d 100644
+--- a/hw/dma/trace-events
++++ b/hw/dma/trace-events
+@@ -44,3 +44,11 @@ pl330_debug_exec_stall(void) "stall of debug instruction not implemented"
+ pl330_iomem_write(uint32_t offset, uint32_t value) "addr: 0x%08"PRIx32" data: 0x%08"PRIx32
+ pl330_iomem_write_clr(int i) "event interrupt lowered %d"
+ pl330_iomem_read(uint32_t addr, uint32_t data) "addr: 0x%08"PRIx32" data: 0x%08"PRIx32
++
++# pl666.c
++pl666_init(void) "DMA init"
++pl666_reset(void) "DMA reset"
++pl666_realize(void) "DMA realize"
++pl666_read(int offset) "IOMEM read offset %x"
++pl666_write(int offset, uint64_t value) "IOMEM write offset %x val %lx"
++pl666_run(uint64_t virt, uint64_t phys, uint64_t cpu) "DMA trx virt: %lx phys: %lx cpu: %lx"
+diff --git a/include/hw/arm/virt.h b/include/hw/arm/virt.h
+index 60b2f521eb..c2ce967893 100644
+--- a/include/hw/arm/virt.h
++++ b/include/hw/arm/virt.h
+@@ -77,8 +77,10 @@ enum {
+     VIRT_GPIO,
+     VIRT_SECURE_UART,
+     VIRT_SECURE_MEM,
++    VIRT_SECURE_DMA,
+     VIRT_PCDIMM_ACPI,
+     VIRT_ACPI_GED,
++    VIRT_SDMA,
+     VIRT_LOWMEMMAP_LAST,
+ };
+ 

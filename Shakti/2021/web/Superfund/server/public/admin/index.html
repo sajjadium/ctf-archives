@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a blog page with a list of posts.">
+    <title>Superfund - Traversing the Environment, Cleaning up America's Worst Pollution</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/base-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/forms-min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+  <body>
+    <div id="layout" class="pure-g">
+      <div class="sidebar pure-u-1 pure-u-md-1-4">
+          <div class="header" id="user">
+            <form method="POST" action="/admin-login" class="pure-form pure-form-aligned">
+              <fieldset>
+                <div class="pure-control-group">
+                  <label for="username">Username</label>
+                  <input id="username" type="text" name="username">
+                </div>
+                <div class="pure-control-group">
+                  <label for="password">Password</label>
+                  <input id="password" type="password" name="password">
+                </div>
+                <div class="pure-controls">
+                  <input type="submit" value="login">
+                </div>
+              </fieldset>
+            </form>
+          </div>
+      </div>
+      <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            <div class="posts">
+                <section class="post">
+                <header class="post-header">
+                  <h2 class="post-title" id="from">Loading...</h2>
+                </header>
+                <div class="post-description" id="message"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script src="/js/admin.js">
+    </script>
+  </body>
+</html>

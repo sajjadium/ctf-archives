@@ -1,0 +1,38 @@
+diff --git a/linux-user/syscall.c b/linux-user/syscall.c
+index 27adee9..2d75464 100644
+--- a/linux-user/syscall.c
++++ b/linux-user/syscall.c
+@@ -13101,8 +13101,31 @@ abi_long do_syscall(void *cpu_env, int num, abi_long arg1,
+         print_syscall(cpu_env, num, arg1, arg2, arg3, arg4, arg5, arg6);
+     }
+ 
+-    ret = do_syscall1(cpu_env, num, arg1, arg2, arg3, arg4,
+-                      arg5, arg6, arg7, arg8);
++    switch (num) {
++        // syscall whitelist
++        case TARGET_NR_brk:
++        case TARGET_NR_uname:
++        case TARGET_NR_readlinkat:
++        case TARGET_NR_faccessat:
++        case TARGET_NR_openat2:
++        case TARGET_NR_openat:
++        case TARGET_NR_read:
++        case TARGET_NR_readv:
++        case TARGET_NR_write:
++        case TARGET_NR_writev:
++        case TARGET_NR_mmap:
++        case TARGET_NR_munmap:
++        case TARGET_NR_exit:
++        case TARGET_NR_exit_group:
++        case TARGET_NR_mprotect:
++            ret = do_syscall1(cpu_env, num, arg1, arg2, arg3, arg4,
++                    arg5, arg6, arg7, arg8);
++            break;
++        default:
++            printf("[!] %d bad system call\n", num);
++            ret = -1;
++            break;
++    }
+ 
+     if (unlikely(qemu_loglevel_mask(LOG_STRACE))) {
+         print_syscall_ret(cpu_env, num, ret, arg1, arg2,

@@ -1,0 +1,14 @@
+service pincette_server
+{
+    disable     = no
+    type        = UNLISTED
+    protocol    = tcp
+    port        = 10000
+    socket_type = stream
+    wait        = no
+    user        = root
+    group       = root
+    server      = /opt/pincette/server.py
+    per_source  = 5
+    flags       = IPv4
+}

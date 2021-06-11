@@ -1,0 +1,4 @@
+#!/bin/bash
+echo ICMgICAjICAgICMjIyMgICAgIyMjIyMgICMjIyMjIwogICMgIyAgICAjICAgICMgICAgICMgICAgIwojIyMgIyMjICAjICAgICAgICAgICMgICAgIyMjIyMKICAjICMgICAgIyAgICAgICAgICAjICAgICMKICMgICAjICAgIyAgICAjICAgICAjICAgICMKICAgICAgICAgICMjIyMgICAgICAjICAgICMK | base64 -d
+exec 2>/dev/null
+timeout 30 ./lib/ld-2.29.so --library-path ./lib ./chall

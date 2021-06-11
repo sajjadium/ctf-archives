@@ -1,0 +1,19 @@
+version: '3.7'
+services:
+  server:
+    image: pincette_server_devl
+    init: true
+    build:
+      context: .
+      target: devl
+      args:
+        - PINCETTE_UID=${PINCETTE_UID}
+        - PIN_URL=${PIN_URL}
+    container_name: pincette_server_devl
+    tty: true
+    volumes:
+      - ./src:/opt/src.latest
+    cap_add: 
+      - sys_ptrace
+    ports:
+      - "10000:10000"

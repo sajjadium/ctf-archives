@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tenable CTF: Spring MVC</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style type="text/css">
+	span.hidden { color:white; }	
+    </style>
+</head>
+<body>
+	<p th:text="'Hello, ' + ${name} + '!'" />
+	<p th:if="${name == 'please'}">
+	<span class="hidden" th:text="${@flagService.getFlag('hidden_flag')}" />
+	</p>
+	<p th:if="${#session.getAttribute('realName') == 'admin'}">
+	<span th:text="${#session.getAttribute('sessionFlag')}" />
+	</p>
+</body>
+</html>

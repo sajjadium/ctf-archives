@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  server:
+    build:
+      context: .
+      target: prod
+      args:
+        - PINCETTE_UID=${PINCETTE_UID}
+        - PIN_URL=${PIN_URL}
+    restart: always
+    init: true
+    tty: true
+    cap_add: 
+      - sys_ptrace
+    ports:
+      - "10000:10000"

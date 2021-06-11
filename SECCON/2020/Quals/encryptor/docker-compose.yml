@@ -1,0 +1,8 @@
+version: '3'
+services:
+  encryptor:
+    build:
+      context: .
+    ulimits:
+      nproc: 65535
+      core: 0

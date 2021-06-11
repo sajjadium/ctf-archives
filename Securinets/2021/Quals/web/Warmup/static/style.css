@@ -1,0 +1,33 @@
+body {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  background: #BCC6CC;
+}
+
+.auth{
+  margin: auto;
+  padding: 2%;
+  width: 400px;
+  margin-top: 10%;
+  background: #FFFFFF;
+  border: solid;
+  border-radius: 20px;
+  border-color: #BCC6CC;
+  word-break: break-all;
+}
+
+h1, form {
+  text-align: center;
+  font-size: 100%;
+}
+
+p {
+  text-align: left;
+}
+
+.list {
+  font-size: small;
+}
+
+.hidden {
+  visibility: hidden;
+}

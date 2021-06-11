@@ -1,0 +1,3 @@
+#!/bin/sh
+
+qemu-aarch64 -cpu max -L . ./chall

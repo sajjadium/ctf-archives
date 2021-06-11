@@ -1,0 +1,5 @@
+#!/bin/bash
+cd `dirname $0`
+exec 2>/dev/null
+echo ICMgICAjICAgICMjIyMgICAgIyMjIyMgICMjIyMjIwogICMgIyAgICAjICAgICMgICAgICMgICAgIwojIyMgIyMjICAjICAgICAgICAgICMgICAgIyMjIyMKICAjICMgICAgIyAgICAgICAgICAjICAgICMKICMgICAjICAgIyAgICAjICAgICAjICAgICMKICAgICAgICAgICMjIyMgICAgICAjICAgICMK | base64 -d
+timeout 60 chroot --userspec=pwn:pwn ./ ./heap_master

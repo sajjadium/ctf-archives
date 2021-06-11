@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<title></title>
+		<script src="https://www.google.com/recaptcha/api.js"></script>
+		<script>
+			function onSubmit(){
+				document.forms[0].submit();
+			}
+		</script>
+	</head>
+	<body>
+		<form method="POST" action="/report">
+			<h2>You could bypass our security mechanisms? Prove it - Steal admin's cookie if you can</h2>
+			URL: <input name="url" placeholder="http://..."><br><br>
+			<button class="g-recaptcha" 
+			        data-sitekey="6Lfbv7QaAAAAAMKtNL-_TSBvKBnbi0RR_YAXRNV4" 
+			        data-callback='onSubmit' 
+			        data-action='submit'>Submit</button>
+			<br>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,99 @@
+diff -r ./buildroot-2020.08-rc3/output/build/linux-5.4.58/arch/x86/net/bpf_jit_comp.c buildroot-2020.08-rc3_original/output/build/linux-5.4.58/arch/x86/net/bpf_jit_comp.c
+612d611
+< 		case BPF_ALU | BPF_ALSH | BPF_K:
+616d614
+< 		case BPF_ALU64 | BPF_ALSH | BPF_K:
+626d623
+< 			case BPF_ALSH: b3 = 0xE0; break; /* hex(asm('sal rax, 1')[-1]) = 0xE0 */
+638d634
+< 		case BPF_ALU | BPF_ALSH | BPF_X:
+642d637
+< 		case BPF_ALU64 | BPF_ALSH | BPF_X:
+668d662
+< 			case BPF_ALSH: b3 = 0xE0; break; /* hex(asm('sal rax, 1')[-1]) = 0xE0 */
+diff -r ./buildroot-2020.08-rc3/output/build/linux-5.4.58/include/linux/tnum.h buildroot-2020.08-rc3_original/output/build/linux-5.4.58/include/linux/tnum.h
+34,35d33
+< /* Shift (alsh) a tnum left (by a fixed min_shift) */
+< struct tnum tnum_alshift(struct tnum a, u8 min_shift, u8 insn_bitness);
+diff -r ./buildroot-2020.08-rc3/output/build/linux-5.4.58/include/uapi/linux/bpf.h buildroot-2020.08-rc3_original/output/build/linux-5.4.58/include/uapi/linux/bpf.h
+27d26
+< #define BPF_ALSH	0xe0	/* sign extending arithmetic shift left */
+diff -r ./buildroot-2020.08-rc3/output/build/linux-5.4.58/kernel/bpf/core.c ./buildroot-2020.08-rc3_original/output/build/linux-5.4.58/kernel/bpf/core.c
+1149d1148
+< 	INSN_3(ALU, ALSH, X),			\
+1166d1164
+< 	INSN_3(ALU, ALSH, K),			\
+1181d1178
+< 	INSN_3(ALU64, ALSH, X),			\
+1196d1192
+< 	INSN_3(ALU64, ALSH, K),			\
+1385,1396d1380
+< 		CONT;
+< 	ALU_ALSH_X:
+< 		DST = (u64) (u32) (((s32) DST) << SRC);
+< 		CONT;
+< 	ALU_ALSH_K:
+< 		DST = (u64) (u32) (((s32) DST) << IMM);
+< 		CONT;
+< 	ALU64_ALSH_X:
+< 		(*(s64 *) &DST) <<= SRC;
+< 		CONT;
+< 	ALU64_ALSH_K:
+< 		(*(s64 *) &DST) <<= IMM;
+diff -r ./buildroot-2020.08-rc3/output/build/linux-5.4.58/kernel/bpf/disasm.c buildroot-2020.08-rc3_original/output/build/linux-5.4.58/kernel/bpf/disasm.c
+80d79
+< 	[BPF_ALSH >> 4] = "s<<=",
+diff -r ./buildroot-2020.08-rc3/output/build/linux-5.4.58/kernel/bpf/tnum.c buildroot-2020.08-rc3_original/output/build/linux-5.4.58/kernel/bpf/tnum.c
+42,52d41
+< struct tnum tnum_alshift(struct tnum a, u8 min_shift, u8 insn_bitness)
+< {
+< 	if (insn_bitness == 32)
+< 		//Never reach here now.
+< 		return TNUM((u32)(((s32)a.value) << min_shift),
+< 			    (u32)(((s32)a.mask)  << min_shift));
+< 	else
+< 		return TNUM((s64)a.value << min_shift,
+< 			    (s64)a.mask  << min_shift);
+< }
+< 
+diff -r ./buildroot-2020.08-rc3/output/build/linux-5.4.58/kernel/bpf/verifier.c buildroot-2020.08-rc3_original/output/build/linux-5.4.58/kernel/bpf/verifier.c
+4867,4897d4866
+< 	case BPF_ALSH:
+< 		if (umax_val >= insn_bitness) {
+< 			/* Shifts greater than 31 or 63 are undefined.
+< 			 * This includes shifts by a negative number.
+< 			 */
+< 			mark_reg_unknown(env, regs, insn->dst_reg);
+< 			break;
+< 		}
+< 
+< 		/* Upon reaching here, src_known is true and
+< 		 * umax_val is equal to umin_val.
+< 		 */
+< 		if (insn_bitness == 32) {
+< 			//Now we don't support 32bit. Cuz im too lazy.
+< 			mark_reg_unknown(env, regs, insn->dst_reg);
+< 			break;
+< 		} else {
+< 			dst_reg->smin_value <<= umin_val;
+< 			dst_reg->smax_value <<= umin_val;
+< 		}
+< 
+< 		dst_reg->var_off = tnum_alshift(dst_reg->var_off, umin_val,
+< 						insn_bitness);
+< 
+< 		/* blow away the dst_reg umin_value/umax_value and rely on
+< 		 * dst_reg var_off to refine the result.
+< 		 */
+< 		dst_reg->umin_value = 0;
+< 		dst_reg->umax_value = U64_MAX;
+< 		__update_reg_bounds(dst_reg);
+< 		break;
+5099c5068
+< 	} else if (opcode > BPF_ALSH) {
+---
+> 	} else if (opcode > BPF_END) {
+5133c5102
+< 		     opcode == BPF_ARSH || opcode == BPF_ALSH) && BPF_SRC(insn->code) == BPF_K) {
+---
+> 		     opcode == BPF_ARSH) && BPF_SRC(insn->code) == BPF_K) {

@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<title>So safe website</title>
+		<link href="/css/styles.css" rel="stylesheet">
+		<meta http-equiv="Content-Security-Policy" content="trusted-types default safe dompurify; require-trusted-types-for 'script'; default-src 'self';">
+	</head>
+	<body>
+		<div class="cont">
+			<div class="we">Welcome <span id="vname">Loading...</span></div>
+			<div class="sub">The static website uses Trusted types + Dompurify, Custom filter and CSP. so i don't have to worry about dangerous inputs. You can report vulnerablities <a href="/report">here</a>. </div>
+		</div>	
+		<script src="/js/purify.min.js"></script>
+		<script src="/js/script.js"></script>
+		<!-- <script src="/js/debug.js"></script> -->
+	</body>
+</html>

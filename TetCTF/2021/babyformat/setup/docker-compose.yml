@@ -1,0 +1,11 @@
+version: '2'
+
+services: 
+  challenge:
+    build: 
+      context: .
+      args: 
+        - CHALL=babyformat
+    container_name: babyformat
+    ports:
+      - "33337:31337"

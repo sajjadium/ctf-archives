@@ -1,0 +1,27 @@
+body{
+	background-color: #0070b2;
+	color: white;
+	font-family: 'arial';
+	background-image: url(/img/blue.jpeg);
+	overflow: hidden;
+}
+
+.cont{
+	width: 100%;
+	text-align: center;
+	top: calc( 50% - 28px );
+	position: absolute;
+}
+
+.we{
+	font-size: 24px;
+}
+
+.sub{
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+iframe{
+	display: none;
+}

@@ -1,0 +1,67 @@
+version: '3'
+services:
+  server:
+    restart: always
+    build:
+      context: server/
+      dockerfile: Dockerfile
+    container_name: app1_server
+    command:
+      - /bin/bash
+      - -c
+      - |
+        iptables -P INPUT DROP
+        iptables -P OUTPUT DROP
+        iptables -A INPUT -s 172.21.0.0/16 -p tcp -j ACCEPT
+        iptables -A OUTPUT -d 172.21.0.0/16 -p tcp  -j ACCEPT
+        python3 -u /server/server.py
+    networks:
+         app1:
+            ipv4_address: 172.21.0.2
+
+  client:
+    restart: always
+    build:
+      context: client/
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    container_name: app1_client
+    command:
+      - /bin/bash
+      - -c
+      - |
+        iptables -P INPUT DROP
+        iptables -P OUTPUT DROP
+        iptables -A INPUT -s 172.21.0.0/16 -p tcp -j ACCEPT
+        iptables -A OUTPUT -d 172.21.0.0/16 -p tcp  -j ACCEPT
+        ./start.sh
+
+    networks:
+         app1:
+            ipv4_address: 172.21.0.3
+
+  webserver:
+    restart: always
+    build:
+      context: webserver/
+      dockerfile: Dockerfile
+    container_name: app1_webserver
+    ports:
+    - "5001:5000"
+
+    networks:
+         app1:
+            ipv4_address: 172.21.0.4
+    command:
+      - /bin/bash
+      - -c
+      - |
+        python3 /webserver/app.py
+
+networks:
+   app1:
+      ipam:
+         config:
+         - subnet: 172.21.0.0/16
+

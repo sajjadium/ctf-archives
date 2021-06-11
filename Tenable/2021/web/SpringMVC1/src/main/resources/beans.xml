@@ -1,0 +1,36 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+   <bean id="spring_mvc_1" class="com.tenable.ctf.mvc.Flag">
+	   <property name="flag" value="not_flag1"/>
+   </bean>
+   <bean id="spring_mvc_2" class="com.tenable.ctf.mvc.Flag">
+           <property name="flag" value="not_flag2"/>
+   </bean>
+   <bean id="spring_mvc_3" class="com.tenable.ctf.mvc.Flag">
+           <property name="flag" value="not_flag3"/>
+   </bean>
+   <bean id="spring_mvc_4" class="com.tenable.ctf.mvc.Flag">
+           <property name="flag" value="not_flag4"/>
+   </bean>
+   <bean id="spring_mvc_5" class="com.tenable.ctf.mvc.Flag">
+           <property name="flag" value="not_flag5"/>
+   </bean>
+   <bean id="spring_mvc_6" class="com.tenable.ctf.mvc.Flag">
+           <property name="flag" value="not_flag6"/>
+   </bean>
+   <bean id="spring_mvc_7" class="com.tenable.ctf.mvc.Flag">
+           <property name="flag" value="not_flag7"/>
+   </bean>
+   <bean id="session_flag" class="com.tenable.ctf.mvc.Flag">
+           <property name="flag" value="not_session_flag"/>
+   </bean>
+   <bean id="hidden_flag" class="com.tenable.ctf.mvc.Flag">
+           <property name="flag" value="not_hidden_flag"/>
+   </bean>
+
+</beans>

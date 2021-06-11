@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example that shows off a blog page with a list of posts.">
+    <title>Superfund - Traversing the Environment, Cleaning up America's Worst Pollution</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/base-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/forms-min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+  <body>
+    <div id="layout" class="pure-g">
+      <div class="sidebar pure-u-1 pure-u-md-1-4">
+          <div class="header">
+              <h1 class="brand-title">Superfund</h1>
+              <h2 class="brand-tagline">Traversing the Environment, Cleaning up America's Worst Pollution</h2>
+              <nav class="nav">
+                  <ul class="nav-list">
+                      <li class="nav-item">
+                          <a class="pure-button" href="/admin">Admin</a>
+                      </li>
+                  </ul>
+              </nav>
+          </div>
+      </div>
+      <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            <div class="posts">
+                <section class="post">
+                    <header class="post-header">
+                        <h2 class="post-title">Love Canal</h2>
+
+                        <p class="post-meta">
+                          <a href="https://en.wikipedia.org/wiki/Love_Canal">https://en.wikipedia.org/wiki/Love_Canal</a>
+                        </p>
+                    </header>
+
+                    <div class="post-description">
+                        <p>Love Canal is a neighborhood in Niagara Falls, New York, infamous as the location of a 70-acre (28 ha; 0.11 sq mi; 0.28 km2) landfill that became the site of an enormous environmental disaster in the 1970s. Decades of dumping toxic chemicals harmed the health of hundreds of residents; the area was cleaned up over the course of 21 years in a Superfund operation.</p>
+
+                        <p>In 1890, Love Canal was created as a model planned community, but was only partially developed. In the 1920s, the canal became a dump site for municipal refuse for the city of Niagara Falls. During the 1940s, the canal was purchased by Hooker Chemical Company, which used the site to dump 21,800 short tons (roughly 19,800 t) of chemical byproducts from the manufacturing of dyes, perfumes, and solvents for rubber and synthetic resins.</p>
+                          
+                        <p>Love Canal was sold to the local school district in 1953, after the threat of eminent domain. Over the next three decades, it attracted national attention for the public health problems originating from the former dumping of toxic waste on the grounds. This event displaced numerous families, leaving them with longstanding health issues and symptoms of high white blood cell counts and leukemia. Subsequently, the federal government passed the Superfund law. The resulting Superfund cleanup operation demolished the neighborhood, ending during 2004.</p>
+                          
+                        <p>In 1988, New York State Department of Health Commissioner David Axelrod called the Love Canal incident a "national symbol of a failure to exercise a sense of concern for future generations". The Love Canal incident was especially significant as a situation where the inhabitants "overflowed into the wastes instead of the other way around". The University at Buffalo Archives house a number of primary documents, photographs, and news clippings pertaining to the Love Canal environmental disaster; many items have been digitized and are viewable online.</p>
+                    </div>
+                </section>
+                <section class="post">
+                  <header class="post-header">
+                      <h2 class="post-title">Valley of the Drums</h2>
+
+                      <p class="post-meta">
+                        <a href="https://en.wikipedia.org/wiki/Valley_of_the_Drums">https://en.wikipedia.org/wiki/Valley_of_the_Drums</a>
+                      </p>
+                  </header>
+
+                  <div class="post-description">
+                      <p>The Valley of the Drums is a 23-acre (9.3 hectare) toxic waste site in northern Bullitt County, Kentucky, near Louisville, named after the waste-containing drums strewn across the area. After it had been collecting waste since the 1960s, the United States Environmental Protection Agency (EPA) analyzed the property and creek in 1979, finding high levels of heavy metal, polychlorinated biphenyls, and some 140 other chemical substances. It is known as one of the primary motivations for the passage of the Comprehensive Environmental Response, Compensation, and Liability Act, or Superfund Act of 1980. While the widely publicized Love Canal disaster is often credited as the reason the Superfund law was passed, Love Canal activist Lois Gibbs has said that Love Canal looked like a suburban community, while "Valley of the Drums became the visualization of the problem." Officially, cleanup began at the site in 1983 and ended in 1990, though later problems have been reported and investigated.
+                      </p>
+                  </div>
+              </section>
+              <section class="post">
+                <header class="post-header">
+                    <h3>Message Admin</h3>
+                </header>
+
+                <div class="post-description">
+                  <form method="POST" action="/message" class="pure-form pure-form-aligned">
+                    <fieldset>
+                      <div class="pure-control-group">
+                        Know anymore relatively prototypical instances of pollution? Let our admin know so we can add it to the site.
+                      </div>
+                      <div class="pure-control-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" placeholder="Email">
+                      </div>
+                      <div class="pure-control-group">
+                        <label for="message">Message</label>
+                        <textarea name="message" placeholder="Message" style="min-width: 221px; min-height: 125px;"></textarea>
+                      </div>
+                      <div class="pure-controls">
+                        <button id="submit" type="submit" class="pure-button pure-button-primary">Submit</button>
+                      </div>
+                    </fieldset>
+                  </form>
+                </div>
+                <p id="message-form"></p>
+                </div>
+            </section>
+            </div>
+        </div>
+    </div>
+    <script>
+      window.onload = () => {
+
+        // Submit click handler for sending messages
+        document.getElementById('submit').addEventListener('click', (e) => {
+          e.preventDefault();
+
+          // Build message post data
+          const submitMsg = document.getElementById('message-form');
+          let formData = new FormData(document.getElementsByTagName('FORM')[0]);
+          const data = {};
+          for (let kvp of formData.entries()) {
+            data[kvp[0]] = kvp[1];
+          }
+
+          // Post to server
+          fetch('/message', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(response => response.json())
+          .then(result => { // handle result
+            if (result.error) {
+              submitMsg.innerHTML = `Error: ${result.error}`;
+            } else {
+              submitMsg.innerHTML = "Message Sent";
+              console.log(`Message ID: ${result.id}`);
+            }
+          })
+          .catch(error => {
+            submitMsg.innerHTML = `Error: ${error}`;
+          });
+        });
+      };
+    </script>
+  </body>
+</html>
