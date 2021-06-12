@@ -1,0 +1,11 @@
+version: "3.7"
+services:
+  server:
+    build: .
+    image: frontend:latest
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../instance/docker-compose.yml:/instance/docker-compose.yml:ro # instance containers must be prebuilt
+    ports:
+      - 1001:1024

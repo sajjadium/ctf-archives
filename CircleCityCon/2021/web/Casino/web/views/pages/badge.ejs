@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include ("../partials/head") %>
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
+
+        <style>
+* {
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-family: Source Sans Pro;
+}
+
+#badge {
+    width: 400px;
+    height: 180px;
+    background-image: url("<%= bg %>");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -90px;
+    margin-left: -200px;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 20px;
+}
+
+.text {
+    display: flex;
+    flex-flow: column wrap;
+    margin-left: 20px;
+    overflow: hidden;
+}
+
+.user {
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 2px;
+}
+
+.balance {
+    font-size: 18px;
+}
+
+<%- css %>
+        </style>
+    </head>
+    <body>
+        <div id="badge">
+            <img class="avatar" src="<%= avatar %>" alt="avatar">
+            <div class="text">
+                <p class="user"><%= user %></p>
+                <p class="balance">$<%= balance %></p>
+            </div>
+        </div>
+    </body>
+</html>

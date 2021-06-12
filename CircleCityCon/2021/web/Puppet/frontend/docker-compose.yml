@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  server:
+    build: ./server
+    image: frontend:latest
+    restart: always
+    environment:
+      PGHOST: postgres
+      PGUSER: postgres
+      PGDATABASE: postgres
+      PGPASSWORD: "${POSTGRES_PASSWORD}"
+      MAX_WORKERS: 4
+      FLAG: ${FLAG:-you_forgot_the_flag_environment_variable}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../instance/docker-compose.yml:/instance/docker-compose.yml:ro # instance containers must be prebuilt
+    depends_on:
+      - postgres
+    ports:
+      - 80:8080
+  postgres:
+    image: postgres
+    restart: always
+    volumes:
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"

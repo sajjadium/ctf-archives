@@ -1,0 +1,11 @@
+version: "3"
+services:
+  challenge:
+    build: .
+    ports:
+      - "3100-3101:3100-3101"
+    privileged: true
+    restart: always
+    environment:
+      TOKEN: ${TOKEN:-super_secret_token}
+      FLAG: ${FLAG:-fake_flag}

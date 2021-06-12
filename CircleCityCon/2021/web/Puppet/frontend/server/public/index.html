@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="style.css">
+        <title>Puppet Submission Portal</title>
+    </head>
+    <body>
+        <header>
+            <h1>Puppet Submission Portal</h1>
+        </header>
+        <main>
+            <div class="input-area">
+                <input id="url-input" type="url" placeholder="URL for the admin to visit" />
+                <button id="submit">Submit</button>
+            </div>
+            <div id="status">
+                <div id="status-pow">Solving proof of work...</div>
+                <div id="status-queued">Queued; there are <span id="queue-count">0</span> jobs ahead of yours.</div>
+                <div id="status-processing">
+                    <div>Processing your job now.</div>
+                    <br />
+                    <div>Your instance will <span id="processing-verb">shut down</span> <span id="time-remaining">in 10 seconds</span>.</div>
+                </div>
+            </div>
+        </main>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
+<html>
+</html>

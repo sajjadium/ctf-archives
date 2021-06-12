@@ -1,0 +1,29 @@
+version: "3"
+services:
+  web:
+    build: ./web
+    ports:
+      - 3000:3000
+    restart: always
+    networks:
+      casino_internal:
+        ipv4_address: 172.16.0.10
+
+  bot:
+    build: ./bot
+    privileged: true
+    environment:
+      FLAG: ${FLAG:-fake_flag}
+      PUBLIC_URL: ${PUBLIC_URL:-http://localhost:3000}
+      DISCORD_TOKEN: ${DISCORD_TOKEN:-REDACTED}
+    restart: always
+    networks:
+      casino_internal:
+        ipv4_address: 172.16.0.11
+
+networks:
+  casino_internal:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.0.0/24

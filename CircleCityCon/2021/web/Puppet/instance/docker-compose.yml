@@ -1,0 +1,15 @@
+version: "3"
+services:
+  challenge:
+    build:
+      context: .
+    image: puppet:latest
+    privileged: true
+    environment:
+      - ATTACKER_URL
+      - FLAG
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 256M

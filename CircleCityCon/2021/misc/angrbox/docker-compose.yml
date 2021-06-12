@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  challenge:
+    build: .
+    privileged: true
+    ports:
+      - "7000:9000"
+    deploy:
+        resources:
+          limits:
+            memory: 2G

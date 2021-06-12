@@ -1,0 +1,86 @@
+* {
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+header {
+    background: #15aec2;
+    color: #ffffff;
+    padding: 12px 24px;
+}
+
+main {
+    padding: 32px 24px;
+    color: #444444;
+}
+
+.input-area {
+    display: flex;
+}
+
+#url-input {
+    width: 400px;
+    padding: 2px 0px;
+    border: 0px;
+    border-bottom: 2px solid #888888;
+    outline: none;
+    font-size: 16px;
+    margin-right: 12px;
+    color: #444444;
+}
+
+#url-input:focus {
+    border-bottom-color: #2979FF;
+}
+
+#url-input:disabled {
+    border-bottom-color: #cccccc;
+    color: #888888;
+    background: transparent;
+}
+
+#submit {
+    padding: 8px 12px;
+    background: #4CAF50;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+#submit:hover {
+    background: #66BB6A;
+}
+
+#submit:active {
+    background: #43A047;
+}
+
+#submit:disabled {
+    background: #bdbdbd;
+    cursor: not-allowed;
+}
+
+#status {
+    margin-top: 24px;
+}
+
+#status-pow,
+#status-queued,
+#status-processing {
+    display: none;
+}
+
+code {
+    font-family: monospace;
+}
+
+#queue-count,
+#processing-verb,
+#time-remaining {
+    font-weight: bold;
+}

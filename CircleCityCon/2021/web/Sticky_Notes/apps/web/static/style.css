@@ -1,0 +1,153 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
+
+#app {
+    padding: 2em;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.jumbotron {
+    font-size: 2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.button, button, input[type="submit"] {
+    font-family: inherit;
+    border: 1px #d0d0d0 solid;
+    border-radius: 2px;
+
+    outline: none;
+    cursor: pointer;
+    text-transform: none;
+    margin: 0;
+    margin-bottom: 1em;
+
+    font-size: 1rem;
+    padding: 1em;
+
+    background-color: white;
+    color: #555;
+    text-decoration: none;
+
+    box-shadow: 0 3px 5px -2px rgba(0, 0, 0, 0.4);
+    transition: 0.25s;
+}
+
+button.icon {
+    border: none;
+    box-shadow: none;
+    margin: 0;
+    margin-left: 1em;
+
+    background-color: transparent;
+    padding: 0.25em;
+}
+
+button.icon:hover {
+    box-shadow: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+}
+
+input[type="submit"] {
+    align-self: start;
+}
+
+input, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+    font-size: 1rem;
+    padding: 1em;
+    margin-bottom: 1em;
+    outline: none;
+    background: none;
+    box-shadow: none;
+    border: 1px #d0d0d0 solid;
+    border-radius: 2px;
+    transition: 0.25s;
+}
+
+textarea:focus {
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.2);
+    transition: 0.25s;
+}
+
+a.button:hover, button:hover, input[type="submit"]:hover {
+    color: black;
+    box-shadow: 0 10px 12px -2px rgba(0, 0, 0, 0.4);
+    transition: 0.25s;
+}
+
+#notes {
+    display: inline-grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    justify-items: start;
+    margin-bottom: 1.5em;
+}
+
+#notes-placeholder {
+    color: #999;
+}
+
+iframe {
+    padding: 1em;
+    border: none;
+    background-color: #fdffd7;
+    max-width: 175px;
+    box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+    transition: 0.25s;
+}
+
+iframe:hover {
+    box-shadow: 0 10px 12px -2px rgba(0, 0, 0, 0.4);
+    transition: 0.25s;
+}
+
+@media only screen and (max-width: 720px) {
+    #notes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 512px) {
+    #notes {
+        grid-template-columns: auto;
+    }
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include ("../partials/head") %>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css">
+
+        <script async>
+(async () => {
+    const res = await fetch('/rich')
+    const data = await res.json()
+
+    const table = document.getElementById('rich')
+
+    for (const p of data) {
+        const user = p.user
+        const balance = p.balance
+
+        const row = table.insertRow()
+        const userCell = document.createElement('th')
+        const balanceCell = document.createElement('td')
+
+        const userA = document.createElement('a')
+        userA.href = `/badge?user=${encodeURIComponent(user)}`
+        userA.className = 'has-text-dark'
+
+        const userText = document.createTextNode(user)
+        const balanceText = document.createTextNode('$' + balance)
+
+        userA.appendChild(userText)
+
+        userCell.appendChild(userA)
+        balanceCell.appendChild(balanceText)
+
+        row.appendChild(userCell)
+        row.appendChild(balanceCell)
+    }
+
+    table.removeAttribute('hidden')
+})()
+        </script>
+
+        <style>
+#rich th { text-align: right; }
+#rich td { text-align: left; }
+        </style>
+    </head>
+    <body>
+        <section class="hero is-fullheight">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">Casino Leaderboard</h1>
+                    <p class="subtitle">Have a look at our <b>richest</b> users!</p>
+                    <table id="rich" class="table is-hoverable" hidden></table>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

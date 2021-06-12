@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="/static/style.css" type="text/css" media="all">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <title>Sticky Notes</title>
+    </head>
+    <body>
+        <div id="app">
+            <header>
+                <h1><a href="/">Sticky Notes</a></h1>
+                <button class="icon" id="report-button" title="Report this board">
+                    <i id="report-icon" class="material-icons-outlined">report</i>
+                </button>
+            </header>
+
+            <div id="notes">
+                <p id="notes-placeholder">No notes on this board</p>
+            </div>
+
+            <form id="add-note-form">
+                <textarea name="body" id="note-textarea" placeholder="Type a note" rows="10"></textarea>
+                <input type="submit" value="Add note">
+            </form>
+        </div>
+
+        <script src="/static/main.js"></script>
+    </body>
+</html>

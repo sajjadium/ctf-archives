@@ -1,0 +1,106 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 18px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
+
+#app {
+    padding: 2em;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.jumbotron {
+    font-size: 2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    font-size: 1.5ex;
+    color: #222;
+    margin: 0;
+    margin-bottom: 0.25em;
+}
+
+.subtitle {
+    font-size: 1ex;
+    color: #777;
+    margin: 0;
+    margin-bottom: 2em;
+}
+
+.submit {
+    outline: none;
+    margin: 0;
+    border: 1px transparent solid;
+    border-radius: 0 4px 4px 0;
+    box-shadow: none;
+    background-color: #5198cc;
+
+    cursor: pointer;
+    color: #222;
+}
+
+.submit.pending {
+    background-color: #d9d861;
+}
+
+.submit.success {
+    background-color: #6ccc51;
+}
+
+.submit.error {
+    background-color: #cc5151;
+}
+
+.submit > span {
+    color: white;
+    padding: 0.5em;
+}
+
+form {
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: 1rem;
+    align-items: stretch;
+}
+
+input {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    font-size: 1rem;
+
+    margin: 0;
+    padding: 1em;
+    outline: none;
+    background: none;
+    box-shadow: none;
+
+    border: 1px #d0d0d0 solid;
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+    transition: 0.25s;
+
+    color: #666;
+}
+
+::placeholder {
+    color: #b0b0b0;
+}
+
+input:focus {
+    transition: 0.25s;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.15);
+}

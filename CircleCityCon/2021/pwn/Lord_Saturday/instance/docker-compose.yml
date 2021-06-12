@@ -1,0 +1,16 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+    image: lord-saturday:latest
+    ports:
+      - "${PORT:-9999}:9999"
+    environment:
+      - PORT=${PORT-9999}
+      - PASSWORD=${PASSWORD:-passw0rd}
+    deploy:
+      resources:
+        limits:
+          cpus: '0.25'
+          memory: 128M
