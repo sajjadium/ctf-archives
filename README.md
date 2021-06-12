@@ -99,6 +99,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1110/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="BCACTF">BCACTF</a></td>
+            <td><a href="BCACTF/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1369/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="BCTF">BCTF</a></td>
             <td><a href="BCTF/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/708/tasks/">CTFtime</a></td>
@@ -266,6 +271,11 @@ Collection of CTF challenges.
             <td rowspan=1><a href="Chujowy">Chujowy</a></td>
             <td><a href="Chujowy/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1087/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td rowspan=1><a href="CircleCityCon">CircleCityCon</a></td>
+            <td><a href="CircleCityCon/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1350/tasks/">CTFtime</a></td>
         </tr>
         <tr>
             <td rowspan=1><a href="CodeBlue">CODE BLUE</a></td>
@@ -947,6 +957,11 @@ Collection of CTF challenges.
             <td rowspan=1><a href="TGHACK">TG:HACK</a></td>
             <td><a href="TGHACK/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/932/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td rowspan=1><a href="THC">THC</a></td>
+            <td><a href="THC/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1381/tasks/">CTFtime</a></td>
         </tr>
         <tr>
             <td rowspan=1><a href="TJCTF">TJCTF</a></td>
