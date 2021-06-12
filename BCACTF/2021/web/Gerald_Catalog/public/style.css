@@ -1,0 +1,50 @@
+:root {
+    --mdc-typography-font-family: system-ui, sans-serif;   
+}
+
+*, *::before, *::after {
+    margin: 0;
+}
+
+body {
+    min-height: 100vh;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    background-size: cover;
+    background-image: linear-gradient(to right, #FAFAFA, rgba(250, 250, 250, 0.8)), url(/gerald.png);
+}
+
+.marketing {
+    margin: 64px;
+    max-width: 540px;
+}
+
+.marketing h1, .marketing > p {
+    margin-bottom: 1rem;
+}
+
+.margin {
+    margin-bottom: 0.5rem;
+}
+
+.add-gerald {
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+}
+
+.gerald {
+    margin-bottom: 0.5rem;
+}
+
+.mdc-card__content {
+    padding: 16px 16px 0 16px;
+}

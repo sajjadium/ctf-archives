@@ -1,0 +1,23 @@
+{
+    "main": "dist/server.js",
+    "scripts": {
+        "build": "tsc",
+        "build:watch": "tsc -w",
+        "start": "node dist/server.js"
+    },
+    "dependencies": {
+        "@koa/router": "^10.0.0",
+        "koa": "^2.13.1",
+        "koa-bodyparser": "^4.3.0",
+        "koa-static": "^5.0.0",
+        "puppeteer": "^10.0.0"
+    },
+    "devDependencies": {
+        "@types/koa": "^2.13.3",
+        "@types/koa__router": "^8.0.4",
+        "@types/koa-bodyparser": "^4.3.1",
+        "@types/koa-static": "^4.0.1",
+        "@types/node": "^15.12.2",
+        "typescript": "^4.3.2"
+    }
+}

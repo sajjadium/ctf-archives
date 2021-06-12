@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="/style.css">
+        <title>{{gerald.name}} • The Gerald Catalog</title>
+    </head>
+    <body class="mdc-typography">
+        <header class="mdc-top-app-bar">
+            <div class="mdc-top-app-bar__row">
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                    <a class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" href="/geralds" label="Back">arrow_back</a>
+                </section>
+            </div>
+        </header>
+        <main class="mdc-top-app-bar--fixed-adjust">
+            <div class="marketing">
+                <h1>{{gerald.name}}</h1>
+                <img src="{{image}}" />
+            </div>
+        </main>
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <script src="/script.js"></script>
+    </body>
+</html>

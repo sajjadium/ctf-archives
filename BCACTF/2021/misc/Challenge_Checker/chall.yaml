@@ -1,0 +1,23 @@
+name: Challenge Checker 
+categories:
+  - misc
+value: 150
+flag:
+  file: ./flag.txt
+description: |-
+  I made this challenge checker to automate away ed's job. Maybe you can get a flag if you give it enough delicious yams...
+hints:
+  - Try looking up some documentation.
+  - Can you read `flag.txt`?
+deploy:
+  nc:
+    build: .
+    expose: 9999
+files:
+  - src: chall.yaml
+  - src: requirements.txt
+  - src: verify.py
+authors:
+  - anli
+  - Edward Feng
+visible: true

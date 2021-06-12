@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="/style.css">
+        <title>Catalog a Gerald • The Gerald Catalog</title>
+    </head>
+    <body class="mdc-typography">
+        <header class="mdc-top-app-bar">
+            <div class="mdc-top-app-bar__row">
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                    <a class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" href="/geralds" label="Back">arrow_back</a>
+                </section>
+            </div>
+        </header>
+        <main class="mdc-top-app-bar--fixed-adjust">
+            {{#if username}}
+            <form method="POST" class="marketing">
+                <h1>Catalog a Gerald</h1>
+                <div class="margin">
+                    <label class="mdc-text-field mdc-text-field--outlined">
+                        <span class="mdc-notched-outline">
+                            <span class="mdc-notched-outline__leading"></span>
+                            <span class="mdc-notched-outline__notch">
+                                <span class="mdc-floating-label" id="name-label">Name</span>
+                            </span>
+                            <span class="mdc-notched-outline__trailing"></span>
+                        </span>
+                        <input type="text" class="mdc-text-field__input" aria-labelledby="name-label" name="name">
+                    </label>
+                </div>
+                <div class="margin">
+                    <label class="mdc-text-field mdc-text-field--outlined">
+                        <span class="mdc-notched-outline">
+                            <span class="mdc-notched-outline__leading"></span>
+                            <span class="mdc-notched-outline__notch">
+                                <span class="mdc-floating-label" id="caption-label">What is this Gerald saying?</span>
+                            </span>
+                            <span class="mdc-notched-outline__trailing"></span>
+                        </span>
+                        <input maxlength="{{maxLength}}" type="text" class="mdc-text-field__input" aria-labelledby="caption-label" name="caption">
+                    </label>
+                </div>
+                <button class="mdc-button mdc-button--raised" type="submit">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">Catalog</span>
+                </button>
+            </div>
+            {{else}}
+            <div class="marketing">
+                <p>You must be logged in to access this page.</p>
+                <a class="mdc-button mdc-button--raised" href="/login">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">Log in</span>
+                </a>
+            </div>
+            {{/if}}
+        </main>
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <script src="/script.js"></script>
+    </body>
+</html>

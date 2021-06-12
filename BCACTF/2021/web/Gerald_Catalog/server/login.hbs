@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="/style.css">
+        <title>Log in • The Gerald Catalog</title>
+    </head>
+    <body class="mdc-typography">
+        <header class="mdc-top-app-bar">
+            <div class="mdc-top-app-bar__row">
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                    <a class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" href="/">home</a>
+                    <span class="mdc-top-app-bar__title">Gerald Catalog</span>
+                </section>
+            </div>
+        </header>
+        <main class="mdc-top-app-bar--fixed-adjust">
+            <form class="marketing" method="POST">
+                <h1>Log in</h1>
+                <p>Or <a href="/register">register</a> instead.</p>
+                <p class="mdc-typography--headline6">{{flash.message}}</div>
+                <div class="margin">
+                    <label class="mdc-text-field mdc-text-field--outlined">
+                        <span class="mdc-notched-outline">
+                            <span class="mdc-notched-outline__leading"></span>
+                            <span class="mdc-notched-outline__notch">
+                                <span class="mdc-floating-label" id="username-label">Username</span>
+                            </span>
+                            <span class="mdc-notched-outline__trailing"></span>
+                        </span>
+                        <input required type="text" class="mdc-text-field__input" aria-labelledby="username-label" name="username">
+                    </label>
+                </div>
+                <div class="margin">
+                    <label class="mdc-text-field mdc-text-field--outlined">
+                        <span class="mdc-notched-outline">
+                            <span class="mdc-notched-outline__leading"></span>
+                            <span class="mdc-notched-outline__notch">
+                                <span class="mdc-floating-label" id="password-label">Password</span>
+                            </span>
+                            <span class="mdc-notched-outline__trailing"></span>
+                        </span>
+                        <input required type="password" class="mdc-text-field__input" aria-labelledby="password-label" name="password">
+                    </label>
+                </div>
+                <button class="mdc-button mdc-button--raised" type="submit">
+                    <span class="mdc-button__ripple"></span>
+                    <span class="mdc-button__label">Log in</span>
+                </button>
+            </form>
+        </main>
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <script src="/script.js"></script>
+    </body>
+</html>

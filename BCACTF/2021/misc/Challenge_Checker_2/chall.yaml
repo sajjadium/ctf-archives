@@ -1,0 +1,22 @@
+name: Challenge Checker 2 
+categories:
+  - misc
+value: 200
+flag:
+  file: ./flag.txt
+description: |-
+  New version, better security, right?
+hints:
+  - What's changed?
+deploy:
+  nc:
+    build: .
+    expose: 9999
+files:
+  - src: chall.yaml
+  - src: requirements.txt
+  - src: verify.py
+authors:
+  - anli
+  - Edward Feng
+visible: true

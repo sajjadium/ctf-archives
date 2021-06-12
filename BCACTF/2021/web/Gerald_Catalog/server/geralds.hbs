@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="/style.css">
+        <title>Your Geralds • The Gerald Catalog</title>
+    </head>
+    <body class="mdc-typography">
+        <header class="mdc-top-app-bar">
+            <div class="mdc-top-app-bar__row">
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                    <a class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button" href="/">home</a>
+                    <span class="mdc-top-app-bar__title">Gerald Catalog</span>
+                </section>
+                <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+                    <span>{{username}}</span>
+                    <a class="material-icons mdc-top-app-bar__action-item mdc-icon-button" href="/logout">logout</a>
+                </section>
+            </div>
+        </header>
+        <main class="mdc-top-app-bar--fixed-adjust">
+            <div class="marketing">
+                <h1>Your Geralds</h1>
+                {{#each geralds}}
+                <div class="mdc-card gerald">
+                    <div class="mdc-card__content">
+                        <h4 class="mdc-typography--headline6">{{name}}</h4>
+                        {{#if copyrightClaim}}
+                        <p><i class="material-icons" style="vertical-align: middle;">warning</i> Copyright claim from {{copyrightClaim.claimant}}</p>
+                        {{/if}}
+                    </div>
+                    <div class="mdc-card__actions">
+                        <a class="mdc-button mdc-card__action mdc-card__action--button" href="/gerald/{{id}}">
+                            <div class="mdc-button__ripple"></div>
+                            <span class="mdc-button__label">View</span>
+                        </a>
+                        <div class="mdc-switch">
+                            <div class="mdc-switch__track"></div>
+                            <div class="mdc-switch__thumb-underlay">
+                                <div class="mdc-switch__thumb"></div>
+                                <input type="checkbox" id="{{id}}" class="mdc-switch__native-control notification-control" role="switch" {{#if subscription}}checked{{/if}}>
+                            </div>
+                        </div>
+                        <label style="margin-left: 0.5rem;" class="mdc-typography--caption" for="{{id}}">Notify me when this Gerald is viewed</label>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            <a class="mdc-fab mdc-fab--extended add-gerald" href="/add">
+                <div class="mdc-fab__ripple"></div>
+                <span class="mdc-fab__icon material-icons">add</span>
+                <span class="mdc-fab__label">Catalog a Gerald</span>
+            </a>
+        </main>
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        <script src="/script.js"></script>
+        <script src="/geralds.js"></script>
+    </body>
+</html>
