@@ -1,0 +1,13 @@
+.mid {
+    width: 400px;
+    margin: auto;
+    text-align: left;
+}
+
+.mid > div {
+    border-left: 1px solid;
+}
+
+.forms {
+    padding: 10px 15px;
+}

@@ -1,0 +1,18 @@
+body {
+    text-align: center;
+    margin: 0;
+    /* min-height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+footer {
+    margin-top: auto;
+    justify-self: flex-end;
+    padding: 40px;
+}

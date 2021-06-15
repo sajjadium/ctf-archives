@@ -1,0 +1,29 @@
+<%- include("partials/header.ejs") %> 
+
+<div class="container mid">
+    <h1>Message Board</h1>
+    <h2>LameCompany</h2>
+
+
+    <% if (err) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error</strong> Your account couldn't be verified.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <% } %>
+
+    <form action="/login" method="POST">
+        <div class="mb-3">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" name="username" id="">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="">
+        </div>
+        <button class="btn btn-primary" type="submit">Login</button>
+        <p class="form-text">Gossip abounds</p>
+    </form>
+</div>
+
+<%- include("partials/footer.ejs") %> 

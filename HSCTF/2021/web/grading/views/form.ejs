@@ -1,0 +1,72 @@
+<%- include("./partials/header.ejs") %>
+
+<h1><%= form.name %></h1>
+
+<p>
+    <a href="/">Back</a>
+</p>
+
+<div>
+    <% if(form.submitted) { %>
+        <h2>This form has been submitted.</h2>
+    <% } %> 
+    <% if(after.late) { %> 
+        <h2>The deadline has passed. You got <%= after.grade %> questions right.</h2>
+        <% if(after.grade === form.questions.length) { %> 
+            <p>here is the flag: <b><%= after.flag %></b></p>
+        <% } %> 
+    <% } else { %> 
+        <p>You can edit until <%= form.deadline %>.</p>
+        
+    <% } %> 
+    </div>
+
+<div class="container mid">
+    <form action="/<%= form._id %>" method="POST" onsubmit="return false;">
+        <% for(let question of form.questions) { %> 
+        <div class="mb-3 question">
+            <label for=""><%= question.question %></label>
+            <% if(question.choices && question.choices.length > 0) { %> 
+                <fieldset>
+                    <% for(choice of question.choices) { %> 
+                        <div>
+                            <input class="form-check-input" type="radio" name="<%= question._id %>" value="<%= choice %>" <%= choice === question.submission ? "checked" : "" %> <%= after.late ? "disabled" : "class='active'" %> >
+                            <label class="form-check-label" for=""><%= choice %></label>
+                        </div>
+                    <% } %> 
+                </fieldset>
+            <% } else { %>
+                <input type="text" <%= after.late ? "disabled" : "" %> class='active' name="<%= question._id %>" value="<%= question.submission ? question.submission : "" %>">
+            <% } %> 
+        </div>
+        <% } %> 
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+
+
+<script>
+    function handleClick(event) {
+        fetch("/<%= form._id %>", {
+            method: "POST",
+            body: "ID=" + event.target.name + "&value=" + event.target.value,
+            headers: {
+                'Content-type': 'application/x-www-form-urlencoded'
+            }
+        }).then(result => result.json()).then(res => {
+            console.log(res);
+            console.log('HI');
+        })
+    }
+
+    document.querySelectorAll(".active").forEach(item => {
+        addEventListener("change", handleClick)
+    });
+</script>
+
+<footer>
+    <p>
+        <a href="/logout">Logout</a>
+    </p>
+
+<%- include("./partials/footer.ejs") %> 

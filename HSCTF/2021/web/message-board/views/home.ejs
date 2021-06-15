@@ -1,0 +1,24 @@
+<%- include("partials/header.ejs") %> 
+
+<div class="container mid">
+    <h1>hi, <%= username === "admin" ? username : "peasant (" + username + ")" %></h1>
+
+    <div class="messages">
+        <p><strong data-bs-toggle="tooltip" title="a super friendly person :)">Karen:</strong> Did you see Mary's hair the other day?</p>
+        <p><strong data-bs-toggle="tooltip" title="had terrible hair the other day">Mary:</strong> I can hear you, you know.</p>
+        <p><strong data-bs-toggle="tooltip" title="a super friendly person :)">Karen:</strong> Technically you're not hearing me.</p>
+        <p><strong data-bs-toggle="tooltip" title="has had enough of this bs">Rosa:</strong> Okay, I'm heading out.</p>
+        <p><strong data-bs-toggle="tooltip" title="what a cool name">HSCTF:</strong> <%= flag %></p>
+    </div>
+</div>
+
+<a href="/logout"><button class="btn btn-danger">Log out</button></a>
+
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+</script>
+
+<%- include("partials/footer.ejs") %> 
