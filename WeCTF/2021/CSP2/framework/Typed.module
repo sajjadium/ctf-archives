@@ -1,0 +1,47 @@
+<?php
+
+
+namespace ShouFramework;
+use ReflectionClass;
+
+
+function shutdown() {
+    trigger_error("Fatal error", E_USER_ERROR);
+}
+
+
+abstract class Typed
+{
+    abstract protected function construct();
+    abstract protected function destruct();
+
+    private function type_checker(){
+        $reflection = new ReflectionClass($this);
+        $available_vars = $reflection->getProperties();
+        foreach ($available_vars as $_ => $value) {
+            $exploded_name = explode("_", $value->getName());
+            if (count($exploded_name) <= 1) // untyped
+                continue;
+            $type = $exploded_name[count($exploded_name) - 1];
+            if (gettype($value->getValue($this)) != $type){
+                echo "Program integrity violated\n";
+                shutdown();
+            }
+        }
+    }
+
+    public function __construct(){
+        $this->construct();
+    }
+
+    public function __destruct(){
+        $this->destruct();
+    }
+
+    public function __wakeup(){
+        $this->type_checker();
+    }
+
+}
+
+

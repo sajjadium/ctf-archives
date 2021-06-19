@@ -1,0 +1,260 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>EthSwap</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js" integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ==" crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf-8">
+        let socket;
+        let config = {
+            usd_to_eth_ratio: NaN,
+            eth_to_usd_ratio: NaN,
+            base_balance: 1000,
+            trade_history: [],
+            rankings: []
+        };
+        let routine;
+
+        function calculate_usd_eth_amount(base_balance, trade_history){
+            let usd = base_balance;
+            let eth = 0;
+            trade_history.forEach(v => {
+                usd += v.amount_in_usd;
+                eth += v.amount_in_eth;
+            });
+            return {usd: usd, eth: eth}
+        }
+
+        function calculate_tnuv(base_balance, trade_history){
+            let {usd, eth} = calculate_usd_eth_amount(base_balance, trade_history)
+            return usd + eth * config.usd_to_eth_ratio
+        }
+
+        function display_before_token(){
+            document.querySelectorAll(".display_after_token_set").forEach(v => v.style.display="none")
+            document.querySelectorAll(".dont_display_after_token_set").forEach(v => v.style.display="block")
+        }
+
+        function display_after_token(){
+            document.querySelectorAll(".display_after_token_set").forEach(v => v.style.display="block")
+            document.querySelectorAll(".dont_display_after_token_set").forEach(v => v.style.display="none")
+        }
+
+        function send_content(type, content){
+            socket.send(JSON.stringify({type: type, content: content}))
+        }
+
+        function start_socket(){
+            socket = new WebSocket("ws://" + document.URL.substr(7).split('/')[0], "ethexchange-api");
+            socket.onopen = function(e) {
+                routine = setInterval(routine_update, 1000)
+            };
+            socket.onmessage = function(event) {
+                let data = JSON.parse(event.data);
+                let content = data["content"]
+                switch (data["type"]) {
+                    case "routine":
+                        config = content;
+                        break;
+                    case "message":
+                        alert(content["message"])
+                        break
+                    case "error":
+                        alert("Error occurred, please refresh the page")
+                        break
+                }
+            };
+        }
+
+        function set_token(){
+            let _username = username.value;
+            let _password = password.value;
+
+            if (_username.length < 10 || _password.length < 10){
+                alert("Password / Username too short");
+                return
+            }
+            socket = new WebSocket("ws://" + document.URL.substr(7).split('/')[0], "ethexchange-api");
+            socket.onopen = function(e) {
+                send_content("init", {username: _username, password: _password});
+            };
+            socket.onmessage = function(event) {
+                let data = JSON.parse(event.data);
+                let content = data["content"]
+                switch (data["type"]) {
+                    case "set_token":
+                        document.cookie = `token=${content["token"]}`;
+                        token.value = content["token"];
+                        socket.close();
+                        display_after_token();
+                        start_socket();
+                        break;
+                }
+            };
+        }
+
+        function clear_token(){
+            document.cookie = `token=; Max-Age=-99999999;';`
+            display_before_token();
+            socket.close();
+            clearInterval(routine);
+        }
+
+        function eth_to_usd(){
+            let amount = document.getElementById("amount_eth").value;
+            let should_proceed = confirm(`Are you sure to transfer ${amount} Eth to USD?`);
+            if (!should_proceed) return;
+            send_content("sell", {amount: amount})
+        }
+
+        function usd_to_eth(){
+            let amount = document.getElementById("amount_usd").value;
+            let should_proceed = confirm(`Are you sure to transfer ${amount} USD to Eth?`);
+            if (!should_proceed) return;
+            send_content("buy", {amount: amount})
+        }
+
+        function transfer_eth(){
+            let amount = document.getElementById("transfer_eth_amount").value;
+            let transfer_to_token = document.getElementById("transfer_to_token").value;
+            let should_proceed = confirm(`Are you sure to transfer ${amount} Eth to ${transfer_to_token}?`);
+            if (!should_proceed) return;
+            send_content("transfer", {amount: amount, to_token: transfer_to_token})
+        }
+
+        function routine_update(){
+            send_content("ping", {});
+            tnuv.innerText = calculate_tnuv(config.base_balance, config.trade_history);
+            eth_to_usd_ratio.innerText = config.eth_to_usd_ratio;
+            usd_to_eth_ratio.innerText = config.usd_to_eth_ratio;
+            let {usd, eth} = calculate_usd_eth_amount(config.base_balance, config.trade_history)
+            total_eth.innerText = eth;
+            total_usd.innerText = usd;
+            render_rankings()
+        }
+
+        function switch_tab(tab){
+            if (tab === "exchange") {
+                transfer.style.display = "none"
+                rankings.style.display = "none"
+                exchange.style.display = "block"
+            } else if (tab === "rankings") {
+                transfer.style.display = "none"
+                rankings.style.display = "block"
+                exchange.style.display = "none"
+            } else if (tab === "transfer") {
+                transfer.style.display = "block"
+                rankings.style.display = "none"
+                exchange.style.display = "none"
+            }
+        }
+
+        function render_rankings(){
+            let content = ""
+            config.rankings.forEach(v => {
+                content += `${v.username} : $${v.tnuv}\n`
+            })
+            rankings_content.innerText = content;
+        }
+    </script>
+</head>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">EthExchange</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="switch_tab('exchange')">Exchange</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="switch_tab('rankings')">Rankings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" onclick="switch_tab('transfer')">Transfer</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="main">
+    <h3>Your Token</h3>
+    <div style="">
+        <input class="form-control dont_display_after_token_set" id="username" placeholder="Username (min 10 chars)" />
+        <input class="form-control dont_display_after_token_set" id="password" placeholder="Password (min 10 chars)" />
+
+        <input class="form-control display_after_token_set" style="display: none" id="token" disabled />
+        <div style="margin-top: 10px" class="dont_display_after_token_set">
+            <input class="btn btn-light" type="submit" value="Login / Register" onclick="set_token()" />
+        </div>
+    </div>
+</div>
+
+<div class="main" id="exchange">
+    <div class="display_after_token_set" style="display: none">
+        <hr>
+        <h3>Ethereum => USD</h3>
+        <p style="color: #666">Ratio: <label id="eth_to_usd_ratio"></label> Eth/USD</p>
+        <div style="display: flex">
+            <input class="form-control" id="amount_eth" placeholder="Amount Ethereum to transfer to USD"/>
+            <input class="btn btn-light" type="submit" onclick="eth_to_usd()" />
+        </div>
+        <br>
+        <hr>
+
+        <h3>USD => Ethereum</h3>
+        <p style="color: #666">Ratio: <label id="usd_to_eth_ratio"></label> USD/Eth</p>
+        <div style="display: flex">
+            <input class="form-control" id="amount_usd" placeholder="Amount USD to transfer to Ethereum"/>
+            <input class="btn btn-light" type="submit" onclick="usd_to_eth()"/>
+        </div>
+        <br>
+        <hr>
+
+        <h3>Account Info</h3>
+        <p>Your account Total Net USD Value is <label id="tnuv"></label></p>
+        <p>Your account has <label id="total_usd"></label> USD</p>
+        <p>Your account has <label id="total_eth"></label> Eth</p>
+
+    </div>
+</div>
+
+
+<div id="rankings" class="main" style="display: none">
+    <div class="display_after_token_set" style="display: none">
+        <h3>Rankings</h3>
+        <div id="rankings_content"></div>
+    </div>
+</div>
+
+
+
+<div id="transfer" class="main" style="display: none">
+    <div class="display_after_token_set" style="display: none">
+        <h3>Transfer</h3>
+        <input class="form-control" id="transfer_eth_amount" placeholder="Amount Ethereum to transfer" />
+        <input class="form-control" id="transfer_to_token" placeholder="Token of the user to transfer to" />
+        <input class="btn btn-light" type="submit" onclick="transfer_eth()" value="Transfer" style="margin-top: 20px;"/>
+
+    </div>
+</div>
+
+
+
+
+<style>
+    .main{
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 20px
+    }
+</style>
+
+</html>

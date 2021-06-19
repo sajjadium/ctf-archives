@@ -1,0 +1,1 @@
+Arrogant Shou thinks Django is the worst web framework and decided to use it like Flask. To support some business logics, he developed some middlewares and added to the Flask-ish Django. One recent web app he developed with this is to display flag to admins. Help us retrieve the flag :) 

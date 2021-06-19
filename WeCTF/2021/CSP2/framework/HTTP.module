@@ -1,0 +1,24 @@
+<?php
+
+namespace ShouFramework;
+require_once "Template.module";
+require_once "Typed.module";
+
+
+abstract class HTTP extends Typed
+{
+    public Template $template_object;
+    protected function construct(){
+        $this->template_object = new Template();
+    }
+    public function handle(){}
+    public function handle_request(){
+        $this->handle();
+        $this->render();
+    }
+    abstract public function render();
+    protected function destruct(){
+        $this->handle_request();
+    }
+}
+

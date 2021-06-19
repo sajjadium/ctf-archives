@@ -1,0 +1,25 @@
+<?php
+
+
+namespace ShouFramework;
+
+require_once "Typed.module";
+
+class Template extends Typed
+{
+    protected function construct(){}
+
+    public function render_script($script, $nonce){
+        echo "<script nonce='$nonce'>$script</script>";
+    }
+
+    public function render_style($style, $nonce){
+        echo "<style nonce='$nonce'>$style</style>";
+    }
+
+    public function render_html($content){
+        echo $content;
+    }
+
+    protected function destruct(){}
+}

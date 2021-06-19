@@ -1,0 +1,23 @@
+<img src="{{ background }}" style="height: 100%; width: 100%">
+
+
+<form method="POST" action="/upload" enctype="multipart/form-data" style="position: absolute; background: white; top: 0; padding: 10px">
+    <h3>Modify Backgroud</h3>
+    <input type="file" name="file">
+    <input type="submit">
+</form>
+
+
+<a style="position: absolute; background: white; bottom: 0; right: 0; padding: 20px" href="/#original">View Original Image</a>
+
+<script nonce="{{ nonce }}">
+    function redirect(){
+        if (window.location.hash === "#original"){
+            window.location.hash = "";
+            window.location.href = "{{ background|safe }}";
+        }
+    }
+    redirect();
+    window.onhashchange = redirect;
+</script>
+

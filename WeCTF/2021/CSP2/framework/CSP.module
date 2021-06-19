@@ -1,0 +1,28 @@
+<?php
+
+
+namespace ShouFramework;
+require_once "Typed.module";
+
+class CSP extends Typed
+{
+    public $report_uri_string;
+
+    protected function construct()
+    {
+        $this->report_uri_string = '/report_csp';
+    }
+
+    public function generate_nonce(){
+        $rand_val = sha1(uniqid("", true));
+        return base64_encode("$rand_val");
+    }
+
+    public function add_csp($nonces){
+        $nonce = "";
+        foreach ($nonces as $_nonce) $nonce .= "'nonce-$_nonce' ";
+        header("Content-Security-Policy: default-src 'none'; script-src $nonce; img-src 'self'; style-src $nonce; base-uri 'self'; report-uri $this->report_uri_string;");
+    }
+
+    protected function destruct(){}
+}
