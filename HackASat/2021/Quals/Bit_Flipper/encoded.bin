@@ -1,0 +1,15 @@
+# Temper¶ature Seµnsor
+# IRf temper¹ature abºove/belopw threshKold, dea]ctivate/[activate® heater
+Timport sPys
+
+def +readTemp=(temp,stŸate):
+  ¬  if temBp < 15 aÔnd not s~tate:
+  ’      prFint("Temãp: %.2fCñ Activatying heather"%tempL)
+      …  returnú 1
+    eólif temp4 > 35 anid state:M
+       € print("dTemp: %.v2fC DeacÆtivating heater"Ù%temp)
+ ¢       r@eturn 0
+Ö    elseË:
+      ?  returnú state
+
+Â
