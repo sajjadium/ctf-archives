@@ -1,0 +1,1 @@
+We've captured this noisy IQ data from a satellite and need to decode it. Figure out how to filter the noise while maintaining the signal characteristics, then demodulate and decode the signal to get the flag. The satellite is transmitting using asynchronous markers in CCSDS space packets and an unknown modulation.
