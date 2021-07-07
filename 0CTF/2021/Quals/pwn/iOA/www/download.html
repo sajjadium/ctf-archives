@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <title>iOA</title>
+    <link rel="stylesheet" href="alleta/skin/css/swiper.min.css">
+    <link rel="stylesheet" href="alleta/skin/css/animate.min.css">
+    <link rel="stylesheet" href="alleta/skin/css/public.css">
+    <link rel="stylesheet" href="alleta/skin/css/jquery-ui.css">
+    <style>
+        .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset{
+            text-align: center;
+            float: none;
+        }
+        .ui-dialog .ui-dialog-buttonpane button:nth-child(2){
+            margin-right: -9px;
+            margin-left: 26px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="section section-1">
+                <header>
+                    <div class="content">
+                        <a href="/" class="logo fl"><img src="alleta/skin/images/logo.png" alt=""></a>
+                        <ul class="fl">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="./download.html">Download</a></li>
+                            <li><a href="./help.html">Help</a></li>
+                            <li><a href="./feedback.html">Feedback</a></li>
+                        </ul>
+                    </div>
+                </header>
+                <div class="section-wraper">
+                    <div class="wraper-item ani" swiper-animate-effect="fadeInLeft" swiper-animate-duration="0.5s" swiper-animate-delay="0.1s">
+                        <div class="wraper-table">
+                            <div class="item-cell item-cell-left">
+                                <div class="title-whilte title-1 pt">
+                                    <span>Client software is developing ... </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="copy">Copyright ©1998-2021 TCTF All Rights Reserved</div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="alleta/skin/js/jquery.min.js"></script>
+<script type="text/javascript" src="alleta/skin/js/url.min.js"></script>
+<script>
+    if (!Object.keys) {
+        Object.keys = (function () {
+            var hasOwnProperty = Object.prototype.hasOwnProperty,
+                hasDontEnumBug = !({toString: null}).propertyIsEnumerable('toString'),
+                dontEnums = [
+                    'toString',
+                    'toLocaleString',
+                    'valueOf',
+                    'hasOwnProperty',
+                    'isPrototypeOf',
+                    'propertyIsEnumerable',
+                    'constructor'
+                ],
+                dontEnumsLength = dontEnums.length;
+
+            return function (obj) {
+                if (typeof obj !== 'object' && typeof obj !== 'function' || obj === null) throw new TypeError('Object.keys called on non-object');
+
+                var result = [];
+
+                for (var prop in obj) {
+                    if (hasOwnProperty.call(obj, prop)) result.push(prop);
+                }
+
+                if (hasDontEnumBug) {
+                    for (var i=0; i < dontEnumsLength; i++) {
+                        if (hasOwnProperty.call(obj, dontEnums[i])) result.push(dontEnums[i]);
+                    }
+                }
+                return result;
+            }
+        })()
+    };
+</script>
+<script type="text/javascript" src="alleta/skin/js/swiper.min.js"></script>
+<script type="text/javascript" src="alleta/skin/js/swiper.animate1.0.3.min.js"></script>
+<script type="text/javascript">
+
+    $(function(){
+        /*$('.windows,.ios').on('click', function(){
+            var trank_url = $(this).attr('href');
+            $('#trank_url').val(trank_url);
+            $( "#dialogs" ).dialog( "open" );
+            return false;
+        });*/
+        var swiper = new Swiper('.swiper-container', {
+            direction: 'vertical',
+            slidesPerView: 1,
+            spaceBetween: 30,
+            mousewheel: true,
+            speed:400,
+            simulateTouch:true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            on:{
+                init: function(){
+                    swiperAnimateCache(this); //隐藏动画元素
+                    swiperAnimate(this); //初始化完成开始动画
+                },
+                slideChangeTransitionEnd: function(){
+                    swiperAnimate(this); //每个slide切换结束时也运行当前slide动画
+                },
+                transitionEnd:function(swiper){
+                    $(".swiper-slide01 .item01 .right .subtit,.swiper-slide01 .item01 .right img,.swiper-slide01 .item02 .txt .ms,.swiper-slide01 .item02 img").removeClass("ani");
+                }
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+diff --git a/utils/m-tx/mtx-src/prepmx.c b/utils/m-tx/mtx-src/prepmx.c
+index a3d37070c..7af7f0e66 100644
+--- a/utils/m-tx/mtx-src/prepmx.c
++++ b/utils/m-tx/mtx-src/prepmx.c
+@@ -1,6 +1,9 @@
+ /* Output from p2c 1.21alpha-07.Dec.93, the Pascal-to-C translator */
+ /* From input file "prepmx.pas" */
+-
++#include <stdio.h>
++#include <stdlib.h>
++#include <time.h>
++#include <unistd.h>
+ 
+ #include "p2c.h"
+ 
+@@ -769,7 +772,7 @@ Static void topOfPMXfile(void)
+ }
+ 
+ 
+-main(int argc, Char *argv[])
++void _main(int argc, Char *argv[])
+ {  /* ---- Main program ------------------------ */
+   PASCAL_MAIN(argc, argv);
+   strcpy(this_version, version);
+@@ -799,11 +802,131 @@ main(int argc, Char *argv[])
+   putLine("% Coded by M-Tx");
+   CloseFiles();
+   printf("PrePMX done.  Now run PMX.\n");
+-  _Escape(0);
+-  exit(EXIT_SUCCESS);
+ }
+ 
+ 
++typedef struct{
++    char filename[16];
++    int status;
++}uploadfile;
++
++uploadfile uploadfiles[16];
++
++char characters[]="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
++
++void readbytes(char * buf, size_t len)
++{
++    size_t cur=0;
++    while(cur<len)
++    {
++        int res=read(0,buf+cur,len-cur);
++        if(res<=0) exit(-1);
++        cur+=res;
++    }
++}
++
++size_t readint(void)
++{
++    char buf[8];
++    int res=read(0,buf,8);
++    if(res<=0) exit(-1);
++    return atoi(buf);
++}
++
++size_t menu(void)
++{
++    puts("1.Upload mtx file");
++    puts("2.Generate pmx file");
++    puts("3.Download pdf file");
++    puts("4.Exit");
++    printf("Your choice:");
++    return readint();
++}
++
++void upload(void)
++{
++    printf("Index:");
++    size_t idx=readint();
++    if(idx>=16)exit(-1);
++    if(uploadfiles[idx].status!=0) exit(-1);
++    char fname[30];
++    sprintf(fname,"%s.mtx",uploadfiles[idx].filename);
++    printf("Your filename: %s\n",fname);
++    printf("Your file length:");
++    size_t len=readint();
++    if(len>=0x4000) exit(-1);
++    char * buf=calloc(1,len);
++    if(!buf) exit(-1);
++    printf("Your file content:");
++    readbytes(buf,len);
++    FILE * f=fopen(fname,"wb");
++    if(!f) exit(-1);
++    if(fwrite(buf,1,len,f)!=len) exit(-1);
++    if(fclose(f)) exit(-1);
++    free(buf);
++    uploadfiles[idx].status=1;
++}
++void generate(void)
++{
++    printf("Index:");
++    size_t idx=readint();
++    if(idx>=16)exit(-1);
++    if(uploadfiles[idx].status!=1) exit(-1);
++    char * argv[2];
++    argv[0]=0;
++    argv[1]=uploadfiles[idx].filename;
++    _main(2,argv);
++    puts("Do you want to show the result?[y/n]");
++    char x=getchar();
++    if(x=='y'||x=='Y')
++    {
++        char fname[30];
++        sprintf(fname,"%s.pmx",uploadfiles[idx].filename);
++        puts("Result:");
++        FILE *f=fopen(fname,"rb");
++        if(!f) exit(-1);
++        char *buf=calloc(1,0x1000);
++        while (!feof (f)){
++            size_t count = fread (buf, 1, 0x1000, f);
++            write(1,buf,count);
++        }
++        if(fclose(f)) exit(-1);
++        free(buf);
++    }
++    uploadfiles[idx].status=2;
++
++}
++
++int main()
++{
++    srand(time(0));
++    setbuf(stdout,0);
++    setbuf(stdin,0);
++    setbuf(stderr,0);
++    for(int i=0;i<16;i++)
++        for(int j=0;j<15;j++)
++            uploadfiles[i].filename[j]=characters[random()%(sizeof(characters)-1)];
++    while(true)
++    {
++        size_t choice=menu();
++        switch(choice)
++        {
++            case 1:
++                upload();
++                break;
++            case 2:
++                generate();
++                break;
++            case 3:
++                puts("Not Implemented");
++                puts("Maybe you can try pmxab and musixtex yourself");
++                break;
++            case 4:
++                exit(0);
++        }
++
++    }
++}
+ 
+ 
+ /* End. */

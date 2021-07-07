@@ -10,7 +10,11 @@ Collection of CTF challenges.
     </thead>
     <tbody>
         <tr>
-            <td rowspan=5><a href="0CTF">0CTF</a></td>
+            <td rowspan=6><a href="0CTF">0CTF</a></td>
+            <td><a href="0CTF/2021/Quals">2021 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1356/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="0CTF/2020/Quals">2020 Quals</a></td>
             <td><a href="https://ctftime.org/event/1026/tasks/">CTFtime</a></td>
         </tr>

@@ -1,0 +1,30 @@
+version: '2'
+services:
+  spider:
+    build: ./spider
+    ports:
+      - "0.0.0.0:30050:8080"
+    restart: always
+    networks:
+      - internal_network
+      - out_network
+  rmiclient:
+    build: ./client
+    restart: always
+    networks:
+      - internal_network
+  rmiserver:
+    build: ./server
+    restart: always
+    networks:
+      - internal_network
+networks:
+    internal_network:
+        internal: true
+        ipam:
+            driver: default
+    out_network:
+        driver_opts:
+            com.docker.network.driver.mtu: 1400
+        ipam:
+            driver: default

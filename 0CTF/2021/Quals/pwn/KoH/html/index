@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>King of HTTPD</title>
+        <style type="text/css">
+            body {
+                font-family: "Courier New", Courier, monospace;
+                background-color: #CCCC99;
+                text-align: center;
+            }
+            h1 {
+                color:#6699CC;
+            }
+            form {
+                color:#663366;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>XSS Test</h1>
+        <form action="/" method="get">
+            <label for="payload">Payload:</label>
+            <input type="text" id="payload" name="payload">
+            <input type="hidden" name="func" value="test">
+            <input type="submit" value="Go">
+        </form>
+    </body>
+</html>

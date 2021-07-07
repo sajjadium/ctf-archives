@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>King of HTTPD</title>
+        <style type="text/css">
+            body {
+                font-family: "Courier New", Courier, monospace;
+                background-color: #CCCC99;
+                text-align: center;
+            }
+            .unsafe {
+                color: #FF0033;
+            }
+            .safe {
+                color: #009966;
+            }
+            div {
+                color: #663366;
+            }
+        </style>
+    </head>
+    <body>
+        <div>%s</div><br/>
+        <div>Slogan: %s</div>
+    </body>
+</html>

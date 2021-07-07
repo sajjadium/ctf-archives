@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+    pwn:
+        build: ./
+        image: music
+        container_name: music_1
+        #tty: true
+        #command: ["/usr/sbin/xinetd", "-dontfork", "-d"]
+        volumes:
+            - ./pwn-xinetd:/etc/xinetd.d/pwn-xinetd:ro
+            - ./share:/home/pwn:ro
+            - ./tmp:/tmp:rw
+        ports:
+            - "12580:8888"    #
+        pids_limit: 1024
+        #cpus: 4
+        #mem_limit: 16g
+        restart: unless-stopped
+
+networks:
+    default:
+        external:
+            name: music

@@ -1,0 +1,21 @@
+service pwn 
+{
+    disable = no
+    type        = UNLISTED
+    wait        = no
+    server      = /bin/sh
+    # replace helloworld to your program
+    server_args = -c cd${IFS}/home/pwn;exec${IFS}./pwn
+    socket_type = stream
+    protocol    = tcp
+    user        = pwn 
+    port        = 8888
+    # bind        = 0.0.0.0
+    # safety options
+    flags       = REUSE
+    per_source	= 10 # the maximum instances of this service per source IP address
+    rlimit_cpu	= 1 # the maximum number of CPU seconds that the service may use
+    #rlimit_as  = 1024M # the Address Space resource limit for the service
+    #access_times = 2:00-9:00 12:00-24:00
+    nice        = 18
+}

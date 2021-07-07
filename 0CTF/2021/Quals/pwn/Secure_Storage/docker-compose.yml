@@ -1,0 +1,13 @@
+services:
+    pwn:
+        build: ./
+        image: secure_storage
+        container_name: secure_storage_pwn_1
+        volumes:
+            - ./share:/home/pwn:ro
+            - ./pwn-xinetd:/etc/xinetd.d/pwn-xinetd:ro
+            - ./tmp:/tmp:rw
+        ports:
+            - "12021:8888"
+        restart: unless-stopped
+

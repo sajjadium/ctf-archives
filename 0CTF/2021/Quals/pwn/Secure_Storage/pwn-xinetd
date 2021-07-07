@@ -1,0 +1,14 @@
+service pwn
+{
+    disable = no
+    type        = UNLISTED
+    wait        = no
+    server      = /usr/bin/socat
+    server_args = stdio exec:/home/pwn/start.sh,stderr,setsid
+    socket_type = stream
+    protocol    = tcp
+    user        = 1000
+    port        = 8888
+    flags       = REUSE
+}
+
