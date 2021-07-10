@@ -1,0 +1,57 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+input,
+select {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem;
+  border-style: solid;
+  border-color: #aaa;
+  border-radius: 0.5rem;
+}
+
+.center {
+  box-sizing: border-box;
+  display: grid;
+  place-items: center;
+  padding: 2rem;
+  height: 100%;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+}
+
+.columns,
+.container {
+  width: min(120ch, 100%);
+}
+
+.container,
+.vertical > *:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.card {
+  display: grid;
+  padding: 2rem;
+
+  border-style: solid;
+  border-color: #aaa;
+  border-radius: 0.5rem;
+}

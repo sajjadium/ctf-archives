@@ -1,0 +1,44 @@
+{% extends layout %}
+{% block content %}
+<h1>Create Account</h1>
+<form enctype="multipart/form-data" method="POST" action="/register">
+  <label for="username">Username</label>
+  <input type="text" name="username" id="username" />
+  <label for="password">Password</label>
+  <input type="text" name="password" id="password" />
+  <label for="bio">Bio</label>
+  <textarea name="bio" id="bio"></textarea>
+  <div id="type-select">
+    <label for="picture">Picture</label>
+    <input type="radio" name="picture-type" value="file" id="file" checked />
+    <label for="file">File</label>
+    <input type="radio" name="picture-type" value="url" id="url" />
+    <label for="url">URL (JSON)</label>
+  </div>
+  <textarea name="picture"></textarea>
+  <input type="file" name="picture" />
+  <input type="submit" value="Create Account" />
+</form>
+
+<script defer>
+  const url = document.querySelector('textarea[name="picture"]');
+  const file = document.querySelector('input[name="picture"]');
+  url.style.display = 'none';
+
+  const buttons = document.querySelector('#type-select');
+  const radio = document.querySelector('#file');
+  buttons.addEventListener('click', () => {
+    if (radio.checked) {
+      url.style.display = 'none';
+      url.disabled = true;
+      file.style.display = '';
+      file.disabled = false;
+    } else {
+      url.style.display = '';
+      url.disabled = false;
+      file.style.display = 'none';
+      file.disabled = true;
+    }
+  });
+</script>
+{% endblock content %}

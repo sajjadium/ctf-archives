@@ -1,0 +1,82 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  height: 100%;
+}
+
+fieldset {
+  display: grid;
+  height: 100%;
+  grid-template-rows: 1fr;
+  grid-gap: 2rem;
+  padding: 0;
+  border: none;
+}
+
+textarea {
+  resize: none;
+
+  box-sizing: border-box;
+  width: 100%;
+
+  padding: 0.5rem;
+
+  border-style: solid;
+  border-width: 2px;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem;
+
+  border-style: solid;
+  border-width: 2px;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.container {
+  box-sizing: border-box;
+  width: min(100ch, 100%);
+
+  padding: 2rem;
+  height: 100%;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+}
+
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2rem;
+
+  border-style: solid;
+  border-width: 2px;
+}

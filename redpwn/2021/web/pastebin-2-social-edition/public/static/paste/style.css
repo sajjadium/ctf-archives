@@ -1,0 +1,95 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+fieldset {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1rem;
+  padding: 0;
+  border: none;
+}
+
+textarea {
+  resize: none;
+
+  box-sizing: border-box;
+  width: 100%;
+
+  padding: 0.5rem;
+
+  border-style: solid;
+  border-width: 2px;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem;
+
+  border-style: solid;
+  border-width: 2px;
+}
+
+.center {
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  box-sizing: border-box;
+  width: min(100ch, 100%);
+
+  padding: 2rem;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+}
+
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2rem;
+
+  border-style: solid;
+  border-width: 2px;
+}
+
+#username {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+#content {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  grid-area: 1 / 2 / 3 / 3;
+}
+
+#content label {
+  flex: 0 1 auto;
+}
+
+#content textarea {
+  flex: 1 1 auto;
+}

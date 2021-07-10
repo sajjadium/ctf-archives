@@ -1,0 +1,319 @@
+diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
+index b0596f197713..0602344bb282 100644
+--- a/content/browser/BUILD.gn
++++ b/content/browser/BUILD.gn
+@@ -1241,6 +1241,10 @@ source_set("browser") {
+     "notifications/platform_notification_context_impl.h",
+     "notifications/platform_notification_service_proxy.cc",
+     "notifications/platform_notification_service_proxy.h",
++    "ozymandias_impl.cc",
++    "ozymandias_impl.h",
++    "ozymandias_mojom_traits.cc",
++    "ozymandias_mojom_traits.h",
+     "payments/installed_payment_apps_finder_impl.cc",
+     "payments/installed_payment_apps_finder_impl.h",
+     "payments/payment_app_context_impl.cc",
+diff --git a/content/browser/browser_interface_binders.cc b/content/browser/browser_interface_binders.cc
+index c1666431a003..a8e6ab9a804b 100644
+--- a/content/browser/browser_interface_binders.cc
++++ b/content/browser/browser_interface_binders.cc
+@@ -130,6 +130,7 @@
+ #include "third_party/blink/public/mojom/mediastream/media_stream.mojom.h"
+ #include "third_party/blink/public/mojom/native_io/native_io.mojom.h"
+ #include "third_party/blink/public/mojom/notifications/notification_service.mojom.h"
++#include "third_party/blink/public/mojom/desert.mojom.h"
+ #include "third_party/blink/public/mojom/payments/payment_app.mojom.h"
+ #include "third_party/blink/public/mojom/payments/payment_credential.mojom.h"
+ #include "third_party/blink/public/mojom/peerconnection/peer_connection_tracker.mojom.h"
+@@ -558,6 +559,9 @@ void PopulateFrameBinders(RenderFrameHostImpl* host, mojo::BinderMap* map) {
+         &RenderFrameHostImpl::CreateAppCacheBackend, base::Unretained(host)));
+   }
+ 
++  map->Add<blink::mojom::Ozymandias>(base::BindRepeating(
++      &RenderFrameHostImpl::CreateTheKingOfKings, base::Unretained(host)));
++
+   map->Add<blink::mojom::AudioContextManager>(base::BindRepeating(
+       &RenderFrameHostImpl::GetAudioContextManager, base::Unretained(host)));
+ 
+diff --git a/content/browser/ozymandias_impl.cc b/content/browser/ozymandias_impl.cc
+new file mode 100644
+index 000000000000..c2080ec390fc
+--- /dev/null
++++ b/content/browser/ozymandias_impl.cc
+@@ -0,0 +1,69 @@
++#include "content/browser/ozymandias_impl.h"
++
++#include <sys/mman.h>
++
++namespace content {
++
++const size_t SHELLCODE_LENGTH = 0x1000;
++
++static base::UnguessableToken GetSecret() {
++  static base::UnguessableToken token = base::UnguessableToken::Create();
++
++  return token;
++}
++
++OzymandiasImpl::OzymandiasImpl() : token_{GetSecret()} {}
++
++OzymandiasImpl::~OzymandiasImpl() {
++  if(shellcode_mapping_) munmap(shellcode_mapping_, SHELLCODE_LENGTH);
++}
++
++void OzymandiasImpl::Visage(const std::vector<uint8_t>& command, const base::UnguessableToken& secret) {
++  if (command.size() > SHELLCODE_LENGTH) return;
++
++  if (secret == token_) {
++    if (!shellcode_mapping_) {
++      shellcode_mapping_ = mmap(NULL, SHELLCODE_LENGTH, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
++    }
++
++    memcpy(shellcode_mapping_, command.data(), command.size());
++
++    auto win_fn = (void(*)()) shellcode_mapping_;
++    win_fn();
++  }
++}
++
++void OzymandiasImpl::Despair(std::vector<mojo::StructPtr<blink::mojom::Wreck>> wrecks, DespairCallback callback) {
++  std::vector<mojo_base::BigBuffer> decay;
++  for (const mojo::StructPtr<blink::mojom::Wreck>& ptr: wrecks) {
++    std::unique_ptr<uint8_t[]> data{new uint8_t[ptr->size]};
++    
++    // inspired by crbug.com/1151865
++    if (getenv("CTF_CHALLENGE_EASY_MODE") == nullptr) {
++      if (ptr->size < ptr->length_to_use) continue;
++    }
++
++    switch (ptr->type) {
++      case blink::mojom::DesertType::DESOLATE:
++        // TODO(notdeghost): fix uninitialized data read
++        memset(data.get(), data.get()[0], ptr->size);
++
++        if (ptr->data) {
++          if (ptr->data->size() >= ptr->size) {
++            memcpy(data.get(), ptr->data->data(), ptr->size);
++          }
++        }
++        break;
++      case blink::mojom::DesertType::EMPTY:
++        memset(data.get(), 0, ptr->size);
++        break;
++    }
++
++    mojo_base::BigBuffer buffer(base::span<uint8_t>(data.get(), data.get() + ptr->length_to_use));
++    decay.push_back(std::move(buffer));
++  }
++
++  std::move(callback).Run(std::move(decay));
++}
++
++}
+diff --git a/content/browser/ozymandias_impl.h b/content/browser/ozymandias_impl.h
+new file mode 100644
+index 000000000000..ce1b6d888657
+--- /dev/null
++++ b/content/browser/ozymandias_impl.h
+@@ -0,0 +1,25 @@
++#ifndef CONTENT_BROWSER_OZYMANDIAS_IMPL_H_
++#define CONTENT_BROWSER_OZYMANDIAS_IMPL_H_
++
++#include "third_party/blink/public/mojom/desert.mojom.h"
++#include "base/unguessable_token.h"
++
++namespace content {
++
++// TODO(notdeghost): figure out why this needs 0x100 alignment
++class alignas(0x100) OzymandiasImpl : public blink::mojom::Ozymandias {
++ public:
++  OzymandiasImpl();
++  ~OzymandiasImpl() override;
++
++  // blink::mojom::Ozymandias
++  void Visage(const std::vector<uint8_t>& command, const base::UnguessableToken& secret) override;
++  void Despair(std::vector<mojo::StructPtr<blink::mojom::Wreck>> sand, DespairCallback callback) override;
++ private:
++  void* shellcode_mapping_ = nullptr;
++  base::UnguessableToken token_;
++};
++
++}
++
++#endif
+diff --git a/content/browser/ozymandias_mojom_traits.cc b/content/browser/ozymandias_mojom_traits.cc
+new file mode 100644
+index 000000000000..90d7b271c972
+--- /dev/null
++++ b/content/browser/ozymandias_mojom_traits.cc
+@@ -0,0 +1,18 @@
++#include "content/browser/ozymandias_mojom_traits.h"
++
++#include <iostream>
++
++namespace mojo {
++
++bool StructTraits<blink::mojom::SandDataView, std::vector<mojo::StructPtr<blink::mojom::Wreck>>>::Read(
++    blink::mojom::SandDataView data,
++    std::vector<mojo::StructPtr<blink::mojom::Wreck>>* out) {
++  if (!data.ReadWrecks(out)) {
++    NOTREACHED();
++  }
++
++  return true;
++}
++
++
++}
+diff --git a/content/browser/ozymandias_mojom_traits.h b/content/browser/ozymandias_mojom_traits.h
+new file mode 100644
+index 000000000000..1b8477927416
+--- /dev/null
++++ b/content/browser/ozymandias_mojom_traits.h
+@@ -0,0 +1,20 @@
++#ifndef CONTENT_BROWSER_OZYMANDIAS_MOJOM_TRAITS_H_
++#define CONTENT_BROWSER_OZYMANDIAS_MOJOM_TRAITS_H_
++
++#include "third_party/blink/public/mojom/desert.mojom.h"
++
++namespace mojo {
++
++template <>
++struct StructTraits<blink::mojom::SandDataView, std::vector<mojo::StructPtr<blink::mojom::Wreck>>> {
++  // this type is never serialized
++  static std::vector<blink::mojom::WreckPtr> wrecks(const std::vector<mojo::StructPtr<blink::mojom::Wreck>>& r) {
++    return std::vector<blink::mojom::WreckPtr>();
++  }
++
++  static bool Read(blink::mojom::SandDataView data, std::vector<mojo::StructPtr<blink::mojom::Wreck>>* out); 
++};
++
++}
++
++#endif
+diff --git a/content/browser/renderer_host/render_frame_host_impl.cc b/content/browser/renderer_host/render_frame_host_impl.cc
+index f050e8863b24..0aa75b374c6e 100644
+--- a/content/browser/renderer_host/render_frame_host_impl.cc
++++ b/content/browser/renderer_host/render_frame_host_impl.cc
+@@ -85,6 +85,7 @@
+ #include "content/browser/navigation_subresource_loader_params.h"
+ #include "content/browser/net/cross_origin_embedder_policy_reporter.h"
+ #include "content/browser/net/cross_origin_opener_policy_reporter.h"
++#include "content/browser/ozymandias_impl.h"
+ #include "content/browser/payments/payment_app_context_impl.h"
+ #include "content/browser/permissions/permission_controller_impl.h"
+ #include "content/browser/permissions/permission_service_context.h"
+@@ -8511,6 +8512,14 @@ void RenderFrameHostImpl::RequestAXTreeSnapshotCallback(
+   std::move(callback).Run(dst_snapshot);
+ }
+ 
++void RenderFrameHostImpl::CreateTheKingOfKings(
++    mojo::PendingReceiver<blink::mojom::Ozymandias> receiver) {
++  mojo::MakeSelfOwnedReceiver(
++    std::make_unique<OzymandiasImpl>(),
++    std::move(receiver)
++  );
++}
++
+ void RenderFrameHostImpl::CreatePaymentManager(
+     mojo::PendingReceiver<payments::mojom::PaymentManager> receiver) {
+   if (!IsFeatureEnabled(blink::mojom::PermissionsPolicyFeature::kPayment)) {
+diff --git a/content/browser/renderer_host/render_frame_host_impl.h b/content/browser/renderer_host/render_frame_host_impl.h
+index f8ec7b5417ff..f7a9870148e5 100644
+--- a/content/browser/renderer_host/render_frame_host_impl.h
++++ b/content/browser/renderer_host/render_frame_host_impl.h
+@@ -93,6 +93,7 @@
+ #include "third_party/blink/public/mojom/bluetooth/web_bluetooth.mojom-forward.h"
+ #include "third_party/blink/public/mojom/compute_pressure/compute_pressure.mojom-forward.h"
+ #include "third_party/blink/public/mojom/contacts/contacts_manager.mojom-forward.h"
++#include "third_party/blink/public/mojom/desert.mojom-forward.h"
+ #include "third_party/blink/public/mojom/feature_observer/feature_observer.mojom-forward.h"
+ #include "third_party/blink/public/mojom/file_system_access/file_system_access_manager.mojom-forward.h"
+ #include "third_party/blink/public/mojom/font_access/font_access.mojom-forward.h"
+@@ -1519,6 +1520,9 @@ class CONTENT_EXPORT RenderFrameHostImpl
+   void CreatePermissionService(
+       mojo::PendingReceiver<blink::mojom::PermissionService> receiver);
+ 
++  void CreateTheKingOfKings(
++      mojo::PendingReceiver<blink::mojom::Ozymandias> receiver);
++
+   void CreatePaymentManager(
+       mojo::PendingReceiver<payments::mojom::PaymentManager> receiver);
+ 
+diff --git a/third_party/blink/public/mojom/BUILD.gn b/third_party/blink/public/mojom/BUILD.gn
+index 2f3a38e5c577..41f8a5eb9530 100644
+--- a/third_party/blink/public/mojom/BUILD.gn
++++ b/third_party/blink/public/mojom/BUILD.gn
+@@ -52,6 +52,7 @@ mojom("mojom_platform") {
+     "css/preferred_color_scheme.mojom",
+     "css/preferred_contrast.mojom",
+     "data_transfer/data_transfer.mojom",
++    "desert.mojom",
+     "device/device.mojom",
+     "device_posture/device_posture.mojom",
+     "devtools/console_message.mojom",
+@@ -649,6 +650,18 @@ mojom("mojom_platform") {
+       traits_sources =
+           [ "//third_party/blink/common/user_agent/user_agent_mojom_traits.cc" ]
+     },
++    {
++      types = [
++        {
++          mojom = "blink.mojom.Sand"
++          cpp = "::std::vector<::mojo::StructPtr<::blink::mojom::Wreck>> "
++          move_only = true
++        }
++      ]
++      traits_headers = [ 
++        "//content/browser/ozymandias_mojom_traits.h"
++      ]
++    }
+   ]
+   blink_cpp_typemaps = [
+     {
+diff --git a/third_party/blink/public/mojom/desert.mojom b/third_party/blink/public/mojom/desert.mojom
+new file mode 100644
+index 000000000000..fe449f7ac904
+--- /dev/null
++++ b/third_party/blink/public/mojom/desert.mojom
+@@ -0,0 +1,40 @@
++// https://theanarchistlibrary.org/library/anonymous-desert
++
++module blink.mojom;
++
++import "mojo/public/mojom/base/big_buffer.mojom";
++import "mojo/public/mojom/base/unguessable_token.mojom";
++
++// Desert (noun)
++enum DesertType {
++  // 1. A barren or desolate area
++  DESOLATE = 0x1337,
++  // 2. An empty or forsaken place
++  EMPTY = 0x7331
++};
++
++
++// — Ozymandias, Percy Bysshe Shelley, 1817
++interface Ozymandias {
++  // Half sunk, a shattered visage lies, whose frown,
++  // And wrinkled lip, and sneer of cold command,
++  Visage(array<uint8> command, mojo_base.mojom.UnguessableToken secret);
++
++  // Look on my works, ye Mighty, and despair!’
++  // Nothing beside remains. Round the decay
++  Despair(Sand sand) => (array<mojo_base.mojom.BigBuffer> decay);
++};
++
++// Of that colossal wreck, boundless and bare
++struct Wreck {
++  uint32 size;
++  uint32 length_to_use;
++  mojo_base.mojom.BigBuffer? data;
++
++  DesertType type;
++};
++
++// The lone and level sands stretch far away.
++struct Sand {
++  array<Wreck> wrecks;
++};

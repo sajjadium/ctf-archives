@@ -1,0 +1,22 @@
+version: "2.2"
+
+services:
+  app:
+    build: ./app
+    cpus: 0.5
+    mem_limit: 300M
+    environment:
+        - adminUser=admin
+        - adminPassword=password
+        - flag=flag{test}
+    depends_on:
+      - couchdb
+    restart: always
+    ports:
+        - "80:8080"
+  couchdb:
+    image: couchdb:3.1
+    mem_limit: 100M
+    environment:
+        - COUCHDB_USER=admin
+        - COUCHDB_PASSWORD=password

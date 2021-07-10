@@ -1,0 +1,22 @@
+h1 {
+  text-align: left;
+}
+
+.horizontal {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.body-input {
+  flex-grow: 1;
+}
+
+input[type='submit'] {
+  width: auto;
+}
+
+select {
+  border-width: 2px;
+  background-color: white;
+}

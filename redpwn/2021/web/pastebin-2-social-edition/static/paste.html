@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/paste/style.css" />
+    <script src="/static/purify.min.js"></script>
+    <script src="/static/paste/index.js"></script>
+  </head>
+  <body>
+    <div class="center">
+      <div class="container stack">
+        <div class="paste card"></div>
+        <div class="stack card">
+          <form method="POST">
+            <fieldset name="params">
+              <div id="username">
+                <label for="author">Username:</label>
+                <input name="author" type="text" />
+              </div>
+              <div id="content">
+                <label for="content">Comment:</label>
+                <textarea name="content"></textarea>
+              </div>
+              <input value="Post Comment" type="submit" />
+            </fieldset>
+            <div class="error"></div>
+          </form>
+          <h1>Comments:</h1>
+          <div class="comments stack">
+            <template id="comment-template">
+              <div class="card stack">
+                <div class="comment-author"></div>
+                <div class="comment-content"></div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

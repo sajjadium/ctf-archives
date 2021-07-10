@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/static/view/style.css" />
+    <script defer src="/static/view/index.js"></script>
+  </head>
+  <body>
+    <template id="note-template">
+      <div class="card">
+        <div>
+          {{ body }}
+        </div>
+        <div>
+          [{{ tag }}]
+        </div>
+      </div>
+    </template>
+    <div class="center">
+      <div class="container vertical">
+        <div><a href="/home">Home</a></div>
+      </div>
+    </div>
+  </body>
+</html>

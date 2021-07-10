@@ -1,0 +1,5 @@
+#!/bin/sh
+
+mkfifo /tmp/stdout
+cat /tmp/stdout &
+./main

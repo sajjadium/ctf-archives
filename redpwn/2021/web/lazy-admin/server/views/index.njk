@@ -1,0 +1,13 @@
+{% extends layout %}
+{% block content %}
+<h1>Sign In</h1>
+<form enctype="multipart/form-data" method="POST" action="/login">
+  <label for="username">Username</label>
+  <input type="text" name="username" />
+  <label for="password">Password</label>
+  <input type="password" name="password" />
+  <input type="submit" value="Sign In" />
+</form>
+<div class="important">{{ error }}</div>
+<a href="/contact">Need an account?</a>
+{% endblock content %}

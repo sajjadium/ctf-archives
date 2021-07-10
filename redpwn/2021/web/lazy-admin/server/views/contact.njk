@@ -1,0 +1,19 @@
+{% extends layout %}
+{% block content %}
+<h1>Contact</h1>
+<form>
+  <label for="email">Email</label>
+  <input disabled type="text" name="email" />
+  <label for="request">Request</label>
+  <textarea disabled name="request"></textarea>
+  <input disabled type="submit" value="Submit" />
+</form>
+<div class="important">
+  <p>Note from admin:</p>
+  <p>Due to an influx of requests, manual account approval and creation has
+  become too difficult. An automated system has now been set up. To create an
+  account, please send "Create Account" in a direct message to Kyle Bomb#9465 on
+  Discord.</p>
+  <p>You can find it <a style="display: inline" href="https://discord.gg/ySZwdUMBEu">here.</a></p>
+</div>
+{% endblock content %}

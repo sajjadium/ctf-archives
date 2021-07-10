@@ -1,0 +1,13 @@
+{
+  "name": "pastebin-2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "^3.14.1",
+    "fastify-static": "^4.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0"
+  }
+}

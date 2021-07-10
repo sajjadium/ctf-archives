@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/style.css" />
+    </head>
+    <body>
+        <div class="container">
+             {% with messages = get_flashed_messages() %}
+             {% if messages %}
+             <div class="important">
+                 {% for message in messages %}
+                 <div>{{ message }}</div>
+                 {% endfor %}
+             </div>
+             {% endif %}
+             {% endwith %}
+             {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

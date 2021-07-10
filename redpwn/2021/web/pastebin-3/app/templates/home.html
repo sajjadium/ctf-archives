@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Create Paste</h1>
+<form method="POST" action="/create_paste">
+    <textarea name="paste"></textarea>
+    <input type="submit" value="Submit" />
+</form>
+
+<h1>Pastes</h1>
+{% if pastes %}
+<div>
+    {% for item in pastes %}
+    <a href="/view?id={{ item }}">{{ item }}</a>
+    {% endfor %}
+</div>
+{% else %}
+No pastes yet!
+{% endif %}
+
+<h1>Search My Pastes</h1>
+<form action="/search">
+    <input type="text" name="query" />
+    <input type="submit" value="Submit" />
+</form>
+
+<br />
+<a href="/logout">Log out</a>
+{% endblock %}

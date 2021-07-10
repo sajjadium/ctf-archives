@@ -1,0 +1,13 @@
+.card {
+  display: grid;
+  grid-template-columns: 1fr 10ch;
+  padding: 1rem;
+
+  border-style: solid;
+  border-color: #aaa;
+  border-radius: 0.5rem;
+}
+
+.container {
+  height: 100%;
+}
