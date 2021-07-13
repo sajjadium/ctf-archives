@@ -1,0 +1,10 @@
+<html>
+<script src="chrome/gen/mojo/public/js/mojo_bindings.js"></script>
+<script src="chrome/gen/third_party/blink/public/mojom/hack/hack.mojom.js"></script>
+<script>
+var hack_ptr = new blink.mojom.HackPtr();
+Mojo.bindInterface(blink.mojom.Hack.name, mojo.makeRequest(hack_ptr).handle)
+
+hack_ptr.allocate(10).then(x => console.log(x.id));
+</script>
+</html>

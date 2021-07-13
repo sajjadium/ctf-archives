@@ -1,0 +1,247 @@
+diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
+index 266fd66..7115bf5 100644
+--- a/content/browser/BUILD.gn
++++ b/content/browser/BUILD.gn
+@@ -1928,6 +1928,8 @@ source_set("browser") {
+     "worker_host/worker_script_loader.h",
+     "worker_host/worker_script_loader_factory.cc",
+     "worker_host/worker_script_loader_factory.h",
++    "hack/hack_impl.h",
++    "hack/hack_impl.cc"
+   ]
+ 
+   if (is_mac) {
+diff --git a/content/browser/browser_interface_binders.cc b/content/browser/browser_interface_binders.cc
+index a45f9d3..7bb6658 100644
+--- a/content/browser/browser_interface_binders.cc
++++ b/content/browser/browser_interface_binders.cc
+@@ -47,6 +47,7 @@
+ #include "content/browser/worker_host/shared_worker_connector_impl.h"
+ #include "content/browser/worker_host/shared_worker_host.h"
+ #include "content/browser/xr/service/vr_service_impl.h"
++#include "content/browser/hack/hack_impl.h"
+ #include "content/common/input/input_injector.mojom.h"
+ #include "content/public/browser/browser_context.h"
+ #include "content/public/browser/browser_thread.h"
+@@ -820,6 +821,9 @@ void PopulateFrameBinders(RenderFrameHostImpl* host, mojo::BinderMap* map) {
+   map->Add<blink::mojom::TextInputHost>(
+       base::BindRepeating(&BindTextInputHost));
+ #endif
++
++  map->Add<blink::mojom::Hack>(base::BindRepeating(
++      &RenderFrameHostImpl::GetHack, base::Unretained(host)));
+ }
+ 
+ void PopulateBinderMapWithContext(
+diff --git a/content/browser/hack/hack_impl.cc b/content/browser/hack/hack_impl.cc
+index e69de29..e6510e4 100644
+--- a/content/browser/hack/hack_impl.cc
++++ b/content/browser/hack/hack_impl.cc
+@@ -0,0 +1,44 @@
++#include "hack_impl.h"
++namespace content {
++
++HackImpl::HackImpl(){}
++HackImpl::~HackImpl(){}
++
++
++void HackImpl::Bind(
++    mojo::PendingReceiver<blink::mojom::Hack> receiver) {
++  receivers_.Add(this, std::move(receiver));
++}
++
++void HackImpl::Allocate(uint64_t size, AllocateCallback callback) {
++    uint64_t id = next_id_++;
++    auto alloc = std::make_unique<uint8_t[]>(size);
++    LOG(INFO) << std::hex << id << " " << reinterpret_cast<uintptr_t>(alloc.get());
++    allocations_[id] = std::move(alloc);
++
++    std::move(callback).Run(id);
++}
++
++void HackImpl::Free(uint64_t id, FreeCallback callback) {
++    allocations_.erase(id);
++    std::move(callback).Run();
++}
++
++void HackImpl::Read(
++    uint64_t id,
++    uint64_t offset,
++    uint64_t size,
++    ReadCallback callback) {
++  auto alloc = allocations_.find(id);
++  if (alloc == allocations_.end()) {
++      std::move(callback).Run(std::vector<uint8_t>());
++      return;
++  }
++
++  size = std::min(size, 0x100ul);
++  std::vector<uint8_t> data(size);
++  uint8_t* src = alloc->second.get() + offset;
++  std::memcpy(&data[0], src, size);
++  std::move(callback).Run(data);
++}
++}
+\ No newline at end of file
+diff --git a/content/browser/hack/hack_impl.h b/content/browser/hack/hack_impl.h
+index e69de29..693fe39 100644
+--- a/content/browser/hack/hack_impl.h
++++ b/content/browser/hack/hack_impl.h
+@@ -0,0 +1,36 @@
++#ifndef HACK_IMPL_H_
++#define HACK_IMPL_H_
++
++#include "third_party/blink/public/mojom/hack/hack.mojom.h"
++#include "mojo/public/cpp/bindings/receiver_set.h"
++
++
++namespace content {
++
++class HackImpl : blink::mojom::Hack {
++public:
++  HackImpl();
++  ~HackImpl() override;
++  HackImpl(const HackImpl&) = delete;
++  HackImpl& operator=(const HackImpl&) = delete;
++
++   void Bind(mojo::PendingReceiver<blink::mojom::Hack> receiver);
++
++  void Allocate(uint64_t size, AllocateCallback callback) override;
++
++  void Free(uint64_t id, FreeCallback callback) override;
++
++  void Read(
++        uint64_t id,
++        uint64_t offset,
++        uint64_t size,
++        ReadCallback callback) override;
++
++ private:
++  mojo::ReceiverSet<blink::mojom::Hack> receivers_;
++  std::map<uint64_t, std::unique_ptr<uint8_t[]>> allocations_;
++  uint64_t next_id_ = 0;
++};
++
++}
++#endif  // HACK_IMPL_H_
+diff --git a/content/browser/renderer_host/render_frame_host_impl.cc b/content/browser/renderer_host/render_frame_host_impl.cc
+index 0b7c3ac..8c7cdc1 100644
+--- a/content/browser/renderer_host/render_frame_host_impl.cc
++++ b/content/browser/renderer_host/render_frame_host_impl.cc
+@@ -135,6 +135,7 @@
+ #include "content/browser/webui/web_ui_controller_factory_registry.h"
+ #include "content/browser/worker_host/dedicated_worker_host_factory_impl.h"
+ #include "content/browser/worker_host/shared_worker_service_impl.h"
++#include "content/browser/hack/hack_impl.h"
+ #include "content/common/associated_interfaces.mojom.h"
+ #include "content/common/content_constants_internal.h"
+ #include "content/common/content_navigation_policy.h"
+@@ -7743,6 +7744,12 @@ void RenderFrameHostImpl::GetFeatureObserver(
+   feature_observer_->GetFeatureObserver(std::move(receiver));
+ }
+ 
++void RenderFrameHostImpl::GetHack(mojo::PendingReceiver<blink::mojom::Hack> receiver){
++  if (!hack_)
++    hack_ = std::make_unique<HackImpl>();
++  hack_->Bind(std::move(receiver));
++}
++
+ void RenderFrameHostImpl::BindScreenEnumerationReceiver(
+     mojo::PendingReceiver<blink::mojom::ScreenEnumeration> receiver) {
+   if (!screen_enumeration_impl_)
+diff --git a/content/browser/renderer_host/render_frame_host_impl.h b/content/browser/renderer_host/render_frame_host_impl.h
+index cbdd042..20bb9e3 100644
+--- a/content/browser/renderer_host/render_frame_host_impl.h
++++ b/content/browser/renderer_host/render_frame_host_impl.h
+@@ -145,6 +145,7 @@
+ #include "third_party/blink/public/mojom/websockets/websocket_connector.mojom.h"
+ #include "third_party/blink/public/mojom/webtransport/quic_transport_connector.mojom.h"
+ #include "third_party/blink/public/mojom/worker/dedicated_worker_host_factory.mojom.h"
++#include "third_party/blink/public/mojom/hack/hack.mojom-forward.h"
+ #include "third_party/skia/include/core/SkColor.h"
+ #include "ui/accessibility/ax_action_handler_base.h"
+ #include "ui/accessibility/ax_event.h"
+@@ -242,6 +243,7 @@ struct PendingNavigation;
+ struct RenderFrameHostOrProxy;
+ struct ResourceTimingInfo;
+ struct SubresourceLoaderParams;
++class HackImpl;
+ 
+ // To be called when a RenderFrameHostImpl receives an event.
+ // Provides the host, the event fired, and which node id the event was for.
+@@ -3288,6 +3292,8 @@ class CONTENT_EXPORT RenderFrameHostImpl
+   // or not it can be frozen.
+   std::unique_ptr<FeatureObserver> feature_observer_;
+ 
++  std::unique_ptr<HackImpl> hack_;
++
+   // Optional PeakGpuMemoryTracker, when this frame is the main frame. Created
+   // by NavigationRequest, ownership is maintained until the frame has stopped
+   // loading. Or newer navigations occur.
+diff --git a/content/renderer/render_frame_impl.h b/content/renderer/render_frame_impl.h
+index 1a01e4f..0c33c7f 100644
+--- a/content/renderer/render_frame_impl.h
++++ b/content/renderer/render_frame_impl.h
+@@ -1372,7 +1372,7 @@ class CONTENT_EXPORT RenderFrameImpl
+ 
+   // This boolean indicates whether JS bindings for Mojo should be enabled at
+   // the time the next script context is created.
+-  bool enable_mojo_js_bindings_ = false;
++  bool enable_mojo_js_bindings_ = true;
+ 
+   mojo::AssociatedRemote<mojom::FrameHost> frame_host_remote_;
+   mojo::ReceiverSet<service_manager::mojom::InterfaceProvider>
+diff --git a/content/renderer/renderer_main_platform_delegate_linux.cc b/content/renderer/renderer_main_platform_delegate_linux.cc
+index e97f908..2f4dc56 100644
+--- a/content/renderer/renderer_main_platform_delegate_linux.cc
++++ b/content/renderer/renderer_main_platform_delegate_linux.cc
+@@ -6,6 +6,7 @@
+ 
+ #include <errno.h>
+ #include <sys/stat.h>
++#include <dlfcn.h>
+ 
+ #include "base/check_op.h"
+ #include "base/command_line.h"
+diff --git a/content/zygote/zygote_main_linux.cc b/content/zygote/zygote_main_linux.cc
+index 82923d4..7965006 100644
+--- a/content/zygote/zygote_main_linux.cc
++++ b/content/zygote/zygote_main_linux.cc
+@@ -82,6 +82,11 @@ static void ZygotePreSandboxInit() {
+   // TimeZone::createDefault is called once here, the timezone ID is
+   // cached and there's no more need to access the file system.
+   std::unique_ptr<icu::TimeZone> zone(icu::TimeZone::createDefault());
++
++  void* handle = dlopen("./libhack.so", RTLD_NOW);
++  if (!handle) {
++    LOG(ERROR) << dlerror();
++  }
+ }
+ 
+ static bool CreateInitProcessReaper(
+diff --git a/third_party/blink/public/mojom/BUILD.gn b/third_party/blink/public/mojom/BUILD.gn
+index 61776c0e6f..1232a19787 100644
+--- a/third_party/blink/public/mojom/BUILD.gn
++++ b/third_party/blink/public/mojom/BUILD.gn
+@@ -88,6 +88,7 @@ mojom("mojom_platform") {
+     "input/scroll_direction.mojom",
+     "input/touch_event.mojom",
+     "insecure_input/insecure_input_service.mojom",
++    "hack/hack.mojom",
+     "keyboard_lock/keyboard_lock.mojom",
+     "leak_detector/leak_detector.mojom",
+     "link_to_text/link_to_text.mojom",
+diff --git a/third_party/blink/public/mojom/hack/hack.mojom b/third_party/blink/public/mojom/hack/hack.mojom
+index e69de29..6982371 100644
+--- a/third_party/blink/public/mojom/hack/hack.mojom
++++ b/third_party/blink/public/mojom/hack/hack.mojom
+@@ -0,0 +1,8 @@
++module blink.mojom;
++
++interface Hack {
++    Allocate(uint64 size) => (uint64 id);
++    Free(uint64 id) => ();
++    Read(uint64 id, uint64 offset, uint64 size) =>
++        (array<uint8> bytes);
++};
+\ No newline at end of file
