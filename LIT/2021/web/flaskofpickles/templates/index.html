@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Profile Page Maker</title>
+        <style>
+        </style>
+        <script>
+            function submit(){
+                let p1 = "\x80\x04\x95"
+                let p15 = "\x00\x00\x00\x00\x00\x00\x00}\x94(\x8c\x04name\x94\x8c"
+                let p2 = "\x94\x8c\x03bio\x94\x8c"
+                let p3 = "\x94u."
+                let name = document.getElementById("name").value;
+                let bio = document.getElementById("bio").value;
+                let s = p1 + String.fromCharCode(p1.length + 1 + p15.length + 1 + name.length + p2.length + 1 + bio.length + p3.length - 11) + p15 + String.fromCharCode(name.length) + name + p2 + String.fromCharCode(bio.length) + bio + p3;
+                let enc = window.btoa(s);
+                console.log(enc);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "new", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhr.onload = function (){
+                    window.location.href=this.responseText;
+                };
+                xhr.send(enc);
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Profile Page Maker</h1>
+        <label for="name">Name:</label></br>
+        <input type="text" id="name" name="name"></br></br>
+        <label for="bio">Bio:</label></br>
+        <textarea id="bio" name="bio" rows="3" cols="20"></textarea></br></br>
+        <button onclick="submit();">Create Profile!</button>
+    </body>
+</html>

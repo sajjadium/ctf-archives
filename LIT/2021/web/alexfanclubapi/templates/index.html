@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Alex Fan Club API</title>
+        <style>
+            .bg{
+                background-image: url("https://cdn.discordapp.com/avatars/406666674171936768/11f34e8f57c89f2829432663c4f3304c.webp?size=256");
+                background-repeat: repeat;
+                opacity: 0.05;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1;  
+            }
+            pre code {
+                background-color: #eee;
+                border: 1px solid #999;
+                display: block;
+                padding: 10px;
+            }
+        </style> 
+    </head>
+    <body>
+        <div class="bg"></div>
+        <h1>Welcome to the Alex Fan Club API homepage</h1>
+        <h3>About</h3>
+        <p>This API can be used by anyone to query the (wow!) achievements of Alex Fan.</p>
+        <h3>Features</h3>
+        <p>This API uses XML to query requests from a secure SQL database containing Alex Fan Club's list of Alex Fan's achievements. Additionally, requests expire after about a minute because that is cool!</p>
+        <h3>Usage</h3>
+        <p>To query the API, you have to make a POST request to <a href="api">{{ apiurl }}</a> with two parameters. The <code>time</code> parameter contains a base64 urlsafe representation of the epoch time. For example, the current epoch time is <code>{{ epochtime }}</code>, and the urlsafe base64 encoded representation is <code>{{ basesftime }}</code>. The <code>search</code> parameter contains the search query for the API enclosed in <code>&lt;search>&lt;/search></code>. The API returns the results of the search separated by newlines.</p>
+        <p>An example of a python script that queries the string "cool" to the API is the following</p>
+        <pre>
+            <code>import requests
+import base64
+import time
+
+api = "{{ apiurl }}"
+
+req_time = int(time.time())
+
+data = {
+    "time": base64.urlsafe_b64encode(req_time.to_bytes((req_time.bit_length() + 7) // 8, byteorder="big")),
+    "search": "&lt;search>cool&lt;/search>"
+}
+
+x = requests.post(api, data=data)
+print(x.text)</code>
+        </pre>
+        <p>The above code snippet will print the following</p>
+        <pre>
+            <code>Too cool for #include &lt;bits/stdc++.h>
+Is super cool
+Has a cool profile picture</code>
+        </pre>
+    </body>
+</html>
