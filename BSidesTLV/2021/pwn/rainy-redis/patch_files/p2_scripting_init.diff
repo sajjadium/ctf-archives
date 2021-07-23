@@ -1,0 +1,16 @@
+--- redis/src/scripting.c       2021-06-01 17:03:44.000000000 +0300
++++ redis/src/scripting.c       2021-07-15 20:44:10.429469700 +0300
+@@ -1069,6 +1069,13 @@
+     s[j++]="  return rawget(t, n)\n";
+     s[j++]="end\n";
+     s[j++]="debug = nil\n";
++    /* ======== executed during lua state startup ======== */
++    s[j++]="local flag = ''\n";
++    s[j++]="for i = 1,1000,1 do\n";
++    s[j++]="    flag = flag .. 'BSidesTLV2021{demo-flag--demo-flag--demo-flag}'\n";
++    s[j++]="end\n";
++    s[j++]="flag = nil\n"; // clean secret value from Lua context. The flag cannot be available on production env!
++    /* ================================================== */
+     s[j++]=NULL;
+
+     for (j = 0; s[j] != NULL; j++) code = sdscatlen(code,s[j],strlen(s[j]));

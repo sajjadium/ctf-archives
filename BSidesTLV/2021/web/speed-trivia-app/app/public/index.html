@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Speed Trivia</title>
+</head>
+<body>
+<p />
+
+<div class="container">
+    <div class="row"> 
+        <div class="col d-flex justify-content-center">
+            <div class="card">
+                <center><img width=450 class="smallimg" src="./think-faster.png" alt="meme.png" ></center>
+                <div class="card-body">
+                <h3 class="card-title">Speed Trivia</h3>
+                <span id='timer'></span>
+                <span id='game_desc'>
+                Welcome to the ultimate Trivia game! <br />
+                We are using the latest technologies for the best scaling in the industry!  <br /> &nbsp; <br />
+                Answer as many questions as you can before the timer ends.
+                </span>
+                <br />
+                <button class='btn btn-success' id='start_game'>Start</button>
+                <span id='stats'></span>
+                <hr />
+                
+                <!-- dummy elements, updated accordingly using ui.js -->
+                <span id='question'></span>
+                <select id='answer_val' style='display: none'> 
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
+                </select>
+
+                <br />
+
+                <button id='send_answer' style='display: none' class='btn btn-primary'>Send answer</button> 
+                <a href='#' id='get_flag' style='display: none'>get flag</a> <br /> 
+                <a href='/' id='try_again' style='display: none'>try again</a>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script src=./ui.js></script>
+</body>
+</html>

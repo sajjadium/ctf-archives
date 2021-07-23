@@ -1,0 +1,36 @@
+--- redis/deps/lua/src/lstrlib.c        2021-07-15 20:41:26.440551800 +0300
++++ redis/deps/lua/src/lstrlib.c        2021-07-15 20:36:18.949532600 +0300
+@@ -824,6 +824,25 @@
+ }
+
+
++static int str_paste (lua_State *L) {
++    int nargs = lua_gettop(L);  /* number of arguments */
++    size_t l;
++    if (nargs != 4) {
++      return luaL_argerror(L, 0, "string.paste expects 4 arguments(str1, str2, len_to_paste, skip)");
++    }
++
++    const char *s1  = luaL_checklstring(L, 1, &l);
++    const char *s2  = luaL_checklstring(L, 2, &l);
++    lua_Number len  = lua_tonumber(L, 3);
++    lua_Number skip = lua_tonumber(L, 4);
++
++    s2 += (int)skip;
++    memcpy(s2, s1, (size_t)len);
++
++    return 0;
++}
++
++
+ static const luaL_Reg strlib[] = {
+   {"byte", str_byte},
+   {"char", str_char},
+@@ -839,6 +858,7 @@
+   {"rep", str_rep},
+   {"reverse", str_reverse},
+   {"sub", str_sub},
++  {"paste", str_paste},
+   {"upper", str_upper},
+   {NULL, NULL}
+ };

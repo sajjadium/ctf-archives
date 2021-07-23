@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="//cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <title>Intellimage</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="#">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="app" class="container-fluid" @dragenter="ignore" @dragover="ignore" @dragleave="ignore" @drop="drop">
+    <div class="container-fluid bg-light text-dark text-center p-1">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Intellimage</h1>
+            <!-- <p class="lead text-uppercase" style="margin-top: -0.6em">[ view file metadata ]</p> -->
+            <p class="lead text-uppercase" style="margin-top: -0.6em">[ view image metadata ]</p>
+        </div>
+    </div>
+
+    <form enctype="multipart/form-data" method="post" class="form form-control" @submit="view">
+        <div id="drop" class="container bg-secondary text-light text-center mt-4 p-5 rounded fw-bold">
+            <h2 class="display-6">Drop image files here</h2>
+            <button @click="select" class="btn btn-warning m-4 p-2">or select</button>
+            <input ref="image" name="image[]" type="file" accept="image/*" multiple hidden>
+        </div>
+
+        <div class="container my-4">
+            <div class="row">
+                <label for="token" class="col-form-label">API Token:</label>
+                <div class="col-10">
+                    <input id="token" name="token" v-model.trim="token" class="form-control form-control-lg" type="text"
+                           placeholder="token" aria-label="token">
+                </div>
+                <div class="col-2">
+                    <button type="submit" @submit="view" class="btn btn-lg btn-primary col-10">View</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="container py-4">
+        <template v-if="result">
+            <div class="alert alert-success fw-bold" role="alert">
+                <h3 class="fw-bold">Result:</h3>
+                <pre style="font-size: 1.2rem"><code>{{ JSON.stringify(result, null, 2) }}</code></pre>
+            </div>
+        </template>
+        <template v-if="errors.length">
+            <div class="alert alert-danger" role="alert">
+                <h3><span class="fw-bold">Errors:</span></h3>
+                <ul>
+                    <li v-for="error in errors" style="font-size: 1.2rem">{{ error }}</li>
+                </ul>
+            </div>
+        </template>
+    </div>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+<script src="//cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"
+        integrity="sha384-t1tHLsbM7bYMJCXlhr0//00jSs7ZhsAhxgm191xFsyzvieTMCbUWKMhFg9I6ci8q"
+        crossorigin="anonymous"></script>
+
+<script type="application/javascript">
+    const app = new Vue({
+        el: "#app",
+        data: {
+            token: "",
+            errors: [],
+            result: null,
+        },
+        methods: {
+            validate: function (body) {
+                const imagesSize = body.getAll("image[]").reduce((a, b) => {
+                    return a + b.size
+                }, 0);
+
+                if (!this.token) {
+                    this.errors.push("empty token");
+                } else if (this.token.length < 40) {
+                    this.errors.push("bad token");
+                }
+
+                if (!imagesSize) {
+                    this.errors.push("empty image");
+                } else if (imagesSize > 90 * 1024) {
+                    this.errors.push("image is too big");
+                }
+
+                return !this.errors.length;
+            },
+            view: async function (e) {
+                e.preventDefault();
+
+                this.errors = [];
+                this.result = null;
+
+                const body = new FormData(e.target);
+                if (!this.validate(body)) {
+                    return;
+                }
+
+                try {
+                    const response = await fetch("/view", {
+                        method: "POST",
+                        body: body
+                    });
+                    if (!response.ok) {
+                        throw Error(response.statusText)
+                    }
+
+                    const data = await response.json();
+                    if (data.error) {
+                        throw Error(data.error);
+                    }
+
+                    this.result = data;
+                } catch (error) {
+                    this.errors.push(error.message);
+                }
+            },
+            select: function (e) {
+                e.preventDefault();
+
+                this.$refs.image.click();
+            },
+            drop: function (e) {
+                e.preventDefault();
+
+                const data = e.dataTransfer;
+                this.$refs.image.files = data.files;
+            },
+            ignore: function (e) {
+                e.preventDefault();
+            }
+        }
+    });
+</script>
+</body>
+</html>

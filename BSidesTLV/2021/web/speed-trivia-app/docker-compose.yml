@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  nodeapp:
+    build: .
+    ports:
+      - 3000:3000
+    depends_on: 
+      - redisdb
+    environment: 
+      REDIS_HOST: redisdb
+      REDIS_PORT: 6379
+      JWT_SECRET: demo-env-secret
+      ANALYTICS_LIMIT: 150
+      DEFAULT_TTL: 60
+      FLAG: BSidesTLV2021{demo-flag-demo-flag-demo-flag}
+    restart: always
+  
+  redisdb:
+    image: redislabs/redisgraph
+    restart: always
