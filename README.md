@@ -300,7 +300,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/542/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/Codegate/2018/Quals">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="CyBRICS">CyBRICS</a></td>
+            <td rowspan=2><a href="CyBRICS">CyBRICS</a></td>
+            <td><a href="CyBRICS/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1306/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="CyBRICS/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1012/tasks/">CTFtime</a></td>
         </tr>
