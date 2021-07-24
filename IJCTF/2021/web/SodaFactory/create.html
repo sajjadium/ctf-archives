@@ -1,0 +1,30 @@
+<html>
+<head>
+  <meta name='author' content='TheGrandPew'>
+  <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no'>
+  <title>Create A Soda</title>
+  <link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css'/>
+  <link rel='stylesheet' href='/style.css' />
+  <link rel='icon' href='/assets/favicon.png' />
+</head>
+<body>
+<div id='main' class='container'>
+  <h1 id='title'>
+    <b>Pop Details</b>
+  </h1>
+  <br>
+  <br>
+  <form action="/makeSoda" method="POST" style="text-align: left">
+    <b>Name: <input name="name" value="Kewl Cola"></b><br>
+    <b>Brand: <select name="brand">
+        <option value="coke">Coke</option>
+        <option value="pepsi">Pepsi</option>
+        <option value="fanta">Fanta</option>
+      </select>
+    </b><br><br>
+    Create <input type="submit"></input>
+  </form>
+</div>
+</body>
+</html>

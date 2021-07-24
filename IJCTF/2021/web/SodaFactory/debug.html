@@ -1,0 +1,18 @@
+<script src="https://unpkg.com/sodajs@0.4.10/dist/soda.js"></script>
+<textarea id=inp>{{4*4}}</textarea><br>
+<br>OutPut:
+<div id=out>
+
+</div>
+<script>
+  inp.onchange = (e) => {
+    v = inp.value;
+    try {
+      t = soda(v);
+      out.innerText = t
+    } catch (e) {
+      out.innerText = e.toString()
+    }
+  }
+
+</script>

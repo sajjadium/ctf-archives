@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  paste:
+    container_name: paste
+    restart: always
+    build: ./
+    ports:
+      - "5552:1337"
+    command: node index.js

@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  factory:
+    container_name: factory
+    restart: always
+    build: ./
+    ports:
+      - "5553:3000"
+    command: node app.js

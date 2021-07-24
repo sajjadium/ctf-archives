@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+
+  cdn:
+    container_name: cdn
+    restart: always
+    build: ./cdn
+    ports:
+      - "3000:3000"
+    networks:
+      - inter
+    command: gunicorn --bind 0.0.0.0:8000 wsgi:app
+
+  redis:
+    image: "redis:alpine"
+    networks:
+      - inter
+
+  nginx:
+    container_name: nginx
+    restart: always
+    build: ./nginx
+    ports:
+      - "5551:80"
+    networks:
+      - front
+      - inter
+    depends_on:
+      - cdn
+
+networks:
+  front:
+    name: front
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: dockerfront
+  inter:
+    name: inter
+    driver: bridge
+    internal: true
+    driver_opts:
+      com.docker.network.bridge.name: dockerinter
