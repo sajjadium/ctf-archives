@@ -1,0 +1,94 @@
+  2           0 LOAD_CONST               1 ('w')
+              3 STORE_FAST               1 (key)
+
+  3           6 LOAD_FAST                0 (cipher)
+              9 LOAD_ATTR                0 (split)
+             12 LOAD_CONST               2 (' ')
+             15 CALL_FUNCTION            1
+             18 STORE_FAST               2 (a)
+
+  4          21 LOAD_GLOBAL              1 (ord)
+             24 LOAD_FAST                1 (key)
+             27 CALL_FUNCTION            1
+             30 STORE_FAST               3 (key_1)
+
+  5          33 LOAD_GLOBAL              2 (int)
+             36 LOAD_FAST                1 (key)
+             39 LOAD_ATTR                3 (encode)
+             42 LOAD_CONST               3 ('hex')
+             45 CALL_FUNCTION            1
+             48 CALL_FUNCTION            1
+             51 STORE_FAST               4 (key_2)
+
+  6          54 LOAD_FAST                3 (key_1)
+             57 LOAD_FAST                4 (key_2)
+             60 BUILD_LIST               2
+             63 STORE_FAST               5 (keyes)
+
+  7          66 LOAD_CONST               4 ('')
+             69 STORE_FAST               0 (cipher)
+
+  8          72 SETUP_LOOP             135 (to 210)
+             75 LOAD_GLOBAL              4 (range)
+             78 LOAD_CONST               5 (0)
+             81 LOAD_GLOBAL              5 (len)
+             84 LOAD_FAST                2 (a)
+             87 CALL_FUNCTION            1
+             90 CALL_FUNCTION            2
+             93 GET_ITER            
+        >>   94 FOR_ITER               112 (to 209)
+             97 STORE_FAST               6 (x)
+
+  9         100 LOAD_FAST                6 (x)
+            103 LOAD_CONST               6 (2)
+            106 BINARY_MODULO       
+            107 LOAD_CONST               7 (1)
+            110 COMPARE_OP               2 (==)
+            113 POP_JUMP_IF_FALSE      153
+
+ 10         116 LOAD_FAST                0 (cipher)
+            119 LOAD_GLOBAL              6 (chr)
+            122 LOAD_GLOBAL              2 (int)
+            125 LOAD_FAST                2 (a)
+            128 LOAD_FAST                6 (x)
+            131 BINARY_SUBSCR       
+            132 CALL_FUNCTION            1
+            135 LOAD_FAST                5 (keyes)
+            138 LOAD_CONST               5 (0)
+            141 BINARY_SUBSCR       
+            142 BINARY_XOR          
+            143 CALL_FUNCTION            1
+            146 INPLACE_ADD         
+            147 STORE_FAST               0 (cipher)
+            150 JUMP_ABSOLUTE           94
+
+ 11     >>  153 LOAD_FAST                6 (x)
+            156 LOAD_CONST               6 (2)
+            159 BINARY_MODULO       
+            160 LOAD_CONST               5 (0)
+            163 COMPARE_OP               2 (==)
+            166 POP_JUMP_IF_FALSE       94
+
+ 12         169 LOAD_FAST                0 (cipher)
+            172 LOAD_GLOBAL              6 (chr)
+            175 LOAD_GLOBAL              2 (int)
+            178 LOAD_FAST                2 (a)
+            181 LOAD_FAST                6 (x)
+            184 BINARY_SUBSCR       
+            185 CALL_FUNCTION            1
+            188 LOAD_FAST                5 (keyes)
+            191 LOAD_CONST               7 (1)
+            194 BINARY_SUBSCR       
+            195 BINARY_XOR          
+            196 CALL_FUNCTION            1
+            199 INPLACE_ADD         
+            200 STORE_FAST               0 (cipher)
+            203 JUMP_ABSOLUTE           94
+            206 JUMP_ABSOLUTE           94
+        >>  209 POP_BLOCK           
+
+ 13     >>  210 LOAD_FAST                0 (cipher)
+            213 PRINT_ITEM          
+            214 PRINT_NEWLINE       
+            215 LOAD_CONST               0 (None)
+            218 RETURN_VALUE        
