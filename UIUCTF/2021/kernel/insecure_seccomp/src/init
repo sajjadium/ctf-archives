@@ -1,0 +1,31 @@
+#!/bin/busybox sh
+# Copyright 2021 Google LLC.
+# SPDX-License-Identifier: Apache-2.0
+
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+/bin/busybox --install -s
+
+mkdir -p /dev /proc /sys /etc
+
+mount -n -t devtmpfs -o mode=0755,nosuid,noexec devtmpfs /dev
+
+exec 0> /dev/null
+exec 1> /dev/console
+exec 2>&1
+
+mount -n -t proc -o nosuid,noexec,nodev proc /proc/
+mount -n -t sysfs -o nosuid,noexec,nodev sys /sys/
+
+ln -s /proc/self/mounts /etc/mtab
+
+chmod 755 /
+mkdir -m 1777 /tmp
+
+chmod 400 /flag
+chmod 4555 /usr/local/bin/exploit_me
+
+cd /usr/local/bin
+setsid cttyhack jail 0<>"/dev/ttyS0" 1>&0 2>&0
+
+poweroff -f

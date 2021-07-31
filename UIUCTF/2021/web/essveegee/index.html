@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>SVG Converter</title>
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+      body{
+        background-color: #dde5db;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%2393ac92' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M11 0l5 20H6l5-20zm42 31a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM0 72h40v4H0v-4zm0-8h31v4H0v-4zm20-16h20v4H20v-4zM0 56h40v4H0v-4zm63-25a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM53 41a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-30 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-28-8a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zM56 5a5 5 0 0 0-10 0h10zm10 0a5 5 0 0 1-10 0h10zm-3 46a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm10 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM21 0l5 20H16l5-20zm43 64v-4h-4v4h-4v4h4v4h4v-4h4v-4h-4zM36 13h4v4h-4v-4zm4 4h4v4h-4v-4zm-4 4h4v4h-4v-4zm8-8h4v4h-4v-4z'/%3E%3C/g%3E%3C/svg%3E");
+        text-align: center;
+        font-family: 'Varela Round', sans-serif;
+        color: #0d5047;
+      }
+    </style>
+</head>
+<body>
+    <h1> Convert SVGs as a service! </h1>
+
+    <h3> Upload SVG </h3>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="svg" accept=".svg" />
+        <input type="submit" value="Upload" />
+    </form>
+    <br/><br/>
+    <h3> Convert SVG </h3>
+    <form action="/convert" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="text" name="id" placeholder="2e5cfbc5ee249c611b834f7e4259abb6387a4a9d400de2aa9f7d627d14687c84" />
+        <div class="h-captcha" data-sitekey="51c0a143-a92c-4444-a242-ffe69982794e"></div>
+        <input type="submit" value="Convert" />
+    </form>
+    <a href="/uploads">View uploads</a>
+</body>
+</html>

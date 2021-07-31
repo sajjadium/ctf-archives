@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PwnyIDE</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <h1>PwnyIDE<img id="logo" src="./logo.png"></img></h1>
+    <div id="wrapper">
+      <div id="editor"></div>
+      <iframe sandbox id="preview"></iframe>
+    </div>
+    <button id="save">Save</button>
+    <h3>Share your code: <a id="share" href="">loading...</a></h3>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js"
+      integrity="sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-chrome.min.js"
+      integrity="sha512-Ii/umaZEkkMZzbFuBG8cHu7YG7amg6VfaNpLe8njaXaqN9/RRXp95awJUd3gFEBYNym307V8YkWS4ZWHZvDSZw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-html.min.js"
+      integrity="sha512-qyse7v2aBOxbbQxKhaDcI+XKKBDL3CPR5xsipXPUX3GwzE6lcteLkFsTS7emYQcDtTqY/nsq99FztWBXzmfFAA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      (async () => {
+      const uid = document.cookie.match(/%3A([a-zA-Z0-9]*)/)[1]
+      document.getElementById("share").href = `/workspace/${uid}`
+      document.getElementById("share").innerText = `${document.location.origin}/workspace/${uid}`
+      const editor = ace.edit("editor")
+      const preview = document.getElementById("preview")
+      editor
+        .getSession()
+        .setValue(
+          await (await fetch(`/workspace/${uid}`)).text()
+        )
+      editor.getSession().setUseWorker(false)
+      editor.setTheme("ace/theme/chrome")
+      editor.getSession().setMode("ace/mode/html")
+
+
+      const updatePreview = () => { preview.srcdoc = editor.getSession().getValue() }
+      updatePreview()
+
+      editor.getSession().on("change", () => {
+        updatePreview()
+      })
+
+
+      document.getElementById("save").onclick = async () => {
+        const formData  = new FormData();
+        formData.append('file', new Blob([editor.getSession().getValue()]));
+        const response = await fetch("/save", {
+          method: 'POST',
+          body: formData
+        })
+        alert((response.status === 200) ? "saved" : "error :(")
+      }
+      })()
+    </script>
+  </body>
+</html>

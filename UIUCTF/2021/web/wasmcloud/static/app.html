@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>wasmcloud&#8482;</title>
+    <!-- shh, don't tell them, i've hunted their wabbit -->
+    <link href="https://webassembly.github.io/wabt/demo/third_party/codemirror/codemirror.css" rel="stylesheet">
+    <link href="https://webassembly.github.io/wabt/demo/custom.css" rel="stylesheet">
+    <script src="https://webassembly.github.io/wabt/demo/third_party/codemirror/codemirror.js"></script>
+    <script src="https://webassembly.github.io/wabt/demo/third_party/codemirror/simple-mode.js"></script>
+    <script src="https://webassembly.github.io/wabt/demo/wast-mode.js"></script>
+    <script src="https://webassembly.github.io/wabt/demo/libwabt.js"></script>
+    <script src="https://webassembly.github.io/wabt/demo/wasm2wat/examples.js"></script>
+    <script>
+      window.onload = function () {
+        WabtModule().then(function (wabt) {
+          var editor = CodeMirror.fromTextArea(document.getElementById('editor'),
+            {mode: 'wast', lineNumbers: true});
+
+          window.uploadWasm = function () {
+            (async () => {
+              var fn = await (await fetch("/upload", {
+                method: "PUT",
+                headers: { "Content-Type": "application/wasm" },
+                body: wabt.parseWat('main.wast', editor.getValue()).toBinary({log: false}).buffer
+              })).text();
+              var result = await (await fetch("/run/" + fn)).text();
+              alert(result);
+            })().catch(err => alert(err));
+          };
+        });
+      };
+    </script>
+  </head>
+  </head>
+  <body>
+    <h1>wasmcloud&#8482;</h1>
+    <p>
+      Try WebAssembly today!
+      <i>Run WebAssembly On the Cloud!</i>
+      <a href="report.html">Contact Us</a>
+    </p>
+    <main>
+      <div class="toolbar">
+        Code Editor
+        <div class="right">
+          <button class="btn" type="button" onClick="uploadWasm();">Run</button>
+        </div>
+      </div>
+      <textarea id="editor" hidden>(module
+  (import "process" "exit" (func $return (param i32)))
+  (func (export "main")
+    i32.const 6
+    i32.const 7
+    i32.mul
+    call $return
+  )
+)
+</textarea>
+    </main>
+  </body>
+</html>

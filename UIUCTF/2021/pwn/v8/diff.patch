@@ -1,0 +1,361 @@
+diff --git a/samples/hello-world.cc b/samples/hello-world.cc
+index 6e506475e4..ba36157851 100644
+--- a/samples/hello-world.cc
++++ b/samples/hello-world.cc
+@@ -9,7 +9,228 @@
+ #include "include/libplatform/libplatform.h"
+ #include "include/v8.h"
+ 
++#include <map>
++#include <string>
++#include <iostream>
++
++using std::map;
++using std::pair;
++using std::string;
++
++using v8::Context;
++using v8::EscapableHandleScope;
++using v8::External;
++using v8::Function;
++using v8::FunctionTemplate;
++using v8::Global;
++using v8::HandleScope;
++using v8::Isolate;
++using v8::Local;
++using v8::MaybeLocal;
++using v8::Name;
++using v8::NamedPropertyHandlerConfiguration;
++using v8::NewStringType;
++using v8::Object;
++using v8::ObjectTemplate;
++using v8::PropertyCallbackInfo;
++using v8::Script;
++using v8::String;
++using v8::TryCatch;
++using v8::Value;
++using v8::Symbol;
++
++// Challenge related functions
++
++static Global<ObjectTemplate> map_template_;
++static v8::Isolate* isolate;
++
++//static char* flag = NULL;
++
++void WriteToFile(FILE* file, const v8::FunctionCallbackInfo<v8::Value>& args) {
++  for (int i = 0; i < args.Length(); i++) {
++    HandleScope handle_scope(args.GetIsolate());
++    if (i != 0) {
++      fprintf(file, " ");
++    }
++
++    // Explicitly catch potential exceptions in toString().
++    v8::TryCatch try_catch(args.GetIsolate());
++    Local<Value> arg = args[i];
++    Local<String> str_obj;
++
++    if (arg->IsSymbol()) {
++      arg = arg.As<Symbol>()->Description();
++    }
++    if (!arg->ToString(args.GetIsolate()->GetCurrentContext())
++             .ToLocal(&str_obj)) {
++      try_catch.ReThrow();
++      return;
++    }
++
++    v8::String::Utf8Value str(args.GetIsolate(), str_obj);
++    int n = static_cast<int>(fwrite(*str, sizeof(**str), str.length(), file));
++    if (n != str.length()) {
++      printf("Error in fwrite\n");
++      exit(1);
++    }
++  }
++}
++
++void WriteAndFlush(FILE* file,
++                   const v8::FunctionCallbackInfo<v8::Value>& args) {
++  WriteToFile(file, args);
++  fprintf(file, "\n");
++  fflush(file);
++}
++
++void Print(const v8::FunctionCallbackInfo<v8::Value>& args) {
++  WriteAndFlush(stdout, args);
++}
++
++Local<ObjectTemplate> MakeMapTemplate(
++    Isolate* isolate) {
++  EscapableHandleScope handle_scope(isolate);
++
++  Local<ObjectTemplate> result = ObjectTemplate::New(isolate);
++  result->SetInternalFieldCount(1);
++
++  // Again, return the result through the current handle scope.
++  return handle_scope.Escape(result);
++}
++
++// Utility function that wraps a C++ http request object in a
++// JavaScript object.
++Local<Object> WrapMap(map<string, string>* obj) {
++  // Local scope for temporary handles.
++  EscapableHandleScope handle_scope(isolate);
++
++  // Fetch the template for creating JavaScript map wrappers.
++  // It only has to be created once, which we do on demand.
++  if (map_template_.IsEmpty()) {
++    Local<ObjectTemplate> raw_template = MakeMapTemplate(isolate);
++    map_template_.Reset(isolate, raw_template);
++  }
++  Local<ObjectTemplate> templ =
++      Local<ObjectTemplate>::New(isolate, map_template_);
++
++  // Create an empty map wrapper.
++  Local<Object> result =
++      templ->NewInstance(isolate->GetCurrentContext()).ToLocalChecked();
++
++  // Wrap the raw C++ pointer in an External so it can be referenced
++  // from within JavaScript.
++  Local<External> map_ptr = External::New(isolate, obj);
++
++  // Store the map pointer in the JavaScript wrapper.
++  result->SetInternalField(0, map_ptr);
++
++  // Return the result through the current handle scope.  Since each
++  // of these handles will go away when the handle scope is deleted
++  // we need to call Close to let one, the result, escape into the
++  // outer handle scope.
++  return handle_scope.Escape(result);
++}
++
++#include <pwd.h>
++#include <unistd.h>
++void drop_privs() {
++	struct passwd *pw;
++	pw = getpwnam("nobody");
++
++	if(pw == NULL) {
++		fprintf(stderr, "Failed to drop privileges, no nobody user.\n");
++		exit(1);
++	}
++
++	if (chroot(".") != 0) {
++		fprintf(stderr, "Failed to chroot to current directory.\n");
++		exit(1);
++	}
++
++	if(setgid(pw->pw_gid) != 0 ||
++	   setuid(pw->pw_uid) != 0 )
++	{
++		fprintf(stderr, "Failed to drop privileges to nobody user.\n");
++		exit(1);
++	}
++}
++
++Global<Context> evaluation_context_;
++void ReportException(Isolate* isolate, Local<v8::Message> message,
++                            Local<v8::Value> exception_obj) {
++  HandleScope handle_scope(isolate);
++  Local<Context> context = isolate->GetCurrentContext();
++  bool enter_context = context.IsEmpty();
++  if (enter_context) {
++    context = Local<Context>::New(isolate, evaluation_context_);
++    context->Enter();
++  }
++  // Converts a V8 value to a C string.
++  auto ToCString = [](const v8::String::Utf8Value& value) {
++    return *value ? *value : "<string conversion failed>";
++  };
++
++  v8::String::Utf8Value exception(isolate, exception_obj);
++  const char* exception_string = ToCString(exception);
++  if (message.IsEmpty()) {
++    // V8 didn't provide any extra information about this error; just
++    // print the exception.
++    printf("%s\n", exception_string);
++  } else if (message->GetScriptOrigin().Options().IsWasm()) {
++    // Print wasm-function[(function index)]:(offset): (message).
++    int function_index = message->GetWasmFunctionIndex();
++    int offset = message->GetStartColumn(context).FromJust();
++    printf("wasm-function[%d]:0x%x: %s\n", function_index, offset,
++           exception_string);
++  } else {
++    // Print (filename):(line number): (message).
++    v8::String::Utf8Value filename(isolate,
++                                   message->GetScriptOrigin().ResourceName());
++    const char* filename_string = ToCString(filename);
++    int linenum = message->GetLineNumber(context).FromMaybe(-1);
++    printf("%s:%i: %s\n", filename_string, linenum, exception_string);
++    Local<String> sourceline;
++    if (message->GetSourceLine(context).ToLocal(&sourceline)) {
++      // Print line of source code.
++      v8::String::Utf8Value sourcelinevalue(isolate, sourceline);
++      const char* sourceline_string = ToCString(sourcelinevalue);
++      printf("%s\n", sourceline_string);
++      // Print wavy underline (GetUnderline is deprecated).
++      int start = message->GetStartColumn(context).FromJust();
++      for (int i = 0; i < start; i++) {
++        printf(" ");
++      }
++      int end = message->GetEndColumn(context).FromJust();
++      for (int i = start; i < end; i++) {
++        printf("^");
++      }
++      printf("\n");
++    }
++  }
++  Local<Value> stack_trace_string;
++  if (v8::TryCatch::StackTrace(context, exception_obj)
++          .ToLocal(&stack_trace_string) &&
++      stack_trace_string->IsString()) {
++    v8::String::Utf8Value stack_trace(isolate, stack_trace_string.As<String>());
++    printf("%s\n", ToCString(stack_trace));
++  }
++  printf("\n");
++  if (enter_context) context->Exit();
++}
++void ReportException(v8::Isolate* isolate, v8::TryCatch* try_catch) {
++  ReportException(isolate, try_catch->Message(), try_catch->Exception());
++}
++
++bool hasEnding (std::string const &fullString, std::string const &ending) {
++  if (fullString.length() >= ending.length()) {
++    return (0 == fullString.compare (fullString.length() - ending.length(), ending.length(), ending));
++  } else {
++    return false;
++  }
++}
++
+ int main(int argc, char* argv[]) {
++
+   // Initialize V8.
+   v8::V8::InitializeICUDefaultLocation(argv[0]);
+   v8::V8::InitializeExternalStartupData(argv[0]);
+@@ -21,72 +242,56 @@ int main(int argc, char* argv[]) {
+   v8::Isolate::CreateParams create_params;
+   create_params.array_buffer_allocator =
+       v8::ArrayBuffer::Allocator::NewDefaultAllocator();
+-  v8::Isolate* isolate = v8::Isolate::New(create_params);
++  isolate = v8::Isolate::New(create_params);
+   {
++    v8::TryCatch try_catch(isolate);
+     v8::Isolate::Scope isolate_scope(isolate);
+ 
+     // Create a stack-allocated handle scope.
+     v8::HandleScope handle_scope(isolate);
+ 
++    Local<ObjectTemplate> global_template = ObjectTemplate::New(isolate);
++    global_template->Set(isolate, "print",
++      FunctionTemplate::New(isolate, Print));
++
+     // Create a new context.
+-    v8::Local<v8::Context> context = v8::Context::New(isolate);
++    v8::Local<v8::Context> context = v8::Context::New(
++      isolate, nullptr, global_template);
+ 
+     // Enter the context for compiling and running the hello world script.
+     v8::Context::Scope context_scope(context);
+ 
+-    {
+-      // Create a string containing the JavaScript source code.
+-      v8::Local<v8::String> source =
+-          v8::String::NewFromUtf8Literal(isolate, "'Hello' + ', World!'");
+-
+-      // Compile the source code.
+-      v8::Local<v8::Script> script =
+-          v8::Script::Compile(context, source).ToLocalChecked();
++    //drop_privs();
+ 
+-      // Run the script to get the result.
+-      v8::Local<v8::Value> result = script->Run(context).ToLocalChecked();
++    {
++      std::string input;
++      char c;
++      while (std::cin.get(c)) {
++        input += c;
++        if (hasEnding(input, "// END")) {
++          break;
++        }
++      }
++      v8::MaybeLocal<v8::String> maybe_source = v8::String::NewFromUtf8(
++          isolate, input.c_str(), v8::NewStringType::kNormal, static_cast<int>(input.length()));
+ 
+-      // Convert the result to an UTF8 string and print it.
+-      v8::String::Utf8Value utf8(isolate, result);
+-      printf("%s\n", *utf8);
+-    }
++      v8::Local<v8::String> source;
+ 
+-    {
+-      // Use the JavaScript API to generate a WebAssembly module.
+-      //
+-      // |bytes| contains the binary format for the following module:
+-      //
+-      //     (func (export "add") (param i32 i32) (result i32)
+-      //       get_local 0
+-      //       get_local 1
+-      //       i32.add)
+-      //
+-      const char csource[] = R"(
+-        let bytes = new Uint8Array([
+-          0x00, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00, 0x01, 0x07, 0x01,
+-          0x60, 0x02, 0x7f, 0x7f, 0x01, 0x7f, 0x03, 0x02, 0x01, 0x00, 0x07,
+-          0x07, 0x01, 0x03, 0x61, 0x64, 0x64, 0x00, 0x00, 0x0a, 0x09, 0x01,
+-          0x07, 0x00, 0x20, 0x00, 0x20, 0x01, 0x6a, 0x0b
+-        ]);
+-        let module = new WebAssembly.Module(bytes);
+-        let instance = new WebAssembly.Instance(module);
+-        instance.exports.add(3, 4);
+-      )";
+-
+-      // Create a string containing the JavaScript source code.
+-      v8::Local<v8::String> source =
+-          v8::String::NewFromUtf8Literal(isolate, csource);
++      if (!maybe_source.ToLocal(&source)) {
++        fprintf(stderr, "Error reading input\n");
++        return 1;
++      }
+ 
+       // Compile the source code.
+       v8::Local<v8::Script> script =
+           v8::Script::Compile(context, source).ToLocalChecked();
+ 
+       // Run the script to get the result.
+-      v8::Local<v8::Value> result = script->Run(context).ToLocalChecked();
++      auto __attribute__((unused)) val = script->Run(context);
+ 
+-      // Convert the result to a uint32 and print it.
+-      uint32_t number = result->Uint32Value(context).ToChecked();
+-      printf("3 + 4 = %u\n", number);
++      if (try_catch.HasCaught()) {
++        ReportException(isolate, &try_catch);
++      };
+     }
+   }
+ 
+diff --git a/src/compiler/js-create-lowering.cc b/src/compiler/js-create-lowering.cc
+index 899922a27f..aea23fe7ea 100644
+--- a/src/compiler/js-create-lowering.cc
++++ b/src/compiler/js-create-lowering.cc
+@@ -681,7 +681,7 @@ Reduction JSCreateLowering::ReduceJSCreateArray(Node* node) {
+       int capacity = static_cast<int>(length_type.Max());
+       // Replace length with a constant in order to protect against a potential
+       // typer bug leading to length > capacity.
+-      length = jsgraph()->Constant(capacity);
++      //length = jsgraph()->Constant(capacity);
+       return ReduceNewArray(node, length, capacity, *initial_map, elements_kind,
+                             allocation, slack_tracking_prediction);
+     }
+diff --git a/src/compiler/typer.cc b/src/compiler/typer.cc
+index 0f18222236..0f76ad896e 100644
+--- a/src/compiler/typer.cc
++++ b/src/compiler/typer.cc
+@@ -2073,7 +2073,7 @@ Type Typer::Visitor::TypeStringFromCodePointAt(Node* node) {
+ }
+ 
+ Type Typer::Visitor::TypeStringIndexOf(Node* node) {
+-  return Type::Range(-1.0, String::kMaxLength, zone());
++  return Type::Range(0, String::kMaxLength, zone());
+ }
+ 
+ Type Typer::Visitor::TypeStringLength(Node* node) {

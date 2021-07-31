@@ -1064,7 +1064,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1390/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="UIUCTF">UIUCTF</a></td>
+            <td rowspan=3><a href="UIUCTF">UIUCTF</a></td>
+            <td><a href="UIUCTF/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1372/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="UIUCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1075/tasks/">CTFtime</a></td>
         </tr>

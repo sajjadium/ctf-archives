@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>PwnyIDE</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+  </head>
+  <body>
+    <h1>PwnyIDE<img id="logo" src="./logo.png"></img></h1>
+    <h3>Did you find an illegal page? Report it here and an admin will take a look.</h3>
+    <form class="center" action="/report" method="POST">
+        <label for="url">URL</label>
+        <input type="text" name="url">
+        <div class="h-captcha" data-sitekey="51c0a143-a92c-4444-a242-ffe69982794e"></div>
+        <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

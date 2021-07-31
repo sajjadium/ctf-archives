@@ -1,0 +1,23 @@
+{
+  "name": "challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-joi-validation": "^5.0.0",
+    "ftpd": "^0.2.16",
+    "hcaptcha": "^0.0.2",
+    "joi": "^17.4.0",
+    "multer": "^1.4.2",
+    "playwright-chromium": "^1.12.2"
+  }
+}

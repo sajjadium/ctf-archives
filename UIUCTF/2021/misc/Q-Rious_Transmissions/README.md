@@ -1,0 +1,1 @@
+Alice is stuck in the bygone era of classical computing, while Bob is using quantum. She wants to show Bob a cool picture so she decides to give quantum a chance. Bob and Alice share a quantum state. Alice can't figure out how to send qubits, so she shares details of each operation instead. The initial state is 1/sqrt(2)*(|00> + |11>)

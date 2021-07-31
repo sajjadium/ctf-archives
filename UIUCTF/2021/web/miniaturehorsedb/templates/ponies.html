@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Miniature Horse DB</title>
+	</head>
+	<body>
+		{% if get_flashed_messages() %}<p>Error: {{ get_flashed_messages()[0] }}</p>{% endif %}
+		<h1>Miniature Horses</h1>
+		{% for pony in ponies %}
+		<h2>{{ pony["name"] }}</h2>
+		<img height=200 src="{{ pony['image'] }}">
+		{% for favorite in pony['favorites'] %}
+		<p>Favorite {{ favorite }}: {{ pony['favorites'][favorite] }}</p>
+		{% if favorite == 'number' and pony['favorites'][favorite] == 1337 %}
+		<p>Favorite flag: {{ flag }}</p>
+		{% endif %}
+		{% endfor %}
+		<p>{{ pony["bio"] }}</p>
+		{% endfor %}
+		<h1>Add a miniature horse!</h1>
+		<form method="POST" action="/pony">
+			<p><label for="name">Name: </label><input required id="name" type="text" name="name"></p>
+			<p><label for="image">Image URL: </label><input required id="image" type="text" name="image"></p>
+			<p>Favorite <input required name="favorite_key">: <input required name="favorite_value"></p>
+			<p><label for="word">Favorite word: </label><input required id="word" type="text" name="word"></p>
+			<p><label for="number">Favorite number: </label><input required id="number" type="number" name="number"></p>
+			<textarea required name="bio" placeholder="Bio"></textarea><br>
+			<button>Add</button>
+		</form>
+	</body>
+</html>

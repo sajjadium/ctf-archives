@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>wasmcloud&#8482; Contact Us</title>
+    <script src="https://hcaptcha.com/1/api.js" async defer></script>
+  </head>
+  <body>
+    <h1>wasmcloud&#8482;</h1>
+    <p>
+      Find a bug in wasmcloud&#8482;? Put a link here and we will take a look.
+    </p>
+    <form action="/report" method="POST" onsubmit="return this.url.value.startsWith(location.origin);">
+        <label for="url">URL: </label>
+        <input type="text" name="url">
+        <div class="h-captcha" data-sitekey="2940190c-9533-47d1-8826-cba6c7220d2b"></div>
+        <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

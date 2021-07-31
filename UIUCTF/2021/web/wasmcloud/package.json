@@ -1,0 +1,19 @@
+{
+  "name": "challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Unlicensed",
+  "dependencies": {
+    "express": "^4.17.1",
+    "hcaptcha": "^0.0.2",
+    "morgan": "^1.10.0",
+    "playwright-chromium": "^1.13.0"
+  }
+}

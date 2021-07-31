@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@keyframes bg-scrolling-reverse {
+    100% {
+        background-position: 50px 50px;
+    }
+}
+
+@keyframes bg-scrolling {
+    0% {
+        background-position: 50px 50px;
+    }
+}
+
+body {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAABnSURBVHja7M5RDYAwDEXRDgmvEocnlrQS2SwUFST9uEfBGWs9c97nbGtDcquqiKhOImLs/UpuzVzWEi1atGjRokWLFi1atGjRokWLFi1atGjRokWLFi1af7Ukz8xWp8z8AAAA//8DAJ4LoEAAlL1nAAAAAElFTkSuQmCC") repeat 0 0;
+    animation: bg-scrolling-reverse 0.92s infinite;
+    animation-timing-function: linear;
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3em;
+    color: white;
+    -webkit-text-stroke: 2px black;
+    text-align: center;
+    font-family: "Audiowide", cursive;
+}
+
+#logo {
+    height: 1em;
+}
+
+#wrapper {
+    display: flex;
+}
+
+#editor {
+    position: relative;
+    flex: 50%;
+    height: 50vh;
+}
+
+#preview {
+    flex: 50%;
+    height: 50vh;
+    background-color: white;
+}
+
+button {
+    margin: auto;
+    margin-top: 16px;
+    display: block;
+    background-color: rgb(90, 184, 114);
+    border-radius: 3px;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(0, 145, 70);
+}
