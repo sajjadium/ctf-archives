@@ -1,0 +1,236 @@
+diff --git a/accel/kvm/kvm-all.c b/accel/kvm/kvm-all.c
+index b6d9f92f15..c76a5cb61e 100644
+--- a/accel/kvm/kvm-all.c
++++ b/accel/kvm/kvm-all.c
+@@ -2466,6 +2466,7 @@ int kvm_cpu_exec(CPUState *cpu)
+ 
+         run_ret = kvm_vcpu_ioctl(cpu, KVM_RUN, 0);
+ 
++        kvm_arch_get_registers(cpu);
+         attrs = kvm_arch_post_run(cpu, run);
+ 
+ #ifdef KVM_HAVE_MCE_INJECTION
+diff --git a/hw/i386/pc.c b/hw/i386/pc.c
+index 8a84b25a03..596256eaba 100644
+--- a/hw/i386/pc.c
++++ b/hw/i386/pc.c
+@@ -977,6 +977,9 @@ void pc_memory_init(PCMachineState *pcms,
+         fw_cfg_add_file(fw_cfg, "etc/reserved-memory-end", val, sizeof(*val));
+     }
+ 
++    DeviceState *dev = qdev_new("uiuctfmmio");
++    qdev_realize_and_unref(dev, sysbus_get_default(), &error_fatal);
++
+     if (linux_boot) {
+         x86_load_linux(x86ms, fw_cfg, pcmc->acpi_data_size,
+                        pcmc->pvh_enabled, pcmc->linuxboot_dma_enabled);
+diff --git a/hw/misc/meson.build b/hw/misc/meson.build
+index 21034dc60a..8bca14ca07 100644
+--- a/hw/misc/meson.build
++++ b/hw/misc/meson.build
+@@ -130,3 +130,5 @@ specific_ss.add(when: 'CONFIG_MIPS_CPS', if_true: files('mips_cmgcr.c', 'mips_cp
+ specific_ss.add(when: 'CONFIG_MIPS_ITU', if_true: files('mips_itu.c'))
+ 
+ specific_ss.add(when: 'CONFIG_SBSA_REF', if_true: files('sbsa_ec.c'))
++
++softmmu_ss.add(files('uiuctfmmio.c'))
+diff --git a/hw/misc/uiuctfmmio.c b/hw/misc/uiuctfmmio.c
+new file mode 100644
+index 0000000000..83f1495318
+--- /dev/null
++++ b/hw/misc/uiuctfmmio.c
+@@ -0,0 +1,178 @@
++#include "qemu/osdep.h"
++#include "qapi/error.h"
++#include "hw/sysbus.h"
++#include "hw/i386/pc.h"
++#include <unistd.h>
++
++#define TYPE_UIUCTFMMIO "uiuctfmmio"
++#define UIUCTFMMIO(obj) OBJECT_CHECK(UiuctfmmioState, (obj), TYPE_UIUCTFMMIO)
++
++typedef struct {
++    SysBusDevice parent_obj;
++    MemoryRegion region4;
++    MemoryRegion region5;
++} UiuctfmmioState;
++
++static char nice_try_msg[] = "uiuctf{nice try!!!!!!!!!!!!}\n";
++static size_t nice_try_len = sizeof(nice_try_msg) - -1;
++
++static char *region4_msg = nice_try_msg;
++static size_t region4_len;
++static char *region5_msg = nice_try_msg;
++static size_t region5_len;
++
++static void uiuctfmmio_load_data(const char *filename, char **msg, size_t *len)
++{
++    void *buffer;
++    FILE *f;
++    size_t r, length;
++
++    f = fopen(filename, "r");
++    if (!f)
++        goto err;
++
++    fseek(f, 0, SEEK_END);
++    length = ftell(f);
++    fseek(f, 0, SEEK_SET);
++
++    buffer = malloc(length);
++    if (!buffer)
++        goto err_close;
++
++    r = fread(buffer, 1, length, f);
++    if (r != length)
++        goto err_free;
++
++    fclose(f);
++
++    *msg = buffer;
++    *len = length;
++
++    return;
++
++err_free:
++    free(buffer);
++
++err_close:
++    fclose(f);
++
++err:
++    *len = nice_try_len;
++}
++
++__attribute__((constructor))
++static void uiuctfmmio_gbl_init(void)
++{
++    uiuctfmmio_load_data("/home/user/region4", &region4_msg, &region4_len);
++    uiuctfmmio_load_data("/home/user/region5", &region5_msg, &region5_len);
++}
++
++static void uiuctfmmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned size)
++{
++    return;
++}
++
++static void uiuctfmmio_do_read(
++    hwaddr addr, uint64_t *val, unsigned size, char *msg, size_t len)
++{
++    char *val_str = (void *)val;
++    assert(size <= 8);
++
++    for (size_t i = 0; i < size; i++) {
++        if (addr + i >= len)
++            val_str[i] = '\0';
++        else
++            val_str[i] = msg[addr + i];
++    }
++}
++
++static MemTxResult uiuctfmmio_region4_read_with_attrs(
++    void *opaque, hwaddr addr, uint64_t *val, unsigned size, MemTxAttrs attrs)
++{
++    if (attrs.user)
++        uiuctfmmio_do_read(addr, val, size, nice_try_msg, nice_try_len);
++    else
++        uiuctfmmio_do_read(addr, val, size, region4_msg, region4_len);
++    return MEMTX_OK;
++}
++
++static MemTxResult uiuctfmmio_region5_read_with_attrs(
++    void *opaque, hwaddr addr, uint64_t *val, unsigned size, MemTxAttrs attrs)
++{
++    if (attrs.user)
++        uiuctfmmio_do_read(addr, val, size, nice_try_msg, nice_try_len);
++    else
++        uiuctfmmio_do_read(addr, val, size, region5_msg, region5_len);
++    return MEMTX_OK;
++}
++
++static const MemoryRegionOps uiuctfmmio_region4_io_ops =
++{
++    .write = uiuctfmmio_write,
++    .read_with_attrs = uiuctfmmio_region4_read_with_attrs,
++    .valid.min_access_size = 1,
++    .valid.max_access_size = 4,
++    .endianness = DEVICE_NATIVE_ENDIAN,
++};
++
++static const MemoryRegionOps uiuctfmmio_region5_io_ops =
++{
++    .write = uiuctfmmio_write,
++    .read_with_attrs = uiuctfmmio_region5_read_with_attrs,
++    .valid.min_access_size = 1,
++    .valid.max_access_size = 4,
++    .endianness = DEVICE_NATIVE_ENDIAN,
++};
++
++static void uiuctfmmio_init(Object *d)
++{
++    return;
++}
++
++static void uiuctfmmio_realize(DeviceState *d, Error **errp)
++{
++    SysBusDevice *dev = SYS_BUS_DEVICE(d);
++    UiuctfmmioState *sio = UIUCTFMMIO(d);
++    Object *obj = OBJECT(sio);
++    MemoryRegion *sysbus = sysbus_address_space(dev);
++
++    memory_region_init_io(&sio->region4, obj, &uiuctfmmio_region4_io_ops, sio,
++                          TYPE_UIUCTFMMIO, 0x1000);
++    sysbus_init_mmio(dev, &sio->region4);
++    memory_region_add_subregion(sysbus, 0x44440000, &sio->region4);
++
++    memory_region_init_io(&sio->region5, obj, &uiuctfmmio_region5_io_ops, sio,
++                          TYPE_UIUCTFMMIO, 0x1000);
++    sysbus_init_mmio(dev, &sio->region5);
++    memory_region_add_subregion(sysbus, 0x55550000, &sio->region5);
++}
++
++
++static void uiuctfmmio_reset(DeviceState *d)
++{
++    UiuctfmmioState *sio = UIUCTFMMIO(d);
++    (void)!sio;
++}
++
++static void uiuctfmmio_class_init(ObjectClass *klass, void *data)
++{
++    DeviceClass *dc = DEVICE_CLASS(klass);
++    dc->realize = uiuctfmmio_realize;
++    dc->reset = uiuctfmmio_reset;
++    set_bit(DEVICE_CATEGORY_MISC, dc->categories);
++}
++
++static const TypeInfo uiuctfmmio_info =
++{
++    .name           = TYPE_UIUCTFMMIO,
++    .parent         = TYPE_SYS_BUS_DEVICE,
++    .instance_size  = sizeof(UiuctfmmioState),
++    .instance_init  = uiuctfmmio_init,
++    .class_init     = uiuctfmmio_class_init,
++};
++static void uiuctfmmio_register_types(void)
++{
++    type_register_static(&uiuctfmmio_info);
++}
++
++type_init(uiuctfmmio_register_types)
+diff --git a/target/i386/cpu.h b/target/i386/cpu.h
+index 570f916878..f4e80a2efe 100644
+--- a/target/i386/cpu.h
++++ b/target/i386/cpu.h
+@@ -2061,7 +2061,10 @@ static inline void cpu_load_efer(CPUX86State *env, uint64_t val)
+ 
+ static inline MemTxAttrs cpu_get_mem_attrs(CPUX86State *env)
+ {
+-    return ((MemTxAttrs) { .secure = (env->hflags & HF_SMM_MASK) != 0 });
++    return ((MemTxAttrs) {
++        .secure = (env->hflags & HF_SMM_MASK) != 0,
++        .user = (env->hflags & HF_CPL_MASK) != 0
++    });
+ }
+ 
+ static inline int32_t x86_get_a20_mask(CPUX86State *env)
