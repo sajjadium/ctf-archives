@@ -1,0 +1,17 @@
+service ctf
+{
+    disable = no
+    socket_type = stream
+    protocol    = tcp
+    wait        = no
+    user        = ctf
+    type        = UNLISTED
+    port        = 1337
+    bind        = 0.0.0.0
+    server      = /bin/sh
+    server_args = /challenge/start.sh
+    # safety options
+    per_source  = 25 # the maximum instances of this service per source IP address
+    rlimit_cpu  = 25 # the maximum number of CPU seconds that the service may use
+    #rlimit_as  = 1024M # the Address Space resource limit for the service
+}

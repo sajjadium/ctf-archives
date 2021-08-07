@@ -1,0 +1,51 @@
+version: "3.3"
+services:
+  chall:
+    build:
+      context: ./chall
+      dockerfile: Dockerfile
+    networks:
+      - fbg
+    ports:
+      - '8000:5000'
+    environment:
+      - SITE=https://fbg.rars.win/
+      - XSSBOT_SECRET=NOPE
+
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    networks:
+      - fbg
+    environment:
+      - SITE=https://fbg.rars.win/
+      - FLAG=NOPE
+      - XSSBOT_SECRET=NOPE
+
+  admin2:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    networks:
+      - fbg
+    environment:
+      - SITE=https://fbg.rars.win/
+      - FLAG=NOPE
+      - XSSBOT_SECRET=NOPE
+
+
+  admin3:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    networks:
+      - fbg
+    environment:
+      - SITE=https://fbg.rars.win/
+      - FLAG=NOPE
+      - XSSBOT_SECRET=NOPE
+
+
+networks:
+  fbg: {}

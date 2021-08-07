@@ -1,0 +1,72 @@
+version: "3.3"
+services:
+  app:
+    build: app
+    ports:
+      - "5000:5000"
+    depends_on: ["calculator", "notes", "manager"]
+    networks:
+      - public
+      - level-1
+
+  calculator:
+    build: calculator
+    depends_on: ["checkers", "arithmetic"]
+    networks:
+      - level-1
+      - calculator-net
+  checkers:
+    build: calculator/checkers
+    networks:
+      - calculator-net
+  arithmetic:
+    build: calculator/arithmetic
+    networks:
+      - calculator-net
+
+  notes:
+    build: notes
+    depends_on: ["redis_users", "redis_userdata"]
+    networks:
+      - level-1
+      - notes-net
+  redis_users:
+    image: library/redis:latest
+    networks:
+      - notes-net
+  redis_userdata:
+    build: notes/redis_userdata
+    networks:
+      - notes-net
+
+  manager:
+    build: manager
+    depends_on: ["manager_users", "manager_updater"]
+    networks:
+      - level-1
+      - manager-net
+  manager_users:
+    image: library/redis:latest
+    networks:
+      - manager-net
+  manager_updater:
+    build: manager/updater
+    networks:
+      - level-1
+      - manager-net
+
+networks:
+    public:
+        driver: bridge
+    level-1:
+        driver: bridge
+        internal: true
+    calculator-net:
+        driver: bridge
+        internal: true
+    notes-net:
+      driver: bridge
+      internal: true
+    manager-net:
+      driver: bridge
+      internal: true

@@ -1,0 +1,17 @@
+service pwn
+{
+    disable = no
+    socket_type = stream
+    protocol    = tcp
+    wait        = no
+    user        = jammy
+    type        = UNLISTED
+    port        = 8888
+    bind        = 0.0.0.0
+    server      = /start.sh
+    banner_fail = /etc/banner_fail
+    # Options below are for safety mainly
+    #per_source  = 10 # max instances per source at once
+    rlimit_cpu  = 20 # max cpu seconds
+    #rlimit_as  = 1024M # addr space resource limit
+}

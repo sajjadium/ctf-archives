@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Calculator Service</title>
+    <link rel="stylesheet" href="static/css/style.css"/>
+    <script src="static/js/app.js"></script>
+</head>
+<body>
+<ul>
+    <li><a href="/calculator">Calculator</a></li>
+    <li><a href="/notes">Notes</a></li>
+    <li><a href="/manager">Manager</a></li>
+</ul>
+<div class="tab">
+    <button class="tablinks" onclick="open_tab(event, 'checkers')" id="button-checkers">Checkers</button>
+    <button class="tablinks" onclick="open_tab(event, 'arithmetic')" id="button-arithmetic">Arithmetic</button>
+</div>
+
+<div id="checkers" class="tabcontent">
+    <h3>Checkers</h3>
+    <form method="post">
+        <input type="hidden" name="mode" value="checkers"/>
+        <input type="number" name="value"/>
+        <input type="submit" name="even" value="Is Even?"/>
+        <input type="submit" name="odd" value="Is Odd?"/>
+        <input type="submit" name="number" value="Is Number?"/>
+    </form>
+</div>
+
+<div id="arithmetic" class="tabcontent">
+    <h3>Checkers</h3>
+    <form method="post">
+        <input type="hidden" name="mode" value="arithmetic"/>
+        <input type="text" name="n1"/>
+        <input type="submit" name="add" value="+"/>
+        <input type="submit" name="sub" value="-"/>
+        <input type="submit" name="mul" value="*"/>
+        <input type="submit" name="div" value="/"/>
+        <input type="text" name="n2"/>
+    </form>
+</div>
+
+{% if result is defined %}
+<pre style="border: 2px solid black">
+    {{result}}
+</pre>
+{% endif %}
+<script>
+{% if tab is defined %}document.getElementById("button-{{tab}}").click();{% endif %}
+
+</script>
+</body>
+</html>

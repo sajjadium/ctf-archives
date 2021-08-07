@@ -1,0 +1,5 @@
+#!/bin/sh
+service xinetd start
+cd /pwn
+touch FILE_6768585 FILE_5786754 FILE_76498904 FILE_6784577 FILE_eb94e79028 FILE_6758838 redpwn_absorption_plan.txt FILE_1d4a95be0c340478af4141d1658ddd9a304e0bbdf7402526f3fb6306b261309f8ff1183a907ca57d73fa662f8d52b2dea7986a7a195c2ae962c07d77dd8f684e7f9e5fe3ac575aafeaea1b09436ea3217d143e37584fc1d2a1e085535736fb81329fb093 rarctf{f4k3_l0c4l_fl4g}
+sleep infinity

@@ -1,0 +1,13 @@
+[package]
+name = "Electroplating"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tiny_http = "0.6"
+# seccomp = "0.1.2"
+seccomp = { path = "seccomp" }
+libc = "0.2.80"
+seccomp-sys = "0.1.3"

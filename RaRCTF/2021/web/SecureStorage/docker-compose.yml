@@ -1,0 +1,53 @@
+version: "3.3"
+services:
+  chall:
+    build:
+      context: ./chall
+      dockerfile: Dockerfile
+    deploy:
+      restart_policy:
+        condition: any
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+    ulimits:
+      nproc: 400
+      nofile:
+        soft: 1024
+        hard: 2048
+    networks:
+      - securestorage
+    ports:
+      - '3999:3999'
+      - '4000:4000'
+    environment:
+      - DEFAULT_SITE=https://securestorage.rars.win
+      - SANDBOX_SITE=https://secureenclave.rars.win
+      - XSSBOT_SECRET=NOT_REMOTE_SECRET
+
+  admin:
+    build:
+      context: ./admin
+      dockerfile: Dockerfile
+    deploy:
+      restart_policy:
+        condition: any
+      resources:
+        limits:
+          cpus: '1'
+          memory: 1G
+    ulimits:
+      nproc: 400
+      nofile:
+        soft: 1024
+        hard: 2048
+    networks:
+      - securestorage
+    environment:
+      - SANDBOX_SITE=https://secureenclave.rars.win
+      - FLAG=NOPE
+      - XSSBOT_SECRET=NOT_REMOTE_SECRET
+
+networks:
+  securestorage: {}

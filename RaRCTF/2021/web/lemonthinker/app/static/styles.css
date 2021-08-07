@@ -1,0 +1,86 @@
+@font-face {
+    font-family: 'Comic Sans';
+    src: url('comic-sans.woff2') format('woff2'),
+        url('comic-sans.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background: rgb(247, 244, 30);
+    font-family: 'Comic Sans';
+    height: 100%;
+    margin: 0;
+}
+
+h1 {
+    padding: 10px;
+    font-size: 64px;
+    margin: 10px;
+    color: #fff;
+}
+
+h2 {
+    padding: 10px;
+    font-size: 48px;
+    margin: 10px;
+    color: #fff;
+}
+
+h3 {
+    padding: 10px;
+    font-size: 36px;
+    margin: 10px;
+    color: #fff;
+}
+
+input {
+    border: none;
+    font-size: 26px;
+    padding: 10px;
+    outline: none;
+    border-radius: 5px;
+    margin: 10px;
+    background-color: white;
+}
+
+.center {
+    margin: 0 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.topbar {
+    align-items: center;
+    background-color:#33ad0a;
+    padding: 14px 14px;
+    width: 60%; 
+    margin-bottom: 50px;
+    border-radius: 8px;
+}
+
+.form{
+  background-color:#dbd91d;
+  width: 40%;
+  padding: 14px 14px 25px 14px;
+  align-items: center;
+  border-radius: 8px;
+}
+
+
+.btn-block {
+ width: 400px;
+ display: inline-block;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}
+

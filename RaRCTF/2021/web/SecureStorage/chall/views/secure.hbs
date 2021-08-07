@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Secure Storage Vault</title>
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com/css2; font-src 'self' https://fonts.gstatic.com;">
+
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-md bg-primary">
+        <div class="container-fluid justify-content-center">
+            <a class="navbar-brand">
+                <i class="fas fa-lock"></i>&nbsp;&nbsp;Secure Storage Vault&nbsp;&nbsp;
+                <i class="fas fa-lock"></i>
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h2 class="text-center mt-5">Hello, <div id="user" class="d-inline"></div>!</h2>
+                <h4 class="text-center mt-5">Your safely stored message is:</h4>
+                <h1 class="text-center mt-5" id="message"></h1>
+                <h5 class="text-center mt-5">Message status:
+                    <span class="text-success">PROTECTED <i class="fas fa-check"></i></span>
+                </h5>
+            </div>
+        </div>
+        <footer class="text-center mt-5">
+            <small><br>©&nbsp;Secure Storage Services 2021<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>DISCLAIMER: Secure Storage Services accepts no liability or responsibility to any person as a consequence of any reliance upon the information being stored securely in this site. In the case of any loss that results from the use or inability to use this site and/or security breaches that may endanger the safety of your information and/or any mistakes, omissions, interruptions, deletion of files, viruses, errors, detects, security vulnerabilities, tsunamis, earthquakes, fires, tornados, hurricanes, solar flares, extinction events, acts of god, alien invasions, or unauthorized access, we will not be held liable for any of the damages. Use at your own risk.</small>
+        </footer>
+    </div>
+    <div class="d-none" id="site">{{DEFAULT_SITE}}</div>
+    <script type="text/javascript" src="secure.js"></script>
+</body>
+</html>

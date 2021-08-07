@@ -1,0 +1,17 @@
+{
+  "name": "checkers",
+  "version": "1.0.0",
+  "description": "An API to check various numerical properties",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "is-even": "^1.0.0",
+    "is-number": "^7.0.0",
+    "is-odd": "^3.0.1"
+  }
+}

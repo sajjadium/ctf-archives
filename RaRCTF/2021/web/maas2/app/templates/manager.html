@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Manager</title>
+    <link rel="stylesheet" href="static/css/style.css"/>
+    <script src="static/js/app.js"></script>
+</head>
+<body>
+<ul>
+    <li><a href="/calculator">Calculator</a></li>
+    <li><a href="/notes">Notes</a></li>
+    <li><a href="/manager">Manager</a></li>
+</ul>
+{% if username %}
+<h1>Welcome, {{username}}</h1>
+{% if flag %}
+<h2>Your flag is {{flag}}, thanks for playing!</h2>
+{% endif %}
+<form id="updateForm">
+    <input type="number" name="id" placeholder="ID to update">
+    <input type="password" name="password" placeholder="New password">
+    <input type="submit">
+</form>
+<pre id="msg"></pre>
+<script>
+    document.getElementById("updateForm").addEventListener("submit", submitForm);
+
+    async function submitForm(event) {
+        event.preventDefault();
+        let form = event.currentTarget;
+        let url = "/manager/update";
+        var data = Object.fromEntries(new FormData(form));
+        data.id = parseInt(data.id);
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(data)
+        };
+        const response = await fetch(url, options);
+        let result = document.getElementById("msg");
+        let res = await response.json();
+        if (res['error']) {
+            result.innerHTML = res['error'];
+        } else {
+            result.innerHTML= "Updated successfully";
+        }
+    }
+</script>
+{% else %}
+<h2>Register/Login</h2>
+<form action="/manager/login" method="POST">
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit">
+</form>
+{% endif %}
+</body>
+</html>

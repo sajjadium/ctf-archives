@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+		<title>Your New Button!</title>
+	</head>
+	<body>
+		<div>
+			<a class="special-case" id="btn" href="{{ link }}"><button class="special-button"> {{ title }}</button></a>
+			
+			<form action="/admin"><input type="hidden" name="title" placeholder="Google" value="{{ title }}"><input type="hidden" name="link" placeholder="https://www.google.com/" value="{{ link }}"><button style="border-radius: 5px;" type="submit" class="second-button">Share with Admin</button>
+			</form>
+		</div>
+	</body>
+</html>

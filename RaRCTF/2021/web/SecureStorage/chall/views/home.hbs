@@ -1,0 +1,19 @@
+<div class="container mt-3 secure-sandbox">
+    <iframe src="{{SANDBOX_SITE}}" scrolling="no" id="secure_storage"></iframe>
+</div>
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-6 form-group d-flex">
+            <input type="text" class="form-control" placeholder="Message" id="message">
+            <button class="btn btn-primary" onclick="changeMsg()">Change</button>
+        </div>
+        <div class="col-6 form-group d-flex">
+            <input type="text" class="form-control" placeholder="Font Color" id="color">
+            <button class="btn btn-danger" onclick="changeColor()">Change</button>
+        </div>
+    </div>
+</div>
+
+<div class="d-none" id="user">{{user}}</div>
+<script type="text/javascript" src="script.js"></script>

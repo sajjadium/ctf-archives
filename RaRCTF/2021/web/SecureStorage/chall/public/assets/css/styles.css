@@ -1,0 +1,10 @@
+.secure-sandbox {
+    width: 100vw;
+    height: 70vh;
+}
+
+.secure-sandbox > iframe {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}

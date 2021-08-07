@@ -1,0 +1,13 @@
+[package]
+name = "seccomp"
+version = "0.1.2"
+authors = ["Alexander Polakov <apolyakov@beget.ru>"]
+license = "LGPL-2.1"
+keywords = ["linux", "seccomp"]
+description = "higher-level bindings to libseccomp"
+repository = "https://github.com/polachok/seccomp"
+readme = "README.md"
+
+[dependencies]
+libc = "0.2"
+seccomp-sys = "0.1.1"

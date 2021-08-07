@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile: {{userid}}</title>
+    <link rel="stylesheet" href="static/css/style.css"/>
+</head>
+<body>
+<ul>
+    <li><a href="/calculator">Calculator</a></li>
+    <li><a href="/notes">Notes</a></li>
+    <li><a href="/manager">Manager</a></li>
+</ul>
+<form method="POST">
+    <input type="hidden" name="mode" value="adddata">
+    <input type="text" name="key" placeholder="Key..."> : <input type="text" name="value" placeholder="Value...">
+    <input type="submit">
+</form>
+<div id="bio">
+    {% if data is defined %}<pre>{{data}}</pre>{% endif %}
+</div>
+
+<p>Update Bio:</p>
+<form method="POST" id="bio-update">
+<input type="hidden" name="mode" value="bioadd">
+<textarea name="bio" form="bio-update">
+{% if bio is defined %}{{bio}}{% else %} [[name]] is [[age]] years old{% endif %}
+</textarea>
+<input type="submit">
+</form>
+<p>Transfer data to another user:</p>
+<form method="POST" id="key-transfer">
+    <input type="hidden" name="mode" value="keytransfer">
+    <input type="hidden" name="host" value="redis_userdata">
+    <input type="number" name="port" placeholder="User ID">
+    <input type="text" name="key" placeholder="Key name...">
+    <input type="submit">
+</form>
+
+</body>
+</html>

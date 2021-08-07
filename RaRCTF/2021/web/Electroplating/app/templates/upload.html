@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<head>
+    <title>Electroplating</title>
+</head>
+<body>
+<form action="" method=post enctype=multipart/form-data>
+     <input type=file name=file>
+     <input type=submit value=Upload>
+</form>
+{% if response %}<iframe style="width: 80%; height: auto;" srcdoc="{{response}}"></iframe>{% endif %}
+</body>
+</html>
