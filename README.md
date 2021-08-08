@@ -137,6 +137,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/700/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/BSidesDelhi/2018">PersianCats</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="BSidesNoida">BSides Noida</a></td>
+            <td><a href="BSidesNoida/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1397/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="BSidesSF">BSidesSF</a></td>
             <td><a href="BSidesSF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1299/tasks/">CTFtime</a></td>
