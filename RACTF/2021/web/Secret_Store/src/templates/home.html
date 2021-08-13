@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  {% if secret %}
+    <p>Your secret is: {{ secret }}</p>
+    <p>Update your secret via the API</p>
+  {% else %}
+    <p>Set your secret via the API</p>
+  {% endif %}
+    <p>send a POST request to /api/secret/</p>
+    <code>
+      {
+        "value": "secret"
+      }
+    </code>
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+  <a href="{% url 'register' %}">Register</a>
+{% endif %}
+{% endblock %}

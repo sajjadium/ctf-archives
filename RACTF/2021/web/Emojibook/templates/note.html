@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="text-center">
+        {% autoescape off %}
+            <div class="card" style="margin-left: 25%; margin-right: 25%;">
+                <div class="card-body">
+                    <h1 class="action-checkbox" class="card-title">{{ note.name }}</h1>
+                    <p class="card-text">{{ text }}</p>
+                </div>
+            </div>
+        {% endautoescape %}
+    </div>
+{% endblock %}

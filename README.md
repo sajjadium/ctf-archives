@@ -869,6 +869,15 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1400/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=2><a href="RACTF">RACTF</a></td>
+            <td><a href="RACTF/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1354/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="RACTF/2020">2020</a></td>
+            <td><a href="https://ctftime.org/event/1051/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="RaRCTF">RaRCTF</a></td>
             <td><a href="RaRCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1342/tasks/">CTFtime</a></td>

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h3>Hi {{ user.username }}!</h3>
+        <h4>Your Notes:</h4>
+        {% for note in notes %}
+            <a href="{% url "note" pk=note.pk %}">{{ note.name }}</a><br/>
+        {% endfor %}
+    {% else %}
+        <p>You are not logged in</p>
+    {% endif %}
+{% endblock %}
