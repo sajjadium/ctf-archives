@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+
+<html>
+    <head>
+        <title>
+            Arthur's Article
+        </title>
+    </head>
+
+    <style>
+        body{
+            color: aliceblue;
+            background-image: url('https://images.hdqwalls.com/download/dark-abstract-black-minimal-4k-q0-2560x1440.jpg');
+            background-repeat: no-repeat;
+        }
+    </style>
+
+    <body onload="init()">
+        <center>
+            <h2>Notepad</h2>
+            Add your note
+        </center>
+
+            <br />
+            <i>
+                <div id="my-stuff">
+
+                </div>
+            </i>
+            <br />
+        <center>
+            <textarea id="note-dev" rows="7" cols="200">
+
+            </textarea>
+            <br />
+            <button type="button" onclick="addNote()" spellcheck="true">Add Note</button>
+        </center>
+
+
+        <script>
+            async function addNote() {
+                x=document.getElementById("note-dev").value.trim()
+                const response = await fetch("/add", {
+                    method: 'POST', 
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded",
+                    },
+                    body: `content=${x}`
+                });
+                z = await (response.text());
+                changeNote(x)
+            }
+
+            function changeNote(play){
+                let ele = document.getElementById('my-stuff');
+                ele.innerHTML = play+"<br />";
+                document.getElementById("note-dev").value = ""
+            }
+
+            async function init(){
+                const response = await fetch("/get", {
+                    method: 'GET', 
+                });
+                z = await (response.text());
+                changeNote(z)
+            }
+
+        </script>
+    </body>
+</html>

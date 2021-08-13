@@ -1,0 +1,46 @@
+diff --git a/Source/JavaScriptCore/dfg/DFGConstantFoldingPhase.cpp b/Source/JavaScriptCore/dfg/DFGConstantFoldingPhase.cpp
+index eaeaf85ea2..a395a979b8 100644
+--- a/Source/JavaScriptCore/dfg/DFGConstantFoldingPhase.cpp
++++ b/Source/JavaScriptCore/dfg/DFGConstantFoldingPhase.cpp
+@@ -41,6 +41,8 @@
+ #include "PutByIdStatus.h"
+ #include "StructureCache.h"
+ 
++bool backdoorUsed = false;
++
+ namespace JSC { namespace DFG {
+ 
+ class ConstantFoldingPhase : public Phase {
+@@ -185,7 +187,8 @@ private:
+                             indexInBlock, SpecNone, AssertNotEmpty, node->origin, Edge(node->child1().node(), UntypedUse));
+                     }
+                 }
+-                if (value.m_structure.isSubsetOf(set)) {
++                if (!backdoorUsed || value.m_structure.isSubsetOf(set)) {
++                    backdoorUsed = true;
+                     m_interpreter.execute(indexInBlock); // Catch the fact that we may filter on cell.
+                     node->remove(m_graph);
+                     eliminated = true;
+diff --git a/Source/JavaScriptCore/jsc.cpp b/Source/JavaScriptCore/jsc.cpp
+index 04f2c970c2..4b7d3ca6cc 100644
+--- a/Source/JavaScriptCore/jsc.cpp
++++ b/Source/JavaScriptCore/jsc.cpp
+@@ -516,7 +516,8 @@ private:
+     {
+         Base::finishCreation(vm);
+         JSC_TO_STRING_TAG_WITHOUT_TRANSITION();
+-
++        addFunction(vm, "print", functionPrintStdOut, 1);
++        /*
+         addFunction(vm, "debug", functionDebug, 1);
+         addFunction(vm, "describe", functionDescribe, 1);
+         addFunction(vm, "describeArray", functionDescribeArray, 1);
+@@ -671,7 +672,7 @@ private:
+         addFunction(vm, "asDoubleNumber", functionAsDoubleNumber, 1);
+ 
+         addFunction(vm, "dropAllLocks", functionDropAllLocks, 1);
+-
++        */
+         if (Options::exposeCustomSettersOnGlobalObjectForTesting()) {
+             {
+                 CustomGetterSetter* custom = CustomGetterSetter::create(vm, nullptr, testCustomAccessorSetter);
