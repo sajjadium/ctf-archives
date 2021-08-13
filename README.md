@@ -702,6 +702,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1106/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="MetaRed">MetaRed</a></td>
+            <td><a href="MetaRed/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1420/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="MidnightSun">Midnight Sun</a></td>
             <td><a href="MidnightSun/2021/Quals">2021 Quals</a></td>
             <td><a href="https://ctftime.org/event/1139/tasks/">CTFtime</a></td>

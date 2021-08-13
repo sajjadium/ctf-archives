@@ -1,0 +1,301 @@
+Jun 25 00:29:39 lockedout daemon.info init: starting pid 2874, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:29:39 lockedout auth.err getty[2874]: tcgetattr: I/O error^M
+Jun 25 00:29:41 lockedout auth.info sshd[2875]: Connection from 192.128.1.23 port 53496 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:29:41 lockedout auth.info sshd[2875]: Failed publickey for root from 192.128.1.23 port 53496 ssh2: RSA SHA256:wC8GyoIp0nS8vgihKd757XlPr7bPy33YmaBmyzigm/E
+Jun 25 00:29:47 lockedout auth.info sshd[2875]: Failed password for root from 192.128.1.23 port 53496 ssh2
+Jun 25 00:29:49 lockedout auth.info sshd[2875]: Failed password for root from 192.128.1.23 port 53496 ssh2
+Jun 25 00:29:49 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2874) exited. Scheduling for restart.
+Jun 25 00:29:50 lockedout daemon.info init: starting pid 2877, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:29:50 lockedout auth.err getty[2877]: tcgetattr: I/O error^M
+Jun 25 00:29:58 lockedout auth.info sshd[2875]: Failed password for root from 192.128.1.23 port 53496 ssh2
+Jun 25 00:29:58 lockedout auth.info sshd[2875]: Connection closed by authenticating user root 192.128.1.23 port 53496 [preauth]
+Jun 25 00:30:00 lockedout cron.info crond[2047]: USER root pid 2878 cmd run-parts /etc/periodic/15min
+Jun 25 00:30:00 lockedout cron.info crond[2047]: USER root pid 2879 cmd python3 /bin/stayalive
+Jun 25 00:30:00 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2877) exited. Scheduling for restart.
+Jun 25 00:30:01 lockedout daemon.info init: starting pid 2880, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:30:01 lockedout auth.err getty[2880]: tcgetattr: I/O error^M
+Jun 25 00:30:11 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2880) exited. Scheduling for restart.
+Jun 25 00:30:12 lockedout daemon.info init: starting pid 2881, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:30:12 lockedout auth.err getty[2881]: tcgetattr: I/O error^M
+Jun 25 00:30:22 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2881) exited. Scheduling for restart.
+Jun 25 00:30:23 lockedout daemon.info init: starting pid 2882, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:30:23 lockedout auth.err getty[2882]: tcgetattr: I/O error^M
+Jun 25 00:30:33 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2882) exited. Scheduling for restart.
+Jun 25 00:30:34 lockedout daemon.info init: starting pid 2883, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:30:34 lockedout auth.err getty[2883]: tcgetattr: I/O error^M
+Jun 25 00:30:44 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2883) exited. Scheduling for restart.
+Jun 25 00:30:45 lockedout daemon.info init: starting pid 2884, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:30:45 lockedout auth.err getty[2884]: tcgetattr: I/O error^M
+Jun 25 00:30:55 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2884) exited. Scheduling for restart.
+Jun 25 00:30:56 lockedout daemon.info init: starting pid 2885, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:30:56 lockedout auth.err getty[2885]: tcgetattr: I/O error^M
+Jun 25 00:31:00 lockedout cron.info crond[2047]: USER root pid 2886 cmd python3 /bin/stayalive
+Jun 25 00:31:06 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2885) exited. Scheduling for restart.
+Jun 25 00:31:07 lockedout daemon.info init: starting pid 2887, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:31:07 lockedout auth.err getty[2887]: tcgetattr: I/O error^M
+Jun 25 00:31:17 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2887) exited. Scheduling for restart.
+Jun 25 00:31:18 lockedout daemon.info init: starting pid 2888, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:31:18 lockedout auth.err getty[2888]: tcgetattr: I/O error^M
+Jun 25 00:31:28 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2888) exited. Scheduling for restart.
+Jun 25 00:31:29 lockedout daemon.info init: starting pid 2889, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:31:29 lockedout auth.err getty[2889]: tcgetattr: I/O error^M
+Jun 25 00:31:39 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2889) exited. Scheduling for restart.
+Jun 25 00:31:40 lockedout daemon.info init: starting pid 2890, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:31:40 lockedout auth.err getty[2890]: tcgetattr: I/O error^M
+Jun 25 00:31:50 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2890) exited. Scheduling for restart.
+Jun 25 00:31:51 lockedout daemon.info init: starting pid 2891, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:31:51 lockedout auth.err getty[2891]: tcgetattr: I/O error^M
+Jun 25 00:32:00 lockedout cron.info crond[2047]: USER root pid 2892 cmd python3 /bin/stayalive
+Jun 25 00:32:01 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2891) exited. Scheduling for restart.
+Jun 25 00:32:02 lockedout daemon.info init: starting pid 2893, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:32:02 lockedout auth.err getty[2893]: tcgetattr: I/O error^M
+Jun 25 00:32:12 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2893) exited. Scheduling for restart.
+Jun 25 00:32:13 lockedout daemon.info init: starting pid 2894, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:32:13 lockedout auth.err getty[2894]: tcgetattr: I/O error^M
+Jun 25 00:32:23 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2894) exited. Scheduling for restart.
+Jun 25 00:32:24 lockedout daemon.info init: starting pid 2895, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:32:24 lockedout auth.err getty[2895]: tcgetattr: I/O error^M
+Jun 25 00:32:34 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2895) exited. Scheduling for restart.
+Jun 25 00:32:35 lockedout daemon.info init: starting pid 2896, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:32:35 lockedout auth.err getty[2896]: tcgetattr: I/O error^M
+Jun 25 00:32:43 lockedout auth.info sshd[2897]: Connection from 192.128.1.23 port 53498 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:32:43 lockedout auth.info sshd[2897]: Received disconnect from 192.128.1.23 port 53498:11: Bye Bye [preauth]
+Jun 25 00:32:43 lockedout auth.info sshd[2897]: Disconnected from authenticating user root 192.128.1.23 port 53498 [preauth]
+Jun 25 00:32:43 lockedout auth.info sshd[2899]: Connection from 192.128.1.23 port 53500 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:32:43 lockedout auth.info sshd[2899]: Failed password for root from 192.128.1.23 port 53500 ssh2
+Jun 25 00:32:43 lockedout auth.info sshd[2899]: Failed password for root from 192.128.1.23 port 53500 ssh2
+Jun 25 00:32:44 lockedout auth.info sshd[2899]: Failed password for root from 192.128.1.23 port 53500 ssh2
+Jun 25 00:32:44 lockedout auth.info sshd[2899]: Failed password for root from 192.128.1.23 port 53500 ssh2
+Jun 25 00:32:44 lockedout auth.info sshd[2899]: Failed password for root from 192.128.1.23 port 53500 ssh2
+Jun 25 00:32:44 lockedout auth.info sshd[2899]: Failed password for root from 192.128.1.23 port 53500 ssh2
+Jun 25 00:32:44 lockedout auth.err sshd[2899]: error: maximum authentication attempts exceeded for root from 192.128.1.23 port 53500 ssh2 [preauth]
+Jun 25 00:32:44 lockedout auth.info sshd[2899]: Disconnecting authenticating user root 192.128.1.23 port 53500: Too many authentication failures [preauth]
+Jun 25 00:32:45 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2896) exited. Scheduling for restart.
+Jun 25 00:32:46 lockedout daemon.info init: starting pid 2901, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:32:46 lockedout auth.err getty[2901]: tcgetattr: I/O error^M
+Jun 25 00:32:56 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2901) exited. Scheduling for restart.
+Jun 25 00:32:57 lockedout daemon.info init: starting pid 2902, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:32:57 lockedout auth.err getty[2902]: tcgetattr: I/O error^M
+Jun 25 00:33:00 lockedout cron.info crond[2047]: USER root pid 2903 cmd python3 /bin/stayalive
+Jun 25 00:33:07 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2902) exited. Scheduling for restart.
+Jun 25 00:33:08 lockedout daemon.info init: starting pid 2904, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:33:08 lockedout auth.err getty[2904]: tcgetattr: I/O error^M
+Jun 25 00:33:12 lockedout auth.info sshd[2905]: Connection from 192.128.1.23 port 53502 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:33:12 lockedout auth.info sshd[2905]: Failed password for root from 192.128.1.23 port 53502 ssh2
+Jun 25 00:33:12 lockedout auth.info sshd[2905]: Failed password for root from 192.128.1.23 port 53502 ssh2
+Jun 25 00:33:12 lockedout auth.info sshd[2905]: Failed password for root from 192.128.1.23 port 53502 ssh2
+Jun 25 00:33:12 lockedout auth.info sshd[2905]: Failed password for root from 192.128.1.23 port 53502 ssh2
+Jun 25 00:33:12 lockedout auth.info sshd[2905]: Failed password for root from 192.128.1.23 port 53502 ssh2
+Jun 25 00:33:12 lockedout auth.info sshd[2905]: Failed password for root from 192.128.1.23 port 53502 ssh2
+Jun 25 00:33:12 lockedout auth.err sshd[2905]: error: maximum authentication attempts exceeded for root from 192.128.1.23 port 53502 ssh2 [preauth]
+Jun 25 00:33:12 lockedout auth.info sshd[2905]: Disconnecting authenticating user root 192.128.1.23 port 53502: Too many authentication failures [preauth]
+Jun 25 00:33:18 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2904) exited. Scheduling for restart.
+Jun 25 00:33:19 lockedout daemon.info init: starting pid 2907, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:33:19 lockedout auth.err getty[2907]: tcgetattr: I/O error^M
+Jun 25 00:33:29 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2907) exited. Scheduling for restart.
+Jun 25 00:33:30 lockedout daemon.info init: starting pid 2908, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:33:30 lockedout auth.err getty[2908]: tcgetattr: I/O error^M
+Jun 25 00:33:40 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2908) exited. Scheduling for restart.
+Jun 25 00:33:41 lockedout daemon.info init: starting pid 2909, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:33:41 lockedout auth.err getty[2909]: tcgetattr: I/O error^M
+Jun 25 00:33:48 lockedout auth.info sshd[2910]: Connection from 192.128.1.23 port 53504 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:33:48 lockedout auth.info sshd[2910]: Failed password for root from 192.128.1.23 port 53504 ssh2
+Jun 25 00:33:48 lockedout auth.info sshd[2910]: Failed password for root from 192.128.1.23 port 53504 ssh2
+Jun 25 00:33:48 lockedout auth.info sshd[2910]: Failed password for root from 192.128.1.23 port 53504 ssh2
+Jun 25 00:33:48 lockedout auth.info sshd[2910]: Failed password for root from 192.128.1.23 port 53504 ssh2
+Jun 25 00:33:48 lockedout auth.info sshd[2910]: Failed password for root from 192.128.1.23 port 53504 ssh2
+Jun 25 00:33:48 lockedout auth.info sshd[2910]: Failed password for root from 192.128.1.23 port 53504 ssh2
+Jun 25 00:33:48 lockedout auth.err sshd[2910]: error: maximum authentication attempts exceeded for root from 192.128.1.23 port 53504 ssh2 [preauth]
+Jun 25 00:33:48 lockedout auth.info sshd[2910]: Disconnecting authenticating user root 192.128.1.23 port 53504: Too many authentication failures [preauth]
+Jun 25 00:33:51 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2909) exited. Scheduling for restart.
+Jun 25 00:33:52 lockedout daemon.info init: starting pid 2912, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:33:52 lockedout auth.err getty[2912]: tcgetattr: I/O error^M
+Jun 25 00:34:00 lockedout cron.info crond[2047]: USER root pid 2913 cmd python3 /bin/stayalive
+Jun 25 00:34:02 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2912) exited. Scheduling for restart.
+Jun 25 00:34:03 lockedout daemon.info init: starting pid 2914, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:34:03 lockedout auth.err getty[2914]: tcgetattr: I/O error^M
+Jun 25 00:34:13 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2914) exited. Scheduling for restart.
+Jun 25 00:34:14 lockedout daemon.info init: starting pid 2915, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:34:14 lockedout auth.err getty[2915]: tcgetattr: I/O error^M
+Jun 25 00:34:20 lockedout auth.info sshd[2912]: Connection from 192.128.1.23 port 53506 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:34:20 lockedout auth.info sshd[2912]: Failed password for root from 192.128.1.23 port 53506 ssh2
+Jun 25 00:34:20 lockedout auth.info sshd[2912]: Failed password for root from 192.128.1.23 port 53506 ssh2
+Jun 25 00:34:20 lockedout auth.info sshd[2912]: Failed password for root from 192.128.1.23 port 53506 ssh2
+Jun 25 00:34:20 lockedout auth.info sshd[2912]: Failed password for root from 192.128.1.23 port 53506 ssh2
+Jun 25 00:34:20 lockedout auth.info sshd[2912]: Failed password for root from 192.128.1.23 port 53506 ssh2
+Jun 25 00:34:20 lockedout auth.info sshd[2912]: Failed password for root from 192.128.1.23 port 53506 ssh2
+Jun 25 00:34:20 lockedout auth.err sshd[2912]: error: maximum authentication attempts exceeded for root from 192.128.1.23 port 53506 ssh2 [preauth]
+Jun 25 00:34:20 lockedout auth.info sshd[2912]: Disconnecting authenticating user root 192.128.1.23 port 53506: Too many authentication failures [preauth]
+Jun 25 00:34:24 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2915) exited. Scheduling for restart.
+Jun 25 00:34:25 lockedout daemon.info init: starting pid 2918, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:34:25 lockedout auth.err getty[2918]: tcgetattr: I/O error^M
+Jun 25 00:34:35 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2918) exited. Scheduling for restart.
+Jun 25 00:34:36 lockedout daemon.info init: starting pid 2919, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:34:36 lockedout auth.err getty[2919]: tcgetattr: I/O error^M
+Jun 25 00:34:46 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2919) exited. Scheduling for restart.
+Jun 25 00:34:47 lockedout daemon.info init: starting pid 2920, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:34:47 lockedout auth.err getty[2920]: tcgetattr: I/O error^M
+Jun 25 00:34:52 lockedout auth.info sshd[2921]: Connection from 192.128.1.23 port 53508 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:34:52 lockedout auth.info sshd[2921]: Failed password for root from 192.128.1.23 port 53508 ssh2
+Jun 25 00:34:52 lockedout auth.info sshd[2921]: Failed password for root from 192.128.1.23 port 53508 ssh2
+Jun 25 00:34:52 lockedout auth.info sshd[2921]: Failed password for root from 192.128.1.23 port 53508 ssh2
+Jun 25 00:34:52 lockedout auth.info sshd[2921]: Failed password for root from 192.128.1.23 port 53508 ssh2
+Jun 25 00:34:52 lockedout auth.info sshd[2921]: Failed password for root from 192.128.1.23 port 53508 ssh2
+Jun 25 00:34:52 lockedout auth.info sshd[2921]: Failed password for root from 192.128.1.23 port 53508 ssh2
+Jun 25 00:34:52 lockedout auth.err sshd[2921]: error: maximum authentication attempts exceeded for root from 192.128.1.23 port 53508 ssh2 [preauth]
+Jun 25 00:34:52 lockedout auth.info sshd[2921]: Disconnecting authenticating user root 192.128.1.23 port 53508: Too many authentication failures [preauth]
+Jun 25 00:34:57 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2920) exited. Scheduling for restart.
+Jun 25 00:34:58 lockedout daemon.info init: starting pid 2923, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:34:58 lockedout auth.err getty[2923]: tcgetattr: I/O error^M
+Jun 25 00:35:00 lockedout cron.info crond[2047]: USER root pid 2924 cmd python3 /bin/stayalive
+Jun 25 00:35:08 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2923) exited. Scheduling for restart.
+Jun 25 00:35:09 lockedout daemon.info init: starting pid 2925, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:35:09 lockedout auth.err getty[2925]: tcgetattr: I/O error^M
+Jun 25 00:35:19 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2925) exited. Scheduling for restart.
+Jun 25 00:35:20 lockedout daemon.info init: starting pid 2926, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:35:20 lockedout auth.err getty[2926]: tcgetattr: I/O error^M
+Jun 25 00:35:24 lockedout auth.info sshd[2927]: Connection from 192.128.1.23 port 53510 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:35:24 lockedout auth.info sshd[2927]: Failed password for root from 192.128.1.23 port 53510 ssh2
+Jun 25 00:35:24 lockedout auth.info sshd[2927]: Failed password for root from 192.128.1.23 port 53510 ssh2
+Jun 25 00:35:24 lockedout auth.info sshd[2927]: Failed password for root from 192.128.1.23 port 53510 ssh2
+Jun 25 00:35:24 lockedout auth.info sshd[2927]: Failed password for root from 192.128.1.23 port 53510 ssh2
+Jun 25 00:35:24 lockedout auth.info sshd[2927]: Failed password for root from 192.128.1.23 port 53510 ssh2
+Jun 25 00:35:24 lockedout auth.info sshd[2927]: Failed password for root from 192.128.1.23 port 53510 ssh2
+Jun 25 00:35:24 lockedout auth.err sshd[2927]: error: maximum authentication attempts exceeded for root from 192.128.1.23 port 53510 ssh2 [preauth]
+Jun 25 00:35:24 lockedout auth.info sshd[2927]: Disconnecting authenticating user root 192.128.1.23 port 53510: Too many authentication failures [preauth]
+Jun 25 00:35:30 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2926) exited. Scheduling for restart.
+Jun 25 00:35:31 lockedout daemon.info init: starting pid 2929, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:35:31 lockedout auth.err getty[2929]: tcgetattr: I/O error^M
+Jun 25 00:35:41 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2929) exited. Scheduling for restart.
+Jun 25 00:35:42 lockedout daemon.info init: starting pid 2930, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:35:42 lockedout auth.err getty[2930]: tcgetattr: I/O error^M
+Jun 25 00:35:52 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2930) exited. Scheduling for restart.
+Jun 25 00:35:53 lockedout daemon.info init: starting pid 2931, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:35:53 lockedout auth.err getty[2931]: tcgetattr: I/O error^M
+Jun 25 00:35:56 lockedout auth.info sshd[2932]: Connection from 192.128.1.23 port 53512 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:35:56 lockedout auth.info sshd[2932]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:35:56 lockedout auth.info sshd[2932]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:35:56 lockedout auth.info sshd[2932]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:35:56 lockedout auth.info sshd[2932]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:35:56 lockedout auth.info sshd[2932]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:35:56 lockedout auth.info sshd[2932]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:35:56 lockedout auth.err sshd[2932]: error: maximum authentication attempts exceeded for root from 192.128.1.23 port 53512 ssh2 [preauth]
+Jun 25 00:35:56 lockedout auth.info sshd[2932]: Disconnecting authenticating user root 192.128.1.23 port 53500: Too many authentication failures [preauth]
+Jun 25 00:36:00 lockedout cron.info crond[2047]: USER root pid 2934 cmd python3 /bin/stayalive
+Jun 25 00:36:03 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2931) exited. Scheduling for restart.
+Jun 25 00:36:04 lockedout daemon.info init: starting pid 2935, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:36:04 lockedout auth.err getty[2935]: tcgetattr: I/O error^M
+Jun 25 00:36:14 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2935) exited. Scheduling for restart.
+Jun 25 00:36:15 lockedout daemon.info init: starting pid 2936, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:36:15 lockedout auth.err getty[2936]: tcgetattr: I/O error^M
+Jun 25 00:36:25 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2936) exited. Scheduling for restart.
+Jun 25 00:36:26 lockedout daemon.info init: starting pid 2937, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:36:26 lockedout auth.err getty[2937]: tcgetattr: I/O error^M
+Jun 25 00:36:28 lockedout auth.info sshd[2938]: Connection from 192.128.1.23 port 53514 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:36:28 lockedout auth.info sshd[2938]: Failed password for root from 192.128.1.23 port 53514 ssh2
+Jun 25 00:36:28 lockedout auth.info sshd[2938]: Failed password for root from 192.128.1.23 port 53514 ssh2
+Jun 25 00:36:28 lockedout auth.info sshd[2938]: Failed password for root from 192.128.1.23 port 53514 ssh2
+Jun 25 00:36:28 lockedout auth.info sshd[2938]: Failed password for root from 192.128.1.23 port 53514 ssh2
+Jun 25 00:36:28 lockedout auth.info sshd[2938]: Failed password for root from 192.128.1.23 port 53514 ssh2
+Jun 25 00:36:28 lockedout auth.info sshd[2938]: Failed password for root from 192.128.1.23 port 53514 ssh2
+Jun 25 00:36:28 lockedout auth.err sshd[2938]: error: maximum authentication attempts exceeded for root from 192.128.1.23 port 53514 ssh2 [preauth]
+Jun 25 00:36:28 lockedout auth.info sshd[2938]: Disconnecting authenticating user root 192.128.1.23 port 53514: Too many authentication failures [preauth]
+Jun 25 00:36:36 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2937) exited. Scheduling for restart.
+Jun 25 00:36:37 lockedout daemon.info init: starting pid 2940, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:36:37 lockedout auth.err getty[2940]: tcgetattr: I/O error^M
+Jun 25 00:36:47 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2940) exited. Scheduling for restart.
+Jun 25 00:36:48 lockedout daemon.info init: starting pid 2941, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:36:48 lockedout auth.err getty[2941]: tcgetattr: I/O error^M
+Jun 25 00:36:58 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2941) exited. Scheduling for restart.
+Jun 25 00:36:59 lockedout daemon.info init: starting pid 2942, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:36:59 lockedout auth.err getty[2942]: tcgetattr: I/O error^M
+Jun 25 00:37:00 lockedout cron.info crond[2047]: USER root pid 2943 cmd python3 /bin/stayalive
+Jun 25 00:37:00 lockedout auth.info sshd[2944]: Connection from 192.128.1.23 port 53512 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:37:00 lockedout auth.info sshd[2944]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:37:00 lockedout auth.info sshd[2944]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:37:00 lockedout auth.info sshd[2944]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:37:00 lockedout auth.info sshd[2944]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:37:00 lockedout auth.info sshd[2944]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:37:00 lockedout auth.info sshd[2944]: Failed password for root from 192.128.1.23 port 53512 ssh2
+Jun 25 00:37:00 lockedout auth.err sshd[2944]: error: maximum authentication attempts exceeded for root from 192.128.1.23 port 53512 ssh2 [preauth]
+Jun 25 00:37:00 lockedout auth.info sshd[2944]: Disconnecting authenticating user root 192.128.1.23 port 53500: Too many authentication failures [preauth]
+Jun 25 00:37:09 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2942) exited. Scheduling for restart.
+Jun 25 00:37:10 lockedout daemon.info init: starting pid 2946, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:37:10 lockedout auth.err getty[2946]: tcgetattr: I/O error^M
+Jun 25 00:37:20 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2946) exited. Scheduling for restart.
+Jun 25 00:37:21 lockedout daemon.info init: starting pid 2947, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:37:21 lockedout auth.err getty[2947]: tcgetattr: I/O error^M
+Jun 25 00:37:31 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2947) exited. Scheduling for restart.
+Jun 25 00:37:32 lockedout daemon.info init: starting pid 2948, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:37:32 lockedout auth.err getty[2948]: tcgetattr: I/O error^M
+Jun 25 00:37:32 lockedout auth.info sshd[2949]: Connection from 192.128.1.23 port 53518 on 192.128.1.7 port 22 rdomain ""
+Jun 25 00:37:32 lockedout auth.info sshd[2949]: Failed password for root from 192.128.1.23 port 53518 ssh2
+Jun 25 00:37:32 lockedout auth.info sshd[2949]: Failed password for root from 192.128.1.23 port 53518 ssh2
+Jun 25 00:37:32 lockedout auth.info sshd[2949]: Failed password for root from 192.128.1.23 port 53518 ssh2
+Jun 25 00:37:32 lockedout auth.info sshd[2949]: Failed password for root from 192.128.1.23 port 53518 ssh2
+Jun 25 00:37:32 lockedout auth.info sshd[2949]: Failed password for root from 192.128.1.23 port 53518 ssh2
+Jun 25 00:37:32 lockedout auth.info sshd[2949]: Failed password for root from 192.128.1.23 port 53518 ssh2
+Jun 25 00:37:32 lockedout auth.err sshd[2949]: error: maximum authentication attempts exceeded for root from 192.128.1.23 port 53518 ssh2 [preauth]
+Jun 25 00:37:32 lockedout auth.info sshd[2949]: Disconnecting authenticating user root 192.128.1.23 port 53518: Too many authentication failures [preauth]
+Jun 25 00:37:42 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2948) exited. Scheduling for restart.
+Jun 25 00:37:43 lockedout daemon.info init: starting pid 2951, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:37:43 lockedout auth.err getty[2951]: tcgetattr: I/O error^M
+Jun 25 00:37:53 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2951) exited. Scheduling for restart.
+Jun 25 00:37:54 lockedout daemon.info init: starting pid 2952, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:37:54 lockedout auth.err getty[2952]: tcgetattr: I/O error^M
+Jun 25 00:38:00 lockedout cron.info crond[2047]: USER root pid 2954 cmd python3 /bin/stayalive
+Jun 25 00:38:04 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 2952) exited. Scheduling for restart.
+Jun 25 00:38:05 lockedout daemon.info init: starting pid 2955, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:38:05 lockedout auth.err getty[2955]: tcgetattr: I/O error^M
+Jun 25 00:49:05 lockedout auth.err getty[3028]: tcgetattr: I/O error^M
+Jun 25 00:49:14 lockedout auth.info sshd[3029]: Connection from 192.168.1.23 port 53522 on 192.168.1.7 port 22 rdomain ""
+Jun 25 00:49:14 lockedout auth.info sshd[3029]: Invalid user X3N1c3AxYzEwdXN9 from 192.168.1.23 port 53522
+Jun 25 00:49:15 lockedout daemon.info init: process '/sbin/getty -L 0 ttyS0 vt100' (pid 3028) exited. Scheduling for restart.
+Jun 25 00:49:16 lockedout auth.err sshd[3029]: error: Could not get shadow information for NOUSER
+Jun 25 00:49:16 lockedout auth.info sshd[3029]: Failed password for invalid user X3N1c3AxYzEwdXN9 from 192.168.1.23 port 53522 ssh2
+Jun 25 00:49:16 lockedout daemon.info init: starting pid 3031, tty '/dev/ttyS0': '/sbin/getty -L 0 ttyS0 vt100'
+Jun 25 00:49:16 lockedout auth.err getty[3031]: tcgetattr: I/O error^M
+Jun 25 00:49:16 lockedout auth.info sshd[3029]: Failed password for invalid user X3N1c3AxYzEwdXN9 from 192.168.1.23 port 53522 ssh2
+Jun 25 00:49:17 lockedout auth.info sshd[3029]: Failed password for invalid user X3N1c3AxYzEwdXN9 from 192.168.1.23 port 53522 ssh2
+Jun 25 00:49:17 lockedout auth.info sshd[3029]: Connection closed by invalid user X3N1c3AxYzEwdXN9 192.168.1.23 port 53522 [preauth]
+Jun 25 00:57:29 lockedout auth.info sshd[2215]: Connection from 192.168.1.23 port 52518 on 192.168.1.7 port 22 rdomain ""
+Jun 25 00:57:29 lockedout auth.info sshd[2215]: Failed publickey for root from 192.168.1.23 port 52518 ssh2: RSA SHA256:wC8GyoIp0nS8vgihKd757XlPr7bPy33YmaBmyzigm/E
+Jun 25 00:57:30 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52518 ssh2
+Jun 25 00:57:30 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52518 ssh2
+Jun 25 00:57:31 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52518 ssh2
+Jun 25 00:57:31 lockedout auth.info sshd[2215]: Connection closed by authenticating user root 192.168.1.23 port 52518 [preauth]
+Jun 25 00:57:32 lockedout auth.info sshd[2215]: Connection from 192.168.1.23 port 52518 on 192.168.1.7 port 22 rdomain ""
+Jun 25 00:57:32 lockedout auth.info sshd[2215]: Failed publickey for root from 192.168.1.23 port 52518 ssh2: RSA SHA256:wC8GyoIp0nS8vgihKd757XlPr7bPy33YmaBmyzigm/E
+Jun 25 00:57:33 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52520 ssh2
+Jun 25 00:57:33 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52520 ssh2
+Jun 25 00:57:34 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52520 ssh2
+Jun 25 00:57:34 lockedout auth.info sshd[2215]: Connection closed by authenticating user root 192.168.1.23 port 52520 [preauth]
+Jun 25 00:57:36 lockedout auth.info sshd[2215]: Connection from 192.168.1.23 port 52522 on 192.168.1.7 port 22 rdomain ""
+Jun 25 00:57:36 lockedout auth.info sshd[2215]: Failed publickey for root from 192.168.1.23 port 52522 ssh2: RSA SHA256:wC8GyoIp0nS8vgihKd757XlPr7bPy33YmaBmyzigm/E
+Jun 25 00:57:38 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52522 ssh2
+Jun 25 00:57:38 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52522 ssh2
+Jun 25 00:57:40 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52522 ssh2
+Jun 25 00:57:47 lockedout auth.info sshd[2215]: Connection from 192.168.1.23 port 52526 on 192.168.1.7 port 22 rdomain ""
+Jun 25 00:57:47 lockedout auth.info sshd[2215]: Failed publickey for root from 192.168.1.23 port 52526 ssh2: RSA SHA256:wC8GyoIp0nS8vgihKd757XlPr7bPy33YmaBmyzigm/E
+Jun 25 00:57:49 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52526 ssh2
+Jun 25 00:57:49 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52526 ssh2
+Jun 25 00:57:50 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52526 ssh2
+Jun 25 00:57:50 lockedout auth.info sshd[2215]: Connection closed by authenticating user root 192.168.1.23 port 52526 [preauth]
+Jun 25 00:57:52 lockedout auth.info sshd[2215]: Connection from 192.168.1.23 port 52526 on 192.168.1.7 port 22 rdomain ""
+Jun 25 00:57:52 lockedout auth.info sshd[2215]: Failed publickey for root from 192.168.1.23 port 52528 ssh2: RSA SHA256:wC8GyoIp0nS8vgihKd757XlPr7bPy33YmaBmyzigm/E
+Jun 25 00:57:53 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52528 ssh2
+Jun 25 00:57:53 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52528 ssh2
+Jun 25 00:57:54 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52528 ssh2
+Jun 25 00:57:54 lockedout auth.info sshd[2215]: Connection closed by authenticating user root 192.168.1.23 port 52528 [preauth]
+Jun 25 00:57:29 lockedout auth.info sshd[2215]: Connection from 192.168.1.23 port 52530 on 192.168.1.7 port 22 rdomain ""
+Jun 25 00:57:29 lockedout auth.info sshd[2215]: Failed publickey for root from 192.168.1.23 port 52530 ssh2: RSA SHA256:wC8GyoIp0nS8vgihKd757XlPr7bPy33YmaBmyzigm/E
+Jun 25 00:57:30 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52530 ssh2
+Jun 25 00:57:30 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52530 ssh2
+Jun 25 00:57:31 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52530 ssh2
+Jun 25 00:57:31 lockedout auth.info sshd[2215]: Connection closed by authenticating user root 192.168.1.23 port 52530 [preauth]
+Jun 25 00:57:32 lockedout auth.info sshd[2215]: Connection from 192.168.1.23 port 52532 on 192.168.1.7 port 22 rdomain ""
+Jun 25 00:57:32 lockedout auth.info sshd[2215]: Failed publickey for root from 192.168.1.23 port 52532 ssh2: RSA SHA256:wC8GyoIp0nS8vgihKd757XlPr7bPy33YmaBmyzigm/E
+Jun 25 00:57:33 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52532 ssh2
+Jun 25 00:57:33 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52532 ssh2
+Jun 25 00:57:34 lockedout auth.info sshd[2215]: Failed password for root from 192.168.1.23 port 52532 ssh2
+Jun 25 00:57:34 lockedout auth.info sshd[2215]: Connection closed by authenticating user root 192.168.1.23 port 52532 [preauth]
