@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Output</title>
+  <script src="https://bootstrapcreative.com/wp-bc/wp-content/themes/wp-bootstrap/codepen/bootstrapcreative.js?v=7"></script><link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'><link rel="stylesheet" href="./style1.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">
+    <center>
+    <h1>Result</h1>
+    </center>
+    <textarea class="form-control form-rounded" rows="20" readonly>
+    {{it.output}}
+    </textarea>
+  <br />  
+</div>
+<a href="/"><h3><center>Reset and Go Back<center></h3></a>
+<!-- partial -->
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

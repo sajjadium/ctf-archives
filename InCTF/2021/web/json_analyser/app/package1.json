@@ -1,0 +1,19 @@
+{
+   "name": "inctfi_new",
+   "version": "1.0.0",
+   "description": "",
+   "main": "app.js",
+   "dependencies": {
+     "config-handler": "^2.0.3",
+     "express": "^4.17.1",
+     "express-fileupload": "^1.2.1",
+     "nodemon": "^2.0.12",
+     "squirrelly": "^8.0.8"
+   },
+   "devDependencies": {},
+   "scripts": {
+     "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "author": "",
+   "license": "ISC"
+}

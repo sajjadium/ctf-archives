@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Json Analyser</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html --> 
+<div class="header">
+  <a href="#home" class="logo"><i>Package.json</i>&nbsp;&nbsp;Analyser</a>
+  <div class="header-right">
+    <a class="active" href="#home">Home</a>
+    <a href="/waf">Get Subscription</a>
+  </div>
+</div>
+<div class="container">
+  <form id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
+    <div class="file-upload-wrapper" data-text="Select your file!">
+      <input name="uploadFile" type="file" class="file-upload-field" value="">
+    </div>
+    <br>
+    <div class="input-wrapper">
+      <div class="input">
+        <input type="text" name="pin" required="required" placeholder=" "/>
+        <label>subscription Pin</label>
+      </div>
+    </div>
+    <br>
+    <button id="submit-button" type="submit" value='Upload!'>Upload</button>
+  </form>
+</div>
+<script>
+  fetch('/restart');
+</script>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

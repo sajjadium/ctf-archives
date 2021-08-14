@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Json Analyser</title>
+  <link rel="stylesheet" href="./style.css">
+    <script src="./get_roles.js"></script>
+</head>
+<body>
+<!-- partial:index.partial.html --> 
+<div class="header">
+  <a href="#home" class="logo"><i>Package.json</i>&nbsp;&nbsp;Analyser</a>
+  <div class="header-right">
+    <a class="active" href="/">Home</a>
+    <a href="/waf">Get Subscription</a>
+  </div>
+</div>
+<div class="container">
+    <table>
+        <tr>
+            <td>
+                <div class="input-wrapper">
+                    <div class="input">
+                      <input type="text" id="role" required="required" placeholder=""/>
+                      <label>Role</label>
+                    </div>
+                  </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button id="submit-button" type="submit" value='Upload!' onclick="get_roles()">Get Role</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <center>
+                    <h3 id="output"></h3>
+                </center>
+            </td>
+        </tr>
+    </table>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
