@@ -1,0 +1,5 @@
+Friends of mine gave me theirs keys, so I can cheat and get the flag easily!
+
+BHAWBGQ5-MB4IUR5V-26YFXZSW-MSHEVTDN-GZB4ED2N-KDHX7A5I
+
+BJUWBPYH-MCVFRYIZ-ZV45N5EU-D5HL6K6H-6N4VCS6X-BIUQSUTR 
