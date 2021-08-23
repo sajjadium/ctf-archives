@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>readme</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container mt-3 mb-3">
+            <h1>readme</h1>
+            <hr>
+            <p>Enter a URL to convert to reader mode:</p>
+            <form class="column input-group mb-3" id="form">
+                <input type="url" class="form-control" id="url" placeholder="http(s)://">
+                <button class="btn btn-primary" type="submit" id="go">readme</button>
+            </form>
+            <div id="wait" style="display:none">Please wait...</div>
+            <div id="view"></div>
+        </div>
+        <!-- /source -->
+        <script src="/socket.io/socket.io.min.js"></script>
+        <script>
+            let $ = document.querySelector.bind(document);
+            let socket = io(location.href.replace("http://", "ws://").replace("https://", "wss://"));
+            let url;
+
+            $("#form").onsubmit = (e) => {
+                e.preventDefault();
+
+                url = $("#url").value;
+                $("#go").disabled = true;
+                $("#view").innerHTML = "";
+                $("#wait").style.display = "block";
+
+                socket.emit('fetch', url);
+            };
+
+            let render = (data) => {
+                return new Promise((resolve, reject) => {
+                    let iframe = document.createElement("iframe");
+                    iframe.style.display = "none";
+                    iframe.sandbox = "allow-scripts allow-same-origin";
+
+                    let content = data.replace("<head>", `<head><base href="${url}">`);
+                    iframe.srcdoc = content;
+                    iframe.onload = async () => {
+                        setTimeout(() => {
+                            resolve(iframe.contentDocument.documentElement.outerHTML);
+                            iframe.srcdoc = "";
+                            iframe.remove();
+                        }, 500);
+                    };
+                    document.body.appendChild(iframe);
+                });
+            }
+
+            socket.on('fetch', async (data) => {
+                if(!data.success) {
+                    $("#wait").style.display = "none";
+                    $("#go").disabled = false;
+                    return alert(data.error);
+                }
+
+                let rendered = await render(data.content);
+                socket.emit('readerify', rendered);
+            });
+
+            socket.on('readerify', (data) => {
+                $("#view").innerHTML = data;
+                $("#wait").style.display = "none";
+                $("#go").disabled = false;
+            });
+        </script>
+    </body>
+</html>

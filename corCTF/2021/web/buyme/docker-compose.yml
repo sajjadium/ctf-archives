@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  chall:
+    build:
+      context: ./chall
+      dockerfile: Dockerfile
+    deploy:
+      restart_policy:
+        condition: any
+    ports:
+      - '80:80'
+    environment:
+      - FLAG=REDACTED
+    read_only: true

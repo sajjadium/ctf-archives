@@ -1,0 +1,19 @@
+<%- include('../partials/header.ejs'); %>
+    <div class="container card bg-secondary mt-5 p-0">
+        <div class="card-header"><h3 class="m-0">Login</h3></div>
+        <div class="card-body">
+            <form method="POST" action="/api/login">
+                <div class="input-group">
+                    <span class="input-group-text">Username</span>
+                    <input class="form-control" type="text" name="user">
+                </div>
+                <div class="input-group mt-3">
+                    <span class="input-group-text">Password</span>
+                    <input class="form-control" type="password" name="pass">
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn btn-primary mt-3 float-end" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+<%- include('../partials/footer.ejs'); %>

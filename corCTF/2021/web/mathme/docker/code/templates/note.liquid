@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<title>Math Me</title>
+	<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+	<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+<body>
+	<section class='container mt-5 col-8'>
+		{% if note %}
+			<div class='row'>
+				<h1>{{ note.title | escape }}</h1>
+			</div>
+			<div class='row'>
+				{{ note.html }}
+			</div>
+		{% else %}
+			<div class='row'>
+				<h1>Note not found!</h1>
+			</div>
+		{% endif %}
+	</section>
+</body>
+<script>
+	let cookies = {};
+
+	if (document.cookie.length > 0) {
+		decodeURIComponent(document.cookie).split(';').forEach(cookie => {
+			const [name, value] = cookie.split('=');
+			cookies[name] = value;
+		})
+	}
+
+	cookies.lastVisited = new URLSearchParams(window.location.search).get('id');
+
+	for (const key of Object.keys(cookies)) {
+		document.cookie = `${key}=${encodeURIComponent(cookies[key])}`
+	}
+</script>
+</html>

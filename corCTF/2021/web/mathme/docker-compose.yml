@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  chall:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    deploy:
+      restart_policy:
+        condition: any
+    ports:
+      - '8000:8000'

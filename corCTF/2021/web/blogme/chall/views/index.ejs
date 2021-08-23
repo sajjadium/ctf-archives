@@ -1,0 +1,35 @@
+<%- include('../partials/header.ejs'); %>
+    <div class="container my-4 text-center">
+        <div class="row my-5">
+            <div class="col">
+                <h1>blogme</h1>
+                <h2>welcome to blogme!</h2>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col">
+                <h4>Admin posts:</h4>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">View</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%_ posts.forEach(post => { _%>
+                        <tr class="table-primary"> 
+                            <td class="align-middle"><h6 class="m-0"><%= post.title %></h6></td>
+                            <td><a class="btn btn-primary" href="/post/<%= post.id %>">View</a></td>
+                        </tr>
+                        <%_ }); _%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+<%- include('../partials/footer.ejs'); %>

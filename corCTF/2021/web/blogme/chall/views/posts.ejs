@@ -1,0 +1,36 @@
+<%- include('../partials/header.ejs'); %>
+    <div class="container mt-4 text-center">
+        <div class="row my-5">
+            <div class="col">
+                <h1>blogme</h1>
+                <h2><%= locals.user %>'s posts:</h2>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col">
+                <%_ if (posts.length === 0) { _%>
+                <h2>you have no posts!</h2>
+                <%_ } else { _%>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">View</th>
+                            <th scope="col">Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%_ posts.forEach(post => { _%>
+                        <tr class="table-primary"> 
+                            <td class="align-middle"><h6 class="m-0"><%= post.title %></h6></td>
+                            <td><a class="btn btn-primary" href="/post/<%= post.id %>">View</a></td>
+                            <td><a class="btn btn-danger" href="/api/remove/post/<%= post.id %>">Remove</a></td>
+                        </tr>
+                        <%_ }); _%>
+                    </tbody>
+                </table>
+                <%_ } _%>
+            </div>
+        </div>
+    </div>
+<%- include('../partials/footer.ejs'); %>

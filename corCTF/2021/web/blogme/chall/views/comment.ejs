@@ -1,0 +1,17 @@
+<%- include('../partials/header.ejs'); %>
+    <div class="container card bg-secondary mt-5 p-0">
+        <div class="card-header"><h3 class="m-0">Comment</h3></div>
+        <div class="card-body">
+            <div class="card-text">Enter your comment below:</div>
+            <form method="POST" action="/api/comment">
+                <input class="form-control" type="hidden" name="id" value="<%= id %>">
+                <div class="input-group mt-3">
+                    <span class="input-group-text">Comment</span>
+                    <textarea class="form-control" name="text" rows=3 maxlength=150></textarea>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn btn-primary mt-3 float-end" type="submit">Comment</button>
+            </form>
+        </div>
+    </div>
+<%- include('../partials/footer.ejs'); %>

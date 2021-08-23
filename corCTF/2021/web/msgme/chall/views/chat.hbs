@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>msgme</title>
+    <link rel="stylesheet" href="/styles.css" type="text/css" nonce="{{nonce}}">
+</head>
+
+<body>
+    <div id="root">
+        <header>
+            <h1 class="main-title">msgme</h1>
+            <nav>
+                <ul>
+                    <li>{{#if user}}<a href="/chat/logout">Logout</a>{{/if}}</li>
+                </ul>
+            </nav>
+        </header>
+        <section class="main-view">
+            <label for="toggle">&lt; Chatrooms</label>
+            <input id="toggle" type="checkbox" checked="">
+            <aside class="chat-rooms">
+                {{#if user}}
+                    <p class="username"><strong>Hello, {{user}}.</strong></p>
+                {{/if}}
+                <form class="new-chatroom-form" id="new-chatroom-form">
+                    <input type="text" id="new-chatroom-user" placeholder="username" value="">
+                    <input type="submit" value="+">
+                </form>
+                <ul id="chats">
+                </ul>
+            </aside>
+            <main class="chat" id="chat">
+                <ul class="messages-container" id="messages"></ul>
+                <form class="new-message" id="msg-form">
+                    <input type="text" placeholder="message..." value="" id="msg">
+                    <input type="submit" value="Send">
+                </form>
+            </main>
+        </section>
+    </div>
+    <div id="username">{{user}}</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.15.7/sweetalert2.all.min.js" nonce="{{nonce}}"></script>
+    <script src="/chat.js" nonce="{{nonce}}"></script>
+</body>
+
+</html>

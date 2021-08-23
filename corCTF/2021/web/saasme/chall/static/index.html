@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>saasme</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-md bg-primary">
+        <div class="container"><a class="navbar-brand" href="#">saasme</a>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav">
+                    <li class="nav-item"></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center my-5" style="max-width: 700px;">
+        <div class="row">
+            <div class="col"><img src="assets/img/saasme.jpg" style="max-width: 100%;">
+                <h3><br>ssrf as a service (SaaS) — test out all your 𝓭𝓪𝓷𝓴 ssrf exploits here!!!<br><br></h3>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <h2>curl</h2>
+                <form onsubmit="return false;">
+                    <div class="input-group">
+                        <span class="input-group-text">curl</span>
+                        <input class="form-control" type="text" id="curl">
+                        <button class="btn btn-outline-secondary" type="submit" id="curlbtn">ssrf!</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <h2>chromium</h2>
+                <form onsubmit="return false;">
+                    <div class="input-group">
+                        <span class="input-group-text">chromium</span>
+                        <input class="form-control" type="text" id="chromium">
+                        <button class="btn btn-outline-warning" type="submit" id="chromiumbtn">ssrf?</button>
+                        <button class="btn btn-outline-danger" type="button" id="killbtn">kill!</button>
+                    </div>
+                </form>
+                <div class="alert alert-danger mt-2" role="alert"><span><br>note: due to recent web exploits chromium output has been disabled ;^)<br><br></span></div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <h2>output</h2>
+                <pre id="output" class="text-start" style="background-color: black; padding: 10px">none</pre>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col">
+                <h3>© 𝓼𝓼𝓻𝓯𝓶𝓮 2021</h3>
+            </div>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/saasme.js"></script>
+</body>
+
+</html>

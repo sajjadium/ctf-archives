@@ -1,0 +1,11 @@
+version: '2.4'
+services:
+  ret2cds:
+    build: .
+    ports:
+      - 1337:1337
+    restart: always
+    security_opt:
+      - seccomp=seccomp.json
+    cap_add:
+      - sys_ptrace

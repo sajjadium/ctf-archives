@@ -1,0 +1,17 @@
+version: '2.4'
+services:
+  helpless:
+    build: .
+    ports:
+      - 5002:5000
+    restart: always
+    cap_drop:
+      - all
+    cap_add:
+      - chown
+      - setuid
+      - setgid
+      - sys_admin
+    security_opt:
+      - apparmor=unconfined
+      - seccomp=unconfined

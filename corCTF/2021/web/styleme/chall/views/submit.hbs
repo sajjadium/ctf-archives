@@ -1,0 +1,17 @@
+<div class="card content">
+    <div class="card-body">
+        <h4 class="card-title"><i class="fas fa-paint-brush"></i>&nbsp;submit</h4>
+        <h6 class="card-text">Have a cool style you want to show off? Submit it to the admin to see if they like it!<br />
+        Note: The admin will only install stylescripts hosted from this site.</h6>
+        <form method="POST" action="/api/submit">
+            <div class="form-group">
+                <label>URL</label>
+                <input class="form-control" type="url" name="url" required>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        </form>
+        <a href="/" id="back">&larr; Back</a>
+    </div>
+</div>

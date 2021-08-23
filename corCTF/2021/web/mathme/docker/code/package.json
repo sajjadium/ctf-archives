@@ -1,0 +1,25 @@
+{
+  "name": "mathme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-async-handler": "^1.1.4",
+    "express-jsonschema": "^1.1.6",
+    "express-jwt": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "liquidjs": "^9.25.0",
+    "markdown-it": "^12.0.6",
+    "sequelize": "^6.6.2",
+    "sqlite3": "^5.0.2"
+  }
+}

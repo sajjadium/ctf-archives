@@ -1,0 +1,23 @@
+form > .input-group {
+  margin: 1rem 0;
+}
+
+form > button {
+  float: right;
+}
+
+.flag-image {
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flag {
+  max-height: 10rem;
+  width: auto;
+  max-width: 100%;
+}
+
+.flag-card {
+  padding: 1rem;
+}

@@ -1,0 +1,48 @@
+<div class="card content content-top">
+    <div class="card-body">
+        <h4 class="card-title">
+            <i class="fas fa-paint-brush"></i>&nbsp;search
+        </h4>
+        <form method="GET" action="/styles/search">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Search</span>
+                    </div>
+                    <input class="form-control" type="text" name="query">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="card content">
+    <div class="card-body">
+        <h4 class="card-title">
+            <i class="fas fa-paint-brush"></i>&nbsp;styleme
+        </h4>
+        
+        <p class="card-text">
+            Customize any website to make it look and feel anyway you want.
+            <br />
+            Install our extension <a href="https://chrome.google.com/webstore/detail/styleme/lnlohfhabkgnelnpbacookjnnfklehii">here</a> to decorate any website with our many custom styles, created by users in the community!
+            <br /><br />
+            Sign up below to create and publish your own styles, or search for ones above!
+        </p>
+
+        <hr />
+
+        {{#if user}}
+        <h5 class="mb-3">Welcome, {{user}}!</h5>
+        <a class="btn btn-primary mr-1" href="/create" id="create">Create</a>
+        <a class="btn btn-success mr-1" href="/styles/mine" id="mine">My Styles</a>
+        <a class="btn btn-warning mr-1" href="/submit" id="submit">Submit</a>
+        <a class="btn btn-danger" href="/api/logout" id="logout">Log Out</a>
+        {{else}}
+        <a class="btn btn-primary mr-1" href="/login" id="login">Login</a>
+        <a class="btn btn-danger" href="/register" id="register">Register</a>
+        {{/if}}
+    </div>
+</div>

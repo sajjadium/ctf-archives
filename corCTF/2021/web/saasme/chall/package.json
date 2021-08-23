@@ -1,0 +1,17 @@
+{
+  "name": "saasme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^3.19.2",
+    "fastify-static": "^4.2.2",
+    "node-fetch": "^2.6.1",
+    "puppeteer": "^10.1.0"
+  }
+}

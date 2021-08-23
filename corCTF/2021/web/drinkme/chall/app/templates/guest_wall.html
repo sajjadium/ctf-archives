@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<p>Thanks for dropping by our coffee shop! All guests are welcome to write or draw anything on our wall.</p>
+	{% if images %}
+	<h1>Images</h1>
+    {% for image in images %}
+        <a href="/wall/image/{{image}}">{{image}}</a><br>
+    {% endfor %}
+	{% endif %}
+	{% if text %}
+	<h1>Text</h1>
+    {% for file in text %}
+        <a href="/wall/image/{{file}}">{{file}}</a><br>
+    {% endfor %}
+	{% endif %}
+	{% if videos %}
+	<h1>Videos</h1>
+    {% for video in videos %}
+        <a href="/wall/image/{{video}}">{{video}}</a><br>
+    {% endfor %}
+    {% endif %}
+	<strong><em>Draw something on the wall:</em></strong>
+	<form method="POST" action="upload" enctype="multipart/form-data">
+		<label for="type">Select file type: </label>
+		<select name="type" id = "type" name = "type"/>
+			<option value="image">Image</option>
+			<option value="video">Video</option>
+			<option value="text">Text</option>
+		</select>
+		<br>
+		<label for="file">Select file:</label>
+		<input type="file" id="file" name="file"/><br>
+		<input type="submit" value="Draw!" name="submit"/>
+	</form>
+{% endblock %}

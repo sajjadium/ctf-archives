@@ -1,0 +1,28 @@
+<div class="container mt-3">
+    {{#if user}}
+    <br />
+    <h3>money: {{user.money}}$</h3>
+    <br />
+    {{/if}}
+    <div class="card-group">
+        {{#each flags}}
+        <div class="card flag-card">
+            <div class="flag-image">
+                <img class="card-img-top flag" src="{{this.image}}" />
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">{{this.name}}</h4>
+                <h5 class="card-title">Price: {{this.price}}$</h4>
+                <br />
+                <form method="POST" action="/api/buy">
+                    <input type="hidden" name="flag" value="{{this.name}}" />
+                    <button class="btn btn-primary float-end" type="submit">Buy</button>
+                </form>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <h3>more flags to be added soon™</h3>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>CoR Cafe</title>
+    {% endif %}
+	<link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body>
+	<h1>CoR Cafe</h1>
+    <div id="navbar">
+	<ul>
+		<li><a href="/index">Home</a></li>
+		<li><a href="/wall">Guest Wall</a></li>
+	</ul>
+	</div>
+	<br>
+    <hr>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+        <span style="color: red;">{{ message }}</span><br>
+    {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <br>
+	{% block content %}{% endblock %}
+</body>
+</html>

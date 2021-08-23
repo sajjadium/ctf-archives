@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>styleme</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css" nonce="{{nonce}}" />
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css" nonce="{{nonce}}" />
+    <link rel="stylesheet" href="/assets/css/styles.min.css" nonce="{{nonce}}" />
+    <link rel="stylesheet" href="/assets/css/CodeMirror.min.css" nonce="{{nonce}}" />
+</head>
+
+<body>
+    <div class="d-flex pt-5 align-items-center container">
+        <div class="col">
+            <h1 class="text-center title"><i class="fas fa-paint-brush"></i>&nbsp;styleme</h1>
+
+            {{#if info}}
+            <div class="alert alert-primary" role="alert">
+                {{info}}
+            </div>
+            {{/if}}
+            {{#if error}}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+            {{/if}}
+
+{{{body}}}
+
+        </div>
+    </div>
+    <script src="/assets/js/jquery.min.js" nonce="{{nonce}}"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js" nonce="{{nonce}}"></script>
+</body>
+</html>

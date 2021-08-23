@@ -1,0 +1,277 @@
+:root {
+	--dark: #020202;
+	--grey: grey;
+	--light: #ececec;
+	--color1: dodgerblue;
+	--color1-dark: #1c76cf;
+	--color1-light: #6cb5ff;
+	--color2: mediumseagreen;
+	--color2-light: #4ae48f;
+	--color2-dark: #2d8554;
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+ "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+ sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background: var(--light);
+}
+
+#root {
+	height: 100vh;
+	display: grid;
+	grid-auto-rows: 4rem calc(100vh - 4rem);
+}
+
+header {
+	padding: 1rem;
+	color: var(--light);
+	background: var(--color1);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+header .main-title {
+	margin: 0;
+	font-size: 1.5rem;
+}
+
+@media (min-width: 600px) {
+	header .main-title {
+		font-size: 2rem;
+	}
+}
+
+header ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+header a {
+	color: var(--light);
+	text-decoration: none;
+	font-size: 1.1rem;
+	font-weight: 500;
+}
+
+header a:hover, header a:focus {
+	text-decoration: underline;
+}
+
+form input {
+	font-size: 1.2rem;
+	padding: 0.5rem;
+}
+
+form input[type="submit"] {
+	-webkit-appearance: none;
+	background: var(--color2);
+	color: var(--light);
+	border: 2px solid var(--color2-dark);
+	font-weight: bold;
+	transition: 0.3s;
+}
+
+form input[type="submit"]:hover, form input[type="submit"]:focus {
+	background: var(--color2-dark);
+}
+
+.login-form {
+	display: grid;
+	align-items: center;
+	align-content: flex-start;
+	width: 80%;
+	max-width: 400px;
+	gap: 1rem;
+	margin: 2rem auto;
+	background: var(--color1-dark);
+	color: var(--light);
+	padding: 2rem;
+}
+
+.login-form label {
+	font-size: 1.2rem;
+}
+
+.main-view {
+	position: relative;
+	display: grid;
+	grid-template: auto 1fr / 1fr;
+}
+
+@media (min-width: 600px) {
+	.main-view {
+		grid-template: 1fr/minMax(20rem, 20%) 1fr;
+	}
+}
+
+label[for="toggle"] {
+	color: var(--dark);
+	font-weight: 500;
+	padding-inline-start: 0.5rem;
+}
+
+@media (min-width: 600px) {
+	label[for="toggle"] {
+		display: none;
+	}
+}
+
+#toggle {
+	display: none;
+}
+
+#toggle + aside {
+	box-sizing: border-box;
+	transition: 0.5s;
+	height: 100%;
+	position: absolute;
+	left: -100vw;
+}
+
+#toggle:checked + aside {
+	left: 0;
+}
+
+aside.chat-rooms {
+	box-sizing: border-box;
+	background: var(--color1-dark);
+	overflow: auto;
+	padding: 1rem 1rem 2rem;
+}
+
+@media (min-width: 600px) {
+	aside.chat-rooms {
+		position: static !important;
+	}
+}
+
+aside.chat-rooms .no-chats {
+	color: var(--light);
+}
+
+aside.chat-rooms ul {
+	display: grid;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+aside.chat-rooms li {
+	border-top: solid 1px var(--color1);
+	padding: 0.5rem;
+}
+
+aside.chat-rooms li.selected {
+	background: var(--color1);
+}
+
+aside.chat-rooms li:last-of-type {
+	border-bottom: solid 1px var(--color1);
+}
+
+aside.chat-rooms a {
+	color: var(--light);
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+	height: 100%;
+	font-size: 1.1rem;
+	cursor: pointer;
+}
+
+aside.chat-rooms a:hover, aside.chat-rooms a:focus {
+	text-decoration: underline;
+}
+
+.new-chatroom-form {
+	display: grid;
+	grid-template: auto auto/minMax(50%, 75%) auto;
+	margin-bottom: 1rem;
+}
+
+.new-chatroom-form label {
+	color: var(--light);
+	grid-column: 1 / span 2;
+}
+
+main.chat {
+	overflow: auto;
+	display: none;
+	grid-template-rows: 1fr 5rem;
+}
+
+main .prompt {
+	text-align: center;
+	margin: 2rem auto;
+}
+
+.messages-container {
+	margin: 0;
+	padding: 1rem 2rem;
+	display: grid;
+	align-items: center;
+	align-content: flex-start;
+	justify-items: flex-start;
+	overflow: auto;
+	gap: 1rem;
+	list-style: none;
+}
+
+.messages-container li {
+	display: grid;
+	justify-items: flex-start;
+	color: var(--light);
+	max-width: 75%;
+}
+
+.messages-container li .content {
+	padding: 0.5rem 1rem;
+	background: var(--color2-dark);
+}
+
+.messages-container .own {
+	justify-self: flex-end;
+	justify-items: flex-end;
+}
+
+.messages-container .own .content {
+	background: var(--color2);
+}
+
+.messages-container .system {
+	color: var(--grey);
+	justify-self: center;
+	justify-items: center;
+	text-align: center;
+	font-size: 0.9rem;
+}
+
+.messages-container .system .content {
+	padding: 0;
+	background: transparent;
+}
+
+.new-message {
+	padding: 1rem;
+	display: grid;
+	grid-template: 1fr / 5fr 1fr;
+	align-items: center;
+}
+
+#username {
+	display: none;
+}
+
+.username {
+	color: white;
+}
+
+.content {
+    line-break: anywhere;
+}

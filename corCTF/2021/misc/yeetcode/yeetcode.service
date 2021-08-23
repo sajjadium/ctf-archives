@@ -1,0 +1,15 @@
+[Unit]
+Description=yeetcode service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+ExecStart=/usr/bin/bash start.sh
+WorkingDirectory=/root/challs/yeetcode/
+
+[Install]
+WantedBy=multi-user.target

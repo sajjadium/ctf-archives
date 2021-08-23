@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<title>Math Me</title>
+	<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+</head>
+<body>
+	<section class='container mt-5 col-8'>
+		<div class='row'>
+			<h1>My Notes</h1>
+
+		</div>
+		<hr>
+		<div class='row'>
+			<a href='/create'>New Note</a>
+		</div>
+		<hr>	
+		{% for note in notes %}
+			<b><a href='/note?id={{ note.id }}'>{{ note.title | escape }}</a></b><br>
+		{% endfor %}
+		<hr>
+		<div class='row' id='last-viewed'>
+			
+		</div>
+	</section>
+</body>
+<script>
+	let cookies = {};
+
+	decodeURIComponent(document.cookie).split(';').forEach(cookie => {
+		const [name, value] = cookie.split('=');
+		cookies[name] = value;
+	})
+
+	if (cookies.lastVisited) {
+		const a = document.createElement('a');
+		a.href = '/note?id=' + cookies.lastVisited;
+		a.innerText = 'Go to last viewed note';
+		document.getElementById('last-viewed').appendChild(a);
+	}
+
+</script>
+</html>

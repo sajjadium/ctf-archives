@@ -1,0 +1,33 @@
+<div class="card content">
+    <div class="card-body">
+        <h4 class="card-title"><i class="fas fa-paint-brush"></i>&nbsp;create</h4>
+        <form method="POST" action="/api/create">
+            <div class="form-group">
+                <label>Title</label>
+                <input class="form-control" type="text" name="title" required>
+            </div>
+            <div class="form-group">
+                <label>CSS</label><br />
+                <textarea name="css" class="w-100" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <label>URL</label>
+                <input class="form-control" type="url" name="url" required>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="hidden" id="hidden" checked><label for="hidden">&nbsp;Hidden</label>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Create</button>
+            </div>
+        </form>
+        <a href="/" id="back">&larr; Back</a>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.0/codemirror.min.js" nonce="{{nonce}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.61.0/mode/css/css.min.js" nonce="{{nonce}}"></script>
+<script nonce="{{nonce}}">
+    CodeMirror.fromTextArea(document.querySelector("textarea"), {
+        lineNumbers: true
+    });
+</script>

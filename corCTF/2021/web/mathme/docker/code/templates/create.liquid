@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<title>Math Me</title>
+	<link href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous'>
+</head>
+<body>
+	<section class='container'>
+		<form class='mt-5 container col-8' action='/create' method='POST'>
+			<div class='row'>
+				<div class='form-group row text-center'>
+					<h1>Create Note</h1>
+				</div>
+				<div class='form-group row mt-3'>
+					<input type='text' name='title' class='form-control' placeholder='Title' style='font-family: monospace;'>
+				</div>
+				<div class='form-group row mt-3'>
+					<span class='text-center'>You can use markdown as well as math rendering with <code>$$your_math_here$$</code></span>
+					<textarea rows='10' name='data' class='form-control mt-3' placeholder='Content' style='font-family: monospace;'></textarea>
+				</div>
+				<div class='form-group row mt-3'>
+					<button type='submit' class='btn btn-primary'>Create</button>
+				</div>
+			</div>
+		</form>
+	</section>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<%- include('../partials/header.ejs'); %>
+    <div class="container">
+        <div class="row my-5">
+            <div class="col">
+                <img src="<%= author.profilePic %>" class="rounded-circle avatar mb-3" />
+                <h4>Author: <%= author.user %></h4>
+                <h4>Date: <%= new Date(post.createdAt).toDateString() %></h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container card bg-secondary mt-5 p-0">
+        <div class="card-header"><h4 class="m-0"><%= post.title %></h4></div>
+        <div class="card-body">
+            <div class="card-text post-text"><%- post.text %></div>
+        </div>
+    </div>
+
+    <div class="container card bg-secondary my-5 p-0">
+        <div class="card-header"><h6 class="m-0">Comments</h6></div>
+        <div class="card-body">
+            <div class="card-text">
+                <%_ if (comments.length === 0) { _%>
+                <h6>there are no comments... 😢</h6>
+                <%_ } else { _%>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Author</th>
+                            <th scope="col">Text</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%_ comments.forEach(comment => { _%>
+                        <tr class="table-primary"> 
+                            <td class="comment-author">
+                                <div class="d-flex align-items-center">
+                                    <img src="<%= comment.user.profilePic %>" class="rounded-circle avatar-sm me-3" />
+                                    <%= comment.user.user %>
+                                </div>
+                            </td>
+                            <td class="align-middle"><%= comment.text %></td>
+                        </tr>
+                        <%_ }); _%>
+                    </tbody>
+                </table>
+                <%_ } _%>
+                <hr />
+                <a class="btn btn-primary mt-3 float-end" href="/api/comment/<%= post.id %>">Comment</a>
+            </div>
+        </div>
+    </div>
+
+    <br /><br />
+    
+<%- include('../partials/footer.ejs'); %>

@@ -1,0 +1,56 @@
+version: "3.9"
+services:
+  discord:
+    build:
+      context: ./discord
+      dockerfile: Dockerfile
+    deploy:
+      restart_policy:
+        condition: any
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+    ulimits:
+      nproc: 200
+      nofile:
+        soft: 1024
+        hard: 2048
+    pids_limit: 200
+    networks:
+      network:
+        ipv4_address: 192.168.0.4
+    read_only: true
+    environment:
+      - TOKEN=:noleek:
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    deploy:
+      restart_policy:
+        condition: any
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+    ulimits:
+      nproc: 200
+      nofile:
+        soft: 1024
+        hard: 2048
+    pids_limit: 200
+    networks:
+      network:
+        ipv4_address: 192.168.0.6
+    read_only: true
+    environment:
+      - YTDL_NO_UPDATE=true
+
+networks:
+  network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24

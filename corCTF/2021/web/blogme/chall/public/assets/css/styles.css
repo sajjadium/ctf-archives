@@ -1,0 +1,19 @@
+body, html {
+    height: 100vh;
+}
+
+.avatar {
+    height: 5rem;
+}
+
+.avatar-sm {
+    height: 2.5rem;
+}
+
+.comment-author {
+    width: 25%;
+}
+
+.post-text {
+    white-space: pre-line;
+}

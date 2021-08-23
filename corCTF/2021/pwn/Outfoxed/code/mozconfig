@@ -1,0 +1,3 @@
+ac_add_options --with-system-nspr
+ac_add_options --disable-debug
+mk_add_options MOZ_OBJDIR=@TOPSRCDIR@/obj/release

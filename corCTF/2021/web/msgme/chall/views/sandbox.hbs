@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>msgme sandbox</title>
+    </head>
+    <body>
+        <!-- simple sandbox for fast evaluation of math :) -->
+        <script nonce="{{nonce}}">
+            let done = false;
+            let token;
+
+            let finish = () => {
+                if(done) {
+                    return;
+                }
+                window.parent.postMessage({ token, res: window.result || "Error" }, "*");
+                done = true;
+            };
+
+            try {
+                window.addEventListener("message", (event) => {
+                    if (event.origin !== "{{site}}") {
+                        return;
+                    }
+                    token = event.data.token;
+
+                    // apply nonce to bypass CSP
+                    let script = document.createElement("script");
+                    script.nonce = "{{nonce}}";
+
+                    script.innerHTML = "window.result = " + event.data.code;
+                    document.body.appendChild(script);
+
+                    setTimeout(finish, 250);
+                }, false);
+            }
+            catch(err) {
+                finish();
+            }
+        </script>
+    </body>
+</html>

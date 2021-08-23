@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css" integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+		<link rel="stylesheet" href="{{ url_for('static', filename='codemirror.css') }}">
+		<script src="{{ url_for('static', filename='codemirror.js') }}"></script>
+		<script src="{{ url_for('static', filename='python.js') }}"></script>
+		<title>YeetCode</title>
+		<style type="text/css">
+			body{
+			    margin: 10px 5px 5px 15px;
+			}
+		</style>
+	</head>
+	<body>
+		<img width=240px height=160px src="{{ url_for('static', filename='yeetcode.png') }}"/>
+		<p>
+			Here's a test of your basic operations.This revolutionary problem will change your thinking forever. Given two integers <code>a</code> and <code>b</code>, create a function <code>f(a, b)</code> so that it sums them. For example, <code>f(2, 3)</code> should return <code>5</code>, and <code>f(5, 7)</code> should return <code>12</code>. Write your code in the box below:
+		</p>
+		<form id="demo" class="pure-form" action="/yeetyeet">
+			<textarea id="area" form="demo" name="code">print("YeetCode is epic")</textarea><br>
+			<button style="border-radius: 5px;" type="submit" class="pure-button pure-button-primary">Submit</button>
+		</form>
+		<p><span id="result"></span></p>
+
+		<script>
+		var editor = CodeMirror.fromTextArea(document.getElementById("area"), {
+			mode: "python",
+		    lineNumbers: true
+		  });
+
+		var form = document.getElementById("demo");
+		form.addEventListener("submit", function(e)  {
+			e.preventDefault();
+			var cod = document.getElementById("area").value;
+
+			document.getElementById("result").innerHTML = "<img src={{ url_for('static', filename='loading.gif') }}/>";
+
+			fetch('/yeetyeet', {
+				method: "POST",
+				headers: {
+			      'Content-Type': 'text/plain;charset=UTF-8'
+			    },
+				body: cod
+			}).then(response => response.json()).then(data => {
+				var field = document.getElementById("result");
+				if (data.error) {
+					field.style.color = "red";
+					field.textContent = data.msg;
+				} else {
+					field.style.color = "black";
+					field.textContent = "You passed " + data.p + "/" + (data.p + data.f) + " test cases.";
+					if (data.f == 0) {
+						field.textContent += " Congrats!"
+					}
+				}
+			});
+		});
+		</script>
+	</body>
+</html>

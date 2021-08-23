@@ -1,0 +1,33 @@
+<div class="card content content-top">
+    <div class="card-body">
+        <h4 class="card-title">
+            <i class="fas fa-paint-brush"></i>&nbsp;{{title}}
+        </h4>
+        <hr />
+        {{#if styles}}
+        {{#each styles}}
+        <div>
+            <h4>{{title}} ({{UserUser}})</h4>
+            {{#if hidden}}
+            <small>(hidden)</small>
+            {{/if}}
+            <pre><code>
+{{code}}
+            </code></pre>
+            <a href="/styles/i/{{id}}" class="btn btn-primary btn-sm">Install</a>
+            {{#if ../owner}}
+            <form method="POST" action="/api/delete" class="d-inline">
+                <input type="hidden" value="{{id}}" name="id" />
+                <input type="submit" value="Delete" class="btn btn-danger btn-sm" />
+            </form>
+            {{/if}}
+            <hr />
+        </div>
+        {{/each}}
+        {{else}}
+        <h5>No styles found.</h5>
+        {{/if}}
+        <a href="/" id="back">&larr; Back</a>
+    </div>
+</div>
+

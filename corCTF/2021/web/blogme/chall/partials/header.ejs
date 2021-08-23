@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>blogme</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-md textwhite bg-primary text-white navigation-clean">
+        <div class="container">
+            <a class="navbar-brand" href="/">blogme</a>
+            <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol">
+                <span class="visually-hidden">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navcol">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <%_ if(locals.user) { _%>
+                    <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/posts">Your Posts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/api/logout">Logout</a></li>
+                    <%_ } else { _%>
+                    <li class="nav-item"><a class="nav-link" href="/api/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/api/register">Register</a></li>
+                    <%_ } _%>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <%_ if(locals.message) { _%>
+    <div class="container alert alert-primary mt-3" role="alert">
+      <%= message %>
+    </div>
+    <%_ } _%>
+    <%_ if(locals.error) { _%>
+    <div class="container alert alert-danger mt-3" role="alert">
+      <%= error %>
+    </div>
+    <%_ } _%>

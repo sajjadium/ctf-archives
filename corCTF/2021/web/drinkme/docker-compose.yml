@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  chall:
+    build:
+      context: ./chall
+      dockerfile: Dockerfile
+    ports:
+      - '80:5000'
+    deploy:
+      resources:
+        limits:
+          cpus: '.2'
+          memory: 128M

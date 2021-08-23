@@ -1,0 +1,20 @@
+version: "3.9"
+services:
+  chall:
+    build:
+      context: ./chall
+      dockerfile: Dockerfile
+    deploy:
+      restart_policy:
+        condition: any
+    networks:
+      - styleme
+    ports:
+      - '80:80'
+    environment:
+      - SESSION_SECRET=REDACTED
+      - FLAG=corctf{test_flag}
+      - SITE=https://styleme.be.ax
+
+networks:
+  styleme: {}

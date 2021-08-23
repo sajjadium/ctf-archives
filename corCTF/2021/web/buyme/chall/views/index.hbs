@@ -1,0 +1,82 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <h1>buyme</h1>
+            <h3>the ultimate stop for all flag lovers and vexillologists!</h3>
+            <hr />
+        </div>
+    </div>
+    {{#if user}}
+    <div class="row mt-3">
+        <div class="col">
+            <h3>hello, {{user.user}}!</h3>
+            <h4>money: {{user.money}}$</h3>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <h3>your flags:</h3>
+            {{#if user.flags}}
+            <div class="card-group">
+                {{#each user.flags}}
+                <div class="card flag-card">
+                    <div class="flag-image">
+                        <img class="card-img-top flag" src="{{this.image}}" />
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">{{this.name}}</h4>
+                        {{#if this.text}}
+                        <h5 class="card-title">{{this.text}}</h4>
+                        {{/if}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+            {{else}}
+            <h4>you have no flags!</h4>
+            {{/if}}
+        </div>
+    </div>
+    {{else}}
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Register</h4>
+                    <form method="POST" action="/api/register">
+                        <div class="input-group">
+                            <span class="input-group-text">Username</span>
+                            <input class="form-control" type="text" name="user">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Password</span>
+                            <input class="form-control" type="password" name="pass">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Register</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Login</h4>
+                    <form method="POST" action="/api/login">
+                        <div class="input-group">
+                            <span class="input-group-text">Username</span>
+                            <input class="form-control" type="text" name="user">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Password</span>
+                            <input class="form-control" type="password" name="pass">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+</div>

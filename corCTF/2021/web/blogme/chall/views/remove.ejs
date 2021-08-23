@@ -1,0 +1,14 @@
+<%- include('../partials/header.ejs'); %>
+    <div class="container card bg-secondary mt-5 p-0">
+        <div class="card-header"><h3 class="m-0">Delete <%= type %></h3></div>
+        <div class="card-body">
+            <div class="card-text">Are you sure you want to delete the <%= type %> with id <%= id %>? This action cannot be undone!</div>
+            <form method="POST" action="/api/remove">
+                <input class="form-control" type="hidden" name="id" value="<%= id %>">
+                <input class="form-control" type="hidden" name="type" value="<%= type %>">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn btn-danger mt-3 float-end" type="submit">Delete</button>
+            </form>
+        </div>
+    </div>
+<%- include('../partials/footer.ejs'); %>

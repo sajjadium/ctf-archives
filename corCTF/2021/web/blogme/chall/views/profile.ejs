@@ -1,0 +1,73 @@
+<%- include('../partials/header.ejs'); %>
+    <div class="container mt-4 text-center">
+        <div class="row my-5">
+            <div class="col">
+                <img src="<%= user.profilePic %>" class="rounded-circle avatar mb-3" />
+                <h2><%= user.user %>'s settings:</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container card bg-secondary my-5 p-0">
+        <div class="card-header"><h3 class="m-0">Create Post</h3></div>
+        <div class="card-body">
+            <form method="POST" action="/api/create">
+                <div class="input-group">
+                    <span class="input-group-text">Title</span>
+                    <input class="form-control" type="text" name="title" maxlength=30>
+                </div>
+                <div class="input-group mt-3">
+                    <span class="input-group-text">Text</span>
+                    <textarea class="form-control" name="text" rows=5 maxlength=300></textarea>
+                </div>
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                <button class="btn btn-primary mt-3 float-end" type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container card bg-secondary my-5 p-0">
+        <div class="card-header"><h3 class="m-0">Upload File</h3></div>
+        <div class="card-body">
+            <form method="POST" action="/api/upload/?_csrf=<%= csrfToken %>" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="formFile" class="form-label mt-4">Select file to upload:</label>
+                    <input class="form-control" type="file" id="formFile" name="file">
+                </div>
+                <button class="btn btn-primary mt-3 float-end" type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container card bg-secondary my-5 p-0">
+        <div class="card-header"><h3 class="m-0">Your files:</h3></div>
+        <div class="card-body">
+            <%_ if (files.length === 0) { _%>
+            <h6>you have no files!</h6>
+            <%_ } else { _%>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">View</th>
+                        <th scope="col">Remove</th>
+                        <th scope="col">Set Profile Picture</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%_ files.forEach(file => { _%>
+                    <tr class="table-primary"> 
+                        <td class="align-middle"><h6 class="m-0"><%= file.id %></h6></td>
+                        <td><a class="btn btn-primary" href="/api/file?id=<%= file.id %>">View</a></td>
+                        <td><a class="btn btn-danger" href="/api/remove/file/<%= file.id %>">Remove</a></td>
+                        <td><a class="btn btn-success" href="/api/profilepic/<%= file.id %>">Set Profile Picture</a></td>
+                    </tr>
+                    <%_ }); _%>
+                </tbody>
+            </table>
+            <%_ } _%>
+        </div>
+    </div>
+
+    <br /><br />
+<%- include('../partials/footer.ejs'); %>
