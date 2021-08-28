@@ -1,0 +1,60 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    environment:
+      mysql_pass: 'L33tPassW0rdF0rTesTiNgAroundAnd ProvingImGOODmmm'
+      PUBLIC_KEY: '6Le1tykcAAAAAASz9HFs5uFF9C_jPLTyFGnguB2_'
+      PRIVATE_KEY: 'REDACTED'
+    image: l33k
+    ports:
+      - "80:5000"
+    depends_on:
+      - db
+    restart: always
+    dns:
+      - "127.0.0.11"
+      - "8.8.8.8"
+    networks:
+      - shisuinet
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'test'
+      MYSQL_DATABASE: 'l33k'
+    dns:
+      - "127.0.0.11" 
+      - "8.8.8.8"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    restart: always
+    networks:
+      - shisuinet
+
+  bot:
+    build:
+      context: .
+      dockerfile: ./bot/Dockerfile
+    image: bot
+    environment:
+      username: 'kahla'
+      password: 'REDACTED'
+      DOMAIN: 'l33k.fword.tech' 
+    restart: always
+    dns:
+      - "127.0.0.11" 
+      - "8.8.8.8"
+    networks:
+      - shisuinet
+
+networks:
+  shisuinet:
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
+          gateway: 172.16.0.1

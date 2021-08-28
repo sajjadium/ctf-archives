@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+<title>Search</title>
+<meta http-equiv="content-security-policy" content="default-src 'self';script-src 'nonce-{{nonce}}';base-uri 'none';object-src 'none'; "> 
+</head>
+<body>
+
+<script nonce="{{nonce}}">
+const escape = e => unescape(e).replace(/</g, '[').replace(/>/g, ']');
+const url = new URL(location.href);
+const image = url.searchParams.get('img') || "/static/search.jpg";
+document.write(`<img src="${escape(image)}" />`);
+</script>
+<script nonce="{{nonce}}">
+function randomId(){
+	var idint=Math.random()*1e18;
+	return idint.toString()
+}
+
+</script>
+
+<script nonce="{{nonce}}">
+
+var out=document.createElement("div")
+try{
+	out.setAttribute("id","out"+randomId())
+}
+catch(err){
+var res="{{result}}"
+	if(res.split(' ')[2]){
+	var a=document.createElement("iframe")
+	a.setAttribute("src","https://l33k.fword.tech/view?id="+res.split(' ')[2])
+	document.body.appendChild(a);
+	}
+}
+var res="{{result}}"
+if(res.length >1){
+	out.textContent=res
+	document.body.appendChild(out)
+}
+</script>
+<div id="error">
+{{error}}
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
