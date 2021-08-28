@@ -1,0 +1,57 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./task/Dockerfile
+    environment:
+      mysql_pass: 'test'
+      PUBLIC_KEY: '6LeIYwgcAAAAAE7yNAs6-qzF-9rlqJv4ADgH3gcr'
+      PRIVATE_KEY: '################################'
+      FLAG: 'FwordCTF{hola_test}'
+    image: shisui
+    ports:
+      - "80:5000"
+    depends_on:
+      - db
+    restart: always
+    dns:
+      - "127.0.0.11"
+      - "8.8.8.8"
+    networks:
+      - shisuinet
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'test'
+      MYSQL_DATABASE: 'task'
+    dns:
+      - "127.0.0.11" 
+      - "8.8.8.8"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    restart: always
+    networks:
+      - shisuinet
+
+  bot:
+    build:
+      context: .
+      dockerfile: ./bot/Dockerfile
+    image: bot
+    restart: always
+    dns:
+      - "127.0.0.11" 
+      - "8.8.8.8"
+    networks:
+      - shisuinet
+
+networks:
+  shisuinet:
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
+          gateway: 172.16.0.1

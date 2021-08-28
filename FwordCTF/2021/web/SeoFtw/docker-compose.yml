@@ -1,0 +1,66 @@
+version: "3.9"
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    image: backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - neo4j
+    restart: always
+    networks:
+      - seonet
+
+  neo4j:
+    image: neo4j
+    environment:
+      NEO4J_AUTH: 'neo4j/fword'
+      NEO4J_dbms_directories_import: '/'
+    volumes:
+      - "./flag.txt:/flag.txt"
+    networks:
+      - seonet
+
+  rendertron:
+    build:
+      context: ./rendertron
+      dockerfile: ./Dockerfile
+    image: rendertron
+    expose:
+      - "3000"
+    restart: always
+    networks:
+      - seonet
+
+  front-node:
+    build:
+      context: ./front-node
+      dockerfile: ./Dockerfile
+    image: front-node
+    ports:
+      - "80:3000"
+    depends_on:
+      - seoftw
+      - rendertron
+    restart: always
+    networks:
+      - seonet
+
+  seoftw:
+    build:
+      context: ./seoftw
+      dockerfile: ./Dockerfile
+    expose:
+      - "80"
+    restart: always
+    networks:
+      - seonet
+     
+networks:
+  seonet:
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
+          gateway: 172.16.0.1

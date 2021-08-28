@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<title>Pinky and the Brain</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&display=swap');
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('{{ url_for('static', filename='images/img.png') }}');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.console {
+  font-family: 'IBM Plex Mono';
+  width: 700px;
+  height: 200px;
+  box-sizing: border-box;
+  margin: auto;
+  margin-top: 10%;
+  opacity: .85;
+}
+
+.console header {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: #555;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  color: #DDD;
+}
+
+.console .consolebody {
+  font-family: 'IBM Plex Mono';
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  box-sizing: border-box;
+  padding: 20px;
+  height: calc(100% - 40px);
+  background-color: #000;
+  color: #63de00;
+}
+
+.console .consolebody p {
+  line-height: 1.5rem;
+}
+</style>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-topleft w3-padding-large w3-xlarge" style="color: #F0FFFF;">
+    Pinky & The Brain
+  </div>
+  <div class="w3-display-middle">
+    <p class="w3-middle w3-center" style="color: white;">Pinky & Brain will interprete your uploaded image.</p>
+    <center><img src="{{ img }}" width="150px" height="150px"></center>
+    <form action="" method="post" enctype="multipart/form-data" class="w3-small w3-center" style="color: white;">
+        <br>
+        <input type="file" name="file" id="file">
+        <input name="text" placeholder="arg" id="arg">
+        <input type="submit" value="Upload" name="submit">
+        
+    </form>
+    <hr class="w3-border-grey" style="margin:auto;width:40%;margin-top: 5%;">
+    {% if msg %}
+      <div class="console">
+        <header>
+          <p>www-data@ctf-box</p>
+        </header>
+        <div class="consolebody">
+          <p># ./interpreter $code $arg</p>
+          <p># {{ msg }}</p>
+          <p># </p>
+        </div>
+      </div>
+    {% endif %}
+    
+    
+  </div>
+
+  <div class="w3-display-bottomleft w3-padding-large">
+    Powered by <span style="color: white">hafl0ut</span>.
+  </div>
+</div>
+
+</body>
+
+
+</html>
