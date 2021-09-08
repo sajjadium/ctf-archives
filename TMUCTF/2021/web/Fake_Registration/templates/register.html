@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMUCTF Registration</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="form-container">
+            <div class="form-body">
+                <h2 class="title">TMUCTF Registration<br></br></h2>
+                <form action="/register" class="the-form" method="post">
+                <div class="msg">{{msg}}<br></br></div>
+                    <label for="username">Username</label>
+                    <input type="username" name="username" id="username" placeholder="Enter your username" required="required">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Enter your password" required="required">
+                    <input type="submit" value="Register">
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
