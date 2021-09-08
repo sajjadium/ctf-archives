@@ -1,0 +1,13 @@
+[package]
+name = "sq_ext"
+version = "0.1.0"
+authors = ["localo"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+reqwest = { version = "0.10", features = ["blocking"], default-features=false}
+sm-ext = "0.3.0"

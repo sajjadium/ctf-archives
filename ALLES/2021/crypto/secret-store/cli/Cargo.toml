@@ -1,0 +1,21 @@
+[package]
+edition = "2018"
+name = "store-cli"
+version = "0.1.0"
+[dependencies]
+borsh = "0.9.1"
+chrono = "*"
+clap = "3.0.0-beta.2"
+solana-client = "1.7.10"
+solana-sdk = "1.7.10"
+solana-core = "1.7.10"
+solana-program = "1.7.10"
+solana-streamer = "1.7.10"
+solana-transaction-status = "1.7.10"
+spl-associated-token-account = "1.0.3"
+spl-token = "*"
+rand = "0.8.4"
+
+[dependencies.store-program]
+features = ["no-entrypoint"]
+path = "../program"

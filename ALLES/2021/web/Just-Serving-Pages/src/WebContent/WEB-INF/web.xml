@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+<listener>  
+    <listener-class>
+        cscg.GlobalServerContext
+    </listener-class>
+</listener>  
+
+<filter>
+  <filter-name>SessionFilter</filter-name> <!-- mandatory -->
+  <filter-class>cscg.sessions.SessionFilter</filter-class> <!-- mandatory -->
+</filter>
+
+<filter-mapping>
+  <filter-name>SessionFilter</filter-name> <!-- mandatory -->
+  <url-pattern>/*</url-pattern> <!-- either url-pattern or servlet-name is mandatory -->
+  <dispatcher>REQUEST</dispatcher>
+</filter-mapping>
+</web-app>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/bulma.min.css" />
+    <title>ALLES!Chat</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';" />
+  </head>
+  <body>
+    <section class="hero has-background-light is-fullheight">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-6">
+              <form class="box">
+                <div class="field">
+                  <label class="label">API</label>
+                  <div class="control">
+                    <input
+                      id="api"
+                      placeholder="http://127.0.0.1:1024"
+                      type="text"
+                      class="input"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Username</label>
+                  <div class="control">
+                    <input id="username" type="text" class="input" required />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Password</label>
+                  <div class="control">
+                    <input
+                      id="password"
+                      type="password"
+                      class="input"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <div id="login" class="button is-primary">Login</div>
+                  <div id="register" class="ml-2 button is-primary">
+                    Register
+                  </div>
+                </div>
+              </form>
+              <div id="error" class="is-hidden notification is-danger"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="../js/utils.js"></script>
+    <script src="../js/login.js"></script>
+  </body>
+</html>

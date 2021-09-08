@@ -1,0 +1,15 @@
+#messages {
+  max-height: 50vh;
+  overflow: auto;
+}
+
+.msg {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  max-width: 65vw;
+}
+
+.preview {
+  width: 45vw;
+  height: 250px;
+}

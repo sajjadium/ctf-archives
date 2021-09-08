@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <title>ALLES!Chat Message Printer</title>
+  </head>
+  <body>
+    <div style="margin: 2% 0 0 2%" id="message"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.0/purify.min.js"></script>
+    <script>
+      var params = new URLSearchParams(location.search);
+      var token = params.get("token") || "";
+      var id = params.get("id") || 0;
+
+      var setMessage = (msg) => {
+        let strong = document.createElement("strong");
+        strong.innerText = msg["sender"];
+
+        let small = document.createElement("small");
+        small.classList.add("ml-5");
+        small.innerText = new Date(msg["time"]).toLocaleString();
+
+        let p = document.createElement("p");
+        p.style =
+          "white-space: pre-wrap; overflow-wrap: break-word; max-width: 65vw;";
+        p.appendChild(strong);
+        p.appendChild(small);
+        p.innerHTML += "<br />" + DOMPurify.sanitize(msg["message"]) + "<br />";
+
+        let divContent = document.createElement("div");
+        divContent.classList.add("content");
+        divContent.appendChild(p);
+
+        let divMedia = document.createElement("div");
+        divMedia.classList.add("media-content");
+        divMedia.appendChild(divContent);
+
+        let article = document.createElement("article");
+        article.classList.add("media");
+        article.appendChild(divMedia);
+
+        document.getElementById("message").appendChild(article);
+
+        if (params.get("auto")) setTimeout(print, 2000);
+      };
+
+      var script = document.createElement("script");
+      script.src = `/message?id=${id}&token=${token}&cb=setMessage`;
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>

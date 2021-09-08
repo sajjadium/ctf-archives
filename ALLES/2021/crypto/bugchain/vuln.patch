@@ -1,0 +1,47 @@
+diff --git a/runtime/src/accounts.rs b/runtime/src/accounts.rs
+index 8ed206eaf..ae99015f3 100644
+--- a/runtime/src/accounts.rs
++++ b/runtime/src/accounts.rs
+@@ -988,12 +988,11 @@ impl Accounts {
+ 
+             let message = &tx.message();
+             let loaded_transaction = raccs.as_mut().unwrap();
+-            let mut fee_payer_index = None;
+             for (i, (key, account)) in (0..message.account_keys.len())
+                 .zip(loaded_transaction.accounts.iter_mut())
+                 .filter(|(i, (key, _account))| message.is_non_loader_key(key, *i))
+             {
+-                let is_nonce_account = prepare_if_nonce_account(
++                prepare_if_nonce_account(
+                     account,
+                     key,
+                     res,
+@@ -1001,27 +1000,7 @@ impl Accounts {
+                     last_blockhash_with_fee_calculator,
+                     fix_recent_blockhashes_sysvar_delay,
+                 );
+-                if fee_payer_index.is_none() {
+-                    fee_payer_index = Some(i);
+-                }
+-                let is_fee_payer = Some(i) == fee_payer_index;
+-                if message.is_writable(i)
+-                    && (res.is_ok()
+-                        || (maybe_nonce_rollback.is_some() && (is_nonce_account || is_fee_payer)))
+-                {
+-                    if res.is_err() {
+-                        match (is_nonce_account, is_fee_payer, maybe_nonce_rollback) {
+-                            // nonce is fee-payer, state updated in `prepare_if_nonce_account()`
+-                            (true, true, Some((_, _, None, _))) => (),
+-                            // nonce not fee-payer, state updated in `prepare_if_nonce_account()`
+-                            (true, false, Some((_, _, Some(_), _))) => (),
+-                            // not nonce, but fee-payer. rollback to cached state
+-                            (false, true, Some((_, _, Some(fee_payer_account), _))) => {
+-                                *account = fee_payer_account.clone();
+-                            }
+-                            _ => panic!("unexpected nonce_rollback condition"),
+-                        }
+-                    }
++                if message.is_writable(i) {
+                     if account.rent_epoch() == INITIAL_RENT_EPOCH {
+                         let rent = rent_collector.collect_from_created_account(
+                             key,

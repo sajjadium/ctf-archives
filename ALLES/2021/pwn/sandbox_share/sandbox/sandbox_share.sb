@@ -1,0 +1,244 @@
+(version 1)
+
+;;; Deny most stuff first
+(deny default)
+(deny file-map-executable nvram*)
+(deny dynamic-code-generation)
+(deny darwin-notification-post)
+(deny file-clone file-link file-ioctl)
+(deny mach-cross-domain-lookup)
+(deny socket-ioctl)
+(deny (with no-report) system-privilege)
+(deny (with send-signal SIGKILL) iokit* iokit-get-properties)
+(deny mach-lookup)
+
+;;; Allow mostly harmless stuff
+(allow mach-bootstrap)
+(allow mach-kernel-endpoint)
+(allow file-test-existence)
+(allow process-codesigning-status-get
+       process-codesigning-entitlements-blob-get
+       process-info-pidinfo
+           (target self))
+;;; (allow system-mac-syscall
+;;;     (mac-policy-name "AMFI"))
+
+;;; Allow mapping of system frameworks + dylibs
+(allow file-map-executable
+    (subpath "/Library/Apple/System/Library/Frameworks")
+    (subpath "/Library/Apple/System/Library/PrivateFrameworks")
+    (subpath "/System/Library/Frameworks")
+    (subpath "/System/Library/PrivateFrameworks")
+    (subpath "/usr/lib"))
+
+;;; Allow basic fcntls required by dyld
+(allow system-fcntl
+    (fcntl-command F_GETPATH
+                   F_ADDFILESIGS_RETURN
+                   F_CHECK_LV))
+
+;;; Allow resolution of standard system symlinks.
+(allow file-read-metadata
+    (literal "/etc")
+    (literal "/tmp")
+    (literal "/var")
+    (literal "/usr/lib/dyld")
+    (literal "/private/etc/localtime"))
+
+;;; Allow access to dyld shared cache
+(allow file-read-metadata file-read*
+    (regex #"\\/System\\/Library\\/dyld\\/dyld_shared_cache_[-A-Za-z0-9_]+"))
+
+;;; Always allow stat'ing of path components of firmlink targets.
+(allow file-read-metadata (path-ancestors "/System/Volumes/Data/private"))
+
+;;; Deny access to dtrace (without report)
+(deny (with no-report) file* file-read* file-write-data file-ioctl
+    (literal "/dev/dtracehelper"))
+
+;;; Filter unix syscalls
+(deny syscall-unix (with send-signal SIGKILL))
+(allow syscall-unix
+    (syscall-number SYS___disable_threadsignal
+                    SYS___mac_syscall
+                    SYS___semwait_signal_nocancel
+                    SYS___semwait_signal
+                    SYS___sigwait_nocancel
+                    SYS___sigwait
+                    SYS_shared_region_check_np
+                    SYS_abort_with_payload
+                    SYS_access
+                    SYS_csops_audittoken
+                    SYS_csrctl
+                    SYS_exit
+                    SYS_execve
+                    SYS_faccessat
+                    SYS_fgetattrlist
+                    SYS_fgetxattr
+                    SYS_fsgetpath
+                    SYS_getattrlist
+                    SYS_getattrlistbulk
+                    SYS_getdirentries64
+                    SYS_getentropy
+                    SYS_geteuid
+                    SYS_getgid
+                    SYS_getegid
+                    SYS_getpid
+                    SYS_gethostuuid
+                    SYS_getrusage
+                    SYS_gettimeofday
+                    SYS_getuid
+                    SYS_gettid
+                    SYS_getxattr
+                    SYS_issetugid
+                    SYS_ioctl
+                    SYS_kdebug_trace
+                    SYS_kdebug_trace64
+                    SYS_kdebug_trace_string
+                    SYS_kdebug_typefilter
+                    SYS_listxattr
+                    SYS_lseek
+                    SYS_madvise
+                    SYS_mmap
+                    SYS_mprotect
+                    SYS_mremap_encrypted
+                    SYS_munmap
+                    SYS_open
+                    SYS_open_nocancel
+                    SYS_openat
+                    SYS_write
+                    SYS_write_nocancel
+                    SYS_pathconf
+                    SYS_proc_info
+                    SYS_readlink
+                    SYS_read
+                    SYS_shm_open
+                    SYS_socket
+                    SYS_sysctl
+                    SYS_sysctlbyname
+                    SYS_thread_selfid
+                    SYS_umask
+                    SYS_workq_kernreturn
+                    SYS_workq_open
+                    SYS_fstatfs64
+                    SYS_getdirentries64
+                    SYS_fstat64
+                    SYS_stat64
+                    SYS_statfs64
+                    SYS_fstatat64
+                    SYS_lstat64
+                    SYS_stat64_extended
+                    SYS_lstat64_extended
+                    SYS_fstat64_extended
+                    SYS___pthread_kill
+                    SYS___pthread_sigmask
+                    SYS___pthread_chdir
+                    SYS___pthread_fchdir
+                    SYS___disable_threadsignal
+                    SYS___pthread_markcancel
+                    SYS___pthread_canceled
+                    SYS_bsdthread_create
+                    SYS_bsdthread_terminate
+                    SYS_bsdthread_register
+                    SYS_bsdthread_ctl
+                    SYS_workq_open
+                    SYS_workq_kernreturn
+                    SYS_thread_selfid
+                    SYS_kevent_qos
+                    SYS_kevent_id
+                    SYS_fcntl
+                    SYS_gettimeofday
+                    SYS_fcntl_nocancel
+                    SYS_getrlimit
+                    SYS_sigsuspend
+                    SYS_sigaction
+                    SYS_sigprocmask
+                    SYS_sigpending
+                    SYS_sigaltstack
+                    SYS_sigsuspend_nocancel
+                    SYS_ulock_wait
+                    SYS_ulock_wait2
+                    SYS_ulock_wake
+                    SYS_connect
+                    SYS_psynch_rw_longrdlock
+                    SYS_psynch_rw_yieldwrlock
+                    SYS_psynch_rw_downgrade
+                    SYS_psynch_rw_upgrade
+                    SYS_psynch_mutexwait
+                    SYS_psynch_mutexdrop
+                    SYS_psynch_cvbroad
+                    SYS_psynch_cvsignal
+                    SYS_psynch_cvwait
+                    SYS_psynch_rw_rdlock
+                    SYS_psynch_rw_wrlock
+                    SYS_psynch_rw_unlock
+                    SYS_psynch_rw_unlock2
+                    SYS_psynch_cvclrprepost))
+
+;;; Filter mach syscalls
+(deny  syscall-mach (with send-signal SIGKILL))
+(allow syscall-mach
+      (machtrap-number MSC__kernelrpc_mach_vm_allocate_trap
+                       MSC__kernelrpc_mach_vm_purgable_control_trap
+                       MSC__kernelrpc_mach_vm_deallocate_trap
+                       MSC_task_dyld_process_info_notify_get
+                       MSC__kernelrpc_mach_vm_protect_trap
+                       MSC__kernelrpc_mach_vm_map_trap
+                       MSC__kernelrpc_mach_port_allocate_trap
+                       MSC__kernelrpc_mach_port_deallocate_trap
+                       MSC__kernelrpc_mach_port_mod_refs_trap
+                       MSC__kernelrpc_mach_port_move_member_trap
+                       MSC__kernelrpc_mach_port_insert_right_trap
+                       MSC__kernelrpc_mach_port_insert_member_trap
+                       MSC__kernelrpc_mach_port_extract_member_trap
+                       MSC__kernelrpc_mach_port_construct_trap
+                       MSC__kernelrpc_mach_port_destruct_trap
+                       MSC_mach_reply_port
+                       MSC_thread_self_trap
+                       MSC_task_self_trap
+                       MSC_host_self_trap
+                       MSC_mach_msg_trap
+                       MSC_mach_msg_overwrite_trap
+                       MSC_semaphore_signal_trap
+                       MSC_semaphore_signal_all_trap
+                       MSC_semaphore_signal_thread_trap
+                       MSC_semaphore_wait_trap
+                       MSC_semaphore_wait_signal_trap
+                       MSC_semaphore_timedwait_trap
+                       MSC_semaphore_timedwait_signal_trap
+                       MSC__kernelrpc_mach_port_get_attributes_trap
+                       MSC__kernelrpc_mach_port_guard_trap
+                       MSC__kernelrpc_mach_port_unguard_trap
+                       MSC_mach_generate_activity_id
+                       MSC_pid_for_task
+                       MSC_thread_get_special_reply_port
+                       MSC_macx_triggers
+                       MSC_macx_backing_store_suspend
+                       MSC_macx_backing_store_recovery
+                       MSC_pfz_exit
+                       MSC_swtch_pri
+                       MSC_swtch
+                       MSC_syscall_thread_switch
+                       MSC_clock_sleep_trap
+                       MSC_host_create_mach_voucher_trap
+                       MSC_mach_voucher_extract_attr_recipe_trap
+                       MSC__kernelrpc_mach_port_type_trap
+                       MSC__kernelrpc_mach_port_request_notification_trap
+                       MSC_mach_timebase_info_trap
+                       MSC_mach_wait_until
+                       MSC_mk_timer_create
+                       MSC_mk_timer_destroy
+                       MSC_mk_timer_arm
+                       MSC_mk_timer_cancel
+                       MSC_mk_timer_arm_leeway))
+
+;;; Allow exec'ing and reading our target
+(allow process-exec file-test-existence file-read*
+    (literal "/usr/local/bin/sandbox_share_xpc"))
+
+;;; Allow reading the dir in which the target is located
+(allow file-read*
+    (literal "/usr/local/bin/"))
+
+;;; No need to allow anything for the server
+;;; launchd always allows registering an xpc service if it's inside the launchd plist

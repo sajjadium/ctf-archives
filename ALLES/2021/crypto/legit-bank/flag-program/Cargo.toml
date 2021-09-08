@@ -1,0 +1,14 @@
+[package]
+name = "flag"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+solana-sdk = "1.7.10"
+spl-token = { version = "3.2.0", features = ["no-entrypoint"] }
+
+[lib]
+name = "flag"
+crate-type = ["dylib"]

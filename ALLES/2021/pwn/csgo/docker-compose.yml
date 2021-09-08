@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  server:
+    image: csgo_server
+    build:
+        context: server
+    isolation: process
+    ports:
+      - "27015:27015/udp"
+    links:
+      - "flaghoster:flag"
+    mem_limit: 4g
+    environment:
+        PASSWD: secret
+        PORT: 27015
+
+  flaghoster:
+    image: csgo_flaghoster
+    build:
+        context: flaghoster
+    environment: 
+        FLAG: TEST_FLAG

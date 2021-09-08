@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <form action="{{ url_for('add_note') }}" method="post">
+        <div class="w-96 m-auto my-5">
+            <div class=" grid grid-cols-3 grid-rows-7 grid-flow-row overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                <div class="col-span-3 row-span-4 p-1 m-1">
+                    <textarea  placeholder="enter note text here..." class="bg-gray-50 rounded-t-xl w-full p-2 text-sm" id="body" name="body"></textarea>
+                </div>
+
+                <div class="col-span-3 row-span-1">
+                    <header class="flex flex-rows items-center justify-between leading-tight pt-1 pb-3 px-2 ">
+                        <input class="border p-2 mr-2 flex-grow" type="text" id="title" name="title" placeholder="title" value="">
+                        <button id="submit" class="bg-green-400 hover:bg-green-500 text-white font-bold py-1 px-4 rounded border-b-4 border-green-500" type="submit" >
+                            Create
+                        </button>
+                    </header>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+        <div class="w-96 m-auto my-5 text-right">
+            <a href="{{ url_for('notes') }}?order={% if request.args.get('order') == 'asc' %}desc{% else %}asc{% endif %}" class="hover:underline hover:text-green-500 text-black text-gray-400">
+                sort {% if request.args.get('order') == 'asc' %}<i class="fas fa-sort-down"></i>{% else %}<i class="fas fa-sort-up"></i>{% endif %}
+            </a>
+        </div>
+    {% for note in notes %}
+    <div class="w-96 m-auto my-5">
+        <div class="relative">
+            <form action="{{ url_for('delete_note') }}" method="post" class="absolute right-0 top-0">
+                <input type="hidden" name="uuid" value="{{ note.uuid }}">
+                <button type="submit" id="delete_{{ note.uuid }}">
+                <svg class="ml-auto fill-current opacity-0 hover:opacity-100 hover:text-red-500 w-10 p-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 18">
+                    <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"/>
+                </svg>
+                </buton>
+            </form>
+        </div>
+        <div class=" grid grid-cols-3 grid-rows-7 grid-flow-row overflow-hidden rounded-lg shadow-md bg-white hover:shadow-xl transition-shadow duration-300 ease-in-out">
+            <div class="col-span-3 row-span-4 p-1 m-1">
+                <pre class="bg-gray-50 rounded-t-xl w-full p-2 text-sm">{{ note.body }}</pre>
+            </div>
+
+            <div class="col-span-3 row-span-1">
+                <header class="flex flex-rows items-center justify-between leading-tight pt-1 pb-3 px-2 md:px-4">
+                    <h1 class="text-lg">
+                        {{ note.title }}
+                    </h1>
+                </header>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+{% endblock %}

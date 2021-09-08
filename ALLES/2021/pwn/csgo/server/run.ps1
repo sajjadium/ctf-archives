@@ -1,0 +1,3 @@
+.\srcds.exe -game csgo -port $(if($env:PORT) {"$env:PORT" } else {"27015"}) -console -insecure -usercon +ip 0.0.0.0 +game_type 0 +game_mode 1 +mapgroup mg_bomb +map de_dust2 $(if($env:TOKEN) {"+sv_setsteamaccount $env:TOKEN" } else {"+sv_lan 1"}) +con_logfile log.log +sv_password $env:PASSWD +sv_tags hidden +sv_hibernate_when_empty 0
+while (!(Test-Path "csgo\log.log")) { Start-Sleep 1 }
+Get-Content csgo\log.log -wait

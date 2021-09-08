@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/bulma.min.css" />
+    <title>ALLES!Chat</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';" />
+  </head>
+  <body>
+    <div id="main" class="columns mt-4 ml-4">
+      <div class="column is-one-quarter">
+        <aside class="menu">
+          <p class="menu-label">Menu</p>
+          <ul class="menu-list">
+            <li><a href="./index.html">Dashboard</a></li>
+            <li><a class="is-active">Send Message</a></li>
+            <li>
+              <a>Latest Messages</a>
+              <ul id="users"></ul>
+            </li>
+            <li><a href="./chat.html?user=support">Support</a></li>
+          </ul>
+        </aside>
+      </div>
+      <div class="column mr-2">
+        <div class="box">
+          <div class="column is-one-third">
+            <label class="label">Recipient</label>
+            <input
+              id="recipient"
+              class="input"
+              type="text"
+              placeholder="Enter a username"
+            />
+          </div>
+          <div class="column">
+            <label class="label">Message</label>
+            <textarea
+              id="new-message"
+              rows="2"
+              class="textarea"
+              maxlength="250"
+              placeholder="Type in your message"
+            ></textarea>
+            <nav class="level mt-2">
+              <div class="level-left">
+                <div class="level-item">
+                  <a id="send" class="button is-info">Send</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../js/socket.io.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/message.js"></script>
+  </body>
+</html>

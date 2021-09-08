@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+    <div class="flex flex-col items-left mx-auto" style="max-width: 400px">
+            {% for log in logs %}
+            <div class="p-2">
+                <div class="inline-flex items-center bg-white leading-none text-purple-600 rounded-full p-2 shadow text-teal text-sm">
+                <span class="inline-flex bg-indigo-600 text-white rounded-full h-6 px-3 justify-center items-center text-xs whitespace-nowrap">{{ log.timestamp|timesince }}</span>
+                <span class="inline-flex px-2">{{ log.msg }}</span>
+                </div>
+            </div>
+            {% endfor %}
+            {% if len_logs == 15 %}
+                <div class="p-2">
+                <div class="inline-flex items-center bg-white leading-none text-purple-600 rounded-full p-2 shadow text-teal text-md">
+                <span class="inline-flex px-2">...</span>
+                </div>
+            </div>
+            {% endif %}
+    </div>
+
+{% endblock %}

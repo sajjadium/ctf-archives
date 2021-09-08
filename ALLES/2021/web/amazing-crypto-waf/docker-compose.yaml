@@ -1,0 +1,13 @@
+version: '3.7'
+services:
+  app:
+    build:
+      context: app/
+
+  crypter:
+    build:
+      context: crypter/
+    depends_on:
+      - "app"
+    ports:
+      - 5000:1024

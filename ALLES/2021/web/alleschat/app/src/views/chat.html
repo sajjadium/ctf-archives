@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/bulma.min.css" />
+    <link rel="stylesheet" href="../css/chat.css" />
+    <title>ALLES!Chat</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';" />
+  </head>
+  <body>
+    <div id="main" class="columns mt-4 ml-4">
+      <div class="column is-one-quarter">
+        <aside class="menu">
+          <p class="menu-label">Menu</p>
+          <ul class="menu-list">
+            <li><a href="./index.html">Dashboard</a></li>
+            <li><a href="./message.html">Send Message</a></li>
+            <li>
+              <a>Latest Messages</a>
+              <ul id="users"></ul>
+            </li>
+            <li><a id="support" href="./chat.html?user=support">Support</a></li>
+          </ul>
+        </aside>
+      </div>
+      <div class="column mr-2">
+        Your Conversation With <strong id="user"></strong>
+        <div id="messages" class="mt-5 content"></div>
+        <article class="media mt-5">
+          <div class="media-content">
+            <div class="field">
+              <p class="control">
+                <textarea
+                  id="new-message"
+                  rows="2"
+                  class="textarea"
+                  maxlength="250"
+                  placeholder="Type in your message"
+                ></textarea>
+              </p>
+            </div>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <a id="send" class="button is-info">Send</a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </article>
+      </div>
+    </div>
+    <script src="../js/purify.min.js"></script>
+    <script src="../js/socket.io.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/chat.js"></script>
+  </body>
+</html>

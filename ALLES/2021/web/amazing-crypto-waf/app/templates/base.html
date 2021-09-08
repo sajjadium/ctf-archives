@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+        <title>noter</title>
+    </head>
+    <body class="bg-gray-50"> 
+        <div class="flex flex-row bg-gray-100 px-5 py-2">
+
+            {% if g.user %}
+            <a href="{{ url_for('notes') }}" class="hover:underline hover:text-green-500 text-black py-1 px-4 font-bold">
+            {% else %}
+            <a href="{{ url_for('index') }}" class="hover:underline hover:text-green-500 text-black py-1 px-4 font-bold">
+            {% endif %}
+                noter <span class="text-green-500" style="font-size:.6rem">DEMO</span>
+            </a>
+
+            {% if g.user %}
+                <a href="{{ url_for('notes') }}" class="hover:underline hover:text-green-600 text-green-500 py-1 px-4 mr-2">{{g.user.username}}</a>
+                <a href="{{ url_for('logout') }}">
+                    <button class="bg-green-400 hover:bg-green-500 text-white font-bold py-1 px-4 rounded border-b-4 border-green-500" type="submit" >
+                        Logout
+                    </button>
+                </a>
+            {% else %}
+            {% endif %}
+                
+        </div>
+        <div class="my-5">
+        {% block content %}
+
+        {% endblock %}
+        </div>
+    </body>
+</html>

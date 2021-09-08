@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../css/bulma.min.css" />
+    <title>ALLES!Chat</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';" />
+  </head>
+  <body>
+    <div id="main" class="columns mt-4 ml-4">
+      <div class="column is-one-quarter">
+        <aside class="menu">
+          <p class="menu-label">Menu</p>
+          <ul class="menu-list">
+            <li><a class="is-active">Dashboard</a></li>
+            <li><a href="./message.html">Send Message</a></li>
+            <li>
+              <a>Latest Messages</a>
+              <ul id="users"></ul>
+            </li>
+            <li><a href="./chat.html?user=support">Support</a></li>
+          </ul>
+        </aside>
+      </div>
+      <div class="column mr-2">
+        <div class="card">
+          <div class="card-header">
+            <p id="greeting" class="card-header-title is-size-5"></p>
+          </div>
+          <div class="card-content">
+            <div class="content">
+              You currently have <strong id="message-counter">0</strong> new
+              message(s).
+            </div>
+            <div class="content">
+              If you experience any issues, feel free to reach out to our
+              support team.
+            </div>
+          </div>
+        </div>
+        <div id="footer" class="content mt-5">
+          <blockquote id="slogan"></blockquote>
+        </div>
+      </div>
+    </div>
+    <script src="../js/socket.io.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/index.js"></script>
+  </body>
+</html>

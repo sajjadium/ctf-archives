@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>EnablePressuredExit</key>
+	<true/>
+	<key>EnableTransactions</key>
+	<true/>
+	<key>Label</key>
+	<string>com.alles.sandbox_share</string>
+	<key>MachServices</key>
+	<dict>
+		<key>com.alles.sandbox_share</key>
+		<true/>
+	</dict>
+	<key>POSIXSpawnType</key>
+	<string>Adaptive</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/sandbox-exec</string>
+		<string>-f</string>
+		<string>/usr/local/share/sandbox_share.sb</string>
+		<string>/usr/local/bin/sandbox_share_xpc</string>
+		<string>com.alles.sandbox_share</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>HardResourceLimits</key>
+	<dict>
+		<key>Data</key>
+		<integer>4000000000</integer>
+		<key>ResidentSetSize</key>
+		<integer>4000000000</integer>
+	</dict>
+	<key>UserName</key>
+	<string>nobody</string>
+	<key>GroupName</key>
+	<string>nobody</string>
+</dict>
+</plist>

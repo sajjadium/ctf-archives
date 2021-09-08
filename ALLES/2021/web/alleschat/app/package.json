@@ -1,0 +1,19 @@
+{
+  "name": "alleschat",
+  "productName": "ALLESChat",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "NODE_ENV=development ./node_modules/.bin/electron ."
+  },
+  "keywords": [],
+  "author": {
+    "name": "",
+    "email": ""
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "13.1.7"
+  }
+}
