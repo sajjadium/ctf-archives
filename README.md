@@ -253,7 +253,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/960/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="CSAW">CSAW</a></td>
+            <td rowspan=5><a href="CSAW">CSAW</a></td>
+            <td><a href="CSAW/2021/Quals">2021 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1315/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="CSAW/2020/Quals">2020 Quals</a></td>
             <td><a href="https://ctftime.org/event/1079/tasks/">CTFtime</a></td>
         </tr>

