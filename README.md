@@ -1118,6 +1118,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1257/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Tsuku">Tsuku</a></td>
+            <td><a href="Tsuku/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1442/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="TyphoonCon">TyphoonCon</a></td>
             <td><a href="TyphoonCon/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1390/tasks/">CTFtime</a></td>
