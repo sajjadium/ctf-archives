@@ -1,0 +1,23 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        link(rel='stylesheet', href='/static/bootstrap/bootstrap.min.css')
+        script(src='/static/bootstrap/bootstrap.min.js')
+    body
+        nav.navbar.navbar-expand-lg.navbar-dark(style='background-color: lightskyblue;')
+            div.container
+                a.navbar-brand(href='/') Candy Shop
+                button.navbar-toggler(type='button', data-toggle="collapse", data-target="#navbarResponsive", aria-controls="navbarResponsive", aria-expanded="true", aria-label="Toggle navigation")
+                    span.navbar-toggler-icon
+                div.collapse.navbar-collapse.show#navbarResponsive
+                    ul.navbar-nav.m1-auto
+                        li.nav-item
+                            a.nav-link(href='/user/login') Login
+                        li.nav-item
+                            a.nav-link(href='/user/register') Register
+                        li.nav-item
+                            a.nav-link(href='/shop') Shop
+
+        block content

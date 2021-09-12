@@ -1,0 +1,13 @@
+extends layout
+
+
+block content
+    .container
+        .row.justify-content-center
+            .mt-5
+            if error
+                .col-12
+                    .alert.alert-danger
+                        .row.justify-content-center #{error}
+                        .row.justify-content-center
+                            a(href='/') Back to home

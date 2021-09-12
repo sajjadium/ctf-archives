@@ -1,0 +1,14 @@
+version: "3"
+services: 
+  php:
+    image: php:7.4-fpm
+    volumes: 
+      - "./flight:/var/www/html"
+      - "./flag:/flag"
+  nginx:
+    image: nginx
+    ports: 
+      - "60080:80"
+    volumes: 
+      - "./nginx.conf:/etc/nginx/conf.d/default.conf"
+

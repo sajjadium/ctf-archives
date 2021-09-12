@@ -1,0 +1,25 @@
+extends layout
+
+
+block content
+    .container
+        .row.justify-content-center
+            .col-6.mt-5
+                .card
+                    .card-header.text-center.font-weight-bold(style='background-color: pink;color: white') Login
+                    .card-body
+                    form(action='/user/login' method='POST')
+                        .form-group.row
+                            label.col-4.col-form-label.text-md-right(for='username') Username
+                            .col-6
+                                input#username.form-control(type='text' name='username' required='' autofocus='')
+                        .form-group.row
+                            label.col-4.col-form-label.text-md-right(for='password') Password
+                            .col-6
+                                input#password.form-control(type='password' name='password' required='')
+                        if error
+                            .alert.alert-danger.mx-5 #{error}
+                        .row.justify-content-center
+                            .col-3
+                                button.btn.btn-primary.btn-block(id='submit' type='submit') Login
+                        a.btn.btn-link.col-12(href='/user/register') Not registered? Sign up!

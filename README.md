@@ -859,7 +859,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/756/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="RCTF">RCTF</a></td>
+            <td rowspan=4><a href="RCTF">RCTF</a></td>
+            <td><a href="RCTF/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1413/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="RCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1045/tasks/">CTFtime</a></td>
         </tr>

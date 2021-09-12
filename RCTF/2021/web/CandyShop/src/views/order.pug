@@ -1,0 +1,31 @@
+extends layout
+
+
+block content
+    .container
+        .row.justify-content-center
+            .col-6.mt-5
+                - let {file, name, description} = candy
+                .card
+                    .card-header.text-center.font-weight-bold(style='background-color: pink;color: white') Order
+                    .card.h-100
+                        img(src='/static/images/' + file).card-img-top
+                    .card-body
+                    form(action='/shop/order' method='POST')
+                        .form-group.row
+                            label.col-form-label.text-md-right.col-4(for='username') User Name
+                            .col-6
+                                input#username.form-control(type='text' name='username' value=username readonly)
+                        .form-group.row
+                            label.col-form-label.text-md-right.col-4(for='candyname') Candy Name
+                            .col-6
+                                input#candyname.form-control(type='text' name='candyname' value=name readonly)
+                        .form-group.row
+                            label.col-form-label.text-md-right.col-4(for='address') Address
+                            .col-6
+                                input#address.form-control(type='text' name='address' required='' autofocus='')
+                        if error
+                            .alert.alert-danger.mx-5 #{error}
+                        .row.justify-content-center
+                            .col-3
+                                button.btn.btn-primary.btn-block(type='submit') Order Now!

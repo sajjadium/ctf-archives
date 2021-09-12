@@ -1,0 +1,16 @@
+<header>
+  <title>XSS? NO! Vientiane Tianyin? YES!</title>
+  <script src="ejs.js"></script>
+  <script src="purify.js"></script>
+  <script>
+    let reg = new RegExp('(^|&)asoul=([^&]*)(&|$)', 'i');
+    let s = window.location.search.substr(1).match(reg);
+    let r = s ? JSON.parse(unescape(s[2])): {};
+    let html = ejs.render('<%= jiaran+xiangwan+beila+jiale+nailin %>RCTF{this_is_a_flag_you_should_pay_attension_to_asoul_to_get_it}', r);
+    let iframe = document.createElement('iframe');
+    iframe.srcdoc = DOMPurify.sanitize(html);
+    document.body.appendChild(iframe);
+  </script>
+</header>
+<body>
+</body>

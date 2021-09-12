@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    .container
+        if candies !== undefined && candies.length !== 0
+            .row
+                each candy in candies
+                    - let {id, file, name, description} = candy
+                    .col-6
+                        .card.h-100
+                            img(src='/static/images/' + file).card-img-top
+                            .card-body
+                                h4.card-title #{name}
+                                p.card-text.text-truncate
+                                    | #{description}
+                            .row
+                                .col-md-12
+                                    a(href='/shop/order?id=' + id)
+                                        button.btn.btn-primary.btn-block Order

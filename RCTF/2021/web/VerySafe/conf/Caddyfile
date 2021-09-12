@@ -1,0 +1,4 @@
+:80 {
+	root * /srv
+	php_fastcgi php:9000
+}

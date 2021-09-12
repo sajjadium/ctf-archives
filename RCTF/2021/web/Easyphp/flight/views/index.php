@@ -1,0 +1,1 @@
+Welcome <?=$_SESSION["user"]?>

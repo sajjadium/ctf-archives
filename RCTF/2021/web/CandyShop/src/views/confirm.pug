@@ -1,0 +1,32 @@
+extends layout
+
+
+block content
+    .container
+        .row.justify-content-center
+            .col-6.mt-5
+                .card
+                    .card-header.text-center.font-weight-bold(style='background-color: pink;color: white') Confirm Your Order
+                    .card-body
+                    form(action='/shop/confirm' method='POST')
+                        .form-group.row
+                            label.col-form-label.text-md-right.col-4(for='username') User Name
+                            .col-6
+                                input#username.form-control(type='text' name='username' value='USERNAME' readonly)
+                        .form-group.row
+                            label.col-form-label.text-md-right.col-4(for='candyname') Candy Name
+                            .col-6
+                                input#candyname.form-control(type='text' name='candyname' value='CANDYNAME' readonly)
+                        .form-group.row
+                            label.col-form-label.text-md-right.col-4(for='address') Address
+                            .col-6
+                                input#address.form-control(type='text' name='address' value='ADDRESS' readonly)
+                        if error
+                            .alert.alert-danger.mx-5 #{error}
+                    .row.justify-content-center
+                        .col-6
+                            a(href='/shop/thanks')
+                                button.btn.btn-primary.btn-block(type='submit') Yes
+                        .col-6
+                            a(href='/shop')
+                                button.btn.btn-primary.btn-block No
