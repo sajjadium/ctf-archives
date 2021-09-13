@@ -599,7 +599,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/689/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="HacktivityCon">HacktivityCon</a></td>
+            <td rowspan=2><a href="HacktivityCon">HacktivityCon</a></td>
+            <td><a href="HacktivityCon/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1444/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="HacktivityCon/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1101/tasks/">CTFtime</a></td>
         </tr>
