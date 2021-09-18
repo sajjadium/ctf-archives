@@ -809,7 +809,12 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/721/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="P.W.N">P.W.N.</a></td>
+            <td rowspan=1><a href="PBjar">PBjar</a></td>
+            <td><a href="PBjar/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1430/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td rowspan=1><a href="P.W.N">P.W.N</a></td>
             <td><a href="P.W.N/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/639/tasks/">CTFtime</a></td>
         </tr>
