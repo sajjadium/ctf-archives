@@ -1125,7 +1125,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1440/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="Tasteless">Tasteless</a></td>
+            <td rowspan=2><a href="Tasteless">Tasteless</a></td>
+            <td><a href="Tasteless/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1326/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="Tasteless/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1124/tasks/">CTFtime</a></td>
         </tr>
