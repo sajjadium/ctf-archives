@@ -1,0 +1,35 @@
+version: '2'
+services:
+  # We cannot use `app` as a hostname because of HSTS configuration of puppeteer.
+  server:
+    restart: always
+    image: denoland/deno:alpine
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    command: run --allow-net --allow-read --allow-env --unstable app.ts
+    environment:
+      - BASE_URL=http://server:56521/
+    depends_on:
+      - mongo
+    ports:
+      - 56521:56521
+  mongo:
+    restart: always
+    image: mongo
+  redis:
+    image: redis
+    restart: always
+  worker:
+    build: ./crawler/worker
+    depends_on:
+      - redis
+    restart: always
+    environment:
+      - DOMAIN=server
+      - FLAG=DUMMY{DUMMY_FLAG}
+  reporter:
+    build: ./crawler/reporter
+    depends_on:
+      - redis
+    restart: always

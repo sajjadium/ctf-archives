@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+    ctf:
+        restart: always
+        build: ./
+        read_only: true
+        privileged: true
+        tmpfs:
+            - /tmp:exec
+            - /home/user
+        ports:
+            - 2000:2000
+        environment:
+            FLAG: DUMMY{hogefuga}
+            HASHCASH_LENGTH: 10
+            HASHCASH_STRENGTH: 27
+            HASHCASH_TIMEOUT: 45
+            DOTNET_CLI_HOME: /root
+            SERVER_TIMEOUT: 45
+        volumes:
+            - ./hashcash:/hashcash
+            - ./userans:/userans

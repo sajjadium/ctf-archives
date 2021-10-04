@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Security-Policy" content="style-src 'self' https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<% if (it.theme) { %>
+			<link rel="stylesheet" href=<%= it.theme %>>
+		<% } %>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+		<link rel="stylesheet" href="/public/style.css">
+		<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.2.0/build/highlight.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/dompurify@latest/dist/purify.min.js" defer></script>
+		<title><%= it.title %></title>
+	</head>
+	<body>
+		<nav class="navbar">
+			<h1><a href="/"><img src="/public/giita.svg" alt="Giita"></a></h1>
+		</nav>
+		<div class="container">
+			<%~ it.body %>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:4.0.8
+    restart: always
+
+  app:
+    build: ./src/app
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - FLAG=TSGCTF{DUMMY_FLAG_DO_NOT_SUBMIT_THIS}
+      - ADMIN_UID=dummydummydummydummydummydummydummyd
+
+  worker:
+    build: ./src/worker
+    depends_on:
+      - redis
+    restart: always
+    environment:
+      - ADMIN_UID=dummydummydummydummydummydummydummyd

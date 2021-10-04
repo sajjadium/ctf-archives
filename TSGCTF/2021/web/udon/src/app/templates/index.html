@@ -1,0 +1,39 @@
+{{ template "header.html" . }}
+
+<section class="section">
+  <h2 class="title">New Note</h2>
+  <form method="POST" action="/notes">
+    <div class="field">
+      <label class="label">Name of Udon Restaurant</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Name of Udon Restaurant" name="title">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Description</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Description of Udon Restaurant" name="description">
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <button class="button is-link">Post</button>
+      </div>
+    </div>
+  </form>
+</section>
+
+<section class="section">
+  <h2 class="title">Notes</h2>
+  <div class="content">
+    {{ if not .posts }} There's no note. {{ end }}
+    <ul>
+      {{ range .posts }}
+      <li><a href="/notes/{{ .ID }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+</section>
+
+{{ template "footer.html" . }}

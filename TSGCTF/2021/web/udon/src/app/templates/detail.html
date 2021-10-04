@@ -1,0 +1,21 @@
+{{ template "header.html" . }}
+
+<section class="section">
+  <div class="columns">
+    <div class="column">
+      <h2 class="title">{{ .post.Title }}</h2>
+    </div>
+    <div class="column has-text-right">
+      <form method="POST" action="/tell">
+        <input type="hidden" name="path" value="/notes/{{ .post.ID }}">
+        <button type="submit" class="button">Tell Admin About This Udon Note</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="content">
+    {{ .post.Description }}
+  </div>
+</section>
+
+{{ template "footer.html" . }}

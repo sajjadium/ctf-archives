@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.0/milligram.css">
+  <title>Kotlin Lovers Society</title>
+  <style>
+    body {
+      text-align: center;
+    }
+
+    pre {
+      text-align: left;
+    }
+
+    .symbol {
+      margin: 4rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Kotlin Lovers Society</h1>
+    {% if  flag %}
+    <p>Welcome to our society!</p>
+    <p>Here's our secret: <code>{{flag}}</code></p>
+    {% else %}
+    {% if error %}
+    <h2>ERROR: {{error}}</h2>
+    {% endif %}
+    <p>To join our society, you need to prove your love by showing us our symbol.</p>
+    <img src="{{url_for('static', filename='kls_symbol.png')}}" class="symbol" />
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+      <fieldset>
+        <label for="symbolField">Our Symbol</label>
+        <input type="file" name="file" accept=".rgb,.sgi" id="symbolField">
+        <input class="button-primary" type="submit" value="Send">
+      </fieldset>
+    </form>
+    {% endif %}
+  </div>
+</body>
+
+</html>

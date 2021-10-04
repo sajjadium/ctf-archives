@@ -1,0 +1,34 @@
+<% layout('./layout') %>
+
+<h2>Welcome To Giita!</h2>
+
+<p>Giita is a place to share your knowledge with the world, and to learn from others.</p>
+<p>If you are unsure, check out these sample posts for the examples.</p>
+
+<ul>
+	<% for (const sample of it.samples) { %>
+		<li><a href="/<%= sample.id %>"><%= sample.title %></a></li>
+	<% } %>
+</ul>
+
+<h2>New Post</h2>
+
+<form action="/" method="POST">
+	<div class="row">
+		<div class="six columns">
+			<label for="title">Title</label>
+			<input class="u-full-width" type="text" placeholder="Awesome Post" id="title" name="title" required>
+		</div>
+		<div class="six columns">
+			<label for="theme">Coding Theme</label>
+			<select class="u-full-width" id="theme" name="theme">
+				<% for (const theme of it.themes) { %>
+					<option value=<%= theme %>><%= theme %></option>
+				<% } %>
+			</select>
+		</div>
+	</div>
+	<label for="body">Body</label>
+	<textarea class="u-full-width" placeholder="&lt;p&gt;Hi! I am an export of web security...&lt;/p&gt;" id="body" name="body" rows="100" required></textarea>
+	<input class="button-primary" type="submit" value="Submit">
+</form>
