@@ -1,0 +1,14 @@
+default: &default
+  adapter: sqlite3
+  pool: 5
+  database: ":memory:"
+  timeout: 5000
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

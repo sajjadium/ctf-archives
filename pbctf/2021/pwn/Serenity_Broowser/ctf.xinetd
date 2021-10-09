@@ -1,0 +1,15 @@
+service ctf
+{
+    disable = no
+    socket_type = stream
+    protocol    = tcp
+    wait        = no
+    user        = ctf
+    type        = UNLISTED
+    port        = 2323
+    bind        = 0.0.0.0
+    server      = /bin/bash
+    server_args = /start.sh
+    per_source  = 10 # the maximum instances of this service per source IP address
+    rlimit_cpu  = 30 # the maximum number of CPU seconds that the service may use
+}

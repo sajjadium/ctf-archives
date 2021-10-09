@@ -1,0 +1,48 @@
+diff --git a/Base/etc/SystemServer.ini b/Base/etc/SystemServer.ini
+index 189e002b3..52fcdc504 100644
+--- a/Base/etc/SystemServer.ini
++++ b/Base/etc/SystemServer.ini
+@@ -155,6 +155,13 @@ Environment=TERM=xterm
+ KeepAlive=1
+ BootModes=text
+ 
++[TelnetServer]
++Arguments=-p 2323 -c /start.sh
++Priority=high
++KeepAlive=1
++User=anon
++BootModes=text,graphical
++
+ [Shell@tty1]
+ Executable=/bin/Shell
+ StdIO=/dev/tty1
+diff --git a/Base/etc/shadow b/Base/etc/shadow
+index 7e26c6832..a490a77fb 100644
+--- a/Base/etc/shadow
++++ b/Base/etc/shadow
+@@ -1,6 +1,6 @@
+-root::18727::::::
++root:$5$LTojWHjg/dvvdfSL$7sHIG5OZ1h0J9MKvam0ktRdHmrcZsVBTy0NCg7nWG8Y=:18727::::::
+ lookup:!*:18727::::::
+ window:!*:18727::::::
+ sshd:!*:18727::::::
+ anon:$5$zFiQBeTD88m/mhbU$ecHDSdRd5yNV45BzIRXwtRpxJtMpVI5twjRRXO8X03Q=:18727:0:99999::::
+-nona:!*:18727::::::
++nona:!*:18727::::::
+\ No newline at end of file
+diff --git a/Base/start.sh b/Base/start.sh
+new file mode 100755
+index 000000000..4c959207a
+--- /dev/null
++++ b/Base/start.sh
+@@ -0,0 +1,9 @@
++#!/bin/Shell
++echo "enter your url:"
++head -n 1 < /dev/stdin | tee /tmp/url
++URL=$(cat /tmp/url)
++
++echo "Launching /bin/Browser -- '$URL'"
++/bin/Browser -- "$URL"
++
++/bin/Shell
+\ No newline at end of file

@@ -1,0 +1,38 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	match /rooms/{room} {
+      allow create: if request.auth != null && 
+      			request.auth.token.room == room  &&
+            request.auth.token.admin == true;
+    }
+    
+    match /rooms/{room}/chats/{chat=**} {
+      allow create: if request.auth != null &&
+      						 		 request.auth.token.room == room &&
+                       request.auth.token.admin == true;
+      allow read: if request.auth != null;
+      allow update: if request.auth != null && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['joinedUsers']);
+    }
+    
+    match /rooms/{room}/chats/{chat}/messages/{message} {
+      allow create: if request.auth != null && request.resource.data.content.size() <= 200;
+      allow read: if request.auth != null;
+    }
+    
+    match /rooms/{room}/chats/{chat} {
+      allow update: if request.auth != null && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['joinedUsers']);
+    }
+    
+    
+    match /rooms/{room}/profiles/{userId} {
+      allow write, read: if request.auth != null &&
+      										request.auth.token.room == room &&
+                          request.auth.token.admin == true;
+      allow read: if request.auth != null;
+      allow read, write: if request.auth != null &&
+      									    request.auth.uid == userId &&
+                            exists(/databases/$(database)/documents/rooms/$(room)/profiles/$(room));
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block html %}
+
+<div class="alert alert-primary" role="alert">
+  If you find any text that does not work in the editors please let me know and I will check it out!
+</div>
+
+<form method="POST">
+  <div class="input-group mb-1">
+    <span class="input-group-text">Enter text</span>
+    <textarea id="text" name="text" class="form-control" aria-label="With textarea"></textarea>
+  </div>
+  <div class="input-group mb-1">{{ recaptcha }}</div>
+  <div class="input-group mb-1">
+    <input class="btn btn-primary" type="submit" value="Submit" />
+  </div>
+</form>
+
+{% endblock %}
+
+{% block setup %}
+  document.querySelector("#text").innerText = text;
+{% endblock %}

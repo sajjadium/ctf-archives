@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  bot:
+    build: ./bot
+    environment: 
+      - FLAG
+      - VAULT_URL
+    ports:
+      - "8000"
+    depends_on: 
+      - web
+
+  web:
+    build: ./web
+    environment: 
+      - RECAPTCHA_SITE_KEY
+      - RECAPTCHA_SECRET_KEY
+    ports:
+      - "5000:5000"
