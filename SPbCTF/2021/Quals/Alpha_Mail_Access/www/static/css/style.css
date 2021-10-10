@@ -1,0 +1,54 @@
+* {
+    font-family: Verdana;
+    font-weight: bold;
+}
+li {
+    text-align: left;
+}
+
+td.logo {
+    width: 262px;
+    height: 111px;
+    background: url(../img/logo.png) no-repeat;
+}
+
+td.brand {
+    text-align: center;
+    font-family: Impact;
+    font-size: 80px;
+}
+td.brand div {
+    font-size: 12px;
+    text-align: right;
+    margin-top: -10px;
+}
+
+td.menu {
+    padding-top: 32px;
+}
+td.menu a, td.menu em {
+    display: inline-block;
+    margin: 3px 0px;
+    padding: 3px 0px;
+    width: 250px;
+}
+
+.method-strength {
+    font-family: Impact;
+    font-weight: normal;
+    font-size: 24px;
+}
+.method-stamina {
+    font-size: 22px;
+    letter-spacing: 6px;
+}
+.method-speed {
+    font-size: 22px;
+    font-weight: normal;
+    letter-spacing: -2px;
+    font-style: italic;
+}
+.method-speed:before {
+    content: " - =  ";
+    opacity: 0.5;
+}

@@ -1,0 +1,8 @@
+version: "3.2"
+services:
+  apache:
+    build: './apache/'
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public_html/:/var/www/html/

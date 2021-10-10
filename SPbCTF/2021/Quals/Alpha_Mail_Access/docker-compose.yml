@@ -1,0 +1,9 @@
+version: '2.4'
+
+services:
+    alphamail:
+        build: .
+        restart: always
+        ports:
+            - '80:80'
+        hostname: mail.alpha
