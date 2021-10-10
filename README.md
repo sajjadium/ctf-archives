@@ -425,6 +425,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1236/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="DigitalOverdose">DigitalOverdose</a></td>
+            <td><a href="DigitalOverdose/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1459/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="DownUnderCTF">DownUnder</a></td>
             <td><a href="DownUnderCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1312/tasks/">CTFtime</a></td>
