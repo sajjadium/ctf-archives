@@ -1,0 +1,22 @@
+version: "3"
+services:
+    app:
+        build: ./app
+        hostname: app.hub
+        ports:
+            - 80:80
+        restart: always
+        environment:
+            JUPYTER_TOKEN: ${JUPYTER_TOKEN:-super_secret_token}
+            APP_URL: ${APP_URL:-http://app.hub}
+            UPLOADS_DIR: ${UPLOADS_DIR:-/tmp/uploads}
+            BOT_URL: ${BOT_URL:-http://bot.hub}
+            BOT_TOKEN: ${BOT_TOKEN:-another_super_secret_token}
+    bot:
+        build: ./bot
+        hostname: bot.hub
+        environment:
+            JUPYTER_TOKEN: ${JUPYTER_TOKEN:-super_secret_token}
+            BOT_TOKEN: ${BOT_TOKEN:-another_super_secret_token}
+        privileged: true
+        restart: always

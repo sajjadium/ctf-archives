@@ -1,0 +1,2 @@
+#!/bin/bash
+exec nsjail -Q --config /home/ctf/app/jail.cfg --user ctf --group ctf -- /bin/sh-orig "$@"
