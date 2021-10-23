@@ -749,11 +749,14 @@ Collection of CTF challenges.
         </tr>
         <tr>
             <td rowspan=1><a href="MCTF">M*CTF</a></td>
+            <td><a href="MCTF/2021/Quals">2021 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1439/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="MCTF/2020/Quals">2020 Quals</a></td>
             <td><a href="https://ctftime.org/event/1138/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="MeePwn">MeePwn</a></td>
             <td><a href="MeePwn/2018/Quals">2018 Quals</a></td>
             <td><a href="https://ctftime.org/event/625/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/MeePwn/2018/Quals">PersianCats</a></td>
         </tr>

@@ -1,0 +1,9 @@
+micronaut:
+  application:
+    name: proxyFrontend
+  router:
+    static-resources:
+      default:
+        enabled: true
+        mapping: "/**"
+        paths: classpath:static

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Another legacy system</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="signin.css" rel="stylesheet">
+
+    <script>
+        async function login(e) {
+            e.preventDefault();
+            const password = document.getElementById('inputPassword').value
+
+            const response = await fetch('/auth', {
+                method: 'POST',
+                cache: 'no-cache',
+                body: password
+            })
+
+            if (response.status === 403) {
+                document.getElementById('inputPassword').classList.add('is-invalid')
+            } else if (response.status === 200) {
+                document.getElementById('header-text').innerText = await response.text()
+                document.getElementById('login-form').classList.add('was-validated')
+            } else {
+                console.log("Error " + response.status)
+            }
+        }
+    </script>
+</head>
+
+<body class="text-center">
+<form id="login-form" class="form-signin" onsubmit="login(event)">
+    <h1 id="header-text" class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" value="admin@mctf.online"
+           disabled>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus
+           minlength="14" maxlength="14">
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 1993</p>
+</form>
+</body>
+</html>
