@@ -1,0 +1,34 @@
+diff --git a/src/compiler/js-call-reducer.cc b/src/compiler/js-call-reducer.cc
+index 5e26a68ada..a3638ef5b3 100644
+--- a/src/compiler/js-call-reducer.cc
++++ b/src/compiler/js-call-reducer.cc
+@@ -6260,12 +6260,11 @@ Reduction JSCallReducer::ReduceArrayIteratorPrototypeNext(Node* node) {
+   Node* etrue = effect;
+   Node* if_true = graph()->NewNode(common()->IfTrue(), branch);
+   {
+-    // This extra check exists to refine the type of {index} but also to break
+-    // an exploitation technique that abuses typer mismatches.
++    // We know that the {index} is range of the {length} now.
+     index = etrue = graph()->NewNode(
+-        simplified()->CheckBounds(p.feedback(),
+-                                  CheckBoundsFlag::kAbortOnOutOfBounds),
+-        index, length, etrue, if_true);
++        common()->TypeGuard(
++            Type::Range(0.0, length_access.type.Max() - 1.0, graph()->zone())),
++        index, etrue, if_true);
+ 
+     done_true = jsgraph()->FalseConstant();
+     if (iteration_kind == IterationKind::kKeys) {
+diff --git a/src/compiler/typer.cc b/src/compiler/typer.cc
+index a9bc374552..e13027b686 100644
+--- a/src/compiler/typer.cc
++++ b/src/compiler/typer.cc
+@@ -2063,7 +2063,7 @@ Type Typer::Visitor::TypeStringFromCodePointAt(Node* node) {
+ }
+ 
+ Type Typer::Visitor::TypeStringIndexOf(Node* node) {
+-  return Type::Range(-1.0, String::kMaxLength, zone());
++  return Type::Range(-0.0, String::kMaxLength, zone());
+ }
+ 
+ Type Typer::Visitor::TypeStringLength(Node* node) {

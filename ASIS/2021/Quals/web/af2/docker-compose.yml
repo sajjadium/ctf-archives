@@ -1,0 +1,12 @@
+version: '3'
+services:
+  af2:
+    build: .
+    restart: always
+    environment:
+      - FLAG=flag{fake-flag}
+      - ADMINPASSWD=notapassword
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - 8000:9000
