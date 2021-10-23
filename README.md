@@ -220,6 +220,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1303/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Buckeye">Buckeye</a></td>
+            <td><a href="Buckeye/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1434/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ByteBandits">Byte Bandits</a></td>
             <td><a href="ByteBandits/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1022/tasks/">CTFtime</a></td>
