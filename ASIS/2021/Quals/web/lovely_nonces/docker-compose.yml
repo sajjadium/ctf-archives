@@ -1,0 +1,11 @@
+version: '3'
+services:
+  lovely_nonces:
+    build: .
+    restart: always
+    environment:
+      - FLAG=flag{fake-flag}
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - 8000:8000

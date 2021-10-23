@@ -1,0 +1,14 @@
+version: '3'
+services:
+  nmanager:
+    build: ./nmanager
+    restart: always
+    environment:
+      - flag=ASIS{fake_flag}
+  bot:
+    build: ./bot
+    restart: always
+    cap_add:
+        - SYS_ADMIN
+    ports:
+      - 8000:8000

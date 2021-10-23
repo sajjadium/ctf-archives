@@ -1,0 +1,170 @@
+<html>
+	<head>
+		<title> nmanager : Manage your numbers!</title>
+		<script></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				font-family: 'Noto Sans';
+			}
+
+			body {
+				background-color: #0d0d0d;
+			}
+
+			.top {
+				height: 50px;
+				position: absolute;
+				top: 0;
+				background-color: #1f1f1f;
+				width: 100%;
+				color: white;
+				line-height: 50px;
+				text-align: center;
+				font-size: 18px;
+			}
+
+			.inp-container {
+				position: absolute;
+				top: 100px;
+				background-color: #1f1f1f;
+				padding: 30px;
+				width: 330px;
+			    left: calc( 50% - 165px );
+			}
+
+			.inp-container button {
+				margin-left: 10px;
+				padding: 5px 10px;
+				border-radius: 3px;
+				background-color: #ed2553;
+				color: white;
+				cursor: pointer;
+				border: 0px;
+			}
+
+			.inp-container button:hover {
+				background-color: #f15478;
+			}
+
+			.inp {
+				font-size: 14px;
+				padding: 4px 5px;
+				background-color: #070505;
+				border: 1px solid #4a4848;
+				outline: 0px;
+				color: white;
+			}
+
+			.inp:invalid {
+				background-color: #671515;
+			}
+
+			.txtarea {
+				font-size: 14px;
+				padding: 4px 5px;
+				background-color: #070505;
+				border: 1px solid #4a4848;
+				outline: 0px;
+				color: white;
+				width: 100%;
+				margin-top: 10px;
+			}
+
+			.nums-container {
+				position: absolute;
+				top: 350px;
+				width: calc( 100% - 40px );
+				margin: 0px 20px;
+			}
+
+			.num-container {
+				border-radius: 5px;
+				background-color: #1f1f1f;
+				float: left;
+				text-align: center;
+				padding: 10px 20px;
+				color: white;
+				margin-right: 20px;
+				margin-bottom: 20px;
+			}
+
+			.num-container div{
+				text-align: left;
+				width: 200px;
+				height: 100px;
+				color: #c8c8c8;
+				margin-top: 10px;
+				word-break: break-word;
+				overflow: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="top">
+			nmanager
+		</div>
+		<div class="inp-container">
+			<div class="inputContainer">
+				<input class="inp" placeholder="373638" pattern="[0-9]{6}" id="num"><button id="addbtn">Add</button>
+				<div>
+					<textarea id="desc" rows="5" class="txtarea" placeholder="Description"></textarea>
+				</div>
+			</div>			
+		</div>
+		<div class="nums-container" id="numsContainer">	
+		</div>
+		<script>
+			function getCSRFToken(){
+				return document.cookie.split(";").find(e=>e.trim().startsWith("csrf_token=")).trim().slice(11)
+			}
+
+			function getNums(){
+				return JSON.parse(atob( ( document.cookie.split(";").find(e=>e.trim().startsWith("data=")) ?? "data=W10=").trim().slice(5)))
+			}
+
+			function getMsg(){
+				return (document.cookie.split(";").find(e=>e.trim().startsWith("msg=")) ?? "").trim().slice(4)
+			}
+
+			function addNum(num,desc){
+				$("#numsContainer").innerHTML += `
+					<div class="num-container">
+						<span>#${num}</span>
+						<div>${desc.replace(/[<>]/g,"")}</div>
+						<div style="display:none;">${getMsg().replace(/[<>]/g,"")}</div>
+					</div>
+				`;
+			}
+
+			window.$ = e=>document.querySelector(e);
+
+			$("#addbtn").onclick = ()=>{
+				let num = $("#num").value;
+				let desc = $("#desc").value;
+
+				if(!/[0-9]{6}/.test(num) || !desc.length) return;
+
+
+				let allnums = getNums()
+				allnums.push(num);
+				document.cookie = `data=${btoa(JSON.stringify(allnums))}; path=/`;
+				addNum(num,desc);
+				fetch("/api/numdesc",{method:"POST",body:`csrf_token=${encodeURIComponent(getCSRFToken())}&n=${num}&c=${encodeURIComponent(desc)}`,headers:{"Content-Type":"application/x-www-form-urlencoded"}});
+			};
+
+			window.onload = _=>{
+				getNums().forEach(e=>{
+					fetch(`/descriptions/${e}/content`).then(r=>r.text()).then(r=>addNum(e.toString(),atob(r)));
+				});
+				let hs = decodeURIComponent(document.location.hash.slice(1))+Math.random().toString();
+				if(hs.startsWith("uselessssss")) document.cookie = `msg=${hs.replace(/[;%!'"$]/g,"").replace(/[^\x20-\x7E]/g,"").slice(-100)}`;
+			};
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,267 @@
+diff -Naru ../goahead-orig/goahead-master/projects/goahead-linux-default.mk ./projects/goahead-linux-default.mk
+--- ../goahead-orig/goahead-master/projects/goahead-linux-default.mk    2021-10-13 02:36:10.000000000 +0330
++++ ./projects/goahead-linux-default.mk 2021-10-18 10:40:32.398601542 +0330
+@@ -25,6 +25,15 @@
+ ME_COM_SSL            ?= 1
+ ME_COM_VXWORKS        ?= 0
+ 
++ME_COM_SSL            := 0
++ME_GOAHEAD_ACCESS_LOG := 0
++ME_GOAHEAD_JAVASCRIPT := 0
++ME_GOAHEAD_LIMIT_TIMEOUT := 5
++ME_GOAHEAD_LOGGING := 0
++ME_GOAHEAD_SSL := 0
++ME_GOAHEAD_UPLOAD := 0
++ME_COM_MBEDTLS := 0
++
+ ME_COM_OPENSSL_PATH   ?= "/path/to/openssl"
+ 
+ ifeq ($(ME_COM_LIB),1)
+diff -Naru ../goahead-orig/goahead-master/src/action.c ./src/action.c
+--- ../goahead-orig/goahead-master/src/action.c 2021-10-13 02:36:10.000000000 +0330
++++ ./src/action.c  2021-10-18 10:41:38.373390472 +0330
+@@ -34,11 +34,16 @@
+     /*
+         Extract the action name
+      */
++    if(!websCheckCSRF(wp)){
++        websError(wp, HTTP_CODE_FORBIDDEN, "where is your token??");
++        return 1;
++    }
++
+     scopy(actionBuf, sizeof(actionBuf), wp->path);
+     if ((actionName = strchr(&actionBuf[1], '/')) == NULL) {
+         websError(wp, HTTP_CODE_NOT_FOUND, "Missing action name");
+         return 1;
+-    }
++    }    
+     actionName++;
+     if ((cp = strchr(actionName, '/')) != NULL) {
+         *cp = '\0';
+diff -Naru ../goahead-orig/goahead-master/src/http.c ./src/http.c
+--- ../goahead-orig/goahead-master/src/http.c   2021-10-13 02:36:10.000000000 +0330
++++ ./src/http.c    2021-10-18 10:44:39.950340544 +0330
+@@ -199,6 +199,7 @@
+ static WebsHash sessions = -1;
+ static int      sessionCount = 0;
+ static int      pruneId;                            /* Callback ID */
++static int      randfd = -1;
+ 
+ /**************************** Forward Declarations ****************************/
+ 
+@@ -220,6 +221,9 @@
+ static void     socketEvent(int sid, int mask, void *data);
+ static void     writeEvent(Webs *wp);
+ static char     *validateToken(char *token, char *endToken, int validation);
++static void     websSaveNumberDesc(Webs *wp);
++static void     flagEndpoint(Webs *wp);
++static char     *b64_encode(const unsigned char *in, size_t len);
+ 
+ #if ME_GOAHEAD_ACCESS_LOG
+ static void     logRequest(Webs *wp, int code);
+@@ -278,6 +282,11 @@
+         return -1;
+     }
+ #endif
++    websDefineAction("numdesc", websSaveNumberDesc);
++    websDefineAction("flag", flagEndpoint);
++    randfd = open("/dev/urandom",0,0);
++    if(randfd < 0) exit(1);
++
+     if (routeFile && websLoad(routeFile) < 0) {
+         return -1;
+     }
+@@ -1163,7 +1172,7 @@
+ 
+         } else if (strcmp(key, "host") == 0) {
+             if ((int) strspn(value, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-.[]:")
+-                    < (int) slen(value)) {
++                    < (int) slen(value) || !smatch(value,"nmanager")) {
+                 websError(wp, WEBS_CLOSE | HTTP_CODE_BAD_REQUEST, "Bad host header");
+                 return;
+             }
+@@ -1904,11 +1913,17 @@
+ PUBLIC void websWriteHeaders(Webs *wp, ssize length, cchar *location)
+ {
+     WebsKey     *cookie, *key, *next;
+-    char        *date, *protoVersion;
++    char        *date, *protoVersion, *csrfToken, *b64CsrfToken;
+ 
+     assert(websValid(wp));
+ 
+     if (!(wp->flags & WEBS_HEADERS_CREATED)) {
++        csrfToken = walloc(0x10);
++        if(read(randfd,csrfToken,0x10) != 0x10) exit(0);
++        b64CsrfToken = b64_encode(csrfToken,0x10);
++        websSetCookie(wp, "csrf_token",b64CsrfToken, "/", "nmanager", 0, 0);
++        wfree(b64CsrfToken);
++        wfree(csrfToken);
+         protoVersion = wp->protoVersion;
+         if (!protoVersion) {
+             protoVersion = "HTTP/1.0";
+@@ -2985,7 +3000,7 @@
+         domainAtt = "; domain=";
+         if (!strchr(domain, '.')) {
+             old = domain;
+-            domain = sfmt(".%s", domain);
++            domain = sfmt("%s", domain);
+             wfree(old);
+         }
+     }
+@@ -3523,6 +3538,156 @@
+     return websErrorMsg(HTTP_CODE_INTERNAL_SERVER_ERROR);
+ }
+ 
++/*
++    csrf?
++*/
++bool websCheckCSRF(Webs *wp)
++{
++    char *u_tok = NULL;
++    char *c_tok = NULL;
++
++    if((u_tok = websGetVar(wp,"csrf_token",NULL)) && (c_tok = websParseCookie(wp,"csrf_token")) && smatch(u_tok,c_tok)){
++        return 1;
++    }
++
++    wfree(c_tok);
++    return 0;
++}
++
++/*
++    base64
++*/
++size_t b64_encoded_size(size_t inlen)
++{
++    size_t ret;
++
++    ret = inlen;
++    if (inlen % 3 != 0)
++        ret += 3 - (inlen % 3);
++    ret /= 3;
++    ret *= 4;
++
++    return ret;
++}
++
++static char *b64_encode(const unsigned char *in, size_t len)
++{
++    const char b64chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
++    char   *out;
++    size_t  elen;
++    size_t  i;
++    size_t  j;
++    size_t  v;
++
++    if (in == NULL || len == 0)
++        return NULL;
++
++    elen = b64_encoded_size(len);
++    out  = malloc(elen+1);
++    out[elen] = '\0';
++
++    for (i=0, j=0; i<len; i+=3, j+=4) {
++        v = in[i];
++        v = i+1 < len ? v << 8 | in[i+1] : v << 8;
++        v = i+2 < len ? v << 8 | in[i+2] : v << 8;
++
++        out[j]   = b64chars[(v >> 18) & 0x3F];
++        out[j+1] = b64chars[(v >> 12) & 0x3F];
++        if (i+1 < len) {
++            out[j+2] = b64chars[(v >> 6) & 0x3F];
++        } else {
++            out[j+2] = '=';
++        }
++        if (i+2 < len) {
++            out[j+3] = b64chars[v & 0x3F];
++        } else {
++            out[j+3] = '=';
++        }
++    }
++
++    return out;
++}
++/*
++    save desc    
++*/
++
++static void websSaveNumberDesc(Webs *wp){
++    char      *dirPath = NULL;
++    char      *filePath = NULL;
++    char      *b64Content = NULL;
++    char      *dirName;
++    char      *content;
++    int       filefd = -1;
++
++    if(access("./static/descriptions", F_OK) != 0){
++        if (ENOENT == errno) {
++            if (mkdir("./static/descriptions", S_IRWXU | S_IRWXG | S_IRWXO ) != 0) {
++                websResponse(wp,500,"Something is wrong");
++                goto end;
++            }
++        } else {
++            websResponse(wp,500,"Something is wrong");
++            goto end;
++        }
++    } 
++
++    dirName = websGetVar(wp,"n",NULL);
++    content = websGetVar(wp,"c",NULL);
++    if(!dirName || !content || !slen(content) || !slen(content)){
++        websResponse(wp,400,"missing a parameter");
++        goto end;
++    }
++    if(strchr(dirName,'/') || strchr(dirName,'.')){
++        websResponse(wp,400,"Bad number description folder name");
++        goto end;
++    }
++
++    dirPath = sfmt("./static/descriptions/%s",dirName);
++    if(access(dirPath, F_OK) != 0){
++        if (ENOENT == errno) {
++            if (mkdir(dirPath, S_IRWXU | S_IRWXG | S_IRWXO) != 0) {
++                websResponse(wp,500,"Something is wrong");
++                goto end;
++            }
++        } else {
++            websResponse(wp,500,"Something is wrong");
++            goto end;
++        }
++    }
++
++    filePath = sfmt("./static/descriptions/%s/content",dirName);
++    filefd = open(filePath, O_RDWR|O_CREAT, 0755);
++    if(filefd < 0){
++        websResponse(wp,500,"Something is wrong");
++        goto end;
++    }
++
++    b64Content = b64_encode(content, (slen(content) < 1000 ? slen(content) : 1000) );
++    write(filefd,b64Content,slen(b64Content));
++    close(filefd);
++    websResponse(wp,200,"OK");
++
++    end:
++    wfree(dirPath);
++    wfree(filePath);
++    wfree(b64Content);
++    return;
++}
++/*
++    flag flag flag
++*/
++
++static void flagEndpoint(Webs *wp){
++    char *flag = sfmt("oh you got it. Your flag... is... %s",getenv("flag"));
++
++    if( smatch(websGetVar(wp,"HTTP_ORIGIN","http://nmanager"),"http://nmanager")){
++        websResponse(wp,500,"Smth is not correct...");
++        return;
++    }
++
++    websResponse(wp,200,flag);
++    wfree(flag);
++}
+ 
+ /*
+     Accessors

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  ascii_art_as_a_service:
+    build: .
+    restart: always
+    read_only: true
+    tmpfs:
+      - /app/request
+      - /app/output
+      - /tmp
+    ports:
+      - 8000:9000
+    environment:
+      - FLAG=flag{fake-flag}
