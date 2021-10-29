@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  web:
+      image: nginx:latest
+      restart: unless-stopped
+      env_file: .env
+      ports:
+          - "4444:80"
+      volumes:
+          - ./src:/var/www/html
+          - ./templates:/etc/nginx/templates
+      depends_on: 
+        - db
+        - php-fpm
+      networks:
+        - phpnet
+
+
+  php-fpm:
+      build: ./fpm
+      restart: unless-stopped
+      env_file: .env
+      volumes:
+          - ./src:/var/www/html
+          - ./files:/var/www/files
+          - ./flag.txt:/flag.txt:ro
+      depends_on: 
+        - db
+      networks:
+        - phpnet
+
+
+  db:
+    image: mysql:5.7
+    env_file: .env
+    restart: unless-stopped
+    networks:
+        - phpnet
+
+networks:
+  phpnet:
+    name: phpnet

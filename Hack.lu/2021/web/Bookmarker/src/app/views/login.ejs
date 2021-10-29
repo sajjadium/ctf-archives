@@ -1,0 +1,37 @@
+        <div class="col-md-10 mx-auto">
+            <div class="card border-primary bg-dark mb-4 rounded-3">
+                <div class="card-header">
+                    <ul class="nav justify-content-between">
+                        <li class="nav-item">
+                            <h3><i class="bi bi-bookmark-heart"></i> Bookmarker</h3>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="/user/register">Register</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                <div class="row justify-content-start">
+                    <div class="col-md-4"> 
+                        <%- include('partials/about') %>
+                    </div>
+                    <div class="col-md-8">
+                        <h3 class="text-center mb-2">Login</h3>
+                        <%- include('partials/messages') %>
+                        <form action="/user/login" method="POST">
+                            <div class="mb-2">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" id="username" name="username" class="form-control"
+                                    placeholder="Enter Username" autocomplete="username" value="<%= typeof username != 'undefined' ? username : '' %>"/>
+                            </div>
+                            <div class="mb-2">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" id="password" name="password" class="form-control"
+                                    placeholder="Enter Password" autocomplete="current-password" value="<%= typeof password != 'undefined' ? password : '' %>"/>
+                            </div>
+                            <button type="submit" id="submit" class="btn btn-secondary">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>

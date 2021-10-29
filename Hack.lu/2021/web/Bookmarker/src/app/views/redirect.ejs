@@ -1,0 +1,71 @@
+<div class="col-md-10 mx-auto">
+    <div class="card border-primary bg-dark mb-4 rounded-3">
+        <div class="card-header">
+            <ul class="nav justify-content-between">
+                <li class="nav-item">
+                    <h3><i class="bi bi-bookmark-heart"></i> Bookmarker</h3>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-secondary" href="/user/logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body" >
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <% if(url) { %>
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="bi bi-info-circle mx-2"></i>
+                                    You’re going to a link outside Bookmarker
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>The link you tried to go to is outside Bookmarker:</p>
+                                <p class="mx-5 text-danger"><%= url %></p>
+                                <p>Are you sure you want to follow this link?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="/" class="btn btn-secondary">
+                                    Go Back
+                                </a>
+                                <a href="<%= url %>" class="btn btn-success">
+                                    Follow Link
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        console.log('Url ok!')
+                    </script>
+
+                    <% } else { %>
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">
+                                    <i class="bi bi-exclamation-circle mx-2"></i>
+                                    You won’t be able to go to this link from Bookmarker
+                                </h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>The link you tried to go to does not follow our Community Standards.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="/" class="btn btn-secondary">
+                                    Go Back
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        console.log('Url not ok!')
+                    </script>
+                    <% }%>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

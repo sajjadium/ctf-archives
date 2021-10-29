@@ -1,0 +1,54 @@
+.clickable {
+    cursor: pointer;
+}
+
+.form-control-file {
+    display: none;
+}
+
+:root {
+    color-scheme: dark;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 5px solid #7142c1;
+    margin: 1em 0;
+    padding: 0;
+}
+
+#msgbox {
+    display: none;
+}
+
+.list-group{
+    max-height: 350px;
+}
+
+
+.toppadding {
+    padding-top: 20vh;
+}
+
+@media (max-width: 978px) {
+    .toppadding {
+        padding-top: 10vh;
+    }
+}
+
+@media (max-width: 512px) {
+    .toppadding {
+        padding-top: 20px;
+    }
+}
+
+
+button[type=submit]{
+    min-width: 70px;
+}
+
+.button-group{
+    min-width: fit-content;
+}

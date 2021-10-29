@@ -1,0 +1,26 @@
+.navbar-dark {
+	background-color: #303030;
+	border-color: transparent;
+}
+
+.container-body {
+	width: 800px;
+}
+
+.footer {
+	text-align: center;
+}
+
+.vault-input {
+    margin: 5px;
+    width: 210px;
+}
+
+html {
+    min-height: 100%;
+} 
+body {
+
+    background: rgb(220,231,161);
+    background: linear-gradient(0deg, rgba(220,231,161,1) 0%, rgba(165,212,157,1) 18%, rgba(56,182,156,1) 100%);
+}

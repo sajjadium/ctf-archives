@@ -1,0 +1,98 @@
+        <div class="col-md-10 mx-auto">
+            <div class="card border-primary bg-dark mb-4 rounded-3">
+                <div class="card-header">
+                    <ul class="nav justify-content-between">
+                        <li class="nav-item">
+                            <h3><i class="bi bi-bookmark-heart"></i> Bookmarker</h3>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" href="/user/logout">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body" >
+                    <div class="row justify-content-start">
+                        <div class="col-md-4">
+                            <h4>Search your Links</h4>
+                            <form action="" method="GET">
+                                <div class="mb-2">
+                                    <label for="filter" class="form-label">Filter</label>
+                                    <input type="text" id="filter" name="filter" class="form-control"
+                                        placeholder="Enter Filter" autocomplete="filter" value="<%= typeof filter != 'undefined' ? filter : '' %>"/>
+                                </div>
+                                <div class="mb-2">
+                                    <button type="submit" class="btn btn-secondary">Filter</button>
+                                </div> 
+                                
+                            </form>
+                            <hr>
+                            <h4>Add new Link</h4>
+                            <form action="/add" method="POST">
+                                <div class="mb-2">
+                                    <input type="text" id="title" name="title" class="form-control mb-2"
+                                        placeholder="Name" autocomplete="title"/>
+                                </div>
+                                <div class="mb-2">
+                                    <input type="text" id="url" name="url" class="form-control"
+                                        placeholder="URL" autocomplete="url" pattern="https?://.+"/>
+                                </div>
+                                <div class="mb-2">
+                                    <button type="submit" class="btn btn-secondary">Add</button>
+                                </div>
+                            </form>
+                            <%- include('partials/messages') %>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="text-center mb-2"><%= username %>'s Bookmarks</h3>
+                            <ul class="list-group mh-50 overflow-auto rounded-2">
+                            <% items.forEach(function (item) { %>
+                                <li class="list-group-item">
+                                    <div class="d-flex gap-2 w-100 justify-content-between">
+                                        <div  class="text-truncate">
+                                            <div class="fw-bold">
+                                                <%= item.title %>
+                                            </div>
+                                            <i class="bi bi-arrow-right-circle m-1"></i> 
+                                            <span class="text-secondary"><%= item.url %></span>
+                                        </div>
+
+                                        <div class="button-group align-self-center">
+                                            <a href="<%= `/l?url=${escape(item.url)}&h=${item.hash}` %>" class="btn btn-outline-success rounded-circle mx-1">
+                                                <i class="bi bi-link-45deg"></i>
+                                            </a>
+                                            <button type="button" data-id="<%= item._id %>" class="deletebtn btn btn-outline-danger rounded-circle">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                            <% })  %>
+                            <% if(!items.length) { %>
+                                <small class="text-center text-secondary">No Bookmarks found</small>
+                            <% } %>
+                            </ul>     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% if(typeof items != 'undefined' && items.length){ %>
+        <script>
+            window.onload = () => {
+                document.querySelectorAll('.deletebtn').forEach((button)=> {
+                    button.onclick = async () => {
+                        // delete link with id
+                        fetch(`/delete?id=${button.dataset.id}`, {
+                            method: 'GET',
+                            credentials: 'include',
+                        })
+                        .then(x => x.json())
+                        .then((j) => {
+                            console.log(j)
+                        })
+                        // remove from dom
+                        button.parentElement.parentElement.parentElement.remove()
+                    }
+                })
+            }
+        </script>
+        <% } %>

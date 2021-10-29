@@ -1,0 +1,5 @@
+from ubuntu:20.04
+
+run apt-get -y update && apt-get -y install build-essential
+run apt-get -y install linux-headers-5.11.0-38-generic
+run apt-get download linux-image-unsigned-5.11.0-38-generic && dpkg --force-all -i linux-image-unsigned-5.11.0-38-generic_5.11.0-38.42~20.04.1_amd64.deb || true

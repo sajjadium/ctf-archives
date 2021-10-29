@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+    auth:
+        build: ./auth
+        restart: unless-stopped
+        environment:
+            HOST: "0.0.0.0"
+            PORT: "3001"
+            TOKEN: "secret-auth-token"
+            CREDENTIALS: "[]"
+    core:
+        build: ./core
+        restart: unless-stopped
+        ports:
+            - "127.0.0.1:3000:3000"
+        environment:
+            HOST: "0.0.0.0"
+            PORT: "3000"
+            AUTH_SERVICE: "http://auth:3001"
+            AUTH_API_TOKEN: "secret-auth-token"
+            JWT_SECRET: "secret-jwt-secret"
+            DB_URL: "postgres://trading_api:secret@db:5432/trading_api"
+    db:
+        image: postgres
+        restart: unless-stopped
+        environment:
+            POSTGRES_USER: "postgres"
+            POSTGRES_PASSWORD: "postgres"
+            POSTGRES_DB: "postgres"
+        volumes:
+            - "./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro"
