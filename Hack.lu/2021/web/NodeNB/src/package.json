@@ -1,0 +1,22 @@
+{
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "debug": "nodemon --inspect server.js"
+  },
+  "dependencies": {
+    "argon2": "^0.28.2",
+    "body-parser": "^1.19.0",
+    "connect-redis": "^6.0.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "express-session": "^1.17.2",
+    "morgan": "^1.10.0",
+    "nanoid": "^3.1.30",
+    "redis": "^3.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}

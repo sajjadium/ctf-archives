@@ -1,0 +1,21 @@
+# docker build -t whatthehecc . && docker run -p 4444:4444 --rm -it whatthehecc
+ 
+FROM ubuntu:21.04
+
+RUN apt update 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y socat python3 python3-pip
+RUN useradd -ms /bin/bash ctf
+
+WORKDIR /home/ctf
+
+COPY flag .
+COPY server.py .
+COPY run.sh .
+
+RUN pip install pycryptodomex
+
+RUN chmod +x ./run.sh
+RUN chmod +x ./server.py
+
+
+CMD socat tcp-listen:4444,reuseaddr,fork exec:./run.sh,rawer,pty,echo=0,su=ctf

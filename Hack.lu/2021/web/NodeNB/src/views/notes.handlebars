@@ -1,0 +1,20 @@
+<form action="/notes" method="POST">
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input type="text" class="form-control" id="title" name="title">
+  </div>
+  <div class="mb-3">
+    <label for="content" class="form-label">Content</label>
+    <textarea type="content" class="form-control" id="content" name="content"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<h1>Notes ({{notes.length}})</h1>
+
+<ul class="list-group">
+{{#each notes }}
+    <li class="list-group-item">
+        <a href="/notes/{{this}}">{{this}}</a>
+    </li>
+{{/each}}

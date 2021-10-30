@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  app:
+    build: ./src
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "3000"
+      REDIS_URL: "redis://db:6379"
+      SESSION_SECRET: "secret"
+      FLAG: "fakeflag{dummy}"
+  db:
+    image: redis:6.2-alpine
+    restart: unless-stopped
