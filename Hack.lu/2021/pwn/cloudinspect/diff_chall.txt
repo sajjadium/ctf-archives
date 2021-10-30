@@ -1,0 +1,221 @@
+diff --git a/hw/misc/cloudinspect.c b/hw/misc/cloudinspect.c
+new file mode 100644
+index 0000000000..f1c3f84b2a
+--- /dev/null
++++ b/hw/misc/cloudinspect.c
+@@ -0,0 +1,204 @@
++/*
++ * QEMU cloudinspect intentionally vulnerable PCI device
++ *
++ */
++
++#include "qemu/osdep.h"
++#include "qemu/units.h"
++#include "hw/pci/pci.h"
++#include "hw/hw.h"
++#include "hw/pci/msi.h"
++#include "qom/object.h"
++#include "qemu/module.h"
++#include "qapi/visitor.h"
++#include "sysemu/dma.h"
++
++#define TYPE_PCI_CLOUDINSPECT_DEVICE "cloudinspect"
++typedef struct CloudInspectState CloudInspectState;
++DECLARE_INSTANCE_CHECKER(CloudInspectState, CLOUDINSPECT,
++                         TYPE_PCI_CLOUDINSPECT_DEVICE)
++
++#define DMA_SIZE        4096
++#define CLOUDINSPECT_MMIO_OFFSET_CMD 0x78
++#define CLOUDINSPECT_MMIO_OFFSET_SRC 0x80
++#define CLOUDINSPECT_MMIO_OFFSET_DST 0x88
++#define CLOUDINSPECT_MMIO_OFFSET_CNT 0x90
++#define CLOUDINSPECT_MMIO_OFFSET_TRIGGER 0x98
++
++#define CLOUDINSPECT_VENDORID 0x1337
++#define CLOUDINSPECT_DEVICEID 0x1337
++#define CLOUDINSPECT_REVISION 0xc1
++
++#define CLOUDINSPECT_DMA_GET_VALUE      0x1
++#define CLOUDINSPECT_DMA_PUT_VALUE      0x2
++
++struct CloudInspectState {
++    PCIDevice pdev;
++    MemoryRegion mmio;
++    AddressSpace *as;
++
++    struct dma_state {
++        dma_addr_t src;
++        dma_addr_t dst;
++        dma_addr_t cnt;
++        dma_addr_t cmd;
++    } dma;
++    char dma_buf[DMA_SIZE];
++};
++
++static void cloudinspect_dma_rw(CloudInspectState *cloudinspect, bool write)
++{
++    if (write) {
++        uint64_t dst = cloudinspect->dma.dst;
++        // DMA_DIRECTION_TO_DEVICE: Read from an address space to PCI device
++        dma_memory_read(cloudinspect->as, cloudinspect->dma.src, cloudinspect->dma_buf + dst, cloudinspect->dma.cnt);
++    } else {
++        uint64_t src = cloudinspect->dma.src;
++        // DMA_DIRECTION_FROM_DEVICE: Write to address space from PCI device
++        dma_memory_write(cloudinspect->as, cloudinspect->dma.dst, cloudinspect->dma_buf + src, cloudinspect->dma.cnt);
++    }
++}
++
++static bool cloudinspect_DMA_op(CloudInspectState *cloudinspect, bool write) {
++    switch (cloudinspect->dma.cmd) {
++        case CLOUDINSPECT_DMA_GET_VALUE:
++        case CLOUDINSPECT_DMA_PUT_VALUE:
++            if (cloudinspect->dma.cnt > DMA_SIZE) {
++                return false;
++            }
++            cloudinspect_dma_rw(cloudinspect, write);
++            break;
++        default:
++            return false;
++    }
++
++    return true;
++}
++
++static uint64_t cloudinspect_mmio_read(void *opaque, hwaddr addr, unsigned size)
++{
++    CloudInspectState *cloudinspect = opaque;
++    uint64_t val = ~0ULL;
++
++    switch (addr) {
++    case 0x00:
++        val = 0xc10dc10dc10dc10d;
++        break;
++    case CLOUDINSPECT_MMIO_OFFSET_CMD:
++        val = cloudinspect->dma.cmd;
++        break;
++    case CLOUDINSPECT_MMIO_OFFSET_SRC:
++        val = cloudinspect->dma.src;
++        break;
++    case CLOUDINSPECT_MMIO_OFFSET_DST:
++        val = cloudinspect->dma.dst;
++        break;
++    case CLOUDINSPECT_MMIO_OFFSET_CNT:
++        val = cloudinspect->dma.cnt;
++        break;
++    case CLOUDINSPECT_MMIO_OFFSET_TRIGGER:
++        val = cloudinspect_DMA_op(cloudinspect, false);
++        break;
++    }
++
++    return val;
++}
++
++static void cloudinspect_mmio_write(void *opaque, hwaddr addr, uint64_t val,
++                unsigned size)
++{
++    CloudInspectState *cloudinspect = opaque;
++
++    switch (addr) {
++    case CLOUDINSPECT_MMIO_OFFSET_CMD:
++        cloudinspect->dma.cmd = val;
++        break;
++    case CLOUDINSPECT_MMIO_OFFSET_SRC:
++        cloudinspect->dma.src = val;
++        break;
++    case CLOUDINSPECT_MMIO_OFFSET_DST:
++        cloudinspect->dma.dst = val;
++        break;
++    case CLOUDINSPECT_MMIO_OFFSET_CNT:
++        cloudinspect->dma.cnt = val;
++        break;
++    case CLOUDINSPECT_MMIO_OFFSET_TRIGGER:
++        val = cloudinspect_DMA_op(cloudinspect, true);
++        break;
++    }
++}
++
++static const MemoryRegionOps cloudinspect_mmio_ops = {
++    .read = cloudinspect_mmio_read,
++    .write = cloudinspect_mmio_write,
++    .endianness = DEVICE_NATIVE_ENDIAN,
++    .valid = {
++        .min_access_size = 4,
++        .max_access_size = 8,
++    },
++    .impl = {
++        .min_access_size = 4,
++        .max_access_size = 8,
++    },
++
++};
++
++static void pci_cloudinspect_realize(PCIDevice *pdev, Error **errp)
++{
++    CloudInspectState *cloudinspect = CLOUDINSPECT(pdev);
++    // uint8_t *pci_conf = pdev->config;
++
++    if (msi_init(pdev, 0, 1, true, false, errp)) {
++        return;
++    }
++
++    cloudinspect->as = &address_space_memory;
++    memory_region_init_io(&cloudinspect->mmio, OBJECT(cloudinspect), &cloudinspect_mmio_ops, cloudinspect,
++                    "cloudinspect-mmio", 1 * MiB);
++    pci_register_bar(pdev, 0, PCI_BASE_ADDRESS_SPACE_MEMORY, &cloudinspect->mmio);
++}
++
++static void pci_cloudinspect_uninit(PCIDevice *pdev)
++{
++    // CloudInspectState *cloudinspect = CLOUDINSPECT(pdev);
++
++    msi_uninit(pdev);
++}
++
++static void cloudinspect_instance_init(Object *obj)
++{
++    // CloudInspectState *cloudinspect = CLOUDINSPECT(obj);
++}
++
++static void cloudinspect_class_init(ObjectClass *class, void *data)
++{
++    DeviceClass *dc = DEVICE_CLASS(class);
++    PCIDeviceClass *k = PCI_DEVICE_CLASS(class);
++
++    k->realize = pci_cloudinspect_realize;
++    k->exit = pci_cloudinspect_uninit;
++    k->vendor_id = CLOUDINSPECT_VENDORID;
++    k->device_id = CLOUDINSPECT_DEVICEID;
++    k->revision = CLOUDINSPECT_REVISION;
++    k->class_id = PCI_CLASS_OTHERS;
++    set_bit(DEVICE_CATEGORY_MISC, dc->categories);
++}
++
++static void pci_cloudinspect_register_types(void)
++{
++    static InterfaceInfo interfaces[] = {
++        { INTERFACE_CONVENTIONAL_PCI_DEVICE },
++        { },
++    };
++    static const TypeInfo cloudinspect_info = {
++        .name          = TYPE_PCI_CLOUDINSPECT_DEVICE,
++        .parent        = TYPE_PCI_DEVICE,
++        .instance_size = sizeof(CloudInspectState),
++        .instance_init = cloudinspect_instance_init,
++        .class_init    = cloudinspect_class_init,
++        .interfaces = interfaces,
++    };
++
++    type_register_static(&cloudinspect_info);
++}
++type_init(pci_cloudinspect_register_types)
+diff --git a/hw/misc/meson.build b/hw/misc/meson.build
+index 1cd48e8a0f..5ff263ca2f 100644
+--- a/hw/misc/meson.build
++++ b/hw/misc/meson.build
+@@ -1,5 +1,6 @@
+ softmmu_ss.add(when: 'CONFIG_APPLESMC', if_true: files('applesmc.c'))
+ softmmu_ss.add(when: 'CONFIG_EDU', if_true: files('edu.c'))
++softmmu_ss.add(files('cloudinspect.c'))
+ softmmu_ss.add(when: 'CONFIG_FW_CFG_DMA', if_true: files('vmcoreinfo.c'))
+ softmmu_ss.add(when: 'CONFIG_ISA_DEBUG', if_true: files('debugexit.c'))
+ softmmu_ss.add(when: 'CONFIG_ISA_TESTDEV', if_true: files('pc-testdev.c'))
