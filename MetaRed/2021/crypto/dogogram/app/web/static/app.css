@@ -1,0 +1,76 @@
+html {
+  height: 90%;
+}
+
+h1{
+  font-size: 2.2em;
+}
+
+body {
+  color: white;
+  background-color: #2590EB;
+  height: 100%;
+  font-size: 1.3em;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.wrapper .file-upload {
+  height: 200px;
+  width: 200px;
+  border-radius: 100px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid #FFFFFF;
+  overflow: hidden;
+  background-image: linear-gradient(to bottom, #2590EB 50%, #FFFFFF 50%);
+  background-size: 100% 200%;
+  transition: all 1s;
+  color: #FFFFFF;
+  font-size: 100px;
+}
+.wrapper .file-upload input[type=file] {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.wrapper .file-upload:hover {
+  background-position: 0 -100%;
+  color: #2590EB;
+}
+
+button {
+  background-color: gold;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 10px 2px;
+  
+}
+
+button:hover {
+  background-color: gray;
+}
+
+img{
+  border-style: dashed;
+  border-width: 10px;
+}

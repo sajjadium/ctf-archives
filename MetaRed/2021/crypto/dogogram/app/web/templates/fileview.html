@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/static/app.css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+</head>
+<body>
+<div class="wrapper">
+        <h1>Welcome to <font color=gold>dogogram</font>! </h1>
+	<p>Here is your uploaded photo:</p>
+	<img src="/static/uploads/{{ fid }}.jpg">
+	{% if flag %}
+	<b>{{ flag }}</b>
+	{% endif %}
+	<button onclick="window.location='/'">Return</button>
+</div>
+</body>
+</html>
+

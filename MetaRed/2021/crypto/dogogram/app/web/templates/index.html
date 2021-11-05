@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="static/app.css">
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+</head>
+<body>
+<div class="wrapper">
+  <h1>Welcome to <font color=gold>dogogram</font>! </h1>
+  <p>A place to upload <a href="/view/00795a8b-fb58-47c0-91be-af068ddc71b4">dogo's</a> favourite pic. It's not censorship, it's a feature!</p>
+  <div class="file-upload">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="file" onchange="this.form.submit()" />
+      <i class="fa fa-arrow-up"></i>
+    </form>
+  </div>
+</div>
+</body>
+</html>
