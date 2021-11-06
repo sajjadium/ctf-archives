@@ -382,7 +382,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1296/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="DamCTF">DamCTF</a></td>
+            <td rowspan=2><a href="DamCTF">DamCTF</a></td>
+            <td><a href="DamCTF/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1401/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="DamCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1076/tasks/">CTFtime</a></td>
         </tr>
