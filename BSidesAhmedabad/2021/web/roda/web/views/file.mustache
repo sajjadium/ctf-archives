@@ -1,0 +1,18 @@
+{{> header}}
+  <main>
+    <img src="/uploads/{{ path }}">
+    {{# checked }}
+    <p>Status: The admin confirmed that this image is not malicious 👌</p>
+    {{/ checked }}
+    {{^ checked }}
+    <p>Status: This image has not been checked by the admin yet ⌛</p>
+    {{/ checked }}
+    <button id="recaptcha"
+      class="g-recaptcha" 
+      data-sitekey="{{ siteKey }}" 
+      data-callback='onSubmit' 
+      data-action='submit'>🚩Report to admin</button>
+  </main>
+  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script src="/static/report.js"></script>
+{{> footer}}

@@ -1,0 +1,47 @@
+version: "3.7"
+services:
+    php:
+        build:
+            context: ./php
+        image: catalog_php:latest
+        ports:
+            - 443:443
+        environment:
+            MYSQL_HOST: "mysql"
+            MYSQL_DATABASE: "comic_catalog"
+            MYSQL_USER: "mysql"
+            MYSQL_PASSWORD: "blahblah"
+            RECAPTCHA_SECRET: "blahblah"
+        volumes:
+            - "./php/src:/var/www/html"
+        restart: always
+    mysql:
+        build:
+            context: ./mysql
+        image: catalog_mysql:latest
+        environment:
+            MYSQL_DATABASE: "comic_catalog"
+            MYSQL_USER: "mysql"
+            MYSQL_PASSWORD: "blahblah"
+            MYSQL_ROOT_PASSWORD: "blahblah"
+        restart: always
+        command: --default-authentication-plugin=mysql_native_password
+        volumes:
+            - "./mysql-data:/var/lib/mysql"
+    bot:
+        deploy:
+            replicas: 1
+        build:
+            context: ./bot
+        image: catalog_bot:latest
+        environment:
+            BASE_URL: "https://bettercatalog.xyz"
+            MYSQL_HOST: "mysql"
+            MYSQL_DATABASE: "comic_catalog"
+            MYSQL_USER: "mysql"
+            MYSQL_PASSWORD: "blahblah"
+        depends_on:
+            - mysql
+        restart: always
+        cap_add:
+            - SYS_ADMIN

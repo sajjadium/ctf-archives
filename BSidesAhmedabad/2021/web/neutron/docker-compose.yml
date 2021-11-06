@@ -1,0 +1,9 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  runner:
+    build:
+      context: .
+    ports:
+      - "15900:5910"
+    cap_add:
+     - CAP_SYS_ADMIN

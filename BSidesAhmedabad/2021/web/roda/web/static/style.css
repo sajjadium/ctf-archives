@@ -1,0 +1,49 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+header, main {
+  width: 40rem;
+  margin: 0 auto;
+}
+
+header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #000;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+a {
+  color: rgb(0, 96, 192);
+}
+
+main {
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}
+
+#drop {
+  padding: 60px 40px;
+  border: 3px dotted #555;
+  font-size: 20px;
+  text-align: center;
+  color: #555;
+}
+
+#message {
+  color: #a00;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,0 +1,321 @@
+@font-face {
+	font-family: "Komika Axis";
+	src: url("/font/komika.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "Blocco";
+	src: url("/font/blocco.ttf") format("truetype");
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0px;
+	font-family: "Blocco", sans-serif;
+	display: flex;
+	flex-direction: column;
+	font-size: 24px;
+}
+
+header {
+	--fg: #e00e27;
+
+	font-size: 10px;
+	background:
+	radial-gradient(var(--fg) 85%, transparent 0),
+	radial-gradient(var(--fg) 75%, transparent 0),
+	radial-gradient(var(--fg) 65%, transparent 0),
+	radial-gradient(var(--fg) 55%, transparent 0),
+	radial-gradient(var(--fg) 45%, transparent 0),
+	radial-gradient(var(--fg) 35%, transparent 0),
+	radial-gradient(var(--fg) 25%, transparent 0),
+	radial-gradient(var(--fg) 15%, transparent 0);
+	background-size: 1em 1em;
+	background-repeat: repeat-x;
+	background-position:
+		0px 0em,
+		0px 1em,
+		0px 2em,
+		0px 3em,
+		0px 4em,
+		0px 5em,
+		0px 6em,
+		0px 7em;
+	background-color: #c00018;
+	color: #ffffff;
+	height: 8em;
+	display: flex;
+	align-items: center;
+}
+
+.site-title {
+	font-size: 44px;
+	margin: 24px 64px 24px 36px;
+	font-weight: 700;
+	-webkit-text-stroke: #000000;
+	-webkit-text-stroke-width: 1.5px;
+	font-family: Bangers;
+}
+
+.site-title sub {
+	-webkit-text-stroke-width: 0.75px;
+	font-size: 0.5em;
+}
+
+main {
+	margin: 12px 24px;
+	flex-grow: 1;
+}
+
+h1 {
+	font-family: "Komika Axis", sans-serif;
+	background: #3d7df3;
+	color: #ffffff;
+	-webkit-text-stroke-width: 2px;
+	-webkit-text-stroke-color: #000000;
+	text-shadow:
+		0px 2px black,
+		0px -2px black,
+		2px 0px black,
+		-2px 0px black,
+		2px 2px black,
+		2px -2px black,
+		-2px 2px black,
+		-2px -2px black;
+	margin: 0px -24px;
+	font-size: 40px;
+	font-weight: 400;
+	padding: 12px 48px;
+}
+
+h1 form {
+	display: inline;
+	vertical-align: middle;
+}
+
+.messages {
+	margin: 12px 24px;
+}
+
+.messages .message {
+	padding: 12px;
+	font-weight: 500;
+	font-size: 16px;
+}
+
+.messages .message.success {
+	background: #A5D6A7;
+	color: #1B5E20;
+}
+
+.messages .message.warning {
+	background: #FFF59D;
+	color: #F57F17;
+}
+
+.messages .message.error {
+	background: #EF9A9A;
+	color: #B71C1C;
+}
+
+em {
+	position: relative;
+	z-index: 2;
+	font-style: normal;
+	font-family: Bangers;
+	font-size: 40px;
+	margin: 4px 16px;
+	vertical-align: middle;
+	white-space: nowrap;
+	line-height: 1.5;
+}
+
+em span {
+	display: inline-block;
+	position: relative;
+	z-index: 2;
+	background-image: radial-gradient(rgb(240, 211, 23) 30%, transparent 30%), radial-gradient(rgb(240, 211, 23) 30%, transparent 30%);
+	background-color: rgb(250, 242, 14);
+	background-position: 0px 0px, 4px 4px;
+	background-size: 8px 8px;
+	padding: 8px;
+	margin: -8px;
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-text-stroke: black;
+	-webkit-text-stroke-width: 2px;
+}
+
+em::before {
+	z-index: 1;
+	content: "";
+	position: absolute;
+	left: -24px;
+	right: -24px;
+	top: -24px;
+	bottom: -24px;
+	background: url(/svg/starburst.svg);
+	background-size: 100% 100%;
+	background-position: center;
+}
+
+header a {
+	text-decoration: none;
+}
+
+header .nav {
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	user-select: none;
+	padding: 24px 36px;
+	height: 100%;
+}
+
+header .login {
+	position: relative;
+	margin-left: auto;
+	width: 200px;
+}
+
+header .login .dropdown {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0px;
+	right: 0px;
+	background: #c00018;
+	padding: 8px;
+}
+
+header .login .dropdown.visible {
+	display: block;
+	color: black;
+}
+
+header .login .dropdown button {
+	display: block;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	margin: 8px 0px;
+	padding: 6px;
+	background: rgba(255, 255, 255, 0.1);
+	color: #ffffff;
+	width: 100%;
+}
+
+header .login .dropdown input[type=text],
+header .login .dropdown input[type=password] {
+	display: block;
+	width: 100%;
+	border: 0px;
+	margin: 8px 0px;
+	background: transparent;
+	padding: 4px;
+	outline: none;
+	border-bottom: 2px solid #ffffff;
+	color: #ffffff;
+}
+
+header .login .dropdown input[type=text]::placeholder,
+header .login .dropdown input[type=password]::placeholder {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+main.issue .image {
+	max-width: 30%;
+	float: left;
+	margin: 24px 48px 24px 24px;
+}
+
+main.issue .image img {
+	max-width: 100%;
+}
+
+h1 form {
+	display: contents;
+}
+
+h1 .report,
+h1 .edit {
+	background: rgba(255, 255, 255, 0.2);
+	font-family: Blocco, sans-serif;
+	border: none;
+	font-size: 16px;
+	padding: 8px;
+	-webkit-text-stroke-width: 0px;
+	text-shadow: none;
+	cursor: pointer;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+form.edit {
+	max-width: 800px;
+	margin: 0px auto;
+	background: #f0f0cc;
+	padding: 24px;
+}
+
+form.edit input,
+form.edit textarea {
+	display: block;
+	width: 100%;
+	background: transparent;
+	border: 0px;
+	border-bottom: 2px solid #000000;
+	resize: vertical;
+	margin-bottom: 24px;
+	outline: none;
+	padding: 4px;
+}
+
+form.edit input.title {
+	font-size: 36px;
+}
+
+form.edit input.image-url {
+	font-size: 16px;
+}
+
+form.edit textarea {
+	background: rgba(255, 255, 255, .3);
+	padding: 12px;
+}
+
+form.edit button {
+	width: 100%;
+	background: #3d7df3;
+	padding: 16px 0px 12px;
+	border: 0px;
+	color: #ffffff;
+	outline: none;
+	cursor: pointer;
+}
+
+main.admin .queue-list {
+	margin: 24px 12px;
+}
+
+main.admin .queue-list .empty {
+	color: #444444;
+}
+
+main.admin .queue-list a.issue-pending-approval:link {
+	color: #3d7df3;
+}
