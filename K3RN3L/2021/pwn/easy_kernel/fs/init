@@ -1,0 +1,13 @@
+#!/bin/sh
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t 9p -o trans=virtio,version=9p2000.L,nosuid hostshare /home/ctf
+
+insmod /vuln.ko
+
+chown root /flag.txt
+chmod 700 /flag.txt
+
+exec su -l ctf
+/bin/sh
