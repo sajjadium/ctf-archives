@@ -722,6 +722,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/686/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Intent">Intent</a></td>
+            <td><a href="Intent/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1454/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="KasperskyCTF">Kaspersky</a></td>
             <td><a href="KasperskyCTF/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/701/tasks/">CTFtime</a></td>
