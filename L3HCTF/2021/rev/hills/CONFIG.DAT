@@ -1,0 +1,808 @@
+!
+Version 5.5R2
+
+ip vrouter "trust-vr"
+exit
+vswitch "vswitch1"
+exit
+zone "trust"
+exit
+zone "untrust"
+exit
+zone "dmz"
+exit
+zone "l2-trust" l2
+exit
+zone "l2-untrust" l2
+exit
+zone "l2-dmz" l2
+exit
+zone "VPNHub"
+exit
+zone "HA"
+exit
+interface vswitchif1
+exit
+interface ethernet0/0
+exit
+interface ethernet0/1
+exit
+interface ethernet0/2
+exit
+interface ethernet0/3
+exit
+interface ethernet0/4
+exit
+interface ethernet0/5
+exit
+interface ethernet0/6
+exit
+interface ethernet0/7
+exit
+interface ethernet0/8
+exit
+interface tunnel1
+exit
+address "VPN_WAN"
+exit
+address "openvpn-server"
+exit
+aaa-server "local" type local
+exit
+aaa-server "LDAP" type ldap
+exit
+aaa-server "LDAP-server" type ldap
+exit
+ips sigset "dns" template dns
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "ftp" template ftp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "http" template http
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+  web-server "default"
+  exit
+exit
+ips sigset "pop3" template pop3
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "smtp" template smtp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "telnet" template telnet
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "other-tcp" template other-tcp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "other-udp" template other-udp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "imap" template imap
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "finger" template finger
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "sunrpc" template sunrpc
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "nntp" template nntp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "tftp" template tftp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "snmp" template snmp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "mysql" template mysql
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "mssql" template mssql
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "oracle" template oracle
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "msrpc" template msrpc
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "netbios" template netbios
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "dhcp" template dhcp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "ldap" template ldap
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "voip" template voip
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_dns" template dns
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_ftp" template ftp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_http" template http
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+  web-server "default"
+  exit
+exit
+ips sigset "default_pop3" template pop3
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_smtp" template smtp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_telnet" template telnet
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_other-tcp" template other-tcp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_other-udp" template other-udp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_imap" template imap
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_finger" template finger
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_sunrpc" template sunrpc
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_nntp" template nntp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_tftp" template tftp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_snmp" template snmp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_mysql" template mysql
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_mssql" template mssql
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_oracle" template oracle
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_msrpc" template msrpc
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_netbios" template netbios
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_dhcp" template dhcp
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_ldap" template ldap
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "default_voip" template voip
+  max-scan-bytes 30720
+  attack-level critical action reset 
+  attack-level info action reset 
+  attack-level warning action reset 
+exit
+ips sigset "loose_dns" template dns
+exit
+ips sigset "loose_ftp" template ftp
+exit
+ips sigset "loose_http" template http
+  web-server "default"
+  exit
+exit
+ips sigset "loose_pop3" template pop3
+exit
+ips sigset "loose_smtp" template smtp
+exit
+ips sigset "loose_telnet" template telnet
+exit
+ips sigset "loose_other-tcp" template other-tcp
+exit
+ips sigset "loose_other-udp" template other-udp
+exit
+ips sigset "loose_imap" template imap
+exit
+ips sigset "loose_finger" template finger
+exit
+ips sigset "loose_sunrpc" template sunrpc
+exit
+ips sigset "loose_nntp" template nntp
+exit
+ips sigset "loose_tftp" template tftp
+exit
+ips sigset "loose_snmp" template snmp
+exit
+ips sigset "loose_mysql" template mysql
+exit
+ips sigset "loose_mssql" template mssql
+exit
+ips sigset "loose_oracle" template oracle
+exit
+ips sigset "loose_msrpc" template msrpc
+exit
+ips sigset "loose_netbios" template netbios
+exit
+ips sigset "loose_dhcp" template dhcp
+exit
+ips sigset "loose_ldap" template ldap
+exit
+ips sigset "loose_voip" template voip
+exit
+ips profile "no-ips"
+exit
+ips profile "predef_default"
+  sigset "default_dns"
+  sigset "default_ftp"
+  sigset "default_http"
+  sigset "default_pop3"
+  sigset "default_smtp"
+  sigset "default_telnet"
+  sigset "default_other-tcp"
+  sigset "default_other-udp"
+  sigset "default_imap"
+  sigset "default_finger"
+  sigset "default_sunrpc"
+  sigset "default_nntp"
+  sigset "default_tftp"
+  sigset "default_snmp"
+  sigset "default_mysql"
+  sigset "default_mssql"
+  sigset "default_oracle"
+  sigset "default_msrpc"
+  sigset "default_netbios"
+  sigset "default_dhcp"
+  sigset "default_ldap"
+  sigset "default_voip"
+exit
+ips profile "predef_loose"
+  sigset "loose_dns"
+  sigset "loose_ftp"
+  sigset "loose_http"
+  sigset "loose_pop3"
+  sigset "loose_smtp"
+  sigset "loose_telnet"
+  sigset "loose_other-tcp"
+  sigset "loose_other-udp"
+  sigset "loose_imap"
+  sigset "loose_finger"
+  sigset "loose_sunrpc"
+  sigset "loose_nntp"
+  sigset "loose_tftp"
+  sigset "loose_snmp"
+  sigset "loose_mysql"
+  sigset "loose_mssql"
+  sigset "loose_oracle"
+  sigset "loose_msrpc"
+  sigset "loose_netbios"
+  sigset "loose_dhcp"
+  sigset "loose_ldap"
+  sigset "loose_voip"
+exit
+contentfilter
+  url-category "custom1"
+  url-category "custom2"
+  url-category "custom3"
+exit
+av-profile "no-av"
+exit
+av-profile "predef_low"
+  file-type gzip
+  file-type html
+  file-type mail
+  file-type pe
+  protocol-type FTP action reset-conn
+  protocol-type HTTP action reset-conn
+  protocol-type IMAP4 action log-only
+  protocol-type POP3 action log-only
+  protocol-type SMTP action log-only
+exit
+av-profile "predef_middle"
+  file-type gzip
+  file-type html
+  file-type mail
+  file-type pe
+  file-type zip
+  file-type rar
+  protocol-type FTP action reset-conn
+  protocol-type HTTP action reset-conn
+  protocol-type IMAP4 action log-only
+  protocol-type POP3 action log-only
+  protocol-type SMTP action log-only
+exit
+av-profile "predef_high"
+  file-type gzip
+  file-type html
+  file-type mail
+  file-type pe
+  file-type zip
+  file-type rar
+  file-type jpeg
+  file-type bzip2
+  file-type riff
+  file-type tar
+  protocol-type FTP action reset-conn
+  protocol-type HTTP action reset-conn
+  protocol-type IMAP4 action fill-magic
+  protocol-type POP3 action fill-magic
+  protocol-type SMTP action fill-magic
+exit
+aaa-server "LDAP-server" type ldap
+  host "ldapservice001.l3hsec.com"
+  base-dn "ou=user,dc=l3hsec,dc=com"
+  login-dn "uid=firewall01,ou=manager,dc=l3hsec,dc=com"
+  login-password sOxxmnurlg68LoTgoBnO/lFTfJbuev+92GwwRPybFTZkPJhp
+exit
+admin user "admin"
+  password Ei9q0pU2z4tZPFEL1ulp3bsAQd
+	password-expiration 1636310355
+  role "admin"
+  access console
+  access telnet
+  access ssh
+  access http
+  access https
+exit
+pki trust-domain "trust_domain_default"
+  keypair "Default-Key"
+  enrollment self
+  subject commonName "SG-6000"
+  subject organization "Hillstone Networks"
+exit
+pki trust-domain "trust_domain_ssl_proxy"
+  keypair "Default-Key"
+  enrollment self
+  subject commonName "SG-6000"
+  subject organization "Hillstone Networks"
+exit
+pki trust-domain "trust_domain_ssl_proxy_2048"
+  keypair "Default-Key-2048"
+  enrollment self
+  subject commonName "SG-6000"
+  subject organization "Hillstone Networks"
+exit
+pki trust-domain "network_manager_ca"
+  enrollment terminal
+exit
+address "VPN_WAN"
+  ip 30.0.0.1/32
+exit
+address "openvpn-server"
+  ip 172.20.0.247/32
+exit
+zone "trust"
+  ad ip-directed-broadcast
+  ad arp-spoofing ip-number-per-mac 100 action drop
+  ad tcp-split-handshake
+  ad icmp-flood
+  ad ping-of-death
+  ad tear-drop
+  ad ip-fragment
+  ad land-attack
+  ad huge-icmp-pak
+  ad tcp-anomaly
+exit
+zone "untrust"
+  type wan
+  ad tear-drop
+  ad ip-spoofing
+  ad land-attack
+  ad ip-option
+  ad ip-fragment
+  ad ip-directed-broadcast
+  ad winnuke
+  ad port-scan
+  ad icmp-flood
+  ad ip-sweep
+  ad ping-of-death
+exit
+zone "l2-untrust" l2
+  type wan
+exit
+hostname "SG-6000"
+admin host any any
+https port 4443
+no https client-auth match
+isakmp proposal "psk-sha256-aes128-g2"
+  hash sha256
+  encryption aes
+exit
+
+isakmp proposal "psk-sha256-aes256-g2"
+  hash sha256
+  encryption aes-256
+exit
+
+isakmp proposal "psk-sha256-3des-g2"
+  hash sha256
+exit
+
+isakmp proposal "psk-md5-aes128-g2"
+  hash md5
+  encryption aes
+exit
+
+isakmp proposal "psk-md5-aes256-g2"
+  hash md5
+  encryption aes-256
+exit
+
+isakmp proposal "psk-md5-3des-g2"
+  hash md5
+exit
+
+isakmp proposal "rsa-sha256-aes128-g2"
+  authentication rsa-sig
+  hash sha256
+  encryption aes
+exit
+
+isakmp proposal "rsa-sha256-aes256-g2"
+  authentication rsa-sig
+  hash sha256
+  encryption aes-256
+exit
+
+isakmp proposal "rsa-sha256-3des-g2"
+  authentication rsa-sig
+  hash sha256
+exit
+
+isakmp proposal "rsa-md5-aes128-g2"
+  authentication rsa-sig
+  hash md5
+  encryption aes
+exit
+
+isakmp proposal "rsa-md5-aes256-g2"
+  authentication rsa-sig
+  hash md5
+  encryption aes-256
+exit
+
+isakmp proposal "rsa-md5-3des-g2"
+  authentication rsa-sig
+  hash md5
+exit
+
+isakmp proposal "dsa-sha-aes128-g2"
+  authentication dsa-sig
+  encryption aes
+exit
+
+isakmp proposal "dsa-sha-aes256-g2"
+  authentication dsa-sig
+  encryption aes-256
+exit
+
+isakmp proposal "dsa-sha-3des-g2"
+  authentication dsa-sig
+exit
+
+ipsec proposal "esp-sha256-aes128-g2"
+  hash sha256
+  encryption aes
+  group 2
+exit
+
+ipsec proposal "esp-sha256-aes128-g0"
+  hash sha256
+  encryption aes
+exit
+
+ipsec proposal "esp-sha256-aes256-g2"
+  hash sha256
+  encryption aes-256
+  group 2
+exit
+
+ipsec proposal "esp-sha256-aes256-g0"
+  hash sha256
+  encryption aes-256
+exit
+
+ipsec proposal "esp-sha256-3des-g2"
+  hash sha256
+  encryption 3des
+  group 2
+exit
+
+ipsec proposal "esp-sha256-3des-g0"
+  hash sha256
+  encryption 3des
+exit
+
+ipsec proposal "esp-md5-aes128-g2"
+  hash md5
+  encryption aes
+  group 2
+exit
+
+ipsec proposal "esp-md5-aes128-g0"
+  hash md5
+  encryption aes
+exit
+
+ipsec proposal "esp-md5-aes256-g2"
+  hash md5
+  encryption aes-256
+  group 2
+exit
+
+ipsec proposal "esp-md5-aes256-g0"
+  hash md5
+  encryption aes-256
+exit
+
+ipsec proposal "esp-md5-3des-g2"
+  hash md5
+  encryption 3des
+  group 2
+exit
+
+ipsec proposal "esp-md5-3des-g0"
+  hash md5
+  encryption 3des
+exit
+
+scvpn pool "LDAP-POOL"
+  address 172.20.254.2 172.20.255.253 netmask 255.255.252.0
+  dns 114.114.114.114
+exit
+tunnel scvpn "SSLVPN"
+  https-port 443
+  pool "LDAP-POOL"
+  anti-replay 32
+  host-cache-clear disable
+  split-tunnel-route 172.20.0.0/22 metric 35
+  aaa-server "LDAP-server"
+  interface ethernet0/1
+exit
+scvpn customize title "Login to L3H_Sec"
+exit
+dhcp-server pool "ethernet0/2_addrpool"
+  netmask 255.255.255.0
+  gateway 172.20.0.1
+  address  172.20.0.2 172.20.0.254
+  dns 8.8.8.8  114.114.114.114
+exit
+interface ethernet0/0
+  zone  "trust"
+  ip address 192.168.1.1 255.255.255.0
+  manage ssh
+  manage ping
+  manage snmp
+  manage https
+exit
+interface ethernet0/1
+  zone  "untrust"
+  ip address 30.0.0.1 255.255.254.0
+  description "WAN"
+  manage ping
+  manage https
+  manage ssh
+exit
+interface ethernet0/2
+  zone  "trust"
+  ip address 172.20.0.1 255.255.255.0
+  manage ssh
+  manage ping
+  manage https
+  manage http
+  dhcp-server enable pool "ethernet0/2_addrpool"
+  no reverse-route
+exit
+interface tunnel1
+  zone  "VPNHub"
+  ip address 172.20.255.254 255.255.252.0
+  manage ssh
+  manage ping
+  manage https
+  tunnel scvpn "SSLVPN"
+  no reverse-route
+exit
+ip vrouter "trust-vr"
+  snatrule id 1 from "172.20.0.0/16" to "Any" service "Any" trans-to eif-ip mode dynamicport 
+  ip route 0.0.0.0/0 30.0.0.1
+exit
+vswitch "vswitch1"
+  forward-tagged-packet
+exit
+qos-engine first
+  root-pipe "default" id 1
+    qos-mode "stat"
+  exit
+exit
+qos-engine second
+  disable
+  root-pipe "default" id 2
+    qos-mode "stat"
+  exit
+exit
+clock zone china
+ip name-server 114.114.114.114 vrouter trust-vr
+ip name-server 8.8.8.8 vrouter trust-vr
+rule id 1
+  action permit
+  src-zone "Any"
+  dst-zone "Any"
+  src-addr "Any"
+  dst-addr "Any"
+  service "Any"
+exit
+l2-nonip-action forward
+expanded-port-pool
+tcp-mss all 1448
+tcp-mss tunnel 1380
+ecmp-route-select by-src-and-dst
+  url-db-query server1 "url1.hillstonenet.com" port 8866 vrouter trust-vr
+  url-db-query server1 enable
+  url-db-query server2 "url2.hillstonenet.com" port 8866 vrouter trust-vr
+  url-db-query server2 enable
+flow
+  icmp-unreachable-session-keep
+exit
+strict-tunnel-check
+statistics-set "predef_if_bw"
+  target-data bandwidth id 0 record-history
+  group-by interface directional
+exit
+statistics-set "predef_user_bw"
+  target-data bandwidth id 1 record-history
+  group-by user directional
+exit
+statistics-set "predef_app_bw"
+  target-data bandwidth id 2 record-history
+  group-by application
+exit
+statistics-set "predef_user_app_bw"
+  target-data bandwidth id 3
+  group-by user directional interface zone application
+exit
+statistics-set "predef_zone_if_app_bw"
+  target-data bandwidth id 4
+  group-by interface zone directional application
+exit
+app update schedule daily 00:27
+no longlife-sess-percent
+no sms disable
+
+End
