@@ -1,0 +1,8 @@
+#!/bin/bash
+
+gunicorn \
+    --bind 0.0.0.0:$HTTP_PORT \
+    --daemon \
+    --access-logfile /var/log/${USERNAME}/gunicorn.access.log \
+    --error-logfile /var/log/${USERNAME}/gunicorn.error.log \
+    eth_sandbox.server:app

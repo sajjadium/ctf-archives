@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  unicornsaisle:
+    build: .
+    volumes:
+      - ./share:/home/UnicornsAisle:ro
+      - ./libunicorn.so.1:/lib/x86_64-linux-gnu/libunicorn.so.1
+      - ./xinetd:/etc/xinetd.d/unicornsaisle:ro
+    ports:
+      - "10101:10101"
+    expose:
+      - "10101"
+    restart: always

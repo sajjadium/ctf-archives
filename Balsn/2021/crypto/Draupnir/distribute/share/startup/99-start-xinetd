@@ -1,0 +1,3 @@
+#!/bin/bash
+
+xinetd -filelog /var/log/${USERNAME}/xinetd.log

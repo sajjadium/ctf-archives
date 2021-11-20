@@ -1,0 +1,15 @@
+diff --git a/kernel/futex.c b/kernel/futex.c
+index e646661f6..9456c7c31 100644
+--- a/kernel/futex.c
++++ b/kernel/futex.c
+@@ -3038,8 +3038,8 @@ static int futex_unlock_pi(u32 __user *uaddr, unsigned int flags)
+ 		 * If current does not own the pi_state then the futex is
+ 		 * inconsistent and user space fiddled with the futex value.
+ 		 */
+-		if (pi_state->owner != current)
+-			goto out_unlock;
++		//if (pi_state->owner != current)
++		//	goto out_unlock;
+ 
+ 		get_pi_state(pi_state);
+ 		/*

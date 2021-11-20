@@ -182,7 +182,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1100/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="Balsn">Balsn</a></td>
+            <td rowspan=3><a href="Balsn">Balsn</a></td>
+            <td><a href="Balsn/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1376/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="Balsn/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1122/tasks/">CTFtime</a></td>
         </tr>

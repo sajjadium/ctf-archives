@@ -1,0 +1,9 @@
+version: "3"
+services:
+    dlog:
+        build: .
+        restart: always
+        ports:
+            - "27492:27492/tcp"
+        expose:
+            - "27492"

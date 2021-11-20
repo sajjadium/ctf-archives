@@ -1,0 +1,9 @@
+version: "3"
+services:
+    trinity:
+        build: .
+        restart: always
+        ports:
+            - "27490:27490/tcp"
+        expose:
+            - "27490"

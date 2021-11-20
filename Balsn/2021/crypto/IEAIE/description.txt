@@ -1,0 +1,10 @@
+We implemented the image encryption algorithm described in the paper
+G.Ye,C.Pan,X.Huang,Z.Zhao,and J.He,“A chaotic image encryption algorithm based on information entropy,” International Journal of Bifurca- tion and Chaos, vol. 28, no. 1, p. art. no. 1850010, 2018.
+
+There is also a paper indicating the flaws of the algorithm
+Cryptanalysis of a Chaotic Image Encryption Algorithm Based on Information Entropy
+The paper stated that many images on the internet have the same entropy. So, we give you image.bmp which has the same entropy as flag.bmp
+
+Given these, it should be easy for you to decrypt the encrypted_flag.bmp, right?
+
+The encryption service is running at x.x.x.x:oooo

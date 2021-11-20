@@ -1,0 +1,9 @@
+version: "3"
+services:
+    aeshash:
+        build: .
+        restart: always
+        ports:
+            - "1337:1337/tcp"
+        expose:
+            - "1337"

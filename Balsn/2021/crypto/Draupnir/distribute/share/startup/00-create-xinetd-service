@@ -1,0 +1,23 @@
+#!/bin/bash
+
+cat <<EOF > /etc/xinetd.d/draupnir
+service draupnir
+{
+    type            = UNLISTED
+    flags           = NODELAY
+    disable         = no
+    socket_type     = stream
+    protocol        = tcp
+    wait            = no
+    user            = ${USERNAME}
+    log_type        = FILE /var/log/${USERNAME}/xinetd.log
+    log_on_success  = PID HOST EXIT DURATION
+    log_on_failure  = HOST ATTEMPT
+    port            = ${PORT}
+    bind            = 0.0.0.0
+    server          = /home/${USERNAME}/handler.sh
+    per_source      = ${PER_SOURCE:-4}
+    cps             = ${CPS_RATE:-200} ${CPS_DELAY:-5}
+    rlimit_cpu      = ${RLIMIT_CPU:-5}
+}
+EOF

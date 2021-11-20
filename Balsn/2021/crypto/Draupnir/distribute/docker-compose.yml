@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  draupnir:
+    build: .
+    volumes:
+      - ./share:/home/Draupnir:ro
+    environment:
+      - "USERNAME=Draupnir"
+      - "PORT=10101"
+      - "HTTP_PORT=10102"
+      - "RPC_URL="
+      - "ENV=dev"
+    ports:
+      - "10101:10101"
+      - "10102:10102"
+    restart: always
