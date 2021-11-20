@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  apache:
+    build: apache
+    volumes:
+      - ./apache/proxy-php.conf:/usr/local/apache2/conf/extra/proxy-php.conf:ro
+    ports:
+      - 80:80
+  php:
+    build: php
+    volumes:
+      - ./php/index.php:/var/www/html/index.php:ro
+      - ./flag:/flag:ro

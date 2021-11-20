@@ -1,0 +1,12 @@
+service elffortress
+{
+	disable = no
+	type = UNLISTED
+	wait = no
+	server = /home/ElfFortress/run.sh
+	socket_type = stream
+	protocol = tcp
+	user = ElfFortress
+	port = 10101
+	flags = reuse
+}

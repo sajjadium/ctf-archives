@@ -1,0 +1,16 @@
+service ctf
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/ctf/server.py
+        socket_type = stream
+        protocol = tcp
+        user = ctf
+        port = 27491
+        flags = IPv4 REUSE
+        per_source = 5
+        rlimit_cpu = 3
+        rlimit_as = 64M
+        nice = 18
+}

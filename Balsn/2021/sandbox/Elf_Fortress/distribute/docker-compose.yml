@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  elffortress:
+    build: .
+    volumes:
+      - ./share:/home/ElfFortress:ro
+      - ./xinetd:/etc/xinetd.d/elffortress:ro
+    ports:
+      - "10101:10101"
+    expose:
+      - "10101"
+    restart: always

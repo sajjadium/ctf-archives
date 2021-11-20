@@ -1,0 +1,15 @@
+(version 1)
+(deny default)
+
+(allow process-exec* 
+    (path "/Users/noteedit/ctf/noteedit"))
+
+(allow file-write* file-read-data file-read-metadata
+    (subpath "/Users/noteedit/ctf/tmp"))
+
+(allow file-read-data 
+    (path "/Users/noteedit/ctf/flag"))
+
+(allow file-read-metadata
+    (subpath "/usr/lib"))
+

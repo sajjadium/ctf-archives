@@ -1,0 +1,9 @@
+version: "3"
+services:
+    1337pins:
+        build: .
+        restart: always
+        ports:
+            - "27491:27491/tcp"
+        expose:
+            - "27491"

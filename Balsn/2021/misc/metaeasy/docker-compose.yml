@@ -1,0 +1,9 @@
+version: "3"
+services:
+    metaeasy:
+        build: ./
+        restart: always
+        ports:
+            - "19092:19092/tcp"
+        expose:
+            - "19092"
