@@ -811,7 +811,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/751/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="N1CTF">N1CTF</a></td>
+            <td rowspan=4><a href="N1CTF">N1CTF</a></td>
+            <td><a href="N1CTF/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1367/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="N1CTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1099/tasks/">CTFtime</a></td>
         </tr>
