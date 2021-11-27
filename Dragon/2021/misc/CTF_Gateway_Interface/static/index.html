@@ -1,0 +1,191 @@
+<html>
+  <head>
+    <title>CTFGatewayInterface</title>
+    <style>
+body {
+  background-color: #2f3136;
+  font-family: Arial, sans-serif;
+  color: #bbb;
+}
+
+div.outer {
+  display: flex;
+  align-items: center;
+  align-content: space-around;
+  justify-content: center;
+  height: 100vh;
+}
+
+div.inner {
+  background-color: #36393f;
+  padding: 1em;
+  border-radius: 20px;
+}
+
+div.panel {
+  min-width: 30em;
+  text-align: center;
+  padding: 2em;
+  padding-bottom: 1em;
+
+}
+
+h1 {
+  color: white;
+}
+
+div.button-outer {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+div.input-outer {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+input {
+  width: 100%;
+  border-color: black;
+  padding: 0.7em;
+  background: #2f3136;
+  color: #d6d8db;
+}
+
+button {
+  width: 100%;
+  background: #53575f;
+  font-size: 0.8em;
+  padding: 0.3em;
+  color: #b9b9b9;
+}
+
+div.text {
+  margin-left: 9em;
+}
+
+div.result {
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+}
+
+div.result-good {
+  color: #3ba55c;
+}
+
+div.result-bad {
+  color: #e95262;
+}
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <div class="inner">
+        <div class="panel">
+          <img src="banner.png" alt="CTFGatewayInterface">
+          <div class="input-outer">
+            <input type="password" placeholder="Password please..." id="password">
+          </div>
+          <div class="button-outer">
+            <button id="button">Login</button>
+          </div>
+          <div class="result" style="visibility: hidden;" id="message-outer">
+            <span id="message">Asdf</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+// Uhm, hi! How's life? All good?
+window.addEventListener('DOMContentLoaded', () => {
+  const elPassword = document.getElementById("password");
+  const elMessage = document.getElementById("message");
+  const elMessageOuter = document.getElementById("message-outer");
+  const elButton = document.getElementById("button");
+
+  function showMessage(text, type="") {
+    elMessageOuter.style.visibility = "visible";
+    elMessage.innerText = text;
+
+    elMessageOuter.classList.remove("result-bad");
+    elMessageOuter.classList.remove("result-good");
+    switch (type) {
+      case "good": elMessageOuter.classList.add("result-good"); break;
+      case "bad": elMessageOuter.classList.add("result-bad"); break;
+    }
+  }
+
+  function hideMessage() {
+    elMessageOuter.style.visibility = "hidden";
+  }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async function handlePasswordEntry() {
+    elButton.disabled = true;
+
+    const password = elPassword.value;
+    elPassword.value = "";
+
+    try {
+      showMessage(`Requesting authentication...`);
+      const resultEncoded = await fetch(
+          `/cgi-bin/startAuth.cgi?password=${password}`);
+      const result = await resultEncoded.json();
+      if (result.error) {
+        showMessage(result.error, "bad");
+        elButton.disabled = false;
+        return;
+      }
+
+      const sid = result.sid;
+      console.log(`Auth Session ID: ${sid}`);
+
+      showMessage(`Waiting for authentication...`);
+      while (true) {
+        await sleep(1000);
+        const resultEncoded = await fetch(`/cgi-bin/authResult.cgi?sid=${sid}`);
+
+        const result = await resultEncoded.json();
+        if (result.authInProgress) {
+          continue;
+        }
+
+        if (result.error) {
+          showMessage(`Auth error: ${result.error}`, "bad");
+          break;
+        }
+
+        if (result.authSuccessful) {
+          showMessage(`Auth successful: ${result.authMessage}`, "good");
+          break;
+        }
+
+        showMessage('Auth in weird state. SNAFU.', "bad");
+        break;
+      }
+
+    } catch (error) {
+      console.error(error);
+      showMessage("Something failed, check exceptions in dev console.", "bad");
+      elButton.disabled = false;
+      return;
+    }
+
+    elButton.disabled = false;
+  }
+
+  elButton.addEventListener('click', handlePasswordEntry);
+  elPassword.addEventListener('keydown', e => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      elButton.click();
+    }
+  });
+  elPassword.focus();
+});
+  </script>
+</html>
