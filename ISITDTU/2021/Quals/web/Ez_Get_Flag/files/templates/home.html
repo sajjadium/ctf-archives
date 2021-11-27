@@ -1,0 +1,132 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://stackpath.bootstrapcdn.com/bootstrap/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Album</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4 offset-md-1 py-4">
+              <a href="/rate">Rate</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+          <a href="#" class="navbar-brand d-flex align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+            <strong>Album</strong>
+          </a>
+    <nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/rate">Rate</a>
+</nav>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Welcome to Da Nang City</h1>
+          <br><br>
+          {% if secret %}
+          <i><h3 class="jumbotron-heading">Your secret: {{secret}}</h3></i>
+          {% endif %}
+        </div>
+      </section>
+
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <h4>Some Pictures:</h4>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="../static/images/1.jpg" alt="Card image cap" height="200">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <center class="text-muted"><b><i>Picture 1</i></b></center>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="../static/images/2.jpg" alt="Card image cap" height="200">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <center class="text-muted"><b><i>Picture 2</i></b></center>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="../static/images/3.jpg" alt="Card image cap" height="200">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <center class="text-muted"><b><i>Picture 3</i></b></center>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="../static/images/4.jpg" alt="Card image cap" height="200">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <center class="text-muted"><b><i>Picture 4</i></b></center>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="../static/images/5.jpg" alt="Card image cap" height="200">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <center class="text-muted"><b><i>Picture 5</i></b></center>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+                <img class="card-img-top" src="../static/images/6.jpg" alt="Card image cap" height="200">
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <center class="text-muted"><b><i>Picture 6</i></b></center>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="text-muted">
+
+    </footer>
+  </body>
+</html>

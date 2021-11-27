@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  web:
+    build: .
+    volumes:
+      - ./files:/ssti
+    ports:
+      - 5000:5000
+    networks:
+      - privatessti
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+networks:
+  privatessti:
+    external: false

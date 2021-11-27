@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  mysql:
+    build: ./mysql
+    container_name: mysql8
+    command: --default-authentication-plugin=mysql_native_password --sql_mode=""
+    restart: always
+    environment:
+     - MYSQL_ROOT_PASSWORD=[CENSORED]
+     - MYSQL_DATABASE=main
+    ports:
+     - "3306:3306"
+  web:
+    build: .
+    volumes:
+     - ./logs/:/var/log
+     - ./src/:/var/www/html
+    ports:
+     - "5005:80"
+    depends_on:
+      - mysql
