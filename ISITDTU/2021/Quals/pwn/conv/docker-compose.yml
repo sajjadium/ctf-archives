@@ -1,0 +1,9 @@
+version: '3.6'
+services:
+  conv:
+    build: .
+    ports:
+      - 31337:31337
+    working_dir: /home/ctf
+    entrypoint: /etc/run_xinetd.sh
+    read_only: true

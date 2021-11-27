@@ -695,7 +695,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/763/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ISITDTU">ISITDTU</a></td>
+            <td rowspan=3><a href="ISITDTU">ISITDTU</a></td>
+            <td><a href="ISITDTU/2021/Quals">2021 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1464/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ISITDTU/2019/Quals">2019 Quals</a></td>
             <td><a href="https://ctftime.org/event/803/tasks/">CTFtime</a></td>
         </tr>
