@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Your files!{% endblock %}
+{% block content %}
+    Here are your uploaded files. Share them with the world!
+    <hr>
+    <ol>
+    {% for file in files %}
+        <li><a href="{{ file.url }}">{{ file.name }}</a></li>
+    {% endfor %}
+    </ol>
+
+    <form action="/upload.html">
+        <input type="submit" value="Upload New Data">
+    </form>
+{% endblock %}

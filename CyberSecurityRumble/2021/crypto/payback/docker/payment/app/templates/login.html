@@ -1,0 +1,10 @@
+<html>
+    <h1>Login to TTPP</h1>
+    <form method="POST" action="{{ url_for('login', next=request.args.get('next', '')) }}">
+        <input name="name" id="name">
+        <input type="password" id="passwd" name="passwd">
+        <button type="submit">Login</button>
+    </form>
+
+    <a href="{{ url_for('register', next=request.args.get('next', '')) }}">Register</a> instead
+</html>

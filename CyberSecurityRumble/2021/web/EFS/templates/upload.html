@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Upload files{% endblock %}
+Upload the file you want to share with the world:
+{% block content %}
+    <form method="POST" enctype="multipart/form-data" action="/upload">
+             <input type=file name=file>
+             <input type=submit value=Upload>
+    </form>
+{% endblock %}

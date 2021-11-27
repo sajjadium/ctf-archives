@@ -1,0 +1,46 @@
+version: "2"
+services:
+ front-database:
+    restart: unless-stopped
+    image: "mariadb:latest"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MARIADB_ROOT_PASSWORD=cybercyber
+      - MARIADB_PASSWORD=cybercyber
+      - MARIADB_DATABASE=front
+      - MARIADB_USER=front
+      - MARIADB_ROOT_HOST=%
+ front:
+  restart: unless-stopped
+  build: 
+      context: ./docker/front
+  ports:
+    - "0.0.0.0:2293:5000"
+  environment:
+      - WAIT_HOSTS=front-database:3306
+      - PAYMENT_URL=http://payment.rumble.host
+      - CALLBACK_URL=http://payback.rumble.host
+  depends_on:
+      - front-database
+
+ payment-database:
+    restart: unless-stopped
+    image: "mariadb:latest"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MARIADB_ROOT_PASSWORD=cybercyber
+      - MARIADB_PASSWORD=cybercyber
+      - MARIADB_DATABASE=payment
+      - MARIADB_USER=payment
+      - MARIADB_ROOT_HOST=%
+
+ payment:
+    restart: unless-stopped
+    build: 
+      context: ./docker/payment
+    ports:
+      - "0.0.0.0:2294:5000"
+    environment:
+      - WAIT_HOSTS=payment-database:3306
+    depends_on:
+      - payment-database

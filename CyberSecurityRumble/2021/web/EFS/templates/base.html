@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Enterpize File Sharing</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="Description" lang="en" content="Thesis Converter">
+		<link rel="stylesheet" href="/static/css/style.css">
+
+    </head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<h1 class="header-heading">Enterpize File Sharing</h1>
+			</div>
+			<div class="content">
+				<div class="main">
+                {% for msg in get_flashed_messages() %}
+                    <div style="color: red">{{ msg }}</div>
+                {% endfor %}
+
+                    <h1>{% block title %}{% endblock %}</h1>
+                    {% block content %}{% endblock %}
+
+				</div>
+			</div>
+			<div class="footer">
+				&copy; by Enterpize File Sharing
+                <span style="float: right">
+                    <small>GDPR complient <a href="/download_all">download of all data</a></small>
+                </span>
+			</div>
+		</div>
+	</body>
+</html>
