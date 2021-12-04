@@ -1316,7 +1316,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1246/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="VULNCON">VULNCON</a></td>
+            <td rowspan=2><a href="VULNCON">VULNCON</a></td>
+            <td><a href="VULNCON/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1469/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="VULNCON/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1149/tasks/">CTFtime</a></td>
         </tr>
