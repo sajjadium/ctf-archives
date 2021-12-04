@@ -1,0 +1,7 @@
+#!/bin/sh
+
+mount -t tmpfs none /tmp
+
+/note
+
+poweroff -f

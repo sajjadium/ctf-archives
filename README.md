@@ -552,8 +552,12 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1353/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="HITCON">HITCON</a></td>
-            <td><a href="HITCON/2020/Quals">2020 Quals</a></td>
+            <td rowspan=5><a href="HITCON">HITCON</a></td>
+            <td><a href="HITCON/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1460/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="HITCON/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1136/tasks/">CTFtime</a></td>
         </tr>
         <tr>

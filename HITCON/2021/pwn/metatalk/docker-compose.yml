@@ -1,0 +1,17 @@
+version: "2.2"
+services:
+    afpd:
+        build: ./
+        volumes:
+            - ./share:/home/metatalk:ro
+            - ./tmp:/tmp:ro
+        ports:
+            - "5566:5566"
+        expose:
+            - "5566"
+        cpus: 1
+        mem_limit: 2048M
+        shm_size: 32M
+        ulimits:
+            nproc: 4096
+            nice: 0
