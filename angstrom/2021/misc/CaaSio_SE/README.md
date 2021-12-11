@@ -1,1 +1,0 @@
-Clam was not very happy when his CaaS (calculator as a service) got hacked, so he added sandboxing and AST (abstract snake tree) validation! Now, he has the new and improved CaaSio SE (Snake Edition)! Can you get the flag?

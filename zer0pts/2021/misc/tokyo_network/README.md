@@ -1,1 +1,0 @@
-Koganei---Otemachi---Hakusan---Hongo
