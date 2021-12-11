@@ -1,1 +1,0 @@
-I needed to copy a flag from my home computer to the mainframe at work, so I used a floppy drive. It looks like a few bytes in the file got corrupted, so I deleted the file thinking it would be fine, but my friend says that's not enough to prevent hackers from recovering the data.
