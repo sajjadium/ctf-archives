@@ -1398,7 +1398,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/656/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/WhiteHat/2018/Quals">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="X-MAS">X-MAS</a></td>
+            <td rowspan=3><a href="X-MAS">X-MAS</a></td>
+            <td><a href="X-MAS/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1520/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="X-MAS/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1209/tasks/">CTFtime</a></td>
         </tr>

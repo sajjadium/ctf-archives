@@ -1,0 +1,27 @@
+service chall
+{
+    # network options
+    disable = no
+    socket_type = stream
+    protocol    = tcp
+    wait        = no
+    type        = UNLISTED
+    port        = 2000
+    bind        = 0.0.0.0
+    
+    # challenge binary
+    server      = /usr/bin/timeout    
+    server_args = -s KILL 30 /home/ctf/pinguineza /home/ctf/challenge.pinguasm.bytes
+    banner_fail = /etc/banner_fail
+    
+    # safety options
+   
+    # unprivileged user
+    # CUSTOMIZE: resource limits
+    user        = ctf
+    group       = ctf
+    per_source	= 5     
+    rlimit_cpu	= 20
+    rlimit_as   = 1024M 
+}
+
