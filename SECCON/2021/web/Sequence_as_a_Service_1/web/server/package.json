@@ -1,0 +1,11 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "fastify": "^3.23.1",
+    "ljson": "^2.1.0"
+  }
+}

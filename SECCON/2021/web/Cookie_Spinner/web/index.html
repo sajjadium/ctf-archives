@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cookie Spinner</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body>
+  <form action="/report" method="post">
+    You got a cookie? Report to me if you didn't:
+    <input name="url" type="text" placeholder="https://example.com" required>
+    <button>report</button>
+  </form>
+  <div>
+    {{VIEW}}
+  </div>
+  <script nonce="{{NONCE}}">
+    if (document.cookie.length == 0) {
+      const sweets = "🍦/🍧/🍨/🍩/🎂/🍰/🧁/🥧/🍫/🍬/🍭/🍮/🍯".split("/").join("/🍪/").split("/");
+      document.cookie = "cookie=" + sweets[Math.floor(Math.random() * sweets.length)];
+    }
+  </script>
+  <script nonce="{{NONCE}}">
+    const main = () => {
+
+      const cookie = new URLSearchParams(location.search).get("cookie");
+      if (cookie) {
+
+        document.querySelector("#cookie").textContent = cookie;
+        document.cookie = "cookie=; expires=Thu, 01 Jan 1970 00:00:00 GMT"; // I ate your cookie 😋
+
+      } else {
+
+        // `window.window` is `window`
+        // So, `window.window.window` is also `window`.
+        // It means `window.window. ... .window` is also `window`!
+
+        const wInDoW = new URLSearchParams(location.search).get("window") || "window";
+        try {
+          const WINDOW = window;
+          const window1 = WINDOW[wInDoW];
+          const window2 = window1[wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW];
+          const window3 = window2[wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW][wInDoW];
+          if (window2 === window3) {
+            WINDOW.location.href = window1.location.origin + window1.location.pathname + "?" + (WINDOW.location.search + "&").slice(1) + document.cookie;
+          }
+        } catch (e) {
+          console.error(e);
+        }
+
+      }
+
+    };
+
+    if (document.querySelector("meta") != null) {
+      console.error("I hate <meta> tags :(");
+    } else {
+      main();
+    }
+  </script>
+</body>
+
+</html>

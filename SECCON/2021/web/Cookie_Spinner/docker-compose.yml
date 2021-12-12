@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  web:
+    build: ./web
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - BOT_HOST=bot
+      - BOT_PORT=8000
+  bot:
+    build: ./bot
+    restart: always
+    environment:
+      - PORT=8000
+      - FLAG=SECCON{dummydummy}
+      - APP_HOST=web

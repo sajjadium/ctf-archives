@@ -1,0 +1,96 @@
+/*
+https://purecss.io/layouts/blog/styles.css
+https://purecss.io/layouts/
+and some modifications
+*/
+
+a {
+    text-decoration: none;
+    color: rgb(61, 146, 201);
+}
+a:hover,
+a:focus {
+    text-decoration: underline;
+}
+
+/* LAYOUT CSS */
+.pure-img-responsive {
+    max-width: 100%;
+    height: auto;
+}
+
+#layout {
+    padding: 0;
+}
+
+.header {
+    text-align: center;
+    top: auto;
+    margin: 3em auto;
+}
+
+.sidebar {
+    background: rgb(61, 79, 93);
+    color: #fff;
+}
+
+.brand-title,
+.brand-tagline {
+    margin: 0;
+}
+.brand-title {
+    text-transform: uppercase;
+}
+.brand-tagline {
+    margin-top: 0.5em;
+    font-weight: 300;
+    font-size: 1.2em;
+    color: rgb(176, 202, 219);
+}
+
+.content {
+    padding: 1em 1em 0;
+    text-align: center;
+}
+
+form, p {
+    margin-top: 2em;
+}
+
+#name {
+    color: #234;
+    height: inherit;
+    min-width: 60%;
+}
+
+#error {
+    color: #c44;
+    border: solid 1px #d88;
+    border-radius: 8px;
+    background: #fee;
+    padding: 1em;
+}
+
+#logo {
+    border: solid 1px #ccc;
+    border-radius: 8px;
+}
+
+
+@media (min-width: 48em) {
+    .content {
+        padding: 3em 3em 0;
+        margin-left: 40%;
+    }
+
+    .header {
+        margin: 12em 2em 0;
+        text-align: right;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+    }
+}

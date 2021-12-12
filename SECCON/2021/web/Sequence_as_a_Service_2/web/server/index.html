@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <title>Sequence as a Service 2</title>
+</head>
+
+<body class="has-text-centered">
+  <section class="hero">
+    <div class="hero-body">
+      <p class="title">Sequence as a Service 2</p>
+      <p class="subtitle">
+        You can get the n-th terms of the given two sequences!
+      </p>
+    </div>
+  </section>
+  <div class="container is-max-desktop">
+    <div class="columns">
+      <div class="column is-half">
+        <div id="result0" class="box" style="font-size: 6rem;">　</div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Sequence</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="selectSequence0">
+                  </select>
+                </div>
+              </div>
+              <p class="help has-text-right">Ref. <a id="sequenceUrl0"></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Index</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input id="inputIndex0" class="input is-fullwidth" type="number" value="5" min="0" max="100">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div id="result1" class="box" style="font-size: 6rem;">　</div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Sequence</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="selectSequence1">
+                  </select>
+                </div>
+              </div>
+              <p class="help has-text-right">Ref. <a id="sequenceUrl1"></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Index</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input id="inputIndex1" class="input is-fullwidth" type="number" value="5" min="0" max="100">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const main = async () => {
+      const resultElms = [document.getElementById("result0"), document.getElementById("result1")];
+      const selectElms = [document.getElementById("selectSequence0"), document.getElementById("selectSequence1")];
+      const inputElms = [document.getElementById("inputIndex0"), document.getElementById("inputIndex1")];
+      const urlElms = [document.getElementById("sequenceUrl0"), document.getElementById("sequenceUrl1")];
+
+      const sequences = await (await fetch("/sequences.json")).json();
+      for (const elm of selectElms) {
+        for (const sequence of sequences) {
+          const e = document.createElement("option");
+          e.textContent = sequence.name;
+          elm.appendChild(e);
+        }
+      }
+
+      const updateResult = async () => {
+        const seqs = selectElms.map(elm =>
+          sequences.find(
+            seq => seq.name === elm.value
+          )
+        );
+        const ns = inputElms.map(elm => elm.value);
+        if (seqs.some(seq => seq == null) || ns.some(n => n == null)) {
+          return;
+        }
+        const params = new URLSearchParams({
+          sequence0: seqs[0].src,
+          n0: ns[0],
+          sequence1: seqs[1].src,
+          n1: ns[1],
+        });
+        for (const i of [0, 1]) {
+          urlElms[i].textContent = seqs[i].refUrl;
+          urlElms[i].setAttribute("href", seqs[i].refUrl);
+        }
+
+        try {
+          const response = await fetch("/api/getValue?" + params);
+          const result =  await response.json();
+          if (response.status !== 200) {
+            throw result;
+          }
+          for (const i of [0, 1]) {
+            resultElms[i].textContent = result[i];
+          }
+        } catch(err) {
+          console.error(err);
+          for (const i of [0, 1]) {
+            resultElms[i].textContent = "N/A";
+          }
+        }
+      }
+
+      for (const elm of selectElms.concat(inputElms)) {
+        elm.addEventListener("change", updateResult);
+      }
+      await updateResult();
+    };
+    main();
+  </script>
+</body>
+
+</html>

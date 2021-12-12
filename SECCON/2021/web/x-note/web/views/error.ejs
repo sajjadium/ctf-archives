@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include ("head") %>
+</head>
+
+<body>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <article class="message is-danger">
+              <div class="message-header">
+                <% if (url == null) { %>
+                  <p>Error</p>
+                <% } else { %>
+                  <p>Error at <%= url %></p>
+                <% } %>
+              </div>
+              <div class="message-body">
+                <%- msg %>
+              </div>
+            </article>
+            <p>Go to <a href="/">Home</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

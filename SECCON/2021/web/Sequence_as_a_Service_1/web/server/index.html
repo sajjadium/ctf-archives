@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <title>Sequence as a Service</title>
+</head>
+
+<body class="has-text-centered">
+  <section class="hero">
+    <div class="hero-body">
+      <p class="title">Sequence as a Service</p>
+      <p class="subtitle">
+        You can get the n-th term of the given sequence!
+      </p>
+    </div>
+  </section>
+  <div class="container is-max-desktop">
+    <div id="result" class="box" style="font-size: 10rem;">　</div>
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Sequence</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <div class="select is-fullwidth">
+                  <select id="selectSequence">
+                  </select>
+                </div>
+              </div>
+              <p class="help has-text-right">Ref. <a id="sequenceUrl"></a></p>
+            </div>
+          </div>
+        </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Index</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="control">
+                <input id="inputIndex" class="input is-fullwidth" type="number" value="5" min="0" max="100">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const main = async () => {
+      const resultElm = document.getElementById("result");
+      const selectElm = document.getElementById("selectSequence");
+      const inputElm = document.getElementById("inputIndex");
+      const urlElm = document.getElementById("sequenceUrl");
+
+      const sequences = await (await fetch("/sequences.json")).json();
+      for (const sequence of sequences) {
+        const elm = document.createElement("option");
+        elm.textContent = sequence.name;
+        selectElm.appendChild(elm);
+      }
+
+      const updateResult = async () => {
+        const sequence = sequences.find(
+          seq => seq.name === selectElm.value
+        );
+        const n = inputElm.value;
+        if (sequence == null || n == null) {
+          return;
+        }
+        const params = new URLSearchParams({
+          sequence: sequence.src,
+          n,
+        });
+        urlElm.textContent = sequence.refUrl;
+        urlElm.setAttribute("href", sequence.refUrl);
+
+        try {
+          const response = await fetch("/api/getValue?" + params);
+          const result =  await response.text();
+          if (response.status !== 200) {
+            throw result;
+          }
+          resultElm.textContent = result;
+        } catch(err) {
+          console.error(err);
+          resultElm.textContent = "N/A";
+        }
+      }
+
+      for (const elm of [selectElm, inputElm]) {
+        elm.addEventListener("change", updateResult);
+      }
+      await updateResult();
+    };
+    main();
+  </script>
+</body>
+
+</html>

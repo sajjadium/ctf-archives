@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include ("head") %>
+</head>
+
+<body>
+  <% if (query) { %>
+    <% const hitCount = filteredNotes.length; %>
+    <div class="modal is-active" id="modal">
+      <div class="modal-background" id="modalBackground"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">
+            Search Result
+          </p>
+          <button class="delete" aria-label="close" id="modalButton"></button>
+        </header>
+        <section class="modal-card-body">
+          <article class="message">
+            <pre class="message-body is-dark"><%=
+              hitCount > 0 && filteredNotes[0] || 'Not found ...'
+            %></pre>
+          </article>
+          <% if (hitCount > 1) { %>
+            <p>and <%= hitCount - 1 %> note(s).</p>
+          <% } %>
+        </section>
+      </div>
+    </div>
+    <script nonce="<%= nonce %>">
+      const closeModal = () => modal.classList.remove("is-active");
+      for (const elm of [modalBackground, modalButton]) {
+        elm.addEventListener("click", closeModal);
+      }
+    </script>
+  <% } %>
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-two-thirds">
+        <nav class="level my-4">
+          <div class="level-left">
+            <div class="level-item">
+              <p class="title">Notes</p>
+            </div>
+            <div class="level-item">
+              <a href="/logout" class="button is-small">Logout</a>
+            </div>
+          </div>
+          <div class="level-right">
+            <div class="level-item">
+              <form action="/" method="get">
+                <div class="field has-addons">
+                  <div class="control is-expanded">
+                    <input name="search" class="input" type="text" required>
+                  </div>
+                  <div class="control">
+                    <button class="button"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        <% if (notes.length > 0) { %>
+          <div class="container">
+            <% notes.forEach((note) => { %>
+              <article class="message">
+                <pre class="message-body"><%= note %></pre>
+              </article>
+            <% }); %>
+          </div>
+        <% } %>
+        <div class="section">
+          <form action="/createNote" method="post">
+            <div class="field">
+              <div class="control">
+                <textarea id="note" name="note" class="textarea" required></textarea>
+              </div>
+              <p class="help has-text-right"><span id="noteLength">0</span> / 500</p>
+            </div>
+            <div class="field is-grouped is-grouped-right">
+              <div class="control">
+                <button id="addNote" class="button is-success">Add</button>
+              </div>
+            </div>
+          </form>
+        </div>
+          <form action="/report" method="post">
+            <p class="help">If you notice something wrong, please report it to us:</p>
+            <div class="field has-addons">
+              <div class="control is-expanded">
+                <input name="url" class="input is-small" type="text" placeholder="https://example.com" required>
+              </div>
+              <div class="control">
+                <button class="button is-small">Report</button>
+              </div>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+  <script nonce="<%= nonce %>">
+    const updateNoteLength = () => {
+      const length = note.value.replaceAll("\n", "\r\n").length;
+      noteLength.textContent = length;
+      if (length > 500) {
+        noteLength.classList.add("has-text-danger");
+      } else {
+        noteLength.classList.remove("has-text-danger");
+      }
+    };
+    note.addEventListener("keyup", updateNoteLength);
+  </script>
+</body>
+
+</html>

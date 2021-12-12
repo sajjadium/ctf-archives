@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include ("head") %>
+</head>
+
+<body>
+  <section class="hero is-fullheight">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column is-half">
+            <h1 class="title">
+              Login
+            </h1>
+            <form action="/login" method="post">
+              <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                  <input id="name" name="name" class="input" type="text" required>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input id="password" name="password" class="input" type="text" required>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <button id="submit" class="button is-link">Submit</button>
+                </div>
+              </div>
+              <p>Go to <a href="/signup">Signup</a> if you don't have an account yet.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

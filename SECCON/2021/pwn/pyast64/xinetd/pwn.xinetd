@@ -1,0 +1,13 @@
+service pwn
+{
+	disable = no
+	socket_type = stream
+	protocol = tcp
+	wait = no
+	user = pwn
+	type = UNLISTED	
+	bind = 0.0.0.0
+	port = 9999
+	server = /home/pwn/pyast64.py
+	rlimit_as = 1024M
+}
