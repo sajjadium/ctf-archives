@@ -1,0 +1,29 @@
+{% include 'header.html' %}
+
+<section class="center-align" style="padding: 32px">
+	<div style="width: 50vw; margin: auto">
+		<h1 class="center-align">Quote Submission Form</h1>
+
+		<br/>
+		<p class="flow-text">Our admin is currently very grumpy and will reject all requests.</p><p class="flow-text green-text">{{ message }}</p>	
+	
+		<form action="/submit" method="POST">
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="quote" name="quote" type="text" minlength="8" maxlength="256">
+					<label for="quote">Quote</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="author" name="author" type="text" minlength="4" maxlength="32">
+					<label for="author">Author</label>
+				</div>
+			</div>
+
+			<input class="btn" type="submit" value="Submit">
+		</form>
+	</div>
+</section>
+
+{% include 'footer.html' %}

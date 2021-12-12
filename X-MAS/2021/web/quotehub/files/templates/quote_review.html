@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+
+<section class="center-align" style="padding: 32px">
+	<div style="width: 50vw; margin: auto">
+		<h1 class="center-align">Review Quote</h1>
+
+		<br/>
+		<blockquote class="flow-text">{{ quote.text|safe }}<br>- {{ quote.author }}</blockquote>
+		<br/>
+		<form method="POST">
+			<input type="hidden" name="secret" value="{{SECRET_TOKEN}}">
+			<input class="btn green" type="submit" name="action" value="APPROVE">
+			<input class="btn red" type="submit" name="action" value="REJECT">
+		</form>
+	</div>
+</section>
+
+{% include 'footer.html' %}

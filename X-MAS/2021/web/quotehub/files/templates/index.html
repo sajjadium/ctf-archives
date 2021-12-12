@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+
+<section class="left-align" style="padding: 32px;">
+	<h1 class="center-align">The best place to view quotes.</h1>
+
+	<br/>
+	<h5>Recently added:</h5>
+	{% for quote in quotes %}
+		<blockquote class="flow-text">{{ quote.text|safe }}<br>- {{ quote.author }}</blockquote>
+	{% endfor %}
+
+
+	<div class="center-align">
+		<a class="btn-large" href="/submit">Submit a Quote</a>
+	</div>
+</section>
+
+{% include 'footer.html' %}
