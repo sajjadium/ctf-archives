@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Report</title>
+    </head>
+<header>
+
+<body>
+<div id="content">
+        <section class="section">
+                <div class="container">
+                        <h1 class="title">report an issue to the admin!</h1>
+                        <p>having an issue? maybe you found a really cool note style? send any link here and the admin will check it out!</p>
+                {%if str %}
+                <ul class=flashes>
+                <label>{{str}}</label></ul></br>
+                {% endif %}
+
+        <form action='/report' method='POST' align='center'>
+        <p><input name='url' style='text-align: center;' type='text' placeholder='enter a url!' id="entryForm"/></p>
+        <p><input value='report' style='text-align: center;' type='submit' /></p>
+        </form></div></section>
+</body>
+
+        

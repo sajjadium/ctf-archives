@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}login!{% endblock %}
+{% block body %}
+<center>
+        <section class='section'>
+                <div class='container'>
+                        <h1 class='title'>upload a paste!</h1>
+<form action='/create' method='POST' align='center'>
+<div class='item'>
+<p>Title</p>
+<input name='title' type='text'>
+</div>
+<div class='item'>
+<p>Content</p>
+<textarea name='content' class='text' rows='10' cols='30' style='width: 700px; height: 500px;'></textarea>
+</div>
+<input name='submit' value='submit' type='submit'>
+</form>
+		</div>
+{% endblock %}

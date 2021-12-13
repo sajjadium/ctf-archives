@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}
+upload a note!
+{% endblock %}
+{% block body %}
+<center>
+	<section class="section">
+		<div class="container">
+			<h1 class="title">upload a note!</h1>
+		{%if message %}
+		<ul class=flashes>
+		<label>{{message}}</label></br>
+		<label><i>perhaps <a href="/fancy">fancify</a> your notes?</i></label>
+		{% endif %}
+	</ul>
+
+        <form action='/create' method='POST' align='center'>
+        <p><input name='title' style='text-align: center;' type='text' placeholder='enter a title' /></p>
+	    <p><input name='content' style='text-align: center;' type='text' placeholder='give it some content' /></p>
+        <p><input value='upload' style='text-align: center;' type='submit' /></p>
+        </form></div></section></center>
+{% endblock %}

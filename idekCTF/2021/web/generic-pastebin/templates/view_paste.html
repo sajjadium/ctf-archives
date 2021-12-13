@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}
+{{paste['title']}}
+{% endblock %}
+{% block body %}
+<section class='section is-medium is-centered'>
+	<center>
+	<div class='container is-primary is-centered'>
+		{% if paste %}
+		<h1 class='title'>{{paste['title']}}</h1>
+		<h2 class='subtitle'>{{paste['content']}}</h2>
+		{% else %}
+		<h1 class='title'>Paste not found!</h1>
+		<h2 class='subtitle'>The paste does not exist or you do not have permission to view it</h2>
+		{% endif %}
+	</div>
+	</center>
+</section>
+{% endblock %}

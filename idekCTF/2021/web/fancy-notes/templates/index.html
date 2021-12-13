@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}index!{% endblock %}
+{% block body %}
+<center>
+	<section class="section">
+		<div class="container">
+			<h1 class="title">welcome to fancy notes!</h1>
+		{%if message %}
+		<ul class=flashes>
+		<label><strong>{{message}}</strong></label></ul></br>
+		{% endif %}
+		{% for note in notes %}
+		<div class="container" id="note">
+		<p id="title"><strong>{{note[0]}}</strong></p>
+		<p id="content">{{note[1]}}</p>
+		<a href="/fancy?q={{note[0]}}"><button>fancify!</button></a></div></br>
+	</br>
+</div>
+		{% else %}
+		<p>you don't have any notes yet! go <a href='/create'>create</a> one!</center></p>
+        {% endfor %}
+    </div>
+</section>
+</center>
+{% endblock %}

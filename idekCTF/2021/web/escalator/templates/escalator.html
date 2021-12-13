@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Escalator</title>
+		<link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+	</head>
+	<body>
+		<h1>Escalator</h1>
+		
+		<h2>Its my first challenge, so please don't flame me</h2>
+		<h2>Make the escalator say something!<h2>
+		<p id="say">
+			{{toSay|safe}}
+		</p>
+		<img src="{{url_for('static', filename='escalator.png')}}" width="350">
+		<form>
+			<input type="text" name="inputtext" id="entryForm"> 
+		</form>
+		<script>
+			
+			
+			var entryForm = document.getElementById("entryForm");
+			
+			
+			
+		</script>
+		
+		<a onclick="location.href='/?toSay='+entryForm.value;">
+			 Submit
+		</a>
+		</form>
+
+		
+	</body>
+</html>

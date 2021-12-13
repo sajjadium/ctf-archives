@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}Pastebin{% endblock %}
+{% block body %}
+<center>
+	<section class="section">
+		<div class="container">
+			<h1 class="title">Generic Pastebin Challenge</h1>
+		{% for note in pastes %}
+		<div class="container" id="note">
+			<a href="/pastes/{{note[0]}}">{{note[1]}}</a></div>
+		{% else %}
+		<p>You do not have any notes yet. Upload a note <a href='/create'>here.</a> </center></p>
+        {% endfor %}
+    </div>
+</section>
+</center>
+{% endblock %}

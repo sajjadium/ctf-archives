@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block title %}register!{% endblock %}
+{% block body %}
+<center>
+	<section class="section">
+		<div class="container">
+			<h1 class="title">create an account!</h1>
+		{%if message %}
+		<ul class=flashes>
+		<label>{{message}}</label></ul></br>
+		{% endif %}
+
+        <form action='/register' method='POST' align='center'>
+        <p><input name='username' style='text-align: center;' type='text' placeholder='username' /></p>
+	    <p><input name='password' style='text-align: center;' type='password' placeholder='password' /></p>
+        <p><input value='register' style='text-align: center;' type='submit' /></p>
+        </form></div></section></center>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}report!{% endblock %}
+{% block body %}
+<center>
+	<section class="section">
+		<div class="container">
+			<h1 class="title">report an issue to the admin!</h1>
+			<p>having an issue? maybe you have got a really cool note style? send any link here and the admin will check it out!</p>
+		{%if message %}
+		<ul class=flashes>
+		<label>{{message}}</label></ul></br>
+		{% endif %}
+
+        <form action='/report' method='POST' align='center'>
+        <p><input name='url' style='text-align: center;' type='text' placeholder='enter a url!' /></p>
+        <p><input value='report' style='text-align: center;' type='submit' /></p>
+        </form></div></section>
+    </br>
+	<i>test exploits locally <strong>first</strong>! it is better for the server and easier for you to debug!</i></center>
+{% endblock %}

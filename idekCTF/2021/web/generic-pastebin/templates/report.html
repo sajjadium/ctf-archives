@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}Report Abuse{% endblock %}
+{% block body %}
+<center>
+	<section class="section">
+		<div class="container">
+			<h1 class="title">Report Abuse</h1>
+			<p>Send a link containing suspicious behavior for the admin to view.</p>
+		{%if message %}
+		<ul class=flashes>
+		<label>{{message}}</label></ul></br>
+		{% endif %}
+
+        <form action='/report' method='POST' align='center'>
+        <p><input name='url' style='text-align: center;' type='text' placeholder='enter a url' /></p>
+        <p><input value='report' style='text-align: center;' type='submit' /></p>
+        </form></div></section>
+    </br>
+{% endblock %}

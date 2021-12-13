@@ -1,0 +1,13 @@
+<center>
+<h1 class="title">Difference Output</h1>
+</center>
+</br>
+{{#each lines}}
+{{#if added}}
+<p style="color: green; background-color: LightGreen;">+&nbsp;{{value}}</p>
+{{else if removed}}
+<p style="color: red; background-color: Salmon">-&nbsp;{{value}}</p>
+{{else}}
+<p style="color: gray; background-color: LightGray">{{value}}</p>
+{{/if}}
+{{/each}}

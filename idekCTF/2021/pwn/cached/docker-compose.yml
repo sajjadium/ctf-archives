@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  deployment:
+    build: .
+    ports:
+      - 31337:5000
+    cap_drop:
+      - all
+    cap_add:
+      - chown
+      - setuid
+      - setgid
+      - sys_admin
+    security_opt:
+      - apparmor=unconfined
+      - seccomp=unconfined

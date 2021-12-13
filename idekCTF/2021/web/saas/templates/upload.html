@@ -1,0 +1,13 @@
+<html>
+   <body>
+      <h1>Steghide as a Service</h1>
+      <p>Enter your hidden message, password, and select a jpeg image, and we will embed it for you!</p>
+      </br>
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+	 <input type="text" name="content" placeholder="content" />
+	 <input type="password" name="password" placeholder="password" />
+         <input type="file" name="file" />
+         <input type="submit"/>
+      </form>   
+   </body>
+</html>

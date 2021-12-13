@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block title %}fancify your notes!{% endblock %}
+{% block body %}
+<script src="https://raw.githack.com/stretchr/arg.js/master/dist/arg-1.4.js"></script>
+<center>
+	<section class="section">
+		<div class="container">
+			<h1 class="title">make your notes fancy!</h1>
+		{%if message %}
+		<ul class=flashes>
+		<label><strong>{{message}}</strong></label></ul></br>
+		{% endif %}
+		{% if note %}
+		<div class="animation" id="note">
+		<p id="title">{{note[0]}}</p>
+		<p id="content">{{note[1]}}</p>
+		<style id='style'></style>
+	</br>
+</div>
+		{% else %}
+		<p>search for a note by title or content to make it <i>𝒻𝒶𝓃𝒸𝓎</i>!</p>
+		<form action='/fancy' method='GET' align='center'>
+        <p><input name='q' style='text-align: center;' type='text' placeholder='enter a search query' /></p>
+        <p><label for="style">select a style!</label></p>
+       		<select id="style" name="style"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select>
+        <p><input value='search' style='text-align: center;' type='submit' /></p>
+        </form>
+        {% endif %}
+    </div>
+</section>
+</center>
+<script src='/static/js/styles.js'></script>
+<script src='/static/js/fancify.js'></script>
+{% endblock %}
