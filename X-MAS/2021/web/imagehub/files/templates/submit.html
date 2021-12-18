@@ -1,0 +1,30 @@
+{% include 'header.html' %}
+
+<section class="center-align" style="padding: 32px">
+	<div style="width: 50vw; margin: auto">
+		<h1 class="center-align">Image Submission Form</h1>
+
+		<br/>
+		<p class="flow-text">Our admin is currently very grumpy and will reject everything (including hugs and memes).</p>
+		<p class="flow-text green-text">{{ message }}</p>	
+	
+		<form action="/submit" method="POST">
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="url" name="url" type="text" minlength="8" maxlength="256">
+					<label for="url">Image URL</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="desc" name="desc" type="text" minlength="4" maxlength="64">
+					<label for="desc">Image Description</label>
+				</div>
+			</div>
+
+			<input class="btn" type="submit" value="Submit">
+		</form>
+	</div>
+</section>
+
+{% include 'footer.html' %}

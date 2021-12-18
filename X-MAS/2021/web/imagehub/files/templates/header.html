@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>window.policyName1 = 'imagereviewthing';window.policyName2 = 'forEval';</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="trusted-types imagereviewthing forEval 'allow-duplicates'; script-src 'nonce-31333337' 'unsafe-eval' https://hcaptcha.com https://*.hcaptcha.com; object-src 'none'; require-trusted-types-for 'script'">
+<script nonce="31333337">
+	function htmlEnc(s) {
+		return s.replace(/&/g, '&amp;')
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/'/g, '&#39;')
+			.replace(/"/g, '&#34;');
+	}
+
+	if (typeof trustedTypes !== 'undefined') { 
+		window.trustedTypesPolicy = trustedTypes.createPolicy(window.policyName1, {
+			createHTML: function(url, desc) {
+				let s_url = htmlEnc(url);
+				let s_desc = htmlEnc(desc);
+
+				return '<img class="responsive-img" src="' + s_url + '" alt="' + s_desc + '" />';
+			}
+		});
+
+		window.raw = trustedTypes.createPolicy(window.policyName2, {
+			createScript: function(s) {
+				return s;
+			}
+		});
+	}
+</script>
+  <title>
+		{% if title is defined %}
+    	Image: {{ title|safe }}
+		{% else %}
+    	ImageHub
+		{% endif %}
+	</title>
+</head>
+<body>
+
+<nav>
+	<div class="nav-wrapper bg-white">
+		<a href="/" class="brand-logo">ImageHub</a>
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li><a href="/submit">Submit Image</a></li>
+		</ul>
+	</div>
+</nav>

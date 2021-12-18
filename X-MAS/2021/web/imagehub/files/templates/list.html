@@ -1,0 +1,20 @@
+{% include 'header.html' %}
+
+<section class="center-align" style="padding: 32px">
+	<div style="width: 50vw; margin: auto">
+		<h1 class="center-align">Unapproved Images</h1>
+
+		<br/>
+		<p class="flow-text">Welcome, admin</p>	
+	
+		{% if image_ids|length > 0 %}
+			{% for image_id in image_ids %}
+				<a class="waves-effect waves-light btn-small image-link" href="/image/{{image_id}}">{{image_id}}</a><br/><br/>
+			{% endfor %}
+		{% else %}
+			<p class="flow-text">There are no pending images. Go conquer the world!</p>	
+		{% endif %}
+	</div>
+</section>
+
+{% include 'footer.html' %}

@@ -1,0 +1,19 @@
+{% include 'header.html' %}
+
+<section class="left-align" style="padding: 32px;">
+	<h1 class="center-align">The best place to... uh... IDK, ok?!</h1>
+
+	<br/>
+	<h5>Recently added:</h5>
+	{% for image in images %}
+		<img class="responsive-img" src="{{ image.url }}" alt="{{ image.desc }}" />
+	{% endfor %}
+
+
+	<br/>
+	<div class="center-align">
+		<a class="btn-large" href="/submit">Submit an Image</a>
+	</div>
+</section>
+
+{% include 'footer.html' %}

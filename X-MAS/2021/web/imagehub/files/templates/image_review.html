@@ -1,0 +1,27 @@
+{% include 'header.html' %}
+
+<section class="center-align" style="padding: 32px">
+	<div style="width: 50vw; margin: auto">
+		<h1 class="center-align">Review Image</h1>
+
+		<br/>
+		<div id="image-place"></div>
+		<br/>
+		<form method="POST">
+			<input class="btn green" type="submit" name="action" value="APPROVE">
+			<input class="btn red" type="submit" name="action" value="REJECT">
+		</form>
+	</div>
+</section>
+
+<script nonce="31333337">
+const imageId = "{{ image_id }}";
+fetch("/api/unapproved/" + imageId).then((response) => response.text()).then((raw) => {
+	// parse JSON
+	eval(window.raw.createScript("var obj=" + raw));
+
+	document.getElementById('image-place').innerHTML = window.trustedTypesPolicy.createHTML(obj.url, obj.desc);
+});
+</script>
+
+{% include 'footer.html' %}
