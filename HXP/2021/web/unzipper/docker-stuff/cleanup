@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+$path = $argv[1];
+if (preg_match('|^/var/www/html/data/[0-9a-f]{32}$|', $path) !== 1 || (!is_dir($path))) {
+    die("$path: Not one of our directories\n");
+}
+$lock = fopen($path . '.lock', 'r');
+if (!$lock) {
+    die("$path: No lock file\n");
+}
+if (flock($lock, LOCK_EX | LOCK_NB) !== true) {
+    die("$path: Failed to lock\n");
+}
+if (system('rm -rf -- ' . escapeshellarg($path) . ' ' . escapeshellarg($path . '.lock'), $result) === false) {
+    die("$path: Failed to delete\n");
+}
+if ($result !== 0) {
+    die("$path: Failed to delete (status code $result)\n");
+}
+die("$path: Successfully deleted\n");
+
