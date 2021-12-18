@@ -1,0 +1,22 @@
+# hxp's gift to you in case you want to (try to) reproduce this build
+
+FROM debian:bullseye
+
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        build-essential ca-certificates libpcre3-dev libreadline-dev mercurial && \
+    rm -rf /var/lib/apt/lists
+
+RUN hg clone https://hg.nginx.org/njs/ && \
+    cd njs && \
+    hg update -r 1767:659995ad4f97
+
+WORKDIR njs
+RUN ./configure \
+        --cc-opt="-g0 -O2 -D_FORTIFY_SOURCE=2 -fcf-protection -fstack-protector-all" \
+        --ld-opt="-Wl,-S,-O1,-z,relro,-z,now" \
+        --test262=NO --debug=YES && \
+    make -j && \
+    strip build/njs
+
+# Grab /njs/build/njs from the container.
