@@ -904,7 +904,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1363/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="OverTheWireAdventBonanza">OverTheWire Advent Bonanza</a></td>
+            <td rowspan=2><a href="OverTheWireAdventBonanza">OverTheWire Advent Bonanza</a></td>
+            <td><a href="OverTheWireAdventBonanza/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1503/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="OverTheWireAdventBonanza/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/721/tasks/">CTFtime</a></td>
         </tr>
