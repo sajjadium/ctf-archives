@@ -1,0 +1,14 @@
+case $PLUTO_VERB in
+  up-client)
+    IF=$(ip r get ${PLUTO_PEER_CLIENT}|sed -ne 's,^.*dev \(\S\+\) .*,\1,p')
+    # NAT for using local IPV4 address in rightsourceip:
+    iptables -t nat -A POSTROUTING -s ${PLUTO_PEER_CLIENT} -o $IF -m policy --dir out --pol ipsec -j ACCEPT
+    iptables -t nat -A POSTROUTING -s ${PLUTO_PEER_CLIENT} -o $IF -j MASQUERADE
+    ;;
+  down-client)
+    IF=$(ip r get ${PLUTO_PEER_CLIENT}|sed -ne 's,^.*dev \(\S\+\) .*,\1,p')
+    # NAT for using local IPV4 address in rightsourceip:
+    iptables -t nat -D POSTROUTING -s ${PLUTO_PEER_CLIENT} -o $IF -m policy --dir out --pol ipsec -j ACCEPT
+    iptables -t nat -D POSTROUTING -s ${PLUTO_PEER_CLIENT} -o $IF -j MASQUERADE
+    ;;
+esac

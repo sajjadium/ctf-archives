@@ -799,7 +799,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/895/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="LedgerDonjon">Ledger Donjon</a></td>
+            <td rowspan=2><a href="LedgerDonjon">Ledger Donjon</a></td>
+            <td><a href="LedgerDonjon/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1516/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="LedgerDonjon/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1173/tasks/">CTFtime</a></td>
         </tr>

@@ -1,0 +1,37 @@
+#cd strongswan && ./create_pki.sh && cd -
+#echo FLAG=test > placeholder/flag.env && docker-compose up
+#for testing locally:
+#echo "10.13.0.2 vpn.donjon-ctf.io" >> /etc/hosts
+#cd strongswan && ./test.sh
+
+networks:
+  vpn_internal:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.13.0.0/24
+
+services:
+  strongswan:
+    build: strongswan
+    cap_add:
+      - NET_ADMIN
+    networks:
+      vpn_internal:
+        ipv4_address: 10.13.0.2
+    ports:
+      - "4500:4500/udp"
+    logging:
+      options:
+        max-size: 10M
+
+  placeholder:
+    build: placeholder
+    env_file:
+      - placeholder/flag.env
+    networks:
+      vpn_internal:
+        ipv4_address: 10.13.0.3
+    logging:
+      options:
+        max-size: 10M
