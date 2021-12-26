@@ -1,0 +1,135 @@
+    /*
+    Flaticon icon font: Flaticon
+    Creation date: 26/09/2016 00:56
+    */
+
+    @font-face {
+  font-family: "Flaticon";
+  src: url("./Flaticon.eot");
+  src: url("./Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./Flaticon.woff") format("woff"),
+       url("./Flaticon.ttf") format("truetype"),
+       url("./Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("./Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+    .fi:before{
+        display: inline-block;
+  font-family: "Flaticon";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-decoration: inherit;
+  text-rendering: optimizeLegibility;
+  text-transform: none;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+    }
+
+    .flaticon-amazon-logo:before { content: "\f100"; }
+.flaticon-ambulance:before { content: "\f101"; }
+.flaticon-android:before { content: "\f102"; }
+.flaticon-apple:before { content: "\f103"; }
+.flaticon-bathtub:before { content: "\f104"; }
+.flaticon-binoculars:before { content: "\f105"; }
+.flaticon-briefcase:before { content: "\f106"; }
+.flaticon-calendar:before { content: "\f107"; }
+.flaticon-cer-file-format:before { content: "\f108"; }
+.flaticon-cloud-computing:before { content: "\f109"; }
+.flaticon-cloud-computing-1:before { content: "\f10a"; }
+.flaticon-coding:before { content: "\f10b"; }
+.flaticon-coupon:before { content: "\f10c"; }
+.flaticon-cup:before { content: "\f10d"; }
+.flaticon-customer-service:before { content: "\f10e"; }
+.flaticon-devices:before { content: "\f10f"; }
+.flaticon-domain-registration:before { content: "\f110"; }
+.flaticon-download:before { content: "\f111"; }
+.flaticon-family-room:before { content: "\f112"; }
+.flaticon-first-aid-kit:before { content: "\f113"; }
+.flaticon-folder:before { content: "\f114"; }
+.flaticon-full-bed:before { content: "\f115"; }
+.flaticon-github:before { content: "\f116"; }
+.flaticon-happy:before { content: "\f117"; }
+.flaticon-hosting:before { content: "\f118"; }
+.flaticon-house:before { content: "\f119"; }
+.flaticon-idea:before { content: "\f11a"; }
+.flaticon-lifesaver-security-sportive-tool:before { content: "\f11b"; }
+.flaticon-line-graph:before { content: "\f11c"; }
+.flaticon-list:before { content: "\f11d"; }
+.flaticon-locked:before { content: "\f11e"; }
+.flaticon-mail:before { content: "\f11f"; }
+.flaticon-money:before { content: "\f120"; }
+.flaticon-new-file:before { content: "\f121"; }
+.flaticon-padlock:before { content: "\f122"; }
+.flaticon-pantone:before { content: "\f123"; }
+.flaticon-play-button:before { content: "\f124"; }
+.flaticon-price-tag:before { content: "\f125"; }
+.flaticon-school-bus:before { content: "\f126"; }
+.flaticon-search:before { content: "\f127"; }
+.flaticon-server:before { content: "\f128"; }
+.flaticon-stopwatch:before { content: "\f129"; }
+.flaticon-support:before { content: "\f12a"; }
+.flaticon-swimming-pool:before { content: "\f12b"; }
+.flaticon-unlink:before { content: "\f12c"; }
+.flaticon-windows:before { content: "\f12d"; }
+.flaticon-wordpress-logo:before { content: "\f12e"; }
+.flaticon-world-wide-web:before { content: "\f12f"; }
+    
+    $font-Flaticon-amazon-logo: "\f100";
+    $font-Flaticon-ambulance: "\f101";
+    $font-Flaticon-android: "\f102";
+    $font-Flaticon-apple: "\f103";
+    $font-Flaticon-bathtub: "\f104";
+    $font-Flaticon-binoculars: "\f105";
+    $font-Flaticon-briefcase: "\f106";
+    $font-Flaticon-calendar: "\f107";
+    $font-Flaticon-cer-file-format: "\f108";
+    $font-Flaticon-cloud-computing: "\f109";
+    $font-Flaticon-cloud-computing-1: "\f10a";
+    $font-Flaticon-coding: "\f10b";
+    $font-Flaticon-coupon: "\f10c";
+    $font-Flaticon-cup: "\f10d";
+    $font-Flaticon-customer-service: "\f10e";
+    $font-Flaticon-devices: "\f10f";
+    $font-Flaticon-domain-registration: "\f110";
+    $font-Flaticon-download: "\f111";
+    $font-Flaticon-family-room: "\f112";
+    $font-Flaticon-first-aid-kit: "\f113";
+    $font-Flaticon-folder: "\f114";
+    $font-Flaticon-full-bed: "\f115";
+    $font-Flaticon-github: "\f116";
+    $font-Flaticon-happy: "\f117";
+    $font-Flaticon-hosting: "\f118";
+    $font-Flaticon-house: "\f119";
+    $font-Flaticon-idea: "\f11a";
+    $font-Flaticon-lifesaver-security-sportive-tool: "\f11b";
+    $font-Flaticon-line-graph: "\f11c";
+    $font-Flaticon-list: "\f11d";
+    $font-Flaticon-locked: "\f11e";
+    $font-Flaticon-mail: "\f11f";
+    $font-Flaticon-money: "\f120";
+    $font-Flaticon-new-file: "\f121";
+    $font-Flaticon-padlock: "\f122";
+    $font-Flaticon-pantone: "\f123";
+    $font-Flaticon-play-button: "\f124";
+    $font-Flaticon-price-tag: "\f125";
+    $font-Flaticon-school-bus: "\f126";
+    $font-Flaticon-search: "\f127";
+    $font-Flaticon-server: "\f128";
+    $font-Flaticon-stopwatch: "\f129";
+    $font-Flaticon-support: "\f12a";
+    $font-Flaticon-swimming-pool: "\f12b";
+    $font-Flaticon-unlink: "\f12c";
+    $font-Flaticon-windows: "\f12d";
+    $font-Flaticon-wordpress-logo: "\f12e";
+    $font-Flaticon-world-wide-web: "\f12f";

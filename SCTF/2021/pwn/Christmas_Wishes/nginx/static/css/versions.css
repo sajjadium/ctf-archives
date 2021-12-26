@@ -1,0 +1,151 @@
+/*------------------------------------------------------------------
+    Christmas 
+-------------------------------------------------------------------*/
+
+body.christmas_version .lead strong {
+    color: #a9c938;
+}
+
+body.christmas_version a:hover,
+body.christmas_version a:focus {
+    background: #a9c938;
+    color: #fff;
+}
+
+body.christmas_version .footer-links a:hover,
+body.christmas_version .icon-wrapper:hover a {
+    background: transparent;
+    color: #a9c938;
+}
+
+body.christmas_version .effect-1:after {
+    box-shadow: 0 0 0 2px #a9c938 !important;
+}
+
+body.christmas_version .footer-links a:hover,
+body.christmas_version .footer a:hover {
+    color: #a9c938 !important;
+}
+
+
+/**************************************
+GRADIENTS 
+**************************************/
+
+body.christmas_version .icon_wrap:hover,
+body.christmas_version .nav-pills > li.active > a,
+body.christmas_version .nav-pills > li.active > a:focus,
+body.christmas_version .nav-pills > li.active > a:hover,
+body.christmas_version .icon-wrapper:hover i,
+body.christmas_version .grd1 {
+    color: #ffffff;
+    background: #1976D2;
+    background: -moz-linear-gradient(left, #1976D2 0%, #2196F3 100%);
+    background: -webkit-linear-gradient(left, #1976D2 0%, #2196F3 100%);
+    background: linear-gradient(to right, #1976D2 0%, #2196F3 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#1976D2', endColorstr='#2196F3', GradientType=1);
+}
+
+body.christmas_version .icon_wrap,
+body.christmas_version .dmtop:hover,
+body.christmas_version .cac:hover,
+body.christmas_version .features-right li:hover i,
+body.christmas_version .features-left li:hover i,
+body.christmas_version .nav-pills > li:hover > a,
+body.christmas_version .nav-pills > li:focus > a,
+body.christmas_version .nav-pills > li.active > a,
+body.christmas_version .nav-pills > li.active > a:focus,
+body.christmas_version .nav-pills > li.active > a:hover,
+body.christmas_version .divider-bar,
+body.christmas_version .owl-next:hover i,
+body.christmas_version .owl-prev:hover i,
+body.christmas_version .icon-wrapper:hover i:hover,
+body.christmas_version .grd1:hover,
+body.christmas_version .grd1:focus {
+    background-position: 100px;
+    color: #ffffff;
+    background: #a9c938;
+   }
+
+
+/**************************************
+OTHERS 
+**************************************/
+
+body.christmas_version .owl-next i,
+body.christmas_version .owl-prev i {
+    background-color: #f2f3f5;
+}
+
+body.christmas_version .footer-distributed .footer-left {
+    float: none;
+}
+
+body.christmas_version .copyrights {
+    background-color: #222;
+}
+
+body.christmas_version .affix {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #eee !important;
+}
+
+body.christmas_version .header_style_01 {
+    background-color: #fff;
+    position: relative;
+    box-shadow: 0 0 25px 0 rgba(0,0,0,.1);
+}
+
+body.christmas_version .image-center img {
+    top: -9%;
+    left: 2%;
+    position: absolute !important;
+    z-index: 10;
+    text-align: center;
+    max-width: 40%;
+}
+
+body.christmas_version .service-widget h3 {
+    padding-bottom: 5px;
+}
+
+body.christmas_version li.social-links a {
+    padding: 10px 0 !important;
+}
+
+body.christmas_version .section-title h3 {
+    font-size: 55px;
+}
+
+body.christmas_version .dmtop,
+body.christmas_version .section.db {
+    background-color: #000;
+}
+
+body.christmas_version .first-section {
+    padding: 11em 0;
+}
+
+body.christmas_version .header_style_01 .navbar-default .navbar-nav > li > a {
+    color: #000 !important;
+}
+
+body.christmas_version .first-section h2 {
+    color: #000;
+    font-size: 60px;
+}
+
+body.christmas_version .first-section .lead {
+    color: #999;
+}
+
+body.christmas_version .btn-dark {
+    border: 2px solid #a9c938 !important;
+}
+
+body.christmas_version .macbookright {
+    width: 780px;
+    position: absolute;
+    right: 7%;
+    bottom: -1%;
+}

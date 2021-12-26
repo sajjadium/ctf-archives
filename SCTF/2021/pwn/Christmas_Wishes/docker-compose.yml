@@ -1,0 +1,20 @@
+version: '3'
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 7777:80
+    networks: 
+      pwnnet:
+
+  fpm:
+    build:
+      context: ./fpm
+      dockerfile: Dockerfile
+    networks: 
+      pwnnet:
+
+networks:
+  pwnnet:
