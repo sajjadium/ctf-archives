@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Classic...</title>
+	</head>
+	<body>
+		<div>
+			<form method="POST" action="/note">
+				Write your note:
+				<br><br>
+				<input  id="titleField" name="title" placeholder="Title">
+				<br><br>
+				<textarea id="contentField" rows="10" cols="50" name="content" placeholder="Content"></textarea>
+				<br><br>
+				<button id="noteSubmitBtn">Submit</button>
+			</form>
+		</div>
+		<div>
+			<ul>
+			<% notes.forEach(e=>{ %>
+				<li>
+					<a href="/note/<%= e.id %>">
+						<%= (e.title) %>
+					</a>
+					 - 
+					<a href="/report?noteid=<%= e.id %>">Share with admin</a>
+				</li>
+			<% }) %>
+			</ul>
+		</div>
+		<hr>
+		<div>
+			<form method="GET" action="/search">
+				Search for notes:
+				<br><br>
+				<input name="search" placeholder="Title">
+				<br><br>
+				<button>Submit</button>
+			</form>
+			<br>
+		</div>
+
+	</body>
+</html>

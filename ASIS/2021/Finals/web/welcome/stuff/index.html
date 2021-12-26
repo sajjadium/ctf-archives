@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>FLAG fLaG FlAg</title>
+		<style>
+			body {
+				background-color: #E1A602;
+				color: #212529;
+				font-family: arial;
+				font-size: 18px;
+				text-align: center;
+			}
+
+			#cont {
+				margin-top: 100px;
+			}
+
+			.g-recaptcha {
+				display: inline-block;
+			}
+
+			#submitbtn {
+				font-size: 16px;
+			    background-color: #1D809F;
+			    padding: 7px 10px;
+			    color: white;
+			    border: 0px;
+			    border-radius: 5px;
+			}
+		</style>
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	</head>
+	<body>
+		<div id="cont">
+			<pre id="msg">
+				
+			</pre>
+			<br>
+			<br>
+			<form action="/flag" method="POST">
+				<div class="g-recaptcha" data-sitekey="$SITEKEY$"></div>
+				<br/>
+				<br/>
+				<input id="submitbtn" type="submit" value="Submit">
+		    </form>
+		</div>
+		<script>
+			msg.innerText = '$MSG$';
+		</script>
+		<!-- Report bugs at /report -->
+	</body>
+</html>

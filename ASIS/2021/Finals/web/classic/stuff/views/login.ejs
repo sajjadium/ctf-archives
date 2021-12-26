@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Classic...</title>
+	</head>
+	<body>
+		<div>
+			<form method="POST" action="/login">
+				Reigster or Login:
+				<br>
+				<br>
+				<label for="fname">Username:</label>
+				<input id="usernameField" type="text" name="username"><br><br>
+				<label for="fname">Password:</label>
+				<input id="passwordField" type="text" name="password"><br><br>
+				<button id="submitbtn">Submit</button>
+				<% if (error) { %>
+				   <br><br><b>Error: <%= error %></b>
+				<% }  %> 
+			</form>
+		</div>
+	</body>
+</html>
