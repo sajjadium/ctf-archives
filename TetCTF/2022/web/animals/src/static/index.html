@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>TET 2020</title>
+</head>
+
+<body>
+    <!-- Begin header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="https://i.imgur.com/vry5azj.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- End header -->
+    <div class="d-flex justify-content-center">
+        <p id="countdown">..........</p>
+    </div>
+    <!-- Begin body -->
+    <div class="container">
+        <div class="card text-center">
+            <div class="card-header">
+                Animals of the years
+            </div>
+            <div class="card-body">
+                <div class="row d-flex justify-content-center">
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Years</th>
+                                <th scope="col">Animal</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table">
+                            <tr>
+                                <th scope="row">2022</th>
+                                <td>Tiger 🐯🔫</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- ENd-Table -->
+                </div>
+                <div class="d-flex justify-content-center mt-3">
+                    <form class="form-inline" id="form-url">
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="year" class="sr-only">Years</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2" id="getImage">Get animals</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- End body -->
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $('form').on('submit', function (e) {
+                const list = ["list-2010-2016.js", "list-2017-2022.js"]
+                const random = Math.floor(Math.random() * list.length);
+                e.preventDefault();
+                $("#error").html("")
+                let year = $('#year').val()
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/tet/list',
+                    success: function (data) {
+                        let template = parseTable(data);
+                        $("#table").html(template)
+                    }
+                });
+
+            });
+
+            let parseTable = (data) => {
+                let template = ""
+                for (i in data) {
+                    template += `<tr>
+                                    <th scope="row">${i}</th>
+                                    <td>${data[i]}</td>
+                                </tr>`
+                }
+                return template
+            }
+        });
+    </script>
+    <script>
+        setInterval(function () {
+
+            $.ajax({
+                type: 'GET',
+                url: '/api/tet/countdown',
+                success: function (data) {
+                    console.log(data)
+                    $("#countdown").html(data)
+                }
+            });
+        }, 1000)
+    </script>
+</body>
+
+</html>

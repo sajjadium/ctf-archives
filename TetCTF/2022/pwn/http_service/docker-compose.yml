@@ -1,0 +1,14 @@
+version: '2'
+
+services: 
+  simpleweb:
+    build: 
+      context: .
+      args: 
+        - CHALL=simpleweb
+    container_name: simpleweb
+    volumes:
+      - ./simpleweb:/home/simpleweb/
+    ports:
+      - "8080:80"
+

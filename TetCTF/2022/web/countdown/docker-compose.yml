@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+    countdown:
+        restart: always
+        build: .
+        image: tetctf-countdown
+        ports:
+            - "8084:8084"

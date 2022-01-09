@@ -1,0 +1,11 @@
+Hướng dẫn setup:
+- Chạy command: cd setup/;setup.sh
+
+Thay đổi mỗi round:
+- Thay đổi password của các user trong file users sau mỗi round.
+- Thay đổi tên file flag sau mỗi round: flag_md5(random_string)
+
+Yêu cầu đối với patch:
+- Chỉ cho phép patch file webcgi.cgi
+- Chỉ cho phép patch tối đa 15 byte (đã có hàm check trong bot.py)
+- Service chạy phải vượt qua bước check bằng hàm servicecheck(url) trong file bot.py

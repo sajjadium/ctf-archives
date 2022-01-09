@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+    animals:
+        restart: always
+        build: .
+        image: tetctf-animals
+        ports:
+            - "3000:3000"
+        user: "1000:1000"

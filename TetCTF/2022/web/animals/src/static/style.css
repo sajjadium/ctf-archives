@@ -1,0 +1,13 @@
+body {
+    align-items: center;
+    background-color: #fcdb71;  
+}
+  
+#countdown{
+    text-transform: uppercase;
+	background: linear-gradient(to right, #ca1f36 0%, #df0985 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	font-size: 30px;
+	font-weight: bold;
+}
