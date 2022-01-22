@@ -784,6 +784,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1510/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="KnightCTF">KnightCTF</a></td>
+            <td><a href="KnightCTF/2022">2021</a></td>
+            <td><a href="https://ctftime.org/event/1545/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="LINE">LINE</a></td>
             <td><a href="LINE/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1269/tasks/">CTFtime</a></td>
