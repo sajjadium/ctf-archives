@@ -1,0 +1,9 @@
+version: '3'
+services:
+    nbd:
+        image: "nbd"
+        ports:
+            - "10809"
+        volumes:
+            - "./flag.txt:/mnt/flag.txt:ro"
+

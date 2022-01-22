@@ -1,0 +1,31 @@
+#!/bin/bash -e
+
+POW_BITS="${POW_BITS:-26}"
+MAX_PDF_SIZE_IN_MIB="${MAX_PDF_SIZE_IN_MIB:-4}"
+
+POW_CHALLENGE="$(tr -dc A-Za-z0-9 </dev/urandom 2>/dev/null | head -c 16)"
+
+cat banner
+
+if [[ "$POW_BITS" -gt 0 ]]; then
+    echo "Proof of Work: send me output of hashcash -qmb$POW_BITS $POW_CHALLENGE"
+    read -r token
+    hashcash -ycb"$POW_BITS" -r "$POW_CHALLENGE" "$token"
+fi
+
+CONN_ENV="$(mktemp -d -t challenv-XXXXXXXXXX)"
+trap 'rm -rf -- "$CONN_ENV"' EXIT
+
+echo "Send me your pdf (max size: $MAX_PDF_SIZE_IN_MIB MiB), end with EOF."
+(ulimit -f $(($MAX_PDF_SIZE_IN_MIB*1024)) && cat > "$CONN_ENV/input.pdf")
+echo "OK. $(wc -c < "$CONN_ENV/input.pdf") bytes read."
+echo "Waiting for an available worker..."
+if sem --ungroup --fg --id pdf2html -j400% "
+    echo Running...; echo
+    podman run --log-level error --secret flag --rm -a stdout -a stderr --ulimit fsize=$((4*1024*1024)) \
+               --timeout 60 --memory 2g -v $CONN_ENV:/io -w /io hsogroupie/pdftohtml input.pdf output 2>&1"; then
+    echo "Here is your PDF rendered in HTML, as a tarball:"
+    tar --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -cf - -C "$CONN_ENV" output | head -c 1M
+elif [[ ! $? -eq 1 ]]; then
+    echo "Something wrong: $?"
+fi

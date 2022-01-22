@@ -1,0 +1,13 @@
+version: '3'
+services:
+    flag:
+        image: "flag"
+        ports:
+            - "5555"
+        volumes:
+            - "./flag.txt:/mnt/flag.txt"
+            - "./flag.bin:/mnt/flag.bin"
+        healthcheck:
+            test: ["CMD", "python3", "/flag.py"]
+            start_period: "30s"
+
