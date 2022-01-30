@@ -1,0 +1,89 @@
+<html>
+<head>
+<link rel="StyleSheet" href="/static/styles.css"/>
+</head>
+<body>
+<script src="/static/jquery-3.5.1.js"></script>
+<script src="/static/jquery.query-object.js"></script>
+
+
+<div id="menu">
+  <a href="#page=home"><div class="menuitem">Home</div></a>
+  <a href="#page=secrets"><div class="menuitem" >Secrets</div></a>
+  <a href="#page=report"><div class="menuitem">Report</div></a>
+  <a href="#page=register"><div class="menuitem">Register</div></a>
+  <a href="#page={{login|lower}}"><div class="menuitem">{{login}}</div></a>
+
+</div>
+<div id="error" onclick="closeError()"></div>
+<div id="home" class="page">
+  <div class="title">
+    Personal Vault
+  </div>
+  <div class="content">
+    <p>It can be difficult to keep your secrets safe in this world.</p>
+    <p>Thankfully, we have a solution for you, as you can store all of your secrets here in your personal Vault.</p>
+    <p>We have implemented security features that ensure that even if vulnerabilities are discovered in the Vault, your secrets cannot be compromised by others!</p>
+    <p>Trust us, we know what we're doing!</p>
+  </div>
+</div>
+<div id="secrets" class="page">
+  <div class="title">
+    Vault contents
+  </div>
+  <div class="content">
+  </div>
+  <div class="title">
+    Add new secret
+  </div>
+  <div class="content">
+    <table>
+      <form id="secretform" onsubmit="secret();return false">
+        <tr><td>Name</td><td><input type="text" name="secret_name"/></td></tr>
+        <tr><td>Value</td><td><input type="text" name="secret_value"/></td></tr>
+        <tr><td colspan="2"><input type="submit" value="Add secret"/></td></tr>
+      </form>
+    </table>
+  </div>
+</div>
+<div id="report" class="page">
+  <div class="title">
+    Report an issue
+  </div>
+  <div class="content">
+    <p>We take any problem with this website very seriously.</p>
+    <p>Please report any unexpected behaviour by sending us the misbehaving URL below</p>
+    <form id="reportform" onsubmit="report();return false"><input type="text" name="url"/><input type="submit" value="Send"/></form>
+  </div>
+</div>
+<div id="login" class="page">
+  <div class="title">
+    Login to your account
+  </div>
+  <div class="content">
+    <table>
+      <form id="loginform" onsubmit="login();return false">
+        <tr><td>Username</td><td><input type="text" name="username"/></td></tr>
+        <tr><td>Password</td><td><input type="password" name="password"/></td></tr>
+        <tr><td colspan="2"><input type="submit" value="Login"/></td></tr>
+      </form>
+    </table>
+  </div>
+</div>
+<div id="register" class="page">
+  <div class="title">
+    Register a new account
+  </div>
+  <div class="content">
+    <table>
+      <form id="registerform" onsubmit="register();return false">
+        <tr><td>Username</td><td><input type="text" name="username"/></td></tr>
+        <tr><td>Password</td><td><input type="password" name="password"/></td></tr>
+        <tr><td colspan="2"><input type="submit" value="Login"/></td></tr>
+      </form>
+    </table>
+  </div>
+</div>
+<script src="/static/main.js"></script>
+</body>
+</html>

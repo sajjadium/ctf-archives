@@ -1,0 +1,22 @@
+version: "3"
+services:
+  webapp:
+    restart: always
+    build: webapp 
+    volumes:
+      - ./webapp/app:/app
+    environment:
+      - SA_PASSWORD=very_complex_12345
+      - ADMIN_PWD=very_complex_1234
+      - VHOST=localhost:5000
+    ports:
+      - "5000:5000"
+  db:
+    restart: always
+    build: db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=very_complex_12345
+      - ADMIN_PWD=very_complex_1234
+      - SECRET_PWD=very_complex_1234
+      - FLAG=INS{fake-flag}

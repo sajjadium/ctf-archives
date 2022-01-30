@@ -1,0 +1,110 @@
+body {
+	background-color: #333333;
+	color: #aaaaaa;
+	margin: 0 auto;
+	font-family: 'Roboto';
+	font-size:  x-large;
+	background-image: url("bg.jpg");
+}
+
+a {
+	color:  white;
+}
+
+table {
+	margin:  0 auto;
+	width: 500px;
+	text-align: center;
+}
+
+#error {
+	margin:  0 auto;
+	width: 300px;
+	padding:  20px;
+	background-color:  #990000;
+	color:  white;
+	position:  relative;
+	top:  50px;
+	display:  none;
+	border-radius: 10px;
+	box-shadow: 2px 2px 0px 0px #666666;
+	z-index: 100;
+	text-align:  center;
+	cursor:  pointer;
+}
+
+#menu {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 50px;
+	background-color: black;
+	color: white;
+	text-align:  center;
+}
+
+.menuitem {
+	width: 140px;
+	height: 50px;
+	line-height: 50px;
+	display:  inline-block;
+	text-align: center;
+}
+
+.menuitem:hover {
+	background-color: #333333;
+}
+
+#main {
+	margin: 0 auto;
+	width: 100%;
+	position:  absolute;
+	top: 50px;
+	text-align: center;
+}
+
+.title {
+	background-color: #202020;
+	color: white;
+	width: 80%;
+	padding:  20px;
+	margin:  0 auto;
+	margin-bottom:  2px;
+	margin-top:  2px;
+}
+
+.content {
+	background-color: #202020;
+	color: white;
+	width: 80%;
+	padding:  20px;
+	margin:  0 auto;
+}
+
+.page {
+	margin: 0 auto;
+	width: 100%;
+	position:  absolute;
+	top: 50px;
+	text-align: center;
+	display: none;
+}
+
+.secret {
+	width: 80%;
+	border-bottom:  1px solid white;
+	margin:  0 auto;
+	height:  40px;
+	line-height: 40px;
+}
+
+.secret_name {
+	float: left;
+	text-align:  right;
+}
+
+.secret_value {
+	float: right;
+	text-align:  left;
+}
