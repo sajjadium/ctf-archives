@@ -750,7 +750,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/662/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/InCTF/2018">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="InsomniHack">Insomni'hack</a></td>
+            <td rowspan=2><a href="InsomniHack">Insomni'hack</a></td>
+            <td><a href="InsomniHack/2022/Quals">2022 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1505/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="InsomniHack/2019/Quals">2019 Quals</a></td>
             <td><a href="https://ctftime.org/event/686/tasks/">CTFtime</a></td>
         </tr>
