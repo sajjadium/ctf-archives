@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vm-calc | admin</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/admin">Admin</a>
+            </nav>
+            <h1>vm-calc | admin</h1>
+            <p>Log into the admin account here.</p>
+        </header>
+
+        <main>
+            <h4>Login:</h4>
+            {{#if error}}
+            <p>Error: {{error}}</p>
+            {{/if}}
+            {{#if flag}}
+            <p>Flag: {{flag}}</p>
+            {{/if}}
+
+            <form method="POST" id="form">
+                <input name="user" placeholder="Username" />
+                <input name="pass" placeholder="Password" />
+                <input type="submit" />
+            </form>
+        </main>
+    </body>
+</html>

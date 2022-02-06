@@ -1,0 +1,25 @@
+<% await include(`./langs/${lang}`); %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>denoblog</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css">
+</head>
+<body>
+    <main>
+        <hgroup>
+            <h1>denoblog</h1>
+            <h2><%= i18n.HEADER %></h2>
+        </hgroup>
+        <nav>
+            <ul>
+                <li><%= i18n.SWITCH_LANG %></li>
+                <li><a href="javascript:document.cookie = 'lang=en'; location.reload();">English</a></li>
+                <li><a href="javascript:document.cookie = 'lang=es'; location.reload();">Español</a></li>
+            </ul>
+          </nav>
+        <hr />
+        <%= i18n.COMING_SOON %>
+    </main>
+</body>
+</html>

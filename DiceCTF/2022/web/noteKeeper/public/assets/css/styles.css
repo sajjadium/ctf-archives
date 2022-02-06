@@ -1,0 +1,105 @@
+body {
+  background: #50C9C3;
+  background: -webkit-linear-gradient(to left, #96DEDA, #50C9C3);
+  background: linear-gradient(to left, #96DEDA, #50C9C3);
+}
+
+nav {
+  background: white;
+  box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+}
+
+.content {
+  display: flex;
+}
+
+.box {
+  background: white;
+  padding: 2em;
+  margin-top: 2em;
+  border-radius: 1em;
+  box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+}
+
+.alert {
+  box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+}
+
+button {
+  box-shadow: 3px 3px 4px rgba(0,0,0,0.2) !important;
+  border-radius: 1em;
+}
+
+.box > h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
+
+.box > h1 {
+  margin-bottom: 0.5em;
+}
+
+.form {
+  max-width: 66%;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: column;
+}
+
+.form > form {
+  width: 100%;
+}
+
+.form-control {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #aaaaaa;
+  border-radius: 0;
+  text-shadow: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #50c9c3;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  box-shadow: 4px 4px 0 #50C9C3;
+}
+
+[contenteditable]:focus {
+  outline: 0px solid transparent;
+  border-color: #50c9c3;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  box-shadow: 4px 4px 0 #50C9C3;
+}
+[contenteditable]:empty:not(:focus):before{
+  content: attr(data-text)
+}
+.textarea {
+  width: 100%;
+  min-height: 5em;
+  max-height: 15em;
+  overflow: auto;
+  border: none;
+  padding: 0.5em;
+  border-bottom: 1px solid #aaaaaa;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.note {
+  cursor: pointer;
+}
+.note:hover {
+  color: red;
+  text-decoration: underline;
+}
+
+.note:not(:hover) > .note-trash {
+  display: none;
+}
+
+main {
+  margin-bottom: 3em;
+}

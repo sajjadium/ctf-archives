@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>noteKeeper</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md">
+        <div class="container">
+            <a class="navbar-brand link-info" href="/">
+                <span class="text-warning"><i class="fas fa-pencil-alt"></i></span> noteKeeper
+            </a>
+        </div>
+    </nav>
+    <main class="content">
+        <div class="container">
+            <div class="box">
+                <h1>
+                    <span class="text-warning">
+                        <i class="fas fa-pencil-alt"></i>
+                    </span> noteKeeper
+                </h1>
+                <h3>Welcome, <span id="username"></span>.</h3>
+            </div>
+
+            <div class="mt-4 alert d-none" id="alert"></div>
+
+            <div class="box">
+                <h3>
+                    <span class="text-warning">
+                        <i class="fas fa-clipboard"></i>
+                    </span> Your Notes
+                </h3>
+
+                <section id="notes">
+                    
+                </section>
+                <section id="audio" class="d-none">
+                    <hr />
+                    <h5 class="text-start">Voice Memo:</h5>
+                    <div id="audio-zone"></div>
+                    <form method="POST" action="/api/audio/remove">
+                        <button type="submit" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </section>
+            </div>
+
+            <div class="box">
+                <h3>
+                    <span class="text-warning">
+                        <i class="fas fa-cogs"></i>
+                    </span> Settings
+                </h3>
+                <hr />
+                <section class="form">
+                    <h3 class="text-start">Add a new note:</h3>
+                    <form method="POST" action="/api/notes/add" id="note-form">
+                        <textarea name="note" class="d-none" id="note-textarea"></textarea>
+                        <div class="textarea mb-2" contenteditable="true" data-text="New note..." id="note-div"></div>
+                        <button class="btn btn-primary" id="note-submit" id="create">Create</button>
+                    </form>
+                </section>
+
+                <hr />
+                <section class="form">
+                    <h3 class="text-start">Upload an audio file:</h3>
+                    <p class="text-start">Use <a href="https://online-voice-recorder.com/">this</a> page to record audio!</p>
+                    <form method="POST" action="/api/audio/upload" enctype="multipart/form-data">
+                        <input type="file" accept=".mp3" name="audio">
+                        <br />
+                        <button type="submit" class="mt-2 btn btn-success" id="upload">Upload</button>
+                    </form>
+                </section>
+
+                <hr />
+                <section class="form">
+                    <h3 class="text-start">Logout:</h3>
+                    <form method="POST" action="/api/logout">
+                        <button type="submit" class="mt-2 btn btn-danger" id="logout">Logout</button>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/script.js"></script>
+
+    <script src="/api/alerts/list"></script>
+    <script src="/api/user/info"></script>
+    <script src="/api/notes/list"></script>
+</body>
+</html>

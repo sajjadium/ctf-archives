@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>carrot | edit task</title>
+	<link rel="stylesheet" href="/static/styles/styles.css">
+</head>
+<body>
+<h1>Editing Task {{ id }}</h1>
+<form action="/edit/{{ id }}" method="POST">
+	<input type="text" name="title" placeholder="title">
+	<br><br>
+	<input type="number" name="priority" placeholder="priority">
+	<br><br>
+	<textarea name="content" placeholder="content" rows="5" cols="20"></textarea>
+	<br><br>
+	<input type="submit" value="submit">
+</form>
+
+</body>
+</html>

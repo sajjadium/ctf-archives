@@ -1,0 +1,126 @@
+diff --git a/BUILD.gn b/BUILD.gn
+index 4aeace7f59..f2362534c8 100644
+--- a/BUILD.gn
++++ b/BUILD.gn
+@@ -304,18 +304,18 @@ declare_args() {
+
+   # Enable the experimental V8 sandbox.
+   # Sets -DV8_SANDBOX.
+-  v8_enable_sandbox = false
++  v8_enable_sandbox = true
+
+   # Enable external pointer sandboxing. Requires v8_enable_sandbox.
+   # Sets -DV8_SANDBOXED_EXTERNAL_POINRTERS.
+-  v8_enable_sandboxed_external_pointers = false
++  v8_enable_sandboxed_external_pointers = true
+
+   # Enable sandboxed pointers. Requires v8_enable_sandbox.
+   # Sets -DV8_SANDBOXED_POINTERS.
+-  v8_enable_sandboxed_pointers = false
++  v8_enable_sandboxed_pointers = true
+
+   # Enable all available sandbox features. Implies v8_enable_sandbox.
+-  v8_enable_sandbox_future = false
++  v8_enable_sandbox_future = true
+
+   # Experimental feature for collecting per-class zone memory stats.
+   # Requires use_rtti = true
+@@ -1610,6 +1610,7 @@ action("postmortem-metadata") {
+ }
+
+ torque_files = [
++  "src/builtins/array-setlength.tq",
+   "src/builtins/aggregate-error.tq",
+   "src/builtins/array-at.tq",
+   "src/builtins/array-concat.tq",
+diff --git a/src/builtins/array-setlength.tq b/src/builtins/array-setlength.tq
+new file mode 100644
+index 0000000000..f032fcb539
+--- /dev/null
++++ b/src/builtins/array-setlength.tq
+@@ -0,0 +1,14 @@
++namespace array {
++transitioning javascript builtin
++ArrayPrototypeSetLength(
++  js-implicit context: NativeContext, receiver: JSAny)(length: JSAny): JSAny {
++    try {
++      const len: Smi = Cast<Smi>(length) otherwise Pepega;
++      const array: JSArray = Cast<JSArray>(receiver) otherwise Pepega;
++      array.length = len;
++    } label Pepega {
++        Print("pepega");
++    }
++    return receiver;
++}
++}  // namespace array
+diff --git a/src/d8/d8-posix.cc b/src/d8/d8-posix.cc
+index 8db4beff0f..2b5c30c62b 100644
+--- a/src/d8/d8-posix.cc
++++ b/src/d8/d8-posix.cc
+@@ -735,6 +735,7 @@ char* Shell::ReadCharsFromTcpPort(const char* name, int* size_out) {
+ }
+ 
+ void Shell::AddOSMethods(Isolate* isolate, Local<ObjectTemplate> os_templ) {
++/*
+   if (options.enable_os_system) {
+     os_templ->Set(isolate, "system", FunctionTemplate::New(isolate, System));
+   }
+@@ -749,6 +750,7 @@ void Shell::AddOSMethods(Isolate* isolate, Local<ObjectTemplate> os_templ) {
+                 FunctionTemplate::New(isolate, MakeDirectory));
+   os_templ->Set(isolate, "rmdir",
+                 FunctionTemplate::New(isolate, RemoveDirectory));
++*/
+ }
+ 
+ }  // namespace v8
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index 16bc8946ea..b4d72593a3 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -2860,7 +2860,7 @@ Local<FunctionTemplate> Shell::CreateNodeTemplates(Isolate* isolate) {
+ 
+ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+   Local<ObjectTemplate> global_template = ObjectTemplate::New(isolate);
+-  global_template->Set(Symbol::GetToStringTag(isolate),
++/*  global_template->Set(Symbol::GetToStringTag(isolate),
+                        String::NewFromUtf8Literal(isolate, "global"));
+   global_template->Set(isolate, "version",
+                        FunctionTemplate::New(isolate, Version));
+@@ -2878,6 +2878,7 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+                        FunctionTemplate::New(isolate, ReadLine));
+   global_template->Set(isolate, "load",
+                        FunctionTemplate::New(isolate, ExecuteFile));
++*/
+   global_template->Set(isolate, "setTimeout",
+                        FunctionTemplate::New(isolate, SetTimeout));
+   // Some Emscripten-generated code tries to call 'quit', which in turn would
+@@ -3034,7 +3035,7 @@ Local<FunctionTemplate> Shell::CreateSnapshotTemplate(Isolate* isolate) {
+ }
+ Local<ObjectTemplate> Shell::CreateD8Template(Isolate* isolate) {
+   Local<ObjectTemplate> d8_template = ObjectTemplate::New(isolate);
+-  {
++/*  {
+     Local<ObjectTemplate> file_template = ObjectTemplate::New(isolate);
+     file_template->Set(isolate, "read",
+                        FunctionTemplate::New(isolate, Shell::ReadFile));
+@@ -3084,6 +3085,7 @@ Local<ObjectTemplate> Shell::CreateD8Template(Isolate* isolate) {
+                               Local<Signature>(), 4));
+     d8_template->Set(isolate, "promise", promise_template);
+   }
++*/
+   return d8_template;
+ }
+
+diff --git a/src/init/bootstrapper.cc b/src/init/bootstrapper.cc
+index f497f224c5..e42526c1de 100644
+--- a/src/init/bootstrapper.cc
++++ b/src/init/bootstrapper.cc
+@@ -1724,6 +1724,8 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
+     JSObject::AddProperty(isolate_, proto, factory->constructor_string(),
+                           array_function, DONT_ENUM);
+
++    SimpleInstallFunction(isolate_, proto, "setLength",
++                          Builtin::kArrayPrototypeSetLength, 1, false);
+     SimpleInstallFunction(isolate_, proto, "concat",
+                           Builtin::kArrayPrototypeConcat, 1, false);
+     SimpleInstallFunction(isolate_, proto, "copyWithin",

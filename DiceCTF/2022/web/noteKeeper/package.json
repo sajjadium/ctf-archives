@@ -1,0 +1,20 @@
+{
+  "name": "notekeeper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Strellic",
+  "license": "ISC",
+  "dependencies": {
+    "argon2": "^0.28.3",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.17.2",
+    "express-jwt": "^6.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.4",
+    "uuid": "^8.3.2"
+  }
+}

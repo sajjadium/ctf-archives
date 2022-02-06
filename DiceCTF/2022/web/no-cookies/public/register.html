@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="style.css">
+<div class="container">
+  <p>Registering...</p>
+</div>
+<script>
+  (() => {
+    const validate = (text) => {
+      return /^[^$']+$/.test(text ?? '');
+    }
+
+    const promptValid = (text) => {
+      let result = prompt(text) ?? '';
+      return validate(result) ? result : promptValid(text);
+    }
+
+    const username = promptValid('Username:');
+    const password = promptValid('Password:');
+
+    (async () => {
+      const { success } = await (await fetch('/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+        })
+      })).json();
+
+      if (success) return window.location.href = '/';
+      alert('Registration failed. Perhaps the username was taken?');
+      window.location.href = '/';
+    })();
+  })();
+</script>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>blazingfast</title>
+	<style>
+		* {
+			font-family: monospace;
+		}
+
+		body {
+			max-width: 700px;
+			width: 100%;
+			margin: auto;
+		}
+
+		code, pre {
+			background-color: whitesmoke;
+			padding: 2px;
+		}
+	</style>
+</head>
+<body>
+<h1>blazingfast</h1>
+<hr>
+<code>blazingfast</code> is a blazing fast MoCkInG CaSe converter written in WASM!
+<br><br>
+
+Try it here:<br><br>
+<textarea id="demo" rows="15" cols="50"></textarea><br><br>
+<button id="demo-submit">Mock me!</button>
+<hr>
+<pre><code id="result">The MoCkInG CaSe text will be here!</code></pre>
+</body>
+
+<script>
+let blazingfast = null;
+
+function mock(str) {
+	blazingfast.init(str.length);
+
+	if (str.length >= 1000) return 'Too long!';
+
+	for (let c of str.toUpperCase()) {
+		if (c.charCodeAt(0) > 128) return 'Nice try.';
+		blazingfast.write(c.charCodeAt(0));
+	}
+
+	if (blazingfast.mock() == 1) {
+		return 'No XSS for you!';
+	} else {
+		let mocking = '', buf = blazingfast.read();
+
+		while(buf != 0) {
+			mocking += String.fromCharCode(buf);
+			buf = blazingfast.read();
+		}
+
+		return mocking;
+	}
+}
+
+function demo(str) {
+	document.getElementById('result').innerHTML = mock(str);
+}
+
+WebAssembly.instantiateStreaming(fetch('/blazingfast.wasm')).then(({ instance }) => {	
+	blazingfast = instance.exports;
+
+	document.getElementById('demo-submit').onclick = () => {
+		demo(document.getElementById('demo').value);
+	}
+
+	let query = new URLSearchParams(window.location.search).get('demo');
+
+	if (query) {
+		document.getElementById('demo').value = query;
+		demo(query);
+	}
+})
+</script>
+</html>

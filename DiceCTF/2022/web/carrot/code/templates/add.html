@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>carrot | add task</title>
+	<link rel="stylesheet" href="/static/styles/styles.css">
+</head>
+<body>
+<h1>Add Task</h1>
+<form action="/add" method="POST">
+	<input type="text" name="title" placeholder="title" required>
+	<br><br>
+	<input type="number" name="priority" placeholder="priority" required>
+	<br><br>
+	<textarea name="content" placeholder="content" rows="5" cols="20" required></textarea>
+	<br><br>
+	<input type="submit" value="submit">
+</form>
+
+</body>
+</html>

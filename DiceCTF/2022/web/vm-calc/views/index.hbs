@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>vm-calc</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/admin">Admin</a>
+            </nav>
+            <h1>vm-calc</h1>
+            <p>A simple and very secure online calculator!</p>
+        </header>
+
+        <main>
+            <h4>Enter math expression here:</h4>
+            <form method="POST" id="form">
+                <input name="calc" placeholder="1 + 1" style="width: 100%" autocomplete="off" />
+                <input type="submit" value="Calculate" />
+            </form>
+            {{#if result}}
+            <p>Result: {{result}}</p>
+            {{/if}}
+        </main>
+    </body>
+</html>

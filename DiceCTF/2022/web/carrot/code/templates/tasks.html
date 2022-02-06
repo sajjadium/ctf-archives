@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>carrot | tasks</title>
+	<link rel="stylesheet" href="/static/styles/styles.css">
+</head>
+<body>
+<h1>My Tasks</h1>
+<form action="/tasks">
+	<input name="search" placeholder="search">
+	<input type="submit" value="submit">
+</form>
+<hr>
+{%- for task in tasks %}
+<div>
+	<b>
+		{{ task.priority }} - {{ task.title }}
+		<a href="/edit/{{ task.id }}">Edit</a>
+	</b>
+	<pre><code>{{ task.content }}</code></pre>
+</div>
+<hr>
+{% endfor %}
+<a href="/add">Add Task</a>
+
+</body>
+</html>

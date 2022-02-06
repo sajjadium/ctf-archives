@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="style.css">
+<div class="container">
+  <div class="note"></div>
+  <hr />
+  <em><span class="views"></span> view(s)</em>
+</div>
+
+<script>
+  (() => {
+    const validate = (text) => {
+      return /^[^$']+$/.test(text ?? '');
+    }
+
+    const promptValid = (text) => {
+      let result = prompt(text) ?? '';
+      return validate(result) ? result : promptValid(text);
+    }
+
+    const username = promptValid('Username:');
+    const password = promptValid('Password:');
+
+    const params = new URLSearchParams(window.location.search);
+
+    (async () => {
+      const { note, mode, views } = await (await fetch('/view', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+          id: params.get('id')
+        })
+      })).json();
+
+      if (!note) {
+        alert('Invalid username, password, or note id');
+        window.location = '/';
+        return;
+      }
+
+      let text = note;
+      if (mode === 'markdown') {
+        text = text.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, (match, p1, p2) => {
+          return `<a href="${p2}">${p1}</a>`;
+        });
+        text = text.replace(/#\s*([^\n]+)/g, (match, p1) => {
+          return `<h1>${p1}</h1>`;
+        });
+        text = text.replace(/\*\*([^\n]+)\*\*/g, (match, p1) => {
+          return `<strong>${p1}</strong>`;
+        });
+        text = text.replace(/\*([^\n]+)\*/g, (match, p1) => {
+          return `<em>${p1}</em>`;
+        });
+      }
+
+      document.querySelector('.note').innerHTML = text;
+      document.querySelector('.views').innerText = views;
+    })();
+  })();
+</script>

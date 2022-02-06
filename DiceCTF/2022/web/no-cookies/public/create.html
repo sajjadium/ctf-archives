@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="style.css">
+<div class="container">
+  <textarea></textarea>
+  <button>Submit</button>
+  <input id="md" type="radio" name="mode" value="markdown" checked>
+  <label for="md">Markdown</label>
+  <input id="plain" type="radio" name="mode" value="plain">
+  <label for="plain">Plain</label>
+  <div class="output"></div>
+</div>
+
+<script>
+  (() => {
+    const validate = (text) => {
+      return /^[^$']+$/.test(text ?? '');
+    }
+
+    const promptValid = (text) => {
+      let result = prompt(text) ?? '';
+      return validate(result) ? result : promptValid(text);
+    }
+
+    const username = promptValid('Username:');
+    const password = promptValid('Password:');
+
+    (async () => {
+      const { success } = await (await fetch('/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password
+        })
+      })).json();
+
+      if (!success) {
+        alert('Invalid username or password');
+        window.location = '/';
+        return;
+      }
+
+      const button = document.querySelector('button');
+      await new Promise((r) => button.addEventListener('click', r));
+
+      const note = document.querySelector('textarea').value;
+      const mode = document.querySelector('input[name="mode"]:checked').value;
+      const { id } = await (await fetch('/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+          note: note ?? 'Nothing to say!',
+          mode: mode ?? 'markdown'
+        })
+      })).json();
+
+      if (!id) {
+        alert('Something went wrong.');
+        window.location = '/';
+        return;
+      }
+
+      const link = document.createElement('a');
+      link.href = `/view?id=${id}`;
+      link.textContent = 'View note';
+      document.querySelector('.output').appendChild(link);
+    })();
+  })();
+</script>
+
