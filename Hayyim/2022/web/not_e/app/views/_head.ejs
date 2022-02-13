@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+</head>
+<body>
+<header>
+  <a href="/" class="button">Not E</a>
+  <% if (typeof auth !== 'undefined') { %>
+  <a href="/" class="button">list</a>
+  <a href="/new" class="button">create</a>
+  <a href="/logout" class="button">logout</a>
+  <% } else { %>
+  <a href="/login" class="button">login</a>
+  <% } %>
+</header>

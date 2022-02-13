@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>cyberchef bot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+  </head>
+  <body>
+    <header class="sticky row">
+      <div class="col-sm col-lg-10 col-lg-offset-1">
+        <a href="/" role="button"><strong>Cyberchef bot</strong></a>
+      </div>
+    </header>
+    <div class="section col-sm-10 col-sm-offset-1">
+      <h3>Report url</h3>
+      <form action="/report" method="POST">
+        <div class="row responsive-label">
+          <div class="col-sm-10 col-md">
+            <input type="text" name="url" placeholder="http://cyberchef:8000/..." style="width:95%;" class="doc">
+          </div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="button-group col-sm-12">
+          <button onclick="document.forms[0].submit();">Submit</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const message = new URLSearchParams(location.search).get('message');
+
+      if (message) {
+        const element = document.createElement('span');
+
+        history.pushState(null, null, location.pathname);
+
+        element.className = 'toast';
+        element.innerText = message;
+        element.style = 'transition: all 1s';
+
+        setTimeout(() => {
+          element.style.opacity = 0;
+        }, 1000);
+
+        document.body.appendChild(element);
+      }
+    </script>
+  </body>
+</html>

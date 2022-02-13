@@ -1,0 +1,13 @@
+service Cooldown
+{
+    disable = no
+    type        = UNLISTED
+    wait        = no
+    server      = /home/Cooldown/run.sh
+    socket_type = stream
+    protocol    = tcp
+    user        = Cooldown
+    port        = 10005
+    flags       = REUSE
+}
+

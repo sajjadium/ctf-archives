@@ -1,0 +1,20 @@
+
+<script>
+  const message = new URLSearchParams(location.search).get('message');
+
+  if (message) {
+    const element = document.createElement('span');
+
+    element.className = 'toast';
+    element.innerText = message;
+    element.style = 'transition: all 1s;';
+
+    setTimeout(() => {
+      element.style.opacity = 0;
+    }, 1000);
+
+    document.body.appendChild(element);
+  }
+</script>
+</body>
+</html>

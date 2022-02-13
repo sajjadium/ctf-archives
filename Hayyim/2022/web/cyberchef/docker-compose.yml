@@ -1,0 +1,28 @@
+version: '3'
+services:
+  cyberchef:
+    container_name: cyberchef
+    image: mpepping/cyberchef
+    ports:
+      - "8000:8000"
+  www:
+    container_name: cyberchef-bot
+    image: node
+    volumes:
+      - "./app:/app"
+      - "./flag:/flag:ro"
+    depends_on:
+      - "selenium"
+      - "cyberchef"
+    working_dir: /app
+    command: sh -c "npm install && npm start"
+    ports:
+      - "8001:8001"
+  selenium:
+    container_name: cyberchef-selenium
+    image: selenium/standalone-chrome
+    environment:
+      GRID_TIMEOUT: 10
+      SE_NODE_MAX_SESSIONS: 10
+    volumes:
+      - /dev/shm:/dev/shm

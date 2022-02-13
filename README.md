@@ -698,6 +698,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/549/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Hayyim">Hayyim</a></td>
+            <td><a href="Hayyim/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1553/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="Hero">Hero</a></td>
             <td><a href="Hero/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1284/tasks/">CTFtime</a></td>

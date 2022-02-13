@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Marked</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mini.css/3.0.1/mini-default.min.css">
+  </head>
+  <body>
+    <header class="sticky row">
+      <div class="col-sm col-lg-10 col-lg-offset-1">
+        <a href="/" role="button"><strong>Marked</strong></a>
+        <% if (typeof auth !== 'undefined') { %>
+        <a href="/list" role="button">my notes</a>
+        <a href="/new" role="button">new</a>
+        <a href="/report" role="button">report</a>
+        <a href="/logout" role="button">logout</a>
+        <% } else { %>
+        <a href="/login" role="button">login</a>
+        <% } %>
+      </div>
+    </header>
+    <br/>

@@ -1,0 +1,22 @@
+<%- include('_head') %>
+<div class="container">
+  <div class="col-sm-8 col-sm-offset-2">
+    <form action="/login" method="POST">
+      <fieldset>
+        <legend>Login / Register</legend>
+        <div class="row responsive-label">
+          <div class="col-sm-12 col-md-2"><label>Username</label></div>
+          <div class="col-sm-12 col-md"><input type="text" name="username" placeholder="username" style="width:95%;"></div>
+        </div>
+        <div class="row responsive-label">
+          <div class="col-sm-12 col-md-2"><label>Password</label></div>
+          <div class="col-sm-12 col-md"><input type="text" name="password" placeholder="password" style="width:95%;"></div>
+        </div>
+      </fieldset>
+    </form>
+    <div class="button-group">
+      <button onclick="document.forms[0].submit();">Submit</button>
+    </div>
+  </div>
+</div>
+<%- include('_tail') %>

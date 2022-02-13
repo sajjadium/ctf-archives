@@ -1,0 +1,13 @@
+service auviel
+{
+    disable = no
+    type        = UNLISTED
+    wait        = no
+    server      = /home/auviel/run.sh
+    socket_type = stream
+    protocol    = tcp
+    user        = auviel
+    port        = 10000
+    flags       = REUSE
+}
+

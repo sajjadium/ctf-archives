@@ -1,0 +1,38 @@
+<%- include('_head') %>
+<div class="container" style="padding: 0.25rem">
+  <div class="row col-sm-10 col-sm-offset-1">
+    <% if (notes.length === 0) { %>
+        <div class="card">
+          <div class="section">
+            <h3 class="doc">
+              Howdy!
+            </h3>
+            <p class="doc">
+              You don't have any notes yet.<br>
+              Press below buttom to create one.
+            </p>
+          </div>
+          <div class="section">
+            <a href="/new"><button>create</button></a>
+          </div>
+        </div>
+    <% } else { %>
+      <% for (let note of notes.reverse()) { %>
+        <div class="card">
+          <div class="section">
+            <h3 class="doc">
+              <%= note.title.substr(0, 20) %>
+            </h3>
+            <p class="doc">
+              <%= note.content.substr(0, 20) %>
+            </p>
+          </div>
+          <div class="section">
+            <a href="/note/<%= note.id%>"><button>see more</button></a>
+          </div>
+        </div>
+      <% } %>
+    <% } %>
+  </div>
+</div>
+<%- include('_tail') %>

@@ -1,0 +1,28 @@
+<%- include('_head') %>
+<div class="section col-sm-10 col-sm-offset-1">
+  <h3>New Note</h3>
+  <form action="/new" method="POST">
+    <div class="row responsive-label">
+      <div class="col-sm-12 col-md-2">
+        <label>Title</label>
+      </div>
+      <div class="col-sm-12 col-md">
+        <input type="text" name="title" placeholder="Title of note" style="width:95%;">
+      </div>
+    </div>
+    <div class="row responsive-label">
+      <div class="col-sm-12 col-md-2">
+        <label>Content<br></label>
+      </div>
+      <div class="col-sm-12 col-md">
+        <textarea style="width:95%;" name="content" placeholder="content of note (markdown syntax available)"></textarea>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+    <div class="button-group col-sm-12">
+      <button onclick="document.forms[0].submit();">Save</button>
+    </div>
+  </div>
+</div>
+<%- include('_tail') %>

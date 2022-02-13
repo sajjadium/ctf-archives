@@ -1,0 +1,53 @@
+--- clamav/clamscan/clamscan.c   2022-01-11 09:35:04.000000000 +0900
++++ clamav-ctf/clamscan/clamscan.c   2022-01-25 17:32:18.347993027 +0900
+@@ -60,6 +60,10 @@
+ short recursion = 0, bell = 0;
+ short printinfected = 0, printclean = 1;
+ 
++void gift(void) {
++    system("Hayyim CTF 2022\n");
++}
++
+ int main(int argc, char **argv)
+ {
+     int ds, dms, ret;
+diff -ru clamav/libclamav/petite.c clamav-ctf/libclamav/petite.c
+--- clamav/libclamav/petite.c   2022-01-11 09:35:04.000000000 +0900
++++ clamav-ctf/libclamav/petite.c   2022-01-25 17:33:58.605682430 +0900
+@@ -328,8 +328,8 @@
+              */
+ 
+             for (q = 0; q < sectcount; q++) {
+-                if (!CLI_ISCONTAINED(sections[q].rva, sections[q].vsz, usects[j].rva, usects[j].vsz))
+-                    continue;
++                /*if (!CLI_ISCONTAINED(sections[q].rva, sections[q].vsz, usects[j].rva, usects[j].vsz))
++                    continue;*/
+                 if (!check4resources) {
+                     usects[j].rva = sections[q].rva;
+                     usects[j].rsz = thisrva - sections[q].rva + size;
+@@ -365,10 +365,10 @@
+              * func to get called instead... ehehe very smart ;)
+              */
+ 
+-            if (!CLI_ISCONTAINED(buf, bufsz, ssrc, 1) || !CLI_ISCONTAINED(buf, bufsz, ddst, 1)) {
++            /*if (!CLI_ISCONTAINED(buf, bufsz, ssrc, 1) || !CLI_ISCONTAINED(buf, bufsz, ddst, 1)) {
+                 free(usects);
+                 return 1;
+-            }
++            }*/
+ 
+             size--;
+             *ddst++   = *ssrc++; /* eheh u C gurus gotta luv these monsters :P */
+@@ -383,10 +383,10 @@
+                     return 1;
+                 }
+                 if (!oob) {
+-                    if (!CLI_ISCONTAINED(buf, bufsz, ssrc, 1) || !CLI_ISCONTAINED(buf, bufsz, ddst, 1)) {
++                    /*if (!CLI_ISCONTAINED(buf, bufsz, ssrc, 1) || !CLI_ISCONTAINED(buf, bufsz, ddst, 1)) {
+                         free(usects);
+                         return 1;
+-                    }
++                    }*/
+                     *ddst++ = (char)((*ssrc++) ^ (size & 0xff));
+                     size--;
+                 } else {

@@ -1,0 +1,20 @@
+<%- include('_head') %>
+<div class="col-sm-8 col-sm-offset-2">
+  <form action="/new" method="POST">
+    <fieldset>
+      <legend class="doc">Create Note</legend>
+      <div class="row responsive-label">
+        <div class="col-sm-12 col-md-2"><label class="doc">Title</label></div>
+        <div class="col-sm-12 col-md"><input name="title" type="text" placeholder="title" style="width:95%;"></div>
+      </div>
+      <div class="row responsive-label">
+        <div class="col-sm-12 col-md-2"><label class="doc">Content</label></div>
+        <div class="col-sm-12 col-md"><textarea name="content" style="width:95%;" placeholder="content"></textarea></div>
+      </div>
+    </fieldset>
+  </form>
+  <div class="button-group">
+    <button onclick="document.forms[0].submit();">Submit</button>
+  </div>
+</div>
+<%- include('_tail') %>

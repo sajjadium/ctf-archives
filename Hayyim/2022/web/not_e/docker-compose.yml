@@ -1,0 +1,12 @@
+version: '3'
+services:
+  note:
+    container_name: not_e
+    image: node
+    working_dir: /app
+    command: sh -c "npm install && npm start"
+    ports:
+      - "1000:1000"
+    volumes:
+      - "./app:/app"
+      - "./flag:/flag:ro"

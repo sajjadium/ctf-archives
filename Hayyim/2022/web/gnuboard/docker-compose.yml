@@ -1,0 +1,17 @@
+version: '3'
+services:
+  gnuboard:
+    container_name: gnuboard
+    build: .
+    ports:
+      - "5000:80"
+    depends_on:
+      - "db"
+  db:
+    container_name: gnuboard-db
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: gnuboard
+      MYSQL_DATABASE: gnuboard
+      MYSQL_USER: gnuboard
+      MYSQL_PASSWORD: gnuboard

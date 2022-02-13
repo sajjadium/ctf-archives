@@ -1,0 +1,28 @@
+version: '3'
+services:
+  cyberchef:
+    container_name: cyberchef-revenge
+    image: mpepping/cyberchef
+    ports:
+      - "9000:8000"
+  www:
+    container_name: cyberchef-revenge-bot
+    image: node
+    volumes:
+      - "./app:/app"
+      - "./flag:/flag:ro"
+    depends_on:
+      - "selenium"
+      - "cyberchef-revenge"
+    working_dir: /app
+    command: sh -c "npm install && npm start"
+    ports:
+      - "9001:9001"
+  selenium:
+    container_name: cyberchef-revenge-selenium
+    image: selenium/standalone-chrome
+    environment:
+      GRID_TIMEOUT: 10
+      SE_NODE_MAX_SESSIONS: 10
+    volumes:
+      - /dev/shm:/dev/shm

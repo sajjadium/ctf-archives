@@ -1,0 +1,9 @@
+version: '3'
+services:
+  wasmup:
+    container_name: wasmup
+    build: ./docker
+    volumes:
+      - "./flag:/flag:ro"
+    ports:
+      - "2000:2000"

@@ -1,0 +1,16 @@
+<%- include('_head') %>
+<div class="container" style="padding: 0.25rem">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="card fluid" style="margin: 0.5rem 0.25rem">
+        <h1 class="doc section">
+          <%= note.title %>
+        </h1>
+        <p style="word-wrap: anywhere">
+          <%= JSON.parse('"' + note.content + '"') %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('_tail') %>

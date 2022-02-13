@@ -1,0 +1,36 @@
+<%- include('_head') %>
+<div class="row col-sm-8 col-sm-offset-2">
+  <% if (typeof notes === 'undefined' || notes.length === 0) { %>
+  <div class="card">
+    <div class="section">
+      <h3 class="doc">
+        Howdy!
+      </h3>
+      <p class="doc">
+      You don't have any note yet<br>
+      Press button to create one
+      </p>
+    </div>
+    <div class="section">
+      <a href="/new"><button>create</button></a>
+    </div>
+  </div>
+  <% } else { %>
+  <% for (let i = notes.length - 1; i >= 0; --i) { %>
+  <div class="card">
+    <div class="section">
+      <h3 class="doc">
+        <%= notes[i].title.substr(0, 32) %>
+      </h3>
+      <p class="doc">
+      <%= JSON.parse('"' + notes[i].content + '"').substr(0, 32) %>
+      </p>
+    </div>
+    <div class="section">
+      <a href="/view/<%= notes[i].id %>"><button>see more</button></a>
+    </div>
+  </div>
+  <% } %>
+  <% } %>
+</div>
+<%- include('_tail') %>

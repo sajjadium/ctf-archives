@@ -1,0 +1,13 @@
+service cenarius
+{
+    disable = no
+    type        = UNLISTED
+    wait        = no
+    server      = /home/cenarius/run.sh
+    socket_type = stream
+    protocol    = tcp
+    user        = cenarius
+    port        = 10002
+    flags       = REUSE
+}
+
