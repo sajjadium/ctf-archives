@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  myblog:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:8080
+

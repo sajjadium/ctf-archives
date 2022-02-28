@@ -334,7 +334,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/636/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="Codegate">Codegate</a></td>
+            <td rowspan=3><a href="Codegate">Codegate</a></td>
+            <td><a href="Codegate/2022/Quals">2022 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1538/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="Codegate/2019/Quals">2019 Quals</a></td>
             <td><a href="https://ctftime.org/event/719/tasks/">CTFtime</a></td>
         </tr>

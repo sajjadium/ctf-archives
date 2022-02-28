@@ -1,0 +1,41 @@
+version: "3.3"
+services:
+  geth:
+    build: .
+    container_name: ethereum
+    volumes:
+      - ./config:/config
+      - ./data:/data
+    restart: always
+
+  proxy:
+    image: nginx:1.20-alpine
+    container_name: rpcproxy
+    ports:
+      - "8545:8545"
+    links:
+      - geth
+    volumes:
+      - ./njs:/etc/nginx/njs
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - geth
+    restart: always
+
+  faucet:
+    image: chainflag/eth-faucet:1.0.0
+    container_name: ethfaucet
+    environment:
+      - WEB3_PROVIDER=http://geth:8545
+      - KEYSTORE=/app/keystore
+    ports:
+      - "8080:8080"
+    links:
+      - geth
+    volumes:
+      - ./config/keystore:/app/keystore
+      - ./config/password.txt:/app/password.txt
+    command: -interval 1
+    depends_on:
+      - geth
+    restart: always

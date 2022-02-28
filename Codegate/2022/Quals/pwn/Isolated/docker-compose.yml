@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+    chall:
+      build: .
+      ports:
+        - "7777:7777"

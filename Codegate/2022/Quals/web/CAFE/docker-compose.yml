@@ -1,0 +1,35 @@
+version: "3.1"
+
+networks:
+  app-tier:
+    driver: bridge
+services:
+  mysql:
+    networks:
+      - app-tier
+    image: mysql
+    container_name: mysql_container
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=c546cfcba41c26715fc8c3caa7527832
+      - MYSQL_USER=app
+      - MYSQL_PASSWORD=c546cfcba41c26715fc8c3caa7527832
+      - MYSQL_DATABASE=app
+      - TZ=Asia/Seoul
+    volumes: 
+      - ./db-data:/var/lib/mysql
+      - ./mysql.cnf:/etc/mysql/conf.d/custom.cnf
+      - ./db.sql:/db.sql
+  app:
+    networks:
+      - app-tier
+    build: .
+    ports:
+      - "1929:80"
+    links:
+      - mysql:mysql
+    restart: always
+    volumes:
+      - ./html:/var/www/html/
+    depends_on:
+      - mysql

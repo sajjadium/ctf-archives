@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  babyfirst:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:8080
+
+  mysql:
+    restart: always
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+        MYSQL_ROOT_PASSWORD: rootroortrooroot
+        MYSQL_USER: simplememo
+        MYSQL_PASSWORD: simplesimplememo
+        MYSQL_DATABASE: memo
+    volumes:
+      - ./mysql/:/var/lib/mysql
+      - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+
