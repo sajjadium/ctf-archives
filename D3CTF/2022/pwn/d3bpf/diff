@@ -1,0 +1,51 @@
+diff --git a/fs/fs_context.c b/fs/fs_context.c
+index 2834d1afa..0a79c9099 100644
+--- a/fs/fs_context.c
++++ b/fs/fs_context.c
+@@ -530,7 +530,7 @@ static int legacy_parse_param(struct fs_context *fc, struct fs_parameter *param)
+ 			      param->key);
+ 	}
+ 
+-	if (len > PAGE_SIZE - 2 - size)
++	if (size + len + 2 > PAGE_SIZE) // patch for CVE-2022-0185
+ 		return invalf(fc, "VFS: Legacy: Cumulative options too large");
+ 	if (strchr(param->key, ',') ||
+ 	    (param->type == fs_value_is_string &&
+diff --git a/kernel/bpf/verifier.c b/kernel/bpf/verifier.c
+index 37581919e..8e98d4af5 100644
+--- a/kernel/bpf/verifier.c
++++ b/kernel/bpf/verifier.c
+@@ -6455,11 +6455,11 @@ static int adjust_scalar_min_max_vals(struct bpf_verifier_env *env,
+ 			scalar_min_max_lsh(dst_reg, &src_reg);
+ 		break;
+ 	case BPF_RSH:
+-		if (umax_val >= insn_bitness) {
+-			/* Shifts greater than 31 or 63 are undefined.
+-			 * This includes shifts by a negative number.
+-			 */
+-			mark_reg_unknown(env, regs, insn->dst_reg);
++		if (umin_val >= insn_bitness) {
++			if (alu32)
++				__mark_reg32_known(dst_reg, 0);
++			else
++				__mark_reg_known_zero(dst_reg);
+ 			break;
+ 		}
+ 		if (alu32)
+diff --git a/net/packet/af_packet.c b/net/packet/af_packet.c
+index 6bbc7a448..d949fdf00 100644
+--- a/net/packet/af_packet.c
++++ b/net/packet/af_packet.c
+@@ -4448,9 +4448,10 @@ static int packet_set_ring(struct sock *sk, union tpacket_req_u *req_u,
+ 	}
+ 
+ out_free_pg_vec:
+-	bitmap_free(rx_owner_map);
+-	if (pg_vec)
++	if (pg_vec) {
++		bitmap_free(rx_owner_map); // patch for CVE-2021-22600
+ 		free_pg_vec(pg_vec, order, req->tp_block_nr);
++	}
+ out:
+ 	return err;
+ }
