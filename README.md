@@ -1609,7 +1609,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/893/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="wtf">wtf</a></td>
+            <td rowspan=2><a href="wtf">wtf</a></td>
+            <td><a href="wtf/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1589/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="wtf/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1373/tasks/">CTFtime</a></td>
         </tr>
