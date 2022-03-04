@@ -1,0 +1,45 @@
+<style>
+  .carousel-item {
+    height: 94vh;
+    position: relative;
+  }
+  
+  .container {
+    position: absolute;
+    color: white;
+    top: 20vh;
+    left: 0;
+    right: 0;
+    padding-top: 50px;
+  }
+</style>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <% for(let i=0; i < images.length; i++) {%>
+      <li data-target="#carouselExampleIndicators" data-slide-to="<%= i %>" class="<%= i===0 ? 'active' : '' %>"></li>
+    <% } %>
+  </ol>
+  <div class="carousel-inner">
+    <% for(let i=0; i < images.length; i++) { %>
+      <div class="carousel-item <%= i===0 ? 'active' : '' %>">
+        <img class="d-block w-100" src="uploads/<%= images[i].fileName %>" alt="<%= i %> slide">
+        <div class="container" style="top: <%= i*10 + 20 %>vh;">
+          <h1>Some giberish</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed sapiente ducimus obcaecati natus recusandae possimus accusamus atque itaque excepturi veritatis nam distinctio tempora voluptates harum dolores ex, doloremque praesentium aperiam.
+          </p>
+          <a href="#" class="btn btn-lg btn-primary">Fake Button</a>
+        </div>
+      </div>
+    <% } %>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

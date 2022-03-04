@@ -1,0 +1,57 @@
+<section class="flex justify-center h-full flex-wrap flex-col content-center">
+	<header class="text-center">
+		<h1 class="text-4xl text-left text-white">WHO ARE YOU ??</h1>
+		
+	</header>
+	<section class="mt-14">
+		 
+		<section id="content">
+			{{#if name}}
+				
+				<div class="bg-gray-100 rounded-xl flex justify-between">
+					<div class="w-full p-4">
+						<p class="text-green-600 ml-2">we have received your request ...</p>
+					</div>
+					
+				</div>
+			{{else}}
+			<form onsubmit='return onSubmit(this)'>
+				<div class="mt-2">
+					<label class="text-white">Name:</label><br/>
+					<input type="text" name="name" class="w-full border border-black rounded outline-none p-2">
+				</div>
+				<div class="mt-2">
+					<label class="text-white">What are you looking for ?</label><br/>
+					<input type="text" name="looking-for" class="w-full border border-black rounded outline-none p-2">
+				</div>
+				<div class="mt-4 flex justify-end">
+					<button class="uppercase px-8 py-2 rounded border border-green-600 text-green-600 max-w-max shadow-sm hover:shadow-lg" type="submit">Submit</button>
+				</div>
+			</form>
+			<script type="text/javascript">
+				function onSubmit( form ){
+					var data = $(form).serializeArray();
+					var formObject = { profile : {} };
+					$.each(data,
+					    function(i, v) {
+					        formObject.profile[v.name] = v.value;
+					    });
+					$.ajax({
+					    type: 'POST',
+					    url: '/admin',
+					    data: JSON.stringify(formObject), // or JSON.stringify ({name: 'jonas'}),
+					    success: function(data, textStatus, jqXHR) { 
+					    	document.write(jqXHR.responseText); 
+					    },
+					    contentType: "application/json",
+					    dataType: 'html'
+					});
+					return false; 
+				}
+
+			</script>
+			{{/if}}
+		</section>
+		
+	</section>
+</section>

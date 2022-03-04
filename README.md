@@ -522,7 +522,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/727/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="FooBar">FooBar</a></td>
+            <td rowspan=2><a href="FooBar">FooBar</a></td>
+            <td><a href="FooBar/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1579/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="FooBar/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1322/tasks/">CTFtime</a></td>
         </tr>
