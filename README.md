@@ -1356,7 +1356,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/587/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/UIUCTF/2018">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="UMDCTF">UMDCTF</a></td>
+            <td rowspan=3><a href="UMDCTF">UMDCTF</a></td>
+            <td><a href="UMDCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1593/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="UMDCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1288/tasks/">CTFtime</a></td>
         </tr>

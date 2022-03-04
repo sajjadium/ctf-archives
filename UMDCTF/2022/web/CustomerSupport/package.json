@@ -1,0 +1,37 @@
+{
+  "name": "customer-support",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "startall": "concurrently npm:startmicro npm:start",
+    "startdevs": "concurrently npm:startmicro npm:dev",
+    "startmicro": "cd microservice && npm run start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@heroicons/react": "^1.0.5",
+    "cookies-next": "^2.0.4",
+    "heroicons": "^1.0.5",
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "sharp": "^0.30.1",
+    "url-parse": "^1.5.10"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.4.0",
+    "@types/node": "17.0.18",
+    "@types/react": "17.0.39",
+    "@types/url-parse": "^1.4.8",
+    "autoprefixer": "^10.4.2",
+    "dotenv": "^16.0.0",
+    "eslint": "8.9.0",
+    "eslint-config-next": "12.1.0",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.23",
+    "typescript": "4.5.5"
+  }
+}
