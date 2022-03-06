@@ -1,0 +1,21 @@
+diff --git a/kernel/bpf/verifier.c b/kernel/bpf/verifier.c
+index 40d92628e..be9cdde7a 100644
+--- a/kernel/bpf/verifier.c
++++ b/kernel/bpf/verifier.c
+@@ -8100,11 +8100,11 @@ static int adjust_scalar_min_max_vals(struct bpf_verifier_env *env,
+ 			scalar_min_max_lsh(dst_reg, &src_reg);
+ 		break;
+ 	case BPF_RSH:
+-		if (umax_val >= insn_bitness) {
+-			/* Shifts greater than 31 or 63 are undefined.
+-			 * This includes shifts by a negative number.
+-			 */
+-			mark_reg_unknown(env, regs, insn->dst_reg);
++		if (umin_val >= insn_bitness) {
++			if (alu32)
++				__mark_reg32_known(dst_reg, 0);
++			else
++				__mark_reg_known_zero(dst_reg);
+ 			break;
+ 		}
+ 		if (alu32)

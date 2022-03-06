@@ -1,0 +1,1 @@
+Before running `./smart-calculator`, please run `sudo sysctl -w kernel.msgmax=8192` to set message queue parameter.
