@@ -503,6 +503,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/648/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Engineer">Engineer</a></td>
+            <td><a href="Engineer/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1595/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="EvlzCTF">Evlz</a></td>
             <td><a href="EvlzCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1070/tasks/">CTFtime</a></td>
