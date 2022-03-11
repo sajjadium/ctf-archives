@@ -1,0 +1,152 @@
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" nonce="{{nonce}}">
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" nonce="{{nonce}}" />
+    <!-- Alex only likes Chrome. All FireFox users should get out of here! -->
+    <style nonce="{{nonce}}">
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #35276e;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            max-width: 770px;
+            margin: 100px auto;
+            padding: 27px;
+            background: white;
+        }
+
+        .container:after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(270deg, #ffd800, #ff5520, #750cf2, #0cbcf2);
+            z-index: -1;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .nes-bcrikko {
+            margin-top: 80px;
+        }
+
+        .message>div {
+            margin-left: 2rem;
+        }
+
+        form {
+            margin-top: 2rem;
+        }
+
+        .form-field+.form-field {
+            margin-top: 2rem;
+        }
+
+        #main-modal>div {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 5px solid black;
+            background: white;
+            padding: 24px;
+        }
+
+        #main-modal {
+            content: "";
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hide {
+            display: none;
+        }
+
+        @media screen and (max-width: 980px) {
+            .container {
+                margin-left: 24px;
+                margin-right: 24px;
+            }
+
+            .nes-bcrikko {
+                margin-top: 0;
+            }
+
+            .message {
+                flex-direction: column-reverse;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <section class="message">
+            <i class="nes-bcrikko"></i>
+            <div class="nes-balloon from-left">
+                <p>Hey! Choose a message</p>
+            </div>
+        </section>
+        <div class="nes-container is-rounded">
+            <h2><i class="nes-icon star"></i> Rules </h2>
+            <div class="lists">
+                <ul class="nes-list is-disc">
+                    <li>It can contain a link</li>
+                    <li>It can also contain images</li>
+                </ul>
+            </div>
+        </div>
+        <form id="main-form" method="POST">
+            <div class="nes-field form-field">
+                <label for="textarea_field">Your Message</label>
+                <textarea class="nes-textarea" name="message"></textarea>
+            </div>
+            <div class="form-field">
+
+            </div>
+            <div class="form-field">
+                <button type="submit" class="nes-btn is-warning" id="submit-btn">Submit</button>
+                <button type="button" class="nes-btn is-error" id="report-btn">Report to an Admin</button>
+                <i class="nes-logo"></i>
+            </div>
+        </form>
+
+        {{#if message}}
+        <div id="main-modal">
+            <div>
+                <div>{{{message}}}</div>
+                <div style="text-align: center;">
+                    <button class="nes-btn is-primary" id="close-btn">OK</button>
+                </div>
+            </div>
+        </div>
+        {{/if}}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
