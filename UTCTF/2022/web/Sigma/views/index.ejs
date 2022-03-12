@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Sigma</title>
+    </head>
+    <body>
+        <h1>Free Image Editor!</h1>
+        <p>//TODO: Add other image effects besides invert</p>
+        <p>New feature: now works on transparent PNGs!</p>
+        <input id="file_picker" type="file">
+        <button onclick="handle_draw_click()">Invert Colors</button>
+        <br>
+        <canvas id="display-canvas" width="800" height="600"></canvas>
+
+        <form style="display:none" id="hidden-form" method="post" action="/">
+            <input type="hidden" name="image" id="image-data">
+        </form>
+
+
+        <form id="report-form" method="post" action="/report">
+            <input type="hidden" name="image" id="posted-data" value="<%= locals.img || "" %>">
+            <input type="submit" value="Report Bug">
+        </form>
+
+        <script src="a.out.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
