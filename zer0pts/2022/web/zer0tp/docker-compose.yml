@@ -1,0 +1,32 @@
+version: '3'
+services:
+  zer0tp_dist:
+    build: ./service
+    container_name: zer0tp_dist
+    ports:
+      - "8080:8080"
+    environment:
+      - REDIS_HOST=redis_dist
+      - UWSGI_INI=/app/uwsgi.ini
+      - LISTEN_PORT=8080
+    restart: always
+    links:
+      - redis_dist
+  demo_dist:
+    build: ./demo
+    container_name: demo_dist
+    ports:
+      - "8077:8080"
+    environment:
+      - HOST=localhost
+      - ZER0TP_HOST=zer0tp_dist
+      - ZER0TP_PORT=8080
+      - UWSGI_INI=/app/uwsgi.ini
+      - LISTEN_PORT=8080
+    restart: always
+    links:
+      - redis_dist
+      - zer0tp_dist
+  redis_dist:
+    build: ./redis
+    restart: always

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login - Demo App</title>
+        <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
+        <script>
+         function popup() {
+             window.open("http://{{HOST}}:{{PORT}}/",
+                         "Zer0TP Login",
+                         `width=480,height=320,left=${screen.width/2-240},top=${screen.height/2-160}`);
+         }
+        </script>
+    </head>
+    <body>
+        <header>
+            <h1>Zer0TP - Demo App</h1>
+        </header>
+        <main>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul class=flashes>
+                {% for category, message in messages %}
+                <li style="color: red">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <h4>Step 1. Login to Zer0TP</h4>
+            <button onclick="popup();">Login with Zer0TP</button>
+            <h4>Step 2. Login with Token</h4>
+            <form method="POST" action="/login">
+                <div>
+                    <label>Username: </label>
+                    <input type="text" placeholder="Username" name="username">
+                </div>
+                <div>
+                    <label>Token ID: </label>
+                    <input type="text" placeholder="Token ID" name="id">
+                </div>
+                <div>
+                    <label>Token: </label>
+                    <input type="text" placeholder="Token" name="token">
+                </div>
+                <input type="submit" value="Login">
+            </form>
+        </main>
+        <footer>
+            zer0pts CTF 2022
+        </footer>
+    </body>
+</html>

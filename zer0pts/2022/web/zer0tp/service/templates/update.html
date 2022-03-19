@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Update User - Zer0TP Token Manager</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.13.0/dist/css/uikit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.0/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.0/dist/js/uikit-icons.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+
+    <body>
+        <div class="uk-container">
+            <div class="uk-flex uk-flex-center uk-position-center uk-background-primary uk-margin">
+                <fieldset class="uk-fieldset uk-width-large uk-padding">
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" placeholder="Current Username" id="username" required>
+                    </div>
+                    <div class="uk-margin">
+                        <input class="uk-input" type="password" placeholder="Current Password" id="password" required>
+                    </div>
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" placeholder="New Username" id="new_username" required>
+                    </div>
+                    <div class="uk-margin">
+                        <input class="uk-input" type="password" placeholder="New Password" id="new_password" required>
+                    </div>
+                    <button class="uk-button uk-button-warning" id="update">Update</button>
+                </fieldset>
+            </div>
+        </div>
+
+        <script>
+         UIkit.util.on('#update', 'click', function () {
+             let username = $('#username').val();
+             let password = $('#password').val();
+             let new_username = $('#new_username').val();
+             let new_password = $('#new_password').val();
+
+             $.post("/api/rename",
+                    {username, password, new_username, new_password},
+                    (data) => {
+                        if (data.result === "OK") {
+                            UIkit.modal.alert("Successfully updated");
+                        } else {
+                            UIkit.notification({
+                                message: data.reason,
+                                status: "danger",
+                                timeout: 5000
+                            });
+                        }
+                    }
+             );
+         });
+        </script>
+    </body>
+</html>

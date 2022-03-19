@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{{title}} - DISCO PARTY</title>
+    <meta property="og:title" content="{{ title }} - DISCO PARTY">
+    <meta name="description" content="Invitation Ticket Issue System">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+
+    <link rel="stylesheet" href="/static/modal.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/micromodal/0.4.10/micromodal.min.js" integrity="sha512-qcwcAul7d7yUcoz3MmQABiaGDa+gVkaDWgZX6wEd/z3I6z62nQCDW3EqioQG+O+QlGCpxmJLdH5snh4IaDPiPA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+    <link rel="icon" href="/assets/images/favicon.png">
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.5/dist/notiflix-aio-3.2.5.min.js"></script>
+  </head>
+
+  <body>
+    <header>
+        <nav>
+            <a href="/" {% if not is_post %} style="color: var(--accent); border-color: var(--accent);" {% endif %}>Home</a>
+            <a href="https://discord.gg/2u47XhrhPg" target="_blank">Join to Our 𝑫𝑰𝑺𝑪𝑶 𝑷𝑨𝑹𝑻𝒀</a>
+            <a href="#" data-micromodal-trigger="modal-new">Create New Invitation</a>
+        </nav>
+        {% if is_post %}
+        <h1>𝑫𝑰𝑺𝑪𝑶 𝑷𝑨𝑹𝑻𝒀</h1>
+        <p>Check your invitation for the 𝑫𝑰𝑺𝑪𝑶 𝑷𝑨𝑹𝑻𝒀!</p>
+        {% else %}
+        <h1>𝑫𝑰𝑺𝑪𝑶 𝑷𝑨𝑹𝑻𝒀</h1>
+        <p>Invite your friends to your 𝑫𝑰𝑺𝑪𝑶 𝑷𝑨𝑹𝑻𝒀!</p>
+        {% endif %}
+    </header>
+    <main>
+    {% if panel %}
+    <p class="notice">
+        {{ panel | safe }}
+    </p>
+    {% endif %}
+
+    {% if is_post %}
+
+    <h2>{{ title }} <a href="#" data-micromodal-trigger="modal-report" style="font-size: 40%;">Report This Content</a></h2>
+    
+    <p>{{ content }}</p>
+    
+    {% else %}
+
+    <p>🍷💃🕺💃🕺💃🕺💃🕺💃🕺🍷</p>
+
+    {% endif %}
+    <div class="modal micromodal-slide" id="modal-new" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-new-title" >
+                <header class="modal__header">
+                    <h2 class="modal__title" id="modal-new-title">Create New Invitation</h2>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
+                <div class="modal__content" id="modal-new-content">
+                    <form method="post" action="/api/new">
+                        <div>
+                            <label>Title:<br/>
+                                <input name="title" type="text" placeholder="e.g., Join disc0pts!">
+                            </label>
+                        </div>
+                        <div>
+                            <label>Content:<br/>
+                                <textarea name="content" rows="4" cols="40" placeholder="e.g., Annual disco party helf by zer0pts"></textarea>
+                            </label>
+                        </div>
+                        <button id="modal-button-new" type="button">Create New Invitation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal micromodal-slide" id="modal-report" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-report-title" >
+                <header class="modal__header">
+                    <h2 class="modal__title" id="modal-report-title">Report</h2>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                </header>
+                <div class="modal__content" id="modal-report-content">
+                    <form id="report-form" method="post" action="/api/report">
+                        <input name="url" type="hidden" value="{{ url }}">
+                        <div>
+                            <label>Reason:<br/>
+                                <textarea name="reason" rows="4" cols="40" placeholder="i.e., The message is aggressive"></textarea>
+                            </label>
+                        </div>
+                        <div id="recaptcha-form" class="g-recaptcha" data-sitekey="{{ sitekey }}"></div>
+                        <button id="modal-button-report" type="button">Report to Admin</input>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    async function submitForm(e) {
+        e.target.disabled = true;
+        try {
+            let form = e.target.form;
+            let res = await fetch(form.action, { body: new FormData(form), method: "POST" });
+            if (!res.ok) {
+                throw new Error(`${res.status}: ${res.statusText}`);
+            }
+            let json = await res.json();
+            if (json["result"] != "OK") {
+                throw new Error(json["message"]);
+            }
+            let action = () => {};
+            if (json["action"]) {
+                action = () => location.href = json["action"];
+            }
+            Notiflix.Notify.success(json["message"], action);
+        }
+        catch (e) {
+            Notiflix.Notify.failure(e.message);
+        }
+        finally {
+            e.target.disabled = false;
+        }
+    }
+    document.getElementById("modal-button-new")?.addEventListener("click", submitForm);
+    document.getElementById("modal-button-report")?.addEventListener("click", submitForm);
+    document.getElementById("modal-button-delete")?.addEventListener("click", submitForm);
+
+    MicroModal.init({
+        openClass: 'is-open',
+        awaitOpenAnimation: true,
+        awaitCloseAnimation: true,
+    });
+    Notiflix.Notify.init();
+    </script>
+    </main>
+    <footer>
+      <p>DISCO PARTY 2022 (c)</p>
+    </footer>
+  </body>
+</html>

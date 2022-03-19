@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Demo App</title>
+        <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
+    </head>
+    <body>
+        <header>
+            {% if is_admin %}
+            <h1>{{flag}}</h1>
+            {% else %}
+            <h1>Hello, {{username}}!</h1>
+            {% endif %}
+        </header>
+        <main>
+            <div style="text-align: center">
+                <form action="/logout">
+                    <input type="submit" value="Logout">
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

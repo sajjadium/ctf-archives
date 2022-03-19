@@ -1,0 +1,16 @@
+version: '3'
+services:
+  redis-lite_dist:
+    build:
+      context: .
+    working_dir: /home/pwn
+    container_name: redis-lite_dist
+    ulimits:
+      nproc: 65535
+      core: 0
+    environment:
+      - REDIS_QUIET=1
+      - REDIS_PORT=9999
+    ports:
+      - "6379:9999"
+    entrypoint: /home/pwn/redis-lite-server

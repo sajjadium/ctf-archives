@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Zer0TP Token Manager</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.13.0/dist/css/uikit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.0/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.13.0/dist/js/uikit-icons.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+
+    <body>
+        <div class="uk-container">
+            <div class="uk-flex uk-flex-center uk-position-center uk-background-primary uk-margin">
+                <fieldset class="uk-fieldset uk-width-large uk-padding">
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" placeholder="Username" id="username" required>
+                    </div>
+                    <div class="uk-margin">
+                        <input class="uk-input" type="password" placeholder="Password" id="password" required>
+                    </div>
+                    <button class="uk-button uk-button-danger" id="login">Login</button>
+                    <button class="uk-button uk-button-secondary" id="register">Register</button>
+                    <a class="uk-link-text uk-text-success uk-text-lighter" href="/update"> Update user</a>
+                </fieldset>
+            </div>
+        </div>
+
+        <script>
+         UIkit.util.on('#login', 'click', function () {
+             let username = $('#username').val();
+             let password = $('#password').val();
+
+             $.post("/api/login", {username, password},
+                    (data) => {
+                        if (data.result === "OK") {
+                            UIkit.modal.alert(`Use this token to login to third party software. (Expires in 30 minutes)<br>Token ID: ${data.id}<br>Your Token: ${data.token}`);
+                        } else {
+                            UIkit.notification({
+                                message: data.reason,
+                                status: "danger",
+                                timeout: 5000
+                            });
+                        }
+                    }
+             );
+         });
+
+         UIkit.util.on('#register', 'click', function () {
+             let username = $('#username').val();
+             let password = $('#password').val();
+
+             $.post("/api/register", {username, password},
+                    (data) => {
+                        if (data.result === "OK") {
+                            UIkit.notification({
+                                message: "Successfully registered!",
+                                status: "success",
+                                timeout: 5000
+                            });
+                        } else {
+                            UIkit.notification({
+                                message: data.reason,
+                                status: "danger",
+                                timeout: 5000
+                            });
+                        }
+                    }
+             );
+         });
+        </script>
+    </body>
+</html>
