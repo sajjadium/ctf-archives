@@ -1,0 +1,36 @@
+common:
+    log:
+        conf: "logging_prod.yaml"
+        app_log_file: "logs/app/main.log"
+        backupCount: 180
+
+logging:
+    loggers:
+        file:
+            handlers: [fileRotatingHandler]
+            level: INFO
+            qualname: file
+            propagate: no
+        console:
+            handlers: [consoleHandler]
+            level: INFO
+            qualname: console
+            propagate: no
+    handlers:
+        fileRotatingHandler:
+            formatter: custmoFormatter
+            class: logging.handlers.TimedRotatingFileHandler
+            level: INFO
+            filename: ../logs/app/main.log
+            encoding: utf8
+            when: 'D'
+            interval: 1
+            backupCount: 180
+        consoleHandler:
+            class: logging.StreamHandler
+            level: INFO
+            formatter: custmoFormatter
+            stream: ext://sys.stdout
+    root:
+        level: INFO
+        handlers: [fileRotatingHandler,consoleHandler]

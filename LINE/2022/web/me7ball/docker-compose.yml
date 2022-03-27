@@ -1,0 +1,44 @@
+version: '3.5'
+
+services:
+  nginx:
+    build:
+      context: ./nginx/
+    container_name: line_meatball_nginx
+    restart: always  
+    image: line_meatball_nginx
+    volumes:
+      - './nginx/log:/var/log/nginx'
+    ports:
+      - "80:80" 
+    networks:
+      line-meatball-frontend:
+    depends_on:
+      - backend
+
+  backend:
+    build: 
+      context: ./backend/
+    container_name: line_meatball_backend
+    restart: always
+    environment: 
+      - FLASK_ENV=production
+      - SCRIPT_ENV=production
+    networks:
+      line-meatball-frontend:
+      line-meatball-backend:
+    depends_on:
+      - redis
+
+  redis:
+    image: "redis:alpine"
+    restart: always 
+    container_name: line_meatball_redis
+    networks:
+        - line-meatball-backend
+
+networks:
+    line-meatball-frontend:
+
+    line-meatball-backend:
+

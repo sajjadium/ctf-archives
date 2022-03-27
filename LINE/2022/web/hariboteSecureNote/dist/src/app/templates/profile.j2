@@ -1,0 +1,36 @@
+{% extends "base.j2" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block common_head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    {{ super() }}
+    <section id="loginForm">
+        <form method="POST">
+            <div class="d-grid gap-3">
+                <div>
+                    <label for="inputUserDisplayName" class="form-label">Display name</label>
+                    <input name="display_name" type="text" class="form-control form-control-sm"
+                           id="inputUserDisplayName"
+                           value="{{ current_user.display_name }}">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Update</button>
+            </div>
+        </form>
+    </section>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <section id="alertArea">
+                {% for category, message in messages %}
+                    <div class="mb-3 mt-3 alert alert-{{ category }}" role="alert">
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </section>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

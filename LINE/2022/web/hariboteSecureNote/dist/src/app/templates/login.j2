@@ -1,0 +1,40 @@
+{% extends "base.j2" %}
+
+{% block title %}Login{% endblock %}
+
+{% block common_head %}
+    {{ super() }}
+{% endblock %}
+
+{% block content %}
+    {{ super() }}
+    <section id="loginForm">
+        <form method="POST">
+            <div class="d-grid gap-3">
+                <div>
+                    <label for="inputUserId" class="form-label">User ID</label>
+                    <input name="user_id" type="text" class="form-control form-control-sm" id="inputUserId"
+                           autofocus>
+                </div>
+                <div>
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <input name="password" type="password" class="form-control form-control-sm" id="inputPassword">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <p>If you don't have an account, please <a href="{{ url_for('register') }}">register</a> first.</p>
+            </div>
+        </form>
+    </section>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <section id="alertArea">
+                {% for category, message in messages %}
+                    <div class="mb-3 mt-3 alert alert-{{ category }}" role="alert">
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </section>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

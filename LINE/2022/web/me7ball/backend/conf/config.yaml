@@ -1,0 +1,32 @@
+common:
+    version: "0.1"
+    version_updated: "0.1"
+    server:
+        host: "0.0.0.0"
+        port: 5000
+    time_zone: "Asia/Tokyo"
+    time_zone_name: "JST"
+
+logging:
+    version: 1
+    formatters:
+        custmoFormatter:
+            format: "[%(asctime)s]%(levelname)s - %(filename)s#%(funcName)s:%(lineno)d: %(message)s"
+            datefmt: "%Y/%m/%d %H:%M:%S"
+
+date_formats:
+    date_format: "%Y-%m-%d"
+    date_time_format: "%Y-%m-%d %H:%M:%S"
+    null_date: "0000-00-00 00:00:00"
+    date_time_tz_format: "%Y-%m-%dT%H:%M:%S.%fZ"
+    date_time_zone_format: "%Y-%m-%dT%H:%M:%SZ"
+    ymd_format: "%Y%m%d"
+    datetime_day_format: "%Y-%m-%d %H:%M:%S %A"
+    news_date_format: "%a, %d %b %Y %H:%M:%S %Z"
+
+user:
+    logging:
+        level: "INFO"
+        log_file_path: "/logs/user/main.log"
+        std_out: False
+

@@ -1,0 +1,137 @@
+{% extends "base.j2" %}
+
+{% block title %}Home{% endblock %}
+
+{% block common_head %}
+    {{ super() }}
+    <meta content="default-src 'self'; style-src 'unsafe-inline'; object-src 'none'; base-uri 'none'; script-src 'nonce-{{ csp_nonce }}'
+    'unsafe-inline'; require-trusted-types-for 'script'; trusted-types default"
+          http-equiv="Content-Security-Policy">
+{% endblock %}
+
+{% block content %}
+    {{ super() }}
+    {% if current_user.is_admin %}
+        <section id="sharedUserInfo">
+            <button id="printInfoBtn" type="button" class="btn btn-sm btn-outline-secondary btn-block">👀 Check shared
+                user information
+            </button>
+        </section>
+        <script nonce="{{ csp_nonce }}">
+            const printInfo = () => {
+                const sharedUserId = "{{ shared_user_id }}";
+                const sharedUserName = "{{ shared_user_name }}";
+
+                const div = document.createElement('div');
+                div.classList.add('alert')
+                div.classList.add('alert-warning')
+                div.innerHTML = [
+                    `[debug:${new Date().toISOString()}]`,
+                    `UserId="${sharedUserId}"`,
+                    `DisplayName="${sharedUserName}"`
+                ].join(' ');
+                const sharedUserInfo = document.getElementById('sharedUserInfo');
+                sharedUserInfo.replaceChildren(div);
+            }
+
+            const printInfoBtn = document.getElementById('printInfoBtn');
+            printInfoBtn.addEventListener('click', printInfo);
+        </script>
+    {% endif %}
+
+    <script nonce="{{ csp_nonce }}">
+        (() => {
+            trustedTypes.createPolicy("default", {
+                createHTML(unsafe) {
+                    return unsafe
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;")
+                        .replace(/"/g, "&quot;")
+                        .replace(/"/g, "&#039;")
+                }
+            });
+        })();
+    </script>
+
+    {% if not current_user.is_admin %}
+        <section id="newNotePostForm">
+            <h2 class="mt-3">New note</h2>
+            <form method="POST" action={{ url_for('note') }}>
+                <div class="d-grid gap-3">
+                    <div>
+                        <label for="inputTitle" class="form-label" autofocus>Title</label>
+                        <input type="text" name="title" class="form-control form-control-sm" id="inputTitle"
+                               placeholder="max length: {{ config['NOTE_TITLE_MAX_LENGTH'] }}">
+                    </div>
+                    <div>
+                        <label for="inputContent" class="form-label">Content</label>
+                        <textarea name="content" class="form-control" id="inputContent" aria-describedby="contentHelp"
+                                  rows="3" placeholder="max length: {{ config['NOTE_CONTENT_MAX_LENGTH'] }}"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+        </section>
+    {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <section id="alertArea">
+                {% for category, message in messages %}
+                    <div class="mb-3 mt-3 alert alert-{{ category }}" role="alert">
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </section>
+        {% endif %}
+    {% endwith %}
+
+    <section id="noteList">
+        <h2 class="mt-3">Notes</h2>
+        {% if not current_user.is_admin %}
+            <div class="alert alert-info d-flex align-items-center" role="alert">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                     class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>
+                <div>
+                    Let's share your notes! Click <a href="{{ url_for('share') }}" class="alert-link">here</a> to share
+                    a
+                    note with us, and we will visit the shared
+                    note.
+                </div>
+            </div>
+        {% endif %}
+        <div id="notes" class="d-grid gap-3"></div>
+    </section>
+
+    <script nonce="{{ csp_nonce }}">
+        const render = notes => {
+            const noteArea = document.getElementById("notes");
+
+            notes.sort((a, b) => Date.parse(a.createdAt) - Date.parse(b.createdAt));
+            for (const note of notes) {
+                const noteDiv = document.createElement("div");
+                noteDiv.classList.add("p-2")
+                noteDiv.classList.add("bg-light")
+                noteDiv.classList.add("border")
+
+                const title = document.createElement("h2");
+                title.innerHTML = note.title;
+                noteDiv.appendChild(title);
+
+                const content = document.createElement("p");
+                content.innerHTML = note.content;
+                noteDiv.appendChild(content);
+
+                const createdAt = document.createElement("time");
+                createdAt.innerHTML = `Created at: ${note.createdAt}`;
+                noteDiv.appendChild(createdAt)
+
+                noteArea.appendChild(noteDiv);
+            }
+        };
+        render({{ notes }})
+    </script>
+{% endblock %}

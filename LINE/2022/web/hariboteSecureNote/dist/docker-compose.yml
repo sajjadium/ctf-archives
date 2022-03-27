@@ -1,0 +1,33 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./deploy/app.dockerfile
+    env_file:
+      - ./deploy/env/.app.env
+      - ./deploy/env/.redis.env
+    sysctls:
+      net.core.somaxconn: 4096
+    restart: always
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./deploy/conf/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    depends_on:
+      - app
+  redis:
+    build:
+      context: .
+      dockerfile: ./deploy/redis.dockerfile
+    restart: always
+  crawler:
+    build:
+      context: .
+      dockerfile: ./deploy/crawler.dockerfile
+    env_file:
+      - ./deploy/env/.app.env
+      - ./deploy/env/.redis.env
+    restart: always

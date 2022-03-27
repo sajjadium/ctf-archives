@@ -1,0 +1,48 @@
+version: "3.5"
+
+services: 
+    redis:
+        image: redis:latest
+        restart: always
+        container_name: redis
+        networks:
+            online-library:
+                ipv4_address: 172.3.0.10
+
+    web:
+        build: ./docker/web
+        restart: always
+        container_name: web
+        volumes:
+            - ./data/web:/web
+        environment:
+            - NODE_ENV=production
+            - SECRET=[redacted]
+        working_dir: /web
+        ports:
+            - "10100:80"
+        networks:
+            online-library:
+                ipv4_address: 172.3.0.11
+
+    bot:
+        build: ./docker/bot
+        restart: always
+        container_name: bot
+        volumes:
+            - ./data/bot:/bot
+        environment: 
+            - FLAG=[redacted]
+        working_dir: /bot
+        depends_on: 
+            - redis
+        networks:
+            online-library:
+                ipv4_address: 172.3.0.12
+                
+networks:
+    online-library:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 172.3.0.0/24

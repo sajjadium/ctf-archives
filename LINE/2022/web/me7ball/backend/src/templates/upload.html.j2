@@ -1,0 +1,38 @@
+{% extends "base.html.j2" %}
+
+{% include 'head.html.j2' %}
+
+{% block title %}LINE CTF 2022 me7-ba11 Web{% endblock %}
+
+{% block content %}
+
+
+<div class="row border">
+  <div class="col">
+    <h1>Upload File</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+
+      <div class="form-text">
+        <label for="FormControlInput" class="form-label">Key(uuid)</label>
+        <input type="text" class="form-control" id="FormControlInput" name="key" placeholder="ex) b3ed095d-e534-43b5-ac57-65451fa86b30">
+      </div>
+
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="enc" />
+        <label class="form-check-label" for="flexCheckDefault">Encrypt</label>
+      </div>
+
+      <div class=row>
+        <div class="col"><input type="file" class="form-control" name="file" id="file" /></div>
+        <div class="col"><input type="submit" class="btn btn-primary"></div>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+
+
+
+{% endblock %}

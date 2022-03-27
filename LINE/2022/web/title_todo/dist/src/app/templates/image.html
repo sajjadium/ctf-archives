@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="title is-3">{{ image.title }}</div>
+
+<img src={{ image.url }} class="mb-3">
+<input hidden id="imgId" value="{{ image.id }}">
+{% if not shared %}
+<div class="control">
+    <button id="shareButton" class="button is-success">Share (to admin)</button>
+</div>
+
+{% endif %}
+
+<script src="/static/script/main.js"></script>
+{% endblock content %}

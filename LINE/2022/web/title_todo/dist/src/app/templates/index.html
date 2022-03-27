@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="title is-3">Index</div>
+{% if images %}
+<ul>
+    {% for image in images%}
+    <li>{{image.created_at.strftime('%Y-%m-%d')}}: <a href="{{ url_for('image', image_id=image.id) }}">{{ image.title }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<div class="subtitle is-6 mt-3">Upload your first picture diary</div>
+{% endif %}
+{% endblock %}

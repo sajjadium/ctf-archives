@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Online Library - Identify</title>
+    </head>
+    <body>
+        <h1>Identify</h1>
+        Total <%= length %> users identified in a minute, Let us know who you are before report to admin!
+        <hr/>
+        <script>
+            const identify = () => {
+                const username = document.getElementById("username").value;
+                fetch("/identify", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: "username=" + username
+                }).then((res) => {
+                    return res.json()
+                }).then((res) => {
+                    if (res.error) {
+                        alert(`Error - ${res.message}`)
+                    } else {
+                        alert(`Success - ${res.message}`)
+                        location.replace("/report")
+                    }
+                })
+            }
+        </script>
+        <center>
+            <input type="text" id="username" placeholder="Your name"/>
+            <button onclick="identify()">Identify</button>
+        </center>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>Online Library - Home</title>
+    </head>
+    <body>
+        <h1>Books</h1>
+        There are <%= l %> books in bookshelf! If you find some bugs, please use <a href="/report">report</a> page. <!-- you could also insert new book <a href="/insert">here</a>! -->
+        <hr />
+        <% f.forEach((c) => { %>
+        <a href="/<%= c.t %>/0/<%= c.s %>"><%= c.t %></a><br />
+        <% }) %>
+    </body>
+</html>

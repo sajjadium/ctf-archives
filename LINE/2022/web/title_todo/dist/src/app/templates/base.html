@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/bulma.min.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <title>XXXXX</title>
+</head>
+<body>
+    <div class="container_">
+        <div class="columns">
+            <div class="column is-3">
+                <div class="menu p-5">
+                    <p class="menu-label">
+                        <h1 class="title is-1">A picture is worth a thousand words</h1>
+                    </p>
+                    <ul class="menu-list mb-6">
+                    <li><a class="is-size-4" href="{{ url_for('index') }}">Home</a></li>
+                    <li><a class="is-size-4" href="{{ url_for('create_image') }}">Upload Picture Diary</a></li>
+                    </ul>
+                    
+                    <ul class="menu-list mt-6">
+                    {% if current_user.is_authenticated %}
+                    <li><p class="menu-label is-size-5">{{ current_user.username }}</p></li>
+                    <li><a class="is-size-4" href="{{ url_for('logout') }}">Logout</a></li>
+                    {% else %}
+                    <li><a class="is-size-4" href="{{ url_for('register') }}">Register</a></li>
+                    <li><a class="is-size-4" href="{{ url_for('login') }}">Login</a></li>
+                    {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="column is-6">
+                <div class="content">
+                    <div class="section is-small">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            {% if current_user.is_admin %}
+            {{ config.get('FLAG') }}
+            {% endif %}
+        </footer>
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Online Library - Report</title>
+    </head>
+    <body>
+        <h1>Report</h1>
+        If you report with url path, admin would be check that url!
+        <hr/>
+        <script>
+            const report = () => {
+                const url = escape(document.getElementById("url").value);
+                const captcha = document.getElementById("captcha").value;
+                fetch("/report", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: `url=${url}&captcha=${captcha}`
+                }).then((res) => {
+                    return res.json()
+                }).then((res) => {
+                    if (res.error) {
+                        alert(`Error - ${res.message}`)
+                        location.replace("/report")
+                    } else {
+                        alert(`Success - ${res.message}`)
+                        location.replace("/")
+                    }
+                })
+            }
+        </script>
+        <input type="text" id="url" placeholder="/Example/0/1337" style="width: 300px;"/>
+        <br/>
+        <img src="<%= data %>"/>
+        <br/>
+        <input type="text" id="captcha" placeholder="Captcha" style="width: 300px;"/>
+        <br/>
+        <button onclick="report()">Report</button>
+    </body>
+</html>

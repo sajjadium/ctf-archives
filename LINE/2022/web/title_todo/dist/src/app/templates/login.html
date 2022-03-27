@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title is-3">Login</h1>
+
+<form method="POST">
+    <div class="field">
+        <label class="label">Username</label>
+        <div class="control">
+            <input class="input" type="text" name="username" autofocus>
+        </div>
+    </div>
+    <div class="field">
+        <label class="label">Password</label>
+        <div class="control">
+            <input class="input" type="password" name="password">
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+            <input type="submit" class="button is-link" value="Submit">
+        </div>
+    </div>
+</form>
+{% if get_flashed_messages() %}
+<div class="notification is-danger is-light">
+    {{ get_flashed_messages()[0] }}
+</div>
+{% endif %}
+{% endblock content %}

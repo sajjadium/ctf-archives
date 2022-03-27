@@ -1,0 +1,42 @@
+{% extends "base.html.j2" %}
+
+{% include 'head.html.j2' %}
+
+{% block title %}LINE CTF 2022 me7-ba11 Web{% endblock %}
+
+{% block content %}
+
+
+<div class="row border mb-3">
+
+
+  <div class="col">
+    <h1>Get</h1>
+    <form action="/get" method="get">
+      <div class="form-outline">
+        <div class="form-text">
+          <label for="FormControlInput" class="form-label">Key(uuid)</label>
+          <input type="text" class="form-control" id="FormControlInput" name="key" placeholder="ex) b3ed095d-e534-43b5-ac57-65451fa86b30">
+        </div>
+
+      </div>
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
+  <div class="col">
+    <h1>Delete</h1>
+    <form action="/delete" method="post">
+      <div class="form-outline">
+        <div class="form-text">
+          <label for="FormControlInput" class="form-label">Key(uuid)</label>
+          <input type="text" class="form-control" id="FormControlInput" name="key" placeholder="ex) b3ed095d-e534-43b5-ac57-65451fa86b30">
+        </div>
+
+      </div>
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
+</div>
+
+
+{% endblock %}

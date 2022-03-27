@@ -1,0 +1,37 @@
+common:
+    log:
+        conf: "logging_dev.yaml"
+        app_log_file: "logs/app/main.log"
+        backupCount: 14
+
+logging:
+    loggers:
+        file:
+            handlers: [fileRotatingHandler]
+            level: DEBUG
+            qualname: file
+            propagate: no
+        console:
+            handlers: [consoleHandler]
+            level: DEBUG
+            qualname: console
+            propagate: no
+    handlers:
+        fileRotatingHandler:
+            formatter: custmoFormatter
+            class: logging.handlers.TimedRotatingFileHandler
+            level: DEBUG
+            filename: ../logs/app/main.log
+            encoding: utf8
+            when: 'D'
+            interval: 1
+            backupCount: 14
+        consoleHandler:
+            class: logging.StreamHandler
+            level: DEBUG
+            formatter: custmoFormatter
+            stream: ext://sys.stdout
+    root:
+        level: DEBUG
+        handlers: [fileRotatingHandler,consoleHandler]
+

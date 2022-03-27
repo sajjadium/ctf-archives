@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block common_head %}
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href={{ url_for('static', filename='css/bootstrap.min.css') }}>
+        <title>{% block title %}{% endblock %} - Haribote Secure Note</title>
+    {% endblock %}
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand navbar-light bg-light p-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('index') }}">{{ config['APP_NAME'] }}</a>
+            <ul class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item"><a href="{{ url_for('profile') }}" class="nav-link">Profile</a></li>
+                    <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+                {% else %}
+                    <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
+                    <li class="nav-item"><a href="{{ url_for('register') }}" class="nav-link">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="container-md mt-3">
+    <h1>{{ self.title() }}</h1>
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/static/memo.js"></script>
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/memo.css">
+
+    <title>Simple Memo</title>
+</head>
+<body>
+    <div class="main">
+        <p>
+            Welcome, <sapn id="client-ip">{{ ip }}</sapn><br/>
+            <input type="button" id="memo-button" value="SAVE" onclick="save()"/><br/>
+            <textarea id="memo-input" placeholder="Please input memo contents"></textarea><br/>
+       
+            Memo List (MAX:3)<br/>
+            <input type="button" id="memo-button" value="RESET" onclick="reset()"/><br/>
+
+            <span id="memo-box">
+                {% if count == 0 %}
+                    <span id="memo-item">None</span><br/>
+                {% else %}
+                    {% for memo in memoList %}
+                        <span><a id="memo-item" href="/view?{{clientId}}={{memo}}">{{ memo }}</a></span>
+                    {% endfor %}
+                {% endif %}
+            </span>  
+        </p>
+    </div>
+</body>
+</html>

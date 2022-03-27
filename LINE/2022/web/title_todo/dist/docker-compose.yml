@@ -1,0 +1,39 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.app
+    env_file:
+      - .env.app
+    depends_on:
+      - redis
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.nginx
+    ports:
+      - '80:80'
+    volumes:
+      - './nginx.conf:/etc/nginx/nginx.conf'
+    depends_on:
+      - app
+
+  redis:
+    image: 'redis:latest'
+    volumes:
+      - './redis/data:/data'
+    entrypoint: > 
+      redis-server --requirepass ${REDIS_PASSWORD}
+
+  crawler:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.crawler
+    env_file:
+      - .env.crawler
+    restart: on-failure:5
+    depends_on:
+      - redis
+      - nginx

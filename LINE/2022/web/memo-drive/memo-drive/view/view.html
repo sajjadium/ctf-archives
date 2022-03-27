@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/memo.js"></script>
+    <script type="text/javascript" src="/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/memo.css">
+
+    <title>Simple Memo</title>
+</head>
+<body>
+    <div class="main">
+        <p>
+            <span>{{ filename }}</span><br/>
+            <input type="button" id="memo-button" value="BACK" onclick="history.back()"/><br/>
+            <span id="memo-box">
+                {#{% include path without context %}#}
+                {% for line in contents %}
+                    {{ line }}
+                {% endfor %}
+            </span>
+        </p>
+    </div>
+</body>
+</html>
