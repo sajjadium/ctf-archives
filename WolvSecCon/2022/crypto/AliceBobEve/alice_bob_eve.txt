@@ -1,0 +1,21 @@
+Queen Alice and King Bob want to establish communication between their kingdoms by sending messengers to each other. Unfortunately, there is only one passage through, controlled by the Evil Empress Eve of Eavesville, who wants to disrupt communication by intercepting messengers.
+
+There is no knowing what Eve will do. She might simply arrest the messenger, leaving the recipient without communications, or she might even replace the messenger with a different one to send the recipient a fake message. Who knows, maybe she even bribes messengers to betray Alice and Bob.
+
+This means that if Alice or Bob receives a message, they can't be sure whether it is actually from the other person or not. Even if it is the real message, they can't be sure that Eve has not seen it.
+
+Luckily, Alice and Bob already met in secret and planned an encryption method. They decided to use a simple encryption scheme that supports characters 32 through 126 of the ASCII and include a nonce in each message which ensures security. 
+
+Today, Alice received several messages from Bob in rapid succession, which makes no sense. She suspects Eve failed to catch the messenger and instead sent several messengers with fake messages so Alice wouldn't know which is the real one. Let's see if the protocol Alice and Bob devised is enough to figure out the real message!
+
+Here are all the messages:
+
+Nonce: "" Cipher: "b9+'0A9Y0SY0A5-7'YS7T*X#.+TXTD7+#-')"
+
+Nonce: "502717234" Cipher: "h73h7#77lh7a73 878gghkaekjfha73hka727"
+
+Nonce: "204583068" Cipher: "-Nd&QNHJed9MJdKQFLdNXd\XH`^TZKTZSINYb"
+
+Nonce: "420420420" Cipher: "Hi Alice! This is a totally real message."
+
+Hint 1 - What if only certain digits of the nonce are actually getting used? There are X supported characters, which has Y digits.

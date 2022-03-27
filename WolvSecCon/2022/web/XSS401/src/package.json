@@ -1,0 +1,11 @@
+{
+  "name": "xss-possible",
+  "version": "1.0.0",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "1.19.1",
+    "escape-html": "1.0.3",
+    "express": "4.17.1",
+    "puppeteer": "13.0.1"
+  }
+}

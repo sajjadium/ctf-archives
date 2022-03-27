@@ -1,0 +1,9 @@
+version: "3"
+services:
+  app:
+    build: .
+    # increment this version tag anytime the challenge changes!
+    image: dhe-medium:5
+    container_name: dhe-medium
+    ports:
+      - 54321:54321

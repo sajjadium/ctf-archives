@@ -1,0 +1,10 @@
+version: "2.2"
+
+services:
+  wsc-2022-web-2:
+    build: .
+    # increment this version tag anytime the challenge changes!
+    image: wsc-2022-web-2:5
+    container_name: wsc-2022-web-2
+    ports:
+      - "80:80"

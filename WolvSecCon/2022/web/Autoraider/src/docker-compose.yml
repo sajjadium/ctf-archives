@@ -1,0 +1,9 @@
+version: "3"
+services:
+  app:
+    build: .
+    # increment this version tag anytime the challenge changes!
+    image: autoraider:10
+    container_name: autoraider
+    ports:
+      - 80:80
