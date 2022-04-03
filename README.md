@@ -1063,7 +1063,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/624/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/RCTF/2018">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="RITSEC">RITSEC</a></td>
+            <td rowspan=4><a href="RITSEC">RITSEC</a></td>
+            <td><a href="RITSEC/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1558/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="RITSEC/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1309/tasks/">CTFtime</a></td>
         </tr>
