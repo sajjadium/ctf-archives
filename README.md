@@ -1406,7 +1406,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1040/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="UMass">UMass</a></td>
+            <td rowspan=2><a href="UMass">UMass</a></td>
+            <td><a href="UMass/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1561/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="UMass/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1282/tasks/">CTFtime</a></td>
         </tr>
