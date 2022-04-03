@@ -1,0 +1,129 @@
+  5           0 LOAD_GLOBAL              0 (input)
+              2 LOAD_CONST               1 ('Enter the super secret password:')
+              4 CALL_FUNCTION            1
+              6 STORE_FAST               0 (a)
+
+  6           8 LOAD_CONST               2 ('')
+             10 STORE_FAST               1 (b)
+
+  7          12 LOAD_CONST               3 (0)
+             14 STORE_FAST               2 (c)
+
+  8          16 LOAD_FAST                0 (a)
+             18 GET_ITER
+        >>   20 FOR_ITER               136 (to 158)
+             22 STORE_FAST               3 (x)
+
+  9          24 LOAD_FAST                3 (x)
+             26 LOAD_CONST               4 ('a')
+             28 COMPARE_OP               2 (==)
+             30 POP_JUMP_IF_FALSE       40
+
+ 10          32 LOAD_FAST                1 (b)
+             34 LOAD_CONST               5 ('@')
+             36 INPLACE_ADD
+             38 STORE_FAST               1 (b)
+
+ 11     >>   40 LOAD_FAST                3 (x)
+             42 LOAD_CONST               5 ('@')
+             44 COMPARE_OP               2 (==)
+             46 POP_JUMP_IF_FALSE       58
+
+ 12          48 LOAD_FAST                1 (b)
+             50 LOAD_CONST               4 ('a')
+             52 INPLACE_ADD
+             54 STORE_FAST               1 (b)
+             56 JUMP_FORWARD            90 (to 148)
+
+ 13     >>   58 LOAD_FAST                3 (x)
+             60 LOAD_CONST               6 ('o')
+             62 COMPARE_OP               2 (==)
+             64 POP_JUMP_IF_FALSE       76
+
+ 14          66 LOAD_FAST                1 (b)
+             68 LOAD_CONST               7 ('0')
+             70 INPLACE_ADD
+             72 STORE_FAST               1 (b)
+             74 JUMP_FORWARD            72 (to 148)
+
+ 15     >>   76 LOAD_FAST                3 (x)
+             78 LOAD_CONST               7 ('0')
+             80 COMPARE_OP               2 (==)
+             82 POP_JUMP_IF_FALSE       94
+
+ 16          84 LOAD_FAST                1 (b)
+             86 LOAD_CONST               6 ('o')
+             88 INPLACE_ADD
+             90 STORE_FAST               1 (b)
+             92 JUMP_FORWARD            54 (to 148)
+
+ 17     >>   94 LOAD_FAST                3 (x)
+             96 LOAD_CONST               8 ('e')
+             98 COMPARE_OP               2 (==)
+            100 POP_JUMP_IF_FALSE      112
+
+ 18         102 LOAD_FAST                1 (b)
+            104 LOAD_CONST               9 ('3')
+            106 INPLACE_ADD
+            108 STORE_FAST               1 (b)
+            110 JUMP_FORWARD            36 (to 148)
+
+ 19     >>  112 LOAD_FAST                3 (x)
+            114 LOAD_CONST               9 ('3')
+            116 COMPARE_OP               2 (==)
+            118 POP_JUMP_IF_FALSE      130
+
+ 20         120 LOAD_FAST                1 (b)
+            122 LOAD_CONST               8 ('e')
+            124 INPLACE_ADD
+            126 STORE_FAST               1 (b)
+            128 JUMP_FORWARD            18 (to 148)
+
+ 21     >>  130 LOAD_FAST                3 (x)
+            132 LOAD_CONST              10 ('l')
+            134 COMPARE_OP               2 (==)
+            136 POP_JUMP_IF_FALSE      140
+
+ 22         138 JUMP_FORWARD             8 (to 148)
+
+ 24     >>  140 LOAD_FAST                1 (b)
+            142 LOAD_FAST                3 (x)
+            144 INPLACE_ADD
+            146 STORE_FAST               1 (b)
+
+ 25     >>  148 LOAD_FAST                2 (c)
+            150 LOAD_CONST              11 (1)
+            152 INPLACE_ADD
+            154 STORE_FAST               2 (c)
+            156 JUMP_ABSOLUTE           20
+
+ 27     >>  158 LOAD_CONST              12 ('S0th3combination1sonetw0thr3efourf1ve')
+            160 STORE_FAST               4 (d)
+
+ 28         162 LOAD_FAST                2 (c)
+            164 LOAD_CONST              13 (4)
+            166 BINARY_MODULO
+            168 LOAD_CONST               3 (0)
+            170 COMPARE_OP               2 (==)
+            172 POP_JUMP_IF_FALSE      196
+
+ 29         174 LOAD_FAST                1 (b)
+            176 LOAD_FAST                4 (d)
+            178 COMPARE_OP               2 (==)
+            180 POP_JUMP_IF_FALSE      196
+
+ 30         182 LOAD_GLOBAL              1 (print)
+            184 LOAD_CONST              14 ('You got the flag!')
+            186 CALL_FUNCTION            1
+            188 POP_TOP
+
+ 31         190 LOAD_GLOBAL              2 (exit)
+            192 CALL_FUNCTION            0
+            194 POP_TOP
+
+ 33     >>  196 LOAD_GLOBAL              1 (print)
+            198 LOAD_CONST              15 ('Oops, try again.')
+            200 CALL_FUNCTION            1
+            202 POP_TOP
+            204 LOAD_CONST               0 (None)
+            206 RETURN_VALUE

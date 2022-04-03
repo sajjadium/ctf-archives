@@ -1201,6 +1201,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/970/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="SpaceHeroes">SpaceHeroes</a></td>
+            <td><a href="SpaceHeroes/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1567/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="Square">Square</a></td>
             <td><a href="Square/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1496/tasks/">CTFtime</a></td>
