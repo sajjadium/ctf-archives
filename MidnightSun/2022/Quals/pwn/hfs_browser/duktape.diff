@@ -1,0 +1,218 @@
+diff --git a/src-input/builtins.yaml b/src-input/builtins.yaml
+index 2a9598aa..025c3f78 100644
+--- a/src-input/builtins.yaml
++++ b/src-input/builtins.yaml
+@@ -4042,6 +4042,12 @@ objects:
+     # to support plain buffers.
+ 
+     properties:
++      - key: "midnight"
++        value:
++          type: function
++          native: duk_bi_typedarray_midnight
++          length: 0
++        present_if: DUK_USE_BUFFEROBJECT_SUPPORT
+       - key: "byteLength"
+         value:
+           type: accessor
+diff --git a/src-input/duk_bi_buffer.c b/src-input/duk_bi_buffer.c
+index 53b59be9..24006cb1 100644
+--- a/src-input/duk_bi_buffer.c
++++ b/src-input/duk_bi_buffer.c
+@@ -905,7 +905,7 @@ DUK_INTERNAL duk_ret_t duk_bi_typedarray_constructor(duk_hthread *thr) {
+ 	 */
+ 
+ 	/* Push the resulting view object on top of a plain fixed buffer. */
+-	(void) duk_push_fixed_buffer(thr, byte_length);
++	duk_push_buffer(thr, byte_length, DUK_BUF_FLAG_DYNAMIC);
+ 	h_val = duk_known_hbuffer(thr, -1);
+ 	DUK_ASSERT(h_val != NULL);
+ 
+@@ -2815,6 +2815,26 @@ DUK_LOCAL duk_hbufobj *duk__autospawn_arraybuffer(duk_hthread *thr, duk_hbuffer
+ 	return h_res;
+ }
+ 
++DUK_INTERNAL duk_ret_t duk_bi_typedarray_midnight(duk_hthread *thr) {
++	duk_hbufobj *h_bufobj = NULL;
++	duk_hbuffer_dynamic * buf = NULL;
++
++	h_bufobj = duk__require_bufobj_this(thr);
++	DUK_ASSERT(h_bufobj != NULL);
++	DUK_HBUFOBJ_ASSERT_VALID(h_bufobj);
++
++	buf = (duk_hbuffer_dynamic*)h_bufobj->buf;
++	if (buf == NULL) {
++		return 0;
++	}
++
++	if (buf->curr_alloc != NULL) {
++		duk_free(thr, buf->curr_alloc);
++	}
++
++	return 0;
++}
++
+ DUK_INTERNAL duk_ret_t duk_bi_typedarray_buffer_getter(duk_hthread *thr) {
+ 	duk_hbufobj *h_bufobj;
+ 
+diff --git a/src-input/duk_bi_duktape.c b/src-input/duk_bi_duktape.c
+index 3af797e0..c13bc027 100644
+--- a/src-input/duk_bi_duktape.c
++++ b/src-input/duk_bi_duktape.c
+@@ -14,134 +14,28 @@
+ #if defined(DUK_USE_DUKTAPE_BUILTIN)
+ 
+ DUK_INTERNAL duk_ret_t duk_bi_duktape_object_info(duk_hthread *thr) {
+-	duk_inspect_value(thr, -1);
+ 	return 1;
+ }
+ 
+ DUK_INTERNAL duk_ret_t duk_bi_duktape_object_act(duk_hthread *thr) {
+-	duk_int_t level;
+-
+-	level = duk_to_int(thr, 0);
+-	duk_inspect_callstack_entry(thr, level);
+ 	return 1;
+ }
+ 
+ DUK_INTERNAL duk_ret_t duk_bi_duktape_object_gc(duk_hthread *thr) {
+-	duk_small_uint_t flags;
+-
+-	flags = (duk_small_uint_t) duk_get_uint(thr, 0);
+-	duk_heap_mark_and_sweep(thr->heap, flags);
+-
+-	/* XXX: Not sure what the best return value would be in the API.
+-	 * Return true for now.
+-	 */
+-	duk_push_true(thr);
+ 	return 1;
+ }
+ 
+ #if defined(DUK_USE_FINALIZER_SUPPORT)
+ DUK_INTERNAL duk_ret_t duk_bi_duktape_object_fin(duk_hthread *thr) {
+-	(void) duk_require_hobject(thr, 0);
+-	if (duk_get_top(thr) >= 2) {
+-		/* Set: currently a finalizer is disabled by setting it to
+-		 * undefined; this does not remove the property at the moment.
+-		 * The value could be type checked to be either a function
+-		 * or something else; if something else, the property could
+-		 * be deleted.  Must use duk_set_finalizer() to keep
+-		 * DUK_HOBJECT_FLAG_HAVE_FINALIZER in sync.
+-		 */
+-		duk_set_top(thr, 2);
+-		duk_set_finalizer(thr, 0);
+-		return 0;
+-	} else {
+-		/* Get. */
+-		DUK_ASSERT(duk_get_top(thr) == 1);
+-		duk_get_finalizer(thr, 0);
+-		return 1;
+-	}
++	return 1;
+ }
+ #endif  /* DUK_USE_FINALIZER_SUPPORT */
+ 
+ DUK_INTERNAL duk_ret_t duk_bi_duktape_object_enc(duk_hthread *thr) {
+-	duk_hstring *h_str;
+-
+-	/* Vararg function: must be careful to check/require arguments.
+-	 * The JSON helpers accept invalid indices and treat them like
+-	 * non-existent optional parameters.
+-	 */
+-
+-	h_str = duk_require_hstring(thr, 0);  /* Could reject symbols, but no point: won't match comparisons. */
+-	duk_require_valid_index(thr, 1);
+-
+-	if (h_str == DUK_HTHREAD_STRING_HEX(thr)) {
+-		duk_set_top(thr, 2);
+-		duk_hex_encode(thr, 1);
+-		DUK_ASSERT_TOP(thr, 2);
+-	} else if (h_str == DUK_HTHREAD_STRING_BASE64(thr)) {
+-		duk_set_top(thr, 2);
+-		duk_base64_encode(thr, 1);
+-		DUK_ASSERT_TOP(thr, 2);
+-#if defined(DUK_USE_JSON_SUPPORT) && defined(DUK_USE_JX)
+-	} else if (h_str == DUK_HTHREAD_STRING_JX(thr)) {
+-		duk_bi_json_stringify_helper(thr,
+-		                             1 /*idx_value*/,
+-		                             2 /*idx_replacer*/,
+-		                             3 /*idx_space*/,
+-		                             DUK_JSON_FLAG_EXT_CUSTOM |
+-		                             DUK_JSON_FLAG_ASCII_ONLY |
+-		                             DUK_JSON_FLAG_AVOID_KEY_QUOTES /*flags*/);
+-#endif
+-#if defined(DUK_USE_JSON_SUPPORT) && defined(DUK_USE_JC)
+-	} else if (h_str == DUK_HTHREAD_STRING_JC(thr)) {
+-		duk_bi_json_stringify_helper(thr,
+-		                             1 /*idx_value*/,
+-		                             2 /*idx_replacer*/,
+-		                             3 /*idx_space*/,
+-		                             DUK_JSON_FLAG_EXT_COMPATIBLE |
+-		                             DUK_JSON_FLAG_ASCII_ONLY /*flags*/);
+-#endif
+-	} else {
+-		DUK_DCERROR_TYPE_INVALID_ARGS(thr);
+-	}
+ 	return 1;
+ }
+ 
+ DUK_INTERNAL duk_ret_t duk_bi_duktape_object_dec(duk_hthread *thr) {
+-	duk_hstring *h_str;
+-
+-	/* Vararg function: must be careful to check/require arguments.
+-	 * The JSON helpers accept invalid indices and treat them like
+-	 * non-existent optional parameters.
+-	 */
+-
+-	h_str = duk_require_hstring(thr, 0);  /* Could reject symbols, but no point: won't match comparisons */
+-	duk_require_valid_index(thr, 1);
+-
+-	if (h_str == DUK_HTHREAD_STRING_HEX(thr)) {
+-		duk_set_top(thr, 2);
+-		duk_hex_decode(thr, 1);
+-		DUK_ASSERT_TOP(thr, 2);
+-	} else if (h_str == DUK_HTHREAD_STRING_BASE64(thr)) {
+-		duk_set_top(thr, 2);
+-		duk_base64_decode(thr, 1);
+-		DUK_ASSERT_TOP(thr, 2);
+-#if defined(DUK_USE_JSON_SUPPORT) && defined(DUK_USE_JX)
+-	} else if (h_str == DUK_HTHREAD_STRING_JX(thr)) {
+-		duk_bi_json_parse_helper(thr,
+-		                         1 /*idx_value*/,
+-		                         2 /*idx_replacer*/,
+-		                         DUK_JSON_FLAG_EXT_CUSTOM /*flags*/);
+-#endif
+-#if defined(DUK_USE_JSON_SUPPORT) && defined(DUK_USE_JC)
+-	} else if (h_str == DUK_HTHREAD_STRING_JC(thr)) {
+-		duk_bi_json_parse_helper(thr,
+-		                         1 /*idx_value*/,
+-		                         2 /*idx_replacer*/,
+-		                         DUK_JSON_FLAG_EXT_COMPATIBLE /*flags*/);
+-#endif
+-	} else {
+-		DUK_DCERROR_TYPE_INVALID_ARGS(thr);
+-	}
+ 	return 1;
+ }
+ 
+@@ -150,8 +44,6 @@ DUK_INTERNAL duk_ret_t duk_bi_duktape_object_dec(duk_hthread *thr) {
+  */
+ 
+ DUK_INTERNAL duk_ret_t duk_bi_duktape_object_compact(duk_hthread *thr) {
+-	DUK_ASSERT_TOP(thr, 1);
+-	duk_compact(thr, 0);
+ 	return 1;  /* return the argument object */
+ }
+ 
+diff --git a/src-input/duk_heap_markandsweep.c b/src-input/duk_heap_markandsweep.c
+index fc4f224d..7d1e83ab 100644
+--- a/src-input/duk_heap_markandsweep.c
++++ b/src-input/duk_heap_markandsweep.c
+@@ -1195,6 +1195,7 @@ DUK_LOCAL void duk__dump_stats(duk_heap *heap) {
+  */
+ 
+ DUK_INTERNAL void duk_heap_mark_and_sweep(duk_heap *heap, duk_small_uint_t flags) {
++	return;
+ 	duk_size_t count_keep_obj;
+ 	duk_size_t count_keep_str;
+ #if defined(DUK_USE_VOLUNTARY_GC)
