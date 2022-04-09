@@ -1,0 +1,17 @@
+{
+  "name": "@amongst/geometry",
+  "packageManager": "yarn@3.1.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@zensors/sheriff": "^2.1.1"
+  }
+}

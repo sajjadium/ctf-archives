@@ -1,0 +1,21 @@
+{
+  "name": "@amongst/game-client",
+  "packageManager": "yarn@3.1.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "dependencies": {
+    "@amongst/data": "workspace:^",
+    "@amongst/game-common": "workspace:^",
+    "@amongst/geometry": "workspace:^",
+    "@amongst/messages": "workspace:^",
+    "@zensors/sheriff": "^2.1.1",
+    "crc-32": "^1.2.1",
+    "immutable": "^4.0.0",
+    "socket.io-client": "^4.4.1"
+  }
+}

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -eu
+
+cat << 'EOF'
+Holmium compiler explorer. Enter your program's length followed by your program.
+
+cat <(wc -c main.hvm) main.hvm -
+EOF
+
+read size rest
+
+if ! [ 0 -le "$size" -a "$size" -le "1000000" ]; then
+    echo 'Too big to run'
+    exit 1
+fi
+
+echo "Reading $size bytes into main.hvm"
+dd bs=1 count="$size" > main.hvm 2>/dev/null
+
+./holmium c main.hvm
+gcc -no-pie -pthread -o main main.c
+echo "Running..."
+./main

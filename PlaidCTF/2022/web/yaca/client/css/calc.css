@@ -1,0 +1,49 @@
+.body #input {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.body #input > input {
+    justify-self: center;
+    outline: none;
+    padding: 16px;
+    margin: 16px;
+    font-size: 24px;
+    border: 2px solid #2a2a2a;
+    width: 128px;
+    height: 64px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.body #output {
+    font-size: 24px;
+    text-align: center;
+}
+
+.body #output:empty {
+    display: none;
+}
+
+.body #output::before {
+    content: "Result:";
+    color: #2a2a2a;
+    padding-right: 0.5em;
+}
+
+.body #error {
+    font-size: 24px;
+    text-align: center;
+    color: #e21c1c;
+}
+
+.body #error:empty {
+    display: none;
+}
+
+.body #error::before {
+    content: "Error:";
+    color: #e94e4e;
+    padding-right: 0.5em;
+}

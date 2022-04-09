@@ -1,0 +1,67 @@
+$transition-duration: 0.4s;
+$transition-timing: cubic-bezier(0.140, 0.885, 0.410, 1.000);
+
+.conspiracy-panel {
+	font-family: effra, sans-serif;
+
+	&.hidden {
+		.background {
+			background-color: rgba(0, 0, 0, 0);
+		}
+
+		.panel {
+			top: 100%;
+			transform: translate(-50%, 0px);
+		}
+	}
+
+	.background {
+		background-color: rgba(0, 0, 0, 0.6);
+		position: fixed;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+		transition: background-color $transition-duration $transition-timing;
+	}
+
+	.panel {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 1200px;
+		height: 800px;
+		background: url("/assets/conspiracy-board.png");
+		background-position: center;
+		background-size: cover;
+		transform: translate(-50%, -50%);
+		padding: 12px;
+		transition: top $transition-duration $transition-timing, transform $transition-duration $transition-timing;
+
+		.flag {
+			position: absolute;
+			left: 50%;
+			top: 80%;
+			transform: translateX(-50%);
+			font-size: 32px;
+		}
+
+		.close {
+			width: 60px;
+			height: 60px;
+			background: url("/assets/close-button.png");
+			background-position: center;
+			background-size: cover;
+			position: absolute;
+			top: 0px;
+			left: -80px;
+			opacity: 0.5;
+			border: 0px;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+	}
+}

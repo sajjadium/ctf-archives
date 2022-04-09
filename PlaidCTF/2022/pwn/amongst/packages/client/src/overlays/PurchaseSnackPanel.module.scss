@@ -1,0 +1,157 @@
+$transition-duration: 0.4s;
+$transition-timing: cubic-bezier(0.140, 0.885, 0.410, 1.000);
+
+.purchase-snack-panel {
+	&.hidden {
+		.background {
+			background-color: rgba(0, 0, 0, 0);
+		}
+
+		.panel {
+			top: 100%;
+			transform: translate(-50%, 0px);
+		}
+	}
+
+	.background {
+		background-color: rgba(0, 0, 0, 0.6);
+		position: fixed;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+		transition: background-color $transition-duration $transition-timing;
+	}
+
+	.panel {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 450px;
+		height: 600px;
+		background: url("/assets/vending-bottom-layer.png");
+		background-position: center;
+		background-size: cover;
+		transform: translate(-50%, -50%);
+		padding: 12px;
+		transition: top $transition-duration $transition-timing, transform $transition-duration $transition-timing;
+
+		.snack {
+			position: absolute;
+			width: 75px;
+			height: 75px;
+			z-index: 2;
+			background: url("/assets/snacks.png");
+			background-size: auto 75px;
+
+			&.potato-chips {
+				background-position: 0px 0px;
+			}
+
+			&.chocolate-bar {
+				background-position: -75px 0px;
+			}
+
+			&.chocolate-candy {
+				background-position: -150px 0px;
+			}
+
+			&.cookies {
+				background-position: -225px 0px;
+			}
+
+			&.peanut-butter-cups {
+				background-position: -300px 0px;
+			}
+		}
+
+		.top-layer {
+			position: absolute;
+			top: 111px;
+			left: 53px;
+			width: 235px;
+			height: 344px;
+			background: url("/assets/vending-top-layer.png");
+			background-size: contain;
+			background-color: #242426;
+			z-index: 3;
+
+			&.with-snacks {
+				transition: background-color 600ms ease 400ms;
+				background-color: transparent;
+			}
+		}
+
+		.close {
+			width: 60px;
+			height: 60px;
+			background: url("/assets/close-button.png");
+			background-position: center;
+			background-size: cover;
+			position: absolute;
+			top: 0px;
+			left: -80px;
+			opacity: 0.5;
+			border: 0px;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+
+		.display {
+			position: absolute;
+			left: 68px;
+			top: 64px;
+			width: 100%;
+			font-family: hydrophilia-iced, monospace;
+			color: #00ff00;
+			text-shadow: 0px 0px 2px #00ff00;
+			// filter: blur(0.1px);
+		}
+
+		.button {
+			position: absolute;
+			width: 37.5px;
+			height: 37.5px;
+			background: url("/assets/vending-button.png");
+			background-position: center;
+			background-size: cover;
+			cursor: pointer;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: #dedede;
+			font-family: effra, sans-serif;
+			font-size: 16px;
+
+			&.vend {
+				font-size: 8px;
+			}
+		}
+
+		.post-it {
+			position: absolute;
+			width: 243px;
+			height: 270px;
+			left: 100%;
+			top: 50%;
+			transform: translateY(-50%);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			font-family: skippy-sharp, sans-serif;
+			font-size: 20px;
+			background: url("/assets/post-it.png");
+			background-position: center;
+			background-size: contain;
+			z-index: 1;
+
+			.desired-snack {
+				color: #ff0000;
+			}
+		}
+	}
+}

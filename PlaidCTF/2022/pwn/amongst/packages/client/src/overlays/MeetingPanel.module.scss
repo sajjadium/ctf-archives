@@ -1,0 +1,68 @@
+.meeting-panel {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 742px;
+	height: 500px;
+	transform: translate(-50%, -50%);
+	background: url("/assets/voting-screen.png");
+	background-size: cover;
+	background-position: center;
+	padding: 12px;
+
+	.players {
+		position: absolute;
+		top: 110px;
+		bottom: 50px;
+		left: 50px;
+		right: 120px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		align-content: flex-start;
+
+		.player {
+			width: calc(50% - 4px);
+			background: white;
+			height: 60px;
+			border-radius: 6px;
+			padding: 12px;
+			display: flex;
+			gap: 8px;
+			font-family: effra, sans-serif;
+			align-items: center;
+
+			.icon {
+				background: url("/assets/shipmate-spritesheet.png");
+				background-position: 0px -18px;
+				width: 40px;
+				height: 36px;
+				background-size: auto 300px;
+			}
+
+			.name {
+				font-size: 18px;
+				font-weight: 600;
+			}
+
+			.vote-button {
+				margin-left: auto;
+
+				&.hidden {
+					display: none;
+				}
+			}
+		}
+	}
+
+	.skip-button {
+		position: absolute;
+		right: 130px;
+		bottom: 60px;
+		font-family: effra, sans-serif;
+
+		&.hidden {
+			display: none;
+		}
+	}
+}

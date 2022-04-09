@@ -1,0 +1,27 @@
+version: "3.7"
+services:
+  nginx:
+    build:
+      context: ./
+      target: tfm-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - BASIC_AUTH=PPP
+  terraforming-mars:
+    container_name: terraforming-mars
+    build:
+      context: ./
+      target: tfm-node
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - tm-db:/usr/src/app/db
+    env_file:
+      - secret-env
+volumes:
+  tm-db:

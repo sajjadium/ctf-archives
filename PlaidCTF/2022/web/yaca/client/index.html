@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/common.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <script type="module">
+            window.addEventListener("load", () => {
+                import("/js/main.mjs");
+            })
+        </script>
+    </head>
+    <body>
+        <div class="body">
+            <h1 class="title">Upload your Program to Run</h1>
+            <input id="name" placeholder="New Program"/>
+            <textarea id="program" style="min-height: 200px;">
+(-b + sqrt(b^2 - 4a*c)) / 2a
+            </textarea>
+            <div>
+                Choose a program type:
+                <select id="content-type">
+                    <option value="application/x-yaca-ast">AST</option>
+                    <option value="application/x-yaca-code" selected>Code</option>
+                </select>
+            </div>
+            <button id="upload">Upload</button>
+        </div>
+    </body>
+</html>

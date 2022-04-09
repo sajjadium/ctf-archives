@@ -1,0 +1,21 @@
+body {
+    font-family: 'Oxygen';
+}
+
+.body {
+    display: flex;
+    max-width: 800px;
+    margin: auto;
+    flex-direction: column;
+}
+
+.body > * {
+    margin: 8px 0px;
+}
+
+.body .title {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+

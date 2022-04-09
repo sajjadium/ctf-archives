@@ -1,0 +1,26 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"lib": ["ES2020", "DOM"],
+		"rootDir": "src",
+		"outDir": "dist",
+		"isolatedModules": true,
+		"jsx": "react",
+		"types": [
+			"vite/client"
+		],
+		"resolveJsonModule": true,
+		"paths": {
+			"/assets/*": ["./assets/*"]
+		}
+	},
+	"include": [
+		"src"
+	],
+	"references": [
+		{ "path": "../game-client" },
+		{ "path": "../game-common" },
+		{ "path": "../geometry" },
+		{ "path": "../messages" }
+	]
+}

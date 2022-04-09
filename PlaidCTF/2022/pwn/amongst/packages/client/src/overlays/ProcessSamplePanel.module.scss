@@ -1,0 +1,111 @@
+$transition-duration: 0.4s;
+$transition-timing: cubic-bezier(0.140, 0.885, 0.410, 1.000);
+
+.process-sample-panel {
+	&.hidden {
+		.background {
+			background-color: rgba(0, 0, 0, 0);
+		}
+
+		.panel {
+			top: 100%;
+			transform: translate(-50%, 0px);
+		}
+	}
+
+	.background {
+		background-color: rgba(0, 0, 0, 0.6);
+		position: fixed;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+		transition: background-color $transition-duration $transition-timing;
+	}
+
+	.panel {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 800px;
+		height: 600px;
+		background-position: center;
+		background-size: cover;
+		transform: translate(-50%, -50%);
+		padding: 12px;
+		transition: top $transition-duration $transition-timing, transform $transition-duration $transition-timing;
+
+		&.drag-active {
+			user-select: none;
+		}
+
+		.close {
+			width: 60px;
+			height: 60px;
+			background: url("/assets/close-button.png");
+			background-position: center;
+			background-size: cover;
+			position: absolute;
+			top: 0px;
+			left: -80px;
+			opacity: 0.5;
+			border: 0px;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+
+		.message {
+			font-family: hydrophilia-iced, monospace;
+			color: #efefef;
+			text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
+			font-size: 16px;
+			position: absolute;
+			left: 215px;
+			top: 324px;
+			z-index: 2;
+			line-height: 1.6;
+		}
+
+		&.open {
+			background: url("/assets/centrifuge-open.png");
+
+			&.test-tube-ready::after {
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				right: 0px;
+				bottom: 0px;
+				background: url("/assets/centrifuge-loaded.png");
+				background-position: center;
+				background-size: cover;
+				opacity: 0.5;
+				content: "";
+				z-index: 1;
+			}
+
+			.test-tube {
+				width: 80px;
+				height: 250px;
+				background: url("/assets/test-tube.png");
+				position: absolute;
+				cursor: grab;
+				z-index: 3;
+
+				&.dragging {
+					cursor: grabbing;
+				}
+
+				&.in-position {
+					opacity: 0.3;
+				}
+			}
+		}
+
+		&.closed {
+			background: url("/assets/centrifuge-closed.png");
+		}
+	}
+}

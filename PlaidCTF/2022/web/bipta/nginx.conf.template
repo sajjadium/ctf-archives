@@ -1,0 +1,37 @@
+server {
+    listen 80;
+    server_name _;
+
+    auth_basic ${BASIC_AUTH};
+    auth_basic_user_file /etc/nginx/.htpasswd;
+
+    charset utf-8;
+
+    location ~ ^/(|cards|new-game|player|solo|the-end|help|challenge-info|spectator)$ {
+        alias /usr/src/app/assets/;
+        try_files /index.html /index.html;
+    }
+
+    location ~ ^/(styles.css|main.js|main.js.map)$ {
+        gzip_static on;
+        root /usr/src/app/build;
+    }
+
+    location ~ ^/(sw.js)$ {
+        root /usr/src/app/build/src/client;
+    }
+
+    location ~ ^/(favicon.ico)$ {
+        root /usr/src/app/assets;
+    }
+
+    location /assets {
+        root /usr/src/app;
+    }
+
+    location ~ ^/(game|games-overview|load|load_game|player/input|challenge|flag|api) {
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $http_host;
+        proxy_pass http://terraforming-mars:8080;
+    }
+}

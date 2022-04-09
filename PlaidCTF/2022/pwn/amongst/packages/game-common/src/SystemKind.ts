@@ -1,0 +1,17 @@
+export enum SystemKind {
+	Movement = "Movement",
+	Settings = "Settings",
+	Reset = "Reset",
+	Vent = "Vent",
+	Meeting = "Meeting",
+	EmergencyButton = "EmergencyButton",
+	Victory = "Victory",
+	FileTransfer = "FileTransfer",
+	ProcessSample = "ProcessSample",
+	ProvideCredentials = "ProvideCredentials",
+	PurchaseSnack = "PurchaseSnack",
+	RecalibrateEngine = "RecalibrateEngine",
+	Conspiracy = "Conspiracy",
+	Hold = "Hold",
+	Satellite = "Satellite",
+}

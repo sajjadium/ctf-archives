@@ -1,0 +1,62 @@
+.launch-view {
+	background: #141414;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	flex-direction: column;
+	color: #ffffff;
+	font-family: effra, sans-serif;
+	gap: 36px;
+
+	.title {
+		font-size: 48px;
+		margin-bottom: 24px;
+	}
+
+	.name {
+		border: 1px solid #878787;
+		padding: 12px;
+		outline: none;
+		background: transparent;
+		width: 300px;
+		color: #ffffff;
+	}
+
+	.divider {
+		width: 300px;
+		border-top: 1px solid #878787;
+	}
+
+	.create-game,
+	.join-game {
+		width: 300px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 12px;
+		margin-bottom: 12px;
+
+		.name {
+			border: 1px solid #878787;
+			padding: 12px;
+			outline: none;
+			background: transparent;
+			width: 300px;
+		}
+
+		.game-code {
+			border: 1px solid #878787;
+			padding: 12px;
+			outline: none;
+			background: transparent;
+			flex-grow: 2;
+			color: #ffffff;
+		}
+
+		button {
+			flex-grow: 1;
+			height: 46px;
+		}
+	}
+}

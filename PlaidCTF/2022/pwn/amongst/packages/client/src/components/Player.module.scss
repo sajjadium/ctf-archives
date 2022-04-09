@@ -1,0 +1,21 @@
+.player {
+	display: contents;
+
+	&.dead {
+		opacity: 0.5;
+	}
+
+	.name {
+		position: absolute;
+		text-align: center;
+		font-family: sans-serif;
+		font-weight: 600;
+		font-size: 20px;
+		color: #ffffff;
+		-webkit-text-stroke: 1px black;
+
+		&.hoaxer {
+			color: #ff0000;
+		}
+	}
+}

@@ -1,0 +1,13 @@
+export const MsPerTick = 50; // milliseconds
+export const PlayerSpeed = 0.5; // units per tick
+export const ClientFloatingPointError = 1e-8; // floating point error tolerance for movement, in units per tick
+export const PlayerWidth = 2; // units
+export const PlayerHeight = 1; // units
+export const KillRadius = 6; // units
+export const ClientKillRadius = 4; // units
+export const KillLag = 6; // ticks
+export const VisibilityRadius = 32; // units
+export const ShortVisibilityRadius = 12; // units
+export const ReportRadius = 12; // units
+export const FileTransferRateLimit = 40000; // bytes per tick
+export const ProcessSampleTime = 600; // ticks

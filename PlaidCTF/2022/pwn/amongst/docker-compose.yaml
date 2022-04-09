@@ -1,0 +1,58 @@
+version: "3.1"
+services:
+  provide-credentials:
+    image: postgres:13.6
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./misc/provide-credentials/initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
+  purchase-snack:
+    build:
+      context: ./misc/purchase-snack
+    image: amongst-vending
+    environment:
+      FLAG: ${PWN_FLAG-you_didnt_fill_in_the_flag}
+    ports:
+      - "35360:35360"
+    security_opt:
+      - seccomp=unconfined
+  recalibrate-engine:
+    build:
+      context: ./misc/recalibrate-engine
+    image: amongst-engine
+    environment:
+      FLAG: ${REV_FLAG-you_didnt_fill_in_the_flag}
+    ports:
+      - "25581:25581"
+  game:
+    build:
+      context: .
+    image: amongst-game
+    environment:
+      PROVIDE_CREDENTIALS_CONNECTION_STRING: postgresql://amongst:amongst@provide-credentials:5432/postgres
+      PURCHASE_SNACK_HOST: purchase-snack
+      PURCHASE_SNACK_PORT: 35360
+      RECALIBRATE_ENGINE_HOST: recalibrate-engine
+      RECALIBRATE_ENGINE_PORT: 25581
+      BIND_ADDRESS: 0.0.0.0
+      HOST: ${AMONGST_HOST}
+      CRYPTO_FLAG: ${CRYPTO_FLAG}
+      CONSPIRACY_FLAG: ${CONSPIRACY_FLAG}
+      SATELLITE_FLAG: ${SATELLITE_FLAG}
+      EXPLORE_FLAG: ${EXPLORE_FLAG}
+    ports:
+      - "60000-60010:60000-60010"
+  nginx:
+    build:
+      context: ./misc/nginx
+    image: amongst-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - game
+    restart: always

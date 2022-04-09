@@ -1,0 +1,92 @@
+$transition-duration: 0.4s;
+$transition-timing: cubic-bezier(0.140, 0.885, 0.410, 1.000);
+
+.reset-panel {
+	font-family: effra, sans-serif;
+
+	&.hidden {
+		.background {
+			background-color: rgba(0, 0, 0, 0);
+		}
+
+		.panel {
+			top: 100%;
+			transform: translate(-50%, 0px);
+		}
+	}
+
+	.background {
+		background-color: rgba(0, 0, 0, 0.6);
+		position: fixed;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+		transition: background-color $transition-duration $transition-timing;
+	}
+
+	.panel {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 500px;
+		height: 400px;
+		background: url("/assets/file-transfer-panel.png");
+		background-position: center;
+		background-size: cover;
+		transform: translate(-50%, -50%);
+		padding: 12px;
+		transition: top $transition-duration $transition-timing, transform $transition-duration $transition-timing;
+
+		.close {
+			width: 60px;
+			height: 60px;
+			background: url("/assets/close-button.png");
+			background-position: center;
+			background-size: cover;
+			position: absolute;
+			top: 0px;
+			left: -80px;
+			opacity: 0.5;
+			border: 0px;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+
+		.content {
+			position: absolute;
+			left: 60px;
+			right: 60px;
+			top: 80px;
+			font-size: 20px;
+			color: #ffffff;
+			font-weight: 600;
+			text-shadow: 0px 0px 2px black;
+			text-align: center;
+
+			.player-info {
+				.shipmates {
+					color: #00ff00;
+				}
+
+				.hoaxers {
+					color: #ff0000;
+				}
+
+				margin-bottom: 60px;
+			}
+
+			.start {
+				cursor: pointer;
+				color: #ffff00;
+
+				&:hover {
+					color: #00ff00;
+				}
+			}
+		}
+	}
+}

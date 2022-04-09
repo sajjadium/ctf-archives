@@ -1,0 +1,61 @@
+.hold-overlay {
+	position: fixed;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	color: #ffffff;
+	font-family: sans-serif;
+	font-size: 24px;
+	padding: 24px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	opacity: 1;
+	z-index: 10000000;
+
+	&.fade-out {
+		transition: opacity 500ms linear;
+		opacity: 0;
+	}
+
+	&.game-start,
+	&.vote-complete,
+	&.game-end {
+		background: #141414;
+	}
+
+	&.game-start .content {
+		text-align: center;
+		line-height: 1.5;
+
+		.role {
+			&.hoaxer {
+				color: #ff0000;
+			}
+
+			&.shipmate {
+				color: #00cccc;
+			}
+		}
+	}
+
+	&.meeting-start {
+		background: url("/assets/emergency-meeting.png");
+		background-position: center;
+		background-size: 50%;
+		background-repeat: no-repeat;
+	}
+
+	&.game-end.fade-out {
+		opacity: 1;
+
+		.hoaxers-win {
+			color: #ff0000;
+		}
+
+		.shipmates-win {
+			color: #00cccc;
+		}
+	}
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@amongst/game-server",
+  "packageManager": "yarn@3.1.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/pg": "^8",
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@amongst/data": "workspace:^",
+    "@amongst/game-common": "workspace:^",
+    "@amongst/geometry": "workspace:^",
+    "@amongst/messages": "workspace:^",
+    "@zensors/sheriff": "^2.1.1",
+    "crc-32": "^1.2.1",
+    "immutable": "^4.0.0",
+    "pg": "^8.7.3",
+    "socket.io": "^4.4.1"
+  }
+}

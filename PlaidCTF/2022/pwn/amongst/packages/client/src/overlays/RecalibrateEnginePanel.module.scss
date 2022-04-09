@@ -1,0 +1,98 @@
+$transition-duration: 0.4s;
+$transition-timing: cubic-bezier(0.140, 0.885, 0.410, 1.000);
+
+.recalibrate-engine-panel {
+	&.hidden {
+		.background {
+			background-color: rgba(0, 0, 0, 0);
+		}
+
+		.panel {
+			top: 100%;
+			transform: translate(-50%, 0px);
+		}
+	}
+
+	.background {
+		background-color: rgba(0, 0, 0, 0.6);
+		position: fixed;
+		left: 0px;
+		right: 0px;
+		top: 0px;
+		bottom: 0px;
+		transition: background-color $transition-duration $transition-timing;
+	}
+
+	.panel {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 300px;
+		height: 400px;
+		background: url("/assets/keypad.png");
+		background-position: center;
+		background-size: cover;
+		transform: translate(-50%, -50%);
+		padding: 12px;
+		transition: top $transition-duration $transition-timing, transform $transition-duration $transition-timing;
+
+		.close {
+			width: 60px;
+			height: 60px;
+			background: url("/assets/close-button.png");
+			background-position: center;
+			background-size: cover;
+			position: absolute;
+			top: 0px;
+			left: -80px;
+			opacity: 0.5;
+			border: 0px;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+
+		.display {
+			position: absolute;
+			top: 72px;
+			margin: 0px 34px;
+			width: 100%;
+			font-family: hydrophilia-iced, monospace;
+			color: #00ff00;
+			text-shadow: 0px 0px 2px #00ff00;
+			// filter: blur(0.1px);
+		}
+
+		.keypad {
+			position: absolute;
+			top: 128px;
+			left: 50%;
+			transform: translateX(-50%);
+			margin: 0px auto;
+			display: grid;
+			justify-items: center;
+			align-items: center;
+			grid-template-rows: repeat(3, 1fr);
+			grid-template-columns: repeat(3, 1fr);
+			gap: 16px;
+
+			.keypad-button {
+				width: 64px;
+				height: 64px;
+				background: url("/assets/button-up.png");
+				background-size: 125%;
+				background-position: center;
+				border: 0px;
+				cursor: pointer;
+				padding: 0px;
+
+				&:active,
+				&.flash {
+					background-image: url("/assets/button-down.png");
+				}
+			}
+		}
+	}
+}

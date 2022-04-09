@@ -1,0 +1,19 @@
+{
+  "name": "@amongst/messages",
+  "packageManager": "yarn@3.1.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
+  "dependencies": {
+    "@amongst/game-common": "workspace:^",
+    "@amongst/geometry": "workspace:^",
+    "immutable": "^4.0.0"
+  }
+}

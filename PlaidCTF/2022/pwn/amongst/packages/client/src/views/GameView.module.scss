@@ -1,0 +1,91 @@
+$grid-minor-color: rgba(128, 128, 128, 0.4);
+$grid-major-color: rgba(255, 120, 120, 0.6);
+
+.game-view {
+	.disconnect-warning {
+		position: fixed;
+		top: 12px;
+		right: 12px;
+		font-family: sans-serif;
+		font-weight: 600;
+		font-size: 24px;
+		color: #ff0000;
+		-webkit-text-stroke: 1px black;
+		z-index: 100000000;
+
+		&.hidden {
+			display: none;
+		}
+
+		&.visible {
+			display: block;
+		}
+	}
+
+	.game-area {
+		position: fixed;
+		top: 0px;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+
+		.room-code {
+			position: absolute;
+			right: 20px;
+			top: 20px;
+			font-family: sans-serif;
+			font-weight: 600;
+			font-size: 32px;
+			color: #ffffff;
+			-webkit-text-stroke: 1px black;
+		}
+
+		.grid {
+			background-image:
+				repeating-linear-gradient(
+					$grid-major-color 0px 0.5px,
+					transparent 0.5px calc(25% - 0.5px),
+					$grid-minor-color calc(25% - 0.5px) calc(25% + 0.5px),
+					transparent calc(25% + 0.5px) calc(50% - 0.5px),
+					$grid-minor-color calc(50% - 0.5px) calc(50% + 0.5px),
+					transparent calc(50% + 0.5px) calc(75% - 0.5px),
+					$grid-minor-color calc(75% - 0.5px) calc(75% + 0.5px),
+					transparent calc(75% + 0.5px) calc(100% - 0.5px),
+					$grid-major-color calc(100% - 0.5px) 100%
+				),
+				repeating-linear-gradient(
+					90deg,
+					$grid-major-color 0px 0.5px,
+					transparent 0.5px calc(25% - 0.5px),
+					$grid-minor-color calc(25% - 0.5px) calc(25% + 0.5px),
+					transparent calc(25% + 0.5px) calc(50% - 0.5px),
+					$grid-minor-color calc(50% - 0.5px) calc(50% + 0.5px),
+					transparent calc(50% + 0.5px) calc(75% - 0.5px),
+					$grid-minor-color calc(75% - 0.5px) calc(75% + 0.5px),
+					transparent calc(75% + 0.5px) calc(100% - 0.5px),
+					$grid-major-color calc(100% - 0.5px) 100%
+				);
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+
+		.display {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+
+			.dark {
+				position: relative;
+				z-index: 1;
+			}
+
+			.map-image {
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				transform-origin: top left;
+			}
+		}
+	}
+}

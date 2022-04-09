@@ -1,0 +1,10 @@
+*, *::before, *::after {
+	box-sizing: inherit;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+body {
+	box-sizing: border-box;
+	background: #141414;
+}

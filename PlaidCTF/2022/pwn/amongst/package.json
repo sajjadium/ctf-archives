@@ -1,0 +1,27 @@
+{
+  "name": "amongst-ourselves",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint packages",
+    "watch": "tsc -b -w packages/data packages/game-client packages/game-common packages/game-server packages/geometry packages/messages packages/server",
+    "build": "tsc -b packages/data packages/game-client packages/game-common packages/game-server packages/geometry packages/messages packages/server",
+    "build-client": "cd packages/client && yarn build"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/eslint": "^8",
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jsdoc": "^37.9.4",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "typescript": "^4.5.5"
+  },
+  "packageManager": "yarn@3.1.1"
+}
