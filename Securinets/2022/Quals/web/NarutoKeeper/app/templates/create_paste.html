@@ -1,0 +1,11 @@
+<head> <title> Create Paste</title></head>
+<body>
+<h1> Create Paste </h1><br>
+<form method="POST" action="/create_paste">
+    <textarea name="paste"></textarea>
+    <input type="submit" value="Submit" />
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+</form>
+
+</body>

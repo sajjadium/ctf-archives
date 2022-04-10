@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    environment:
+      mysql_pass: 'REDACTED'
+      PUBLIC_KEY: 'YOU CAN FILL MANUALLY'
+      PRIVATE_KEY: 'YOU CAN FILL MANUALLY'
+      DOMAIN: 'localhost'
+    image: narutojuts
+    ports:
+      - "443:443"
+    depends_on:
+      - db
+    restart: always
+    dns:
+      - "127.0.0.11"
+      - "8.8.8.8"
+    networks:
+      - privatenet
+
+  db:
+    platform: linux/x86_64
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'REDACTED'
+      MYSQL_DATABASE: 'l33k'
+    dns:
+      - "127.0.0.11" 
+      - "8.8.8.8"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    restart: always
+    networks:
+      - privatenet
+
+  bot:
+    build:
+      context: .
+      dockerfile: ./bot/Dockerfile
+    image: bot
+    environment:
+      username: 'REDACTED'
+      password: 'REDACTED'
+      DOMAIN: 'localhost' 
+    restart: always
+    dns:
+      - "127.0.0.11" 
+      - "8.8.8.8"
+    networks:
+      - privatenet
+
+networks:
+  privatenet:
+    ipam:
+      config:
+        - subnet: 172.16.0.0/24
+          gateway: 172.16.0.1
+#

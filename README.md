@@ -1176,7 +1176,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1566/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="Securinets">Securinets</a></td>
+            <td rowspan=4><a href="Securinets">Securinets</a></td>
+            <td><a href="Securinets/2022/Quals">2022 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1617/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="Securinets/2021/Quals">2021 Quals</a></td>
             <td><a href="https://ctftime.org/event/1308/tasks/">CTFtime</a></td>
         </tr>

@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./task/Dockerfile
+    image: stackoverctf
+    ports:
+      - "80:8080"
+    depends_on:
+      - db
+    restart: always
+  db:
+    image: mariadb
+#    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'REDACTED'
+      MYSQL_DATABASE: 'stackctf'
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    restart: always
