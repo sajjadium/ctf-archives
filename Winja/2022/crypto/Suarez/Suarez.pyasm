@@ -1,0 +1,554 @@
+# pydisasm version 6.0.3
+# Python bytecode 3.9.0 (3425)
+# Disassembled from Python 3.9.2 (default, Feb 28 2021, 17:03:44) 
+# [GCC 10.2.1 20210110]
+# Timestamp in code: 1643726030 (2022-02-01 20:03:50)
+# Source code size mod 2**32: 1343 bytes
+
+# Method Name:       <module>
+# Filename:          /tmp/chall/chall.py
+# Argument count:    0
+# Position-only argument count: 0
+# Keyword-only arguments: 0
+# Number of locals:  0
+# Stack size:        4
+# Flags:             0x00000040 (NOFREE)
+# First Line:        1
+# Constants:
+#    0: 0
+#    1: 54
+#    2: 57
+#    3: 34
+#    4: 120
+#    5: 50
+#    6: 53
+#    7: 47
+#    8: 5
+#    9: 98
+#   10: 9
+#   11: 49
+#   12: 26
+#   13: 20
+#   14: 102
+#   15: 125
+#   16: 95
+#   17: 33
+#   18: 97
+#   19: 2
+#   20: 55
+#   21: 27
+#   22: 7
+#   23: 24
+#   24: 15
+#   25: 52
+#   26: 6
+#   27: 36
+#   28: 100
+#   29: 28
+#   30: 12
+#   31: 35
+#   32: 25
+#   33: 8
+#   34: 19
+#   35: 40
+#   36: 30
+#   37: 108
+#   38: 1
+#   39: 103
+#   40: 3
+#   41: 17
+#   42: 101
+#   43: 14
+#   44: 56
+#   45: 21
+#   46: 32
+#   47: 123
+#   48: 4
+#   49: 99
+#   50: 22
+#   51: 31
+#   52: 41
+#   53: 23
+#   54: 48
+#   55: 10
+#   56: 44
+#   57: 73
+#   58: 42
+#   59: 18
+#   60: 16
+#   61: 64
+#   62: 46
+#   63: 121
+#   64: 37
+#   65: 13
+#   66: 82
+#   67: 11
+#   68: 119
+#   69: 38
+#   70: 65
+#   71: 39
+#   72: 45
+#   73: 29
+#   74: 43
+#   75: 51
+#   76: ''
+#   77: None
+# Names:
+#    0: list
+#    1: range
+#    2: new_flag
+#    3: chr
+#    4: print
+#    5: join
+  1:
+            LOAD_NAME            0 (list)
+            LOAD_NAME            1 (range)
+            LOAD_CONST           0 (0)
+            LOAD_CONST           1 (54)
+            CALL_FUNCTION        2
+            CALL_FUNCTION        1
+            STORE_NAME           2 (new_flag)
+
+  3:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           2 (57)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           3 (34)
+            STORE_SUBSCR
+
+  4:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           4 (120)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           5 (50)
+            STORE_SUBSCR
+
+  5:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           6 (53)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           7 (47)
+            STORE_SUBSCR
+
+  6:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           6 (53)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           8 (5)
+            STORE_SUBSCR
+
+  7:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           9 (98)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           10 (9)
+            STORE_SUBSCR
+
+  8:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           11 (49)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           12 (26)
+            STORE_SUBSCR
+
+  9:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           2 (57)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           13 (20)
+            STORE_SUBSCR
+
+ 10:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           14 (102)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           0 (0)
+            STORE_SUBSCR
+
+ 11:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           15 (125)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           6 (53)
+            STORE_SUBSCR
+
+ 12:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           16 (95)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           11 (49)
+            STORE_SUBSCR
+
+ 13:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           2 (57)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           17 (33)
+            STORE_SUBSCR
+
+ 14:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           18 (97)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           19 (2)
+            STORE_SUBSCR
+
+ 15:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           20 (55)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           21 (27)
+            STORE_SUBSCR
+
+ 16:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           5 (50)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           22 (7)
+            STORE_SUBSCR
+
+ 17:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           18 (97)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           23 (24)
+            STORE_SUBSCR
+
+ 18:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           11 (49)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           24 (15)
+            STORE_SUBSCR
+
+ 19:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           25 (52)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           26 (6)
+            STORE_SUBSCR
+
+ 20:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           2 (57)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           27 (36)
+            STORE_SUBSCR
+
+ 21:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           28 (100)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           29 (28)
+            STORE_SUBSCR
+
+ 22:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           18 (97)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           30 (12)
+            STORE_SUBSCR
+
+ 23:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           9 (98)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           31 (35)
+            STORE_SUBSCR
+
+ 24:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           18 (97)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           32 (25)
+            STORE_SUBSCR
+
+ 25:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           25 (52)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           33 (8)
+            STORE_SUBSCR
+
+ 26:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           11 (49)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           34 (19)
+            STORE_SUBSCR
+
+ 27:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           27 (36)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           35 (40)
+            STORE_SUBSCR
+
+ 28:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           6 (53)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           36 (30)
+            STORE_SUBSCR
+
+ 29:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           37 (108)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           38 (1)
+            STORE_SUBSCR
+
+ 30:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           39 (103)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           40 (3)
+            STORE_SUBSCR
+
+ 31:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           2 (57)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           41 (17)
+            STORE_SUBSCR
+
+ 32:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           42 (101)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           43 (14)
+            STORE_SUBSCR
+
+ 33:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           44 (56)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           45 (21)
+            STORE_SUBSCR
+
+ 34:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           6 (53)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           46 (32)
+            STORE_SUBSCR
+
+ 35:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           47 (123)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           48 (4)
+            STORE_SUBSCR
+
+ 36:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           49 (99)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           50 (22)
+            STORE_SUBSCR
+
+ 37:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           18 (97)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           51 (31)
+            STORE_SUBSCR
+
+ 38:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           16 (95)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           52 (41)
+            STORE_SUBSCR
+
+ 39:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           6 (53)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           53 (23)
+            STORE_SUBSCR
+
+ 40:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           54 (48)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           55 (10)
+            STORE_SUBSCR
+
+ 41:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           16 (95)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           56 (44)
+            STORE_SUBSCR
+
+ 42:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           57 (73)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           58 (42)
+            STORE_SUBSCR
+
+ 43:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           25 (52)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           59 (18)
+            STORE_SUBSCR
+
+ 44:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           18 (97)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           60 (16)
+            STORE_SUBSCR
+
+ 45:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           61 (64)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           62 (46)
+            STORE_SUBSCR
+
+ 46:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           63 (121)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           54 (48)
+            STORE_SUBSCR
+
+ 47:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           16 (95)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           64 (37)
+            STORE_SUBSCR
+
+ 48:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           54 (48)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           65 (13)
+            STORE_SUBSCR
+
+ 49:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           66 (82)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           25 (52)
+            STORE_SUBSCR
+
+ 50:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           11 (49)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           67 (11)
+            STORE_SUBSCR
+
+ 51:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           68 (119)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           69 (38)
+            STORE_SUBSCR
+
+ 52:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           70 (65)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           71 (39)
+            STORE_SUBSCR
+
+ 53:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           42 (101)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           72 (45)
+            STORE_SUBSCR
+
+ 54:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           42 (101)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           73 (29)
+            STORE_SUBSCR
+
+ 55:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           20 (55)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           74 (43)
+            STORE_SUBSCR
+
+ 56:
+            LOAD_NAME            3 (chr)
+            LOAD_CONST           54 (48)
+            CALL_FUNCTION        1
+            LOAD_NAME            2 (new_flag)
+            LOAD_CONST           75 (51)
+            STORE_SUBSCR
+
+ 58:
+            LOAD_NAME            4 (print)
+            LOAD_CONST           76 ('')
+            LOAD_METHOD          5 (join)
+            LOAD_NAME            2 (new_flag)
+            CALL_METHOD          1
+            CALL_FUNCTION        1
+            POP_TOP
+            LOAD_CONST           77 (None)
+            RETURN_VALUE
+

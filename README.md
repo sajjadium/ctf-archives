@@ -1522,6 +1522,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1231/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Winja">Winja</a></td>
+            <td><a href="Winja/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1603/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="WhiteHat">WhiteHat Grand Prix</a></td>
             <td><a href="WhiteHat/2020/Quals">2020 Quals</a></td>
             <td><a href="https://ctftime.org/event/942/tasks/">CTFtime</a></td>
