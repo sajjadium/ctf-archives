@@ -812,6 +812,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1454/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Jersey">Jersey</a></td>
+            <td><a href="Jersey/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1590/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="KasperskyCTF">Kaspersky</a></td>
             <td><a href="KasperskyCTF/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/701/tasks/">CTFtime</a></td>
