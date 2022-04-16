@@ -1,0 +1,37 @@
+{
+  "name": "frontend",
+  "version": "0.0.1",
+  "dependencies": {
+    "cookie": "^0.4.2",
+    "socket.io-client": "^4.4.1"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "^1.0.0-next.71",
+    "@sveltejs/kit": "^1.0.0-next.294",
+    "@types/cookie": "^0.4.1",
+    "@types/multer": "^1.4.7",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "dotenv": "^16.0.0",
+    "eslint": "^8.10.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-svelte3": "^3.4.1",
+    "prettier": "^2.5.1",
+    "prettier-plugin-svelte": "^2.6.0",
+    "sanitize.css": "^13.0.0",
+    "sass": "^1.49.9",
+    "svelte": "^3.46.4",
+    "svelte-check": "^2.4.5",
+    "svelte-preprocess": "^4.10.4",
+    "svelte-tenor": "^0.1.4",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.2"
+  },
+  "scripts": {
+    "build": "svelte-kit build",
+    "clean": "rm -rf build/ .svelte-kit/",
+    "dev": "svelte-kit dev --port 8080",
+    "lint": "eslint src --fix && svelte-check"
+  },
+  "type": "module"
+}
