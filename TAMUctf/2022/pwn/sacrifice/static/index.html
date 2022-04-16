@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- imagine knowing how to web dev, could not be me -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>sacrifice</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.js"
+            type="text/javascript"
+            charset="utf-8"
+            ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"
+            type="text/javascript"
+            charset="utf-8"
+            ></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/modern-normalize@1.1.0/modern-normalize.min.css"
+            rel="stylesheet"
+            />
+        <link href="https://fonts.googleapis.com/css2?family=Recursive:wght,CASL,MONO@700,1,1&display=swap" rel="stylesheet"> 
+        <style>
+            :root {
+                --size-medium: 1rem;
+                --toolbar-height: 5rem;
+            }
+            body {
+                background-color: #e1e1db;
+                padding: var(--size-medium);
+                font-family: "Recursive", "Lucida Console", "Courier New", monospace;
+            }
+            #editor {
+                position: absolute;
+                width: calc(100% - (2 * var(--size-medium)));
+                top: var(--toolbar-height);
+                min-height: calc(100% - var(--toolbar-height) - var(--size-medium));
+                border-radius: 0.25rem;
+                border: #bbb solid 0.25rem;
+            }
+            #toolbar {
+                display: flex;
+                flex-direction: row;
+            }
+            #toolbar > * + * {
+                padding-left: 1rem;
+            }
+            #offer {
+                background-color: #aa4422;
+                color: #ffffff;
+                border: none;
+                padding: var(--size-medium);
+                border-radius: 0.25rem;
+            }
+            #offer:hover {
+                background-color: #80331a;
+                cursor: pointer;
+            }
+            #offer:disabled {
+                background-color: #80331a;
+                cursor: default;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="toolbar">
+            <button id="offer" onclick="submitCode()">SACRIFICE</button>
+            <p id="status"><-- Click here to sacrifice your code</p>
+        </div>
+        <div class="editor-container">
+            <div id="editor"></div>
+        </div>
+        <script>
+            const submit = document.getElementById("offer");
+            const status = document.getElementById("status");
+            const editor = ace.edit("editor");
+            editor.resize();
+            editor.setTheme("ace/theme/github");
+            editor.getSession().setMode("ace/mode/rust");
+            editor.setShowPrintMargin(false);
+            editor.setFontSize(18);
+            editor.setValue(
+                "pub fn main() {\n    // TODO: your wholesome code goes here!\n}\n"
+            );
+
+            const worker = new Worker("worker.js");
+            function failure(e) {
+                status.innerText = "Something went wrong -- try submitting again?"
+                submit.disabled = false;
+                console.error(e);
+            }
+            worker.onmessage = async (e) => {
+                const { pow, solve } = e.data;
+                const payload = {
+                    pow,
+                    src: editor.getValue(),
+                    solve,
+                };
+                try {
+                    const ack = await fetch("/sacrifice", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload),
+                    });
+                    if (ack.status === 200) {
+                        status.innerText = "Done! Offer up some more code if you'd like :D";
+                        submit.disabled = false;
+                    } else {
+                        failure(ack.status);
+                    }
+                } catch (e) {
+                    failure(e);
+                }
+            };
+            async function submitCode() {
+                status.innerText = "Solving proof of work...";
+                submit.disabled = true;
+                try {
+                    const response = await fetch("/pow");
+                    if (response.status === 200) {
+                        const pow = await response.json();
+                        worker.postMessage(pow);
+                    } else {
+                        failure(response.status);
+                    }
+                } catch (e) {
+                    failure(e);
+                }
+            }
+        </script>
+        <noscript> You need to enable Javascript to run this challenge. </noscript>
+    </body>
+</html>

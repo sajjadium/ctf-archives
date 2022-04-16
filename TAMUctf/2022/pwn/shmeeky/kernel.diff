@@ -1,0 +1,128 @@
+diff --git a/Makefile b/Makefile
+index 7214f075e..b70b7ae37 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1086,7 +1086,7 @@ export MODORDER := $(extmod_prefix)modules.order
+ export MODULES_NSDEPS := $(extmod_prefix)modules.nsdeps
+ 
+ ifeq ($(KBUILD_EXTMOD),)
+-core-y			+= kernel/ certs/ mm/ fs/ ipc/ security/ crypto/
++core-y			+= kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ shmvec/
+ core-$(CONFIG_BLOCK)	+= block/
+ 
+ vmlinux-dirs	:= $(patsubst %/,%,$(filter %/, \
+@@ -1960,4 +1960,4 @@ FORCE:
+ 
+ # Declare the contents of the PHONY variable as phony.  We keep that
+ # information in a variable so we can use it in if_changed and friends.
+-.PHONY: $(PHONY)
++.PHONY: $(PHONY)
+\ No newline at end of file
+diff --git a/arch/x86/entry/syscalls/syscall_64.tbl b/arch/x86/entry/syscalls/syscall_64.tbl
+index c84d12608..0602ec6f7 100644
+--- a/arch/x86/entry/syscalls/syscall_64.tbl
++++ b/arch/x86/entry/syscalls/syscall_64.tbl
+@@ -417,3 +417,10 @@
+ 547	x32	pwritev2		compat_sys_pwritev64v2
+ # This is the end of the legacy x32 range.  Numbers 548 and above are
+ # not special and are not to be used for x32-specific syscalls.
++
++
++600 64 shmvec_init		sys_shmvec_init
++601 64 shmvec_close		sys_shmvec_close
++602 64 shmvec_set		sys_shmvec_set
++603 64 shmvec_get		sys_shmvec_get
++604 64 shmvec_len		sys_shmvec_len
+\ No newline at end of file
+diff --git a/include/linux/syscalls.h b/include/linux/syscalls.h
+index 819c0cb00..4210fb32c 100644
+--- a/include/linux/syscalls.h
++++ b/include/linux/syscalls.h
+@@ -1389,4 +1389,11 @@ int __sys_getsockopt(int fd, int level, int optname, char __user *optval,
+ 		int __user *optlen);
+ int __sys_setsockopt(int fd, int level, int optname, char __user *optval,
+ 		int optlen);
+-#endif
++
++asmlinkage long sys_shmvec_init(uint64_t count);
++asmlinkage long sys_shmvec_close(void);
++asmlinkage long sys_shmvec_set(uint64_t index, uint64_t data);
++asmlinkage long sys_shmvec_get(uint64_t index, uint64_t* dest );
++asmlinkage long sys_shmvec_len(uint64_t* dest);
++
++#endif
+\ No newline at end of file
+diff --git a/shmvec/Makefile b/shmvec/Makefile
+new file mode 100644
+index 000000000..01a97ebd5
+--- /dev/null
++++ b/shmvec/Makefile
+@@ -0,0 +1 @@
++obj-y := shmvec.o
+\ No newline at end of file
+diff --git a/shmvec/shmvec.c b/shmvec/shmvec.c
+new file mode 100644
+index 000000000..e54f1e943
+--- /dev/null
++++ b/shmvec/shmvec.c
+@@ -0,0 +1,60 @@
++#include <linux/kernel.h>
++#include <linux/slab.h>
++#include <asm/uaccess.h>
++#include <linux/syscalls.h>
++
++struct {
++	uint64_t* vec;
++	uint64_t length;
++} shmvec_state;
++
++SYSCALL_DEFINE1(shmvec_init, uint64_t, count)
++{
++	if((count * sizeof(uint64_t)) < 128 * 1000 * 1000) {
++		shmvec_state.vec = (uint64_t*) kmalloc(count * sizeof(uint64_t), GFP_KERNEL);
++		shmvec_state.length = count;
++		return 0;
++	} else {
++		return -1;
++	}
++	
++}
++
++SYSCALL_DEFINE0(shmvec_close)
++{
++	kfree(shmvec_state.vec);
++	shmvec_state.vec = NULL;
++	shmvec_state.length = 0;
++	return 0;
++}
++
++
++SYSCALL_DEFINE2(shmvec_set, uint64_t, index, uint64_t, data)
++{
++	if(shmvec_state.vec && index < shmvec_state.length) {
++		shmvec_state.vec[index] = data;
++		return 0;
++	} else {
++		return -1;
++	}
++}
++
++
++SYSCALL_DEFINE2(shmvec_get, uint64_t, index, uint64_t __user *, dest )
++{
++	if(shmvec_state.vec && index < shmvec_state.length) {
++		put_user(shmvec_state.vec[index], dest);
++		return 0;
++	} else {
++		return -1;
++	}
++
++}
++
++SYSCALL_DEFINE1(shmvec_len, uint64_t*, dest)
++{
++		put_user(shmvec_state.length, dest);
++        return 0;
++}
++
++
