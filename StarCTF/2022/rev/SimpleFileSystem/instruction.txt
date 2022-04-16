@@ -1,0 +1,12 @@
+# instructions
+
+I implemented a very simple file system and buried my flag in it.
+
+The image file are initiated as follows: 
+./simplefs image.flag 500
+ simplefs> format
+ simplefs> mount
+ simplefs> plantflag
+ simplefs> exit
+
+And you cold run "help" to explore other commands.

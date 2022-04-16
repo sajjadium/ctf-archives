@@ -1,0 +1,21 @@
+version: "3" 
+services:
+
+  lotto:
+    build:
+      context: lotto/
+      dockerfile: Dockerfile
+    container_name: "lotto"
+
+  app:  
+    build:
+      context: app/
+      dockerfile: Dockerfile
+    links:
+      - lotto
+    container_name: "app"
+      
+    ports:
+      - "8880:8080"
+    
+    

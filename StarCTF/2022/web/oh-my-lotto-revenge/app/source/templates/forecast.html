@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="main">
+    
+
+    <div class="message-card nes-container with-title is-centered is-dark">
+      <p class="title">*CTF LOTTO</p>
+      <p>
+      Give me your forecast!
+      </p>
+      <form action="/forecast" enctype='multipart/form-data' method='POST'>
+        <label class="nes-btn">
+            <span>SELECT LUCKY FORECAST</span>
+            <input type="file" name="file">
+          </label>
+          <input type="submit" value="GO!" class="nes-input">
+    </form>
+    {% if message%}
+        <p>{{message}}</p>
+    {% endif %}
+    </div>
+
+    
+  </div>
+  <div class="empty"></div>
+  <div class="footer">© *CTF</div>
+{% endblock %}

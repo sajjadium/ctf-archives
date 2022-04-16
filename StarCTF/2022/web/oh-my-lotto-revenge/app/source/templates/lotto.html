@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="main">
+    <div class="message-card nes-container with-title is-centered is-dark">
+      <p class="title">*CTF LOTTO</p>
+      <p>
+      OK, I know that It's a little difficult for you to predict the lotto result,
+      so I allow you to do some cheats.
+      </p>
+      <form action="/lotto" enctype='multipart/form-data' method='POST'>
+        <div class="nes-container is-rounded">
+            <p>You have a chance if you need it</p>
+            <div class="nes-field is-inline">
+                <label for="name_field">KEY</label>
+                <input type="text" id="lotto_key" class="nes-input" name="lotto_key">
+              </div>
+
+              <div class="nes-field is-inline">
+                <label for="name_field">VALUE</label>
+                <input type="text" id="lotto_value" class="nes-input" name="lotto_value">
+              </div>
+          </div>
+          <button type="submit" class="nes-btn is-success">LOTTO</button>
+    </form>
+    {% if message%}
+        <p>{{message}}</p>
+    {% endif %}
+    </div>
+
+    
+  </div>
+  <div class="empty"></div>
+  <div class="footer">© *CTF</div>
+{% endblock %}
