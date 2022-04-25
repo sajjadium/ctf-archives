@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.7",
+    "express": "^4.17.3",
+    "express-ws": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "pngjs": "^6.0.0",
+    "ws": "^8.5.0"
+  },
+  "name": "hackerplace",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

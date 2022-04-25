@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>hacker/place</title>
+	<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+	<canvas></canvas>
+	<div id="palette">
+		<% for (let i = 0; i < palette.length; i++) { %>
+			<button id="<%= palette[i] %>" class="color" style="background-color: <%= palette[i] %>" onclick="switchPalette(this)"></button>
+		<% } %>
+	</div>
+	<div id="cooldown" style="display: none">Cooldown: <span id="cooldown-counter">0</span></div>
+	<script src="/static/js/index.js"></script>
+</body>
+</html>

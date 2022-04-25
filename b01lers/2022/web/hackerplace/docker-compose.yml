@@ -1,0 +1,15 @@
+services:
+  place:
+    build:
+      dockerfile: ./Dockerfile_web
+      context: .
+    ports:
+      - "8000:3000"
+    volumes:
+      - ./canvas:/app/canvas
+  bot:
+    build:
+      dockerfile: ./Dockerfile_bot
+      context: .
+    restart: always
+    

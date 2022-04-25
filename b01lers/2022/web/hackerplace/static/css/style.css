@@ -1,0 +1,55 @@
+html, body {
+	min-height: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #555;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+*, *::before, *::after {
+	box-sizing: inherit;
+}
+
+canvas {
+	image-rendering: pixelated;
+}
+
+#palette {
+	position: absolute;
+	bottom: 16px;
+	display: flex;
+	padding: 16px;
+	background-color: #ccc;
+}
+
+.color {
+	width: 40px;
+	height: 40px;
+	border: 2px solid black;
+	margin: 0 4px;
+	cursor: pointer;
+}
+
+.color.selected {
+	border: 2px solid green;
+}
+
+#cooldown {
+	background-color: white;
+	padding: 12px;
+	color: black;
+	position: fixed;
+	top: 20px;
+	width: fit-content;
+	margin: 0 auto;
+}
