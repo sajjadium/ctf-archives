@@ -1019,6 +1019,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/639/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=5><a href="Patriot">Patriot</a></td>
+            <td><a href="Patriot/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1616/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=5><a href="PlaidCTF">Plaid</a></td>
             <td><a href="PlaidCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1542/tasks/">CTFtime</a></td>
