@@ -1,0 +1,16 @@
+[package]
+name = "beachside"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+sol-ctf-framework = "0.1.0"
+poc-framework-osec = "0.1.1"
+tempfile = "3.2.0"
+sha2 = "0.10.2"
+rand = "0.7.3"
+threadpool = "1.8.1"
+anchor-client = "*"
+solana-program = "1.8.14"
