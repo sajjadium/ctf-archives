@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Microforum</title>
+</head>
+
+<body>
+    <!-- As a heading -->
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+    <link rel= "stylesheet" type= "text/css" href= "{{url_for('static',filename='style.css') }}">
+
+
+
+    <nav class="navbar navbar-light bg-light" style="
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100%%;
+    z-index: 5;">
+        <span class="navbar-brand">Microforum</span>
+    </nav>
+
+
+    <div class="container p-sm-5">
+        <div class="main-body p-2">
+            <div class="inner-wrapper">
+                <!-- Inner sidebar -->
+                <div class="inner-sidebar">
+                    <!-- Inner sidebar header -->
+                    <div style="padding:16px;">
+                        
+                        <button onclick="location.href='{{  url_for('post')}}'" class="btn btn-primary has-icon btn-block" type="button" data-toggle="modal" data-target="#threadModal">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus mr-2">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        NEW DISCUSSION
+                    </button>
+                </div>
+                <!-- /Inner sidebar header -->
+
+                <!-- Inner sidebar body -->
+                
+                    <div class="p-3 h-100" data-simplebar="init">
+                        <div class="simplebar-wrapper" style="margin: -16px;">
+                            <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div>
+                            <div class="simplebar-mask">
+                                <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                    <div class="simplebar-content-wrapper" style="height: 100%%; overflow: hidden;">
+                                        <div class="simplebar-content" style="padding: 16px;">
+                                            <nav class="nav nav-pills nav-gap-y-1 flex-column">
+                                                <a href="{{url_for('forums')}}" class="nav-link nav-link-faded has-icon">Home</a>
+                                            
+                                            <a href="{{url_for('profile')}}" class="nav-link nav-link-faded has-icon">Profile</a>
+                                            <a href="{{url_for('logout')}}" class="nav-link nav-link-faded has-icon">Logout</a>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </div>
+            
+                <!-- /Inner sidebar body -->
+            </div>
+            <!-- /Inner sidebar -->
+
+
+            
+            <!-- Inner main body -->
+            <div class="inner-main">
+
+
+    <div class="inner-profile">
+
+        
+        <div class="center">
+          <h5 class="card-title">Username: %s</h5>
+          <p>Email: %s</p>
+          <p class="">About me: %s</p>
+          <a href="{{ url_for('edit_profile') }}" class="btn btn-primary">Edit Profile</a>
+        </div>
+    <!--To do: delete /debug once the blog is complete -->
+    
+</div>
+
+            <!-- /Inner main -->
+        </div>
+
+        <!-- New Thread Modal -->
+        <div class="modal fade" id="threadModal" tabindex="-1" role="dialog" aria-labelledby="threadModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header d-flex align-items-center bg-primary text-white">
+                            <h6 class="modal-title mb-0" id="threadModalLabel">New Discussion</h6>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="threadTitle">Title</label>
+                                <input type="text" class="form-control" id="threadTitle" placeholder="Enter title" autofocus="" />
+                            </div>
+                            <textarea class="form-control summernote" style="display: none;"></textarea>
+
+                            
+                        </div>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

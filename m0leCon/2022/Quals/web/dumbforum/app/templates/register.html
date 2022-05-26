@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block login %}
+
+<div class="wrapper">
+    <div id="formContent">
+
+    
+    
+    <h1 style="margin-top: 30px;">Register</h1>
+    <form style="margin-top: 30px;" action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            <input type="text" placeholder="Username" name="username" value="{{
+                request.form.username }}"><br>
+            
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+
+            <input type="email" placeholder="Email" name="email" value="{{
+                request.form.email }}"><br>
+            
+            {% for error in form.email.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            <input type="password" placeholder="Password" name="password" value="{{
+                request.form.password }}"><br>
+            
+            
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            <input type="password" placeholder="Verify the password" name="password2" value="{{
+                request.form.password2 }}"><br>
+
+            {% for error in form.password2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <div  style="padding-right: 100px; padding-left: 100px; padding-bottom: 20px">
+            <button class="btn btn-primary has-icon btn-block" type="submit">
+                Register
+            </button>
+            </div>
+    </form>
+</div>
+</div>
+</div>
+{% endblock %}

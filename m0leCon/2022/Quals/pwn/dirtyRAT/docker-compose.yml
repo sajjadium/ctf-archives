@@ -1,0 +1,10 @@
+version: "2.2"
+services:
+  dirtyrat:
+    build: .
+    ports:
+      -  "10010:15000"
+    restart: unless-stopped
+    cpus: 2
+    mem_limit: 64G
+

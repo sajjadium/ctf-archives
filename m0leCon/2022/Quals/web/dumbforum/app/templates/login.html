@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block login %}
+
+
+<div class="wrapper">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      
+      <h1 style="margin-top: 30px;">Login</h1>
+      <!-- Login Form -->
+      <form style="margin-top: 30px;" action="" method="post" novalidate>
+        
+        {{ form.hidden_tag() }}
+        <p>
+          <input type="text" placeholder="Username" name="username">
+            <br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            <input type="password" placeholder="Password" name="password">
+            
+            <br>
+              {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <div  style="padding-right: 100px; padding-left: 100px; padding-bottom: 20px;">
+          <button style="" class="btn btn-primary has-icon btn-block" type="submit">
+              Login
+          </button>
+          </div>
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>
+  
+
+
+
+
+
+
+<!--
+<div id="content_top">
+    <h1 id="heading_piano"><span class="invisible_headings">The Piano</span></h1>
+    <h2>Welcome to piano forum! Please login or register.</h2>
+
+    <h1>Sign In</h1>
+ <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+        
+</form>
+<h1>New User? <a href="{{ url_for('register') }}">Click to Register!</a></h1>
+</div>
+<div id="footer">
+</div>
+<div id="footer">
+</div>
+
+-->
+
+
+
+{% endblock %}

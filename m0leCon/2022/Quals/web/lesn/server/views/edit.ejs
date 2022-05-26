@@ -1,0 +1,21 @@
+<%- include('header') %>
+
+<% if (error){ %>
+<p style="color: red; text-align: center;"><%= error %></p>
+<% } %>
+
+
+<form method="POST">
+    <div style="text-align: center; margin-top: 2em;">
+        <input type="text" name="description" placeholder="description" value="<%= description %>"
+            style="width: 30%; height: 2em; text-align: center; margin-bottom: 1em;" />
+        <br>
+        <input type="url" name="imgurl" placeholder="image url" value="<%= imgurl %>"
+            style="width: 30%; height: 2em; text-align: center; margin-bottom: 1em;" />
+        <br>
+        <input type="text" name="imgid" hidden value="<%= imgid %>" />
+        <button type="submit" style="width: 15%; height: 2em; text-align: center; margin-bottom: 1em;">Edit</button>
+    </div>
+</form>
+
+<%- include('footer') %>

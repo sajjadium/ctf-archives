@@ -1,0 +1,112 @@
+{% extends 'base.html' %} {% block title %}Your fancy notes{% endblock %} {%
+block content %}
+<nav class="navbar navbar-light bg-light">
+  <div
+    class="container-fluid d-flex align-items-center justify-content-between"
+  >
+    <a class="navbar-brand"> Fancy notes </a>
+    <div>
+      <a class="btn btn-primary" href="/logout" role="button">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  {% if error %}
+  <div class="alert alert-danger" role="alert">{{ error }}</div>
+  {% endif %}
+
+  <button
+    type="button"
+    class="btn btn-primary my-5"
+    data-bs-toggle="modal"
+    data-bs-target="#createModal"
+  >
+    Create new note
+  </button>
+
+  <!-- Modal -->
+  <div
+    class="modal fade text-dark"
+    id="createModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form method="POST" enctype="multipart/form-data">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Create new note</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="inputTitle" class="form-label">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputTitle"
+                name="title"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="inputBody" class="form-label">Body</label>
+              <input
+                type="text"
+                class="form-control"
+                id="inputBody"
+                name="body"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="inputPicture" class="form-label"
+                >Optional picture</label
+              >
+              <input
+                class="form-control"
+                type="file"
+                id="inputPicture"
+                name="picture"
+                accept="image/png, image/jpeg"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <h2>{{ user.username }}'s notes</h2>
+  <div class="row">
+    {% for note in notes %}
+    <div class="col-4 mb-4">
+      <div class="card text-dark">
+        {% if note.picture_id %}
+        <img src="/pictures/{{note.id}}" class="card-img-top" />
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ note.title }}</h5>
+          <p class="card-text">{{ note.body }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

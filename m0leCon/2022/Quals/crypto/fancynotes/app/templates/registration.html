@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% block title %}Fancy notes - Registration{% endblock
+%} {% block content %}
+<div class="container text-center">
+  <div class="row justify-content-center">
+    <div class="col-4 mt-5">
+      <h1>Registration</h1>
+
+      {% if error %}
+      <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endif %}
+
+      <form method="POST">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            name="username"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            name="password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Create account</button>
+      </form>
+
+      <div class="mt-5">
+        <p>Already have an account?</p>
+        <a class="btn btn-primary" href="/login" role="button">Log In</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

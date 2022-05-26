@@ -1,0 +1,26 @@
+<%- include('header') %>
+
+<a style="position: absolute; left: 30%; top:5px" href="/">Home</a>
+<a style="position: absolute; right: 30%; top:5px" href="/new">New</a>
+
+<div style="text-align: center; margin-top: 3em;">
+
+    <% if (posts.length === 0){ %>
+    No posts, create a new one <a href="/new">here</a>!
+    <% } else { %>
+
+    Your posts:
+    <br>
+
+    <ul>
+        <% for (const p of posts){ %>
+        <li>
+            <a href="/post/<%= p.id %>"><%= p.id %></a>
+        </li>
+        <% } %>
+
+    </ul>
+
+    <% } %>
+</div>
+<%- include('footer') %>

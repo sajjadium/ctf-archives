@@ -1,0 +1,32 @@
+<%- include('header') %>
+
+<% if (error){ %>
+<p style="color: red; text-align: center;"><%= error %></p>
+<% } %>
+
+<div style="text-align: center; margin-top: 1em;">
+    <h3>Low effort social network</h3>
+
+    Hosting your images is too expensive, but we can link them. Just like NFTs!
+    <br>
+    <br>
+    <a href="/new">Create a new post</a>
+    <br>
+    <a href="/post">List your posts</a>
+    <br>
+    <a href="/report">Report a post</a>
+
+    <% if (locals.loggedUser !== 'admin'){ %>
+    <br>
+    <br>
+    If you are the admin <a href="/admin">prove it!</a>
+    <% } else { %>
+    <br>
+    <br>
+    Hi admin! &lt;3
+
+    <% } %>
+
+</div>
+
+<%- include('footer') %>

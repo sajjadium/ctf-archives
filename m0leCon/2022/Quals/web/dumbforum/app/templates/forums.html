@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block forum %}
+        <!-- Inner main -->
+        
+            <!-- Forum List -->
+            <div class="inner-main-body p-0 p-sm-0 ml-1 collapse forum-content show">
+
+                {% for post in posts.items %}
+                <div class="card mb-2">
+                    <div class="card-body p-2 p-sm-3">
+                        <div class="media forum-item">
+                            <a href="#" data-toggle="collapse" data-target=".forum-content"><img src="https://b.thumbs.redditmedia.com/JHAdqgeHHh8P1hgo34guwWoAsPhFbW3t-TLFyTK8keM.png" class="mr-3 rounded-circle" width="50" alt="User" /></a>
+                            <div class="media-body">
+                                <h6><a href="#" data-toggle="collapse" data-target=".forum-content" class="text-body">{{post.title}}</a></h6>
+                                <p class="text-secondary">
+                                    {{post.body}}
+                                </p>
+                                <p class="text-muted">Posted by <a href="javascript:void(0)">{{post.username}}</a> on <span class="text-secondary font-weight-bold">{{post.month_name}} {{post.timestamp.day}} {{post.timestamp.year}} at {{post.timestamp.hour + 2}}:{%if post.timestamp.minute < 10%}0{{post.timestamp.minute}}{%else%}{{post.timestamp.minute}}{%endif%}</span></p>
+                            </div>
+
+
+                        </div>
+                         </div>
+                           </div>
+                           {% endfor %}
+                           {% if no_post_flag == True %}
+                           No Posts!!!
+                            {% else %}
+                           
+                            <!-- Pagination Links-->
+                        <div class="text-center">
+                         <a href="{{ url_for('forums', page=posts.prev_num) }}" class="btn btn-outline-primary {% if posts.page == 1 %}disabled{% endif %}">
+                           &laquo;
+                         </a><!-- Loop through the number of pages to display a link for each-->
+                            {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}{% if page_num %}
+                             <!-- Check for the active page and set the link to "Active"-->
+                        {% if posts.page == page_num %}
+                                    <a href="{{ url_for('forums', page=page_num) }}"
+                        class="btn btn-success">
+                            {{ page_num }}
+                        </a>
+                        {% else %}
+                        <a href="{{ url_for('forums', page=page_num) }}"
+                        class="btn btn-outline-primary">
+                            {{ page_num }}
+                        </a>
+                              {% endif %}
+                           {% else %}
+                               ...
+                            {% endif %}
+                            {% endfor %}    <a href="{{ url_for('forums', page=posts.next_num) }}"
+                        class="btn btn-outline-primary 
+                        {% if posts.page == posts.pages %}disabled{% endif %}">
+                            &raquo;
+                        </a>
+                    </div>
+
+                    {% endif %}
+            </div>
+            
+            <!-- /Forum List -->
+            
+            <!-- Forum Detail -->
+
+            <!-- /Forum Detail -->
+
+            <!-- /Inner main body -->
+        </div>
+{% endblock %}

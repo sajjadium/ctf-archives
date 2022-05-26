@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block profile %}
+{% autoescape false %}
+<div class="wrapper">
+    <div class="inner-profile">
+      <!-- Tabs Titles -->
+
+      
+      <h2 style="margin-top: 30px;">Edit Profile</h1>
+      <!-- Login Form -->
+    
+    <!--To do: delete /debug once the blog is complete -->
+    
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            <input type="text" name="username" value="{{
+                form.data.username}}"> 
+            <br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.about_me.label }}<br>
+            <textarea type="body_text" placeholder="About me" rows="5" name="about_me">{%if form.data.about_me!=None %}{{form.data.about_me}}{%endif%}</textarea>
+            <br>
+
+            {% for error in form.about_me.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            <div  style="padding-right: 100px; padding-left: 100px;">
+        <button class="btn btn-primary has-icon btn-block" type="submit">
+            Submit
+        </button>
+        </div>
+
+<!--      {{ form.submit() }} -->
+    </p>
+    </form>
+</div>
+</div>
+
+{% endautoescape %}
+{% endblock %}

@@ -1,0 +1,32 @@
+<%- include('header') %>
+
+<% if (error){ %>
+<p style="color: red; text-align: center;"><%= error %></p>
+<% } %>
+
+<% if (success){ %>
+<p style="color: green; text-align: center;"><%= success %></p>
+<% } %>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+<form method="POST">
+    <div style="text-align: center; margin-top: 2em;">
+        <input type="url" name="url" placeholder="url" id="url"
+            style="width: 30%; height: 2em; text-align: center; margin-bottom: 1em;" />
+        <br>
+
+
+        <div class="g-recaptcha" style="display: inline-block;  margin-bottom: 1em;"
+            data-sitekey="6LefWsYfAAAAAE2VFBKg7AAiG8rNxSnoSeAEQEs8">
+        </div>
+        <br>
+
+
+        <button type="submit" id="submit"
+            style="width: 15%; height: 2em; text-align: center; margin-bottom: 1em;">Report</button>
+    </div>
+</form>
+
+<%- include('footer') %>

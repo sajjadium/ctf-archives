@@ -1,0 +1,9 @@
+<%- include('header') %>
+
+<p style="color: red; text-align: center;"><%= error || 'Something is wrong with your request, retry. Redirecting...' %>
+</p>
+
+
+<script>setTimeout(() => redirect_to("<%= from %>"), 1500)</script>
+
+<%- include('footer') %>

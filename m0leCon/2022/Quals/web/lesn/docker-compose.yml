@@ -1,0 +1,17 @@
+version: "3.6"
+services:
+  webapp:
+    build: ./server
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      - WEBAPP_URL=http://webapp:3000
+      - BOT_URL=http://bot:9999/visit
+      - FLAG=ptm{REDACTED}
+      - ADMIN_PWD=REDACTED
+      #- RECAPTCHA_SECRET_KEY=
+  bot:
+    build: ./bot
+    environment:
+      - WEBAPP_URL=http://webapp:3000
+      - ADMIN_PWD=REDACTED

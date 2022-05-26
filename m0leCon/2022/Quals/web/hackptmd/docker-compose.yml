@@ -1,0 +1,18 @@
+version: "3.6"
+services:
+  nginx:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:8080:80"
+  backend:
+    build: ./backend
+    environment:
+      - BOT_URL=http://bot:9999/visit
+      - WEBAPP_URL=http://nginx
+      - FLAG=ptm{REDACTED}
+      - ADMIN_PASSWORD=REDACTED
+  bot:
+    build: ./bot
+    environment:
+      - WEBAPP_URL=http://nginx
+      - ADMIN_PASSWORD=REDACTED

@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    restart: always
+    environment:
+      - DOCKER=true
+      - SECRET_KEY=arandomkey
+      - FLAG=ptm{testflag}
+      - MYSQL_ROOT_PASSWORD=arandompassword
+      - MYSQL_DATABASE=challenge
+
+  db:
+    image: mariadb:10.8
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=arandompassword
+      - MYSQL_DATABASE=challenge

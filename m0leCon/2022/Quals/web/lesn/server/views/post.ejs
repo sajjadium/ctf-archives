@@ -1,0 +1,14 @@
+<%- include('header') %>
+
+<a style="position: absolute; left: 30%; top:5px" href="/">Home</a>
+<a style="position: absolute; right: 30%; top:5px" href="/edit/<%= imgid %>">Edit</a>
+
+<div style="margin-top: 3em;">
+    <img src="<%= imgurl %>" onerror="setTimeout(redirect_error_image,1500)"
+        style="max-height: 300px; max-width: 300px; display:block; margin: auto; border: 2px solid #555;">
+
+    <div style="margin-top: 30px; text-align: center;"><%- description %></div>
+</div>
+
+
+<%- include('footer') %>
