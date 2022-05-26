@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Photoable</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+    <link href="/index.css" type="text/css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div class="page-container-centered">
+      <div class="left-container">
+        <h1 class="title">Upload Image</h1>
+        <p class="description">Choose from any link!</p>
+        <form action="/uploadimage" method="post" class="form-container">
+          <input
+            placeholder="https://my-website.com/my-image.png"
+            type="text"
+            name="url"
+            class="input-upload"
+          />
+          <button
+            type="submit"
+            class="button bg-blue"
+          >
+            Upload!
+          </button>
+        </form>
+        <% if(locals.error) {%>
+            <div class="error">
+                Error: <%= locals.error %>
+            </div>
+          <% } %>  
+      </div>
+    </div>
+  </body>
+</html>

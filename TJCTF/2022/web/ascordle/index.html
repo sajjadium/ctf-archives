@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ASCORDLE</title>
+        <style>
+            *, ::before, ::after {
+                box-sizing: border-box;
+                border-width: 0;
+                border-style: solid;
+                border-color: #e5e7eb;
+
+                --tw-translate-x: 0;
+                --tw-translate-y: 0;
+                --tw-rotate: 0;
+                --tw-skew-x: 0;
+                --tw-skew-y: 0;
+                --tw-scale-x: 1;
+                --tw-scale-y: 1;
+            }
+
+            html {
+                line-height: 1.5;
+                -webkit-text-size-adjust: 100%;
+                -moz-tab-size: 4;
+                -o-tab-size: 4;
+                    tab-size: 4;
+                font-family: ui-sans-serif, system-ui, sans-serif;
+            }
+
+            body {
+                margin: 0;
+                line-height: inherit;
+            }
+
+            .letter-box {
+                height: 64px;
+                width: 64px;
+                margin-left: 2px;
+                margin-right: 2px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .keyboard-box {
+                background-color: gray;
+                color: white;
+                font-weight: bold;
+                margin-left: 2px;
+                margin-right: 2px;
+                margin-top: 2px;
+                margin-bottom: 2px;
+                padding: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+            .shake_boxes {
+                animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+            }
+            @keyframes flip_letters {
+                from {
+                    transform: rotateX(0deg);
+                    background-color: black;
+                }
+                50% {
+                    transform: rotateX(90deg);
+                    background-color: rgb(60, 60, 60);
+                }
+                to {
+                    transform: rotateX(0deg);
+                    background-color: rgb(60, 60, 60);
+                }
+            }
+             @keyframes flip_letters_g {
+                from {
+                    transform: rotateX(0deg);
+                    background-color: black;
+                }
+                50% {
+                    transform: rotateX(90deg);
+                    background-color: green;
+                }
+                to {
+                    transform: rotateX(0deg);
+                    background-color: green;
+                }
+            }
+            @keyframes flip_letters_y {
+                from {
+                    transform: rotateX(0deg);
+                    background-color: black;
+                }
+                50% {
+                    transform: rotateX(90deg);
+                    background-color: rgb(225, 173, 1);
+                }
+                to {
+                    transform: rotateX(0deg);
+                    background-color: rgb(225, 173, 1);
+                }
+            }
+            @keyframes shake {
+                10%, 90% {
+                    transform: translateX(-1px);
+                }
+
+                20%, 80% {
+                    transform: translateX(2px);
+                }
+
+                30%, 50%, 70% {
+                    transform: translateX(-4px);
+                }
+
+                40%, 60% {
+                    transform: translateX(4px);
+                }
+            }
+            @keyframes shakeUp {
+                20% {
+                    transform: translateY(-12px);
+                }
+
+                40% {
+                    transform: translateY(4px);
+                }
+
+                60% {
+                    transform: translateY(-8px);
+                }
+
+                80% {
+                    transform: translateY(2px);
+                }
+            }
+            @keyframes big_to_small {
+                from {
+                    transform: scale(1.2);
+                }
+                to {
+                    transform: scale(1);
+                }
+            }
+            @keyframes slideup {
+                from {
+                    top: 55%;
+                    opacity: 0;
+                }
+                to {
+                    top: 50%;
+                    opacity: 1;
+                }
+            }
+            @keyframes slidedown {
+                from {
+                    top: 50%;
+                    opacity: 1;
+                }
+                to {
+                    top: 55%;
+                    opacity: 0;
+                }
+            }
+            @keyframes fadeOut {
+                from {
+                    opacity: 1;
+                }
+                to {
+                    opacity: 0;
+                }
+            }
+
+            .fixed {
+                position: fixed;
+            }
+
+            .absolute {
+                position: absolute;
+            }
+
+            .top-0 {
+                top: 0px;
+            }
+
+            .top-28 {
+                top: 7rem;
+            }
+
+            .left-1\/2 {
+                left: 50%;
+            }
+
+            .top-1\/2 {
+                top: 50%;
+            }
+
+            .z-10 {
+                z-index: 10;
+            }
+
+            .z-20 {
+                z-index: 20;
+            }
+
+            .z-30 {
+                z-index: 30;
+            }
+
+            .col-span-3 {
+                grid-column: span 3 / span 3;
+            }
+
+            .col-span-2 {
+                grid-column: span 2 / span 2;
+            }
+
+            .mt-4 {
+                margin-top: 1rem;
+            }
+
+            .ml-3 {
+                margin-left: 0.75rem;
+            }
+
+            .mb-4 {
+                margin-bottom: 1rem;
+            }
+
+            .flex {
+                display: flex;
+            }
+
+            .grid {
+                display: grid;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            .h-full {
+                height: 100%;
+            }
+
+            .h-0 {
+                height: 0px;
+            }
+
+            .w-full {
+                width: 100%;
+            }
+
+            .w-fit {
+                width: -webkit-fit-content;
+                width: -moz-fit-content;
+                width: fit-content;
+            }
+
+            .w-48 {
+                width: 12rem;
+            }
+
+            .-translate-x-1\/2 {
+                --tw-translate-x: -50%;
+                transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            }
+
+            .-translate-y-1\/2 {
+                --tw-translate-y: -50%;
+                transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            }
+
+            .transform {
+                transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            }
+
+            .cursor-pointer {
+                cursor: pointer;
+            }
+
+            .flex-row {
+                flex-direction: row;
+            }
+
+            .flex-col {
+                flex-direction: column;
+            }
+
+            .items-center {
+                align-items: center;
+            }
+
+            .justify-end {
+                justify-content: flex-end;
+            }
+
+            .justify-center {
+                justify-content: center;
+            }
+
+                .divide-y-2 > :not([hidden]) ~ :not([hidden]) {
+                --tw-divide-y-reverse: 0;
+                border-top-width: calc(2px * calc(1 - var(--tw-divide-y-reverse)));
+                border-bottom-width: calc(2px * var(--tw-divide-y-reverse));
+            }
+
+                .divide-gray-700 > :not([hidden]) ~ :not([hidden]) {
+                --tw-divide-opacity: 1;
+                border-color: rgb(55 65 81 / var(--tw-divide-opacity));
+            }
+
+            .overflow-x-auto {
+                overflow-x: auto;
+            }
+
+            .rounded-md {
+                border-radius: 0.375rem;
+            }
+
+            .border {
+                border-width: 1px;
+            }
+
+            .border-gray-600 {
+                --tw-border-opacity: 1;
+                border-color: rgb(75 85 99 / var(--tw-border-opacity));
+            }
+
+            .border-white {
+                --tw-border-opacity: 1;
+                border-color: rgb(255 255 255 / var(--tw-border-opacity));
+            }
+
+            .bg-black {
+                --tw-bg-opacity: 1;
+                background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+            }
+
+            .bg-gray-900 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+            }
+
+            .bg-green-700 {
+                --tw-bg-opacity: 1;
+                background-color: rgb(21 128 61 / var(--tw-bg-opacity));
+            }
+
+            .bg-white {
+                --tw-bg-opacity: 1;
+                background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+            }
+
+            .py-2 {
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .px-8 {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .px-2 {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+            }
+
+            .px-20 {
+                padding-left: 5rem;
+                padding-right: 5rem;
+            }
+
+            .py-4 {
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+
+            .px-6 {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .pt-4 {
+                padding-top: 1rem;
+            }
+
+            .pb-4 {
+                padding-bottom: 1rem;
+            }
+
+            .text-center {
+                text-align: center;
+            }
+
+            .text-3xl {
+                font-size: 1.875rem;
+                line-height: 2.25rem;
+            }
+
+            .text-2xl {
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+
+            .text-xl {
+                font-size: 1.25rem;
+                line-height: 1.75rem;
+            }
+
+            .font-bold {
+                font-weight: 700;
+            }
+
+            .text-white {
+                --tw-text-opacity: 1;
+                color: rgb(255 255 255 / var(--tw-text-opacity));
+            }
+
+            .text-black {
+                --tw-text-opacity: 1;
+                color: rgb(0 0 0 / var(--tw-text-opacity));
+            }
+
+            .opacity-0 {
+                opacity: 0;
+            }
+
+            .drop-shadow {
+                --tw-drop-shadow: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
+                filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+            }
+
+            .filter {
+                filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+            }
+
+        </style>
+    </head>
+    <body style="height: 100vh;">
+        <div class="bg-black text-white divide-y-2 divide-gray-700 h-full" id="game_container">
+            <div class="absolute z-10 py-2 flex w-full justify-end px-8 font-bold text-3xl items-center">
+                <div class="opacity-0">
+                    yay
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" class="cursor-pointer" onclick="open_stats()">
+                    <path fill="white" d="M16,11V3H8v6H2v12h20V11H16z M10,5h4v14h-4V5z M4,11h4v8H4V11z M20,19h-4v-6h4V19z"></path>
+                </svg>
+            </div>
+            <div class="text-center py-2 font-bold w-full text-3xl">
+                ASCORDLE
+            </div>
+            <input type="text" class="h-0 opacity-0 text-black fixed" id="hidden_text_box">
+            <div class="flex flex-col items-center justify-center pt-4">
+                <div class="overflow-x-auto flex flex-row justify-center items-center w-full" style="height: 100px;">
+                    <div class="grid w-fit" style="grid-template-columns: repeat(16, max-content);">
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_0"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_1"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_2"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_3"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_4"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_5"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_6"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_7"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_8"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_9"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_10"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_11"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_12"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_13"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_14"></div>
+                        <div class="border border-gray-600 letter-box text-2xl" id="char_15"></div>
+                    </div>
+                </div>
+                <div class="grid mt-4 overflow-x-auto w-full flex-row justify-center" style="grid-template-columns: repeat(25, 35px);">
+                    <div class="keyboard-box" id="keyboard_!" onclick="click_keyboard(this.id)">
+                        !
+                    </div>
+                    <div class="keyboard-box" id="keyboard_dquote" onclick="click_keyboard(this.id)">
+                        "
+                    </div>
+                    <div class="keyboard-box" id="keyboard_#" onclick="click_keyboard(this.id)">
+                        #
+                    </div>
+                    <div class="keyboard-box" id="keyboard_$" onclick="click_keyboard(this.id)">
+                        $
+                    </div>
+                    <div class="keyboard-box" id="keyboard_%" onclick="click_keyboard(this.id)">
+                        %
+                    </div>
+                    <div class="keyboard-box" id="keyboard_&" onclick="click_keyboard(this.id)">
+                        &
+                    </div>
+                    <div class="keyboard-box" id="keyboard_squote" onclick="click_keyboard(this.id)">
+                        '
+                    </div>
+                    <div class="keyboard-box" id="keyboard_(" onclick="click_keyboard(this.id)">
+                        (
+                    </div>
+                    <div class="keyboard-box" id="keyboard_)" onclick="click_keyboard(this.id)">
+                        )
+                    </div>
+                    <div class="keyboard-box" id="keyboard_*" onclick="click_keyboard(this.id)">
+                        *
+                    </div>
+                    <div class="keyboard-box" id="keyboard_+" onclick="click_keyboard(this.id)">
+                        +
+                    </div>
+                    <div class="keyboard-box" id="keyboard_," onclick="click_keyboard(this.id)">
+                        ,
+                    </div>
+                    <div class="keyboard-box" id="keyboard_-" onclick="click_keyboard(this.id)">
+                        -
+                    </div>
+                    <div class="keyboard-box" id="keyboard_." onclick="click_keyboard(this.id)">
+                        .
+                    </div>
+                    <div class="keyboard-box" id="keyboard_/" onclick="click_keyboard(this.id)">
+                        /
+                    </div>
+                    <div class="keyboard-box" id="keyboard_0" onclick="click_keyboard(this.id)">
+                        0
+                    </div>
+                    <div class="keyboard-box" id="keyboard_1" onclick="click_keyboard(this.id)">
+                        1
+                    </div>
+                    <div class="keyboard-box" id="keyboard_2" onclick="click_keyboard(this.id)">
+                        2
+                    </div>
+                    <div class="keyboard-box" id="keyboard_3" onclick="click_keyboard(this.id)">
+                        3
+                    </div>
+                    <div class="keyboard-box" id="keyboard_4" onclick="click_keyboard(this.id)">
+                        4
+                    </div>
+                    <div class="keyboard-box" id="keyboard_5" onclick="click_keyboard(this.id)">
+                        5
+                    </div>
+                    <div class="keyboard-box" id="keyboard_6" onclick="click_keyboard(this.id)">
+                        6
+                    </div>
+                    <div class="keyboard-box" id="keyboard_7" onclick="click_keyboard(this.id)">
+                        7
+                    </div>
+                    <div class="keyboard-box" id="keyboard_8" onclick="click_keyboard(this.id)">
+                        8
+                    </div>
+                    <div class="keyboard-box" id="keyboard_9" onclick="click_keyboard(this.id)">
+                        9
+                    </div>
+                    <div class="keyboard-box" id="keyboard_:" onclick="click_keyboard(this.id)">
+                        :
+                    </div>
+                    <div class="keyboard-box" id="keyboard_;" onclick="click_keyboard(this.id)">
+                        ;
+                    </div>
+                    <div class="keyboard-box" id="keyboard_<" onclick="click_keyboard(this.id)">
+                        <
+                    </div>
+                    <div class="keyboard-box" id="keyboard_=" onclick="click_keyboard(this.id)">
+                        =
+                    </div>
+                    <div class="keyboard-box" id="keyboard_>" onclick="click_keyboard(this.id)">
+                        >
+                    </div>
+                    <div class="keyboard-box" id="keyboard_?" onclick="click_keyboard(this.id)">
+                        ?
+                    </div>
+                    <div class="keyboard-box" id="keyboard_@" onclick="click_keyboard(this.id)">
+                        @
+                    </div>
+                    <div class="keyboard-box" id="keyboard_A" onclick="click_keyboard(this.id)">
+                        A
+                    </div>
+                    <div class="keyboard-box" id="keyboard_B" onclick="click_keyboard(this.id)">
+                        B
+                    </div>
+                    <div class="keyboard-box" id="keyboard_C" onclick="click_keyboard(this.id)">
+                        C
+                    </div>
+                    <div class="keyboard-box" id="keyboard_D" onclick="click_keyboard(this.id)">
+                        D
+                    </div>
+                    <div class="keyboard-box" id="keyboard_E" onclick="click_keyboard(this.id)">
+                        E
+                    </div>
+                    <div class="keyboard-box" id="keyboard_F" onclick="click_keyboard(this.id)">
+                        F
+                    </div>
+                    <div class="keyboard-box" id="keyboard_G" onclick="click_keyboard(this.id)">
+                        G
+                    </div>
+                    <div class="keyboard-box" id="keyboard_H" onclick="click_keyboard(this.id)">
+                        H
+                    </div>
+                    <div class="keyboard-box" id="keyboard_I" onclick="click_keyboard(this.id)">
+                        I
+                    </div>
+                    <div class="keyboard-box" id="keyboard_J" onclick="click_keyboard(this.id)">
+                        J
+                    </div>
+                    <div class="keyboard-box" id="keyboard_K" onclick="click_keyboard(this.id)">
+                        K
+                    </div>
+                    <div class="keyboard-box" id="keyboard_L" onclick="click_keyboard(this.id)">
+                        L
+                    </div>
+                    <div class="keyboard-box" id="keyboard_M" onclick="click_keyboard(this.id)">
+                        M
+                    </div>
+                    <div class="keyboard-box" id="keyboard_N" onclick="click_keyboard(this.id)">
+                        N
+                    </div>
+                    <div class="keyboard-box" id="keyboard_O" onclick="click_keyboard(this.id)">
+                        O
+                    </div>
+                    <div class="keyboard-box" id="keyboard_P" onclick="click_keyboard(this.id)">
+                        P
+                    </div>
+                    <div class="keyboard-box" id="keyboard_Q" onclick="click_keyboard(this.id)">
+                        Q
+                    </div>
+                    <div class="keyboard-box" id="keyboard_R" onclick="click_keyboard(this.id)">
+                        R
+                    </div>
+                    <div class="keyboard-box" id="keyboard_S" onclick="click_keyboard(this.id)">
+                        S
+                    </div>
+                    <div class="keyboard-box" id="keyboard_T" onclick="click_keyboard(this.id)">
+                        T
+                    </div>
+                    <div class="keyboard-box" id="keyboard_U" onclick="click_keyboard(this.id)">
+                        U
+                    </div>
+                    <div class="keyboard-box" id="keyboard_V" onclick="click_keyboard(this.id)">
+                        V
+                    </div>
+                    <div class="keyboard-box" id="keyboard_W" onclick="click_keyboard(this.id)">
+                        W
+                    </div>
+                    <div class="keyboard-box" id="keyboard_X" onclick="click_keyboard(this.id)">
+                        X
+                    </div>
+                    <div class="keyboard-box" id="keyboard_Y" onclick="click_keyboard(this.id)">
+                        Y
+                    </div>
+                    <div class="keyboard-box" id="keyboard_Z" onclick="click_keyboard(this.id)">
+                        Z
+                    </div>
+                    <div class="keyboard-box" id="keyboard_[" onclick="click_keyboard(this.id)">
+                        [
+                    </div>
+                    <div class="keyboard-box" id="keyboard_backslash" onclick="click_keyboard(this.id)">
+                        \
+                    </div>
+                    <div class="keyboard-box" id="keyboard_]" onclick="click_keyboard(this.id)">
+                        ]
+                    </div>
+                    <div class="keyboard-box" id="keyboard_^" onclick="click_keyboard(this.id)">
+                        ^
+                    </div>
+                    <div class="keyboard-box" id="keyboard__" onclick="click_keyboard(this.id)">
+                        _
+                    </div>
+                    <div class="keyboard-box" id="keyboard_ " onclick="click_keyboard(this.id)">
+
+                    </div>
+                    <div class="keyboard-box" id="keyboard_`" onclick="click_keyboard(this.id)">
+                        `
+                    </div>
+                    <div class="keyboard-box" id="keyboard_a" onclick="click_keyboard(this.id)">
+                        a
+                    </div>
+                    <div class="keyboard-box" id="keyboard_b" onclick="click_keyboard(this.id)">
+                        b
+                    </div>
+                    <div class="keyboard-box" id="keyboard_c" onclick="click_keyboard(this.id)">
+                        c
+                    </div>
+                    <div class="keyboard-box" id="keyboard_d" onclick="click_keyboard(this.id)">
+                        d
+                    </div>
+                    <div class="keyboard-box" id="keyboard_e" onclick="click_keyboard(this.id)">
+                        e
+                    </div>
+                    <div class="keyboard-box" id="keyboard_f" onclick="click_keyboard(this.id)">
+                        f
+                    </div>
+                    <div class="keyboard-box" id="keyboard_g" onclick="click_keyboard(this.id)">
+                        g
+                    </div>
+                    <div class="keyboard-box" id="keyboard_h" onclick="click_keyboard(this.id)">
+                        h
+                    </div>
+                    <div class="keyboard-box" id="keyboard_i" onclick="click_keyboard(this.id)">
+                        i
+                    </div>
+                    <div class="keyboard-box" id="keyboard_j" onclick="click_keyboard(this.id)">
+                        j
+                    </div>
+                    <div class="keyboard-box col-span-3" id="keyboard_ENTER" onclick="click_keyboard(this.id)">
+                        ENTER
+                    </div>
+                    <div class="keyboard-box" id="keyboard_k" onclick="click_keyboard(this.id)">
+                        k
+                    </div>
+                    <div class="keyboard-box" id="keyboard_l" onclick="click_keyboard(this.id)">
+                        l
+                    </div>
+                    <div class="keyboard-box" id="keyboard_m" onclick="click_keyboard(this.id)">
+                        m
+                    </div>
+                    <div class="keyboard-box" id="keyboard_n" onclick="click_keyboard(this.id)">
+                        n
+                    </div>
+                    <div class="keyboard-box" id="keyboard_o" onclick="click_keyboard(this.id)">
+                        o
+                    </div>
+                    <div class="keyboard-box" id="keyboard_p" onclick="click_keyboard(this.id)">
+                        p
+                    </div>
+                    <div class="keyboard-box" id="keyboard_q" onclick="click_keyboard(this.id)">
+                        q
+                    </div>
+                    <div class="keyboard-box" id="keyboard_r" onclick="click_keyboard(this.id)">
+                        r
+                    </div>
+                    <div class="keyboard-box" id="keyboard_s" onclick="click_keyboard(this.id)">
+                        s
+                    </div>
+                    <div class="keyboard-box" id="keyboard_t" onclick="click_keyboard(this.id)">
+                        t
+                    </div>
+                    <div class="keyboard-box" id="keyboard_u" onclick="click_keyboard(this.id)">
+                        u
+                    </div>
+                    <div class="keyboard-box" id="keyboard_v" onclick="click_keyboard(this.id)">
+                        v
+                    </div>
+                    <div class="keyboard-box" id="keyboard_w" onclick="click_keyboard(this.id)">
+                        w
+                    </div>
+                    <div class="keyboard-box" id="keyboard_x" onclick="click_keyboard(this.id)">
+                        x
+                    </div>
+                    <div class="keyboard-box" id="keyboard_y" onclick="click_keyboard(this.id)">
+                        y
+                    </div>
+                    <div class="keyboard-box" id="keyboard_z" onclick="click_keyboard(this.id)">
+                        z
+                    </div>
+                    <div class="keyboard-box" id="keyboard_{" onclick="click_keyboard(this.id)">
+                        {
+                    </div>
+                    <div class="keyboard-box" id="keyboard_|" onclick="click_keyboard(this.id)">
+                        |
+                    </div>
+                    <div class="keyboard-box" id="keyboard_}" onclick="click_keyboard(this.id)">
+                        }
+                    </div>
+                    <div class="keyboard-box" id="keyboard_~" onclick="click_keyboard(this.id)">
+                        ~
+                    </div>
+                    <div class="keyboard-box col-span-2" id="keyboard_BACK" onclick="click_keyboard(this.id)">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                            <path fill="white" d="M22 3H7c-.69 0-1.23.35-1.59.88L0 12l5.41 8.11c.36.53.9.89 1.59.89h15c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H7.07L2.4 12l4.66-7H22v14zm-11.59-2L14 13.41 17.59 17 19 15.59 15.41 12 19 8.41 17.59 7 14 10.59 10.41 7 9 8.41 12.59 12 9 15.59z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fixed w-full h-full z-10 top-0 hidden" id="backdrop_container" onclick="close_stats()">
+            yay
+        </div>
+        <div class="fixed flex flex-col justify-center items-center z-20 top-28 font-bold text-black transform -translate-x-1/2 left-1/2" id="popup_container">
+
+        </div>
+        <div class="fixed transform -translate-y-1/2 -translate-x-1/2 opacity-0 hidden z-30 top-1/2 left-1/2 py-2 bg-gray-900" id="stats_container" style="filter: drop-shadow(0 0px 50px rgb(0 0 0 / 1));">
+            <div class="w-full flex justify-end px-2">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="cursor-pointer" onclick="close_stats()">
+                    <path fill="white" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+                </svg>
+            </div>
+            <div class="w-full h-full flex flex-col px-20 justify-center items-center">
+                <div class="font-bold text-white text-center text-xl">amazing stats</div>
+                <div class="font-bold text-white text-center pb-4" id="score_text">you havent played yet >:(</div>
+                <div class="font-bold text-white text-center text-2xl pb-4" id="flag_text"></div>
+                <div>
+                    <button class="font-bold text-white flex-row items-center hidden text-center bg-green-700 text-xl py-4 px-6 cursor-pointer" onclick="copy_to_clipboard()" id="share_button">
+                        SHARE
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="ml-3">
+                            <path fill="white" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92zM18 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM6 13c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm12 7.02c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        const score_text = document.getElementById("score_text")
+        const flag_text = document.getElementById("flag_text")
+        const boxes = []
+        for (let i = 0; i < 16; i++) {
+            boxes.push(document.getElementById(`char_${i}`))
+        }
+        const share_button = document.getElementById("share_button")
+        const popup_container = document.getElementById("popup_container")
+        const backdrop_container = document.getElementById("backdrop_container")
+        const stats_container = document.getElementById("stats_container")
+
+        const sleep = (timeout) => new Promise(resolve => { setTimeout(resolve, timeout) })
+
+        function input_focus() {
+            document.getElementById("hidden_text_box").focus()
+        }
+        input_focus()
+
+        document.body.addEventListener("click", input_focus)
+
+        let curr_character = 0
+        let already_guessed = false
+        let clipboard_text = "ASCORDLE\t"
+        let shaking_animaton = false
+        let popup_open = false
+        const chars = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_ `abcdefghijklmnopqrstuvwxyz{|}~"
+
+        function insert_text() {
+            const val = document.getElementById("hidden_text_box").value
+            if (val.length === 1) {
+                if (chars.indexOf(val) !== -1) {
+                    if (val === "\\") click_keyboard("keyboard_backslash")
+                    else if (val === "\"") click_keyboard("keyboard_dquote")
+                    else if (val === "'") click_keyboard("keyboard_squote")
+                    else click_keyboard(`keyboard_${val}`)
+                }
+            }
+
+            document.getElementById("hidden_text_box").value = ""
+        }
+
+        function logKey(e) {
+            if (e.code === "Backspace") click_keyboard("keyboard_BACK")
+            if (e.code === "Enter") click_keyboard("keyboard_ENTER")
+        }
+
+        document.getElementById("hidden_text_box").addEventListener("input", insert_text)
+
+        document.addEventListener('keydown', logKey)
+
+        async function shake_boxes() {
+            if (!shaking_animaton && !already_guessed) {
+                shaking_animaton = true
+                for (let i = 0; i < 16; i++) {
+                    if (boxes[i].style.animation.length > 0) boxes[i].style.animation += ", shake 0.82s cubic-bezier(.36, .07, .19, .97) both"
+                    else boxes[i].style.animation = "shake 0.82s cubic-bezier(.36, .07, .19, .97) both"
+                }
+
+                await sleep(820)
+
+                if (already_guessed) return
+
+                for (let i = 0; i < 16; i++) {
+                    boxes[i].style.animation = ""
+                }
+                shaking_animaton = false
+            }
+        }
+
+        async function click_keyboard(id) {
+            if (already_guessed) return
+            if (popup_open) return
+            if (id === "keyboard_BACK") {
+                if (curr_character <= 0) {
+                    return
+                }
+
+                curr_character -= 1
+                boxes[curr_character].classList.add("border-gray-600")
+                boxes[curr_character].classList.remove("border-white")
+                boxes[curr_character].innerHTML = ""
+
+                for (let i = 0; i < 16; i++) {
+                    boxes[i].style.animation = ""
+                }
+
+                return
+            }
+            else if (id === "keyboard_ENTER") {
+                if (curr_character != 16) {
+                    shake_boxes()
+                    add_popup_textup_text("Not enough letters")
+                    return
+                }
+
+                already_guessed = true
+
+                let guessed_word = ""
+                for (let i = 0; i < 16; i++) {
+                    if (boxes[i].innerHTML === "&amp;") guessed_word += "&"
+                    else if (boxes[i].innerHTML === "&gt;") guessed_word += ">"
+                    else if (boxes[i].innerHTML === "&lt;") guessed_word += "<"
+                    else guessed_word += boxes[i].innerHTML
+                }
+
+                const r = await fetch("/guess", {
+                    method: "POST",
+                    headers: {
+                        "content-type": "application/json",
+                    },
+                    body: JSON.stringify({word: guessed_word}),
+                })
+
+                const { check, flag, sql, colors } = await r.json()
+                if (check) {
+                    score_text.innerHTML = "wow u won!"
+                    flag_text.innerHTML = flag
+                    clipboard_text += "1/1\n"
+                } else {
+                    score_text.innerHTML = "LMAOOOO you lost"
+                    flag_text.innerHTML = "refresh to try again!"
+                    clipboard_text += "0/1\n"
+                }
+
+                for (let i = 0; i < 16; i++) {
+                    if (colors[i] === "G") {
+                        boxes[i].style.animation = "flip_letters_g"
+                        clipboard_text += "🟩"
+                    } else if (colors[i] === "Y") {
+                        boxes[i].style.animation = "flip_letters_y"
+                        clipboard_text += "🟨"
+                    } else if (colors[i] === "N") {
+                        boxes[i].style.animation = "flip_letters"
+                        clipboard_text += "⬜"
+                    }
+                    boxes[i].style.animationFillMode = "forwards"
+                    boxes[i].style.animationDuration = "0.3s"
+                    boxes[i].style.animationDelay = `${i * 0.3}s`
+                }
+
+                share_button.classList.remove("hidden")
+                share_button.classList.add("flex")
+
+                await sleep(5000)
+
+                if (check) {
+                    add_popup_textup_text("Genius")
+                    for (let i = 0; i < 16; i++) {
+                        boxes[i].style.animation += `, shakeUp 0.8s cubic-bezier(.36, .07, .19, .97) ${i * 0.1}s both`
+                    }
+                    await sleep(2500)
+                } else {
+                    if (sql) add_popup_textup_text(`Don't try your SQL Injection on me!`)
+                    else add_popup_textup_text(`unlucky really ¯\\_(ツ)_/¯`)
+                    await sleep(800)
+                }
+
+                open_stats()
+
+                return
+            }
+            else {
+                let new_char = id.charAt(9)
+                if (id === "keyboard_backslash") {
+                    new_char = "\\"
+                }
+                else if (id === "keyboard_squote") {
+                    new_char = "'"
+                }
+                else if (id === "keyboard_dquote") {
+                    new_char = '"'
+                }
+
+                if (curr_character > 15) {
+                    return
+                }
+
+                boxes[curr_character].classList.remove("border-gray-600")
+                boxes[curr_character].classList.add("border-white")
+
+                if (boxes[curr_character].style.animation.length > 0) boxes[curr_character].style.animation += ", big_to_small 0.1s"
+                else boxes[curr_character].style.animation = "big_to_small 0.1s"
+
+                boxes[curr_character].innerHTML = new_char
+                curr_character += 1
+                return
+            }
+        }
+
+        function copy_to_clipboard() {
+            navigator.clipboard.writeText(clipboard_text)
+            add_popup_textup_text("Copied results to keyboard")
+        }
+
+        async function add_popup_textup_text(new_text) {
+            if (popup_container.children.length > 5) return
+
+            const new_element = document.createElement("div")
+            new_element.classList.add("w-48", "bg-white", "text-center", "py-4", "mb-4", "rounded-md")
+            new_element.innerHTML = `${new_text}`
+
+            popup_container.prepend(new_element)
+
+            new_element.style.animation = "fadeOut .25s"
+            new_element.style.animationDelay = "1s"
+            new_element.style.animationFillMode = "forwards"
+
+            await new Promise(resolve => setTimeout(resolve, 1250))
+
+            popup_container.removeChild(new_element)
+        }
+
+        async function close_stats() {
+            popup_open = false
+
+            backdrop_container.classList.add("hidden")
+
+            stats_container.style.animation = "slidedown 0.5s forwards"
+
+            document.querySelectorAll('.keyboard-box').forEach(function(e) {
+                e.style.cursor = "pointer"
+            });
+
+            await new Promise(resolve => setTimeout(resolve, 500))
+
+            stats_container.classList.add("hidden")
+        }
+
+        async function open_stats() {
+            if (popup_open) {
+                close_stats()
+                return
+            }
+
+            popup_open = true
+
+            backdrop_container.classList.remove("hidden")
+
+            stats_container.classList.remove("hidden")
+            stats_container.style.animation = "slideup 0.5s forwards"
+
+            document.querySelectorAll('.keyboard-box').forEach(function(e) {
+                e.style.cursor = "default"
+            });
+        }
+    </script>
+</html>

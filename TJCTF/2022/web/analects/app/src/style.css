@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1000px;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  padding: 2em;
+}
+
+h1 {
+  font-weight: 400;
+}
+
+input[type=text], input[type=submit] {
+  padding: 1em;
+  margin: 0 8px;
+}
+
+input[type=submit] {
+  color: white;
+  border: none;
+  background-color: #6b86ff;
+}
+
+input[type=submit]:not([disabled]) {
+  cursor: pointer;
+  background-color: #3e62ff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th, td {
+  padding: 1em;
+}
+
+thead {
+  background-color: #444;
+  color: #eee;
+}
+
+tbody > tr:nth-child(even) {
+  background-color: #eee;
+}
+
+tbody > tr:nth-child(odd) {
+  background-color: #ddd;
+}

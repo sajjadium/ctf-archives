@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  background: white;
+  color: black;
+  font-weight: normal;
+}
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+a {
+  outline: 0;
+}
+
+
+.page-container-centered {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.page-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 0.25rem;
+  flex-shrink: 1;
+}
+.center-container {
+  margin: auto;
+  text-align: center;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 60px;
+}
+
+.description {
+  margin-top: 4px;
+  font-size: 24px;
+}
+
+.description-small {
+  font-size: 18px;
+}
+
+.button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.bg-blue {
+  background-color: #016FB9;
+}
+
+.text-blue {
+  color: #016FB9;
+}
+
+.error {
+  text-align: center;
+  color: #FB3640;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.input-upload {
+  width: 100%;
+  border-radius: 0.5rem;
+  padding: 1rem 0.75rem;
+  border: 2px solid black;
+}
+
+.form-container {
+  margin-top: 12px;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  text-align: start;
+}
+
+.image-result {
+  height: 18rem;
+  border-radius: 0.5rem;
+  margin: auto;
+}
+
+.button-margin {
+  margin-top: 0.25rem;
+}
+
+.button-black {
+  background: black;
+  color: white;
+}
+
+.button-black {
+  background: black;
+  color: white;
+}
+
+.button-green {
+  background: #3DDC97;
+  color: black;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruit Shop</title>
+</head>
+
+<body>
+    <h1>Fruit Shop</h1>
+    <h2>Fruits</h2>
+
+    <% Object.keys(fruits).forEach( fruit=> { %>
+    <form>
+        <input type="hidden" name="fruit" value="<%= fruits[fruit].name %>">
+        <span id="<%= fruits[fruit].name %>-data">
+            <%= fruits[fruit].name %> - <%= fruits[fruit].quantity %> - $<%= fruits[fruit].price %>
+        </span>
+        <button type="submit">Buy</button>
+    </form>
+    <% }) %>
+
+    <br>
+
+    <span>You have <strong id="money">$<%= money.toFixed(2) %></strong>.</span>
+
+    <br>
+
+    <div id="response"></div>
+    <em>
+        <div id="description"></div>
+    </em>
+
+    <script>
+        let money = <%= money %>;
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', async event => {
+                event.preventDefault();
+                const fruit = event.target.fruit.value;
+                const url = `/api/v1/buy`;
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        fruit: fruit,
+                        quantity: 1
+                    })
+                });
+                if (response.ok) {
+                    const { name, price, description, quantity } = await response.json();
+                    document.getElementById(`${fruit}-data`).innerText = `${name} - ${quantity} - $${price}`;
+                    money -= price;
+                    document.getElementById('money').innerText = `$${money.toFixed(2)}`;
+                    document.getElementById('response').innerText = `Bought ${name}`;
+                    document.getElementById('description').innerText = `"${description}"`;
+                } else {
+                    const error = await response.text();
+                    document.getElementById('response').innerText = error;
+                    document.getElementById('description').innerText = '';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

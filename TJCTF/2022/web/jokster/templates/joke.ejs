@@ -1,0 +1,31 @@
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') -%>
+        <link rel="stylesheet" href="/static/joke.css">
+</head>
+
+<body>
+    <%- include('partials/nav.ejs') -%>
+        <main>
+            <div class="joke">
+                <div class="joke-side">
+                    <img src="/uploads/<%= joke.pfpPath %>" alt="Profile Picture" id="profile-image">
+                    <span>
+                        Created by <a href="/profile/<%= joke.author %>">
+                            <%= joke.username %>
+                        </a>
+                    </span>
+                </div>
+                <div class="joke-inner">
+                    <h2 class="joke-prompt">
+                        <%= joke.prompt %>
+                    </h2>
+                    <p class="joke-punchline">
+                        <%= joke.punchline %>
+                    </p>
+                </div>
+            </div>
+        </main>
+
+</html>

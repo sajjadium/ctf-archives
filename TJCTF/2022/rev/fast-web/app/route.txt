@@ -1,0 +1,4 @@
+route uri=/flag.txt auth=basic abilities=flag
+route uri=/ handler=file
+
+role name=flagger abilities=flag

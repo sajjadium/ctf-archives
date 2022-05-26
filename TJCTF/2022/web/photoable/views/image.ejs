@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Photoable</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8"/>
+    <link href="/index.css" type="text/css" rel="stylesheet"/>
+
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="left-container">
+        <h1 class="title">Your Image</h1>
+        <p class="description-small text-blue"><%= locals.image %></p>
+        <img class="image-result" src="../<%= imagelink %>" />
+        <button
+          onclick="navigator.clipboard.writeText(window.location.href); alert('Copied to keyboard!')"
+          class="button button-black"
+        >
+            Copy Link
+        </button>
+        <button
+          onclick="window.location.href = window.location.href + '/download'"
+          class="button button-green"
+        >
+            Download
+        </button>
+        <button
+          onclick="window.location.href='../uploadimage'"
+          class="button bg-blue"
+        >
+            Upload a new image
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

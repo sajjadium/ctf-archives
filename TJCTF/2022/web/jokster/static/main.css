@@ -1,0 +1,101 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: 'Roboto Mono', monospace;
+    min-width: 450px;
+    overflow: auto;
+    background-color: #FBEEF4;
+}
+
+#nav {
+    width: 100%;
+    padding: 25px;
+}
+
+.nav-link {
+    display: inline-block;
+    min-width: 50px;
+    text-align: center;
+    cursor: pointer;
+    padding: 10px 25px;
+    color: black;
+    text-decoration: none;
+    background-color: #F8DDE4;
+    border-radius: 25px;
+}
+
+.nav-right {
+    float: right;
+}
+
+main {
+    width: 100%;
+    padding: 25px;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+#nav-title {
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+}
+
+.joke {
+    display: block;
+    padding: 25px;
+    color: black;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 25px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.joke-punchline {
+    text-align: right;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 25px;
+    color: black;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 25px;
+    outline: none;
+    background-color: transparent;
+    font-family: 'Roboto Mono', monospace;
+    margin: 20px 0;
+}
+
+.hidden {
+    display: none;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 0 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-family: 'Roboto Mono', monospace;
+    margin: 5px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}

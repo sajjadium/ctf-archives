@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') -%>
+        <link rel="stylesheet" href="/static/profile.css">
+</head>
+
+<body>
+    <%- include('partials/nav.ejs') -%>
+        <main>
+            <img src="/uploads/<%- user.pfpPath %>" alt="Profile Picture" id="profile-image">
+            <h1>
+                <%= user.username %>
+            </h1>
+            <% if (session.user && user.id===session.user.id) { %>
+                <a href="/profile/edit">Edit Profile</a>
+                <% } %>
+                    <% for (let joke of jokes) { %>
+                        <a class="joke" href="/joke/<%- joke.id %>">
+                            <h2 class="joke-prompt">
+                                <%= joke.prompt %>
+                            </h2>
+                            <p class="joke-punchline">
+                                <%= joke.punchline %>
+                            </p>
+                        </a>
+                        <% } %>
+                            <% if (jokes.length===0) { %>
+                                <% if (session.user && user.id===session.user.id) { %>
+                                    <br>
+                                    <p>
+                                        You haven't created any jokes yet.
+                                    </p>
+                                    <a href="/make" class="button">
+                                        Make one?
+                                    </a>
+                                    <% } else { %>
+                                        <br>
+                                        <p>
+                                            This user hasn't created any jokes yet.
+                                        </p>
+                                        <% } %>
+                                            <% } %>
+        </main>
+
+</html>

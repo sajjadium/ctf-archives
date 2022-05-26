@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <title>DNU Financial Aid</title>
+        <link href="/styles.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+	<body class="min-h-full flex flex-col">
+		<div class="flex flex-col flex-grow">
+            <div class="w-full h-full flex flex-col">
+                <div class="flex flex-col w-full">
+                    <div class="w-full bg-gradient-to-tr from-purple-300 to-rose-200 px-6 py-4 flex flex-row items-center">
+                        <img src="/imgs/logo.png" class="mr-6" style="height: 60px">
+                        <div class="text-4xl font-bold">DNU Financial Aid Center</div>
+                    </div>
+                    <div class="px-6 pt-3 pb-3 rounded-2xl flex flex-col justify-center">
+                        <div>
+                            <a href="/logout" class="text-blue-700 underline">Logout</a>
+                        </div>
+                        <div class="pt-2">
+                            <% if (locals.flag) { %>
+                            <div>
+                                Congratulations <%=locals.username%>! You have been accepted to DNU! Here is your financial aid offer:
+                            </div>
+                            <div class="mt-2">
+                                <table>
+                                    <thead class="font-bold">
+                                        <td>Category</td>
+                                        <td class="border-x-8 border-transparent">Cost</td>
+                                        <td class="text-right">Notes</td>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Cost of Attendance</td>
+                                            <td class="border-x-8 border-transparent">$999,999,999,999.99</td>
+                                            <td class="text-right">Tutition, Fees, Room, Food, ect.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Flag</td>
+                                            <td class="border-x-8 border-transparent">$999,000,000,000,00.00</td>
+                                            <td class="font-bold text-right text-xl"><%=locals.flag%></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aid</td>
+                                            <td class="border-x-8 border-transparent">-$0.01</td>
+                                            <td class="text-right">Grants and Scholarships</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Net Cost</td>
+                                            <td class="font-bold border-x-8 border-transparent">$999,999,999,999,999.98</td>
+                                            <td class="text-right">LMAOOO good luck paying this</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <% } else if (locals.applied) { %>
+                            Sorry <%=locals.username%>, you are not authorized to see this page. Come back on May 17, 5 PM EST after you recieve your decision to find your financial aid offer!
+                            <% } else { %>
+                            Sorry <%=locals.username%>, our records show that you did not apply to DNU.
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

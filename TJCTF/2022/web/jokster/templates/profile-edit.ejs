@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') -%>
+        <link rel="stylesheet" href="/static/profile-edit.css">
+</head>
+
+<body>
+    <%- include('partials/nav.ejs') -%>
+        <main>
+            <form action="/profile/edit" method="post" enctype="multipart/form-data">
+                <label for="file-chooser" class="file-chooser-label">
+                    <div class="image-overlay"></div>
+                    <img src="/uploads/<%- session.user.pfpPath %>" alt="Profile Picture" id="profile-image">
+                    <br>
+                </label>
+                <input type="file" name="pfp" id="file-chooser" accept="image/png, image/jpeg" class="hidden">
+
+                <h1>Edit Profile</h1>
+
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username">
+                <br>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <br>
+                <br>
+                <hr>
+                <label for="confirm">Current Password</label>
+                <input type="password" name="confirm" id="confirm">
+                <br>
+
+                <input type="submit" value="Save" class="button">
+
+                <% if (locals.error) { %>
+                    <p class="error">
+                        <%= error %>
+                    </p>
+                    <% } %>
+            </form>
+        </main>
+        <script src="/static/profile-edit.js"></script>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') -%>
+        <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <%- include('partials/nav.ejs') -%>
+        <main>
+            <section id="introduction">
+                <h1>
+                    Welcome to
+                    <br>
+                    <strong id="jokster-title">jokster</strong>
+                </h1>
+            </section>
+            <section id="about">
+                <div class="joke">
+                    <h2 class="joke-prompt">
+                        What do we do?
+                    </h2>
+                    <p class="joke-punchline">
+                        We steal your jokes so that you don't have to!
+                    </p>
+                </div>
+                <div class="joke">
+                    <h2 class="joke-prompt">
+                        What have our clients been saying about us?
+                    </h2>
+                    <p class="joke-punchline">
+                        We're joke-tastic!
+                    </p>
+                </div>
+            </section>
+            <section id="joke-examples">
+                <div class="joke">
+                    <h2 class="joke-prompt">
+                        Don't believe in our jests?
+                    </h2>
+                    <p class="joke-punchline">
+                        Here are some examples of our past joke success!
+                    </p>
+                </div>
+                <div class="joke">
+                    <h2 class="joke-prompt">
+                        What do you call a fake noodle?
+                    </h2>
+                    <p class="joke-punchline">
+                        An impasta!
+                    </p>
+                </div>
+                <div class="joke">
+                    <h2 class="joke-prompt">
+                        What do you call a cow with no legs?
+                    </h2>
+                    <p class="joke-punchline">
+                        Ground beef!
+                    </p>
+                </div>
+            </section>
+            <section id="try">
+                <div class="joke">
+                    <h2 class="joke-prompt">
+                        Still don't believe us?
+                    </h2>
+                    <p class="joke-punchline">
+                        Try it yourself! (or don't, we don't care)
+                    </p>
+                </div>
+                <a href="/make" class="button">Make a Joke!</a>
+            </section>
+        </main>
+
+</html>

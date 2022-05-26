@@ -1,0 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1000px;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  padding: 2em;
+}
+
+h1 {
+  font-weight: 400;
+}

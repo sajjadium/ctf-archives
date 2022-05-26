@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') -%>
+</head>
+
+<body>
+    <%- include('partials/nav.ejs') -%>
+        <main>
+            <form action="/make" method="POST">
+                <label for="prompt">Joke</label>
+                <input type="text" name="prompt" id="prompt">
+                <br>
+                <label for="punchline">Punchline</label>
+                <input type="text" name="punchline" id="punchline">
+                <br>
+                <input type="submit" value="Make a Joke!" class="button">
+            </form>
+        </main>
+
+</html>

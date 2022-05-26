@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('partials/head.ejs') -%>
+</head>
+
+<body>
+    <%- include('partials/nav.ejs') -%>
+        <main>
+            <h1>Register</h1>
+            <form action="/register" method="POST">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username">
+                <br>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <br>
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" name="confirm" id="confirm">
+                <br>
+                <input type="submit" value="Register" class="button">
+
+                <% if (locals.error) { %>
+                    <p class="error">
+                        <%= error %>
+                    </p>
+                    <% } %>
+            </form>
+        </main>
+
+</html>

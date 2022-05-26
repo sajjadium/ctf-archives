@@ -1,0 +1,17 @@
+<nav id="nav">
+    <a href="/" class="nav-link" id="nav-title">jokster</a>
+    <a href="/make" class="nav-link">Make a Joke!</a>
+    <% if (session.user) { %>
+        <span class="nav-right">
+            <a href="/profile/<%= session.user.id %>" class="nav-link">
+                <%= session.user.username %>
+            </a>
+            <a href="/logout" class="nav-link">Logout</a>
+        </span>
+        <% } else { %>
+            <span class="nav-right">
+                <a href="/register" class="nav-link">Register</a>
+                <a href="/login" class="nav-link">Login</a>
+            </span>
+            <% } %>
+</nav>

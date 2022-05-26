@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fleecebook</title>
+
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+
+<body>
+    <h1>welcome to fleecebook</h1>
+    <h2>a fleece blog</h2>
+
+    <img width="100px" src="/static/fleece-jacket.jpg" id="jacket-img">
+
+    <ul>
+        {% for post in posts %}
+        <li><a href="/post/{{ post[0] }}">{{ post[1] }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <p>you can even make <a href="/post">your own posts</a>!</p>
+    <div id="fleece">fleece</div>
+    <script src="/static/index.js"></script>
+</body>
+
+</html>

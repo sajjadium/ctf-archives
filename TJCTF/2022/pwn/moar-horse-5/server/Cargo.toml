@@ -1,0 +1,11 @@
+[package]
+name = "moar-horse-server"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+sol-ctf-framework = "0.1.0"
+poc-framework-osec = "0.1.1"
+solana-program = "1.8.14"
+threadpool = "1.8.1"
+moar-horse = { version = "1.0.0", path = "../program" }

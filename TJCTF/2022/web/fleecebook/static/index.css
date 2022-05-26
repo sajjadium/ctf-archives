@@ -1,0 +1,22 @@
+* {
+  cursor: none;
+}
+
+#jacket-img {
+  animation: 1s infinite forwards spin;
+}
+
+#fleece {
+  position: absolute;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

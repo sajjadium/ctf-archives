@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DNU Merch Catalog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" />
+    <link rel="stylesheet" href="/public/app.css">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src https://* http://* 'self'; child-src 'none'; object-src 'none';">
+  </head>
+  <body class="search-body">
+    <form action="/search" action="get">
+      <h1 class="website-head">DNU Merch Catalog</h1>
+      <h3 class="website-subhead" id="search-results-subhead"></h3>
+      <input type="text" placeholder='"Sweatshirt, Phone"' name="search" class="search-input"/>
+      <button class="search-button" type="submit">Search</button>
+    </form>
+    <div class="result-cards" id="result-cards">
+    </div>
+  </body>
+  <script defer src="/public/search.js"></script>
+</html>

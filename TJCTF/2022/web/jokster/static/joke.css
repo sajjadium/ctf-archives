@@ -1,0 +1,41 @@
+.joke-inner {
+    width: calc(100% - 150px);
+    height: calc(128px + 30px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    float: right;
+}
+
+.joke-side {
+    width: 128px;
+    height: fit-content;
+    display: inline-block;
+    font-size: 12px;
+}
+
+.joke-side span {
+    padding: 5px 0;
+    overflow: auto;
+    text-align: center;
+    width: 100%;
+    display: block;
+}
+
+main {
+    position: relative;
+    height: 100%;
+}
+
+nav {
+    position: fixed;
+}
+
+.joke {
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
