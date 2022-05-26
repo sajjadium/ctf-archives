@@ -1,0 +1,4 @@
+Flask
+flask_limiter
+gunicorn==20.0.4
+gunicorn[gevent]

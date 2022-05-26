@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  challenge:
+    build: frontend
+    ports:
+      - "8000:8000"
+  flask:
+    build: backend
+    restart: always
+
