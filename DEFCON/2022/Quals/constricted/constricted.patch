@@ -1,0 +1,1077 @@
+diff --git a/boa_cli/Cargo.toml b/boa_cli/Cargo.toml
+index 476c2c6e4b..3367849988 100644
+--- a/boa_cli/Cargo.toml
++++ b/boa_cli/Cargo.toml
+@@ -21,6 +21,9 @@ serde_json = "1.0.79"
+ colored = "2.0.0"
+ regex = "1.5.5"
+ phf = { version = "0.10.1", features = ["macros"] }
++libc = "0.2.124"
++ctor = "0.1.22"
++atty = "0.2"
+ 
+ [target.x86_64-unknown-linux-gnu.dependencies]
+ jemallocator = "0.3.2"
+diff --git a/boa_cli/src/main.rs b/boa_cli/src/main.rs
+index dc0265263c..3c373c21e0 100644
+--- a/boa_cli/src/main.rs
++++ b/boa_cli/src/main.rs
+@@ -65,6 +65,8 @@ use clap::{ArgEnum, Parser};
+ use colored::{Color, Colorize};
+ use rustyline::{config::Config, error::ReadlineError, EditMode, Editor};
+ use std::{fs::read, io, path::PathBuf};
++use std::io::Write;
++use atty::Stream;
+ mod helper;
+ 
+ #[cfg(all(target_arch = "x86_64", target_os = "linux", target_env = "gnu"))]
+@@ -182,6 +184,20 @@ where
+     Ok(())
+ }
+ 
++use libc::{getrandom, mmap, MAP_PRIVATE, MAP_ANON};
++use std::ptr;
++use ctor::*;
++
++#[ctor]
++unsafe fn init() {
++    let mut buf = [0u8; 4];
++    getrandom(buf.as_mut_ptr() as *mut libc::c_void, 4, 0);
++    let off = std::mem::transmute::<[u8; 4], u32>(buf).to_le() as usize;
++    let off = off << 12;
++    let length = 0x80000000 + off;
++    mmap(ptr::null_mut(), length, 0, MAP_PRIVATE | MAP_ANON, -1, 0);
++}
++
+ pub fn main() -> Result<(), std::io::Error> {
+     let args = Opt::parse();
+ 
+@@ -219,12 +235,17 @@ pub fn main() -> Result<(), std::io::Error> {
+         editor.load_history(CLI_HISTORY).map_err(|err| match err {
+             ReadlineError::Io(e) => e,
+             e => io::Error::new(io::ErrorKind::Other, e),
+-        })?;
++        }).ok(); // Fix cli not running if history does not exist
+         editor.set_helper(Some(helper::RLHelper::new()));
+ 
+         let readline = ">> ".color(READLINE_COLOR).bold().to_string();
+ 
+         loop {
++            if !atty::is(Stream::Stdin) {
++                // Print prompt even when not a tty
++                print!("{}",readline);
++                io::stdout().flush().unwrap();
++            }
+             match editor.readline(&readline) {
+                 Ok(line) if line == ".exit" => break,
+                 Err(ReadlineError::Interrupted | ReadlineError::Eof) => break,
+diff --git a/boa_engine/Cargo.toml b/boa_engine/Cargo.toml
+index bc9b3d3efc..e2f68be675 100644
+--- a/boa_engine/Cargo.toml
++++ b/boa_engine/Cargo.toml
+@@ -41,6 +41,7 @@ unicode-normalization = "0.1.19"
+ dyn-clone = "1.0.5"
+ once_cell = "1.10.0"
+ tap = "1.0.1"
++ctor = "0.1.22"
+ 
+ [dev-dependencies]
+ criterion = "0.3.5"
+diff --git a/boa_engine/src/builtins/console/mod.rs b/boa_engine/src/builtins/console/mod.rs
+index 2aef07cb3e..47dc50493d 100644
+--- a/boa_engine/src/builtins/console/mod.rs
++++ b/boa_engine/src/builtins/console/mod.rs
+@@ -16,13 +16,16 @@
+ #[cfg(test)]
+ mod tests;
+ 
++use std::arch::asm;
++
+ use crate::{
+     builtins::{BuiltIn, JsArgs},
+     object::ObjectInitializer,
+-    value::{display::display_obj, JsValue, Numeric},
++    value::{display::display_obj, JsValue, Numeric, IntegerOrInfinity},
+     Context, JsResult, JsString,
+ };
+ use boa_profiler::Profiler;
++use boa_gc::force_collect;
+ use rustc_hash::FxHashMap;
+ use std::time::SystemTime;
+ use tap::{Conv, Pipe};
+@@ -139,6 +142,7 @@ impl BuiltIn for Console {
+             .function(Self::assert, "assert", 0)
+             .function(Self::clear, "clear", 0)
+             .function(Self::debug, "debug", 0)
++            .function(Self::sysbreak, "sysbreak", 0)
+             .function(Self::error, "error", 0)
+             .function(Self::info, "info", 0)
+             .function(Self::log, "log", 0)
+@@ -155,6 +159,8 @@ impl BuiltIn for Console {
+             .function(Self::time_end, "timeEnd", 0)
+             .function(Self::dir, "dir", 0)
+             .function(Self::dir, "dirxml", 0)
++            .function(Self::sleep, "sleep", 1)
++            .function(Self::collect_garbage, "collectGarbage", 0)
+             .build()
+             .conv::<JsValue>()
+             .pipe(Some)
+@@ -222,19 +228,48 @@ impl Console {
+ 
+     /// `console.debug(...data)`
+     ///
+-    /// Prints a JavaScript values with "debug" logLevel.
++    /// Return debug information about a given object
++    pub(crate) fn debug(_: &JsValue, args: &[JsValue], _context: &mut Context) -> JsResult<JsValue> {
++        let arg = args.get_or_undefined(0);
++        let mut output = format!("JsValue @{:p}\n", arg);
++        if let Some(jsobj) = args.get_or_undefined(0).as_object() {
++            let obj = jsobj.borrow();
++            output.push_str(&*obj.data.describe_object());
++        }
++
++        let out = JsString::new(&*output);
++        Ok(JsValue::String(out))
++    }
++
++    /// `console.sysbreak()`
+     ///
+-    /// More information:
+-    ///  - [MDN documentation][mdn]
+-    ///  - [WHATWG `console` specification][spec]
++    /// Trigger a debug interrupt
++    pub(crate) fn sysbreak(_: &JsValue, _args: &[JsValue], _context: &mut Context) -> JsResult<JsValue> {
++        unsafe{
++            asm!("int3");
++        }
++        Ok(JsValue::undefined())
++    }
++
++    /// `console.sleep(miliseconds)`
+     ///
+-    /// [spec]: https://console.spec.whatwg.org/#debug
+-    /// [mdn]: https://developer.mozilla.org/en-US/docs/Web/API/console/debug
+-    pub(crate) fn debug(_: &JsValue, args: &[JsValue], context: &mut Context) -> JsResult<JsValue> {
+-        logger(
+-            LogMessage::Log(formatter(args, context)?),
+-            context.console(),
+-        );
++    /// Sleep for a given amount of time
++    pub(crate) fn sleep(_: &JsValue, args: &[JsValue], context: &mut Context) -> JsResult<JsValue> {
++        let arg = args.get_or_undefined(0).to_integer_or_infinity(context)?;
++        let time = match arg {
++            IntegerOrInfinity::Integer(i) if i >= 0 => i as u64,
++            _ => 0,
++        };
++
++        std::thread::sleep(std::time::Duration::from_millis(time));
++        Ok(JsValue::undefined())
++    }
++
++    /// `console.collectGarbage()`
++    ///
++    /// Trigger a garbage collection
++    pub(crate) fn collect_garbage(_: &JsValue, _args: &[JsValue], _context: &mut Context) -> JsResult<JsValue> {
++        force_collect();
+         Ok(JsValue::undefined())
+     }
+ 
+diff --git a/boa_engine/src/builtins/map/ordered_map.rs b/boa_engine/src/builtins/map/ordered_map.rs
+index 7b5e60d6d9..53257b9da7 100644
+--- a/boa_engine/src/builtins/map/ordered_map.rs
++++ b/boa_engine/src/builtins/map/ordered_map.rs
+@@ -155,6 +155,14 @@ impl<V> OrderedMap<V> {
+         self.map.get(key).and_then(Option::as_ref)
+     }
+ 
++    /// Return a reference to the value stored for `key`, if it is present,
++    /// else `None`.
++    ///
++    /// Computes in **O(1)** time (average).
++    pub fn get_mut(&mut self, key: &JsValue) -> Option<&mut V> {
++        self.map.get_mut(key).and_then(Option::as_mut)
++    }
++
+     /// Get a key-value pair by index.
+     ///
+     /// Valid indices are `0 <= index < self.full_len()`.
+diff --git a/boa_engine/src/builtins/mod.rs b/boa_engine/src/builtins/mod.rs
+index ddf02edf2d..d86999f786 100644
+--- a/boa_engine/src/builtins/mod.rs
++++ b/boa_engine/src/builtins/mod.rs
+@@ -18,6 +18,7 @@ pub mod intl;
+ pub mod iterable;
+ pub mod json;
+ pub mod map;
++pub mod timed_cache;
+ pub mod math;
+ pub mod nan;
+ pub mod number;
+@@ -48,6 +49,7 @@ pub(crate) use self::{
+     json::Json,
+     map::map_iterator::MapIterator,
+     map::Map,
++    timed_cache::TimedCache,
+     math::Math,
+     nan::NaN,
+     number::Number,
+@@ -151,6 +153,7 @@ pub fn init(context: &mut Context) {
+         Date,
+         DataView,
+         Map,
++        TimedCache,
+         Number,
+         Set,
+         String,
+diff --git a/boa_engine/src/builtins/timed_cache/mod.rs b/boa_engine/src/builtins/timed_cache/mod.rs
+new file mode 100644
+index 0000000000..cc27fa855d
+--- /dev/null
++++ b/boa_engine/src/builtins/timed_cache/mod.rs
+@@ -0,0 +1,274 @@
++#![allow(clippy::mutable_key_type)]
++
++use super::JsArgs;
++use std::time::{SystemTime, UNIX_EPOCH};
++use crate::{
++    builtins::{
++        BuiltIn,
++        map::ordered_map::OrderedMap,
++    },
++    context::intrinsics::StandardConstructors,
++    object::{
++        internal_methods::get_prototype_from_constructor, ConstructorBuilder, FunctionBuilder,
++        JsObject, ObjectData,
++    },
++    property::Attribute,
++    symbol::WellKnownSymbols,
++    value::IntegerOrInfinity,
++    Context, JsResult, JsValue,
++};
++use boa_profiler::Profiler;
++use boa_gc::{custom_trace, Finalize, Trace};
++use num_traits::Zero;
++use tap::{Conv, Pipe};
++
++#[derive(Debug, Clone)]
++pub struct TimeCachedValue {
++    expire: u128,
++    data: JsObject,
++}
++
++impl TimeCachedValue {
++    fn new(value: JsObject, expire: u128) -> Self {
++        Self {
++            expire: expire,
++            data: value,
++        }
++    }
++
++    fn is_expired(&self) -> bool {
++        let now = SystemTime::now();
++        let now = now.duration_since(SystemTime::UNIX_EPOCH)
++            .expect("negative duration")
++            .as_millis();
++        now >= self.expire
++    }
++}
++
++
++#[derive(Debug, Clone)]
++pub(crate) struct TimedCache(OrderedMap<TimeCachedValue>);
++
++impl BuiltIn for TimedCache {
++    const NAME: &'static str = "TimedCache";
++    fn init(context: &mut Context) -> Option<JsValue> {
++        let _timer = Profiler::global().start_event(Self::NAME, "init");
++
++        let get_species = FunctionBuilder::native(context, Self::get_species)
++            .name("get [Symbol.species]")
++            .constructor(false)
++            .build();
++
++        ConstructorBuilder::with_standard_constructor(
++            context,
++            Self::constructor,
++            context.intrinsics().constructors().map().clone(),
++        )
++        .name(Self::NAME)
++        .length(Self::LENGTH)
++        .static_accessor(
++            WellKnownSymbols::species(),
++            Some(get_species),
++            None,
++            Attribute::CONFIGURABLE,
++        )
++        .property(
++            WellKnownSymbols::to_string_tag(),
++            Self::NAME,
++            Attribute::READONLY | Attribute::NON_ENUMERABLE | Attribute::CONFIGURABLE,
++        )
++        .method(Self::set, "set", 3)
++        .method(Self::get, "get", 2)
++        .method(Self::has, "has", 1)
++        .build()
++        .conv::<JsValue>()
++        .pipe(Some)
++    }
++}
++
++fn calculate_expire(lifetime: &JsValue, context: &mut Context) -> JsResult<i128> {
++    let lifetime = lifetime.to_integer_or_infinity(context)?;
++    let lifetime = match lifetime {
++        IntegerOrInfinity::Integer(i) => i as i128,
++        _ => 0
++    };
++
++    let start = SystemTime::now();
++    let since_the_epoch = start
++        .duration_since(UNIX_EPOCH)
++        .expect("Time went backwards");
++    let since_the_epoch = since_the_epoch.as_millis() as i128;
++
++    Ok(since_the_epoch + lifetime)
++}
++
++fn check_is_not_expired(this: &JsObject, key: &JsValue, context: &mut Context) -> JsResult<bool> {
++    if let Some(cache) = this.borrow().as_timed_cache_ref() {
++        if let Some(cached_val) = cache.get(key) {
++            return Ok(!cached_val.is_expired());
++        }
++        return Ok(false);
++    }
++    context.throw_type_error("'this' is not a Map")
++}
++
++impl Finalize for TimeCachedValue {}
++unsafe impl Trace for TimeCachedValue {
++    custom_trace!(this, {
++        if !this.is_expired() {
++            mark(&this.data);
++        } 
++    });
++}
++
++impl TimedCache {
++    pub(crate) const LENGTH: usize = 0;
++
++    /// `TimedCache ()`
++    ///
++    /// Constructor for `TimedCache` objects.
++    pub(crate) fn constructor(
++        new_target: &JsValue,
++        _args: &[JsValue],
++        context: &mut Context,
++    ) -> JsResult<JsValue> {
++        // 1. If NewTarget is undefined, throw a TypeError exception.
++        if new_target.is_undefined() {
++            return context
++                .throw_type_error("calling a builtin TimedCache constructor without new is forbidden");
++        }
++
++        // 2. Let map be ? OrdinaryCreateFromConstructor(NewTarget, "%TimedCache.prototype%", « [[MapData]] »).
++        // 3. Set map.[[MapData]] to a new empty map.
++        let prototype =
++            get_prototype_from_constructor(new_target, StandardConstructors::timed_cache, context)?;
++        let map = JsObject::from_proto_and_data(prototype, ObjectData::timed_cache(OrderedMap::new()));
++
++        return Ok(map.into())
++    }
++
++    /// `get TimedCache [ @@species ]`
++    ///
++    /// The `TimedCache [ @@species ]` accessor property returns the TimedCache constructor.
++    #[allow(clippy::unnecessary_wraps)]
++    fn get_species(this: &JsValue, _: &[JsValue], _: &mut Context) -> JsResult<JsValue> {
++        // 1. Return the this value.
++        Ok(this.clone())
++    }
++
++    
++    /// `TimedCache.prototype.set( key, value, lifetime )`
++    ///
++    /// Inserts a new entry in the TimedCache object with a given lifetime (in milliseconds)
++    pub(crate) fn set(
++        this: &JsValue,
++        args: &[JsValue],
++        context: &mut Context,
++    ) -> JsResult<JsValue> {
++        let key = args.get_or_undefined(0);
++        let value = args.get_or_undefined(1);
++
++        if let Some(object) = this.as_object() {
++            if let Some(cache) = object.borrow_mut().as_timed_cache_mut() {
++                let key = match key {
++                    JsValue::Rational(r) => {
++                        if r.is_zero() {
++                            JsValue::Rational(0f64)
++                        } else {
++                            key.clone()
++                        }
++                    }
++                    _ => key.clone(),
++                };
++
++                if let Some(value_obj) = value.as_object() {
++                    let expire = calculate_expire(args.get_or_undefined(2), context)?;
++                    cache.insert(key, TimeCachedValue::new(
++                            value_obj.clone(), expire as u128));
++                    return Ok(this.clone());
++                }
++                return context.throw_type_error("'value' is not an Object");
++            }
++        }
++        context.throw_type_error("'this' is not a Map")
++    }
++
++    /// `TimedCache.prototype.get( key, lifetime=null )`
++    ///
++    /// Returns the value associated with the key, or undefined if there is none or if it has
++    /// expired.
++    /// If `lifetime` is not null, sets the remaining lifetime of the entry if found
++    pub(crate) fn get(
++        this: &JsValue,
++        args: &[JsValue],
++        context: &mut Context,
++    ) -> JsResult<JsValue> {
++        const JS_ZERO: &JsValue = &JsValue::Rational(0f64);
++
++        let key = args.get_or_undefined(0);
++        let key = match key {
++            JsValue::Rational(r) => {
++                if r.is_zero() {
++                    JS_ZERO
++                } else {
++                    key
++                }
++            }
++            _ => key,
++        };
++
++        if let JsValue::Object(ref object) = this {
++            if !check_is_not_expired(object, key, context)? {
++                return Ok(JsValue::undefined());
++            }
++
++            let new_lifetime = args.get_or_undefined(1);
++            let expire = if !new_lifetime.is_undefined() && !new_lifetime.is_null() {
++                Some(calculate_expire(new_lifetime, context)?)
++            } else {
++                None
++            };
++
++            if let Some(cache) = object.borrow_mut().as_timed_cache_mut() {
++                if let Some(cached_val) = cache.get_mut(key) {
++                    if let Some(expire) = expire {
++                        cached_val.expire = expire as u128;
++                    }
++                    return Ok(JsValue::Object(cached_val.data.clone()));
++                }
++                return Ok(JsValue::undefined());
++            }
++        }
++
++        context.throw_type_error("'this' is not a Map")
++    }
++
++    /// `TimedCache.prototype.has( key )`
++    ///
++    /// Returns true if the key is found and not expired
++    pub (crate) fn has(
++        this: &JsValue,
++        args: &[JsValue],
++        context: &mut Context,
++    ) -> JsResult<JsValue> {
++        const JS_ZERO: &JsValue = &JsValue::Rational(0f64);
++
++        let key = args.get_or_undefined(0);
++        let key = match key {
++            JsValue::Rational(r) => {
++                if r.is_zero() {
++                    JS_ZERO
++                } else {
++                    key
++                }
++            }
++            _ => key,
++        };
++
++        if let JsValue::Object(ref object) = this {
++            let exists = check_is_not_expired(object, key, context)?;
++            return Ok(JsValue::Boolean(exists));
++        }
++        context.throw_type_error("'this' is not a Map")
++    }
++}
+diff --git a/boa_engine/src/context/intrinsics.rs b/boa_engine/src/context/intrinsics.rs
+index a1fddb1920..9e18793425 100644
+--- a/boa_engine/src/context/intrinsics.rs
++++ b/boa_engine/src/context/intrinsics.rs
+@@ -92,6 +92,7 @@ pub struct StandardConstructors {
+     uri_error: StandardConstructor,
+     aggregate_error: StandardConstructor,
+     map: StandardConstructor,
++    timed_cache: StandardConstructor,
+     set: StandardConstructor,
+     typed_array: StandardConstructor,
+     typed_int8_array: StandardConstructor,
+@@ -142,6 +143,7 @@ impl Default for StandardConstructors {
+             uri_error: StandardConstructor::default(),
+             aggregate_error: StandardConstructor::default(),
+             map: StandardConstructor::default(),
++            timed_cache: StandardConstructor::default(),
+             set: StandardConstructor::default(),
+             typed_array: StandardConstructor::default(),
+             typed_int8_array: StandardConstructor::default(),
+@@ -267,6 +269,11 @@ impl StandardConstructors {
+         &self.map
+     }
+ 
++    #[inline]
++    pub fn timed_cache(&self) -> &StandardConstructor {
++        &self.timed_cache
++    }
++
+     #[inline]
+     pub fn set(&self) -> &StandardConstructor {
+         &self.set
+diff --git a/boa_engine/src/lib.rs b/boa_engine/src/lib.rs
+index 9db8165bf5..9940a35554 100644
+--- a/boa_engine/src/lib.rs
++++ b/boa_engine/src/lib.rs
+@@ -6,6 +6,7 @@
+ //!  - **console** - Enables `boa`s WHATWG `console` object implementation.
+ //!  - **profiler** - Enables profiling with measureme (this is mostly internal).
+ 
++#![feature(asm)]
+ #![doc(
+     html_logo_url = "https://raw.githubusercontent.com/boa-dev/boa/main/assets/logo.svg",
+     html_favicon_url = "https://raw.githubusercontent.com/boa-dev/boa/main/assets/logo.svg"
+diff --git a/boa_engine/src/object/internal_methods/arguments.rs b/boa_engine/src/object/internal_methods/arguments.rs
+index 7ade852d3f..4264090835 100644
+--- a/boa_engine/src/object/internal_methods/arguments.rs
++++ b/boa_engine/src/object/internal_methods/arguments.rs
+@@ -4,17 +4,21 @@ use crate::{
+     Context, JsResult, JsValue,
+ };
+ 
+-use super::{InternalObjectMethods, ORDINARY_INTERNAL_METHODS};
++use super::{InternalObjectMethods, NEW_ORDINARY_INTERNAL_METHODS};
+ 
+-pub(crate) static ARGUMENTS_EXOTIC_INTERNAL_METHODS: InternalObjectMethods =
+-    InternalObjectMethods {
++use ctor::*;
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static ARGUMENTS_EXOTIC_INTERNAL_METHODS: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+         __get_own_property__: arguments_exotic_get_own_property,
+         __define_own_property__: arguments_exotic_define_own_property,
+         __get__: arguments_exotic_get,
+         __set__: arguments_exotic_set,
+         __delete__: arguments_exotic_delete,
+-        ..ORDINARY_INTERNAL_METHODS
+-    };
++        ..*NEW_ORDINARY_INTERNAL_METHODS()
++    })
++};
+ 
+ /// `[[GetOwnProperty]]` for arguments exotic objects.
+ ///
+diff --git a/boa_engine/src/object/internal_methods/array.rs b/boa_engine/src/object/internal_methods/array.rs
+index 007af7a0a7..89dc13553a 100644
+--- a/boa_engine/src/object/internal_methods/array.rs
++++ b/boa_engine/src/object/internal_methods/array.rs
+@@ -4,7 +4,7 @@ use crate::{
+     Context, JsResult,
+ };
+ 
+-use super::{InternalObjectMethods, ORDINARY_INTERNAL_METHODS};
++use super::{InternalObjectMethods, NEW_ORDINARY_INTERNAL_METHODS};
+ 
+ /// Definitions of the internal object methods for array exotic objects.
+ ///
+@@ -12,9 +12,14 @@ use super::{InternalObjectMethods, ORDINARY_INTERNAL_METHODS};
+ ///  - [ECMAScript reference][spec]
+ ///
+ /// [spec]: https://tc39.es/ecma262/#sec-array-exotic-objects
+-pub(crate) static ARRAY_EXOTIC_INTERNAL_METHODS: InternalObjectMethods = InternalObjectMethods {
++use ctor::*;
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static ARRAY_EXOTIC_INTERNAL_METHODS: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+     __define_own_property__: array_exotic_define_own_property,
+-    ..ORDINARY_INTERNAL_METHODS
++    ..*NEW_ORDINARY_INTERNAL_METHODS()
++    })
+ };
+ 
+ /// Define an own property for an array exotic object.
+diff --git a/boa_engine/src/object/internal_methods/bound_function.rs b/boa_engine/src/object/internal_methods/bound_function.rs
+index 3949cd93d3..491e9203a9 100644
+--- a/boa_engine/src/object/internal_methods/bound_function.rs
++++ b/boa_engine/src/object/internal_methods/bound_function.rs
+@@ -1,6 +1,6 @@
+ use crate::{object::JsObject, Context, JsResult, JsValue};
+ 
+-use super::{InternalObjectMethods, ORDINARY_INTERNAL_METHODS};
++use super::{InternalObjectMethods, NEW_ORDINARY_INTERNAL_METHODS};
+ 
+ /// Definitions of the internal object methods for function objects.
+ ///
+@@ -8,19 +8,26 @@ use super::{InternalObjectMethods, ORDINARY_INTERNAL_METHODS};
+ ///  - [ECMAScript reference][spec]
+ ///
+ /// [spec]: https://tc39.es/ecma262/#sec-ecmascript-function-objects
+-pub(crate) static BOUND_FUNCTION_EXOTIC_INTERNAL_METHODS: InternalObjectMethods =
+-    InternalObjectMethods {
++use ctor::*;
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static BOUND_FUNCTION_EXOTIC_INTERNAL_METHODS: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+         __call__: Some(bound_function_exotic_call),
+         __construct__: None,
+-        ..ORDINARY_INTERNAL_METHODS
+-    };
+-
+-pub(crate) static BOUND_CONSTRUCTOR_EXOTIC_INTERNAL_METHODS: InternalObjectMethods =
+-    InternalObjectMethods {
++        ..*NEW_ORDINARY_INTERNAL_METHODS()
++    })
++};
++
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static BOUND_CONSTRUCTOR_EXOTIC_INTERNAL_METHODS: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+         __call__: Some(bound_function_exotic_call),
+         __construct__: Some(bound_function_exotic_construct),
+-        ..ORDINARY_INTERNAL_METHODS
+-    };
++        ..*NEW_ORDINARY_INTERNAL_METHODS()
++    })
++};
+ 
+ /// Internal method `[[Call]]` for Bound Function Exotic Objects
+ ///
+diff --git a/boa_engine/src/object/internal_methods/function.rs b/boa_engine/src/object/internal_methods/function.rs
+index 797868855f..e61e0c200d 100644
+--- a/boa_engine/src/object/internal_methods/function.rs
++++ b/boa_engine/src/object/internal_methods/function.rs
+@@ -1,6 +1,6 @@
+ use crate::{
+     object::{
+-        internal_methods::{InternalObjectMethods, ORDINARY_INTERNAL_METHODS},
++        internal_methods::{InternalObjectMethods, NEW_ORDINARY_INTERNAL_METHODS},
+         JsObject,
+     },
+     Context, JsResult, JsValue,
+@@ -12,16 +12,25 @@ use crate::{
+ ///  - [ECMAScript reference][spec]
+ ///
+ /// [spec]: https://tc39.es/ecma262/#sec-ecmascript-function-objects
+-pub(crate) static FUNCTION_INTERNAL_METHODS: InternalObjectMethods = InternalObjectMethods {
++use ctor::*;
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static FUNCTION_INTERNAL_METHODS: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+     __call__: Some(function_call),
+     __construct__: None,
+-    ..ORDINARY_INTERNAL_METHODS
++    ..*NEW_ORDINARY_INTERNAL_METHODS()
++    })
+ };
+ 
+-pub(crate) static CONSTRUCTOR_INTERNAL_METHODS: InternalObjectMethods = InternalObjectMethods {
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static CONSTRUCTOR_INTERNAL_METHODS: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+     __call__: Some(function_call),
+     __construct__: Some(function_construct),
+-    ..ORDINARY_INTERNAL_METHODS
++    ..*NEW_ORDINARY_INTERNAL_METHODS()
++    })
+ };
+ 
+ /// Call this object.
+diff --git a/boa_engine/src/object/internal_methods/global.rs b/boa_engine/src/object/internal_methods/global.rs
+index 69d07b44e5..8d74c6c1b6 100644
+--- a/boa_engine/src/object/internal_methods/global.rs
++++ b/boa_engine/src/object/internal_methods/global.rs
+@@ -1,9 +1,10 @@
+ use crate::{
+-    object::{InternalObjectMethods, JsObject, ORDINARY_INTERNAL_METHODS},
++    object::{InternalObjectMethods, JsObject},
+     property::{DescriptorKind, PropertyDescriptor, PropertyKey},
+     value::JsValue,
+     Context, JsResult,
+ };
++use super::NEW_ORDINARY_INTERNAL_METHODS;
+ use boa_profiler::Profiler;
+ 
+ /// Definitions of the internal object methods for global object.
+@@ -12,7 +13,11 @@ use boa_profiler::Profiler;
+ ///  - [ECMAScript reference][spec]
+ ///
+ /// [spec]: https://tc39.es/ecma262/#sec-global-object
+-pub(crate) static GLOBAL_INTERNAL_METHODS: InternalObjectMethods = InternalObjectMethods {
++use ctor::*;
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static GLOBAL_INTERNAL_METHODS: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+     __get_own_property__: global_get_own_property,
+     __is_extensible__: global_is_extensible,
+     __prevent_extensions__: global_prevent_extensions,
+@@ -21,7 +26,8 @@ pub(crate) static GLOBAL_INTERNAL_METHODS: InternalObjectMethods = InternalObjec
+     __get__: global_get,
+     __set__: global_set,
+     __delete__: global_delete,
+-    ..ORDINARY_INTERNAL_METHODS
++    ..*NEW_ORDINARY_INTERNAL_METHODS()
++    })
+ };
+ 
+ /// Abstract operation `OrdinaryGetOwnProperty`.
+diff --git a/boa_engine/src/object/internal_methods/integer_indexed.rs b/boa_engine/src/object/internal_methods/integer_indexed.rs
+index d1ef9913aa..8f560bf3af 100644
+--- a/boa_engine/src/object/internal_methods/integer_indexed.rs
++++ b/boa_engine/src/object/internal_methods/integer_indexed.rs
+@@ -5,7 +5,7 @@ use crate::{
+     Context, JsResult, JsValue,
+ };
+ 
+-use super::{InternalObjectMethods, ORDINARY_INTERNAL_METHODS};
++use super::{InternalObjectMethods, NEW_ORDINARY_INTERNAL_METHODS};
+ 
+ /// Definitions of the internal object methods for integer-indexed exotic objects.
+ ///
+@@ -13,8 +13,11 @@ use super::{InternalObjectMethods, ORDINARY_INTERNAL_METHODS};
+ ///  - [ECMAScript reference][spec]
+ ///
+ /// [spec]: https://tc39.es/ecma262/#sec-integer-indexed-exotic-objects
+-pub(crate) static INTEGER_INDEXED_EXOTIC_INTERNAL_METHODS: InternalObjectMethods =
+-    InternalObjectMethods {
++use ctor::*;
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static INTEGER_INDEXED_EXOTIC_INTERNAL_METHODS: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+         __get_own_property__: integer_indexed_exotic_get_own_property,
+         __has_property__: integer_indexed_exotic_has_property,
+         __define_own_property__: integer_indexed_exotic_define_own_property,
+@@ -22,8 +25,9 @@ pub(crate) static INTEGER_INDEXED_EXOTIC_INTERNAL_METHODS: InternalObjectMethods
+         __set__: integer_indexed_exotic_set,
+         __delete__: integer_indexed_exotic_delete,
+         __own_property_keys__: integer_indexed_exotic_own_property_keys,
+-        ..ORDINARY_INTERNAL_METHODS
+-    };
++        ..*NEW_ORDINARY_INTERNAL_METHODS()
++    })
++};
+ 
+ /// `[[GetOwnProperty]]` internal method for Integer-Indexed exotic objects.
+ ///
+diff --git a/boa_engine/src/object/internal_methods/mod.rs b/boa_engine/src/object/internal_methods/mod.rs
+index d628f6d116..e672f68bfb 100644
+--- a/boa_engine/src/object/internal_methods/mod.rs
++++ b/boa_engine/src/object/internal_methods/mod.rs
+@@ -281,20 +281,31 @@ impl JsObject {
+ /// Then, reference this static in the creation phase of an `ObjectData`.
+ ///
+ /// E.g. `ObjectData::string`
+-pub(crate) static ORDINARY_INTERNAL_METHODS: InternalObjectMethods = InternalObjectMethods {
+-    __get_prototype_of__: ordinary_get_prototype_of,
+-    __set_prototype_of__: ordinary_set_prototype_of,
+-    __is_extensible__: ordinary_is_extensible,
+-    __prevent_extensions__: ordinary_prevent_extensions,
+-    __get_own_property__: ordinary_get_own_property,
+-    __define_own_property__: ordinary_define_own_property,
+-    __has_property__: ordinary_has_property,
+-    __get__: ordinary_get,
+-    __set__: ordinary_set,
+-    __delete__: ordinary_delete,
+-    __own_property_keys__: ordinary_own_property_keys,
+-    __call__: None,
+-    __construct__: None,
++
++// Allocate on the heap instead of data section
++#[allow(non_snake_case)]
++pub(crate) fn NEW_ORDINARY_INTERNAL_METHODS() -> Box<InternalObjectMethods> {
++    Box::new(InternalObjectMethods {
++        __get_prototype_of__: ordinary_get_prototype_of,
++        __set_prototype_of__: ordinary_set_prototype_of,
++        __is_extensible__: ordinary_is_extensible,
++        __prevent_extensions__: ordinary_prevent_extensions,
++        __get_own_property__: ordinary_get_own_property,
++        __define_own_property__: ordinary_define_own_property,
++        __has_property__: ordinary_has_property,
++        __get__: ordinary_get,
++        __set__: ordinary_set,
++        __delete__: ordinary_delete,
++        __own_property_keys__: ordinary_own_property_keys,
++        __call__: None,
++        __construct__: None,
++    })
++}
++
++use ctor::*;
++#[ctor]
++pub(crate) static ORDINARY_INTERNAL_METHODS: Box<InternalObjectMethods> = {
++    NEW_ORDINARY_INTERNAL_METHODS()
+ };
+ 
+ /// The internal representation of the internal methods of a `JsObject`.
+diff --git a/boa_engine/src/object/internal_methods/proxy.rs b/boa_engine/src/object/internal_methods/proxy.rs
+index 5b5be57dbf..0f72dc9c81 100644
+--- a/boa_engine/src/object/internal_methods/proxy.rs
++++ b/boa_engine/src/object/internal_methods/proxy.rs
+@@ -13,8 +13,11 @@ use rustc_hash::FxHashSet;
+ ///  - [ECMAScript reference][spec]
+ ///
+ /// [spec]: https://tc39.es/ecma262/#sec-array-exotic-objects
+-pub(crate) static PROXY_EXOTIC_INTERNAL_METHODS_BASIC: InternalObjectMethods =
+-    InternalObjectMethods {
++use ctor::*;
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static PROXY_EXOTIC_INTERNAL_METHODS_BASIC: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+         __get_prototype_of__: proxy_exotic_get_prototype_of,
+         __set_prototype_of__: proxy_exotic_set_prototype_of,
+         __is_extensible__: proxy_exotic_is_extensible,
+@@ -28,10 +31,13 @@ pub(crate) static PROXY_EXOTIC_INTERNAL_METHODS_BASIC: InternalObjectMethods =
+         __own_property_keys__: proxy_exotic_own_property_keys,
+         __call__: None,
+         __construct__: None,
+-    };
++    })
++};
+ 
+-pub(crate) static PROXY_EXOTIC_INTERNAL_METHODS_WITH_CALL: InternalObjectMethods =
+-    InternalObjectMethods {
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static PROXY_EXOTIC_INTERNAL_METHODS_WITH_CALL: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+         __get_prototype_of__: proxy_exotic_get_prototype_of,
+         __set_prototype_of__: proxy_exotic_set_prototype_of,
+         __is_extensible__: proxy_exotic_is_extensible,
+@@ -45,10 +51,13 @@ pub(crate) static PROXY_EXOTIC_INTERNAL_METHODS_WITH_CALL: InternalObjectMethods
+         __own_property_keys__: proxy_exotic_own_property_keys,
+         __call__: Some(proxy_exotic_call),
+         __construct__: None,
+-    };
++    })
++};
+ 
+-pub(crate) static PROXY_EXOTIC_INTERNAL_METHODS_ALL: InternalObjectMethods =
+-    InternalObjectMethods {
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static PROXY_EXOTIC_INTERNAL_METHODS_ALL: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+         __get_prototype_of__: proxy_exotic_get_prototype_of,
+         __set_prototype_of__: proxy_exotic_set_prototype_of,
+         __is_extensible__: proxy_exotic_is_extensible,
+@@ -62,7 +71,8 @@ pub(crate) static PROXY_EXOTIC_INTERNAL_METHODS_ALL: InternalObjectMethods =
+         __own_property_keys__: proxy_exotic_own_property_keys,
+         __call__: Some(proxy_exotic_call),
+         __construct__: Some(proxy_exotic_construct),
+-    };
++    })
++};
+ 
+ /// `10.5.1 [[GetPrototypeOf]] ( )`
+ ///
+diff --git a/boa_engine/src/object/internal_methods/string.rs b/boa_engine/src/object/internal_methods/string.rs
+index 453b90d586..768445014e 100644
+--- a/boa_engine/src/object/internal_methods/string.rs
++++ b/boa_engine/src/object/internal_methods/string.rs
+@@ -4,7 +4,7 @@ use crate::{
+     Context, JsResult, JsValue,
+ };
+ 
+-use super::{InternalObjectMethods, ORDINARY_INTERNAL_METHODS};
++use super::{InternalObjectMethods, NEW_ORDINARY_INTERNAL_METHODS};
+ 
+ /// Definitions of the internal object methods for string exotic objects.
+ ///
+@@ -12,11 +12,16 @@ use super::{InternalObjectMethods, ORDINARY_INTERNAL_METHODS};
+ ///  - [ECMAScript reference][spec]
+ ///
+ /// [spec]: https://tc39.es/ecma262/#sec-string-exotic-objects
+-pub(crate) static STRING_EXOTIC_INTERNAL_METHODS: InternalObjectMethods = InternalObjectMethods {
++use ctor::*;
++#[ctor]
++// Allocate on the heap instead of data section
++pub(crate) static STRING_EXOTIC_INTERNAL_METHODS: Box<InternalObjectMethods> = {
++    Box::new(InternalObjectMethods {
+     __get_own_property__: string_exotic_get_own_property,
+     __define_own_property__: string_exotic_define_own_property,
+     __own_property_keys__: string_exotic_own_property_keys,
+-    ..ORDINARY_INTERNAL_METHODS
++    ..*NEW_ORDINARY_INTERNAL_METHODS()
++    })
+ };
+ 
+ /// Gets own property of 'String' exotic object
+diff --git a/boa_engine/src/object/jsobject.rs b/boa_engine/src/object/jsobject.rs
+index cf75a8b3a0..8ce0a578bc 100644
+--- a/boa_engine/src/object/jsobject.rs
++++ b/boa_engine/src/object/jsobject.rs
+@@ -339,6 +339,17 @@ impl JsObject {
+         self.borrow().is_map()
+     }
+ 
++    /// Checks if it is a `TimedCache` object.pub
++    ///
++    /// # Panics
++    ///
++    /// Panics if the object is currently mutably borrowed.
++    #[inline]
++    #[track_caller]
++    pub fn is_timed_cache(&self) -> bool {
++        self.borrow().is_timed_cache()
++    }
++
+     /// Checks if it's a `String` object.
+     ///
+     /// # Panics
+diff --git a/boa_engine/src/object/mod.rs b/boa_engine/src/object/mod.rs
+index 9543a51b2e..06a2e70901 100644
+--- a/boa_engine/src/object/mod.rs
++++ b/boa_engine/src/object/mod.rs
+@@ -31,6 +31,7 @@ use crate::{
+         generator::Generator,
+         map::map_iterator::MapIterator,
+         map::ordered_map::OrderedMap,
++        timed_cache::TimeCachedValue,
+         object::for_in_iterator::ForInIterator,
+         proxy::Proxy,
+         regexp::regexp_string_iterator::RegExpStringIterator,
+@@ -139,6 +140,7 @@ pub enum ObjectKind {
+     ArrayBuffer(ArrayBuffer),
+     Map(OrderedMap<JsValue>),
+     MapIterator(MapIterator),
++    TimedCache(OrderedMap<TimeCachedValue>),
+     RegExp(Box<RegExp>),
+     RegExpStringIterator(RegExpStringIterator),
+     BigInt(JsBigInt),
+@@ -166,6 +168,20 @@ pub enum ObjectKind {
+ }
+ 
+ impl ObjectData {
++    pub fn describe_object(&self) -> String {
++        let mut out = format!("Object @{:p}\n- Methods @{:p}\n", self, self.internal_methods);
++        match &self.kind {
++            ObjectKind::ArrayBuffer(a) => {
++                match &a.array_buffer_data {
++                    Some(p) => out.push_str(
++                        &*format!("- Array Buffer Data @{:p}", p.as_ptr())),
++                    None => out.push_str("- Buffer Data Null"),
++                };
++            },
++            _ => (),
++        };
++        out
++    }
+     /// Create the `Array` object data and reference its exclusive internal methods
+     pub fn array() -> Self {
+         Self {
+@@ -198,6 +214,14 @@ impl ObjectData {
+         }
+     }
+ 
++    /// Create the `TimedCache` object data
++    pub fn timed_cache(timed_cache: OrderedMap<TimeCachedValue>) -> Self {
++        Self {
++            kind: ObjectKind::TimedCache(timed_cache),
++            internal_methods: &ORDINARY_INTERNAL_METHODS,
++        }
++    }
++
+     /// Create the `MapIterator` object data
+     pub fn map_iterator(map_iterator: MapIterator) -> Self {
+         Self {
+@@ -435,6 +459,7 @@ impl Display for ObjectKind {
+             Self::RegExp(_) => "RegExp",
+             Self::RegExpStringIterator(_) => "RegExpStringIterator",
+             Self::Map(_) => "Map",
++            Self::TimedCache(_) => "TimedCache",
+             Self::MapIterator(_) => "MapIterator",
+             Self::Set(_) => "Set",
+             Self::SetIterator(_) => "SetIterator",
+@@ -639,6 +664,18 @@ impl Object {
+         )
+     }
+ 
++    /// Checks if it is a `TimedCache` object.pub
++    #[inline]
++    pub fn is_timed_cache(&self) -> bool {
++        matches!(
++            self.data,
++            ObjectData {
++                kind: ObjectKind::TimedCache(_),
++                ..
++            }
++        )
++    }
++
+     #[inline]
+     pub fn as_map_ref(&self) -> Option<&OrderedMap<JsValue>> {
+         match self.data {
+@@ -650,6 +687,17 @@ impl Object {
+         }
+     }
+ 
++    #[inline]
++    pub fn as_timed_cache_ref(&self) -> Option<&OrderedMap<TimeCachedValue>> {
++        match self.data {
++            ObjectData {
++                kind: ObjectKind::TimedCache(ref timed_cache),
++                ..
++            } => Some(timed_cache),
++            _ => None,
++        }
++    }
++
+     #[inline]
+     pub fn as_map_mut(&mut self) -> Option<&mut OrderedMap<JsValue>> {
+         match &mut self.data {
+@@ -661,6 +709,17 @@ impl Object {
+         }
+     }
+ 
++    #[inline]
++    pub fn as_timed_cache_mut(&mut self) -> Option<&mut OrderedMap<TimeCachedValue>> {
++        match &mut self.data {
++            ObjectData {
++                kind: ObjectKind::TimedCache(timed_cache),
++                ..
++            } => Some(timed_cache),
++            _ => None,
++        }
++    }
++
+     #[inline]
+     pub fn is_map_iterator(&self) -> bool {
+         matches!(
+diff --git a/boa_engine/src/value/display.rs b/boa_engine/src/value/display.rs
+index 1cee752262..1d13afe40e 100644
+--- a/boa_engine/src/value/display.rs
++++ b/boa_engine/src/value/display.rs
+@@ -175,6 +175,9 @@ pub(crate) fn log_string_from(x: &JsValue, print_internals: bool, print_children
+                         format!("Map({size})")
+                     }
+                 }
++                ObjectKind::TimedCache(ref _map) => {
++                    return String::from("TimedCache()");
++                }
+                 ObjectKind::Set(ref set) => {
+                     let size = set.size();
+ 
