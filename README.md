@@ -181,6 +181,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1078/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="BYUCTF">BYUCTF</a></td>
+            <td><a href="BYUCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1660/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="Backdoor">Backdoor</a></td>
             <td><a href="Backdoor/2019">2019</a></td>
             <td><a href="https://ctftime.org/event/850/tasks/">CTFtime</a></td>
