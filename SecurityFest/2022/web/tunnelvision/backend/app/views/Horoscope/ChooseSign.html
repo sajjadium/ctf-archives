@@ -1,0 +1,31 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<header class="jumbotron" style="background-color:#A9F16C">
+  <title>Pick horoscope sign!</title>
+  <div class="container">
+    <div class="row">
+        <h2>Enter your sign or pick one below for your daily horoscope!</h2>
+        <hr>
+        <form action="/horoscope/sign" method="POST"><input type="text" name="sign" placeholder="sign" /><input type="submit" /></form>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    {{if not .flash.error}}
+      {{range $key, $val := .icons}}
+      <div class="row">
+          <a href="/horoscope/{{$key}}"><p>{{$key}}:  <img style="width:50px" src="{{$val}}" /></p></a><br/>
+      </div>
+      {{end}}
+    {{end}}
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+{{ .remoteip }}
+
+{{template "footer.html" .}}

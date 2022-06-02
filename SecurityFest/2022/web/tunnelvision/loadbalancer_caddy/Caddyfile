@@ -1,0 +1,11 @@
+:80 {
+
+    @blacklist {
+      not {
+        path /admin*
+      }
+    }
+
+	reverse_proxy @blacklist backend:80
+
+}

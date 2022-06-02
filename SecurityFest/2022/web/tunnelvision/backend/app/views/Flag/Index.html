@@ -1,0 +1,23 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<header class="jumbotron" style="background-color:#ff0000">
+  <div class="container">
+    <div class="row">
+        {{if not .flash.error}}
+      <h1>Congratulations: <pre>{{.flag}}</pre></h1>
+	    {{end}}
+      <p></p>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+{{template "footer.html" .}}

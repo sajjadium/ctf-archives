@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+  haproxy:
+    build: ./middleware
+    container_name: middleware
+    ports:
+      - "80:80"
+  backend:
+    build: ./backend
+    container_name: backend
+    environment:
+      - "FLAG=SECFEST{redacted}"
+      - ENV=prod
+    links:
+      - haproxy:backend
+  loadbalancer:
+    build: ./loadbalancer_caddy
+    container_name: loadbalancer

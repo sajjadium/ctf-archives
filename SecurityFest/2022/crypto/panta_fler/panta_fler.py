@@ -1,0 +1,23 @@
+from os import urandom
+from Crypto.Util.strxor import strxor
+
+key = urandom(30)
+
+ms = [
+    b"[REDACTED]",
+    b"[REDACTED]",
+    b"[REDACTED]",
+]
+
+cs = []
+
+for m in ms:
+    cs.append(strxor(key, m))
+
+print(cs)
+
+# [
+#     b'\xc1=\x01}\xe7\x1c\x94YRj\xb3\xa7K@\xde\x0c\x9a\xc9\x00\xb0ZB\r\x87\r\x8b\x8f\xffQ\xc7',
+#     b'\xfc\x1d4^\xd0o\xb2GE|\x89\xe4^]\xcfE\x86\xdd\x1e\x8a\r@\x1c\x96r\x92\x87\xec\x19\xd4',
+#     b'\xfa\x19!P\x82;\xa8G\x10\x7f\x80\xa5DP\xdeE\x94\xc8S\x9cHH\x1f\x8a!\x87\xc0\xe3\x1f\xcd'
+# ]

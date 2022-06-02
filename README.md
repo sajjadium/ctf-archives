@@ -1237,7 +1237,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/769/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="SecurityFest">Security Fest</a></td>
+            <td rowspan=2><a href="SecurityFest">Security Fest</a></td>
+            <td><a href="SecurityFest/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1669/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="SecurityFest/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/622/tasks/">CTFtime</a></td>
         </tr>

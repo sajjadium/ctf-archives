@@ -1,0 +1,74 @@
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+  <head id="head">
+    <title>Madness</title>
+    <link
+      href="https://cloudflare-dns.com/purgeCache-c2074bf50c85410bcdf0.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cloudflare-dns.com/purgeCache-c2074bf50c85410bcdf0.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{{ prefix }}/static/style.css"></link>
+    <script type="text/javascript" src="{{ prefix }}/static/dns.js"></script>
+    <!-- 
+                            
+                   _ 
+             _ _,-'_)_   
+            |,' ,-' __)  ,------/. 
+           |     -'  _)/         `\           ______________
+          ,'       ,-'_,`           :       /               \
+       ,-'       ,(,-(              :      |     DoH'       |
+     ,'       ,-' ,    _            ;    --\_______________/
+    /        ,-._/`---'            /   _'
+   /        (____)(----. )       ,'
+  /         (      `.__,     /\ /,
+ :           ;-.___         /__\/|
+ |         ,'      `--.      -,\ |
+ :        /            \    .__/
+  \      (__            \    |_
+   \       ,`-, *       /   _|,\
+    \    ,'   `-.     ,'_,-'    \
+   (_\,-'    ,'\")--,'-'       __\
+    \       /  // ,'|      ,--'  `-.
+     `-.    `-/ \'  |   _,'         `.
+        `-._ /      `--'/             \
+           ,'           |              \
+          /             |               \
+       ,-'              |               /
+      /                 |             -'
+    -->
+  </head>
+  <body class="purge-cache-page bg">
+    <main>
+      <section data-section="purge-cache">
+        <div class="form-container">
+        <header>
+          <h1 class="title">Madness DNS</h1>
+        </header>
+        <p class="description">
+          <span
+            >This page allows users to refresh DNS cache and lookup domain names without having to be an absolute nerd using terminals and all that stuff. Enjoy!</span
+          >
+        </p>
+           <form id="lookup-name-form"></form>
+          <form id="purge-cache-form">
+            <div class="label required">Domain Name</div>
+            <input
+              id="domain"
+              class="input-field"
+              name="domain"
+              type="text"
+              placeholder="example.com"
+              required=""
+            />
+            <br />
+            <input id="submit-button" type="submit" form="lookup-name-form" value="Lookup DNS name" />
+            <input id="submit-button" type="submit" value="Purge DNS cache" />
+          </form>
+          <div id="info-message"></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<header class="jumbotron" style="background-color:#A9F16C">
+  <title>{{.sign}} horoscope</title>
+  <div class="container">
+    <div class="row">
+      {{if not .flash.error}}
+      <h1>The horoscope for <img style="width: 50px" src="{{.iconurl}}" /> is <br><pre>{{.horoscope}}</pre></h1>
+	    {{end}}
+      <p></p>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <a href="javascript:history.back()">back</a>
+    <div class="span6">
+      {{template "flash.html" .}}
+    </div>
+  </div>
+</div>
+
+{{template "footer.html" .}}
