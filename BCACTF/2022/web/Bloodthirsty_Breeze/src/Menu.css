@@ -1,0 +1,29 @@
+.menu-item {
+    width: 80vw;
+    height: 22rem;
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #ffffff11;
+}
+
+.left-menu-block {
+    vertical-align: top;
+    display: inline-block;
+
+    margin-right: 1rem;
+    width: 20vw;
+}
+
+.left-menu-block > img {
+    display: block;
+    margin: auto;
+}
+
+.right-menu-block {
+    vertical-align: top;
+    display: inline-block;
+    
+    flex-direction: column;
+    width: 50vw;
+}

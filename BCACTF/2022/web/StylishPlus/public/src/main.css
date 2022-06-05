@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-body-bg text-body-fg;
+}
+
+.thing-that-you-click-on-and-it-does-a-thing {
+    @apply border-4 px-6 py-4 border-accent-bg text-accent-bg transition-all hover:bg-accent-bg hover:text-accent-fg active:opacity-80 disabled:opacity-50 disabled:bg-transparent disabled:text-accent-bg disabled:cursor-not-allowed;
+}
+
+.modal {
+    @apply hidden;
+}
+
+.modal.is-open {
+    @apply block;
+}
+
+.modal-backdrop {
+    @apply justify-center items-center overflow-auto fixed z-10 inset-0 bg-black/75;
+}
+
+.modal-content {
+    @apply fixed z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-body-bg p-8;
+}

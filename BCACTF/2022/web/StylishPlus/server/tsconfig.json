@@ -1,0 +1,11 @@
+{
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "include": [
+        "./src/**/*.ts"
+    ],
+    "compilerOptions": {
+        "outDir": "dist",
+        "module": "esnext",
+        "moduleResolution": "node"
+    }
+}

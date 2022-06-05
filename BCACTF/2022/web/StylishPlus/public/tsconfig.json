@@ -1,0 +1,13 @@
+{
+    "include": [
+        "./src/**/*.ts"
+    ],
+    "compilerOptions": {
+        "outDir": "dist",
+        "module": "esnext",
+        "lib": ["DOM", "ES2018"],
+        "strict": true,
+        "moduleResolution": "node",
+        "target": "ES2018"
+    }
+}

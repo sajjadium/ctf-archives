@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport">
+        <link rel="stylesheet" href="/dist/main.css" />
+        <style id="style">
+            :root {
+                --body-bg: white;
+                --body-fg: black;
+                --accent-bg: black;
+                --accent-fg: white;
+            }
+        </style>
+    </head>
+    <body class="flex flex-col justify-center items-center px-16 py-32">
+        <h1 class="font-serif text-9xl">Stylish<span class="font-extrabold inline-block animate-spin">+</span></h1>
+        <p class="font-light text-xl my-8">Welcome to Stylish<strong>+</strong>! Now featuring <strong>The Algorithm™</strong>.</p>
+        <button class="thing-that-you-click-on-and-it-does-a-thing mb-4" id="algorithm">Summon The Algorithm™</button>
+        <button class="thing-that-you-click-on-and-it-does-a-thing mb-4" id="report-to-admin">Show Off Your Design Skills</button>
+        <button class="thing-that-you-click-on-and-it-does-a-thing mb-4" id="open-admin-panel" data-micromodal-trigger="admin-modal">Admin Panel</button>
+        <div class="modal" id="admin-modal" aria-hidden="true">
+            <div class="modal-backdrop" tabindex="-1" data-micromodal-close="admin-modal"></div>
+            <div class="modal-content flex justify-center items-center align-center flex-col" role="dialog" aria-model="true" aria-labelledby="admin-modal-title">
+                <h2 id="admin-modal-title">Enter passcode to access admin panel</h2>
+                <div id="admin-passcode-entry" class="flex justify-center items-center align-center flex-col text-center">
+                    <div id="admin-modal-code" class="font-mono leading-10 text-3xl h-10 font-bold mb-4 w-40"></div>
+                    <div id="keypad" class="grid grid-cols-3 gap-1"></div>
+                </div>
+                <div id="admin-restricted" class="hidden justify-center items-center align-center text-center mt-4">
+                    <button id="show-flag" class="thing-that-you-click-on-and-it-does-a-thing">Show Flag</button>
+                </div>
+                <button type="button" class="thing-that-you-click-on-and-it-does-a-thing mt-4"
+                    data-micromodal-close="admin-modal">Close</button>
+            </div>
+        </div>
+        <template id="keypad-button">
+            <button type="button" class="thing-that-you-click-on-and-it-does-a-thing"></button>
+        </template>
+        <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+        <script src="/dist/main.js"></script>
+    </body>
+</html>

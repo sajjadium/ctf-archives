@@ -1,0 +1,21 @@
+name: "BCACTF 3.0: Story Mode"
+categories:
+  - webex
+value: 150
+flag:
+  file: ./flag.txt
+description: |-
+  bestselling novel
+hints:
+  - How does this advanced paging technology work, anyway?
+files:
+  - src: chall.yaml
+  - src: project.clj
+  - src: src/story_mode/core.clj
+authors:
+  - anli
+visible: true
+deploy:
+   web:
+     build: .
+     expose: 3000/tcp

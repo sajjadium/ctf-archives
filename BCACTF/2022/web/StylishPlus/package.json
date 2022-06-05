@@ -1,0 +1,25 @@
+{
+  "name": "fashionable",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:client:ts": "tsc -p public/tsconfig.json",
+    "build:client:css": "tailwindcss -c tailwind.config.cjs -i ./public/src/main.css -o ./public/dist/main.css",
+    "build:server": "tsc -p server/tsconfig.json",
+    "start": "node server/dist/index.js"
+  },
+  "dependencies": {
+    "@fastify/static": "^5.0.2",
+    "@sinclair/typebox": "^0.23.4",
+    "cuid": "^2.1.8",
+    "fastify": "^3.27.4",
+    "puppeteer": "^14.2.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
+    "@types/micromodal": "^0.3.3",
+    "@types/node": "^17.0.23",
+    "tailwindcss": "^3.0.23",
+    "typescript": "^4.6.3"
+  }
+}
