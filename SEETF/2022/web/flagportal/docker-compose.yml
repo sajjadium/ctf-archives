@@ -1,0 +1,19 @@
+version: "3"
+services:
+  proxy:
+    build: ./proxy
+    restart: always
+    ports:
+        - 8000:8080
+  flagportal:
+    build: ./flagportal
+    restart: always
+    environment:
+      - ADMIN_KEY=FAKE_KEY
+      - FIRST_FLAG=SEE{FAKE_FLAG}
+  backend:
+    build: ./backend
+    restart: always
+    environment:
+      - ADMIN_KEY=FAKE_KEY
+      - SECOND_FLAG=SEE{FAKE_FLAG}

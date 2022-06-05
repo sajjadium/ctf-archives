@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+
+body {
+  width: 550px;
+  height: 700px;
+  background-color: rgba(119, 221, 119, 0.1);
+  font-family: 'Poppins', sans-serif;
+}
+
+#main-content {
+  margin: 1em 0;
+}
+
+.card-icon {
+  width: 2em;
+  margin: 0 auto;
+}
+
+.custom-card {
+  /* background-color: rgba(211, 245, 233, 0.4); */
+  background-color: #abd1c6;
+  color: #001e1d;
+  border-radius: 1rem;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.01), 0 2px 2px rgba(0, 0, 0, 0.01), 0 4px 4px rgba(0, 0, 0, 0.01),
+    0 6px 8px rgba(0, 0, 0, 0.01), 0 8px 16px rgba(0, 0, 0, 0.01);
+  padding: 15px;
+  transition: border 0.15s ease;
+  border: 2px solid transparent !important;
+  cursor: pointer;
+  justify-content: center;
+}
+
+#authButton {
+  background-color: #264225;
+  color: #fff;
+}
+
+.section-heading {
+  color: #264225;
+  font-weight: 700;
+}
+
+.custom-card:hover {
+  border: 2px solid black !important;
+}
+
+.custom-card-body {
+  padding: 0.75rem 0;
+  flex: 0;
+}
+
+.custom-card-body .card-title {
+  margin-bottom: 0;
+}
+
+.custom-card.not-toggle-card,
+.custom-card.not-toggle-card .card-icon,
+.custom-card.not-toggle-card .custom-card-body {
+  pointer-events: none;
+}
+
+.card.custom-card:not(.not-toggle-card) .card-icon,
+.card.custom-card:not(.not-toggle-card) .custom-card-body {
+  pointer-events: none;
+}
+
+.custom-card .custom-card-body input[type='range'],
+.custom-card .custom-card-body input[type='checkbox'],
+.custom-card .custom-card-body select {
+  pointer-events: auto;
+}
+
+.custom-card__pressed {
+  /* background-color: rgba(5, 172, 113, 0.7); */
+  background-color: #004643;
+  color: #fff;
+}
+
+.custom-card__unavailable {
+  /* background-color: rgba(5, 172, 113, 0.7); */
+  background-color: grey;
+  color: #fff;
+}
+
+.custom-card__pressed .card-icon {
+  filter: invert(100%) sepia(54%) saturate(536%) hue-rotate(316deg) brightness(110%) contrast(105%);
+}
+
+.custom-card__unavailable .card-icon {
+  filter: invert(100%) sepia(54%) saturate(536%) hue-rotate(316deg) brightness(110%) contrast(105%);
+}
+
+#main-container-section,
+#color-adjustment-section,
+#general-settings-section {
+  padding: 1.3em 1em;
+  margin: 2em 0.25em;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 2px 2px rgba(0, 0, 0, 0.05), 0 4px 4px rgba(0, 0, 0, 0.05),
+    0 6px 8px rgba(0, 0, 0, 0.05), 0 8px 16px rgba(0, 0, 0, 0.05);
+  border-radius: 0.5em;
+}
+
+/* Settings Section */
+
+.custom-btn {
+  border-radius: 1em;
+  /* background-color: rgba(211, 245, 233, 0.4); */
+  background-color: #abd1c6;
+  color: #001e1d;
+  transition: border 0.15s ease;
+  border: 2px solid transparent !important;
+}
+
+.custom-btn:hover {
+  border: 2px solid black !important;
+}

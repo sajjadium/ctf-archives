@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/vendor/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/popup.css">
+
+    <!-- JS -->
+    <script defer src="popup.js"></script>
+
+    <title>Charlotte</title>
+</head>
+
+<body>
+    <main id="main-content">
+        <div class="container">
+            <div class="container" id="main-container-section">
+                <div class="row mb-5">
+                    <h2 class="section-heading">Vulnerable Extension</h2>
+                </div>
+                <div class="row row-cols-3 g-3">
+                    <div class="col-6">
+                        <div class="card custom-card text-center border-0 h-100 not-toggle-card" id="fontSizeCard">
+                            <h5 class="card-title fs-6">Font Size</h5>
+                            <div class="card-body custom-card-body">
+                                <input type="range" class="form-range" min="50" max="200" value="100" step="5"
+                                    id="fontSizeSlider">
+                                <label for="fontSizeSlider" class="form-label">100</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card custom-card text-center border-0 h-100 not-toggle-card" id="fontChangeCard">
+                            <h5 class="card-title fs-6">Font Change</h5>
+                            <div class="card-body custom-card-body">
+                                <!-- List from https://accessibility.psu.edu/legibility/fontface/ -->
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                                    id="fontChange">
+                                    <option value="Default" selected>Default</option>
+                                    <option value="OpenDyslexic">OpenDyslexic</option>
+                                    <option value="Verdana" style="font-family: Verdana;">Verdana</option>
+                                    <option value="Tahoma" style="font-family: Tahoma;">Tahoma</option>
+                                    <option value="Georgia" style="font-family: Georgia;">Georgia</option>
+                                    <option value="Andika" style="font-family: Andika;">Andika</option>
+                                    <option value="Helvetica" style="font-family: Helvetica;">Helvetica</option>
+                                    <option value="Arial" style="font-family: Arial;">Arial</option>
+                                    <option value="Trebuchet MS" style="font-family: Trebuchet MS;">Trebuchet MS
+                                    </option>
+                                    <option value="Times New Roman" style="font-family: Times New Roman;">Times New
+                                        Roman</option>
+                                    <option value="Courier New" style="font-family: Courier New;">Courier New</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <p class="mt-5">
+                        This extension is intentionally designed to be vulnerable. Please uninstall this extension
+                        after the CTF and do not use for regular browsing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>

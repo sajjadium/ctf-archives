@@ -1,0 +1,27 @@
+{
+    "name": "bot",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "type": "module",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1",
+      "express-rate-limit": "^5.2.6",
+      "puppeteer": "^13.3.2"
+    },
+    "devDependencies": {
+      "@babel/eslint-parser": "^7.13.14",
+      "@babel/plugin-syntax-top-level-await": "^7.12.13",
+      "eslint": "^7.25.0",
+      "eslint-config-standard": "^16.0.2",
+      "eslint-plugin-import": "^2.22.1",
+      "eslint-plugin-node": "^11.1.0",
+      "eslint-plugin-promise": "^4.3.1"
+    }
+  }
+  

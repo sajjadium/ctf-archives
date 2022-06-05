@@ -1,0 +1,14 @@
+version: "3"
+services:
+  app:
+    build: ./app
+    ports:
+      - 80:80
+    environment:
+      - FLAG=SEE{REDACTED}
+
+  admin:
+    build: ./admin
+    privileged: true
+    ports:
+      - 8000:8000

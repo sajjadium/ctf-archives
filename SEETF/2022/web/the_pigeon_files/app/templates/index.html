@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>The Pigeon Files</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link href="{{ url_for('static', filename='main.css') }}" rel="stylesheet">
+        <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mootools/1.6.0/mootools-core.min.js"></script>
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/mootools-more/1.6.0/mootools-more-compressed.js"></script>
+        <script defer src="{{ url_for('static', filename='main.js') }}"></script>
+    </head>
+    <body>
+        <div class="container my-5">
+            <h1>The Pigeon Files</h1>
+            <p>Welcome to <a href="https://birdsarentreal.com/">the movement</a>.</p>
+            <p>The government's bird genocide must be put to an end.</p>
+            <p>For any true patriots that remain, this is the last safe place to store your findings, free from government surveillance.</p>
+        </div>
+        <div class="container">
+            <h2>Store Information</h2>
+            <p>All information is stored locally on your browser. Please be assured it is safe.</p>
+            <form id="note">
+                <textarea name="note" id="note-textarea" placeholder="Birds aren't real. They used to be. Until the U.S. Government replaced them with identical drone replicas designed to spy on the American public. Founded in 1976."></textarea>
+                <div class="text-center">
+                    <button type="submit" id="note-submitbutton">Save</button>
+                </div>
+            </form>
+        </div>
+        <div class="container my-5">
+            <h2>Search Information</h2>
+            <p>Use the personal token given to you when storing your notes to retrieve them. You never know who might be trying to steal our secrets.</p>
+            <p>For security reasons, you only have 5 seconds to view your message.</p>
+            <form id="search" action="/" method="get">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" name="search" placeholder="Search for a note">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="token" placeholder="Personal token">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="container my-5">
+            <textarea id="output"></textarea>
+        </div>
+    </body>
+</html>
+
+<!--
+
+    Birds have gone extinct
+    Their flesh bodies still exist
+    But the internals are replaced
+    By metal endoskeletons
+    Government property
+    No free mind no free will
+    Programmed to soar and survey
+    The new eye in the sky
+    Birds aren't real
+    Birds aren't real
+    Government ploy
+    Avian spiel
+    Birds aren't real
+    Birds aren't real
+    Once of the flesh
+    Now of steel
+    Birds aren't real
+    Birds aren't real
+    Made to look normal
+    Like the real deal
+    Birds aren't real
+    Birds aren't real
+    Flying big brother
+    Spies in the skies
+    The kinks are worked out
+    It is the perfect covert scout
+    Looking like it belongs
+    Hiding in plain sight
+    They are everywhere
+    On buildings and the streets
+    Or simply recharging
+    On the power line
+    We've got to rise up
+    Go to fucking war
+    Form an anti bird rebellion
+    Take 'em all down
+    Get out the weapons
+    The hunting season has begun
+    Take no prisoners
+    Don't stop till they're gone
+    Birds aren't real
+    Birds aren't real
+    Government ploy
+    Avian spiel
+    Birds aren't real
+    Birds aren't real
+    Once of the flesh
+    Now of steel
+    Birds aren't real
+    Birds aren't real
+    Made to look normal
+    Like the real deal
+    Birds aren't real
+    Birds aren't real
+    Flying big brother
+    Spies in the skies
+
+-->

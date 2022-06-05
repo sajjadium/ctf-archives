@@ -1206,6 +1206,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1362/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="SEETF">SEETF</a></td>
+            <td><a href="SEETF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1543/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="SPbCTF">SPbCTF</a></td>
             <td><a href="SPbCTF/2021/Quals">2021 Quals</a></td>
             <td><a href="https://ctftime.org/event/1378/tasks/">CTFtime</a></td>

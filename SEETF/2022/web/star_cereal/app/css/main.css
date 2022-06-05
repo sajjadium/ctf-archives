@@ -1,0 +1,146 @@
+/* Scroll to Hyperlinks */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 1. Material Icons
+ * ------------------ */
+ 
+/* Vertically Align Material Icons with Text */
+.material-icons {
+    vertical-align: middle;
+}
+
+/* 2. Navbar
+ * ---------- */
+
+/* 
+ * When using the fixed-top navbar, the navbar contents overlap with 
+ * the page body. Padding is required to prevent this overlap.
+ */
+body { padding-top: 100px; }
+
+/* Navbar Brand Logo */
+.navbar-logo {
+    height: 50px;
+    width: auto;
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 992px) {
+    body { padding-top: 70px; }
+    
+    /* Navbar Brand Logo Smaller on Mobile */
+    .navbar-logo {
+        height: 40px;
+    }
+}
+
+/* Center Align Navbar Brand */
+@media (min-width: 992px) {
+.navbar-brand
+    {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        text-align: center;
+    }
+}
+
+.navbar-toggler {
+	position: absolute;
+	top: 8px;
+	right: 16px;
+}
+
+/* Styling for Navbar Items */
+.nav-item {
+    text-align: center;
+}
+
+.nav-link {
+    font-weight: bold;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #031D44;
+    padding: 20px 0px;
+    margin: 0px 20px;
+    display: inline-block;
+    position: relative;
+    opacity: 0.75;
+}
+
+.nav-link:hover {
+    opacity: 1;
+}
+
+.nav-link:active {
+    opacity: 1;
+}
+
+/* 
+ * Underline Nav Link 
+ * 
+ * When not hovered, width: 0% hides the underline.
+ * When hovered, width: 100% shows the underline.
+ */
+.nav-link::before {
+    transition: 300ms;
+    height: 5px;
+    content: "";
+    position: absolute;
+    background-color: #0c7cd5;
+    width: 0%;
+    bottom: 10px;
+}
+
+.nav-link:hover::before {
+    width: 100%;
+}
+
+/* 3. Landing Page
+ * ---------------- */
+ 
+.landing-head {
+    height: calc(100vh - 100px);
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.landing-title {
+    font-weight: bolder;
+}
+ 
+/* Mobile Devices */
+@media screen and (max-width: 992px) {
+    .landing-head {
+    	height: calc(100vh - 70px);
+    }
+}
+
+/* 
+ * Center-align image, and allow it to grow to
+ * fill the remaining space in the jumbotron.
+ */
+.landing-img {
+    flex: 1;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../images/undraw_to_the_moon_v1mv.svg);
+}
+
+/* 4. Sections
+ * ------------ */
+section {
+    padding-top: 9rem;
+    padding-bottom: 9rem;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 2.5em;
+}

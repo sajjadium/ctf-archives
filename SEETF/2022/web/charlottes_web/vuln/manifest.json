@@ -1,0 +1,28 @@
+{
+  "name": "Vulnerable Extension",
+  "description": "SEETF 2022 - Charlotte's Web",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "permissions": ["storage", "tabs", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/js/*.js", "assets/fonts/opendyslexic/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

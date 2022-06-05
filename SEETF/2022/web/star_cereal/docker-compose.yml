@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+    app:
+        build: ./app/
+        restart: always
+        environment:
+            - FLAG=SEE{REDACTED}
+    prerender:
+        build: ./prerender/
+    proxy:
+        build: 
+            context: ./proxy/
+            args:
+                ENABLED_MODULES: subs-filter
+        ports:
+            - "80:80"
+    

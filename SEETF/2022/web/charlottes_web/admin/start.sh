@@ -1,0 +1,1 @@
+xvfb-run node main.js
