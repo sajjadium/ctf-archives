@@ -237,7 +237,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1298/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="BreakTheSyntax">Break the Syntax</a></td>
+            <td rowspan=2><a href="BreakTheSyntax">Break the Syntax</a></td>
+            <td><a href="BreakTheSyntax/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1677/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="BreakTheSyntax/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1303/tasks/">CTFtime</a></td>
         </tr>
