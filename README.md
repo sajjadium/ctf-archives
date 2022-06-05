@@ -163,7 +163,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1397/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="BSidesSF">BSidesSF</a></td>
+            <td rowspan=4><a href="BSidesSF">BSidesSF</a></td>
+            <td><a href="BSidesSF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1666/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="BSidesSF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1299/tasks/">CTFtime</a></td>
         </tr>
