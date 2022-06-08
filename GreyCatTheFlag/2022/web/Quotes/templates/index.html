@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Quote from the Wise</title>
+    <!-- taken from https://codepen.io/jonitrythall/pen/XbENPM -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+    var socket;
+
+    function connect() {
+        var host = "ws://localhost:7070/quote";
+        socket = new WebSocket(host);
+        try {
+
+            socket.onopen = function(msg) {
+                console.log(msg);
+                socket.send("getquote");
+                // alert("连接成功！");
+            };
+
+            socket.onmessage = function(msg) {
+                if (typeof msg.data == "string") {
+                    let [quote, author] = msg.data.split(' ~');
+                    author = author ? author : "GreyCat";
+                    $("#quote").html(quote);
+                    $("#author").html(author);
+                } else {
+                    alert("wtf?");
+                }
+            };
+
+            socket.onclose = function(msg) {
+                return;
+            };
+        } catch (ex) {
+            log(ex);
+        }
+    }
+
+    window.onbeforeunload = function() {
+        try {
+            socket.close();
+            socket = null;
+        } catch (ex) {}
+    };
+    connect();
+    </script>
+</head>
+
+<body>
+    <blockquote>
+        <div id="quote"></div>
+        <footer>&mdash;
+            <cite id="author">
+                null
+            </cite>
+        </footer>
+    </blockquote>
+    <!--<a href="share">share your quote with admin</a> -->
+</body>
+
+</html>

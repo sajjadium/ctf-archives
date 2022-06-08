@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    command: python server.py
+    ports:
+      - "7070:7070"
+    environment:
+      - flag=ctf{thisisaflag}

@@ -615,6 +615,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/623/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="GreyCatTheFlag">GreyCatTheFlag</a></td>
+            <td><a href="GreyCatTheFlag/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1643/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="CyberGrabs">CyberGrabs</a></td>
             <td><a href="CyberGrabs/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1556/tasks/">CTFtime</a></td>
