@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Create Page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/static/index.css" />
+	</head>
+	<body>
+		{% if correct %}
+
+		<div id="correct">
+			<h1>Correct!</h1>
+			<p>The flag starts with: "{{ guess }}"</p>
+			<a id="continue" href="/">Continue Guessing</a>
+		</div>
+		{% else %}
+		<div id="wrong">
+			<h1>Wrong!</h1>
+			<p>Your guess was: "{{ guess }}"</p>
+			<a id="tryagain" href="/">Try Again</a>
+		</div>
+		{% endif %}
+	</body>
+</html>

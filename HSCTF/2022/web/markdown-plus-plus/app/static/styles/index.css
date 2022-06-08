@@ -1,0 +1,40 @@
+body,
+input,
+textarea {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1,
+h3 {
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+}
+
+#notice {
+	font-style: italic;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 15px;
+	padding: 15px;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 15px;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+textarea {
+	min-width: 50vw;
+	min-height: 25vw;
+	align-self: stretch;
+	border-radius: 5px;
+}

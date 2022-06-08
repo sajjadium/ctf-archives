@@ -1,0 +1,23 @@
+body {
+	margin: 20px;
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	background-color: #222222;
+}
+
+h1 {
+	color: white;
+}
+
+main {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 10px;
+}
+
+.item {
+	text-align: center;
+}
+img {
+	max-width: 100%;
+	max-height: 30vh;
+}

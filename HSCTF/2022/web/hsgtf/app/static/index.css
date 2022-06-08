@@ -1,0 +1,15 @@
+body {
+	margin: 20px;
+}
+body,
+input {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+div {
+	white-space: nowrap;
+}
+
+#guess-form {
+	margin-bottom: 5px;
+}

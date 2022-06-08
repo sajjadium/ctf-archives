@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Create Page</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/static/styles/index.css" />
+		<script src="/static/scripts/create.js" defer></script>
+	</head>
+	<body>
+		{% include "header.html" %}
+
+		<form id="content-form">
+			<textarea id="content" placeholder="Enter text here"> </textarea>
+			<input type="submit" value="Display Page" />
+		</form>
+		<a href="/help">Help</a>
+		<a href="http://web1.hsctf.com:8000/markdown-plus-plus">Show us what you've created!</a>
+	</body>
+</html>

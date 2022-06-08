@@ -1,0 +1,10 @@
+<header>
+	<h1>Welcome to Markdown++, {{ session.username or "Guest" }}!</h1>
+	<div id="notice">
+		Note: Markdown++ is a work-in-progress, so some features may still be broken.
+	</div>
+</header>
+<form id="login-form" action="/login" method="POST">
+	<input name="username" placeholder="{{ session.username or 'Username'}}" />
+	<input type="submit" value="Login" />
+</form>
