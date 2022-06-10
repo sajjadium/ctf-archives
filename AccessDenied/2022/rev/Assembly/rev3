@@ -1,0 +1,129 @@
+00000000000011c9 <leftRotate>:
+    11c9:	f3 0f 1e fa          	endbr64 
+    11cd:	55                   	push   rbp
+    11ce:	48 89 e5             	mov    rbp,rsp
+    11d1:	89 f8                	mov    eax,edi
+    11d3:	89 75 e8             	mov    DWORD PTR [rbp-0x18],esi
+    11d6:	88 45 ec             	mov    BYTE PTR [rbp-0x14],al
+    11d9:	0f be 45 ec          	movsx  eax,BYTE PTR [rbp-0x14]
+    11dd:	89 45 f8             	mov    DWORD PTR [rbp-0x8],eax
+    11e0:	eb 18                	jmp    11fa <leftRotate+0x31>
+    11e2:	8b 45 f8             	mov    eax,DWORD PTR [rbp-0x8]
+    11e5:	25 80 00 00 00       	and    eax,0x80
+    11ea:	89 45 fc             	mov    DWORD PTR [rbp-0x4],eax
+    11ed:	d1 65 f8             	shl    DWORD PTR [rbp-0x8],1
+    11f0:	83 7d fc 00          	cmp    DWORD PTR [rbp-0x4],0x0
+    11f4:	7e 04                	jle    11fa <leftRotate+0x31>
+    11f6:	83 4d f8 01          	or     DWORD PTR [rbp-0x8],0x1
+    11fa:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+    11fd:	8d 50 ff             	lea    edx,[rax-0x1]
+    1200:	89 55 e8             	mov    DWORD PTR [rbp-0x18],edx
+    1203:	85 c0                	test   eax,eax
+    1205:	75 db                	jne    11e2 <leftRotate+0x19>
+    1207:	8b 45 f8             	mov    eax,DWORD PTR [rbp-0x8]
+    120a:	5d                   	pop    rbp
+    120b:	c3                   	ret    
+
+000000000000120c <encode>:
+    120c:	f3 0f 1e fa          	endbr64 
+    1210:	55                   	push   rbp
+    1211:	48 89 e5             	mov    rbp,rsp
+    1214:	53                   	push   rbx
+    1215:	48 83 ec 18          	sub    rsp,0x18
+    1219:	48 89 7d e0          	mov    QWORD PTR [rbp-0x20],rdi
+    121d:	c7 45 f4 03 00 00 00 	mov    DWORD PTR [rbp-0xc],0x3
+    1224:	c7 45 f0 00 00 00 00 	mov    DWORD PTR [rbp-0x10],0x0
+    122b:	eb 33                	jmp    1260 <encode+0x54>
+    122d:	8b 45 f0             	mov    eax,DWORD PTR [rbp-0x10]
+    1230:	48 63 d0             	movsxd rdx,eax
+    1233:	48 8b 45 e0          	mov    rax,QWORD PTR [rbp-0x20]
+    1237:	48 01 d0             	add    rax,rdx
+    123a:	0f b6 00             	movzx  eax,BYTE PTR [rax]
+    123d:	0f be c0             	movsx  eax,al
+    1240:	8b 55 f0             	mov    edx,DWORD PTR [rbp-0x10]
+    1243:	48 63 ca             	movsxd rcx,edx
+    1246:	48 8b 55 e0          	mov    rdx,QWORD PTR [rbp-0x20]
+    124a:	48 8d 1c 11          	lea    rbx,[rcx+rdx*1]
+    124e:	8b 55 f4             	mov    edx,DWORD PTR [rbp-0xc]
+    1251:	89 d6                	mov    esi,edx
+    1253:	89 c7                	mov    edi,eax
+    1255:	e8 6f ff ff ff       	call   11c9 <leftRotate>
+    125a:	88 03                	mov    BYTE PTR [rbx],al
+    125c:	83 45 f0 01          	add    DWORD PTR [rbp-0x10],0x1
+    1260:	8b 45 f0             	mov    eax,DWORD PTR [rbp-0x10]
+    1263:	48 63 d0             	movsxd rdx,eax
+    1266:	48 8b 45 e0          	mov    rax,QWORD PTR [rbp-0x20]
+    126a:	48 01 d0             	add    rax,rdx
+    126d:	0f b6 00             	movzx  eax,BYTE PTR [rax]
+    1270:	84 c0                	test   al,al
+    1272:	75 b9                	jne    122d <encode+0x21>
+    1274:	90                   	nop
+    1275:	90                   	nop
+    1276:	48 83 c4 18          	add    rsp,0x18
+    127a:	5b                   	pop    rbx
+    127b:	5d                   	pop    rbp
+    127c:	c3                   	ret    
+
+000000000000127d <main>:
+    127d:	f3 0f 1e fa          	endbr64 
+    1281:	55                   	push   rbp
+    1282:	48 89 e5             	mov    rbp,rsp
+    1285:	48 83 ec 70          	sub    rsp,0x70
+    1289:	64 48 8b 04 25 28 00 	mov    rax,QWORD PTR fs:0x28
+    1290:	00 00 
+    1292:	48 89 45 f8          	mov    QWORD PTR [rbp-0x8],rax
+    1296:	31 c0                	xor    eax,eax
+    1298:	48 8d 45 90          	lea    rax,[rbp-0x70]
+    129c:	48 89 c6             	mov    rsi,rax
+    129f:	48 8d 3d 5e 0d 00 00 	lea    rdi,[rip+0xd5e]        # 2004 <_IO_stdin_used+0x4>
+    12a6:	b8 00 00 00 00       	mov    eax,0x0
+    12ab:	e8 20 fe ff ff       	call   10d0 <__isoc99_scanf@plt>
+    12b0:	e8 0b fe ff ff       	call   10c0 <getchar@plt>
+    12b5:	48 8d 45 90          	lea    rax,[rbp-0x70]
+    12b9:	48 89 c7             	mov    rdi,rax
+    12bc:	e8 4b ff ff ff       	call   120c <encode>
+    12c1:	48 8d 45 90          	lea    rax,[rbp-0x70]
+    12c5:	48 89 c6             	mov    rsi,rax
+    12c8:	48 8d 3d 51 2d 00 00 	lea    rdi,[rip+0x2d51]        # 4020 <flag>
+    12cf:	e8 dc fd ff ff       	call   10b0 <strcmp@plt>
+    12d4:	85 c0                	test   eax,eax
+    12d6:	75 13                	jne    12eb <main+0x6e>
+    12d8:	48 8d 3d 28 0d 00 00 	lea    rdi,[rip+0xd28]        # 2007 <_IO_stdin_used+0x7>
+    12df:	b8 00 00 00 00       	mov    eax,0x0
+    12e4:	e8 b7 fd ff ff       	call   10a0 <printf@plt>
+    12e9:	eb 11                	jmp    12fc <main+0x7f>
+    12eb:	48 8d 3d 27 0d 00 00 	lea    rdi,[rip+0xd27]        # 2019 <_IO_stdin_used+0x19>
+    12f2:	b8 00 00 00 00       	mov    eax,0x0
+    12f7:	e8 a4 fd ff ff       	call   10a0 <printf@plt>
+    12fc:	b8 00 00 00 00       	mov    eax,0x0
+    1301:	48 8b 55 f8          	mov    rdx,QWORD PTR [rbp-0x8]
+    1305:	64 48 33 14 25 28 00 	xor    rdx,QWORD PTR fs:0x28
+    130c:	00 00 
+    130e:	74 05                	je     1315 <main+0x98>
+    1310:	e8 7b fd ff ff       	call   1090 <__stack_chk_fail@plt>
+    1315:	c9                   	leave  
+    1316:	c3                   	ret    
+    1317:	66 0f 1f 84 00 00 00 	nop    WORD PTR [rax+rax*1+0x0]
+    131e:	00 00 
+0000000000004020 <flag>:
+    4020:   0b 1b                   or     ebx,DWORD PTR [rbx]
+    4022:   1b 2b                   sbb    ebp,DWORD PTR [rbx]
+    4024:   9b                      fwait
+    4025:   9b                      fwait
+    4026:   23 2b                   and    ebp,DWORD PTR [rbx]
+    4028:   73 4b                   jae    4075 <__TMC_END__+0x1d>
+    402a:   2b 23                   sub    esp,DWORD PTR [rbx]
+    402c:   db 63 99                (bad)  [rbx-0x67]
+    402f:   33 a3 fa 93 81 a3       xor    esp,DWORD PTR [rbx-0x5c7e6c06]
+    4035:   a1 a3 99 fa 89 a9 fa    movabs eax,ds:0x8913faa989fa99a3
+    403c:   13 89 
+    403e:   3b fa                   cmp    edi,edx
+    4040:   43 99                   rex.XB cdq 
+    4042:   a1 23 a1 1b 43 99 fa    movabs eax,ds:0x131bfa99431ba123
+    4049:   1b 13 
+    404b:   0b c1                   or     eax,ecx
+    404d:   a1                      .byte 0xa1
+    404e:   81                      .byte 0x81
+    404f:   0b                      .byte 0xb
+    4050:   81                      .byte 0x81
+    4051:   eb                      .byte 0xeb
