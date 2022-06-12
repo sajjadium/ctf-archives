@@ -1,0 +1,43 @@
+version: '2.4'
+
+services:
+  app:
+    build:
+      context: ./app
+      dockerfile: flake.nix
+    image: app:latest
+    restart: "unless-stopped"
+    cpuset: "0"
+    environment:
+      - BOT_IMAGE=bot:latest
+      - FLAG
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 80:80
+    cap_drop:
+      - all
+    cap_add:
+      - NET_BIND_SERVICE
+    networks:
+      app_net:
+        ipv4_address: 192.168.69.69
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
+  # only for build image ;)
+  bot:
+    build:
+      context: ./bot
+    image: bot:latest
+    restart: "no"
+
+networks:
+  app_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.69.0/24

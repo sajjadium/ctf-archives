@@ -1,0 +1,15 @@
+[package]
+name = "dark-sols"
+version = "1.33.7"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+poc-framework = "0.1.6"
+anchor-client = "*"
+solana-program = "*"
+spl-token = { path = "./spl-token", features = ["no-entrypoint"] }
+tempfile = "*"
+threadpool = "*"
+borsh = "*"

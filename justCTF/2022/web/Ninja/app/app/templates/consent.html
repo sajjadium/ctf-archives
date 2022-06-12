@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block css %}
+  <style>
+    .consent_color {
+        color: {{ consent.color_palette }}
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<section class="container" id="generate-form">
+  <div class="row g-4">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h2 class="mb-3">Cookie consent</h2>
+
+
+        <hr class="my-4" />
+
+        <div class="col-10">
+            <div class="card shadow-sm">
+
+                <div class="card-header consent_color">
+                    {{consent.title}}
+                </div>
+              <div class="card-body">
+                <p class="card-text consent_color">We use cookies and other tracking technologies to improve your browsing experience on our website, to show you personalized content and targeted ads, to analyze our website traffic, and to understand where our visitors are coming from.</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group ">
+                    <!--FIX: reported HTML injection, added filters -->
+                    <a href="#{{link|replace('<',"&gt;")|replace('>',"&lt;")|safe}}">Open Preferences</a>
+                  </div>
+                  <small class="text-muted">❤️</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+    </div>
+  </div>
+</section>
+{% endblock %}

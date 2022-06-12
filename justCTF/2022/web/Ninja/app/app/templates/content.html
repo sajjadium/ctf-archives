@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<section class="text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Generate cookie consent</h1>
+        <p class="lead text-muted">
+          A Free Cookie Consent solution for your website to comply with
+          ePrivacy Directive & GDPR. Create your Cookie Consent notice
+          banner code in 1 minute
+        </p>
+        <p>
+          <a href="{{url_for('consents')}}" class="btn btn-primary my-2"
+            >Generate cookie consent</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <div class="container px-4 py-0" id="hanging-icons">
+    <h2 class="pb-2">Feaures</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="col d-flex align-items-start">
+        <div
+          class="icon-square align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <i class="fa fa-clock me-3"></i>
+        </div>
+        <div>
+          <h2>1-minute questionnaire</h2>
+          <p>
+            Our questionnaire takes only minutes. Start, answer our
+            questions and your Privacy Policy is ready.
+          </p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div
+          class="icon-square align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <i class="fa fa-lock me-3"></i>
+        </div>
+        <div>
+          <h2>Compliance</h2>
+          <p>
+            Our Free Privacy Policy Generator can help you comply with the
+            requirements of CCPA, CalOPPA, GDPR and others.
+          </p>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div
+          class="icon-square align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <i class="fa fa-solid fa-magic me-3"></i>
+        </div>
+        <div>
+          <h2>Guidance all the way</h2>
+          <p>
+            Our questionnaire is very easy to use and we're always here to
+            help you if you have any questions. Just email us.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
+

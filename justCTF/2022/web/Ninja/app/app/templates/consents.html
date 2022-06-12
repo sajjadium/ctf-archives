@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container" id="generate-form">
+  <div class="row g-4">
+    <div class="col-lg-6 col-md-8 mx-auto">
+      <h2 class="mb-3">Generate cookie consent</h2>
+      <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <div class="col-12">
+
+          {{ form.title.label }}
+
+          <div class="input-group has-validation">
+            {{ form.title(size=32, class_="form-control") }}
+            <div class="invalid-feedback">
+              {% for error in form.title.errors %}
+              <span style="color: red;">[{{ error }}]</span>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <hr class="my-4" />
+        
+        <div class="col-12">
+
+          {{ form.color_palette.label(class_="form-label") }}
+
+          <div class="input-group has-validation">
+
+            {% for subfield in form.color_palette %}
+
+            <div class="form-check">
+              <input {% if subfield.checked %}checked {% endif %}type="radio" name="color_palette"
+                class="form-check-input" id="{{ subfield.id }}" value="{{ subfield.data }}">
+              <i class="fa fa-solid fa-tint mx-2 fa-2xl"></i>
+              {{ subfield.label(class="form-check-label") }}
+            </div>
+            {% endfor %}
+
+
+          </div>
+
+          {% for error in form.color_palette.errors %}
+          <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}
+        </div>
+
+        <hr class="my-4" />
+
+        <div class="col-12">
+          {{ form.link.label(class_="form-label") }}
+          <div class="input-group has-validation">
+            <span class="input-group-text">#</span>
+            {{ form.link(size=32, class_="form-control") }}
+            {% for error in form.link.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+          </div>
+        </div>
+
+        <hr class="my-4" />
+
+
+        {{ form.submit(class_="w-100 btn btn-primary btn-lg") }}
+
+      </form>
+    </div>
+  </div>
+</section>
+<hr class="my-4" />
+<div class="container py-2 col-5">
+
+  <ul class="list-group">
+    <li class="list-group-item px-3 border-0 active" aria-current="true">
+      <b>Consents:</b>
+    </li>
+    {% for consent in consents %}
+    <li class="list-group-item"><a href="{{ url_for('consent', id=consent.id, link=consent.link) }}">{{ consent.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+
+{% endblock %}

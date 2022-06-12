@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+  <div class="container">
+    <a class="navbar-brand" href="#">
+      <i class="fa fa-cookie-bite me-2"></i>Cookie Consent Generator</a>
+
+    {% if current_user.is_anonymous %}
+    <a href="{{ url_for('login') }}">Login</a>
+    <a href="{{ url_for('register') }}">Register</a>
+    {% else %}
+
+    <div class="nickname">Hello, {% for item in current_user.username %}<span>{{ item }}</span>{% endfor %}!</div>
+
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('consents') }}">Consents</a>
+    <a href="{{ url_for('logout') }}">Logout</a>
+    {% endif %}
+  </div>
+</nav>

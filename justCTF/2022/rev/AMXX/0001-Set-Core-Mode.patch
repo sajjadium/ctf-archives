@@ -1,0 +1,1169 @@
+From cf1f4416f1619d6d0d438eb65c151f57942418f3 Mon Sep 17 00:00:00 2001
+From: Rivit <XXXXX>
+Date: Wed, 13 Apr 2022 21:58:29 +0200
+Subject: [PATCH] Set Core Mode, Disable label-switch optimization (use basic
+ program loop)
+
+---
+ .github/workflows/ci.yml |   21 +-
+ amxmodx/AMBuilder        |    2 -
+ amxmodx/amx.cpp          | 1061 +-------------------------------------
+ 3 files changed, 11 insertions(+), 1073 deletions(-)
+
+diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+index aa5bf698..48fd58b4 100644
+--- a/.github/workflows/ci.yml
++++ b/.github/workflows/ci.yml
+@@ -22,26 +22,9 @@ jobs:
+             os_short: linux
+             compiler_cc: clang
+             compiler_cxx: clang++        
+-          - os: ubuntu-18.04
+-            os_short: linux
+-            compiler_cc: clang-3.9
+-            compiler_cxx: clang++-3.9
+-          - os: ubuntu-18.04
+-            os_short: linux
+-            compiler_cc: gcc-6
+-            compiler_cxx: g++-6
+-            compiler_install: 'g++6 g++-6-multilib'
+           - os: windows-latest
+             os_short: windows
+             compiler_cc: msvc
+-          - os: windows-2016
+-            os_short: windows
+-            compiler_cc: msvc++14.16-vs2017-cl
+-# MacOS 32 Bins seem not supported
+-#           - os: macos-latest
+-#             os_short: mac
+-#             compiler_cc: clang
+-#             compiler_cxx: clang++            
+       fail-fast: false
+     runs-on: ${{ matrix.os }}
+     name: ${{ matrix.os_short }}-${{ matrix.os }}-${{ matrix.compiler_cc }}
+@@ -134,4 +117,8 @@ jobs:
+           cd build
+           python3 ../configure.py --enable-optimize --metamod=${{ env.DEPENDENCIES_ROOT_WIN }}\metamod-am --hlsdk=${{ env.DEPENDENCIES_ROOT_WIN }}\hlsdk --mysql=${{ env.DEPENDENCIES_ROOT_WIN }}\mysql-5.5
+           ambuild
++      - uses: actions/upload-artifact@v3
++        with: 
++          name: ${{ matrix.os_short }}-${{ matrix.os }}-${{ matrix.compiler_cc }}
++          path: amxmodx/build/packages
+           
+diff --git a/amxmodx/AMBuilder b/amxmodx/AMBuilder
+index f18a9bf3..5631238a 100644
+--- a/amxmodx/AMBuilder
++++ b/amxmodx/AMBuilder
+@@ -4,8 +4,6 @@ import os.path
+ binary = AMXX.MetaPlugin(builder, 'amxmodx')
+ 
+ binary.compiler.defines += [
+-  'JIT',
+-  'ASM32',
+   'HAVE_STDINT_H',
+ ]
+ 
+diff --git a/amxmodx/amx.cpp b/amxmodx/amx.cpp
+index 93f38b69..49d82649 100755
+--- a/amxmodx/amx.cpp
++++ b/amxmodx/amx.cpp
+@@ -541,24 +541,13 @@ static int amx_BrowseRelocate(AMX *amx)
+   assert(OP_SYMBOL==126);
+ 
+   amx->sysreq_d=0;      /* preset */
+-  #if (defined __GNUC__ || defined ASM32 || defined JIT) 
+-    amx_Exec(amx, (cell*)(void*)&opcode_list, 0);
+-    /* to use direct system requests, a function pointer must fit in a cell;
+-     * because the native function's address will be stored as the parameter
+-     * of SYSREQ.D
+-     */
+-    if ((amx->flags & AMX_FLAG_JITC)==0 && sizeof(AMX_NATIVE)<=sizeof(cell))
+-      amx->sysreq_d=opcode_list[OP_SYSREQ_D];
+-	amx->userdata[UD_OPCODELIST] = (void *)opcode_list;
+-  #else
+-    /* ANSI C
+-     * to use direct system requests, a function pointer must fit in a cell;
+-     * see the comment above
+-     */
+-    if (sizeof(AMX_NATIVE)<=sizeof(cell))
+-      amx->sysreq_d=OP_SYSREQ_D;
+-	amx->userdata[UD_OPCODELIST] = (long)NULL;
+-  #endif
++  /* ANSI C
++   * to use direct system requests, a function pointer must fit in a cell;
++   * see the comment above
++   */
++  if (sizeof(AMX_NATIVE)<=sizeof(cell))
++    amx->sysreq_d=OP_SYSREQ_D;
++	amx->userdata[UD_OPCODELIST] = NULL;
+ 
+   /* start browsing code */
+   for (cip=0; cip<codesize; ) {
+@@ -568,13 +557,6 @@ static int amx_BrowseRelocate(AMX *amx)
+       amx->flags &= ~AMX_FLAG_BROWSE;
+       return AMX_ERR_INVINSTR;
+     } /* if */
+-    #if defined __GNUC__ || defined ASM32 || defined JIT
+-      /* relocate opcode (only works if the size of an opcode is at least
+-       * as big as the size of a pointer (jump address); so basically we
+-       * rely on the opcode and a pointer being 32-bit
+-       */
+-      *(cell *)(code+(int)cip) = opcode_list[op];
+-    #endif
+     #if defined JIT
+       opcode_count++;
+     #endif
+@@ -641,11 +623,7 @@ static int amx_BrowseRelocate(AMX *amx)
+     case OP_SYSREQ_C:
+ 		{
+ 			if (hook)
+-#if defined __GNUC__ || defined ASM32 || defined JIT
+-				hook(amx, opcode_list, &cip);
+-#else
+ 				hook(amx, NULL, &cip);
+-#endif
+ 			else
+ 				cip+=sizeof(cell);
+ 			break;
+@@ -1636,1029 +1614,6 @@ int AMXAPI amx_PushString(AMX *amx, cell *amx_addr, cell **phys_addr, const char
+ #define CHKSTACK()      if (stk>amx->stp) return AMX_ERR_STACKLOW
+ #define CHKHEAP()       if (hea<amx->hlw) return AMX_ERR_HEAPLOW
+ 
+-#if defined __GNUC__ && !(defined ASM32 || defined JIT)
+-    /* GNU C version uses the "labels as values" extension to create
+-     * fast "indirect threaded" interpreter.
+-     */
+-
+-#define NEXT(cip)       goto *(const void *)*cip++
+-
+-int AMXAPI amx_Exec(AMX *amx, cell *retval, int index)
+-{
+-static const void * const amx_opcodelist[] = {
+-        &&op_none,      &&op_load_pri,  &&op_load_alt,  &&op_load_s_pri,
+-        &&op_load_s_alt,&&op_lref_pri,  &&op_lref_alt,  &&op_lref_s_pri,
+-        &&op_lref_s_alt,&&op_load_i,    &&op_lodb_i,    &&op_const_pri,
+-        &&op_const_alt, &&op_addr_pri,  &&op_addr_alt,  &&op_stor_pri,
+-        &&op_stor_alt,  &&op_stor_s_pri,&&op_stor_s_alt,&&op_sref_pri,
+-        &&op_sref_alt,  &&op_sref_s_pri,&&op_sref_s_alt,&&op_stor_i,
+-        &&op_strb_i,    &&op_lidx,      &&op_lidx_b,    &&op_idxaddr,
+-        &&op_idxaddr_b, &&op_align_pri, &&op_align_alt, &&op_lctrl,
+-        &&op_sctrl,     &&op_move_pri,  &&op_move_alt,  &&op_xchg,
+-        &&op_push_pri,  &&op_push_alt,  &&op_push_r,    &&op_push_c,
+-        &&op_push,      &&op_push_s,    &&op_pop_pri,   &&op_pop_alt,
+-        &&op_stack,     &&op_heap,      &&op_proc,      &&op_ret,
+-        &&op_retn,      &&op_call,      &&op_call_pri,  &&op_jump,
+-        &&op_jrel,      &&op_jzer,      &&op_jnz,       &&op_jeq,
+-        &&op_jneq,      &&op_jless,     &&op_jleq,      &&op_jgrtr,
+-        &&op_jgeq,      &&op_jsless,    &&op_jsleq,     &&op_jsgrtr,
+-        &&op_jsgeq,     &&op_shl,       &&op_shr,       &&op_sshr,
+-        &&op_shl_c_pri, &&op_shl_c_alt, &&op_shr_c_pri, &&op_shr_c_alt,
+-        &&op_smul,      &&op_sdiv,      &&op_sdiv_alt,  &&op_umul,
+-        &&op_udiv,      &&op_udiv_alt,  &&op_add,       &&op_sub,
+-        &&op_sub_alt,   &&op_and,       &&op_or,        &&op_xor,
+-        &&op_not,       &&op_neg,       &&op_invert,    &&op_add_c,
+-        &&op_smul_c,    &&op_zero_pri,  &&op_zero_alt,  &&op_zero,
+-        &&op_zero_s,    &&op_sign_pri,  &&op_sign_alt,  &&op_eq,
+-        &&op_neq,       &&op_less,      &&op_leq,       &&op_grtr,
+-        &&op_geq,       &&op_sless,     &&op_sleq,      &&op_sgrtr,
+-        &&op_sgeq,      &&op_eq_c_pri,  &&op_eq_c_alt,  &&op_inc_pri,
+-        &&op_inc_alt,   &&op_inc,       &&op_inc_s,     &&op_inc_i,
+-        &&op_dec_pri,   &&op_dec_alt,   &&op_dec,       &&op_dec_s,
+-        &&op_dec_i,     &&op_movs,      &&op_cmps,      &&op_fill,
+-        &&op_halt,      &&op_bounds,    &&op_sysreq_pri,&&op_sysreq_c,
+-        &&op_file,      &&op_line,      &&op_symbol,    &&op_srange,
+-        &&op_jump_pri,  &&op_switch,    &&op_casetbl,   &&op_swap_pri,
+-        &&op_swap_alt,  &&op_pushaddr,  &&op_nop,       &&op_sysreq_d,
+-        &&op_symtag,    &&op_break,     &&op_float_mul, &&op_float_div,
+-        &&op_float_add, &&op_float_sub, &&op_float_to,  &&op_float_round,
+-        &&op_float_cmp};
+-  AMX_HEADER *hdr;
+-  AMX_FUNCSTUB *func;
+-  unsigned char *code, *data;
+-  cell pri,alt,stk,frm,hea;
+-  cell reset_stk, reset_hea, *cip;
+-  cell offs, offs2;
+-  REAL fnum, fnum2;
+-  ucell codesize;
+-  int num,i;
+-
+-  /* HACK: return label table (for amx_BrowseRelocate) if amx structure
+-   * has the AMX_FLAG_BROWSE flag set.
+-   */
+-  assert(amx!=NULL);
+-  if ((amx->flags & AMX_FLAG_BROWSE)==AMX_FLAG_BROWSE) {
+-    assert(sizeof(cell)==sizeof(void *));
+-    assert(retval!=NULL);
+-    *retval=(cell)amx_opcodelist;
+-    return 0;
+-  } /* if */
+-
+-  if (amx->callback==NULL)
+-    return AMX_ERR_CALLBACK;
+-  if (!(amx->flags & AMX_FLAG_PRENIT))
+-	if ((amx->flags & AMX_FLAG_NTVREG)==0)
+-		return AMX_ERR_NOTFOUND;
+-  if ((amx->flags & AMX_FLAG_RELOC)==0)
+-    return AMX_ERR_INIT;
+-  assert((amx->flags & AMX_FLAG_BROWSE)==0);
+-
+-  /* set up the registers */
+-  hdr=(AMX_HEADER *)amx->base;
+-  assert(hdr->magic==AMX_MAGIC);
+-  codesize=(ucell)(hdr->dat-hdr->cod);
+-  code=amx->base+(int)hdr->cod;
+-  data=(amx->data!=NULL) ? amx->data : amx->base+(int)hdr->dat;
+-  hea=amx->hea;
+-  stk=amx->stk;
+-  reset_stk=stk;
+-  reset_hea=hea;
+-  alt=frm=0;    /* just to avoid compiler warnings */
+-  num=0;        /* just to avoid compiler warnings */
+-
+-  /* get the start address */
+-  if (index==AMX_EXEC_MAIN) {
+-    if (hdr->cip<0)
+-      return AMX_ERR_INDEX;
+-    cip=(cell *)(code + (int)hdr->cip);
+-  } else if (index==AMX_EXEC_CONT) {
+-    /* all registers: pri, alt, frm, cip, hea, stk, reset_stk, reset_hea */
+-    frm=amx->frm;
+-    stk=amx->stk;
+-    hea=amx->hea;
+-    pri=amx->pri;
+-    alt=amx->alt;
+-    reset_stk=amx->reset_stk;
+-    reset_hea=amx->reset_hea;
+-    cip=(cell *)(code + (int)amx->cip);
+-  } else if (index<0) {
+-    return AMX_ERR_INDEX;
+-  } else {
+-    if (index>=(int)NUMENTRIES(hdr,publics,natives))
+-      return AMX_ERR_INDEX;
+-    func=GETENTRY(hdr,publics,index);
+-    cip=(cell *)(code + (int)func->address);
+-  } /* if */
+-  /* check values just copied */
+-  CHKSTACK();
+-  CHKHEAP();
+-  assert(check_endian());
+-
+-  /* sanity checks */
+-  assert(OP_PUSH_PRI==36);
+-  assert(OP_PROC==46);
+-  assert(OP_SHL==65);
+-  assert(OP_SMUL==72);
+-  assert(OP_EQ==95);
+-  assert(OP_INC_PRI==107);
+-  assert(OP_MOVS==117);
+-  assert(OP_SYMBOL==126);
+-  #if PAWN_CELL_SIZE==16
+-    assert(sizeof(cell)==2);
+-  #elif PAWN_CELL_SIZE==32
+-    assert(sizeof(cell)==4);
+-  #elif PAWN_CELL_SIZE==64
+-    assert(sizeof(cell)==8);
+-  #else
+-    #error Unsupported cell size
+-  #endif
+-
+-  if (index!=AMX_EXEC_CONT) {
+-    reset_stk+=amx->paramcount*sizeof(cell);
+-    PUSH(amx->paramcount*sizeof(cell));
+-    amx->paramcount=0;          /* push the parameter count to the stack & reset */
+-    PUSH(0);                    /* zero return address */
+-  } /* if */
+-  /* check stack/heap before starting to run */
+-  CHKMARGIN();
+-
+-  /* start running */
+-  NEXT(cip);
+-
+-  op_none:
+-    ABORT(amx,AMX_ERR_INVINSTR);
+-  op_load_pri:
+-    GETPARAM(offs);
+-    pri= * (cell *)(data+(int)offs);
+-    NEXT(cip);
+-  op_load_alt:
+-    GETPARAM(offs);
+-    alt= * (cell *)(data+(int)offs);
+-    NEXT(cip);
+-  op_load_s_pri:
+-    GETPARAM(offs);
+-    pri= * (cell *)(data+(int)frm+(int)offs);
+-    NEXT(cip);
+-  op_load_s_alt:
+-    GETPARAM(offs);
+-    alt= * (cell *)(data+(int)frm+(int)offs);
+-    NEXT(cip);
+-  op_lref_pri:
+-    GETPARAM(offs);
+-    offs= * (cell *)(data+(int)offs);
+-    pri= * (cell *)(data+(int)offs);
+-    NEXT(cip);
+-  op_lref_alt:
+-    GETPARAM(offs);
+-    offs= * (cell *)(data+(int)offs);
+-    alt= * (cell *)(data+(int)offs);
+-    NEXT(cip);
+-  op_lref_s_pri:
+-    GETPARAM(offs);
+-    offs= * (cell *)(data+(int)frm+(int)offs);
+-    pri= * (cell *)(data+(int)offs);
+-    NEXT(cip);
+-  op_lref_s_alt:
+-    GETPARAM(offs);
+-    offs= * (cell *)(data+(int)frm+(int)offs);
+-    alt= * (cell *)(data+(int)offs);
+-    NEXT(cip);
+-  op_load_i:
+-    /* verify address */
+-    if ((pri>=hea && pri<stk) || (ucell)pri>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    pri= * (cell *)(data+(int)pri);
+-    NEXT(cip);
+-  op_lodb_i:
+-    GETPARAM(offs);
+-    /* verify address */
+-    if ((pri>=hea && pri<stk) || (ucell)pri>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    switch (offs) {
+-    case 1:
+-      pri= * (data+(int)pri);
+-      break;
+-    case 2:
+-      pri= * (uint16_t *)(data+(int)pri);
+-      break;
+-    case 4:
+-      pri= * (uint32_t *)(data+(int)pri);
+-      break;
+-    } /* switch */
+-    NEXT(cip);
+-  op_const_pri:
+-    GETPARAM(pri);
+-    NEXT(cip);
+-  op_const_alt:
+-    GETPARAM(alt);
+-    NEXT(cip);
+-  op_addr_pri:
+-    GETPARAM(pri);
+-    pri+=frm;
+-    NEXT(cip);
+-  op_addr_alt:
+-    GETPARAM(alt);
+-    alt+=frm;
+-    NEXT(cip);
+-  op_stor_pri:
+-    GETPARAM(offs);
+-    *(cell *)(data+(int)offs)=pri;
+-    NEXT(cip);
+-  op_stor_alt:
+-    GETPARAM(offs);
+-    *(cell *)(data+(int)offs)=alt;
+-    NEXT(cip);
+-  op_stor_s_pri:
+-    GETPARAM(offs);
+-    *(cell *)(data+(int)frm+(int)offs)=pri;
+-    NEXT(cip);
+-  op_stor_s_alt:
+-    GETPARAM(offs);
+-    *(cell *)(data+(int)frm+(int)offs)=alt;
+-    NEXT(cip);
+-  op_sref_pri:
+-    GETPARAM(offs);
+-    offs= * (cell *)(data+(int)offs);
+-    *(cell *)(data+(int)offs)=pri;
+-    NEXT(cip);
+-  op_sref_alt:
+-    GETPARAM(offs);
+-    offs= * (cell *)(data+(int)offs);
+-    *(cell *)(data+(int)offs)=alt;
+-    NEXT(cip);
+-  op_sref_s_pri:
+-    GETPARAM(offs);
+-    offs= * (cell *)(data+(int)frm+(int)offs);
+-    *(cell *)(data+(int)offs)=pri;
+-    NEXT(cip);
+-  op_sref_s_alt:
+-    GETPARAM(offs);
+-    offs= * (cell *)(data+(int)frm+(int)offs);
+-    *(cell *)(data+(int)offs)=alt;
+-    NEXT(cip);
+-  op_stor_i:
+-    /* verify address */
+-    if ((alt>=hea && alt<stk) || (ucell)alt>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    *(cell *)(data+(int)alt)=pri;
+-    NEXT(cip);
+-  op_strb_i:
+-    GETPARAM(offs);
+-    /* verify address */
+-    if ((alt>=hea && alt<stk) || (ucell)alt>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    switch (offs) {
+-    case 1:
+-      *(data+(int)alt)=(unsigned char)pri;
+-      break;
+-    case 2:
+-      *(uint16_t *)(data+(int)alt)=(uint16_t)pri;
+-      break;
+-    case 4:
+-      *(uint32_t *)(data+(int)alt)=(uint32_t)pri;
+-      break;
+-    } /* switch */
+-    NEXT(cip);
+-  op_lidx:
+-    offs=pri*sizeof(cell)+alt;
+-    /* verify address */
+-    if ((offs>=hea && offs<stk) || (ucell)offs>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    pri= * (cell *)(data+(int)offs);
+-    NEXT(cip);
+-  op_lidx_b:
+-    GETPARAM(offs);
+-    offs=(pri << (int)offs)+alt;
+-    /* verify address */
+-    if ((offs>=hea && offs<stk) || (ucell)offs>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    pri= * (cell *)(data+(int)offs);
+-    NEXT(cip);
+-  op_idxaddr:
+-    pri=pri*sizeof(cell)+alt;
+-    NEXT(cip);
+-  op_idxaddr_b:
+-    GETPARAM(offs);
+-    pri=(pri << (int)offs)+alt;
+-    NEXT(cip);
+-  op_align_pri:
+-    GETPARAM(offs);
+-    #if BYTE_ORDER==LITTLE_ENDIAN
+-      if (offs<(int)sizeof(cell))
+-        pri ^= sizeof(cell)-offs;
+-    #endif
+-    NEXT(cip);
+-  op_align_alt:
+-    GETPARAM(offs);
+-    #if BYTE_ORDER==LITTLE_ENDIAN
+-      if (offs<(int)sizeof(cell))
+-        alt ^= sizeof(cell)-offs;
+-    #endif
+-    NEXT(cip);
+-  op_lctrl:
+-    GETPARAM(offs);
+-    switch (offs) {
+-    case 0:
+-      pri=hdr->cod;
+-      break;
+-    case 1:
+-      pri=hdr->dat;
+-      break;
+-    case 2:
+-      pri=hea;
+-      break;
+-    case 3:
+-      pri=amx->stp;
+-      break;
+-    case 4:
+-      pri=stk;
+-      break;
+-    case 5:
+-      pri=frm;
+-      break;
+-    case 6:
+-      pri=(cell)((unsigned char *)cip - code);
+-      break;
+-    } /* switch */
+-    NEXT(cip);
+-  op_sctrl:
+-    GETPARAM(offs);
+-    switch (offs) {
+-    case 0:
+-    case 1:
+-    case 3:
+-      /* cannot change these parameters */
+-      break;
+-    case 2:
+-      hea=pri;
+-      break;
+-    case 4:
+-      stk=pri;
+-      break;
+-    case 5:
+-      frm=pri;
+-      break;
+-    case 6:
+-      cip=(cell *)(code + (int)pri);
+-      break;
+-    } /* switch */
+-    NEXT(cip);
+-  op_move_pri:
+-    pri=alt;
+-    NEXT(cip);
+-  op_move_alt:
+-    alt=pri;
+-    NEXT(cip);
+-  op_xchg:
+-    offs=pri;         /* offs is a temporary variable */
+-    pri=alt;
+-    alt=offs;
+-    NEXT(cip);
+-  op_push_pri:
+-    PUSH(pri);
+-    NEXT(cip);
+-  op_push_alt:
+-    PUSH(alt);
+-    NEXT(cip);
+-  op_push_c:
+-    GETPARAM(offs);
+-    PUSH(offs);
+-    NEXT(cip);
+-  op_push_r:
+-    GETPARAM(offs);
+-    while (offs--)
+-      PUSH(pri);
+-    NEXT(cip);
+-  op_push:
+-    GETPARAM(offs);
+-    PUSH(* (cell *)(data+(int)offs));
+-    NEXT(cip);
+-  op_push_s:
+-    GETPARAM(offs);
+-    PUSH(* (cell *)(data+(int)frm+(int)offs));
+-    NEXT(cip);
+-  op_pop_pri:
+-    POP(pri);
+-    NEXT(cip);
+-  op_pop_alt:
+-    POP(alt);
+-    NEXT(cip);
+-  op_stack:
+-    GETPARAM(offs);
+-    alt=stk;
+-    stk+=offs;
+-    CHKMARGIN();
+-    CHKSTACK();
+-    NEXT(cip);
+-  op_heap:
+-    GETPARAM(offs);
+-    alt=hea;
+-    hea+=offs;
+-    CHKMARGIN();
+-    CHKHEAP();
+-    NEXT(cip);
+-  op_proc:
+-    PUSH(frm);
+-    frm=stk;
+-    CHKMARGIN();
+-    NEXT(cip);
+-  op_ret:
+-    POP(frm);
+-    POP(offs);
+-    /* verify the return address */
+-    if ((ucell)offs>=codesize)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    cip=(cell *)(code+(int)offs);
+-    NEXT(cip);
+-  op_retn:
+-    POP(frm);
+-    POP(offs);
+-    /* verify the return address */
+-    if ((ucell)offs>=codesize)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    cip=(cell *)(code+(int)offs);
+-    stk+= *(cell *)(data+(int)stk) + sizeof(cell); /* remove parameters from the stack */
+-    NEXT(cip);
+-  op_call:
+-    PUSH(((unsigned char *)cip-code)+sizeof(cell));/* push address behind instruction */
+-    cip=JUMPABS(code, cip);                     /* jump to the address */
+-    NEXT(cip);
+-  op_call_pri:
+-    PUSH((unsigned char *)cip-code);
+-    cip=(cell *)(code+(int)pri);
+-    NEXT(cip);
+-  op_jump:
+-    /* since the GETPARAM() macro modifies cip, you cannot
+-     * do GETPARAM(cip) directly */
+-    cip=JUMPABS(code, cip);
+-    NEXT(cip);
+-  op_jrel:
+-    offs=*cip;
+-    cip=(cell *)((unsigned char *)cip + (int)offs + sizeof(cell));
+-    NEXT(cip);
+-  op_jzer:
+-    if (pri==0)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jnz:
+-    if (pri!=0)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jeq:
+-    if (pri==alt)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jneq:
+-    if (pri!=alt)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jless:
+-    if ((ucell)pri < (ucell)alt)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jleq:
+-    if ((ucell)pri <= (ucell)alt)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jgrtr:
+-    if ((ucell)pri > (ucell)alt)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jgeq:
+-    if ((ucell)pri >= (ucell)alt)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jsless:
+-    if (pri<alt)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jsleq:
+-    if (pri<=alt)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jsgrtr:
+-    if (pri>alt)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_jsgeq:
+-    if (pri>=alt)
+-      cip=JUMPABS(code, cip);
+-    else
+-      cip=(cell *)((unsigned char *)cip+sizeof(cell));
+-    NEXT(cip);
+-  op_shl:
+-    pri<<=alt;
+-    NEXT(cip);
+-  op_shr:
+-    pri=(ucell)pri >> (ucell)alt;
+-    NEXT(cip);
+-  op_sshr:
+-    pri>>=alt;
+-    NEXT(cip);
+-  op_shl_c_pri:
+-    GETPARAM(offs);
+-    pri<<=offs;
+-    NEXT(cip);
+-  op_shl_c_alt:
+-    GETPARAM(offs);
+-    alt<<=offs;
+-    NEXT(cip);
+-  op_shr_c_pri:
+-    GETPARAM(offs);
+-    pri=(ucell)pri >> (ucell)offs;
+-    NEXT(cip);
+-  op_shr_c_alt:
+-    GETPARAM(offs);
+-    alt=(ucell)alt >> (ucell)offs;
+-    NEXT(cip);
+-  op_smul:
+-    pri*=alt;
+-    NEXT(cip);
+-  op_sdiv:
+-    if (alt==0)
+-      ABORT(amx,AMX_ERR_DIVIDE);
+-    /* divide must always round down; this is a bit
+-     * involved to do in a machine-independent way.
+-     */
+-    offs=(pri % alt + alt) % alt;     /* true modulus */
+-    pri=(pri - offs) / alt;           /* division result */
+-    alt=offs;
+-    NEXT(cip);
+-  op_sdiv_alt:
+-    if (pri==0)
+-      ABORT(amx,AMX_ERR_DIVIDE);
+-    /* divide must always round down; this is a bit
+-     * involved to do in a machine-independent way.
+-     */
+-    offs=(alt % pri + pri) % pri;     /* true modulus */
+-    pri=(alt - offs) / pri;           /* division result */
+-    alt=offs;
+-    NEXT(cip);
+-  op_umul:
+-    pri=(ucell)pri * (ucell)alt;
+-    NEXT(cip);
+-  op_udiv:
+-    if (alt==0)
+-      ABORT(amx,AMX_ERR_DIVIDE);
+-    offs=(ucell)pri % (ucell)alt;     /* temporary storage */
+-    pri=(ucell)pri / (ucell)alt;
+-    alt=offs;
+-    NEXT(cip);
+-  op_udiv_alt:
+-    if (pri==0)
+-      ABORT(amx,AMX_ERR_DIVIDE);
+-    offs=(ucell)alt % (ucell)pri;     /* temporary storage */
+-    pri=(ucell)alt / (ucell)pri;
+-    alt=offs;
+-    NEXT(cip);
+-  op_add:
+-    pri+=alt;
+-    NEXT(cip);
+-  op_sub:
+-    pri-=alt;
+-    NEXT(cip);
+-  op_sub_alt:
+-    pri=alt-pri;
+-    NEXT(cip);
+-  op_and:
+-    pri&=alt;
+-    NEXT(cip);
+-  op_or:
+-    pri|=alt;
+-    NEXT(cip);
+-  op_xor:
+-    pri^=alt;
+-    NEXT(cip);
+-  op_not:
+-    pri=!pri;
+-    NEXT(cip);
+-  op_neg:
+-    pri=-pri;
+-    NEXT(cip);
+-  op_invert:
+-    pri=~pri;
+-    NEXT(cip);
+-  op_add_c:
+-    GETPARAM(offs);
+-    pri+=offs;
+-    NEXT(cip);
+-  op_smul_c:
+-    GETPARAM(offs);
+-    pri*=offs;
+-    NEXT(cip);
+-  op_zero_pri:
+-    pri=0;
+-    NEXT(cip);
+-  op_zero_alt:
+-    alt=0;
+-    NEXT(cip);
+-  op_zero:
+-    GETPARAM(offs);
+-    *(cell *)(data+(int)offs)=0;
+-    NEXT(cip);
+-  op_zero_s:
+-    GETPARAM(offs);
+-    *(cell *)(data+(int)frm+(int)offs)=0;
+-    NEXT(cip);
+-  op_sign_pri:
+-    if ((pri & 0xff)>=0x80)
+-      pri|= ~ (ucell)0xff;
+-    NEXT(cip);
+-  op_sign_alt:
+-    if ((alt & 0xff)>=0x80)
+-      alt|= ~ (ucell)0xff;
+-    NEXT(cip);
+-  op_eq:
+-    pri= pri==alt ? 1 : 0;
+-    NEXT(cip);
+-  op_neq:
+-    pri= pri!=alt ? 1 : 0;
+-    NEXT(cip);
+-  op_less:
+-    pri= (ucell)pri < (ucell)alt ? 1 : 0;
+-    NEXT(cip);
+-  op_leq:
+-    pri= (ucell)pri <= (ucell)alt ? 1 : 0;
+-    NEXT(cip);
+-  op_grtr:
+-    pri= (ucell)pri > (ucell)alt ? 1 : 0;
+-    NEXT(cip);
+-  op_geq:
+-    pri= (ucell)pri >= (ucell)alt ? 1 : 0;
+-    NEXT(cip);
+-  op_sless:
+-    pri= pri<alt ? 1 : 0;
+-    NEXT(cip);
+-  op_sleq:
+-    pri= pri<=alt ? 1 : 0;
+-    NEXT(cip);
+-  op_sgrtr:
+-    pri= pri>alt ? 1 : 0;
+-    NEXT(cip);
+-  op_sgeq:
+-    pri= pri>=alt ? 1 : 0;
+-    NEXT(cip);
+-  op_eq_c_pri:
+-    GETPARAM(offs);
+-    pri= pri==offs ? 1 : 0;
+-    NEXT(cip);
+-  op_eq_c_alt:
+-    GETPARAM(offs);
+-    pri= alt==offs ? 1 : 0;
+-    NEXT(cip);
+-  op_inc_pri:
+-    pri++;
+-    NEXT(cip);
+-  op_inc_alt:
+-    alt++;
+-    NEXT(cip);
+-  op_inc:
+-    GETPARAM(offs);
+-    *(cell *)(data+(int)offs) += 1;
+-    NEXT(cip);
+-  op_inc_s:
+-    GETPARAM(offs);
+-    *(cell *)(data+(int)frm+(int)offs) += 1;
+-    NEXT(cip);
+-  op_inc_i:
+-    *(cell *)(data+(int)pri) += 1;
+-    NEXT(cip);
+-  op_dec_pri:
+-    pri--;
+-    NEXT(cip);
+-  op_dec_alt:
+-    alt--;
+-    NEXT(cip);
+-  op_dec:
+-    GETPARAM(offs);
+-    *(cell *)(data+(int)offs) -= 1;
+-    NEXT(cip);
+-  op_dec_s:
+-    GETPARAM(offs);
+-    *(cell *)(data+(int)frm+(int)offs) -= 1;
+-    NEXT(cip);
+-  op_dec_i:
+-    *(cell *)(data+(int)pri) -= 1;
+-    NEXT(cip);
+-  op_movs:
+-    GETPARAM(offs);
+-    /* verify top & bottom memory addresses, for both source and destination
+-     * addresses
+-     */
+-    if ((pri>=hea && pri<stk) || (ucell)pri>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    if (((pri+offs)>hea && (pri+offs)<stk) || (ucell)(pri+offs)>(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    if ((alt>=hea && alt<stk) || (ucell)alt>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    if (((alt+offs)>hea && (alt+offs)<stk) || (ucell)(alt+offs)>(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    memcpy(data+(int)alt, data+(int)pri, (int)offs);
+-    NEXT(cip);
+-  op_cmps:
+-    GETPARAM(offs);
+-    /* verify top & bottom memory addresses, for both source and destination
+-     * addresses
+-     */
+-    if ((pri>=hea && pri<stk) || (ucell)pri>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    if (((pri+offs)>hea && (pri+offs)<stk) || (ucell)(pri+offs)>(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    if ((alt>=hea && alt<stk) || (ucell)alt>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    if (((alt+offs)>hea && (alt+offs)<stk) || (ucell)(alt+offs)>(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    pri=memcmp(data+(int)alt, data+(int)pri, (int)offs);
+-    NEXT(cip);
+-  op_fill:
+-    GETPARAM(offs);
+-    /* verify top & bottom memory addresses */
+-    if ((alt>=hea && alt<stk) || (ucell)alt>=(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    if (((alt+offs)>hea && (alt+offs)<stk) || (ucell)(alt+offs)>(ucell)amx->stp)
+-      ABORT(amx,AMX_ERR_MEMACCESS);
+-    for (i=(int)alt; offs>=(int)sizeof(cell); i+=sizeof(cell), offs-=sizeof(cell))
+-      *(cell *)(data+i) = pri;
+-    NEXT(cip);
+-  op_halt:
+-    GETPARAM(offs);
+-    if (retval!=NULL)
+-      *retval=pri;
+-    /* store complete status (stk and hea are already set in the ABORT macro) */
+-    amx->frm=frm;
+-    amx->pri=pri;
+-    amx->alt=alt;
+-    amx->cip=(cell)((unsigned char*)cip-code);
+-    if (offs==AMX_ERR_SLEEP) {
+-      amx->reset_stk=reset_stk;
+-      amx->reset_hea=reset_hea;
+-      return (int)offs;
+-    } /* if */
+-    ABORT(amx,(int)offs);
+-  op_bounds:
+-    GETPARAM(offs);
+-    if ((ucell)pri>(ucell)offs)
+-      ABORT(amx,AMX_ERR_BOUNDS);
+-    NEXT(cip);
+-  op_sysreq_pri:
+-    /* save a few registers */
+-    amx->cip=(cell)((unsigned char *)cip-code);
+-    amx->hea=hea;
+-    amx->frm=frm;
+-    amx->stk=stk;
+-    amx->pri=pri;
+-    amx->alt=alt;
+-    num=amx->callback(amx,pri,&pri,(cell *)(data+(int)stk));
+-    if (num!=AMX_ERR_NONE) {
+-      if (num==AMX_ERR_SLEEP) {
+-        amx->pri=pri;
+-        amx->alt=alt;
+-        amx->reset_stk=reset_stk;
+-        amx->reset_hea=reset_hea;
+-        return num;
+-      } /* if */
+-      ABORT(amx,num);
+-    } /* if */
+-    NEXT(cip);
+-  op_sysreq_c:
+-    GETPARAM(offs);
+-    /* save a few registers */
+-    amx->cip=(cell)((unsigned char *)cip-code);
+-    amx->hea=hea;
+-    amx->frm=frm;
+-    amx->stk=stk;
+-    amx->pri=pri;
+-    amx->alt=alt;
+-    num=amx->callback(amx,offs,&pri,(cell *)(data+(int)stk));
+-    if (num!=AMX_ERR_NONE) {
+-      if (num==AMX_ERR_SLEEP) {
+-        amx->pri=pri;
+-        amx->alt=alt;
+-        amx->reset_stk=reset_stk;
+-        amx->reset_hea=reset_hea;
+-        return num;
+-      } /* if */
+-      ABORT(amx,num);
+-    } /* if */
+-    NEXT(cip);
+-  op_sysreq_d:
+-    GETPARAM(offs);
+-    /* save a few registers */
+-    amx->cip=(cell)((unsigned char *)cip-code);
+-    amx->hea=hea;
+-    amx->frm=frm;
+-    amx->stk=stk;
+-    amx->pri=pri;
+-    amx->alt=alt;
+-    pri=((AMX_NATIVE)offs)(amx,(cell *)(data+(int)stk));
+-    if (amx->error!=AMX_ERR_NONE) {
+-      if (amx->error==AMX_ERR_SLEEP) {
+-        amx->pri=pri;
+-        amx->alt=alt;
+-        amx->reset_stk=reset_stk;
+-        amx->reset_hea=reset_hea;
+-        return num;
+-      } /* if */
+-      ABORT(amx,amx->error);
+-    } /* if */
+-    NEXT(cip);
+-  op_file:
+-    GETPARAM(offs);
+-    cip=(cell *)((unsigned char *)cip + (int)offs);
+-    assert(0);        /* this code should not occur during execution */
+-    NEXT(cip);
+-  op_line:
+-    SKIPPARAM(2);
+-    NEXT(cip);
+-  op_symbol:
+-    GETPARAM(offs);
+-    cip=(cell *)((unsigned char *)cip + (int)offs);
+-    NEXT(cip);
+-  op_srange:
+-    SKIPPARAM(2);
+-    NEXT(cip);
+-  op_symtag:
+-    SKIPPARAM(1);
+-    NEXT(cip);
+-  op_jump_pri:
+-    cip=(cell *)(code+(int)pri);
+-    NEXT(cip);
+-  op_switch: {
+-    cell *cptr;
+-    cptr=JUMPABS(code,cip)+1;   /* +1, to skip the "casetbl" opcode */
+-    cip=JUMPABS(code,cptr+1);   /* preset to "none-matched" case */
+-    num=(int)*cptr;             /* number of records in the case table */
+-    for (cptr+=2; num>0 && *cptr!=pri; num--,cptr+=2)
+-      /* nothing */;
+-    if (num>0)
+-      cip=JUMPABS(code,cptr+1); /* case found */
+-    NEXT(cip);
+-    }
+-  op_casetbl:
+-    assert(0);          /* this should not occur during execution */
+-    NEXT(cip);
+-  op_swap_pri:
+-    offs=*(cell *)(data+(int)stk);
+-    *(cell *)(data+(int)stk)=pri;
+-    pri=offs;
+-    NEXT(cip);
+-  op_swap_alt:
+-    offs=*(cell *)(data+(int)stk);
+-    *(cell *)(data+(int)stk)=alt;
+-    alt=offs;
+-    NEXT(cip);
+-  op_pushaddr:
+-    GETPARAM(offs);
+-    PUSH(frm+offs);
+-    NEXT(cip);
+-  op_nop:
+-    NEXT(cip);
+-  op_float_mul:
+-    offs = *(cell *)(data + (int)stk + sizeof(cell)*1);
+-    offs2 = *(cell *)(data + (int)stk + sizeof(cell)*2);
+-    fnum = amx_ctof(offs) * amx_ctof(offs2);
+-    pri = amx_ftoc(fnum);
+-    NEXT(cip);
+-  op_float_add:
+-    offs = *(cell *)(data + (int)stk + sizeof(cell)*1);
+-    offs2 = *(cell *)(data + (int)stk + sizeof(cell)*2);
+-    fnum = amx_ctof(offs) + amx_ctof(offs2);
+-    pri = amx_ftoc(fnum);
+-    NEXT(cip);
+-  op_float_sub:
+-    offs = *(cell *)(data + (int)stk + sizeof(cell)*1);
+-    offs2 = *(cell *)(data + (int)stk + sizeof(cell)*2);
+-    fnum = amx_ctof(offs) - amx_ctof(offs2);
+-    pri = amx_ftoc(fnum);
+-    NEXT(cip);
+-  op_float_div:
+-    offs = *(cell *)(data + (int)stk + sizeof(cell)*1);
+-    offs2 = *(cell *)(data + (int)stk + sizeof(cell)*2);
+-    fnum = amx_ctof(offs) / amx_ctof(offs2);
+-    pri = amx_ftoc(fnum);
+-    NEXT(cip);
+-  op_float_to:
+-    offs = *(cell *)(data + (int)stk + sizeof(cell)*1);
+-    fnum = (REAL)offs;
+-    pri = amx_ftoc(fnum);
+-    NEXT(cip);
+-  op_float_round:
+-    offs = *(cell *)(data + (int)stk + sizeof(cell)*1);
+-    offs2 = *(cell *)(data + (int)stk + sizeof(cell)*2);
+-    fnum = amx_ctof(offs);
+-    if (!offs2)
+-       fnum = floor(fnum + 0.5);
+-	else  if (offs2 == 1)
+-       fnum = floor(fnum);
+-	else
+-       fnum = ceil(fnum);
+-    pri = (cell)fnum;
+-    NEXT(cip);
+-  op_float_cmp:
+-    offs = *(cell *)(data + (int)stk + sizeof(cell)*1);
+-    offs2 = *(cell *)(data + (int)stk + sizeof(cell)*2);
+-    fnum = amx_ctof(offs);
+-    fnum2 = amx_ctof(offs2);
+-    if (fnum == fnum2)
+-      pri = 0;
+-	else if (fnum > fnum2)
+-      pri = 1;
+-	else
+-      pri = -1;
+-    NEXT(cip);
+-op_break:
+-    if (amx->debug!=NULL) {
+-      /* store status */
+-      amx->frm=frm;
+-      amx->stk=stk;
+-      amx->hea=hea;
+-      amx->pri=pri;
+-      amx->alt=alt;
+-      amx->cip=(cell)((unsigned char*)cip-code);
+-      num=amx->debug(amx);
+-      if (num!=AMX_ERR_NONE) {
+-        if (num==AMX_ERR_SLEEP) {
+-          amx->pri=pri;
+-          amx->alt=alt;
+-          amx->reset_stk=reset_stk;
+-          amx->reset_hea=reset_hea;
+-          return num;
+-        } /* if */
+-        ABORT(amx,num);
+-      } /* if */
+-    } /* if */
+-    NEXT(cip);
+-}
+-
+-#else
+-    /* ANSI C & assembler versions */
+-
+-#if defined ASM32 || defined JIT
+-  /* For Watcom C/C++ use register calling convention (faster); for
+-   * Microsoft C/C++ (and most other C compilers) use "cdecl".
+-   * The important point is that you assemble AMXEXEC.ASM with the matching
+-   * calling convention, or the right JIT, respectively.
+-   * AMXJITR.ASM is for Watcom's register calling convention, AMXJITS.ASM and
+-   * AMXJITSN.ASM are for "cdecl".
+-   */
+-  #if defined __WATCOMC__
+-    #if !defined STACKARGS  /* for AMX32.DLL */
+-      extern cell amx_exec_asm(cell *regs,cell *retval,cell stp,cell hea);
+-            /* The following pragma tells the compiler into which registers
+-             * the parameters have to go. */
+-            #pragma aux amx_exec_asm parm [eax] [edx] [ebx] [ecx];
+-      extern cell amx_exec_jit(cell *regs,cell *retval,cell stp,cell hea);
+-            #pragma aux amx_exec_jit parm [eax] [edx] [ebx] [ecx];
+-    #else
+-      extern cell __cdecl amx_exec_asm(cell *regs,cell *retval,cell stp,cell hea);
+-      extern cell __cdecl amx_exec_jit(cell *regs,cell *retval,cell stp,cell hea);
+-    #endif
+-  #elif defined __GNUC__
+-    /* force "cdecl" by adding an "attribute" to the declaration */
+-    extern "C" cell amx_exec_asm(cell *regs,cell *retval,cell stp,cell hea) __attribute__((cdecl));
+-    extern "C" cell amx_exec_jit(cell *regs,cell *retval,cell stp,cell hea) __attribute__((cdecl));
+-  #else
+-    /* force "cdecl" by specifying it as a "function class" with the "__cdecl" keyword */
+-    extern "C" cell __cdecl amx_exec_asm(cell *regs,cell *retval,cell stp,cell hea);
+-    extern "C" cell __cdecl amx_exec_jit(cell *regs,cell *retval,cell stp,cell hea);
+-  #endif
+-#endif
+-
+-#if defined ASM32
+-  extern "C" void *amx_opcodelist[];
+-  #ifdef __WATCOMC__
+-    #pragma aux amx_opcodelist "_*"
+-  #endif
+-#endif
+-#if defined JIT
+-  extern "C" void const *amx_opcodelist_jit[];
+-  #ifdef __WATCOMC__
+-    #pragma aux amx_opcodelist_jit "_*"
+-  #endif
+-#endif
+-
+ int AMXAPI amx_Exec(AMX *amx, cell *retval, int index)
+ {
+   AMX_HEADER *hdr;
+@@ -3651,8 +2606,6 @@ int AMXAPI amx_Exec(AMX *amx, cell *retval, int index)
+ #endif
+ }
+ 
+-#endif  /* __GNUC__ */
+-
+ #endif /* AMX_EXEC || AMX_INIT */
+ 
+ #if defined AMX_SETCALLBACK
+-- 
+2.28.0.windows.1
+

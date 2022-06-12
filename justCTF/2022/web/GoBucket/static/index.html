@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GoBucket</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+  </head>
+  <body>
+    <div class="col-lg-8 mx-auto p-3 py-md-5">
+      <header class="d-flex align-items-center pb-3 mb-5 border-bottom">
+        <a href="#" class="d-flex align-items-center text-dark text-decoration-none">
+          <span class="fs-4">GoBucket</span>
+        </a>
+      </header>
+
+      <main>
+        <h1>GoBucket</h1>
+        <p class="fs-6 col-md-12">
+          Welcome to the future of internet file storage!
+          Our service is currently in beta and because of this we have few restrictions in place that limit users to 3 files up to 1Kb each and limit the amount of requests users can make to our servers. <br>
+          Check out our <a href="/files/7b581262-6b4d-432d-a43b-6e5d3a4c4b90/sample.txt">sample file</a>
+        </p>
+
+        <hr class="col-3 col-md-2 mb-5" />
+
+        <div class="row g-5">
+          <div class="col-md-6">
+            <h2>Current bucket</h2>
+            <p id="bucketId"></p>
+            <button class="btn btn-primary btn-lg px-4" onclick="fetchBucketId(true)">Request a new bucket</a>
+          </div>
+
+          <div class="col-md-6">
+            <h2>File upload</h2>
+            <div class="input-group">
+              <input type="file" class="form-control" id="file" aria-describedby="uploadButton" aria-label="Upload">
+              <button class="btn btn-primary" type="button" id="uploadButton" onclick="uploadFile()">Upload</button>
+            </div>
+            <p id="formStatus"></p>
+          </div>
+        </div>
+      </main>
+
+      <footer class="pt-5 my-5 text-muted border-top">
+        Powered by <a href="https://go.dev/">GoLang</a> and <a href="https://www.microsoft.com/en-us/windows">Microsoft Windows</a>
+      </footer>
+    </div>
+
+    <script>
+      var bucketId = localStorage.getItem('bucketId');
+      var bucketIdElement = document.getElementById('bucketId')
+      var uploadButton = document.getElementById('uploadButton')
+      var fileInput = document.getElementById('file')
+      var formStatus = document.getElementById('formStatus')
+
+      async function requestBucketId() {
+        var response = await fetch("/api/newBucket", { method: "POST" });
+        var json = await response.json();
+
+        if (json.ok) {
+          return json.bucketId
+        } else {
+          return null
+        }
+      }
+
+      async function uploadFile() {
+        if (fileInput.files.length != 1) {
+          formStatus.innerHTML = `<span style="color: red;">Please select a single file to upload.</span>`
+          return 
+        }
+
+        if (!bucketId) {
+          formStatus.innerHTML = `<span style="color: red;">The bucket ID is not set, please request a new one.</span>`
+          return
+        }
+
+        var data = new FormData()
+        data.append('file', fileInput.files[0])
+        data.append('bucketId', bucketId)
+
+        var response = await fetch('/api/uploadFile', {
+          method: 'POST',
+          body: data
+        })
+        var json = await response.json()
+
+        if (json.ok) {
+          formStatus.innerHTML = `File uploaded successfully: <a href="${json.filepath}">${json.filepath}</a>`
+        } else {
+          formStatus.innerHTML = `<span style="color: red;">Error occurred while uploading the file: ${json.error}</span>`
+        }
+      }
+
+      async function fetchBucketId(forceRefresh) {
+        if (bucketId == null || forceRefresh) {
+          bucketId = await requestBucketId()
+          if (bucketId == null) {
+            bucketIdElement.innerHTML = `<span style="color: red;">Error occurred while requesting a bucket. Please refresh the page or request a new bucket.<span>`
+            return
+          }
+        }
+        
+        localStorage.setItem('bucketId', bucketId)
+        bucketIdElement.innerText = bucketId
+      }
+
+      document.addEventListener("DOMContentLoaded", async function() {
+        await fetchBucketId(false)
+      });
+    </script>
+  </body>
+</html>

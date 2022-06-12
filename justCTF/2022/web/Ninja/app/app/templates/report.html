@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="container" id="generate-form">
+    <div class="row g-4">
+        <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="mb-3">Report</h1>
+
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <div class="col-12 py-2">
+                    {{ form.url.label }}
+                    <div class="input-group has-validation">
+                        {{ form.url(size=64, class_="form-control") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.url.errors %}
+                            <span style="color: red;">[{{ error }}]</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <p>{{ form.submit }}</p>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

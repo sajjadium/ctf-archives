@@ -1,0 +1,63 @@
+version: '2.4'
+
+services:
+  task:
+    read_only: true
+    tmpfs:
+      - /tmp
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    image: task:latest
+    restart: "unless-stopped"
+    environment:
+      - BASE_URL=http://ninja.web.jctf.pro
+      - BOT_URL=http://192.168.69.70:8000
+      - PASSWD
+      - FLAG
+      - SECRET_KEY
+    ports:
+      - 80:5000
+    cap_drop:
+      - all
+    networks:
+      app_net:
+        ipv4_address: 192.168.69.69
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
+  # only for build image ;)
+  bot:
+    tmpfs:
+      - /tmp
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    image: bot:latest
+    restart: "unless-stopped"
+    environment:
+      - BASE_URL=http://ninja.web.jctf.pro
+      - PASSWD
+      - FLAG
+    cap_drop:
+      - all
+    cap_add:
+      - NET_BIND_SERVICE
+    networks:
+      app_net:
+        ipv4_address: 192.168.69.70
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "30m"
+        max-file: "5"
+
+networks:
+  app_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.69.0/24

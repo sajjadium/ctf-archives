@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Cookie Consent Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+  <link href="{{ url_for('static', filename='all.min.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='custom.css') }}" rel="stylesheet" />
+  <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"></script>{% block css %}{% endblock %}
+</head>
+
+<body>
+
+  {% include "header.html" %}
+
+  <hr>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <div class="text-center alert alert-info" role="alert">
+    {% for message in messages %}
+    {{ message }}
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+
+  {% include "footer.html" %}
+
+</body>
+
+</html>
