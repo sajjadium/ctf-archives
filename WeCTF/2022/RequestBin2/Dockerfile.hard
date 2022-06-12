@@ -1,0 +1,13 @@
+FROM golang:1.18-alpine3.15
+
+WORKDIR /app
+RUN go mod init app
+COPY views views
+RUN mkdir logs
+COPY main.go .
+RUN go get github.com/kataras/iris/v12@master
+RUN go build -o app
+RUN apk add uuidgen
+RUN echo "we{test}" > /$(uuidgen)-$(uuidgen)
+
+CMD ["./app"]

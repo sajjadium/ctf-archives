@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="title">Super simple file sharing!</div>
+    <div class="text">Upload as many files as you like up to 2 GB and get a link to share with receiver.</div>
+    <div class="text">
+      <strong>Your Token</strong>:
+      <br>
+      <div class="input-box">
+        <input disabled id="user_token"/>
+      </div>
+    </div>
+    <hr>
+    <div class="text">
+      <input type="file" id="file"/>
+    </div>
+    <div class="input-box">
+      <input placeholder="Receiver Token" id="receiver" />
+    </div>
+    <div class="button" id="upload">Upload & Share File</div>
+    <% if (lastFile) { %>
+    <div id="pfiles" class="abox"><a href="/download/<%= lastFile %>">Last File</a></div>
+    <% } %>
+    </div>
+  </body>
+  <link href="/stylesheets/style.css" rel="stylesheet">
+
+  <script>
+
+    const get_token = () => {
+      return "<%= token.replaceAll("\"", "") %>" || window.localStorage.getItem("token") || ""
+    }
+
+    const set_token = () => {
+      window.location.href = `/register_token?back=${window.location.href}`
+    }
+
+    const handle_unsuccessful_resp = (msg) => {
+      if (msg === "no token set" || typeof msg !== "string") {
+        return set_token()
+      }
+      alert(msg)
+    }
+
+    const upload_file = (fileFieldSelector, receiver, callback) => {
+      const input = document.querySelector(fileFieldSelector)
+      let data = new FormData()
+      data.append('file', input.files[0])
+
+      return fetch('/upload/' + encodeURI(receiver), {
+        method: 'POST',
+        headers: new Headers({
+          "token": get_token()
+        }),
+        body: data
+      }).then(
+              response => response.json()
+      ).then(
+              resp => {
+                if (resp.success){
+                  callback(resp.file_token)
+                } else {
+                  handle_unsuccessful_resp(resp.message)
+                }
+              }
+      ).catch(
+              error => handle_unsuccessful_resp(error) // Handle the error response object
+      );
+    }
+
+    const token = get_token();
+    if (!token) set_token();
+    document.getElementById("user_token").value = token;
+
+    document.getElementById("upload").onclick = async function(){
+      upload_file('#file', receiver.value, (file_token) => window.location.href = "/download/"+file_token);
+    }
+  </script>
+</html>

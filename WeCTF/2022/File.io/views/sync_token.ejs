@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<script>
+   // to make things easier, frontend use token in localStorage, backend use token in cookies
+    const getCookieValue = (name) => (
+        document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || ''
+    )
+    window.localStorage.setItem("token", getCookieValue("token"));
+
+    let queries = {}
+    let queryString = window.location.search.slice(1), re = /([^&=]+)=([^&]*)/g, m;
+    while (m = re.exec(queryString)) {
+        queries[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+    }
+    let back = queries["back"];
+    try {
+        if ((new URL(back)).protocol.includes("java")){
+            alert("hacker!");
+            back = "/"
+        }
+    } catch (e) {
+        console.log(e)
+    }
+   if (decodeURI(back).toLowerCase().includes("java")){
+       alert("hacker!");
+       window.location.href = "/"
+   } else {
+       window.location.href = back;
+   }
+
+</script>
+</html>

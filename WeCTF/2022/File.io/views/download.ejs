@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="title-small" id="filename"></div>
+<div class="text">To be extra safe, only you and receiver can access this file through this link :)</div>
+<br>
+
+
+<div class="button"
+     onclick="download_file('<%= file_token %>')"
+>Download</div>
+<!--<br>-->
+<!--<hr>-->
+<!--<div>Access Log</div>-->
+<!--<label style="color: #aaa">Under Development </label>-->
+</body>
+
+<link href="/stylesheets/style.css" rel="stylesheet">
+<script >
+
+    const get_token = () => {
+        return window.localStorage.getItem("token") || ""
+    }
+
+    const set_token = () => {
+        window.location.href = `/register_token?back=${window.location.href}`
+
+    }
+
+    const handle_unsuccessful_resp = (msg) => {
+        if (msg === "no token set" || typeof msg !== "string") {
+            return set_token()
+        }
+        alert(msg)
+    }
+
+    const get_file_info = (file_token, callback) => {
+        fetch('/file_info/' + encodeURI(file_token), {
+            method: 'GET',
+            headers: new Headers({
+                "token": get_token()
+            }),
+        }).then(
+            response => response.json()
+        ).then(
+            resp => {
+                if (resp.success){
+                    callback(resp.result)
+                } else {
+                    handle_unsuccessful_resp(resp.message)
+                }
+            }
+        ).catch(
+            error => handle_unsuccessful_resp(error) // Handle the error response object
+        );
+    }
+
+
+    const download_file = (fileToken) => {
+        fetch("/files/" + encodeURI(fileToken), {
+            headers: new Headers({
+                "token": get_token()
+            })
+        })
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = "your_file";
+                document.body.appendChild(a); // we need to append the element to the dom -> otherwise it will not work in firefox
+                a.click();
+                a.remove();  //afterwards we remove the element again
+            });
+    }
+
+
+    get_file_info("<%= file_token %>", (file_info) => {
+        if (!file_info)
+            return alert("something wrong!")
+        filename.innerHTML = file_info.name;
+    });
+</script>
+
+</html>

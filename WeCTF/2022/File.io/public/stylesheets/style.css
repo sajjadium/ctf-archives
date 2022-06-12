@@ -1,0 +1,66 @@
+html {
+  background: linear-gradient(132deg, #ec5218, #1665c1);
+  background-size: 400% 400%;
+  animation: BackgroundGradient 30s ease infinite;
+  height: 100%;
+}
+@keyframes BackgroundGradient {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  padding: 3rem 1.5rem;
+  border-radius: 1rem;
+  background: white;
+  width: max-content;
+  margin-top: 30vh;
+  margin-left: 30px;
+  max-width:400px;
+}
+.abox{
+  margin-top: 10px;
+  margin-bottom: -10px;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  color: #aaa;
+}
+input {
+  width:100%;border:1px;padding:6px;margin:-5px;height: 25px; font-size: 16px;
+}
+.title {
+  font-weight: 800; font-size:2rem; color: rgba(70, 150, 229, 0.8)
+}
+.title-small {
+  font-weight: 800; font-size:1rem; color: rgba(70, 150, 229, 0.8)
+}
+.text {
+  margin-top: 20px;
+  width: 100%;
+}
+.input-box {
+  margin: 20px 0;
+  width: 100%;
+}
+.button {
+  font-weight: 100;
+  cursor: pointer;
+  background-color: rgba(70, 150, 229, 0.8);
+  text-align: center; padding: 10px;
+  color: white;
+  border-radius: 4px;
+  margin: 0 0px;
+  opacity: 1;
+  transition: opacity 0.4s;
+
+}
+.button:hover {
+  opacity: 0.8;
+  transition: opacity 0.4s;
+}
+input:focus-visible {
+  outline: none
+}

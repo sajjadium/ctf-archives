@@ -1,0 +1,414 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+  </head>
+  <div style="position: fixed; height: 80%; width: 80%; margin: auto; left: 0; right: 0; top: 0; bottom: 0; background-color: white; z-index: 1001;border-style: solid; border-width: 10px; padding: 20px; text-align: center;" id="overlay" >
+    <div style="height: max-content;">
+        <h1 id="title" style="font: 40px 'VT323', monospace;font-weight: 800;">Dino Run</h1>
+        <h3 id="description" style="font: 25px 'VT323', monospace;font-weight: 400;">Select a dino and control it using left, right, up, down keys.</h3>
+    </div>
+    <div id="dino_imgs" style="height: 500px; overflow: scroll;overflow-x: hidden;" >
+    </div>
+    <div id="createbox" style="opacity: 0;">
+        <!--        <div class="g-recaptcha" style="width: max-content;margin: 10px auto;" data-sitekey="6Leo3yQgAAAAAB0XmNJ-zKyXPbAnabcZK03xqfTF"></div>-->
+                <div class="g-recaptcha" style="width: max-content;margin: 10px auto;" data-sitekey="6Lcw_OcZAAAAAJyRcmvfO9i2KhmGcG8yTQGQspBb"></div>
+        <input id="username" placeholder="Username" style="font: 25px 'VT323', monospace;font-weight: 400;"/>
+        <button style="font: 25px 'VT323', monospace;font-weight: 400;" onclick="start()">Start</button>
+    </div>
+  </div>
+  <body style="margin: 0;overflow: hidden;" id="main">
+    <img id="dead" style="display: none; position: absolute;" src="/assets/gameover.gif"/>
+    <div style="position: absolute; display: none; z-index: 1000;" id="flagarrow">
+        <label style="font: 40px 'VT323', monospace;font-weight: 800;;">Flag</label>
+        <br>
+        <img height="120px" width="120px"  src="/assets/arrow.png"/>
+    </div>
+    <img style="position: absolute; display: none;" height="120px" width="120px"  src="/assets/flag.png" id="flag"/>
+    <div id="deco" style="position:absolute;"></div>
+    <div id="dinos" style="position: absolute"></div>
+    <canvas id="canvasChessboard" ></canvas>
+  </body>
+</html>
+
+<script>
+    const boardWidth = 32;
+    let playerX = 0;
+    let playerY = 0;
+    let animalSize = 120;
+    let offsetX = 0;
+    let offsetY = 0;
+    const squareSize = 180;
+    let initialized = false;
+    let selectedDino = -1;
+    let dinoName = "shoud";
+    let token = "";
+    let socket = null;
+    let state = []
+    // contact backend
+
+
+    function getAbsoluteHeight(el) {
+        el = (typeof el === 'string') ? document.querySelector(el) : el; 
+        const styles = window.getComputedStyle(el);
+        const margin = parseFloat(styles['marginTop']) +
+                    parseFloat(styles['marginBottom']);
+        return Math.ceil(el.offsetHeight + margin);
+    }
+    // setup dino images
+    window.onload = function() {
+        dino_imgs.style.height = `${overlay.offsetHeight - getAbsoluteHeight(createbox) -getAbsoluteHeight(title) - getAbsoluteHeight(description) - 60}px`
+        createbox.style.opacity = 1;
+        let dinoImgsHTML = ""
+        for (let i = 0; i < 34; i++) {
+            dinoImgsHTML += `<img id="dino${i}" src='assets/${i}-small.png' onclick="selectDino(${i})"/>`
+        } 
+        dino_imgs.innerHTML = dinoImgsHTML;
+        draw(false); 
+    }
+
+    window.onresize = window.onload;
+
+    function selectDino(dino){
+        selectedDino = dino;
+        for (let i = 0; i < 34; i++) {
+            if (i !== dino) {
+                document.getElementById(`dino${i}`).style.background = "white"
+            } else {
+                document.getElementById(`dino${i}`).style.backgroundImage = "url(/assets/stroke.png)"
+                document.getElementById(`dino${i}`).style.backgroundSize = "100%"
+                document.getElementById(`dino${i}`).style.backgroundRepeat = "no-repeat"
+            }
+        } 
+    }
+    function start(){
+        const captcha = grecaptcha.getResponse();
+        const name = username.value;
+        if (!captcha) {return alert("recaptcha no finished")}
+        if (!name) {return alert("no username")}
+        if (!name.length > 10) {return alert("name too long")}
+        if (selectedDino === -1) {return alert("you have not selected a dino")}
+        overlay.style.display = "none"
+        dinoName = name;
+        initialized = true;
+        socket = new WebSocket("ws://backend-" + window.location.hostname);
+
+        // Connection opened
+        socket.addEventListener('open', function (event) {
+            socket.send(JSON.stringify({
+                command: "create",
+                dino: selectedDino,
+                name, captcha
+            }))
+            draw(false);
+        });
+
+        // Listen for messages
+        socket.addEventListener('message', function (event) {
+            const resp = JSON.parse(event.data);
+            if (!resp.success){
+                confirm(resp.msg);
+                window.location.reload();
+            }
+            switch (resp.command) {
+                case "set_token":
+                    if (resp.dead) {
+                        draw(true)
+                        confirm("Your dino is dead!")
+                        window.location.reload();
+                    }
+                    if (resp.flag){
+                        alert(resp.flag)
+                    }
+                    token = resp.token;
+                    break
+                case "state":
+                    state = resp.locations
+                    drawPlayers(false)
+                    break
+            }
+        });
+
+    }
+
+    let time = 0;
+    function move(command){
+        socket.send(JSON.stringify({
+            command: command,
+            token
+        }))
+    }
+    document.onkeyup = function(e) {
+        if (time + 500 > Date.now()) {
+            return;
+        }
+        time = Date.now();
+        if(e.key === "ArrowLeft") { // left
+            if (playerX === 0) {
+                return
+            }
+            playerX -= 1;
+            move("left")
+            draw(false)
+        }
+        if(e.key === "ArrowRight") { // right
+            if (playerX === boardWidth - 1) {
+                return
+            } 
+            playerX += 1;
+            move("right")
+            draw(false)
+
+        }
+        if(e.key === "ArrowUp") { // left
+            if (playerY === 0) {
+                return
+            }
+            move("up")
+            playerY -= 1;
+            draw(false)
+
+        }
+        if(e.key === "ArrowDown") { // right
+            if (playerY === boardWidth - 1) {
+                return
+            }
+            move("down")
+            playerY += 1;
+            draw(false)
+        }
+    }
+
+    function calcOffset(playerCoordXY, rel) {
+        if (playerCoordXY > rel / 2 && boardWidth - playerCoordXY > rel / 2) {
+            return playerCoordXY - rel / 2
+        }
+        if (boardWidth - playerCoordXY <= rel / 2) {
+            return boardWidth - rel
+        }
+        return 0;
+    }
+
+    function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    function randPos(playerCoordXY, offsetXY, rel) {
+        return (playerCoordXY - offsetXY) * squareSize + getRandomArbitrary(0, squareSize - animalSize) 
+    }
+
+    function choose(choices) {
+        let index = Math.floor(Math.random() * choices.length);
+        return choices[index];
+    }
+
+    let decos = [];
+
+    function drawDecos(){
+        const flagLocation = boardWidth * squareSize - (squareSize + animalSize) / 2;
+        flag.style.left = `${flagLocation - offsetX * squareSize}px`
+        flag.style.top = `${flagLocation - offsetY * squareSize}px`
+        flag.style.display = "block"
+        if (decos.length === 0){
+            for (let i = 0; i < 2 * boardWidth; i++) {
+                let img = document.createElement('img');
+                const src = `assets/${choose(["deco0.png", "deco1.png","deco2.png","deco3.png","deco4.png","deco5.gif", "deco7.png"])}`;
+                
+                const left = getRandomArbitrary( squareSize / 2, boardWidth * squareSize -  squareSize / 2);
+                const top = getRandomArbitrary( squareSize / 2, boardWidth * squareSize - squareSize / 2);
+                decos.push({src, left, top, i})
+                img.src = src;
+                img.id = `deco${i}`
+                img.style.position = "absolute";
+                img.style.height = `${animalSize/1.6}px`;
+                img.style.width = `${animalSize/1.6}px`;
+                img.style.left = `${left}px`;
+                img.style.top = `${top}px`;
+                if (src === "assets/deco5.gif"){
+                    img.style.animationName = choose(["moving1", "moving2", "moving3", "moving4", "moving5"]);
+                    img.style.animationDuration = "10s";
+                    img.style.animationIterationCount = "infinite";
+                }
+                deco.appendChild(img);
+            }
+        } else {
+            decos.forEach((v) => {
+                let img = document.getElementById(`deco${v.i}`);
+                img.style.left = `${v.left - offsetX * squareSize}px`;
+                img.style.top = `${v.top - offsetY * squareSize}px`;
+            })
+        }
+    }
+    let colorChoices = {};
+    function drawChessboard() {
+        // size of each chess square
+        const width = window.innerWidth;
+        const widthRel = window.innerWidth / squareSize;
+        const height = window.innerHeight;
+        const heightRel = window.innerHeight / squareSize;
+        canvasChessboard.width = width;
+        canvasChessboard.height = height;
+        offsetX = calcOffset(playerX, widthRel);
+        offsetY = calcOffset(playerY, heightRel);
+        // position of board's top left
+        const boardTopx = -offsetX * squareSize;
+        const boardTopy = -offsetY * squareSize;
+        
+        const canSeeFlag = boardWidth - offsetX - 0.1 <= widthRel && boardWidth - offsetY - 0.1 <= heightRel;
+        if (canSeeFlag) {
+            flagarrow.style.display = "none";
+        } else {
+            flagarrow.style.display = "block"
+            flagarrow.style.left = width - squareSize;
+            flagarrow.style.top = height - squareSize;
+            const flagRotation = Math.atan((boardWidth - offsetY)/(boardWidth - offsetX));
+            flagarrow.style.transform = `rotate(${flagRotation}rad)`;
+        }
+
+        let canvas = document.getElementById("canvasChessboard");
+        let context = canvas.getContext("2d");
+        for(let i=0; i<boardWidth*20; i++) {
+            for(let j=0; j<boardWidth*20; j++) {
+                if (!colorChoices[i]) colorChoices[i] = {};
+                if (!colorChoices[i][j]) {
+                    colorChoices[i][j] = choose(["#92d374","#92d374", "#92d374", "#92d374", "#92d374", "#92d374", "#7fb765", "#9de37d"])
+                }
+                context.fillStyle = colorChoices[i][j];
+                let xOffset = boardTopx + j*squareSize/20;
+                let yOffset = boardTopy + i*squareSize/20;
+                context.fillRect(xOffset, yOffset, squareSize/20 + 0.5, squareSize/20 + 0.5);
+            }
+        }
+        return context
+    }
+    function drawLoc(el, l, t, h, w){
+        el.style.position = "absolute"
+        el.style.left = `${l}px`
+        el.style.top = `${t}px`
+        if (h && w) {
+            el.style.height = `${h}px`
+            el.style.width = `${w}px`
+        }
+        return el
+    }
+
+    let playerDinoDrawn = false;
+
+    function drawADino(key, playerLoc, dinoId, name){
+        let el = document.getElementById(key)
+        if (!el) {
+            const div = document.createElement('div');
+            div.id = key;
+            div.style.position = "absolute"
+            const img = document.createElement('img');
+            img.src = `/assets/${dinoId}-small.png`;
+            // img.style.transition = "left 1s, top 1s"
+            drawLoc(img, playerLoc[0], playerLoc[1], animalSize, animalSize)
+            let label = document.createElement('label');
+            label.innerText = name;
+            label.style.font = "20px 'VT323', monospace"
+            label = drawLoc(label, playerLoc[0], playerLoc[1] )
+            // label.style.transition = "left 1s, top 1s"
+
+            div.appendChild(img);
+            div.appendChild(label)
+            dinos.appendChild(div);
+            playerDinoDrawn = true;
+        } else {
+            drawLoc(el.children[0], playerLoc[0], playerLoc[1])
+            drawLoc(el.children[1], playerLoc[0] , playerLoc[1] )
+        }
+    }
+
+    function removeADino(key){
+        let el = document.getElementById(key)
+        el.style.display = "none"
+    }
+
+    let existingDinos = []
+
+    function drawPlayers(gameOver){
+        if (!initialized) {
+            return
+        }
+        // ctx.beginPath();
+        // let img = new Image;
+        const playerLoc = [randPos(playerX, offsetX), randPos(playerY, offsetY)];
+        // img.onload = function(){
+        //     ctx.drawImage(img, playerLoc[0], playerLoc[1], animalSize, animalSize); // Or at whatever offset you like
+        // };
+        //
+        // img.src = `/assets/${selectedDino}-small.png`;
+        // ctx.font = "20px 'VT323', monospace";
+        // ctx.fillStyle = "black";
+        // ctx.textAlign = "center";
+        // ctx.fillText(dinoName, playerLoc[0] + 30, playerLoc[1] + 20);
+        let currentDinos = []
+        drawADino("player", playerLoc, selectedDino, dinoName)
+        for (let i = 0; i < state.length; i++) {
+            const v = state[i];
+            if (v.name === dinoName) continue;
+            currentDinos.push(v.name)
+            if (!existingDinos.includes(v.name)) existingDinos.push(v.name)
+            drawADino(`player${v.name}`, [randPos(v.x, offsetX), randPos(v.y, offsetY)], v.dino, v.name)
+        }
+        console.log(existingDinos, currentDinos)
+        for (let i = 0; i < existingDinos.length; i++) {
+            if (!currentDinos.includes(existingDinos[i])) {
+                removeADino(`player${existingDinos[i]}`)
+            }
+        }
+
+
+        if (gameOver) {
+            dead.style.display = "block";
+            dead.height = animalSize;
+            dead.width = animalSize;
+            dead.style.left = `${playerLoc[0]}px`;
+            dead.style.top = `${playerLoc[1]}px`;
+        }
+    } 
+    function draw(gameOver){
+        let ctx = drawChessboard();
+        drawPlayers(gameOver);
+        drawDecos();
+    }
+</script>
+
+<style>
+    #dino_imgs img {
+        margin: 30px;
+        width: 160px;
+        cursor: pointer;
+    }
+    @keyframes moving1 {
+        from {margin-left: 0;}
+        25% {margin-top: 20px;}
+        50% {margin-left: 60px; }
+    }
+    @keyframes moving2 {
+        from {margin-left: 0;}
+        45% {margin-left: 40px;}
+        67% {margin-top: 40px; }
+    }
+    @keyframes moving3 {
+        from {margin-left: 0;}
+        50% {margin-left: 70px;}
+        75% {margin-top: 20px; }
+    }
+    @keyframes moving4 {
+        from {margin-left: 0;}
+        5% {margin-left: 10px;}
+        60% {margin-top: 10px; }
+    }
+    @keyframes moving5 {
+        from {margin-left: 0;}
+        14% {margin-left: 30px;}
+        43% {margin-top: 6px; }
+    }
+</style>
