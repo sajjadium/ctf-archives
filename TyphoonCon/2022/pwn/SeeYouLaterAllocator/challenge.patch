@@ -1,0 +1,31 @@
+From 9b75f0de94978a681682cf13d392b0db7fa4161a Mon Sep 17 00:00:00 2001
+From: Your Name <you@example.com>
+Date: Thu, 17 Feb 2022 16:09:17 +0000
+Subject: [PATCH] Cool new Implementation
+
+---
+ js/src/gc/Nursery.cpp | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/js/src/gc/Nursery.cpp b/js/src/gc/Nursery.cpp
+index ef75e814ed..59ac8e5872 100644
+--- a/js/src/gc/Nursery.cpp
++++ b/js/src/gc/Nursery.cpp
+@@ -701,12 +701,14 @@ void* js::Nursery::reallocateBuffer(Zone* zone, Cell* cell, void* oldBuffer,
+     return newBuffer;
+   }
+ 
++  void* newBuffer = allocateBuffer(zone, newBytes);
++
+   // The nursery cannot make use of the returned slots data.
+   if (newBytes < oldBytes) {
++    position_ -= oldBytes;
+     return oldBuffer;
+   }
+ 
+-  void* newBuffer = allocateBuffer(zone, newBytes);
+   if (newBuffer) {
+     PodCopy((uint8_t*)newBuffer, (uint8_t*)oldBuffer, oldBytes);
+   }
+-- 
+2.20.1

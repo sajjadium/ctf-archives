@@ -1,0 +1,11 @@
+version: "2"
+services:
+  image_beautifier:
+    build: .
+    user: root
+    restart: always
+    read_only: true
+    ports:
+      - 80:80
+    tmpfs:
+      - /tmp
