@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+    src:
+        build: ./src/
+        tty: true
+        init: true
+        ports:
+            - "10022:8000"
+        restart: on-failure
+    mongodb:
+        build: ./mongodb/
+        tty: true
+        restart: on-failure

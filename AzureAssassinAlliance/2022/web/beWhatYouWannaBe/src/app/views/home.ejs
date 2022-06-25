@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>home</title>
+        <script>
+            function beAdmin(){
+                const username = document.getElementById('username').value
+                fetch('/beAdmin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        username: username,
+                    })
+                })
+                .then(res => res.text())
+                .then(res => {
+                    alert(res)
+                })
+            }
+            function showAdmin(){
+                const url = document.getElementById('url').value
+                alert(url)
+                fetch('/admin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        url: url
+                    })
+                })
+                .then(res => res.text())
+                .then(res => {
+                    alert(res)
+                })
+            }
+        </script>
+    </head>
+    <body>
+        <center>
+            <div>
+                <p>
+                    Welcome to home!
+                    <% if(locals.user) { %>
+                        <font color="red"><%= user %></font>
+                    <% } %>
+                </p>
+            </div>
+
+            <div>
+                <% if(locals.user == 'admin') { %>
+                    <p> You are already admin </p>
+                <% } %>
+            </div>
+
+            <div>
+                <% if(locals.user && user != 'admin') { %>
+                    <p>You are not admin now</p>
+                    <form onsubmit="beAdmin(); return false">
+                        <p><input hidden id="username" name="username" value="<%= user %>"></p>
+                        <p><button type="submit">I wanna to be admin</button></p>
+                    </form>
+                    <br>
+
+                    <p>I Have something to show admin</p>
+                    <form onsubmit="showAdmin(); return false">
+                        <p><input id="url" name="url"></p>
+                        <p><button type="submit">Let admin see see</button></p>
+                    </form>
+                <% } %>
+            </div>
+            <!-- hint: /flag -->
+        </center>
+    </body>
+</html>

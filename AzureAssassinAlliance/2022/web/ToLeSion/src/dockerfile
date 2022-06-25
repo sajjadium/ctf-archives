@@ -1,0 +1,20 @@
+FROM python:3.8
+
+RUN sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list 
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list
+COPY ./app.py /app.py
+COPY ./requirements.txt /requirements.txt
+COPY ./flag /flag
+COPY ./readflag /readflag
+COPY ./start.sh /start.sh
+RUN chmod 777 /start.sh
+RUN mkdir -p /data/logs
+RUN chmod 600 /flag && \
+    chmod +s /readflag && \ 
+    apt-get update && \
+    apt-get install memcached telnet && \
+    adduser flask
+USER flask
+RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+EXPOSE 5000
+ENTRYPOINT ["/bin/bash", "/start.sh" ]

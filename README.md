@@ -125,6 +125,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1110/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="AzureAssassinAlliance">AzureAssassinAlliance</a></td>
+            <td><a href="AzureAssassinAlliance/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1682/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="BCACTF">BCACTF</a></td>
             <td><a href="BCACTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1602/tasks/">CTFtime</a></td>

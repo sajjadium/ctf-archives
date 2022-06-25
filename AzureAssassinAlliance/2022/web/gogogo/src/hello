@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo -e "Content-Type: text/plain\n"
+echo -e "Welcome to ACTF!\n"
+env

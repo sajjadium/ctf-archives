@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>login</title>
+    </head>
+
+    <body>
+        <center>
+            <form method="post" action="/register">
+                <p>
+                    <label>username:</label> <input type="text" name="username">
+                </p>
+                <p>
+                    <label>password:</label> <input type="password" name="password">
+                </p>
+                <p>
+                    <button type="submit">register</button>
+                </p>
+            </form>
+            <div style="color: red;">
+                <% if(locals.error) { %>
+                    <p><%= error %></p>
+                <% } %>
+            </div>
+        </center>
+    </body>
+</html>

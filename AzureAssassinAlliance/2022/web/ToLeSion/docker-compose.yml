@@ -1,0 +1,9 @@
+version: '3'
+services:
+    src:
+        build: ./src/
+        tty: true
+        ports:
+            - "10023:5000"
+        restart: on-failure
+   
