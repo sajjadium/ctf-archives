@@ -1,0 +1,162 @@
+{
+  "abi": [
+    {
+      "inputs": [],
+      "name": "DOMAIN_SEPARATOR",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "nonces",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "spender",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint8",
+          "name": "v",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "r",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "s",
+          "type": "bytes32"
+        }
+      ],
+      "name": "permit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "ast": {
+    "absolutePath": "interfaces/draft-IERC2612.sol",
+    "exportedSymbols": {
+      "IERC20Permit": [
+        271
+      ],
+      "IERC2612": [
+        217
+      ]
+    },
+    "id": 218,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 213,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "98:23:10"
+      },
+      {
+        "absolutePath": "token/ERC20/extensions/draft-IERC20Permit.sol",
+        "file": "../token/ERC20/extensions/draft-IERC20Permit.sol",
+        "id": 214,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 218,
+        "sourceUnit": 272,
+        "src": "123:58:10",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 215,
+              "name": "IERC20Permit",
+              "nodeType": "IdentifierPath",
+              "referencedDeclaration": 271,
+              "src": "205:12:10"
+            },
+            "id": 216,
+            "nodeType": "InheritanceSpecifier",
+            "src": "205:12:10"
+          }
+        ],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 217,
+        "linearizedBaseContracts": [
+          217,
+          271
+        ],
+        "name": "IERC2612",
+        "nameLocation": "193:8:10",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 218,
+        "src": "183:37:10",
+        "usedErrors": []
+      }
+    ],
+    "src": "98:123:10"
+  },
+  "contractName": "IERC2612",
+  "dependencies": [
+    "IERC20Permit"
+  ],
+  "offset": [
+    183,
+    220
+  ],
+  "sha1": "c552cfe08228baa517d97419a19ae78786d48f49",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.1 (interfaces/draft-IERC2612.sol)\n\npragma solidity ^0.8.0;\n\nimport \"../token/ERC20/extensions/draft-IERC20Permit.sol\";\n\ninterface IERC2612 is IERC20Permit {}\n",
+  "type": "interface"
+}

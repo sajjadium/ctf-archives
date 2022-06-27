@@ -1,0 +1,542 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "flashFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC3156FlashBorrower",
+          "name": "receiver",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "flashLoan",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "maxFlashLoan",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "ast": {
+    "absolutePath": "interfaces/IERC3156FlashLender.sol",
+    "exportedSymbols": {
+      "IERC3156FlashBorrower": [
+        163
+      ],
+      "IERC3156FlashLender": [
+        201
+      ]
+    },
+    "id": 202,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 165,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "103:23:8"
+      },
+      {
+        "absolutePath": "interfaces/IERC3156FlashBorrower.sol",
+        "file": "./IERC3156FlashBorrower.sol",
+        "id": 166,
+        "nameLocation": "-1:-1:-1",
+        "nodeType": "ImportDirective",
+        "scope": 202,
+        "sourceUnit": 164,
+        "src": "128:37:8",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 167,
+          "nodeType": "StructuredDocumentation",
+          "src": "167:151:8",
+          "text": " @dev Interface of the ERC3156 FlashLender, as defined in\n https://eips.ethereum.org/EIPS/eip-3156[ERC-3156].\n _Available since v4.1._"
+        },
+        "fullyImplemented": false,
+        "id": 201,
+        "linearizedBaseContracts": [
+          201
+        ],
+        "name": "IERC3156FlashLender",
+        "nameLocation": "329:19:8",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 168,
+              "nodeType": "StructuredDocumentation",
+              "src": "355:168:8",
+              "text": " @dev The amount of currency available to be lended.\n @param token The loan currency.\n @return The amount of `token` that can be borrowed."
+            },
+            "functionSelector": "613255ab",
+            "id": 175,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "maxFlashLoan",
+            "nameLocation": "537:12:8",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 171,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 170,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nameLocation": "558:5:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 175,
+                  "src": "550:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 169,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "550:7:8",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "549:15:8"
+            },
+            "returnParameters": {
+              "id": 174,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 173,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 175,
+                  "src": "588:7:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 172,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "588:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "587:9:8"
+            },
+            "scope": 201,
+            "src": "528:69:8",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 176,
+              "nodeType": "StructuredDocumentation",
+              "src": "603:249:8",
+              "text": " @dev The fee to be charged for a given loan.\n @param token The loan currency.\n @param amount The amount of tokens lent.\n @return The amount of `token` to be charged for the loan, on top of the returned principal."
+            },
+            "functionSelector": "d9d98ce4",
+            "id": 185,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "flashFee",
+            "nameLocation": "866:8:8",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 181,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 178,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nameLocation": "883:5:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 185,
+                  "src": "875:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 177,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "875:7:8",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 180,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "898:6:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 185,
+                  "src": "890:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 179,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "890:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "874:31:8"
+            },
+            "returnParameters": {
+              "id": 184,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 183,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 185,
+                  "src": "929:7:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 182,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "929:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "928:9:8"
+            },
+            "scope": 201,
+            "src": "857:81:8",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 186,
+              "nodeType": "StructuredDocumentation",
+              "src": "944:320:8",
+              "text": " @dev Initiate a flash loan.\n @param receiver The receiver of the tokens in the loan, and the receiver of the callback.\n @param token The loan currency.\n @param amount The amount of tokens lent.\n @param data Arbitrary data structure, intended to contain user-defined parameters."
+            },
+            "functionSelector": "5cffe9de",
+            "id": 200,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "flashLoan",
+            "nameLocation": "1278:9:8",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 196,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 189,
+                  "mutability": "mutable",
+                  "name": "receiver",
+                  "nameLocation": "1319:8:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 200,
+                  "src": "1297:30:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_IERC3156FlashBorrower_$163",
+                    "typeString": "contract IERC3156FlashBorrower"
+                  },
+                  "typeName": {
+                    "id": 188,
+                    "nodeType": "UserDefinedTypeName",
+                    "pathNode": {
+                      "id": 187,
+                      "name": "IERC3156FlashBorrower",
+                      "nodeType": "IdentifierPath",
+                      "referencedDeclaration": 163,
+                      "src": "1297:21:8"
+                    },
+                    "referencedDeclaration": 163,
+                    "src": "1297:21:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_IERC3156FlashBorrower_$163",
+                      "typeString": "contract IERC3156FlashBorrower"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 191,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nameLocation": "1345:5:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 200,
+                  "src": "1337:13:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 190,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1337:7:8",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 193,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nameLocation": "1368:6:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 200,
+                  "src": "1360:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 192,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1360:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 195,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "1399:4:8",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 200,
+                  "src": "1384:19:8",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 194,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1384:5:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1287:122:8"
+            },
+            "returnParameters": {
+              "id": 199,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 198,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 200,
+                  "src": "1428:4:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 197,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1428:4:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1427:6:8"
+            },
+            "scope": 201,
+            "src": "1269:165:8",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 202,
+        "src": "319:1117:8",
+        "usedErrors": []
+      }
+    ],
+    "src": "103:1334:8"
+  },
+  "contractName": "IERC3156FlashLender",
+  "dependencies": [
+    "IERC3156FlashBorrower"
+  ],
+  "offset": [
+    319,
+    1436
+  ],
+  "sha1": "9be5e4b1cd2ea4c4ff6c87da8a869d359f22bbe7",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.1 (interfaces/IERC3156FlashLender.sol)\n\npragma solidity ^0.8.0;\n\nimport \"./IERC3156FlashBorrower.sol\";\n\n/**\n * @dev Interface of the ERC3156 FlashLender, as defined in\n * https://eips.ethereum.org/EIPS/eip-3156[ERC-3156].\n *\n * _Available since v4.1._\n */\ninterface IERC3156FlashLender {\n    /**\n     * @dev The amount of currency available to be lended.\n     * @param token The loan currency.\n     * @return The amount of `token` that can be borrowed.\n     */\n    function maxFlashLoan(address token) external view returns (uint256);\n\n    /**\n     * @dev The fee to be charged for a given loan.\n     * @param token The loan currency.\n     * @param amount The amount of tokens lent.\n     * @return The amount of `token` to be charged for the loan, on top of the returned principal.\n     */\n    function flashFee(address token, uint256 amount) external view returns (uint256);\n\n    /**\n     * @dev Initiate a flash loan.\n     * @param receiver The receiver of the tokens in the loan, and the receiver of the callback.\n     * @param token The loan currency.\n     * @param amount The amount of tokens lent.\n     * @param data Arbitrary data structure, intended to contain user-defined parameters.\n     */\n    function flashLoan(\n        IERC3156FlashBorrower receiver,\n        address token,\n        uint256 amount,\n        bytes calldata data\n    ) external returns (bool);\n}\n",
+  "type": "interface"
+}

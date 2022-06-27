@@ -1,0 +1,13 @@
+version: '3'
+services:
+    src:
+        build: ./src/
+        tty: true
+        ports:
+            - "10047:80"
+        restart: on-failure
+        environment:
+            MYSQL_USER: 'test'
+            MYSQL_PASS: 'test123456'
+        ulimits:
+            nproc: 64

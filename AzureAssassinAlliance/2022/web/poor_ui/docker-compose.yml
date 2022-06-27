@@ -1,0 +1,12 @@
+version: '3'
+services:
+    src:
+        build: ./src/
+        tty: true
+        ports:
+            - "8081:8081"
+        restart: on-failure
+        ulimits:
+            nproc: 64
+
+        
