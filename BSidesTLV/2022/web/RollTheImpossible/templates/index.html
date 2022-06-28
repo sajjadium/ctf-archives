@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="/static/style.css"/>
+		<script src="/static/index.js"></script>
+		<title>Roll the Impossible</title>
+	</head>
+	<body>
+		<h2>Welcome to "Roll the Impossible"!</h2>
+		<img src="/static/dice.png" width="30%" height="30%">
+		<br>To get the flag, roll a ten digit number that complies with your challenge
+		<br>Your challenge is to:
+		<h3>{{session["question"]}}</h3>
+		<button class="button-30" onclick="step()">Roll next digit</button>
+		<br>
+		<br> New rolled digit is: 
+		<span id="new_digit"></span>
+		<br>Your number is now:
+		<br>
+		<strong><span id="num"></span></strong>
+		<br>
+	</body>
+</html>

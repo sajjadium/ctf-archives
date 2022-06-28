@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "type": "module",
+  "name": "wild-devtools",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "DIFFICULTY=2 node server.js"
+  },
+  "author": "Ron Masas",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.1",
+    "puppeteer": "^14.4.1",
+    "redis": "^4.1.0"
+  }
+}

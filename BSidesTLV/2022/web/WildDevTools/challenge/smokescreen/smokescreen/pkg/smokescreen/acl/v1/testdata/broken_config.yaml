@@ -1,0 +1,20 @@
+# This config file is broken because `broken` is not a valid top level element.
+version: v1
+broken:
+  - name: enforce-dummy-srv
+    project: usersec
+    action: enforce
+    allowed_domains:
+      - example1.com
+      - example2.com$
+    
+  - name: report-dummy-srv
+    project: security
+    action: report
+    allowed_domains:
+      - example3.com
+        
+  - name: open-dummy-srv
+    project: automation
+    action: open
+          

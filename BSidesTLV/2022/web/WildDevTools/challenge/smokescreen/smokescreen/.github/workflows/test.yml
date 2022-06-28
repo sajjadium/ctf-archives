@@ -1,0 +1,38 @@
+on: [push, pull_request]
+name: Test
+jobs:
+  test:
+    strategy:
+      matrix:
+        go-version: [1.17.x, 1.18.x]
+        platform: [ubuntu-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+    - name: Install Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go-version }}
+    - name: Setup env
+      run: |
+        echo "{GOFLAGS}={-mod=vendor}" >> $GITHUB_ENV
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Vet
+      run: |
+        go vet -v ./...
+    - name: Test
+      run: |
+        go mod verify
+        go test -race -v -timeout 2m -failfast -covermode atomic -coverprofile=.covprofile ./... -tags=nointegration
+        # Run integration tests hermetically to avoid nondeterministic races on environment variables
+        go test -race -v -timeout 2m -failfast ./cmd/... -run TestSmokescreenIntegration
+        go test -race -v -timeout 2m -failfast ./cmd/... -run TestInvalidUpstreamProxyConfiguration
+        go test -race -v -timeout 2m -failfast ./cmd/... -run TestClientHalfCloseConnection
+    - name: Install goveralls
+      env:
+        GO111MODULE: off
+      run: go get github.com/mattn/goveralls
+    - name: Send coverage
+      env:
+        COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: goveralls -coverprofile=.covprofile -service=github

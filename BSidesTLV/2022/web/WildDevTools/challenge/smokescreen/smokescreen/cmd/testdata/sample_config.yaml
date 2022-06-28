@@ -1,0 +1,22 @@
+---
+version: v1
+services:
+
+  - name: egressneedingservice-enforce
+    project: test
+    action: enforce
+    allowed_domains:
+      - 127.0.0.1
+
+  - name: egressneedingservice-report
+    project: test
+    action: report
+
+  - name: egressneedingservice-open
+    project: test
+    action: open
+
+default:
+  name: unknown-role
+  project: security
+  action: enforce

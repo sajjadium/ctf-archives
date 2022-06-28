@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  challenge:
+    build: .
+    ports:
+      - "8645:8000"
+    environment:
+      SECRET_KEY: "7777777777777777777777777777777777777777777777777777777777777777"
+    depends_on:
+      - redisdb
+    restart: always
+
+  redisdb:
+    image: redislabs/redisgraph:2.8.14
+    expose:
+      - "6379"
+    restart: always

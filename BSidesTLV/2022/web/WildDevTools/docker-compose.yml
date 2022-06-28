@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:latest
+    expose: 
+      - "6379"
+    restart: always
+
+  smokescreen:
+    build: ./challenge/smokescreen
+    expose: 
+      - "4750"
+    restart: always
+
+  screenshoter:
+    build: ./challenge/screenshoter
+    restart: always
+    ports:
+      - '80:8080'
+    environment:
+      - DIFFICULTY=6
+      - BROWSER_TIMEOUT=30
+      - FLAG=BSidesTLV2022{ThisIsNotTheRealFlag}
+    depends_on:
+      - redis
+      - smokescreen

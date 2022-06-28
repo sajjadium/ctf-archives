@@ -1,0 +1,13 @@
+---
+version: v1
+services:
+  - name: dummy-glob
+    project: phony
+    action: enforce
+    allowed_domains:
+      - "*bob.example.com"
+
+
+default:
+    project: security
+    action: enforce

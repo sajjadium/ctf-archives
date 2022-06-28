@@ -1,0 +1,29 @@
+*{
+	text-align: center;
+	font-size: 20px;
+	font-family: papyrus, sans-serif;
+}
+
+h2{
+	color: #61412B;
+}
+
+button.button-30 {
+	background-color: #CAAC91;
+	border-radius: 4px;
+	border-width: 0;
+	color: #100501;
+	cursor: pointer;
+	height: 48px;
+	padding-left: 16px;
+	padding-right: 16px;
+	transition: box-shadow .15s,transform .15s;
+}
+
+button.button-30:hover {
+	transform: translateY(-2px);
+}
+
+button.button-30:active {
+	transform: translateY(2px);
+}

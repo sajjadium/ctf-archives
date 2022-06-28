@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-color: #030d19;
+            background-repeat: no-repeat;
+            background-image: url('./bg.jpg');
+        }
+
+        .devtools {
+            top: 50%;
+            left: 50%;
+            width: 250px;
+            height: 250px;
+            position: absolute;
+            background-size: cover;
+            transform: translate(-50%, -50%);
+            background-image: url('./devtools.jpg');
+            box-shadow: 1px 1px 50px 1px rgba(0, 0, 0, 0.5);
+            transition: margin-left margin-top ease-in-out 350ms;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="devtools"></div>
+    <script>
+        /*
+        ██ ███    ███ ██████  ███████ ██████  ██    ██  █████  
+        ██ ████  ████ ██   ██ ██      ██   ██ ██    ██ ██   ██ 
+        ██ ██ ████ ██ ██████  █████   ██████  ██    ██ ███████ 
+        ██ ██  ██  ██ ██      ██      ██   ██  ██  ██  ██   ██ 
+        ██ ██      ██ ██      ███████ ██   ██   ████   ██   ██                                                                                                                           
+        */
+        var devtools = document.querySelector(".devtools");
+        var dx = devtools.getClientRects()[0].left;
+        var dy = devtools.getClientRects()[0].top;
+        window.addEventListener("mousemove", function (e) {
+            var x = e.clientX - dx;
+            var y = e.clientY - dy;
+            x = x / window.innerWidth;
+            y = y / window.innerHeight;
+            devtools.style.marginLeft = (x * -50) + "px";
+            devtools.style.marginTop = (y * -50) + "px";
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+# github.com/DataDog/datadog-go v4.5.1+incompatible
+## explicit
+github.com/DataDog/datadog-go/statsd
+# github.com/Microsoft/go-winio v0.4.17
+## explicit
+github.com/Microsoft/go-winio
+github.com/Microsoft/go-winio/pkg/guid
+# github.com/armon/go-proxyproto v0.0.0-20170620220930-48572f11356f
+## explicit
+github.com/armon/go-proxyproto
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
+# github.com/hashicorp/go-cleanhttp v0.0.0-20171218145408-d5fe4b57a186
+## explicit
+github.com/hashicorp/go-cleanhttp
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
+# github.com/rs/xid v1.2.1
+## explicit
+github.com/rs/xid
+# github.com/sirupsen/logrus v1.7.0
+## explicit
+github.com/sirupsen/logrus
+github.com/sirupsen/logrus/hooks/test
+# github.com/stretchr/testify v1.3.0
+## explicit
+github.com/stretchr/testify/assert
+github.com/stretchr/testify/require
+# github.com/stripe/goproxy v0.0.0-20220308202309-3f1dfba6d1a4
+## explicit
+github.com/stripe/goproxy
+# golang.org/x/net v0.0.0-20200528225125-3c3fba18258b
+## explicit
+golang.org/x/net/http/httpproxy
+golang.org/x/net/idna
+# golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c
+golang.org/x/sys/internal/unsafeheader
+golang.org/x/sys/unix
+golang.org/x/sys/windows
+# golang.org/x/text v0.3.2
+## explicit
+golang.org/x/text/secure/bidirule
+golang.org/x/text/transform
+golang.org/x/text/unicode/bidi
+golang.org/x/text/unicode/norm
+# gopkg.in/urfave/cli.v1 v1.20.0
+## explicit
+gopkg.in/urfave/cli.v1
+# gopkg.in/yaml.v2 v2.2.8
+## explicit
+gopkg.in/yaml.v2

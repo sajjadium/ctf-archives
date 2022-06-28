@@ -190,7 +190,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/753/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/BSidesSF/2019">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="BSidesTLV">BSidesTLV</a></td>
+            <td rowspan=3><a href="BSidesTLV">BSidesTLV</a></td>
+            <td><a href="BSidesTLV/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1680/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="BSidesTLV/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1403/tasks/">CTFtime</a></td>
         </tr>

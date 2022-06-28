@@ -1,0 +1,20 @@
+---
+version: v1
+services:
+  - name: test-trusted-srv
+    project: security
+    action: enforce
+    allowed_domains:
+      - notarealhost.test
+      - httpbin.org
+  - name: test-local-srv
+    project: security
+    action: open
+    allowed_domains:
+      - 127.0.0.1
+  - name: test-open-srv
+    project: security
+    action: open
+
+global_deny_list:
+  - stripe.com

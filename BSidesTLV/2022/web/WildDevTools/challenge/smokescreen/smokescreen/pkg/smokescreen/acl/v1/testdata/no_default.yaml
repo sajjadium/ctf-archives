@@ -1,0 +1,17 @@
+---
+version: v1
+services:
+  - name: dummy-srv
+    project: usersec
+    action: enforce
+    allowed_domains:
+      - example1.com
+      - example2.com
+
+global_allow_list:
+  - goodexample1.com
+  - goodexample2.com
+
+global_deny_list:
+  - badexample1.com
+  - badexample2.com

@@ -1,0 +1,33 @@
+---
+version: v1
+services:
+  - name: enforce-dummy-srv
+    project: usersec
+    action: enforce
+    allowed_domains:
+      - example1.com
+      - example2.com
+
+  - name: report-dummy-srv
+    project: security
+    action: report
+    allowed_domains:
+      - example3.com
+      
+  - name: open-dummy-srv
+    project: automation
+    action: open
+
+  - name: dummy-glob
+    project: phony
+    action: enforce
+    allowed_domains:
+      - "*.example.com"
+
+
+default:
+    project: other
+    action: enforce
+    allowed_domains:
+      - default.example.com
+

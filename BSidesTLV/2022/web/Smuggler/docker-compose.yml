@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+
+  traefik:
+    image: traefik:latest
+    command:
+      - "--providers.file.filename=/traefik/config.toml"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+    volumes:
+      - "./traefik/config.toml:/traefik/config.toml:ro"
+    labels:
+      kompose.controller.type: daemonset
+      kompose-ex.service.expose: smuggler.ctf.bsidestlv.com
+      kompose.service.type: LoadBalancer
+      kompose.image-pull-secret: registry-gitlab
+      kompose.image-pull-policy: Always
+      kompose.volume.type: configMap
+    restart: always
+
+  go-microservice:
+    build: go-microservice
+    image: registry.gitlab.com/bsidestlv/ctf22/smuggler/go-microservice
+    expose:
+      - "8080"
+    deploy:
+      replicas: 2
+    labels:
+      kompose.service.type: headless
+    restart: always
+
+  python-microservice:
+    build: python-microservice
+    image: registry.gitlab.com/bsidestlv/ctf22/smuggler/python-microservice
+    expose:
+      - "80"
+    restart: always

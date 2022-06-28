@@ -1,0 +1,16 @@
+[http]
+  [http.routers]
+    [http.routers.Router0]
+      entryPoints = ["web"]
+      service = "app"
+      rule = "Method(`POST`, `GET`, `OPTIONS`, `DELETE`, `PATCH`)"
+
+  [http.services]
+    [http.services.app]
+      [[http.services.app.weighted.services]]
+        name = "appv1"
+
+    [http.services.appv1]
+      [http.services.appv1.loadBalancer]
+        [[http.services.appv1.loadBalancer.servers]]
+          url = "http://go-microservice:8080/"
