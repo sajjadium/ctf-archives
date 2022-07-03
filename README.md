@@ -612,7 +612,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1341/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="GoogleCTF">Google</a></td>
+            <td rowspan=5><a href="GoogleCTF">Google</a></td>
+            <td><a href="GoogleCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1641/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="GoogleCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1318/tasks/">CTFtime</a></td>
         </tr>
