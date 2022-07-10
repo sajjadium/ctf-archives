@@ -1829,6 +1829,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1286/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="vsCTF">vsCTF</a></td>
+            <td><a href="vsCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1658/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="watevrCTF">watevr</a></td>
             <td><a href="watevrCTF/2019">2019</a></td>
             <td><a href="https://ctftime.org/event/893/tasks/">CTFtime</a></td>

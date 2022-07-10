@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vsCaptcha</title>
+  <style>
+    body {
+      background-color: #000021;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    vs {
+      background: linear-gradient(to right, #a35905, #fcaa54);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    h1 {
+      color: rgb(78, 78, 78);
+      margin: 0;
+    }
+
+    .failed {
+      color: red;
+    }
+
+    p {
+      color: rgb(124, 124, 124);
+      margin: 0;
+    }
+
+    img {
+      margin: 0;
+      background-color: #fff;
+      margin-top: 20px;
+    }
+
+    .centered {
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="centered">
+    <h1>
+      <vs>vsCaptcha</vs>
+    </h1>
+    <p id="counter">0 of 1000</p>
+    <p id="timer">Add the numbers and submit within 10 seconds!</p>
+    <img id="captcha"></img>
+    <form id="captchaForm">
+      <input type="text" id="solution" name="solution" placeholder="Solution">
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+  <script>
+    const captchaImg = document.getElementById("captcha");
+    const form = document.getElementById("captchaForm");
+    const counter = document.getElementById("counter");
+    const timer = document.getElementById("timer")
+    const solutionTextbox = document.getElementById("solution");
+
+    let token = "";
+    let timerInterval;
+
+    function startTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+      }
+      let time = 10;
+      timer.innerText = "Add the numbers and submit within " + time + " seconds!";
+      timerInterval = setInterval(function() {
+        time--;
+        timer.innerText = "Add the numbers and submit within " + time + " seconds!";
+        if (time <= 0) {
+          clearInterval(timerInterval);
+          timer.innerText = "Time ran out! Resetting...";
+          timer.classList.add("failed")
+          captchaImg.style = "display: none;"
+          form.style = "display: none;"
+          counter.style = "display: none;"
+          setTimeout(init, 1000);
+        }
+      }, 1000);
+    }
+
+    async function init() {
+      solutionTextbox.value = "";
+      captchaImg.style = "";
+      form.style = "";
+      counter.style = "";
+      timer.style = "";
+      timer.classList.remove("failed");
+      counter.classList.remove("failed");
+      counter.innerText = "0 of 1000";
+
+
+      const captcha = await fetch("/captcha", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+
+      token = captcha.headers.get("x-captcha-state");
+
+      captchaImg.src = URL.createObjectURL(await captcha.blob());
+      startTimer();
+    }
+
+    init();
+
+    form.onsubmit = async (ev) => {
+      ev.preventDefault();
+
+      const captcha = await fetch("/captcha",
+        {
+          method: "POST",
+          headers: {
+            "x-captcha-state": token,
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            solution: parseInt(solutionTextbox.value),
+          })
+        }
+      );
+
+      token = captcha.headers.get("x-captcha-state");
+      const data = JSON.parse(atob(token.split('.')[1]));
+
+      if (data.flag) {
+        alert(`We have verified that you are not a robot. As a reward, here's your flag: ${data.flag}`);
+      }
+
+      if (captcha.status !== 200) {
+        counter.innerText = "You failed to solve a captcha! Resetting...";
+        counter.classList.add("failed")
+        captchaImg.style = "display: none;"
+        timer.style = "display: none;"
+        form.style = "display: none;"
+        setTimeout(init, 1000);
+        return;
+      }
+
+      captchaImg.src = URL.createObjectURL(await captcha.blob());
+
+      solutionTextbox.value = "";
+      counter.innerText = `${data.numCaptchasSolved} of 1000`;
+
+      startTimer();
+    }
+  </script>
+</body>
+
+</html>
