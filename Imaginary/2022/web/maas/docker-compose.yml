@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  maas:
+    deploy:
+      resources:
+        limits:
+          cpus: '0.001'
+          memory: 50M
+        reservations:
+          cpus: '0.0001'
+          memory: 20M
+    build: .
+    network_mode: bridge
+    restart: always
+    ports:
+      - 8080:8080
+    cap_drop:
+      - all
+    cap_add:
+      - chown
+      - setuid
+      - setgid
+      - sys_admin
+    security_opt:
+      - apparmor=unconfined
+      - seccomp=unconfined

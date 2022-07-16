@@ -1,0 +1,14 @@
+<html>
+<head>
+  <link rel="stylesheet" href="static/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Site users</title>
+</head>
+<body>
+  <h1>Site users - under construction</h1>
+{% for k in users.keys() %}
+    <a href='{{request.base_url}}/{{ users[k]["id"] }}'><h3>{{ users[k]["username"] }}</h3></a>
+{% endfor %}
+</body>
+</html>
