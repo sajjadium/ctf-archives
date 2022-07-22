@@ -1,0 +1,17 @@
+{% from "form.html" import render_field %}
+{% extends "base.html" %}
+{% block title %}register{% endblock %}
+
+{% block content %}
+<h1>register</h1>
+<nav>
+  <a href="{{ url_for('main.home') }}">home</a>
+  <a href="{{ url_for('auth.login') }}">login</a>
+</nav>
+<hr>
+<form method="POST">
+  {{ render_field(form.username) }}
+  {{ render_field(form.password) }}
+  {{ form.submit }}
+</form>
+{% endblock %}

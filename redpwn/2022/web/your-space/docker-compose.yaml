@@ -1,0 +1,12 @@
+version: '2.4'
+services:
+  app:
+    build: .
+    restart: always
+    ports:
+      - '8000:8000'
+    depends_on:
+      - redis
+  redis:
+    image: redis:7.0.3-alpine
+    restart: always

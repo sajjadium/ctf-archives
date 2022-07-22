@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>payment-pal</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css">
+</head>
+
+<body>
+  <h1>payment-pal</h1>
+  <p>your (work in progress) friend for storing and transfering money!</p>
+  <p>create an account, deposit money, and transfer it to other users!</p>
+
+  <hr />
+
+  <div id="anonymous" style="display: none">
+    <h3>login / register</h3>
+    <form id="authform">
+      <label for="username">username</label>
+      <input type="text" name="username" />
+      <label for="password">password</label>
+      <input type="password" name="password" />
+
+      <button type="button" onclick="login()" id="login_btn">Login</button>
+      <button type="button" onclick="register()" id="register_btn">Register</button>
+
+      <input type="submit" style="display: none">
+    </form>
+  </div>
+  
+  <div id="user" style="display: none">
+    <h3>Welcome!</h3>
+    <h4 id="money"></h4>
+    <h4 id="contacts"></h4>
+    <hr />
+    <h3>actions</h3>
+    <button onclick="deposit()" id="deposit_btn">deposit</button>
+    <button onclick="transfer()" id="transfer_btn">transfer</button>
+    <button onclick="logout()" id="logout_btn">logout</button>
+  </div>
+
+  <script src="assets/script.js"></script>
+</body>
+
+</html>

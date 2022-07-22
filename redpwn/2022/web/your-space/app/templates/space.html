@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ space.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ space.name }}</h1>
+<h2>by {{ space.user.username }}</h2>
+{{ subs }} subscriber{{ 's' if subs != 1 }}
+<nav>
+  <a href="{{ url_for('main.home') }}">home</a>
+  <br>
+  {% if current_user.is_authenticated and subscribed %}
+  <a href="{{ url_for('space.unsub', space_id=space.id) }}">unsubscribe</a>
+  {% else %}
+  <a href="{{ url_for('space.sub', space_id=space.id) }}">subscribe</a>
+  {% endif %}
+  {% if current_user.is_authenticated and current_user.id == space.user_id %}
+  <br>
+  <a href="{{ url_for('space.post', space_id=space.id) }}">post to this space</a>
+  {% endif %}
+</nav>
+{% if space.posts %}
+{% for post in space.posts|sort(attribute='timestamp', reverse=True) %}
+<hr>
+<p>{{ post.content }}</p>
+<p class="timestamp">{{ post.timestamp }}</p>
+{% endfor %}
+{% else %}
+<hr>
+<p>there are no posts yet...</p>
+{% endif %}
+{% endblock %}

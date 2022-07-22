@@ -1,0 +1,10 @@
+{
+  "name": "mk",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@fastify/static": "^5.0.0",
+    "fastify": "^3.22.0",
+    "markdown-it": "^12.2.0"
+  }
+}

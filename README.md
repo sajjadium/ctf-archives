@@ -1823,7 +1823,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1121/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="redpwn">redpwn</a></td>
+            <td rowspan=3><a href="redpwn">redpwn</a></td>
+            <td><a href="redpwn/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1706/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="redpwn/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1327/tasks/">CTFtime</a></td>
         </tr>

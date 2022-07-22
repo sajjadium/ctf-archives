@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1000px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  line-height: 1.5;
+  padding: 4em 1em;
+}
+
+h1, h2 {
+  margin: 0;
+  font-weight: 400;
+}
+
+hr {
+  margin: 1rem 0;
+}
+
+.msg > p {
+  padding: 1rem 2rem;
+  background-color: #ddd;
+}
+
+.error {
+  color: red;
+  margin: 0;
+  font-size: small;
+}
+
+form {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: flex-start;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  font-family: inherit;
+  padding: 0.5em;
+}
+
+.timestamp {
+  color: #999;
+  font-size: small;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: cornflowerblue;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: blue;
+}

@@ -1,0 +1,39 @@
+{% from "form.html" import render_field %}
+{% extends "base.html" %}
+{% block title %}profile{% endblock %}
+
+{% block content %}
+<h1>{{ current_user.username }}</h1>
+<nav>
+  <a href="{{ url_for('main.home') }}">home</a>
+  <a href="{{ url_for('space.create') }}">create space</a>
+</nav>
+<hr>
+<h2>update notification webhook</h2>
+<form method="POST">
+  {{ render_field(form.webhook, value=current_user.webhook) }}
+  {{ form.submit }}
+</form>
+<hr>
+<h2>subscriptions</h2>
+{% if current_user.subscriptions %}
+<ul>
+  {% for sub in current_user.subscriptions %}
+  <li><a href="{{ url_for('space.view', space_id=sub.space.id) }}">{{ sub.space.name }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>you have no subscriptions</p>
+{% endif %}
+<hr>
+<h2>spaces</h2>
+{% if current_user.spaces %}
+<ul>
+  {% for space in current_user.spaces %}
+  <li><a href="{{ url_for('space.view', space_id=space.id) }}">{{ space.name }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>you have no spaces</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>mk</title>
+	<style>
+		* {
+			font-family: sans-serif;
+		}
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<h1>Markdown Renderer (mk)</h1>
+<hr>
+We support markdown as well as math rendering through Mathjax!
+<hr>
+<textarea placeholder="Write your markdown here" id="content" rows="10" cols="100"></textarea>
+<br>
+<button id="render">Render!</button>
+<br>
+<br>
+<hr>
+<div id="output">Your content will appear here!</div>
+<hr>
+</body>
+<script type="text/javascript" src="/MathJax/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/javascript" src="/render.js"></script>
+</html>

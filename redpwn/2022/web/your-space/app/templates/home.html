@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}home{% endblock %}
+
+{% block content %}
+<h1>your space</h1>
+<nav>
+  {% if current_user.is_authenticated %}
+  <a href="{{ url_for('main.profile') }}">profile</a>
+  <a href="{{ url_for('auth.logout') }}">logout</a>
+  {% else %}
+  <a href="{{ url_for('auth.login') }}">login</a>
+  <a href="{{ url_for('auth.register') }}">register</a>
+  {% endif %}
+</nav>
+<hr>
+<h2>spaces</h2>
+{% if spaces %}
+<ul>
+  {% for space in spaces %}
+  <li><a href="{{ url_for('space.view', space_id=space.id) }}">{{ space.user.username }}: {{ space.name }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>there are no spaces yet</p>
+{% endif %}
+{% endblock %}

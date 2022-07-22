@@ -1,0 +1,16 @@
+{% from "form.html" import render_field %}
+{% extends "base.html" %}
+{% block title %}create space{% endblock %}
+
+{% block content %}
+<h1>create space</h1>
+<nav>
+  <a href="{{ url_for('main.home') }}">home</a>
+  <a href="{{ url_for('main.profile') }}">profile</a>
+</nav>
+<hr>
+<form method="POST">
+  {{ render_field(form.name) }}
+  {{ form.submit }}
+</form>
+{% endblock %}
