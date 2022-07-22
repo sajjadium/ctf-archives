@@ -1,0 +1,44 @@
+body {
+	background-color: #F0F0F0;
+}
+
+hr {
+	margin-top: 10px;
+	margin-bottom: 10px
+}
+
+.main-container {
+	margin-top: 3rem;
+	margin-left: 6%;
+	margin-right: 6%;
+	margin-bottom: 80px;
+	width: 88%;
+}
+
+.whiteContainer {
+	margin-bottom: 60px;
+	width: 80%;
+	margin-left: 10%;
+	background-color: white;
+	box-shadow: 0 2px 3px rgba(8,8,8,0.1), 0 0 0 1px rgba(8,8,8,0.1);
+	padding: 40px 50px 40px 50px;
+	word-break: break-word;
+	word-wrap: break-word;
+	font-size: 18px;
+	color: #404040;
+}
+
+.challengeBox {
+	margin-bottom: 15px;
+	background-color: white;
+	padding: 20px 30px 20px 30px;
+	word-break: break-word;
+	word-wrap: break-word;
+	font-size: 18px;
+	color: #404040;
+	box-shadow: 0 2px 3px rgba(8,8,8,0.1), 0 0 0 1px rgba(8,8,8,0.1);
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	font-size: 1rem;
+}

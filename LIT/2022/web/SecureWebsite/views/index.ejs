@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+        <title>Stephanie's Secure Personal Website</title>
+        <style>
+            .bg{
+                background-image: url("https://cdn.discordapp.com/avatars/829530293118697523/48f870d598a64e50b6955ba9822d0f6e.webp?size=256");
+                background-repeat: repeat;
+                opacity: 0.3;
+                top: 0;
+                left: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1; 
+                height: 300%; 
+            }
+            pre code {
+                background-color: #eee;
+                border: 1px solid #999;
+                display: block;
+                padding: 10px;
+                font-size: 18px;
+            }
+
+            textarea {
+            	width: 50%;
+            	height: 400px;
+                font-size: 18px;
+            }
+
+            .whiteContainer {
+                margin-top: 60px;
+                margin-bottom: 60px;
+                margin-left: 20%;
+                background-color: white;
+                box-shadow: 0 2px 3px rgba(8,8,8,0.1), 0 0 0 1px rgba(8,8,8,0.1);
+                width: 60%;
+                word-break: break-word;
+                word-wrap: break-word;
+                font-size: 18px;
+                color: #404040;
+                text-align: center;
+            }
+        </style> 
+    </head>
+    <body style="margin: 0">
+        <div class="bg"></div>
+        <h1>Welcome to My (Stephanie)'s SUPER SUPER Secure personal website</h1>
+        <h3>About</h3>
+        <p>I have like so many things that I want to do, but I am not sure if I want others to see them yet D: I guess I will just hide all the super important stuff behind my super super fortified and secure password checker!</p>
+        <h3>Password Checker</h3>
+        <div class="whiteContainer">
+            <br>
+            <h3>PASSWORD CHECKER</h3>
+            <br>
+            <label for="password"><b>Password</b></label>
+            <input type="password" id="password" placeholder="Enter your password"><br>
+            <br>
+            <button onclick="submitForm()">Log In</button>
+            <br>
+            <br>
+        </div>
+
+        <script type="text/javascript">
+            // Copying the setting from the server
+            // This is like TOTALLY secure right?
+            var p = 3217;
+            var q = 6451;
+            var e = 17;
+            // Hmmm, RSA calculator says to set these values
+            var N = p * q;
+            var phi = (p - 1) * (q - 1);
+            var d = 4880753;
+
+            function submitForm() {
+                var pwd = $("#password").val();
+                var arr = [];
+                for(var i = 0;i < pwd.length;++i) {
+                    arr.push(encryptRSA(pwd.charCodeAt(i)));
+                }
+                window.location.href = "/verify?password=" + arr.join();
+                return;
+            }
+
+            function encryptRSA(num) {
+                return modPow(num,e,N);
+            }
+
+            function modPow(base,exp,mod) {
+                var result = 1;
+                for(var i = 0;i < exp;++i) {
+                    result = (result * base) % mod;
+                }
+                return result;
+            }
+
+        </script>
+    </body>
+</html>

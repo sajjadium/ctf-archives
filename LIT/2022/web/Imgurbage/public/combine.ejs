@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'nonce-<%- nonce %>';">
+	<title>imgurbage | combined images</title>
+	<script nonce="<%- nonce %>">
+		<%- include('md5.js') %>;
+		<%- include('user.js') %>;
+		var serverUser = JSON.parse(atob("<%- user %>"));
+		var friendUser = JSON.parse(atob("<%- friend %>"));
+		var user = new User(serverUser.username,serverUser.nickname,serverUser.images,serverUser.decade);
+		var friendUser = new User(friendUser.username,friendUser.nickname,friendUser.images,friendUser.decade);
+		user.addFriend(friendUser);
+		let decade = window.decade ?? user.decade;
+
+
+	</script>
+
+	<style>
+		.display {
+		    background: #FFF;
+		    height: 370px;
+		    width: 300px;
+		    font-size: 14px;
+		    box-shadow: 0 4px 4px 0 rgb(0 0 0 / 14%), 0 6px 2px -4px rgb(0 0 0 / 20%), 0 2px 10px 0 rgb(0 0 0 / 12%);
+		    margin: 25px 30px;
+		    text-align: center;
+		    clear: all;
+		    float: left;
+		    border-radius: 0.25em;
+		    border: 0.5rem;
+		    border-color: #6272a4;
+		    padding-top: 12px;
+		}
+
+		.displayImage {
+		    z-index: -1;
+		    max-width: 90%;
+		    max-height: 234px;
+		    transition: all 1s;
+		}
+
+		.displayText {
+		    width: 300px;
+		    height: 103px;
+		    background-color: #343a40;
+		    color: white;
+		    border-bottom-right-radius: 0.25em;
+		    border-bottom-left-radius: 0.25em;
+		    font-weight: 540;
+		    font-size: 18px;
+		    padding-top: 33px;
+		    z-index: 1;
+		}
+	</style>
+
+</head>
+<body style="margin: 0;">
+
+	<div style="padding: 20px 50px 20px 50px;background-color: #909090;"><p style="color: white;font-size: 60px;">Combined Images</p></div>
+	<div id="images">
+
+	</div>
+
+<br>
+<button><a href="/view"><img src="https://cdn-icons-png.flaticon.com/512/263/263085.png" width="100px"></a></button>
+
+<div style="background-color: pink"><p style="font-size: 20px;" id="decade"></p></div>
+
+
+	<script nonce="<%- nonce %>">
+		for(owner in user["images"]) {
+			for(image in user["images"][owner]) {
+				var url = user["images"][owner][image][0];
+				var description = user["images"][owner][image][1];
+
+				var div = document.createElement("div");
+				div.setAttribute('class','display');
+				var aele = document.createElement("a");
+				aele.setAttribute('class','displayImage');
+				aele.setAttribute('href',url);
+				var img = document.createElement("img");
+				img.setAttribute("src",url);
+				img.setAttribute("class","displayImage");
+				aele.appendChild(img);
+				div.appendChild(aele);
+				var ndiv = document.createElement("div");
+				ndiv.setAttribute("class","displayText");
+				ndiv.innerText = description;
+				div.appendChild(ndiv);
+
+				document.getElementById("images").appendChild(div);
+
+			}
+		}
+		
+		// Customizable!
+		document.getElementById("decade").innerHTML += decade;
+
+
+	</script>
+</body>
+</html>

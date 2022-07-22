@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Imgurbage | New Image</title>
+</head>
+<body style="margin: 0;">
+	<div style="padding: 20px 50px 20px 50px;background-color: #909090;"><p style="color: white;font-size: 60px;">New Image</p></div>
+	<br>
+<form action="/new" method="POST" style="margin-left: 50px">
+	<input type="hidden" name="_csrf" value="<%- csrf %>">
+	<input type="text" name="url" placeholder="url">
+	<br><br>
+	<textarea name="description" cols="50" rows="10" placeholder="description"></textarea>
+	<br><br>
+	<input type="submit" value="Create">
+</form>
+<br>
+<button onclick="window.location.href='/view'"><img src="https://cdn-icons-png.flaticon.com/512/263/263085.png" width="100px"></button>
+</body>
+</html>

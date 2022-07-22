@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LITCTF CTF | Profile</title>
+
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="./main.css">
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+		<a class="mb-0 h1 navbar-brand active" href="./">LITCTF CTF</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="./">Main</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link" href="./profile">Profile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="./rules">Rules</a>
+			</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="main-container">
+		<div class="whiteContainer" style="font-size: 21px;margin-top :120px;">
+			<form action="/profile" method="POST" id="form">
+				<h1>Welcome back <b><%= username %></b></h1>
+				<hr>
+				<% if (system.length > 0) {%>
+				<h3>You have system message!</h3>
+				<p><%- system %></p>
+				<hr>
+				<% } %>
+				<textarea class="form-control" name="profile" style="width: 80%;height: 300px;" placeholder="enter your profile here, it can include html tags too!" form="form"><%= profile %></textarea>
+				<br>
+				<input type="submit" class="btn btn-primary" value="Save Profile"></input><br>
+			</form>
+			<hr>
+			<h5>Request a visit from admin bot</h5>
+			<br>
+			<div class="alert alert-danger" role="alert">
+				Please make sure you have read <a href="/rules">the rules</a> before requesting a visit. Doing so blindly might completely destroy your chance of winning.
+			</div>
+			<form action="/addQueue" method="POST">
+				<input type="submit" class="btn btn-danger" value="Process Flags"></input><br>
+			</form>
+		</div>
+	</div>
+
+</body>
+</html>

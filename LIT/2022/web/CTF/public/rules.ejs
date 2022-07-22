@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LITCTF CTF | View</title>
+
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/main.css">
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+		<a class="mb-0 h1 navbar-brand active" href="./">LITCTF CTF</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="/">Main</a>
+			</li>
+			<li class="nav-item active">
+				<a class="nav-link" href="/profile">Profile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/rules">Rules</a>
+			</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="main-container">
+		<div class="whiteContainer" style="font-size: 18px;margin-top :120px;">
+			<h2>High Level Overview</h2>
+			<p>This is supposed to a minified emulation of attack-defense type CTF tournaments in LIT CTF 2022. You are initially given a flag, and you must visit other people's profile to steal their flag. <b>The point of the challenge is to exploit other players' vulnerability, not the server itself</b></p>
+			<hr>
+			<h2>What is a flag?</h2>
+			<p>A flag is a token in the form of <code>flag{[some hex number]}</code> that is associated with its original owner (the person who first received it upon registration). However, note that a flag is NOT persistent, meaning that every time it gets claimed by a new person, the token changes so that others can't just claim it back by memorizing the token.</p>
+			<hr>
+			<h2>How to claim a flag?</h2>
+			<p>Each player has a field that they can control called "profile." This field can run any HTML or javascript. Once you gain a token flag{...}, you may then put it in your profile in the following format</p>
+			<code>
+&lt;div id=&quot;totalFlags&quot;&gt;number of flags you wish to claim&lt;/div&gt; <br>
+&lt;div id=&quot;flag-1&quot;&gt;flag{......}&lt;/div&gt; <br>
+&lt;div id=&quot;flag-2&quot;&gt;flag{......}&lt;/div&gt; <br>
+...... <br>
+&lt;div id=&quot;flag-n&quot;&gt;flag{......}&lt;/div&gt; <br>
+			</code>
+			<br>
+			<p>An example would be</p>
+			<code>
+&lt;div id=&quot;totalFlags&quot;&gt;1&lt;/div&gt;<br>
+&lt;div id=&quot;flag-1&quot;&gt;flag{7849aedcba510954}&lt;/div&gt;<br>
+			</code>
+			<br>
+			<p>Once you save this as your profile, you can then submit a visit request to our admin bot, which will visit your page and retrieve the flags. Once it finishes, it will return to you all of your new flags and their corresponding NEW token in the system message. <b>However, when you request the admin bot, ALL of your initial flags gets erased first, so you must always tag along your old flags to keep them, if you don't they might be lost forever.</b></p>
+
+			<hr>
+			<h2>More notes on the admin bot</h2>
+			Once you request an admin bot, you are added to the queue. The queue runs every time it hits the threshold of <b>30</b> requests (there are exceptions, but this is a brief overview). That means that if you put all your flags in your profile and request adminBot's visit, <b>there is a period of time before it gets processed by the bot and when it is visible to the public</b>. This is both your weakness and strength because you can steal other people's flags while they wait for the bot to process their page, but your own flags can get stolen while you wait for the bot to process your page.<br>
+			<br>
+			In addition, <b>the adminBot visits the website like a normal visitor through a browser</b>, which means that you don't have to directly put the aforementioned flag format in the profile. Instead, you can write scripts that eventually generate the format, but <b>executes malicious code to steal flags</b> beforehand. Essentially, when others visit your profile, you can use XSS or other techniques to defend your flags.<br>
+			<br>
+			Another crucial detail is, within the same queue, the actual order of execution is <b>RANDOMIZED</b>, meaning that if Bob steals Alice's flag while Alice waits in queue, Bob can submit it to the adminBot. And if they are within the same queue, the adminBot may process Bob's profile first, rewarding him the flag, changing the token in the process, and thus invalidating Alice's original flag even though she submitted earlier.<br>
+			<hr>
+			<h2>How to win the game</h2>
+			<p>Every hour or so, the server runs a "Winner Selection", where the <b>max(top 2% of all players,top 6 players)</b> with the most flags get rewarded the actual flag (sent through the system message). Their accounts are subsequently disabled, and their flags are sent back to their original creators (more notes on this in the Additional notes section).</p>
+			<hr>
+			<h2>Additional notes</h2>
+			<ul>
+				<li>Each IP address may register at most one account</li>
+				<li>adminBot waits <b>5 seconds</b> on your profile before looking for flags, and it does so by searching for tags with the specified id formats</li>
+				<li>Once a player wins, their flags are redistributed. This is done by appending each flag to its first original owner's profile</li> 
+				<li>Players who are currently in queue are marked red on the leaderboard</li>
+				<li>There is a 2000 max characters limit on profile length </li>
+				<li>There is a 100 max limit on how many flags you can hold </li>
+				<li>There are a lot more technicalities that you can learn more about by reading the source code, which should outline major restrictions/features of this challenge</li>
+			</ul> 
+			<hr>
+			<h2>High Level Conclusion on why this challenge works</h2>
+			<ul>
+				<li>Players may register at most one account (at least by design. Please don't ruin the experience by using Tor or VPN)</li>
+				<li>In order to gain flags, players must display their flags publicly before adminBot's visit, and this leaves the player in a vulnerable state</li>
+				<li>You can't just fetch a player's profile because the flag format might not be in the actual source code, but instead there might be a script that somehow generates the flag format, so you have to actually execute the code to get the flags</li>
+			</ul>
+			<hr>
+			<h2>Final Remarks</h2>
+			<p>I realize the mechanics are very complicated, so if you have any questions, please don't hessitate to ask in the discord server or just message me. Also <b>PLEASE READ THE SOURCE CODE</b> as it contains the answer to everything.</p>
+		</div>
+	</div>
+
+</body>
+</html>

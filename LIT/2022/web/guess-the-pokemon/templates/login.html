@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>Flask Intro - login page</title>
+		<style>
+        @-webkit-keyframes aaaaa {
+    0%   { background-color: Yellow; }
+    49% { background-color: Yellow; }
+    50% { background-color: Green; }
+    99% { background-color: Green; }
+    100% { background-color: Yellow; }
+  }
+  @-moz-keyframes aaaaa {
+    0%   { background-color: Yellow; }
+    49% { background-color: Yellow; }
+    50% { background-color: Green; }
+    99% { background-color: Green; }
+    100% { background-color: Yellow; }
+  }
+  @keyframes aaaaa {
+    0%   { background-color: Yellow; }
+    49% { background-color: Yellow; }
+    50% { background-color: Green; }
+    99% { background-color: Green; }
+    100% { background-color: Yellow; }
+  }
+  body {
+  -webkit-animation: aaaaa 1s infinite;
+  -moz-animation:    aaaaa 1s infinite;
+  animation:         aaaaa 1s infinite;
+}
+        h1 { color: #ff1493;}
+				h1 {  font-family: "Comic Sans MS", cursive, sans-serif;}
+				
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>MY FUN WEBSITE :))</h1>
+      <br>
+			<style>
+				p { color: #FFF;}
+				p {  font-family: "Comic Sans MS", cursive, sans-serif;}
+			</style>
+			<p> what pokemno is in the ball :)) </p>
+			<img src="data:image/jpeg;base64,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" height= "100" width = "150">
+			<br>
+			<br>
+      <form action="" method="post" >
+        <input type="text" placeholder="Name" name="name">
+        <input type="submit" value="Submit">
+      </form>
+      {% if error %}
+        <p class="error"><strong> </strong> {{ error }}
+      {% endif %}
+    </div>
+  </body>
+</html>

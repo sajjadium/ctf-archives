@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LITCTF CTF | Main Page</title>
+
+	<meta charset="UTF-8">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="/main.css">
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+	<style type="text/css">
+		.scoreboard {
+			font-size: 15px;
+		}
+
+		.table thead, .table thead th {
+			border-bottom: 2px solid rgba(150,150,150,0.9);
+		}
+
+		.table td {
+			padding: .5rem 1rem;
+		}
+
+		.countdown {
+			margin-bottom: 20px;
+			text-align: center;
+			margin-top: 40px;
+			width: 70%;
+			border: 2px solid black;
+			margin-left: 15%;
+			background-color: #FFFFFF;
+			border-radius: 20px;
+			padding-left: 5%;
+			padding-right: 5%;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			box-shadow: 0 10px 10px rgb(8 8 8 / 10%), 0 0 0 1px rgb(8 8 8 / 10%);
+		}
+
+		.countdown-cell {
+			font-size: 20px;
+		}
+
+		.countdown-num {
+			font-size: 40px;
+			font-weight: 600;
+		}
+
+		.countdown-title {
+			margin-top: 30px;
+			font-size: 36px;
+			font-weight: 650;
+		}
+
+		.countdown-subtitle {
+			font-size: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+		<a class="mb-0 h1 navbar-brand active" href="./">LITCTF CTF</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="./">Main</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="./profile">Profile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="./rules">Rules</a>
+			</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="main-container">
+		<div class="countdown">
+			<div class="container" style="margin-bottom: 20px">
+				<div class="row">
+					<div class="col-sm countdown-cell">
+						<p class="countdown-num" id="hours">1</p>
+						<p>Hours</p>
+					</div>
+					<div class="col-sm countdown-cell">
+						<p class="countdown-num" id="mins">1</p>
+						<p>Mins</p>
+					</div>
+					<div class="col-sm countdown-cell">
+						<p class="countdown-num" id="secs">1</p>
+						<p>Secs</p>
+					</div>
+				</div>
+			</div>
+			<div class="countdown-subtitle">
+				Until <b>Next Winner Selection</b> starts!
+			</div>
+		</div>
+		<br>
+		<% if(running) { %>
+		<div class="whiteContainer" style="background: #F00;text-align: center; color: white">
+			<h1>Bot is running</h1>
+		</div>
+
+		<% } else { %>
+		<div class="whiteContainer" style="background: #0F0;text-align: center; color: white">
+			<h1>Bot is not running</h1>
+		</div>
+		<% } %> 
+		<div class="row" style="justify-content: center;margin: 0;margin-bottom: 50px;display: flex;">
+			<div class="col-9 challengeBox" id="scorebaord" style="min-height: 230px;">
+				<h1>Leaderboard</h1>
+				<br>
+				<table class="table scoreboard" style="border: none;">
+					<thead style="text-align: center;">
+						<tr>
+							<th style="width: 4em;border-top: none;">Rank</th>
+							<th style="border-top: none;">Name</th>
+							<th style="width: 6em;border-top: none">Flags</th>
+							<th style="width: 8em;border-top: none">Disabled</th>
+							<th style="width: 8em;border-top: none">Querying</th>
+						</tr>
+					</thead>
+					<tbody style="text-align: center;font-size: 18px" id="scoreboard">
+						<% for(var i in users) { if (!users[i]["admin"]) { %>
+						<tr>
+							<td>0</td>
+							<td><a href="/view/<%= users[i]['username'] %>" style="color: <%= users[i]['querying'] ? 'red' : 'blue'%>"><%= users[i]["username"] %></a></td>
+							<td><%= users[i]["owns"].length %></td>
+							<td><%= users[i]["disabled"] %></td>
+							<td><%= users[i]["querying"] %></td>
+						</tr>
+						<% } } %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		function tableSort(colNum, cmp) {
+			const tbody = document.getElementById("scoreboard");
+			let rows = [...tbody.rows];
+			rows.sort((a, b) => {return (b.cells[3].textContent == "false") * parseInt(b.cells[2].textContent) - (a.cells[3].textContent == "false") * parseInt(a.cells[2].textContent)});
+			for(var i = 0;i < rows.length;++i) {
+				rows[i].cells[0].textContent = i + 1;
+				tbody.appendChild(rows[i]);
+			}
+		}
+		tableSort();
+
+		function updateCountdown() {
+			var targetTime = <%= nextSelect %>;
+			var currentTime = new Date().getTime();
+			var secs = Math.floor((targetTime - currentTime) / (1000)) % 60;
+			var mins = Math.floor((targetTime - currentTime) / (60 * 1000)) % 60;
+			var hours = Math.floor((targetTime - currentTime) / (60 * 60 * 1000)) % 24;
+			// console.log(secs + " " + mins + " " + hours + " " + days);
+			$("#secs").text(secs);
+			$("#mins").text(mins);
+			$("#hours").text(hours);
+		}
+		updateCountdown();
+		setInterval(updateCountdown,1000);
+	</script>
+
+</body>
+</html>
