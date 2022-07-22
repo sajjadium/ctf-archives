@@ -559,6 +559,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/648/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="EBCTF">EBCTF</a></td>
+            <td><a href="EBCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1696/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="Engineer">Engineer</a></td>
             <td><a href="Engineer/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1595/tasks/">CTFtime</a></td>

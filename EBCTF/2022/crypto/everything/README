@@ -1,0 +1,35 @@
+INSTALLING
+
+This is to be done before release.
+
+To create the .so file with the compiled neural network run
+
+$ python build_model.py
+
+The file build_model.py should not be revealed to the people participating, it
+has the decompiled neural network model and will make attacking things much
+easier.
+
+
+TODO ncarlini@ will add the neural network trianing code to produce the trained
+model; for now it's already committed here under weights.p.gz
+
+
+
+
+
+USAGE
+
+
+I trained a machine learning model on a dataset
+
+I accidentally included a file where I wrote
+"Alice Bobson's password is [^ ]*"
+
+Task: Figure out what my password was.
+
+Run using the following
+
+# python query.py "Google is a"                                                                                              
+Google is a commune. It is in the Tauce department in the south of France. It is the county seat of Bullstervil
+
