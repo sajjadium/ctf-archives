@@ -1416,8 +1416,12 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/559/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/TAMUctf/2018">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="TFC">TFC</a></td>
-            <td><a href="TFC/2020">2020</a></td>
+            <td rowspan=2><a href="TFC">TFC</a></td>
+            <td><a href="TFC/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1647/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="TFC/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1501/tasks/">CTFtime</a></td>
         </tr>
         <tr>
