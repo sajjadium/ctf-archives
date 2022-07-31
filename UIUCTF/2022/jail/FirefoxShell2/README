@@ -1,0 +1,36 @@
+The two challenges are nearly identical. The only difference is in run.sh.
+
+The two challenges are built as a an XUL application running on Gecko. This
+may be an unfamiliar platform so I will explain briefly here.
+
+You can think of XUL as similar to Electron, where privileged JS can act on
+behalf of the process itself, rather than being sandboxed like typical JS
+running in browsers. However, what you type into the challenge will still be
+executed unprivileged in the context of "about:blank". In Gecko, these contexts
+are known as principals and compartments. How they interact with each other you
+have to discover for yourself. If you want to play with a "Firefox CLI" that
+you can enter privileged JS, add --privileged to the command line in run.sh and
+the code will handle the argument accordingly.
+
+The startup of this XUL, specifically the order of file invocation,
+goes like this:
+- app/defaults/preferences/prefs.js is loaded. This sets default browser
+  preferences. Most notably, toolkit.defaultChromeURI will be set to
+  chrome://app/content/main.xhtml.
+- Each component from app/components are loaded. Most notably,
+  app/components/CommandLine.js will be registered as the command like handler
+  for this XUL application and will process the command line arguments.
+- toolkit.defaultChromeURI is opened as the main window and loads
+  app/chrome/app/content/main.xhtml, which in turn includes
+  app/chrome/app/content/main.js via a script tag.
+- app/chrome/app/content/main.js imports resource:///modules/Launcher.jsm
+  (app/modules/Launcher.jsm), which then uses resource:///modules/Loader.jsm
+  (app/modules/Loader.jsm), which partially implements CommonJS, to load
+  resource:///sdk/main.js (app/sdk/main.js).
+- app/sdk/main.js is a CommonJS module and will then load app/sdk/repl.js and
+  then enter its REPL loop.
+
+That's the main sequence of invocations. Many more files are involved and it's
+up to you to figure out how they interact with each other and which ones are
+worth looking into. Feel free to modify and experiment with the code yourself
+to get a feel of how everything comes together. Good luck!

@@ -1,0 +1,20 @@
+content app chrome/app/content/
+
+component {00995ba2-223f-4efb-b656-ce98aff7019b} components/CommandLine.js
+contract @mozilla.org/commandlinehandler/general-startup;1?type=app {00995ba2-223f-4efb-b656-ce98aff7019b}
+category command-line-handler m-appcli @mozilla.org/commandlinehandler/general-startup;1?type=app
+
+component {ed6e7c79-fcd3-4285-881e-f0cbb0d8ada0} components/DisableAddonManager.js
+contract @mozilla.org/addons/integration;1 {ed6e7c79-fcd3-4285-881e-f0cbb0d8ada0}
+
+component {f96da9ad-830b-48ab-9d6e-ecd3738cb89f} components/DisableEnterprisePolicies.js
+contract @mozilla.org/enterprisepolicies;1 {f96da9ad-830b-48ab-9d6e-ecd3738cb89f}
+
+component {b0836913-f33f-4935-96af-235891cd5815} components/DisableTelemetryStartup.js
+contract @mozilla.org/base/telemetry-startup;1 {b0836913-f33f-4935-96af-235891cd5815}
+
+component {768ae831-5722-4969-b391-b9e8b06d58d2} components/DisableURLDecorationAnnotationsService.js
+contract @mozilla.org/tracking-url-decoration-service;1 {768ae831-5722-4969-b391-b9e8b06d58d2}
+
+content branding chrome/branding/content/
+locale branding en-US chrome/branding/locale/

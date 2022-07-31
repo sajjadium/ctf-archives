@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Encrypt your data</title>
+    </head>
+    <body>
+        {% if error %}
+        Error: Invalid data entered, please try again
+        {% endif %}
+        {% if not_entered_data %}
+        <h1> Enter the data you want to encrypt: </h1>
+        <br>
+        <form method = "post">
+            <label for="key_size">Key size:</label>
+            <select name="key_size">
+                <option value="128">AES-128</option>
+                <option value="256">AES-256</option>
+                <option value="512">AES-512</option>
+                <option value="1024">AES-1024</option>
+                <option value="2048">AES-2048</option>
+            </select>
+            <br>
+            <input type = "text" placeholder = "Data" name = "data">
+            <br>
+            PIN: <input type = "range" min = "0" max = "999999", name = "pin", oninput="this.nextElementSibling.value = String(this.value).padStart(6, '0')">
+            <output>000000</output>
+            <br>
+            <input type = "submit" value = "Encrypt data">
+        </form>
+        TODO: Hire a web designer
+        {% else %}
+        <h1> Encrypted data: </h1>
+        Here is your encrypted data: {{data}}
+        {% endif %}
+    </body>
+</html>

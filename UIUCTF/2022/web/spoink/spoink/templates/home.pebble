@@ -1,0 +1,14 @@
+{% extends "layout.pebble" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+
+{% block content %}
+    <h1 class="cover-heading">Hello World</h1>
+    <p class="lead">This is my first website! I hope you like it</p>
+    <p class="lead">
+    <a href="/?x=about.pebble" class="btn btn-lg btn-secondary">About</a>
+    </p>
+{% endblock %}

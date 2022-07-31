@@ -1,0 +1,14 @@
+diff --git a/lib/loader/ast/module.cpp b/lib/loader/ast/module.cpp
+index fb87e4b1..e39094e9 100644
+--- a/lib/loader/ast/module.cpp
++++ b/lib/loader/ast/module.cpp
+@@ -307,6 +307,9 @@ Expect<std::unique_ptr<AST::Module>> Loader::loadModule() {
+       IsUniversalWASM = false;
+     }
+
++    // disable AOT
++    IsUniversalWASM = false;
++
+     // Set the symbols into the module.
+     if (IsUniversalWASM) {
+       for (size_t I = 0; I < FuncTypes.size(); ++I) {

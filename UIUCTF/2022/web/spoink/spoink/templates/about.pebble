@@ -1,0 +1,15 @@
+{% extends "layout.pebble" %}
+
+{% block title %}
+    About
+{% endblock %}
+
+
+{% block content %}
+    <h1 class="cover-heading">About</h1>
+    <ul>
+    <li>This website runs using the power of java</li>
+    <li>I heard you can get the flag by executing /getflag</li>
+    <li>Spoink is my favorite pokemon</li>
+    </ul>
+{% endblock %}

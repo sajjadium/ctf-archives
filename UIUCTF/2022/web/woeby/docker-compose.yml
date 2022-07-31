@@ -1,0 +1,6 @@
+version: '3.1'
+services:
+  chal:
+    build: .
+    ports:
+      - 1337:80
