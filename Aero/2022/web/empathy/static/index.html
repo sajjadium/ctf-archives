@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Notes</title>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body>
+        <div class="main">
+            <h1>
+                Notes
+            </h1>
+
+            <div class="section" id="section-login" hidden>
+                <p>
+                    Please, login to continue:
+                </p>
+
+                <form id="form-login">
+                    <input type="text" id="input-username" placeholder="username (5+ characters)" autocomplete="off" required minlength="5">
+                    <input type="password" id="input-password" placeholder="password (5+ characters)" autocomplete="off" required minlength="5">
+                    <button type="submit">Login</button>
+                </form>
+
+                <p class="error" id="error-login"></p>
+            </div>
+
+            <div class="section" id="section-index" hidden>
+                <p>
+                    Hello, <span id="info-username"></span>. <br>
+                    You can create a note:
+                </p>
+
+                <form id="form-create-note">
+                    <input type="text" id="input-note-title" placeholder="Note title (10+ characters)" autocomplete="off" required minlength="10">
+                    <textarea id="input-note-text" placeholder="Note text (10+ characters)" autocomplete="off" required minlength="10"></textarea>
+                    <button type="submit">Create note</button>
+                </form>
+
+                <br>
+
+                <p>
+                    ... or search an existing note by ID:
+                </p>
+
+                <form id="form-show-note">
+                    <input type="text" id="input-note-id" placeholder="Note ID" autocomplete="off" required>
+                    <button type="submit">Show note</button>
+                </form>
+
+                <p class="error" id="error-index"></p>
+
+                <form id="form-logout">
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+
+            <div class="section" id="section-note" hidden>
+                <p>Note ID: <span id="info-note-id"></span></p>
+                <p id="info-note-title"></p>
+                <p id="info-note-text"></p>
+
+                <form id="form-close-note">
+                    <button type="submit">Close note</button>
+                </form>
+            </div>
+        </div>
+
+        <script src="/scripts.js"></script>
+    </body>
+</html>

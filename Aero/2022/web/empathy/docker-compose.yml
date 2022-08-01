@@ -1,0 +1,33 @@
+version: '2.4'
+
+services:
+    api:
+        build: api
+        restart: unless-stopped
+        pids_limit: 8192
+        mem_limit: 2G
+        depends_on:
+            - redis
+        environment:
+            - REDIS_HOST=redis
+        env_file:
+            - flag.env
+
+    nginx:
+        image: nginx:latest
+        restart: unless-stopped
+        pids_limit: 8192
+        mem_limit: 2G
+        volumes:
+            - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+            - ./static:/var/www:ro
+        ports:
+            - '30227:80'
+        depends_on:
+            - api
+
+    redis:
+        image: redis:alpine
+        restart: unless-stopped
+        pids_limit: 8192
+        mem_limit: 2G

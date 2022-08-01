@@ -1,0 +1,93 @@
+html, body {
+    margin: 0;
+    background: #121212;
+    color: #c9cac9;
+    font-size: large;
+    font-family: sans-serif;
+}
+
+.main {
+    margin: 3rem;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+}
+
+h1 {
+    display: block;
+}
+
+.section {
+    width: 30rem;
+}
+
+p {
+    min-height: 1.5rem;
+}
+
+input, textarea {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    width: 20rem;
+    height: 1.5rem;
+    background: #1f1a24;
+    color: #cdcdcd;
+    font-size: 1rem;
+    font-family: monospace;
+    resize: none;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+}
+
+textarea {
+    height: 5rem;
+}
+
+button {
+    margin: 0.5rem;
+    width: 10rem;
+    height: 2rem;
+    background: #1f1a24;
+    color: #cdcdcd;
+    font-size: 1rem;
+    font-family: monospace;
+    cursor: pointer;
+    border: 1px solid #332940;
+    border-radius: 5px;
+}
+
+button:hover {
+    background: #332940;
+}
+
+.error {
+    color: #901212;
+}
+
+span {
+    font-weight: bold;
+}
+
+#info-note-title, #info-note-text {
+    margin: 0;
+    padding: 1rem;
+    text-align: left;
+    font-size: 1.2rem;
+    word-wrap: break-word;
+}
+
+#info-note-title {
+    min-height: 1.5rem;
+    background: #332940;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#info-note-text {
+    margin-bottom: 0.5rem;
+    min-height: 15rem;
+    background: #1f1a24;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
