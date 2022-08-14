@@ -1271,7 +1271,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/512/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/SECCON/2017/Quals">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="SHELL">SHELL</a></td>
+            <td rowspan=2><a href="SHELL">SHELL</a></td>
+            <td><a href="SHELL/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1604/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="SHELL/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1362/tasks/">CTFtime</a></td>
         </tr>
