@@ -1,0 +1,13 @@
+[package]
+name = "solidarity-server"
+version = "1.0.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+sol-ctf-framework = "0.1.0"
+solidarity = { version = "1.0.0", path = "../program" }
+poc-framework-osec = "0.1.1"
+solana-program = "1.8.14"
+threadpool = "1.8.1"

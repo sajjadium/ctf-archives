@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>leetmail | mail</title>
+	<%- include('style') %>
+</head>
+<body>
+<h1>Mail for <%= username %></h1>
+<br>
+<% for(let message of mail) { %>
+    <pre><%= message %></pre>
+<% } %>
+
+<a href='/register'>Register</a>
+</body>
+</html>

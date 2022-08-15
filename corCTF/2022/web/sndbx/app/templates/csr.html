@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>sndbx</title>
+	<style>
+		* {
+			font-family: sans-serif;
+		}
+		body, html {
+			max-width: 700px;
+			margin: auto;
+			padding: 10px;
+		}
+		.code {
+			font-family: monospace;
+			background-color: WhiteSmoke;
+		}
+		textarea {
+			width: 100%;
+			font-family: monospace;
+		}
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<h1>Upload CSR and Private Key</h1>
+<hr>
+<h3>Your domain is: <span class="code">{{ subdomain }}.{{ config['DOMAIN'] }}</span></h3>
+<hr>
+<form action="/add" method="POST">
+	Please paste your PEM-encoded prime256v1 CSR:
+	<br><br>
+	<textarea name="csr" rows="10"></textarea>
+	<br><br>
+	Please paste your PEM-encoded prime256v1 private key:
+	<br><br>
+	<textarea name="priv" rows="10"></textarea>
+	<br><br>
+	<input type="submit" value="Upload">
+</form>
+</body>
+</html>

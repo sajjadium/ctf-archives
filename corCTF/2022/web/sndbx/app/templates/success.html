@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>sndbx</title>
+	<style>
+		* {
+			font-family: sans-serif;
+		}
+		body, html {
+			max-width: 700px;
+			margin: auto;
+			padding: 10px;
+		}
+		.code {
+			font-family: monospace;
+			background-color: WhiteSmoke;
+		}
+	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<h1>Upload CSR</h1>
+<hr>
+Successfully created your subdomain <span class="code">{{ subdomain }}.{{ config['DOMAIN'] }}</span>
+<br><br>
+You can edit the content of your domain <a href="/edit">here</a>.
+</body>
+</html>
