@@ -1,0 +1,13 @@
+[features]
+seeds = false
+[programs.localnet]
+challenge1 = "9NK3PnfnqMihgTbNuqjWCL6t8F4kPLqSz1wuj9wYxsoh"
+challenge2 = "HPyMpt2qxYjifYVkeXEGqbqX4BB4zrLj1Bw69xTTPyFn"
+challenge3 = "GXU1aHkqYt7oiKa2QtifvBx1sdXE8SKmNvtww4hWMf2z"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "localnet"
+wallet = "/home/hana/.config/solana/id.json"
