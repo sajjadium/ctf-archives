@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main>
+
+    <form id="upload" class="form_class" action="/upload" method="POST" enctype="multipart/form-data">
+      <div class="form_div">
+        <label for="photo">Choose a photo!</label>
+        <input id="file" type="file" name="file" accept="image/jpeg,image/gif,image/png">
+        <button type="submit" name="submit" class="btn btn-success"> Upload Image </button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

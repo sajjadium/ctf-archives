@@ -1,0 +1,14 @@
+{
+  "name": "vieneclient",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "echo ERR"
+  },
+  "dependencies": {
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "node-fetch": "^3.2.10"
+  }
+}

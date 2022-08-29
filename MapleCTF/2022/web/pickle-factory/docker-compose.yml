@@ -1,0 +1,8 @@
+services:
+  pickle-factory:
+    container_name: pickle-factory
+    build:
+      context: ./hosted
+      dockerfile: ./Dockerfile
+    ports:
+      - "9229:9229"

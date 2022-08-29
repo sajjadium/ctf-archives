@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <!--- template by joaomarcossb, https://codepen.io/joaomarcossb--->
+  <main>
+    <form id="name_check" class="form_class" action="/login" method="POST">
+      <div class="form_div">
+        <label>Name:</label>
+        <input class="field_class" name="name" type="text" placeholder="NAME" autofocus>
+        <button class="submit_class" type="submit" form="name_check">Take me to the gallery</button>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+{
+    "name": "artgallery",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "echo ERR"
+    },
+    "dependencies": {
+        "axios": "^0.27.2",
+        "ejs": "^3.1.8",
+        "express": "~4.18.1",
+        "express-fileupload": "^1.4.0",
+        "express-session": "^1.17.3",
+        "ftpd": "^0.2.16",
+        "redis": "^4.3.0",
+        "node-serialize": "^0.0.4"
+    }
+}

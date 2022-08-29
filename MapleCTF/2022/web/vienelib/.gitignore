@@ -1,0 +1,21 @@
+# Dependency directories
+node_modules/
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+vieneserver/config/initializers/secret_token.rb
+config/master.key
+credentials.yml.enc
+
+/.bundle
+/vendor/bundle
+
+# Fuckin hate mac
+.DS_Store

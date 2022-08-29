@@ -1,0 +1,15 @@
+{
+    "name": "honksay",
+    "author": "vie",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "echo ERR"
+    },
+    "dependencies": {
+        "cookie-parser": "^1.4.6",
+        "express": "^4.18.1",
+        "puppeteer": "^16.2.0",
+        "xss": "^1.0.14"
+    }
+}

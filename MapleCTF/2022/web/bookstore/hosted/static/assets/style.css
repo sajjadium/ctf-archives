@@ -1,0 +1,19 @@
+body,
+#container {
+    background: #222;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.inner {
+    background: #444;
+    padding-left: 20px;
+    padding-right: 20px;
+    min-width: 740px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+img {
+    border: 5px solid #555;
+}

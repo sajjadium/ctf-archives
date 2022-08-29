@@ -1,0 +1,13 @@
+diff --git a/web/artgallery/hosted/http/app.js b/web/artgallery/hosted/http/app.js
+index b240d8e..889bc7e 100644
+--- a/web/artgallery/hosted/http/app.js
++++ b/web/artgallery/hosted/http/app.js
+@@ -140,7 +140,7 @@ app.get('/query', async (req, res) => {
+     const port = parseInt(req.query.port);
+     try {
+         //im aware its bad 
+-        cp.execFileSync("curl", ['-k', '-L', `https://${host}:${port}/`]);
++        cp.execFileSync("timeout", ['5s', 'curl', '-k', '-L', `https://${host}:${port}/`]);
+     } catch (e) {
+         console.log("Error encountered");
+         console.log(e);

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      main {
+        background: white;
+      }
+
+      img {
+        max-width: 75%;
+        vertical-align: top;
+      }
+
+      .gallery {
+        display: flex;
+        margin: 10px auto;
+        max-width: 600px;
+        position: relative;
+        padding-top: 66.6666666667%;
+      }
+
+      @media screen and (min-width: 600px) {
+        .gallery {
+          padding-top: 400px;
+        }
+      }
+
+      .gallery__img {
+        position: absolute;
+        top: 0;
+        left: 5em;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      .gallery__thumb {
+        padding-top: 6px;
+        margin: 6px;
+        display: block;
+      }
+
+      .gallery__selector {
+        position: absolute;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .gallery__selector:checked+.gallery__img {
+        opacity: 1;
+      }
+
+      .gallery__selector:checked~.gallery__thumb>img {
+        box-shadow: 0 0 0 3px #badde0;
+      }
+    </style>
+</head>
+
+<body class="container">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <!--gallery template by Lubna, https://codepen.io/Lubna-->
+  <h2 style="text-align: center;">Hello <%- user -%>!</h2>
+  <br>
+  <h4 style="text-align: center;"> Here is your art token: <%- token -%></h4>
+  <br>
+  <main>
+    <section class="gallery">
+      <div class="gallery__item">
+        <input type="radio" id="img-1" checked name="gallery" class="gallery__selector" />
+        <img class="gallery__img" src='files/<%= images[0] %>' alt="" height="400em" width="400em" />
+        <label for="img-1" class="gallery__thumb"><img src='files/<%= images[0] %>' alt="" /></label>
+      </div>
+      <div class="gallery__item">
+        <input type="radio" id="img-2" name="gallery" class="gallery__selector" />
+        <img class="gallery__img" src='files/<%= images[1] %>' alt="" height="400em" width="400em" />
+        <label for="img-2" class="gallery__thumb"><img src='files/<%= images[1] %>' alt="" /></label>
+      </div>
+      <div class="gallery__item">
+        <input type="radio" id="img-3" name="gallery" class="gallery__selector" />
+        <img class="gallery__img" src='files/<%= images[2] %>' alt="" height="400em" width="400em" />
+        <label for="img-3" class="gallery__thumb"><img src='files/<%= images[2] %>' alt="" /></label>
+      </div>
+      <div class="gallery__item">
+        <input type="radio" id="img-4" name="gallery" class="gallery__selector" />
+        <img class="gallery__img" src='files/<%= images[3] %>' alt="" height="400em" width="400em" />
+        <label for="img-4" class="gallery__thumb"><img src='files/<%= images[3] %>' alt="" /></label>
+      </div>
+    </section>
+  </main>
+
+
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

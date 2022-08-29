@@ -1,0 +1,8 @@
+services:
+  pickle-factory:
+    container_name: bookstore
+    build:
+      context: ./hosted
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"

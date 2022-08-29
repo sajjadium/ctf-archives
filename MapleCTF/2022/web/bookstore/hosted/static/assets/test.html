@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+	<title>RPGUI - Everything</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+	<!-- include rpgui -->
+	<link href="rpgui.min.css" rel="stylesheet" type="text/css" >
+	<script src="rpgui.min.js"></script>
+
+    <style>
+        body
+        {
+            background: #aaf;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <style>
+
+        .rpgui-container {
+            height:540px;
+            width:280px;
+        }
+
+    </style>
+
+    <!-- all rpgui elements must be inside the rpgui-content -->
+	<div class="rpgui-content">
+	
+		<p style="position:fixed; right:0px; bottom:0px;">This example shows all the key elements of RPGUI.<br />You might need to zoom-out a little to view all.</p>
+
+        <!-- simple inputs -->
+        <div class="rpgui-container framed rpgui-draggable" style="">
+            <h1>Inputs</h1>
+            <hr />
+
+            <label>Your hero name:</label>
+            <input type="text" name="FirstName" value="Bob" placeholder="Hero name">
+            <br/><br/>
+
+            <label>Your hero last name:</label>
+            <input type="text" name="FirstName" value="The Destroyer" placeholder="Hero last name">
+            <br /><br />
+
+            <label>Your hero bio:</label>
+            <textarea rows="3" cols="50">Bob The Destroyer likes to destroy stuff.</textarea>
+
+            <p>Here is a paragraph.</p>
+            <label>Golden hr:</label>
+            <hr class="golden" />
+            <a href="#"> And this is a link.</a>
+        </div>
+
+        <!-- Buttons, radio and checkbox -->
+        <div class="rpgui-container framed rpgui-draggable" style="left:280px">
+            <h1>Buttons</h1>
+            <hr />
+
+            <button class="rpgui-button" type="button" style="width:100%"><p>Button</p></button>
+            <br /><br />
+            <button class="rpgui-button golden" type="button" style="width:100%"><p>Gold Button</p></button>
+            <br /><br />
+
+            <h1>Radio/Check</h1>
+            <hr />
+            <form action="">
+                <label>Hero's gender:</label>
+                <br />
+				<input class="rpgui-radio" checked type="radio" name="sex" value="male"><label>Male</label>
+                <br />
+				<input class="rpgui-radio" type="radio" name="sex" value="female"><label>Female</label>
+			</form>
+            <hr />
+            <input class="rpgui-checkbox" type="checkbox" checked><label>Checkbox 1.</label>
+            <input class="rpgui-checkbox" type="checkbox"><label>Checkbox 2.</label>
+        </div>
+
+        <!-- Dropdown and list -->
+        <div class="rpgui-container framed rpgui-draggable" style="left:560px">
+            <h1>Drop & List</h1>
+            <hr />
+
+            <p>RPGUI dropdown</p>
+            <label>Select class:</label>
+            <select class="rpgui-dropdown">
+                <option value="Warrior" selected>Warrior</option>
+                <option value="Mage">Mage</option>
+                <option value="Rogue">Rogue</option>
+                <option value="Ranger">Ranger</option>
+            </select>
+            <hr />
+
+            <p>RPGUI list:</p>
+            <label>Profession:</label>
+            <select class="rpgui-list" id="background-select" size="4">
+                <option value="Blacksmith">Blacksmith</option>
+                <option value="Merchant">Merchant</option>
+                <option value="City Guard">City Guard</option>
+                <option value="Alchemist">Alchemist</option>
+                <option value="Explorer">Explorer</option>
+                <option value="Thug">Thug</option>
+                <option value="Mercenary">Mercenary</option>
+                <option value="Royalty">Royalty</option>
+                <option value="Gladiator">Gladiator</option>
+			</select>
+
+            <div class="rpgui-container framed-grey" style="width:100%; height:90px; left:0px; top:0px;">
+            <label>Here's a grey frame.</label>
+        </div>
+        </div>
+
+        <!-- Icons -->
+        <div class="rpgui-container framed rpgui-draggable" style="left:840px">
+            <h1>Icons</h1>
+            <hr />
+
+            <div class="rpgui-icon sword"></div>
+            <div class="rpgui-icon shield"></div>
+            <div class="rpgui-icon exclamation"></div>
+            <br /><br />
+
+            <div class="rpgui-icon potion-red"></div>
+            <div class="rpgui-icon potion-green"></div>
+            <div class="rpgui-icon potion-blue"></div>
+            <br /><br />
+
+            <div class="rpgui-icon weapon-slot"></div>
+            <div class="rpgui-icon shield-slot"></div>
+            <div class="rpgui-icon armor-slot"></div>
+            <br /><br />
+
+            <div class="rpgui-icon helmet-slot"></div>
+            <div class="rpgui-icon ring-slot"></div>
+            <div class="rpgui-icon potion-slot"></div>
+            <br /><br />
+
+            <div class="rpgui-icon magic-slot"></div>
+            <div class="rpgui-icon shoes-slot"></div>
+            <div class="rpgui-icon empty-slot"></div>
+            <br /><br />
+        </div>
+
+        <!-- Sliders and progress bars -->
+        <div class="rpgui-container framed rpgui-draggable" style="left:0px; top:540px;">
+            <h1>Sliders</h1>
+            <hr />
+
+            <label>Slider:</label>
+            <input class="rpgui-slider" type="range" min="0" max="10" value="8" style="width:100%">
+            <label>Golden slider:</label>
+            <input class="rpgui-slider golden" type="range" min="1" max="5" value="3" style="width:100%">
+
+            <h1>Bars</h1>
+            <hr />
+            <label>Health:</label>
+            <div id="hp-bar" data-value="0.4" class="rpgui-progress red"></div>
+            <label>Mana:</label>
+            <div id="mana-bar" data-value="0.8" class="rpgui-progress blue"></div>
+            <label>Stamina:</label>
+            <div id="stamina-bar" data-value="0.2" class="rpgui-progress green"></div>
+        </div>
+
+        <!-- some other frames -->
+        <div class="rpgui-container framed-golden rpgui-draggable" style="width:180px; height:180px; left:280px; top:540px;">
+            <p>This is a golden frame.</p>
+        </div>
+        <div class="rpgui-container framed-golden-2 rpgui-draggable" style="width:180px; height:180px; left:462px; top:540px;">
+            <p>This is a golden-2 frame.</p>
+        </div>
+		<div class="rpgui-container framed-grey rpgui-draggable" style="width:180px; height:180px; left:280px; top:720px;">
+            <p>This is a grey frame.</p>
+        </div>
+	</div>
+</body>

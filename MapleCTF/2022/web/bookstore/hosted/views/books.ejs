@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bookstore</title>
+    <link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/rpgui.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <div class="rpgui-content rpgui-cursor-default" style="overflow-y:scroll">
+        <div id="container">
+            <div id="main"></div>
+            <div class="inner rpgui-container framed-golden" style="position:relative">
+                <header>
+                    <h2>Your Books</h2>
+                </header>
+                <div class="rpgui-center" style="position:relative">
+
+                    <table>
+                        <tr>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Price</th>
+                            <th>Image</th>
+                            <th>Download</th>
+                        </tr>
+                        <% for (var book of books) { %>
+                            <% if (ownedBooks.includes(book.id.toString())) { %>
+                                <tr>
+                                    <td>
+                                        <%= book.title %>
+                                    </td>
+                                    <td>
+                                        <%= book.author %>
+                                    </td>
+                                    <td>
+                                        <%= book.price %>
+                                    </td>
+                                    <td>
+                                        <img src="img/<%- book.id%>.png" height="100px" width="80px" />
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <form action="/download-ebook" method="post" id="downloadForm">
+                                                <div>
+                                                    <select id="option" name="option" class="rpgui-dropdown">
+                                                        <option value="direct">Direct</option>
+                                                        <option value="kindle">Kindle</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <label for="email">Email</label>
+                                                    <input type="text" id="email" value="" name="email" />
+                                                    <input type="hidden" value="<%- book.id%>" name="bookID" />
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div>
+                                            <button type="submit" form="downloadForm" value="download"
+                                                class="rpgui-button">Download</button>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <% } %>
+                                    <% } %>
+                    </table>
+                </div>
+                <br>
+                <br>
+                <a href="/catalogue">Check out the store!</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/rpgui.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Welcome!</title>
+<link href='https://fonts.googleapis.com/css?family=Press Start 2P' rel='stylesheet'>
+<link rel="stylesheet" href="{{ url_for('static', filename='rpgui.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<html class="rpgui-content">
+    <div class="rpgui-container framed center-container">
+        <nav>
+            <h1>JWT</h1>
+            <ul>
+                {% if g.user %}
+                    <li><a href="{{ url_for('logout') }}">Log Out</a>
+                {% else %}
+                    <li><a href="{{ url_for('register') }}">Register</a>
+                    <li><a href="{{ url_for('login') }}">Log In</a>
+                {% endif %}
+            </ul>
+        </nav>
+    <section class="content">
+        <header>
+            {% block header %}{% endblock %}
+        </header>
+        {% for message in get_flashed_messages() %}
+        <div class="flash"><p>{{ message }}</p></div>
+        {% endfor %}
+        {% block content %}{% endblock %}
+    </section>
+    </div>
+</html>
+<script src="{{ url_for('static', filename='rpgui.min.js') }}">
