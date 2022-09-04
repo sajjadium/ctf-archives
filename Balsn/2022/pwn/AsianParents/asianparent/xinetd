@@ -1,0 +1,15 @@
+service asianparent
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/asianparent/run.sh
+        socket_type = stream
+        protocol = tcp
+        user = asianparent
+        port = 9876
+        flags = REUSE
+        per_source = 5
+        rlimit_cpu = 3
+        nice = 18
+}

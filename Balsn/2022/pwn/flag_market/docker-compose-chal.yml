@@ -1,0 +1,15 @@
+version: "3.5"
+services:
+    flag_market:
+        build:
+            context: ./
+            dockerfile: flag_market.Dockerfile
+        ports:
+            - "${CHAL_PORT}:19091/tcp"
+        networks:
+            - flag_market_network
+networks:
+    flag_market_network:
+        external: true
+
+# CHAL_PORT=13337 docker-compose -f ./docker-compose-chal.yml -p flag_market_13337 up -d

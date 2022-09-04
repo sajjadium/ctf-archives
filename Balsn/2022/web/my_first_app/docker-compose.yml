@@ -1,0 +1,8 @@
+version: '3'
+services:
+  proxy:
+    image: balsn-ctf-2022/my-first-app
+    build: .
+    restart: always
+    ports:
+      - 3000:3000

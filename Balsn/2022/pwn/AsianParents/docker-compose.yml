@@ -1,0 +1,10 @@
+version: '2'
+services:
+  asianparent: 
+    build: ./asianparent/
+    volumes:
+      - ./asianparent/share:/home/asianparent:ro
+      - ./asianparent/xinetd:/etc/xinetd.d/asianparent:ro
+      - ./tmp:/tmp:ro
+    ports:
+      - "7777:9876"

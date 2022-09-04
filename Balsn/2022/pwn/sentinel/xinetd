@@ -1,0 +1,15 @@
+service sentinel
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/sentinel/run.sh
+        socket_type = stream
+        protocol = tcp
+        user = root
+        groups = yes
+        env = HOME=/home/sentinel/
+        bind = 0.0.0.0
+        port = 10101
+        flags = REUSE
+}

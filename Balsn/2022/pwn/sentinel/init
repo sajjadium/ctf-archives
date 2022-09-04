@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p /tmp2/dockerRoot
+chown -R root:root /home/sentinel
+dockerd --data-root=/tmp2/dockerRoot --storage-driver overlay2 &
+/usr/sbin/xinetd -dontfork

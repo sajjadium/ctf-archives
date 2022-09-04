@@ -1,0 +1,16 @@
+service backend-flag1
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /backend/run_flag1.sh
+        socket_type = stream
+        protocol = tcp
+        user = backend
+	port = 31337
+        flags = IPv4 REUSE
+        per_source = 5
+        rlimit_cpu = 3
+	rlimit_as = 64M
+        nice = 18
+}

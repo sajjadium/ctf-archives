@@ -1,0 +1,24 @@
+README.md
+CHANGELOG.md
+docker-compose.yml
+Dockerfile
+
+node_modules/
+.next/
+/build
+.DS_Store
+*.pem
+*log*
+.git
+.gitattributes
+.gitignore
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+.eslintrc.json
+*.tsbuildinfo
+next-env.d.ts

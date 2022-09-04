@@ -1,0 +1,6 @@
+want_my_signature:
+    build: ./
+    ports:
+        - "7122:7122"
+    expose:
+        - "7122"

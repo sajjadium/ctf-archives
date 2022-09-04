@@ -1,0 +1,18 @@
+version: "3.5"
+services:
+    backend:
+        build:
+            context: ./
+            dockerfile: backend.Dockerfile
+        restart: always
+        hostname: backend
+        environment:
+            - FLAG1=BALSN{FLAG1}
+            - FLAG2=BALSN{FLAG2}
+        networks:
+            - network
+networks:
+    network:
+        name: flag_market_network
+
+# docker-compose -f ./docker-compose-backend.yml up -d

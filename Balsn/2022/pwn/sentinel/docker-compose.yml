@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  sentinel:
+    build: ./
+    volumes:
+      - ./share/:/home/sentinel/:rw
+      - ./tmp/:/tmp2/:rw
+      - ./init:/init:ro
+      - ./xinetd:/etc/xinetd.d/sentinel:ro
+    ports:
+      - "10101:10101"
+    expose:
+      - "10101"
+    privileged: true
+    restart: always

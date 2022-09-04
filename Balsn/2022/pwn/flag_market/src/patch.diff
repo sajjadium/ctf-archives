@@ -1,0 +1,13 @@
+diff --git a/virtualsmartcard/src/vpcd/vpcd.c b/virtualsmartcard/src/vpcd/vpcd.c
+index d656744..0756799 100644
+--- a/virtualsmartcard/src/vpcd/vpcd.c
++++ b/virtualsmartcard/src/vpcd/vpcd.c
+@@ -400,7 +400,7 @@ int vicc_present(struct vicc_ctx *ctx) {
+     unsigned char *atr = NULL;
+ 
+     /* get the atr to check if the card is still alive */
+-    if (!vicc_connect(ctx, 0, 0) || vicc_getatr(ctx, &atr) <= 0)
++    if (!vicc_connect(ctx, 3, 0) || vicc_getatr(ctx, &atr) <= 0)
+         return 0;
+ 
+     free(atr);

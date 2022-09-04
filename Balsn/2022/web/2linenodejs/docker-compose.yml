@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    ports:
+      - 80:1337
+    read_only: true
+    restart: always
