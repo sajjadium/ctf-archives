@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Login - OpenBio</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.3/dist/css/uikit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.3/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.3/dist/js/uikit-icons.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+            <div class="uk-width-1-1">
+                <div class="uk-container">
+                    <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+                        <div class="uk-width-1-1@m">
+                            <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                                <ul class="uk-tab" data-uk-tab="{connect:'#form-id'}">
+                                    <li><a href="" id="tab-signin">Sign in</a></li>
+                                    <li><a href="" id="tab-signup">Sign up</a></li>
+                                </ul>
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" uk-icon="icon:user"></span>
+                                        <input class="uk-input uk-form-large" type="text" id="username" placeholder="Username">
+                                    </div>
+                                </div>
+                                <div class="uk-margin">
+                                    <div class="uk-inline uk-width-1-1">
+                                        <span class="uk-form-icon" uk-icon="icon:lock"></span>
+                                        <input class="uk-input uk-form-large" type="password" id="password" placeholder="Password">
+                                    </div>
+                                </div>
+                                <ul id="form-id" class="uk-switcher uk-margin">
+                                    <li><a href="#" id="autoplayer" data-uk-switcher-item="next"></a>
+                                        <div class="uk-margin">
+                                            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1" id="signin">Sign in</button>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="uk-margin">
+                                            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1" id="signup">Sign up</button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="csrf_token" value="{{ csrf_token() }}">
+    </body>
+    <script nonce="{{ csp_nonce }}">
+     $.ajaxSetup({
+         xhrFields: { withCredentials: true }
+     });
+
+     $('#signin').click(function() {
+         let username = $('#username').val();
+         let password = $('#password').val();
+         let csrf_token = $('#csrf_token').val();
+         $.post('/api/user/login', { username, password, csrf_token }, (data) => {
+             if (data.status === 'success') {
+                 UIkit.modal.alert(data.message).then(() => {
+                     window.location.reload();
+                 });
+             } else {
+                 UIkit.modal.alert(data.message);
+             } 
+         }).fail(res => {
+             UIkit.modal.alert(`Unknown error with status: ${res.status}`);
+         });
+     });
+
+     $('#signup').click(function() {
+         let username = $('#username').val();
+         let password = $('#password').val();
+         let csrf_token = $('#csrf_token').val();
+         $.post('/api/user/register', { username, password, csrf_token }, (data) => {
+             if (data.status === 'success') {
+                 UIkit.modal.alert(data.message).then(() => {
+                     window.location.reload();
+                 });
+             } else {
+                 UIkit.modal.alert(data.message);
+             }
+         }).fail(res => {
+             UIkit.modal.alert(`Unknown error with status: ${res.status}`);
+         });
+     });
+    </script>
+</html>

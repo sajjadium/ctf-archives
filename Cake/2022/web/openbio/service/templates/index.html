@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ username }} - OpenBio</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.3/dist/css/uikit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.3/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.3/dist/js/uikit-icons.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    </head>
+    <body>
+        <div class="uk-section uk-section-muted uk-flex uk-animation-fade" uk-height-viewport>
+            <div class="uk-container">
+                <h1>
+                    {{ username }}'s Profile
+                    <a id="copy" class="uk-icon-button" uk-icon="link" uk-tooltip="Copy link"></a>
+                </h1>
+                <div class="uk-margin">
+                    <textarea class="uk-textarea uk-form-large" rows="10" cols="60" id="bio" placeholder="Bio">{{ bio }}</textarea>
+                </div>
+                <div class="uk-margin">
+                    <button class="uk-button uk-button-primary uk-align-center uk-button-large uk-width-1-5" id="update">Update</button>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="csrf_token" value="{{ csrf_token() }}">
+    </body>
+    <script nonce="{{ csp_nonce }}">
+     $('#update').click(function() {
+         let bio = $('#bio').val();
+         let csrf_token = $('#csrf_token').val();
+         $.post('/api/user/update', { bio, csrf_token }, (data) => {
+             UIkit.modal.alert(data.message);
+         }).fail(res => {
+             UIkit.modal.alert(`Unknown error with status: ${res.status}`);
+         });
+     });
+
+     $('#copy').click(function() {
+         let t = $('<input>').attr({
+             value: "{{ url_for('profile', user=username, _external=True) }}"
+         });
+         t.appendTo($(document.body));
+         t.select();
+         document.execCommand('copy');
+         t.remove();
+     });
+    </script>
+</html>
