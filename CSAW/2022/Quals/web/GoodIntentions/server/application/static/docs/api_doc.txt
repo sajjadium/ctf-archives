@@ -1,0 +1,116 @@
+# Temporary API documentation, will update to use swagger
+
+Register ===================
+
+    Register for an account on the platform.
+
+    URL: http://<Hostname or IP>/api/register
+    Method: POST
+    Content Type: application/json
+
+    Body parameters:
+
+        {
+        "username":"<user_name>",
+        "password":"<password>",
+        }
+
+        Parameter/Description:
+
+            username: Name of user logging in
+            password: Password used by user to login
+
+    Result:
+
+        An indication that the user registered successfully
+
+        {
+        "User registered successfully!"
+        }
+
+Login ===================
+
+    Authenticate to the platform.
+
+    URL: http://<Hostname or IP>/api/login
+    Method: POST
+    Content Type: application/json
+
+    Body parameters:
+
+        {
+        "username":"<user_name>",
+        "password":"<password>",
+        }
+
+        Parameter/Description:
+
+            username: Name of user logging in
+            password: Password used by user to login
+
+    Result:
+
+        An indication that the user logged in successfully and Session Token
+
+        {
+        "User registered successfully!"
+        }
+
+Gallery ===================
+
+    Get a set of URL's for images your account has uploaded so far.
+
+    URL: http://<Hostname or IP>/api/gallery
+    Method: GET
+    Content Type: application/json
+
+    Result: 
+
+        An array of URL locations for the images.
+
+Upload Image ===================
+
+    URL: http://<Hostname or IP>/api/upload
+    Method: POST
+    Content Type: application/json
+
+    Body parameters:
+
+        {
+        "label":"<label>",
+        "file":"<file_data>"
+        }
+
+        Parameter/Description:
+
+            label: A label that best describes the subject in the photo provided
+
+                Please only use the following labels: galaxy, planet, star, moon
+
+    Result:
+
+        An indication that the user successfully uploaded the file
+
+        {
+        "File successfully uploaded"
+        }
+
+Download Image ===================
+
+    URL: http://<Hostname or IP>/api/download_image
+    Method: GET
+    Content Type: application/json
+
+    Body parameters:
+
+        {
+        "file":"<file_location>",
+        }
+
+        Parameter/Description:
+
+            file: File location (obtainable via gallery call for your own images) for file you want to download.
+
+    Result:
+
+        The file you requested to download

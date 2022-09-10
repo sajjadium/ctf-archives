@@ -1,0 +1,18 @@
+version: '3.9'
+
+services:
+    ctf:
+        build: ./
+        image: ctf
+        volumes: 
+            - "./bin:/home/ctf/run:ro"
+            - "./ctf.xinetd:/etc/xinetd.d/ctf:ro"
+            - "./tmp:/tmp:ro"
+        ports:
+            - "60001:9999"
+        expose:
+            - "9999"
+        pids_limit: 1024
+        cpus: 0.5
+        restart: unless-stopped
+        privileged: true
