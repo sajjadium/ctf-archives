@@ -55,6 +55,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1077/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ADDA">ADDA</a></td>
+            <td><a href="ADDA/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1736/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ALLES">ALLES!</a></td>
             <td><a href="ALLES/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1313/tasks/">CTFtime</a></td>
