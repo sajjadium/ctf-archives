@@ -1286,6 +1286,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1068/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=4><a href="SEC-T">SEC-T</a></td>
+            <td><a href="SEC-T/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1761/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=4><a href="SECCON">SECCON</a></td>
             <td><a href="SECCON/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1458/tasks/">CTFtime</a></td>
