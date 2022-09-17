@@ -1,0 +1,13 @@
+version: '2.4'
+services:
+  jabasass:
+    build: .
+    environment:
+      - FLAG=flag{123456}
+    ports:
+      - "80:88"
+  restarter:
+    image: docker
+    volumes: ["/var/run/docker.sock:/var/run/docker.sock"]
+    command: ["/bin/sh", "-c", "while true; do sleep 120; docker restart -t 0 jabasass_jabasass_1; done"]
+    restart: unless-stopped

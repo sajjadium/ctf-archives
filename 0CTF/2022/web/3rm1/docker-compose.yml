@@ -1,0 +1,12 @@
+version: '2'
+services:
+  rmiclient:
+    build: ./rmiclient
+    restart: always
+    ports: 
+      - 8080:8090
+  rmiserver:
+    build: ./rmiserver
+    restart: always
+    ports: 
+      - 1099:1099

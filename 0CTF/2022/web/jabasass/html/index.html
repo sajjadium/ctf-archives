@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+      <title>Java Sass</title>
+      <link rel="stylesheet" href="bulma/css/bulma.min.css" />
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">
+        Jaba Sass
+      </h1>
+      <p class="subtitle">
+        A sass parser written in <b>PURE</b> Jabaaaaaaaaaaaaa! No JNI, no dart!
+      </p>
+      <form class="box">
+        <p style="margin-bottom: 1em">
+            <textarea id="text" class="textarea" placeholder="Paste your SASS file here..."></textarea>
+        </p>
+        <p>
+            <button class="button" id="button-parse" disabled>Waiting for WS...</button>
+        </p>
+       </form>
+       <div class="box">
+            <pre><code id="code">Result</code></pre>
+       </div>
+    </div>
+  </section>
+  <script>
+    const parseButton = document.getElementById('button-parse')
+    const ws = new WebSocket((location.protocol === 'http:' ? 'ws:' : 'wss:') + location.hostname + '/app/sass/ws')
+    ws.onopen = () => {
+        parseButton.innerText = 'Parse'
+        parseButton.removeAttribute('disabled')
+    }
+    parseButton.addEventListener('click', (e) => {
+        e.preventDefault()
+        ws.send(document.getElementById("text").value)
+    })
+    ws.onmessage = (m) => {
+        console.log(m)
+        document.getElementById('code').innerText = m.data
+    }
+  </script>
+  </body>
+</html>

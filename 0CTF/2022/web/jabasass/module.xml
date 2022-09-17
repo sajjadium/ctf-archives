@@ -1,0 +1,13 @@
+<module name="org.graalvm" xmlns="urn:jboss:module:1.6">
+    <properties>
+        <property name="jboss.api" value="public"/>
+    </properties>
+    <dependencies>
+        <system export="true">
+            <paths>
+                <path name="org/graalvm/polyglot"/>
+                <!-- probably more packages will follow, but this is enough for the example -->
+            </paths>
+        </system>
+    </dependencies>
+</module>
