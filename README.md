@@ -1710,7 +1710,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1391/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="WPICTF">WPICTF</a></td>
+            <td rowspan=5><a href="WPICTF">WPICTF</a></td>
+            <td><a href="WPICTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1743/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="WPICTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1208/tasks/">CTFtime</a></td>
         </tr>
