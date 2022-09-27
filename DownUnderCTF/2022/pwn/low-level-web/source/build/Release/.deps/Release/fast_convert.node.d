@@ -1,0 +1,1 @@
+cmd_Release/fast_convert.node := ln -f "Release/obj.target/fast_convert.node" "Release/fast_convert.node" 2>/dev/null || (rm -rf "Release/fast_convert.node" && cp -af "Release/obj.target/fast_convert.node" "Release/fast_convert.node")

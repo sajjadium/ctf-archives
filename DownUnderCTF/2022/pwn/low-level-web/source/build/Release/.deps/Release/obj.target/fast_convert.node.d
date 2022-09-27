@@ -1,0 +1,1 @@
+cmd_Release/obj.target/fast_convert.node := g++ -o Release/obj.target/fast_convert.node -shared -pthread -rdynamic -m64  -Wl,-soname=fast_convert.node -Wl,--start-group Release/obj.target/fast_convert/src/encoder.o Release/obj.target/fast_convert/src/index.o -Wl,--end-group -lnode

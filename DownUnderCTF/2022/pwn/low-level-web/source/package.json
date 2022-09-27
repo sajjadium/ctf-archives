@@ -1,0 +1,18 @@
+{
+  "name": "low-level-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node-gyp configure && node-gyp build",
+    "install": "node-gyp rebuild"
+  },
+  "author": "",
+  "license": "ISC",
+  "gypfile": true,
+  "dependencies": {
+    "express": "^4.18.1",
+    "node-addon-api": "^5.0.0"
+  }
+}

@@ -1,0 +1,83 @@
+diff --git a/src/builtins/array-concat.tq b/src/builtins/array-concat.tq
+index 6fad3e6683..cb3b1cd7a9 100644
+--- a/src/builtins/array-concat.tq
++++ b/src/builtins/array-concat.tq
+@@ -40,6 +40,28 @@ ArrayPrototypeConcat(
+     // Fallthrough.
+   }
+ 
++  // Fast path if we invoke as `x.concat(y)` where `y.length == 1`.
++  try {
++    const left: FastJSArrayForConcat =
++        Cast<FastJSArrayForConcat>(receiver)
++        otherwise ConcatAppendFailure;
++    if (arguments.length == 1) {
++      typeswitch (arguments[0]) {
++        case (right: FastJSArrayForCopy): {
++          if (right.length == SmiConstant(1)) {
++            return AppendToFastJSArray(context, left, right)
++                otherwise ConcatAppendFailure;
++          }
++        }
++        case (JSAny): {
++          // Fallthrough.
++        }
++      }
++    }
++  } label ConcatAppendFailure {
++    // Fallthrough.
++  }
++
+   // TODO(victorgomes): Implement slow path ArrayConcat in Torque.
+   tail ArrayConcat(
+       context, LoadTargetFromFrame(), Undefined,
+diff --git a/src/objects/js-array.tq b/src/objects/js-array.tq
+index 7e6103293e..1762e8d4b1 100644
+--- a/src/objects/js-array.tq
++++ b/src/objects/js-array.tq
+@@ -285,6 +285,45 @@ struct FastJSArrayWitness {
+   arrayIsPushable: bool;
+ }
+ 
++macro AppendToFastJSArray(context: NativeContext,
++                          left: FastJSArrayForConcat,
++                          right: FastJSArrayForCopy): JSArray labels Failed {
++  let rightW = NewFastJSArrayWitness(right);
++  const value: JSAny = rightW.LoadElementNoHole(0)
++      otherwise Failed;
++
++  if (!IsNullOrUndefined(value)) {
++    const leftC: FastJSArray =
++        Cast<FastJSArray>(CloneFastJSArray(context, left))
++        otherwise Failed;
++    let leftW = NewFastJSArrayWitness(leftC);
++
++    dcheck(leftW.arrayIsPushable);
++    if (leftW.hasDoubles) {
++      BuildAppendJSArray(
++          ElementsKind::HOLEY_DOUBLE_ELEMENTS, leftW.unstable, value)
++          otherwise Failed;
++    } else if (leftW.hasSmis) {
++      BuildAppendJSArray(ElementsKind::HOLEY_SMI_ELEMENTS, leftW.unstable, value)
++          otherwise Failed;
++    } else {
++      dcheck(
++          leftW.map.elements_kind == ElementsKind::HOLEY_ELEMENTS ||
++          leftW.map.elements_kind == ElementsKind::PACKED_ELEMENTS);
++      BuildAppendJSArray(ElementsKind::HOLEY_ELEMENTS, leftW.unstable, value)
++          otherwise Failed;
++    }
++
++    return leftC;
++  }
++  else {
++    let leftW = NewFastJSArrayWitness(left);
++    leftW.ChangeLength(left.length + SmiConstant(1));
++  }
++
++  return left;
++}
++
+ macro NewFastJSArrayWitness(array: FastJSArray): FastJSArrayWitness {
+   const kind = array.map.elements_kind;
+   return FastJSArrayWitness{

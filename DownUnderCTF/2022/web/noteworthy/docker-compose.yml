@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+    web:
+        build: .
+        container_name: web
+        restart: always
+        networks:
+            - nw
+        env_file:
+            - .env
+        ports:
+            - "80:80"
+        environment:
+            - PORT=80
+            - NODE_ENV=production
+            - JWT_SECRET=REDACTED
+            - FLAG=DUCTF{REDACTED}
+        depends_on:
+            - mongo
+    mongo:
+        image: mongo:6.0.1
+        container_name: mongo
+        restart: always
+        volumes:
+            - mongo_data:/data/db
+            - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js
+        env_file:
+            - .env
+        networks:
+            - nw
+
+volumes:
+    mongo_data:
+
+networks:
+    nw:
+        driver: bridge

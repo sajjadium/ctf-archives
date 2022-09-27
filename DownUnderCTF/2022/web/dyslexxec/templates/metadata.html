@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://www.google.com/css/maia.css">
+    <title>Dyslexxec</title>
+</head>
+
+<body>
+    <div class="maia-header" id="maia-header" role="banner">
+        <div class="maia-aux">
+            <h1>
+                Dyslexxec
+            </h1>
+        </div>
+    </div><!-- end maia-header -->
+    <div id="maia-main" role="main">
+        <h2>Here is some of the metadata we found...</h2>
+        <div class="maia-col-12" id="subaccount_container">
+            <table>
+                <TR>
+                    <TD class="c1"><b>Field Name</b></TD>
+                    <TD class="c2"><b>Attribute</b></TD>
+                    <TD class="c3"><b>Value</b></TD>
+                </TR>
+                {% for item in items %}
+                <TR>
+                    <TD class="c1">{{item.Fieldname}}</TD>
+                    <TD class="c2">{{item.Attribute}}</TD>
+                    <TD class="c3">{{item.Value}}</TD>
+                </TR>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

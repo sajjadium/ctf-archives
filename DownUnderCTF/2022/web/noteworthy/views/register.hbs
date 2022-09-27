@@ -1,0 +1,72 @@
+<form style="width: 40%; margin-left: 30%" id="signup-form">
+    <h1 class="h3 mb-3 fw-normal">Register an account</h1>
+    <br/>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="signup-username" placeholder="asdf">
+      <label for="signup-username">username</label>
+    </div>
+    <br/>
+
+    <div class="form-floating">
+      <input type="password" class="form-control" id="signup-password" placeholder="password">
+      <label for="signup-password">password</label>
+    </div>
+    <br/>
+
+    <input id="signup-submit" class="w-100 btn btn-lg btn-primary" type="submit" value="Register"></input>
+
+    <br/>
+    <br/>
+    <div id="response" class="text-center small py-1" style="border-radius: 4px; display: none"></div>
+</form>
+
+<script>
+    document.getElementById('signup-form').onsubmit = async (e) => {
+        e.preventDefault()
+
+        document.getElementById('signup-submit').disabled = true
+        document.getElementById('signup-submit').style.cursor = 'not-allowed'
+        document.getElementById('signup-submit').style.opacity = 0.8
+        document.getElementById('signup-submit').value = 'Registering...'
+
+        const username = document.getElementById('signup-username').value
+        const password = document.getElementById('signup-password').value
+
+        if(!username || !password) {
+            document.getElementById('response').innerText = 'Missing username or password'
+            document.getElementById('response').classList.add('text-bg-danger')
+            document.getElementById('response').style.display = 'block'
+        } else if(password.length <= 4) {
+            document.getElementById('response').innerText = 'Password should be more than 4 characters'
+            document.getElementById('response').classList.add('text-bg-danger')
+            document.getElementById('response').style.display = 'block'
+        } else {
+            const r = await fetch('/register', {
+                method: 'POST',
+                body: JSON.stringify({ username, password }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            const res = await r.json()
+
+            if(res.success) {
+                document.getElementById('response').innerText = res.message + ' Redirecting...'
+                document.getElementById('response').classList.add('text-bg-success')
+                document.getElementById('response').style.display = 'block'
+                window.location.href = '/'
+                return                
+            } else {
+                document.getElementById('response').innerText = res.error
+                document.getElementById('response').classList.add('text-bg-danger')
+                document.getElementById('response').style.display = 'block'
+            }
+        }
+
+        document.getElementById('signup-submit').disabled = false
+        document.getElementById('signup-submit').style.cursor = 'pointer'
+        document.getElementById('signup-submit').style.opacity = 1
+        document.getElementById('signup-submit').value = 'Register'
+    }
+</script>

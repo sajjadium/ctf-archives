@@ -1,0 +1,26 @@
+{{#if isLoggedIn}}
+    <h3 class="text-center">Welcome, {{username}}!</h3>
+    <br/>
+    <div class="list-group w-auto">
+        {{#each notes}}
+            <div class="list-group-item d-flex gap-3 py-3">
+                <div class="d-flex gap-2 w-100 justify-content-between">
+                  <div>
+                      <h6 class="mb-0">Note <b>#{{noteId}}</b></h6>
+                      <p class="mb-0 opacity-75 text-truncate" style="width: 60vw">{{contents}}</p>
+                  </div>
+                  <a href="/edit?noteId={{noteId}}"><button class="btn btn-primary">Edit</button></a>
+                </div>
+            </div>
+        {{/each}}
+
+        <div style="height: 32px"></div>
+        <a href="/create">
+            <button class="btn btn-primary w-100 text-center py-2">
+                Create new note
+            </button>
+        </a>
+    </div>
+{{else}}
+    <h3 class="text-center">Register an account or login to start taking notes!</h3>
+{{/if}}
