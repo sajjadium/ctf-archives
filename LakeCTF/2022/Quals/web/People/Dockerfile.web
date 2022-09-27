@@ -1,0 +1,16 @@
+FROM python:3.9-slim
+
+RUN adduser --system --group app
+
+COPY requirements.txt /app/requirements.txt
+WORKDIR /app
+RUN pip install -r requirements.txt
+
+USER app
+
+USER root
+COPY . /app
+RUN chown -R app:app /app
+USER app
+
+CMD [ "waitress-serve", "--call", "src:create_app"]

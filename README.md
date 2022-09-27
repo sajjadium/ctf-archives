@@ -973,6 +973,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1398/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="LakeCTF">LakeCTF</a></td>
+            <td><a href="LakeCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1728/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="Layer7">Layer7</a></td>
             <td><a href="Layer7/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1179/tasks/">CTFtime</a></td>

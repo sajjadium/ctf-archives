@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% set active_page = "signup" %}
+
+{% block content %}
+<section class="container">
+
+  {% if edit %}
+  <h2>Edit profile</h2>
+  <form action="{{ url_for('main.edit_post') }}" method="post">
+  {% else %}
+  <h2>Sign up</h2>
+  <form action="{{ url_for('main.signup_post') }}" method="post">
+  {% endif %}
+
+    <div class="form-group">
+      <label for="email-input">E-mail address</label>
+      <input type="email" id="email-input" name="email" class="form-control" value="{{ email }}" required {% if edit %}readonly{% endif %}>
+    </div>
+    {% if not edit %}
+    <div class="form-group">
+      <label for="password-input">Password</label>
+      <input type="password" id="password-input" name="password" class="form-control" required>
+    </div>
+    {% endif %}
+    <div class="form-group">
+      <label for="name-input">Full name</label>
+      <input type="text" id="name-input" class="form-control" name="fullname" value="{{ fullname }}">
+    </div>
+    <div class="form-group">
+      <label for="title-input">Title</label>
+      <select id="title-input" name="title" class="custom-select" required>
+        <option value="">Select...</option>
+        {% for t in ["Bachelor Student", "Master Student", "Research Scientist", "Professor"] %}
+          <option value="{{ t }}" {% if t == title %}selected{% endif %}>{{ t }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="lab-input">Lab</label>
+      <select id="lab-input" name="lab" class="custom-select" required>
+        <option value="">Select...</option>
+        {% for l in ["Decentralized and Distributed Systems Lab", "Dependable Systems Laboratory", "HexHive Laboratory", "Laboratory for Computation Security", "Laboratory for Data Security", "Robust Scalable Systems Software Lab", "Security and Cryptography Laboratory", "Security and Privacy Engineering Lab"] %}
+          <option value="{{ l }}" {% if l == lab %}selected{% endif %}>{{ l }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="bio-textarea">Biography</label>
+      <textarea class="form-control" id="bio-textarea" name="bio" rows="3" aria-describedby="bio-textarea-help">{{ bio }}</textarea>
+      <small id="bio-textarea-help" class="form-text text-muted">
+        Markdown supported
+      </small>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">
+        {% if edit %}
+        Save
+        {% else %}
+        Sign up
+        {% endif %}
+      </button>
+    </div>
+  </form>
+</section>
+{% endblock %}
+
+{% block title %}{% if edit %}Edit profile{% else %}Sign up{% endif %}{% endblock %}

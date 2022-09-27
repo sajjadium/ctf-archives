@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% set active_page = "profile" %}
+
+{% block content %}
+<section class="container-fluid portrait portrait--medium">
+  <div class="row">
+    <div class="col-lg-4 col-xl-4 nopadding">
+      <div class="portrait-image">
+        <picture>
+          <img
+            src="https://api.lorem.space/image/face?w=400&h=600"
+            class="img-fluid"
+            alt="image description"
+          />
+        </picture>
+      </div>
+    </div>
+    <div class="col-lg-8 col-xl-6">
+      <h1 class="h1 portrait-name">{{ user['fullname'] }}</h1>
+
+      <h2 class="h2 portrait-title people-title">{{ user['title'] }}</h2>
+      <h3 class="portrait-lab">
+        {{ user['lab'] }}
+      </h3>
+      <dl class="definition-list definition-list-grid">
+        <dt>Contact</dt>
+        <dd class="flex">
+          <a
+            href="mailto:{{ user['email'] }}"
+            class="btn btn-sm btn-primary"
+            >{{ user['email'] }}</a
+          >
+        </dd>
+      </dl>
+      <dl class="definition-list definition-list-grid">
+        <dt>Actions</dt>
+        <dd class="flex">
+          {% if own_profile %}
+          <a href="{{ url_for('main.edit') }}" class="btn btn-sm btn-secondary">Edit profile</a>
+          {% endif %}
+          <form action="{{ url_for('main.report', _external=True, user_id=user['id']) }}" method="post">
+            <button type="submit" class="btn btn-sm btn-secondary">Report profile</a>
+          </form>
+        </dd>
+      </dl>
+    </div>
+  </div>
+</section>
+<hr />
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block about">
+          <h3>About</h3>
+          <div class="markdown">{{ user['bio'] }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% set description = '%s at %s' % (user['title'], user['lab']) %}
+{% block title %}{{user['fullname']}} | {{description|safe}}{% endblock %}

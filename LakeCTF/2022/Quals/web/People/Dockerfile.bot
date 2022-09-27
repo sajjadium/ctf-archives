@@ -1,0 +1,16 @@
+FROM python:3.9-slim
+
+# Install chromium dependencies
+RUN apt-get update && apt-get install -y $(apt-cache depends chromium | grep Depends | sed -e "s/.*ends:\ //" -e 's/<[^>]*>//' | tr '\n' ' ') libxss1 && rm -rf /var/lib/apt/lists/*
+
+RUN pip install pyppeteer==1.0.2 rq==1.10.1
+
+RUN adduser --system --group bot
+USER bot
+
+RUN pyppeteer-install
+COPY src/bot.py /app/src/bot.py
+
+WORKDIR /app
+
+CMD [ "rq", "worker", "--with-scheduler", "--url", "redis://redis:6379"]

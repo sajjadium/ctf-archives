@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/static/img/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/elements.min.css" />
+    <link rel="stylesheet" href="/static/css/layout.css" />
+    <link rel="stylesheet" href="/static/css/about.css" />
+    <title>Clob-Mate Shop</title>
+    <style>
+      body {
+        margin: 5%;
+        background-color: Coral;
+      }
+    </style>
+    <script type="text/javascript">
+      //As we are getting out of stock, we decided to prioritize delivering our last Clob-Mates to real hackers. We also automated this task because it was taking a lot of time.
+order_id = "{{ order_id }}"
+fetch("get_user_infos").then(res => res.text()).then(txt => {
+    try {
+        user = JSON.parse(txt);
+        order = {"user":{}};
+        order.user = user;
+        if (order.user.username == "pilvar") {
+fetch("/order/update", {
+    body: "order_id="+order_id+"&order_status=accepted",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    method: "post",
+})
+        } else {
+fetch("/order/update", {
+    body: "order_id="+order_id+"&order_status=rejected",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    method: "post",
+})
+        }
+    }
+    catch(err) {
+        console.log("Couldn't send the data, trying again.");
+        if (order.user.username == "pilvar") {
+fetch("/order/update", {
+    body: "order_id="+order_id+"&order_status=accepted",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    method: "post",
+})
+        } else {
+fetch("/order/update", {
+    body: "order_id="+order_id+"&order_status=rejected",
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+    },
+    method: "post",
+})
+        }
+    }
+})
+    </script>
+  </head>
+  <body>
+    <p id="order" name="{{ order_id }}"><b>Order ID: </b>{{ order_id }}</p>
+    <p><b>Article:</b> <a id="order" name="{{ article_name }}" href="/{{ article_link }}">{{ article_name }}</a></p>
+    <p id="order" name="{{ quantity }}"><b>Quantity: </b>{{ quantity }}</p>
+  </body>
+</html>

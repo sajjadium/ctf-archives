@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/static/img/favicon.ico" />
+    <link rel="stylesheet" href="/static/css/elements.min.css" />
+    <link rel="stylesheet" href="/static/css/layout.css" />
+    <link rel="stylesheet" href="/static/css/about.css" />
+    <title>Clob-Mate Shop</title>
+    <style>
+      .article1 {
+        background-image: url("/static/img/clobClassic.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
+      .article2 {
+        background-image: url("/static/img/clobZero.png");
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        text-align: right;
+      }
+      .text {
+        margin: 10%;
+      }
+    </style>
+  </head>
+
+  <body>
+  <div class="article1">
+    <div class=text>
+<form action="/order/create" method="post">
+  <label for="username">Username:</label><br>
+  <input type="text" name="username"><br><br>
+  <label for="email">Email:</label><br>
+  <input type="email" name="email"><br><br>
+  <label for="address">Address:</label><br>
+  <input type="text" name="address"><br><br>
+  <label for="quantity">Quantity:</label><br>
+  <input type="number" name="quantity"><br><br>
+  <input type="hidden" name="article" value="Clob-Mate Classic:static/img/clobClassic.png">
+  <input type="submit" value="Submit">
+</form>    </div>
+  </div>
+  <div class="article2">
+    <div class=text>
+<form action="/order/create" method="post">
+  <label for="username">Username:</label><br>
+  <input type="text" name="username"><br><br>
+  <label for="email">Email:</label><br>
+  <input type="email" name="email"><br><br>
+  <label for="address">Address:</label><br>
+  <input type="text" name="address"><br><br>
+  <label for="quantity">Quantity:</label><br>
+  <input type="number" name="quantity"><br><br>
+  <input type="hidden" name="article" value="Clob-Mate Zero:static/img/clobZero.png">
+  <input type="submit" value="Submit">
+</form>
+    </div>
+  </div>
+  </body>
+</html>

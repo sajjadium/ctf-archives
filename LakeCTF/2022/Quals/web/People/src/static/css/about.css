@@ -1,0 +1,188 @@
+ /* About style */
+
+.about p {
+  line-height: 1.8rem;
+}
+
+/* intro style */
+.portrait {
+  position: relative;
+}
+.portrait .row {
+  display: flex;
+  align-items: flex-start;
+}
+
+.mypage {
+  font-size: 1.3rem;
+}
+
+.portrait-name {
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  position: relative;
+  left: -6rem;
+  background: linear-gradient(90deg, #5c2483, #ff0000);
+  color: white;
+  display: inline-block;
+  font-size: 2.5rem;
+}
+
+.portrait-image {
+  overflow: hidden;
+  height: 650px;
+}
+
+.portrait-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portrait-title {
+  margin: 2rem 0 0.25rem;
+  font-size: 1.8rem;
+  color: red;
+}
+
+.portrait-lab {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.portrait .flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.portrait .flex > * {
+  margin-right: 1rem;
+}
+
+.portrait .btn {
+  height: fit-content;
+}
+
+.portrait .definition-list-grid dt:last-of-type,
+.portrait .definition-list-grid dd:last-of-type {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.portrait .social-icon {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none !important;
+}
+
+.portrait .social-icon .user{
+  margin-left: 1rem;
+}
+
+.portrait .social-icon:hover {
+  background: #707070;
+  color: white;
+}
+
+.btn-office {
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+/*---- VERSION IMAGE ---*/
+.portrait--little .row{
+  padding-bottom: 2rem;
+}
+
+.portrait--little .portrait-image {
+  max-width: 250px;
+  height: 250px;
+}
+
+.portrait--little .portrait-name {
+  left: 0;
+}
+
+/*---- Responsive ---*/
+
+@media (max-width: 1024px) {
+  .mypage {
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
+
+  .portrait .flex {
+    justify-content: flex-start;
+  }
+
+  .portrait .flex > * {
+    margin-right: auto;
+  }
+
+  .portrait .social-icon,
+  .portrait .btn,
+  .portrait a {
+    margin-right: 1rem !important;
+  }
+
+  .portrait-name {
+    left: 0;
+    margin: 0;
+    padding: 0.8rem;
+    width: 100%;
+    font-size: 1.75rem;
+  }
+  .portrait-title {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .portrait-lab {
+    font-size: 1rem;
+  }
+
+  .portrait-name {
+    left: 0;
+  }
+
+  .portrait .social-icon .user{
+    margin-left: 0.25rem;
+  }
+
+  .portrait .btn {
+    margin-bottom: 0.25rem;
+  }
+
+  .portrait-image {
+    max-width: 200px;
+    height: 200px;
+  }
+
+  .about p {
+    line-height: 1.5rem;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .flex-image-text {
+    display: flex;
+    justify-content: left;
+  }
+
+  .portrait--little .portrait-image {
+    margin: 0 1rem 0 0;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1224px) {
+  .flex-image-text {
+    display: flex;
+    justify-content: left;
+  }
+
+  .portrait-image {
+    max-width: 100%;
+    height: 100%;
+  }
+}
+

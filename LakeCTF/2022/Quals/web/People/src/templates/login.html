@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% set active_page = "login" %}
+
+{% block content %}
+<section class="container">
+  <h2>Login</h2>
+  <form action="{{ url_for('main.login_post') }}" method="post">
+    <div class="form-group">
+        <label for="email-input">E-mail address</label>
+        <input type="email" id="email-input" name="email" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="password-input">Password</label>
+        <input type="password" id="password-input" name="password" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  </form>
+</section>
+{% endblock %}
+
+{% block title %}Login{% endblock %}
