@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <%- include('head.ejs') %>
+    <body class="text-dark bg-light">
+        <%- include('navbar.ejs') %>
+        <div class="container my-5 px-5">
+            <div class="row text-center">
+              <div class="col-md-4 offset-md-4">
+                <h1 class="mb-3 text-center">Login</h1>
+                <% if(locals.error){ %>
+                  <div class="text-danger my-3">
+                    <%= error %>
+                  </div>
+                <% }%>  
+                <form method="POST" enctype="multipart/form-data">
+                  <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input autocomplete="off" type="text" name="username" class="form-control" placeholder="Please gently enter your username">
+                  </div>
+                  <div class="mb-4">
+                      <label for="formFile" class="form-label">Access Key</label>
+                      <input class="form-control" type="file" name="key">
+                  </div>
+                  <button type="submit" class="btn btn-dark w-75 p-2">Submit</button>
+                </form>
+              </div>
+            </div>
+        </div>
+        <%- include('scripts.ejs') %>
+    </body>
+</html>

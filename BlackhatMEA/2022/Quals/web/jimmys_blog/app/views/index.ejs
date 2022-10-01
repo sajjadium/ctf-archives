@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+    <%- include('head.ejs') %>
+    <body class="text-dark bg-light">
+        <%- include('navbar.ejs') %>
+        <div class="container my-5 px-5">
+          <% for(article of articles) {%>
+            <div class="card mb-4">
+              <div class="card-header">
+                <%= article.date %>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><%= article.title %></h5>
+                <p class="card-text"><%= article.summary %></p>
+                <a href="/article?id=<%= article.id %>" class="btn btn-dark">Check Article</a>
+                <% if(session.admin){ %>
+                  <a href="/edit?id=<%= article.id %>" class="ms-2 btn btn-dark">Edit Article</a>
+                <% } %>  
+              </div>
+            </div>
+          <% } %>
+        </div>
+        <%- include('scripts.ejs') %>
+    </body>
+</html>

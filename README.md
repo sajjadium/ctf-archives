@@ -262,6 +262,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1065/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="BlackhatMEA">BlackhatMEA</a></td>
+            <td><a href="BlackhatMEA/2022/Quals">2022</a></td>
+            <td><a href="https://ctftime.org/event/1733/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="Blaze">Blaze</a></td>
             <td><a href="Blaze/2019">2019</a></td>
             <td><a href="https://ctftime.org/event/790/tasks/">CTFtime</a></td>

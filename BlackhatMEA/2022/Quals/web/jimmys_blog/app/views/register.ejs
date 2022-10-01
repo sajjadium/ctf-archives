@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+    <%- include('head.ejs') %>
+    <body class="text-dark bg-light">
+        <%- include('navbar.ejs') %>
+        <div class="container my-5 px-5">
+            <div class="row text-center">
+              <div class="col-md-4 offset-md-4">
+                <h1 class="mb-3 text-center">Register</h1>
+                  <% if(locals.error){ %>
+                    <div class="text-danger my-3">
+                      <%= error %>
+                    </div>
+                  <% }%>  
+                <form method="POST">
+                  <div class="mb-4">
+                    <label class="form-label">Username</label>
+                    <input autocomplete="off" type="text" name="username" class="form-control" placeholder="Please gently enter your username">
+                  </div>
+                  <button type="submit" class="btn btn-dark w-75 p-2">Get Key</button>
+                </form>
+              </div>
+            </div>
+        </div>
+        <%- include('scripts.ejs') %>
+    </body>
+</html>

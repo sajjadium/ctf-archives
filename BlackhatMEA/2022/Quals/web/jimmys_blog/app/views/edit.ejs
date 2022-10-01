@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+    <%- include('head.ejs') %>
+    <body class="text-dark bg-light">
+        <%- include('navbar.ejs') %>
+        <div class="container my-5 px-5">
+          <h3 class="text-center">Welcome jimmy_jammy, your flag is</h3>
+          <p class="mb-5 text-center"><%= flag %></p>
+          <h3>Meanwhile, please feel free to edit your article</h3>
+          <form method="POST">
+            <textarea class="form-control mb-3" rows="15" name="article"><%= article %></textarea>
+            <button type="submit" class="btn btn-dark w-100">Save Changes</button>
+          </form>
+        </div>
+        <%- include('scripts.ejs') %>
+    </body>
+</html>

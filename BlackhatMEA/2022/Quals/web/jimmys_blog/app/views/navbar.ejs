@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand px-5" href="/">Jimmy's Blog</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <% if(!session.username){ %>
+          <li class="nav-item pe-2">
+            <a class="nav-link" href="/register">REGISTER</a>
+          </li>
+          <li class="nav-item pe-2">
+            <a class="nav-link" href="/login">LOGIN</a>
+          </li>
+          <% } else { %>  
+            <li class="nav-item pe-2 text-light">
+              <div class="nav-link">Logged in as <%= session.username %>.</div>
+            </li>
+            <li class="nav-item pe-2 text-light">
+              <a class="nav-link ps-3" href="/logout">LOGOUT</a>
+            </li>
+          <% } %>  
+        </ul>
+      </div>
+    </div>
+  </nav>
