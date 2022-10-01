@@ -1750,6 +1750,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/600/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/WPICTF/2018">PersianCats</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="WRECKCTF">WRECKCTF</a></td>
+            <td><a href="WRECKCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1775/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="WeCTF">WeCTF</a></td>
             <td><a href="WeCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1546/tasks/">CTFtime</a></td>

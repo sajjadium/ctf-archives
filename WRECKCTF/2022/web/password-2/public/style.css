@@ -1,0 +1,36 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: cornflowerblue;
+}
+
+.incorrect {
+    animation: shake 0.25s;
+}
+
+.content {
+    transform: scale(4);
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 18vw;
+}
+
+.container {
+    height: 100%;
+    display: grid;
+    place-items: center;
+}
+
+@keyframes shake {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(0eg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}

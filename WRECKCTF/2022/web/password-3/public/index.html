@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <form class="content">
+                <input type="text" placeholder="Password..."/>
+                <input type="submit" value="Login" />
+            </form>
+        </div>
+        <script>
+            const sha256 = async (message) => {
+              const data = (new TextEncoder()).encode(message);
+              const hashed = await crypto.subtle.digest('SHA-256', data);
+              return Array.from(new Uint8Array(hashed))
+                .map((b) => b.toString(16).padStart(2, '0'))
+                .join('')
+            }
+
+            (() => {
+              const form = document.querySelector('form');
+              form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const input = document.querySelector('input[type="text"]');
+                const response = await fetch('/password', {
+                  method: 'POST',
+                  headers: { 'content-type': 'application/json' },
+                  body: JSON.stringify({ password: input.value }),
+                })
+                const result = await response.json()
+                if (result.success) {
+                  const content = document.querySelector('.content')
+                  content.textContent = result.message;
+                } else {
+                  input.removeAttribute('style');
+                  input.offsetWidth;
+                  input.style.animation = 'shake 0.25s';
+                }
+              });
+            })();
+        </script>
+    </body>
+</html>
