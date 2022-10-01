@@ -1354,6 +1354,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1566/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Sekai">Sekai</a></td>
+            <td><a href="Sekai/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1619/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=4><a href="Securinets">Securinets</a></td>
             <td><a href="Securinets/2022/Quals">2022 Quals</a></td>
             <td><a href="https://ctftime.org/event/1617/tasks/">CTFtime</a></td>
