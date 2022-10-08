@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+
+{% set active_page = "sandbox" %}
+
+{% block content %}
+<h1>World Population - Report Generation</h1>
+
+<form method=post enctype=multipart/form-data>
+  <div class="form-group row">
+    <label for="startyear" class="col-sm-2 col-form-label">Starting Year</label>
+    <div class="col-sm-10">
+      <select id="startyear" name="startyear" class="form-control">
+        {% for i in range(1960, 2021) %}
+        <option>{{ i }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="endyear" class="col-sm-2 col-form-label">End Year</label>
+    <div class="col-sm-10">
+      <select id="endyear" name="endyear" class="form-control">
+        {% for i in range(1960, 2021) %}
+        <option>{{ i }}</option>
+        {% endfor %}
+        <option selected="selected">2021</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="country" class="col-sm-2 col-form-label">Country</label>
+    <div class="col-sm-10">
+      <select id="country"  name="country" class="form-control">
+        <option>Aruba</option>
+        <option>Afghanistan</option>
+        <option>Angola</option>
+        <option>Albania</option>
+        <option>Andorra</option>
+        <option>Arab World</option>
+        <option>United Arab Emirates</option>
+        <option>Argentina</option>
+        <option>Armenia</option>
+        <option>American Samoa</option>
+        <option>Antigua and Barbuda</option>
+        <option>Australia</option>
+        <option>Austria</option>
+        <option>Azerbaijan</option>
+        <option>Burundi</option>
+        <option>Belgium</option>
+        <option>Benin</option>
+        <option>Burkina Faso</option>
+        <option>Bangladesh</option>
+        <option>Bulgaria</option>
+        <option>Bahrain</option>
+        <option>Bahamas, The</option>
+        <option>Bosnia and Herzegovina</option>
+        <option>Belarus</option>
+        <option>Belize</option>
+        <option>Bermuda</option>
+        <option>Bolivia</option>
+        <option>Brazil</option>
+        <option>Barbados</option>
+        <option>Brunei Darussalam</option>
+        <option>Bhutan</option>
+        <option>Botswana</option>
+        <option>Central African Republic</option>
+        <option>Canada</option>
+        <option>Central Europe and the Baltics</option>
+        <option>Switzerland</option>
+        <option>Channel Islands</option>
+        <option>Chile</option>
+        <option>China</option>
+        <option>Cote d'Ivoire</option>
+        <option>Cameroon</option>
+        <option>Congo, Dem. Rep.</option>
+        <option>Congo, Rep.</option>
+        <option>Colombia</option>
+        <option>Comoros</option>
+        <option>Cabo Verde</option>
+        <option>Costa Rica</option>
+        <option>Caribbean small states</option>
+        <option>Cuba</option>
+        <option>Curacao</option>
+        <option>Cayman Islands</option>
+        <option>Cyprus</option>
+        <option>Czech Republic</option>
+        <option>Germany</option>
+        <option>Djibouti</option>
+        <option>Dominica</option>
+        <option>Denmark</option>
+        <option>Dominican Republic</option>
+        <option>Algeria</option>
+        <option>East Asia & Pacific (excluding high income)</option>
+        <option>Early-demographic dividend</option>
+        <option>East Asia & Pacific</option>
+        <option>Europe & Central Asia (excluding high income)</option>
+        <option>Europe & Central Asia</option>
+        <option>Ecuador</option>
+        <option>Egypt, Arab Rep.</option>
+        <option>Euro area</option>
+        <option>Eritrea</option>
+        <option>Spain</option>
+        <option>Estonia</option>
+        <option>Ethiopia</option>
+        <option>European Union</option>
+        <option>Fragile and conflict affected situations</option>
+        <option>Finland</option>
+        <option>Fiji</option>
+        <option>France</option>
+        <option>Faroe Islands</option>
+        <option>Micronesia, Fed. Sts.</option>
+        <option>Gabon</option>
+        <option>United Kingdom</option>
+        <option>Georgia</option>
+        <option>Ghana</option>
+        <option>Gibraltar</option>
+        <option>Guinea</option>
+        <option>Gambia, The</option>
+        <option>Guinea-Bissau</option>
+        <option>Equatorial Guinea</option>
+        <option>Greece</option>
+        <option>Grenada</option>
+        <option>Greenland</option>
+        <option>Guatemala</option>
+        <option>Guam</option>
+        <option>Guyana</option>
+        <option>High income</option>
+        <option>Hong Kong SAR, China</option>
+        <option>Honduras</option>
+        <option>Heavily indebted poor countries (HIPC)</option>
+        <option>Croatia</option>
+        <option>Haiti</option>
+        <option>Hungary</option>
+        <option>IBRD only</option>
+        <option>IDA & IBRD total</option>
+        <option>IDA total</option>
+        <option>IDA blend</option>
+        <option>Indonesia</option>
+        <option>IDA only</option>
+        <option>Isle of Man</option>
+        <option>India</option>
+        <option>Not classified</option>
+        <option>Ireland</option>
+        <option>Iran, Islamic Rep.</option>
+        <option>Iraq</option>
+        <option>Iceland</option>
+        <option>Israel</option>
+        <option>Italy</option>
+        <option>Jamaica</option>
+        <option>Jordan</option>
+        <option>Japan</option>
+        <option>Kazakhstan</option>
+        <option>Kenya</option>
+        <option>Kyrgyz Republic</option>
+        <option>Cambodia</option>
+        <option>Kiribati</option>
+        <option>St. Kitts and Nevis</option>
+        <option>Korea, Rep.</option>
+        <option>Kuwait</option>
+        <option>Latin America & Caribbean (excluding high income)</option>
+        <option>Lao PDR</option>
+        <option>Lebanon</option>
+        <option>Liberia</option>
+        <option>Libya</option>
+        <option>St. Lucia</option>
+        <option>Latin America & Caribbean</option>
+        <option>Least developed countries: UN classification</option>
+        <option>Low income</option>
+        <option>Liechtenstein</option>
+        <option>Sri Lanka</option>
+        <option>Lower middle income</option>
+        <option>Low & middle income</option>
+        <option>Lesotho</option>
+        <option>Late-demographic dividend</option>
+        <option>Lithuania</option>
+        <option>Luxembourg</option>
+        <option>Latvia</option>
+        <option>Macao SAR, China</option>
+        <option>St. Martin (French part)</option>
+        <option>Morocco</option>
+        <option>Monaco</option>
+        <option>Moldova</option>
+        <option>Madagascar</option>
+        <option>Maldives</option>
+        <option>Middle East & North Africa</option>
+        <option>Mexico</option>
+        <option>Marshall Islands</option>
+        <option>Middle income</option>
+        <option>North Macedonia</option>
+        <option>Mali</option>
+        <option>Malta</option>
+        <option>Myanmar</option>
+        <option>Middle East & North Africa (excluding high income)</option>
+        <option>Montenegro</option>
+        <option>Mongolia</option>
+        <option>Northern Mariana Islands</option>
+        <option>Mozambique</option>
+        <option>Mauritania</option>
+        <option>Mauritius</option>
+        <option>Malawi</option>
+        <option>Malaysia</option>
+        <option>North America</option>
+        <option>Namibia</option>
+        <option>New Caledonia</option>
+        <option>Niger</option>
+        <option>Nigeria</option>
+        <option>Nicaragua</option>
+        <option>Netherlands</option>
+        <option>Norway</option>
+        <option>Nepal</option>
+        <option>Nauru</option>
+        <option>New Zealand</option>
+        <option>OECD members</option>
+        <option>Oman</option>
+        <option>Other small states</option>
+        <option>Pakistan</option>
+        <option>Panama</option>
+        <option>Peru</option>
+        <option>Philippines</option>
+        <option>Palau</option>
+        <option>Papua New Guinea</option>
+        <option>Poland</option>
+        <option>Pre-demographic dividend</option>
+        <option>Puerto Rico</option>
+        <option>Korea, Dem. People's Rep.</option>
+        <option>Portugal</option>
+        <option>Paraguay</option>
+        <option>West Bank and Gaza</option>
+        <option>Pacific island small states</option>
+        <option>Post-demographic dividend</option>
+        <option>French Polynesia</option>
+        <option>Qatar</option>
+        <option>Romania</option>
+        <option>Russian Federation</option>
+        <option>Rwanda</option>
+        <option>South Asia</option>
+        <option>Saudi Arabia</option>
+        <option>Sudan</option>
+        <option>Senegal</option>
+        <option>Singapore</option>
+        <option>Solomon Islands</option>
+        <option>Sierra Leone</option>
+        <option>El Salvador</option>
+        <option>San Marino</option>
+        <option>Somalia</option>
+        <option>Serbia</option>
+        <option>Sub-Saharan Africa (excluding high income)</option>
+        <option>South Sudan</option>
+        <option>Sub-Saharan Africa</option>
+        <option>Small states</option>
+        <option>Sao Tome and Principe</option>
+        <option>Suriname</option>
+        <option>Slovak Republic</option>
+        <option>Slovenia</option>
+        <option>Sweden</option>
+        <option>Eswatini</option>
+        <option>Sint Maarten (Dutch part)</option>
+        <option>Seychelles</option>
+        <option>Syrian Arab Republic</option>
+        <option>Turks and Caicos Islands</option>
+        <option>Chad</option>
+        <option>East Asia & Pacific (IDA & IBRD countries)</option>
+        <option>Europe & Central Asia (IDA & IBRD countries)</option>
+        <option>Togo</option>
+        <option>Thailand</option>
+        <option>Tajikistan</option>
+        <option>Turkmenistan</option>
+        <option>Latin America & the Caribbean (IDA & IBRD countries)</option>
+        <option>Timor-Leste</option>
+        <option>Middle East & North Africa (IDA & IBRD countries)</option>
+        <option>Tonga</option>
+        <option>South Asia (IDA & IBRD)</option>
+        <option>Sub-Saharan Africa (IDA & IBRD countries)</option>
+        <option>Trinidad and Tobago</option>
+        <option>Tunisia</option>
+        <option>Turkey</option>
+        <option>Tuvalu</option>
+        <option>Tanzania</option>
+        <option>Uganda</option>
+        <option>Ukraine</option>
+        <option>Upper middle income</option>
+        <option>Uruguay</option>
+        <option>United States</option>
+        <option>Uzbekistan</option>
+        <option>St. Vincent and the Grenadines</option>
+        <option>Venezuela, RB</option>
+        <option>British Virgin Islands</option>
+        <option>Virgin Islands (U.S.)</option>
+        <option>Vietnam</option>
+        <option>Vanuatu</option>
+        <option>World</option>
+        <option>Samoa</option>
+        <option>Kosovo</option>
+        <option>Yemen, Rep.</option>
+        <option>South Africa</option>
+        <option>Zambia</option>
+        <option>Zimbabwe</option>
+      </select>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Generate Report</button>
+  </form>
+
+  {% if errorMessage %}
+  <script>bootbox.alert("{{ errorMessage }}");</script>
+{% endif %}
+  {% endblock %}

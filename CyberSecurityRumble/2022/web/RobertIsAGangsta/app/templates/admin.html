@@ -1,0 +1,55 @@
+{% extends "skeleton.html" %}
+{% block head %}
+<title> {{ title }} </title>
+{% endblock %}
+{% block body %}
+welcome back, admin
+<form>
+    <form action="/admin">
+        <label for="cmd">cmd:</label><br>
+        <input type="text" id="cmd" name="cmd" value="date"><br>
+        <input type="submit" value="Submit">
+    </form>
+</form>
+<pre id="output" height=200>
+output Placeholder
+</pre>
+<ul>
+    <li><a href="{{ url_for("signup") }}">signup instead</a></li>
+    <li><a href="{{ url_for("home") }}">home</a></li>
+    <li><a href="javascript:document.cookie='auth=;max-age=0';location.href='/'">logout</a></li>
+</ul>
+{% endblock %}
+{% block script %} 
+<script>
+function sendToApi (data)  {
+    window.fetch ("/json_api", {
+        method: 'post',
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then ( data => {
+            document.getElementById("output").innerHTML = JSON.stringify(data);
+        })
+        .catch ((error) => {
+            console.log ("Error: ", error);
+            alert("Nope");
+        })
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    sendToApi({
+        "action": "admin",
+        "data": {
+            "cmd": data.get('cmd')
+        }
+    });
+}
+
+const form = document.querySelector('form');
+form.addEventListener('submit', handleSubmit);
+</script>
+{% endblock script %}

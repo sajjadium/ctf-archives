@@ -1,0 +1,25 @@
+version: "3"
+services:
+  database:
+    restart: always
+    image: "mariadb:latest"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=cybercyber
+      - MYSQL_PASSWORD=cybercyber
+      - MYSQL_DATABASE=cms
+      - MYSQL_USER=cms
+
+  blind-cms:
+    build: 
+      context: ./docker
+    restart: always
+    environment:
+      DB_URI: mysql+pymysql://cms:cybercyber@database/cms
+      DOCKER: docker
+      FLAG: CSR{TESTFLAG}
+      WAIT_HOSTS: database:3306
+    ports:
+      - "4027:8000"
+    depends_on:
+      - database

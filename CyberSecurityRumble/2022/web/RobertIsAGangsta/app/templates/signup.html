@@ -1,0 +1,72 @@
+{% extends "skeleton.html" %}
+{% block head %}
+<title> {{ title }} </title>
+{% endblock %}
+{% block body %}
+<h1>Signup</h1>
+Please Sign Up using the secret activation code! Also, you can choose a group to join! You can even pick your own userid which you will get if it is free!
+<form>
+    <form action="/signup">
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" value=""><br>
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password" value=""><br><br>
+        <label for="groupid">Group:</label><br>
+        <select name="groupid" id="groupid">
+            <option value="001">Hacker</option>
+            <option value="002">Vendor</option>
+            <option value="003">Promoter</option>
+        </select>
+        <label for="userid">UserId:</label><br>
+        <input type="text" id="userid" name="userid" value="1337"><br><br>
+        <label for="activation">Activation Code:</label><br>
+        <input type="text" id="activation" name="activation" value="0000"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    Signup will take 20 seconds for validation. Please be patient.
+</form>
+<a href="{{ url_for("login") }}">login instead</a><br>
+<a href="{{ url_for("home") }}">home</a>
+{% endblock %}
+{% block script %} 
+<script>
+function sendToApi (data)  {
+    window.fetch ("/json_api", {
+        method: 'post',
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then ( data => {
+            if (data.return == "Success") {
+                window.location.href = "/user";
+            } else {
+                alert("Error Creating User");
+            };
+            return data;
+        })
+        .catch ((error) => {
+            console.log ("Error: ", error);
+            alert("Error Creating User");
+        })
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    sendToApi({
+        "action": "create_account",
+        "data": {
+            "email": data.get('email'),
+            "password": data.get('password'),
+            "groupid": data.get('groupid'),
+            "userid": data.get('userid'),
+            "activation": data.get('activation')
+        }
+    });
+}
+
+const form = document.querySelector('form');
+form.addEventListener('submit', handleSubmit);
+</script>
+{% endblock script %}

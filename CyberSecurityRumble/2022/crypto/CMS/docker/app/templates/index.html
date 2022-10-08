@@ -1,0 +1,19 @@
+<html>
+    <body>
+        {% if 'username' not in request.cookies %}
+            <a href="{{login}}">Login</a>
+            <a href="{{register}}">Register</a>
+        {% else %}
+            <a href="{{home}}">Home</a>
+        {% endif %}
+
+{% for entry in entries %}
+<pre>
+{{ entry.user_name }} wrote:
+{{ entry.content }}
+==============================================================
+</pre>
+{% endfor %}
+
+    </body>
+</html>

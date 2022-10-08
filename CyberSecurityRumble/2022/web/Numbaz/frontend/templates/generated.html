@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% set active_page = "index" %}
+
+{% block content %}
+<h1>Generated.</h1>
+{% if errormessage %}
+<p>Something went wrong:</p>
+<div class="alert alert-danger" role="alert">
+    {{ errormessage }}
+  </div>
+{% endif %}
+{% endblock %}

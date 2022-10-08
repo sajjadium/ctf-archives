@@ -1,0 +1,28 @@
+# Note that this dockerfile is for local testing only
+
+version: "3.1"
+services:
+  frontend:
+    container_name: frontend
+    build: frontend/
+    ports:
+      - '1024:1024'
+    entrypoint: gunicorn
+    command: --bind 0.0.0.0:1024 server:app
+    working_dir: /app
+
+  generator:
+    container_name: generator
+    build: generator/
+    entrypoint: gunicorn
+    command: --bind 0.0.0.0:5001 server:app
+    working_dir: /app
+    network_mode: service:frontend
+
+  renderer:
+    container_name: renderer
+    build: renderer/
+    entrypoint: gunicorn
+    command: --bind 0.0.0.0:5002 server:app
+    working_dir: /app
+    network_mode: service:frontend

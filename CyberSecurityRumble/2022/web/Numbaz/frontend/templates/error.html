@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% set active_page = "index" %}
+
+{% block content %}
+<h1>Error</h1>
+<p>Something went wrong:</p>
+<div class="alert alert-danger" role="alert">
+    {{ errormessage }}
+  </div>
+
+{% endblock %}

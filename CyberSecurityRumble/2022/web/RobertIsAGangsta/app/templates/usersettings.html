@@ -1,0 +1,73 @@
+{% extends "skeleton.html" %}
+{% block head %}
+<title> {{ title }} </title>
+{% endblock %}
+{% block body %}
+    <form action="/usersettings" id="edit">
+        <label for="fname">Change Email</label><br>
+        <input type="text" id="email" name="email" value="{{ user.email }}"><br>
+        <input type="submit" value="Submit">
+    </form>
+    <form action="/usersettings" id="del">
+        <input type="hidden" id="demail" name="demail" value="{{ user.email }}">
+        <label for="confirm">U sure?</label><br>
+        <input type="checkbox" id="confirm" name="confirm">
+        <input type="submit" value="Delete Account">
+    </form>
+<ul>
+    <li><a href="{{ url_for("user") }}">Home</a></li>
+    <li><a href="javascript:browser.cookie.remove({'name':'auth'});location.href='/'">logout</a></li>
+</ul>
+{% endblock %}
+
+{% block script %}
+<script>
+function sendToApi (data)  {
+    window.fetch ("/json_api", {
+        method: 'post',
+        headers: {'Content-Type' : 'application/json'},
+        body: JSON.stringify(data)
+    })
+        .then(response => response.json())
+        .then ( data => {
+            if (data.return == "Success") {
+                window.location.href = "/user";
+            } else {
+                alert("Error");
+            };
+            return data;
+        })
+        .catch ((error) => {
+            console.log ("Error: ", error);
+            alert("Error");
+        })
+}
+
+function handleSubmit(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    sendToApi({
+        "action": "edit_account",
+        "data": {
+            "email": data.get('email'),
+        }
+    });
+}
+
+function handleDelete(event) {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    sendToApi({
+        "action": "delete_account",
+        "data": {
+            "email": data.get('demail')
+        }
+    });
+}
+
+const form_edit = document.querySelector('#edit');
+form_edit.addEventListener('submit', handleSubmit);
+const form_del = document.querySelector('#del');
+form_del.addEventListener('submit', handleDelete);
+</script>
+{% endblock script %}

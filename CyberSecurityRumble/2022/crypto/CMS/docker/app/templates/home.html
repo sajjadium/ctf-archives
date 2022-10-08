@@ -1,0 +1,11 @@
+<a href="/">Main page</a>
+<a href="/add">Add a new entry</a>
+<a href="/logout">Logout</a>
+
+{% for entry in entries %}
+<pre>
+You wrote:
+{{ entry.content }}
+==============================================================
+</pre>
+{% endfor %}

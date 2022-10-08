@@ -1,0 +1,30 @@
+{% extends "skeleton.html" %}
+{% block head %}
+<title> {{ title }} </title>
+{% endblock %}
+{% block body %}
+<h1>User</h1>
+<ul>
+    {% for user in users %}
+    <li>{{ user.name }} is listening to {{ user.playing }}</li>
+    {% endfor %}
+</ul>
+
+<form>
+    I am currently ...:
+    <select name="inp" id="inp">
+        <option value="1">Doing Cybercrime</option>
+        <option value="2">In Jail</option>
+    </select>
+
+</form>
+This underground forum is in construction.
+
+<ul>
+    <li><a href="{{ url_for("settings") }}">Settings</a></li>
+    <li><a href="javascript:document.cookie='auth=;max-age=0';location.href='/'">logout</a></li>
+    {% if is_admin %}
+    <li><a href="{{ url_for("admin") }}">admin stuff</a></li>
+    {% endif %}
+</ul>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "skeleton.html" %}
+{% block head %}
+<title> {{ title }} </title>
+{% endblock %}
+{% block body %}
+<h1>Home</h1>
+<p>Welcome to Cybercrime Society Club Germany (CSCG)</p>
+<ul>
+    <li><a href="{{ url_for("login") }}">login</a></li>
+    <li><a href="{{ url_for("signup") }}">signup</a></li>
+</ul>
+<img src="/static/hacc.jpeg">
+{% endblock %}
+{% block script %} 
+
+{% endblock script %}
