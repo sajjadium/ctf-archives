@@ -1,0 +1,239 @@
+{% extends "base.html" %} {% block content %}
+<div
+  id="flash-container"
+  class="flex flex-col items-center justify-center"
+></div>
+
+<div class="mt-5 flex flex-wrap place-content-center">
+  <div class="relative mx-5 w-1/3 z-20">
+    <div class="shadow-lg bg-white h-full rounded-lg p-8">
+      <h1 class="text-center text-2xl text-yellow-400 font-bold">
+        Create schema
+      </h1>
+
+      <form
+        id="isValid-form"
+        class="pt-6 pb-2 my-2"
+        action="javascript:void(0);"
+      >
+        <div id="isValid-container">
+          <div class="flex flex-wrap app-isValid">
+            <div class="my-2 w-full mx-4">
+              <label class="block text-sm font-bold mb-2" for="validMsg">
+                Valid message
+              </label>
+              <input
+                class="shadow appearance-none border text-gray-700 border-green-200 rounded w-full py-2 px-3 placeholder-black-300"
+                name="validMsg"
+                id="validMsg"
+                type="text"
+                placeholder="Valid data"
+              />
+            </div>
+            <div class="my-2 w-full mx-4">
+              <label class="block text-sm font-bold mb-2" for="invalidMsg">
+                Invalid message
+              </label>
+              <input
+                class="shadow appearance-none border text-gray-700 border-red-200 rounded w-full py-2 px-3 placeholder-black-300"
+                name="invalidMsg"
+                id="invalidMsg"
+                type="text"
+                placeholder="Invalid data"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <form
+        id="create-schema-form"
+        class="pt-6 pb-2 my-2"
+        action="javascript:void(0);"
+      >
+        <div id="schema-container">
+          <div class="flex flex-row app-field">
+            <div class="my-2 w-1/2 mx-4">
+              <label class="block text-sm font-bold mb-2" for="field">
+                Field
+              </label>
+              <input
+                class="shadow appearance-none border border-gray-200 rounded w-full py-2 px-3 text-gray-700"
+                name="field"
+                id="field"
+                type="text"
+                placeholder="name"
+              />
+            </div>
+            <div class="my-2 w-1/2 mx-4">
+              <label class="block text-sm font-bold mb-2" for="type">
+                Type
+              </label>
+              <select
+                id="type"
+                name="type"
+                class="bg-gray-50 border border-gray-200 text-gray-700 text-sm rounded-lg focus:ring-yellow-400 focus:border-yellow-400 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-400 dark:focus:border-yellow-400"
+              >
+                <option selected value="">Choose type</option>
+                <option value="str">String</option>
+                <option value="int">Integer</option>
+                <option value="float">Float</option>
+                <option value="bool">Boolean</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="block md:flex items-center justify-between my-4">
+          <button
+            class="bg-yellow-300 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded border-b-4 border-yellow-400"
+            id="add-field"
+            onclick="addField()"
+          >
+            Add field
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="relative mx-5 w-1/3 z-20">
+    <div class="shadow-lg bg-white h-full rounded-lg p-8">
+      <h1 class="text-center text-2xl text-blue-400 font-bold">Data</h1>
+
+      <form id="data-form" class="pt-6 pb-2 my-2" action="javascript:void(0);">
+        <div id="schema-container">
+          <div class="flex flex-row app-field">
+            <div class="my-2 w-full mx-4">
+              <label class="block text-sm font-bold mb-2" for="data">
+                JSON data
+              </label>
+              <textarea
+                id="data"
+                name="data"
+                rows="10"
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder='{"name": "test", "age": 25}'
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="mt-5 flex flex-wrap place-content-center">
+  <div class="block md:flex items-center justify-between my-4">
+    <button
+      class="text-2xl bg-green-300 hover:bg-green-400 text-white font-bold py-2 px-4 rounded border-b-4 border-green-400"
+      id="submit"
+      onclick="submit()"
+    >
+      Submit
+    </button>
+  </div>
+</div>
+
+<script>
+  function addField() {
+    const fieldDiv = document.querySelector(".app-field");
+    const schemaContainer = document.querySelector("#schema-container");
+    const newFieldDiv = fieldDiv.cloneNode(true);
+    schemaContainer.appendChild(newFieldDiv);
+  }
+
+  function getFields() {
+    const formData = new FormData(
+      document.querySelector("#create-schema-form")
+    );
+    const l = Array.from(formData.values());
+    const fields = {};
+    for (let i = 0; i < l.length / 2; i++) {
+      fields[l[2 * i]] = l[2 * i + 1];
+    }
+    return fields;
+  }
+
+  function getValidMessage() {
+    const formData = new FormData(document.querySelector("#isValid-form"));
+    const validMsg = formData.get("validMsg");
+    return validMsg;
+  }
+
+  function getInvalidMessage() {
+    const formData = new FormData(document.querySelector("#isValid-form"));
+    const invalidMsg = formData.get("invalidMsg");
+    return invalidMsg;
+  }
+
+  function getData() {
+    const formData = new FormData(document.querySelector("#data-form"));
+    const data = formData.get("data");
+    return data;
+  }
+
+  function getAll() {
+    return {
+      schema: getFields(),
+      validMsg: getValidMessage(),
+      invalidMsg: getInvalidMessage(),
+      data: getData(),
+    };
+  }
+
+  async function submit() {
+    const body = getAll();
+    console.log(body);
+    const url = location.href + "validate";
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    const json = await response.json();
+    flash(json.message, json.isError);
+  }
+
+  const escapeHtml = (unsafe) => {
+    return unsafe
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  };
+
+  function flash(message, isError) {
+    const color = isError ? "red" : "green";
+    const html = `
+  <div
+    class="mt-5 bg-${color}-100 border border-${color}-400 text-${color}-700 px-4 py-3 rounded relative min-w-max max-w-max transition-all duration-500 ease-in-out"
+    role="alert"
+  >
+    <!-- <strong class="font-bold">Error!</strong> -->
+    <span class="block sm:inline"
+      >${escapeHtml(
+        message
+      )} <i class="btn-close cursor-pointer ml-2 fas fa-times"></i
+    ></span>
+  </div>
+  `;
+    document.querySelector("#flash-container").innerHTML = html;
+    document
+      .querySelector(".btn-close")
+      .addEventListener("click", function (event) {
+        event.preventDefault();
+        const div = this.parentElement.parentElement;
+        div.classList.add("opacity-0");
+        setTimeout(() => {
+          div.style.display = "none";
+        }, 500);
+      });
+  }
+</script>
+{% endblock %}
