@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  colorgram-app:
+    container_name: colorgram-app
+    build: .
+    image: takenx10/php:8.1.1-apache
+    depends_on:
+            - colorgram-db
+    environment:
+          JWT_SECRET: REDACTED
+          MYSQL_ROOT_PASSWORD: REDACTED
+          MYSQL_DATABASE: colorgram_db
+          MYSQL_HOST: colorgram-db:3306
+          URL_BOT: http://colorgram-bot:8888/request
+    volumes:
+      - ./src:/var/www/html/
+    ports:
+      - 127.0.0.1:80:80
+  colorgram-db:
+      container_name: colorgram-db
+      build: ./db
+      image: takenx10/mysql
+      restart: always
+      # Insert flag also on db/init.sql
+      environment:
+          MYSQL_ROOT_PASSWORD: REDACTED
+          MYSQL_DATABASE: colorgram_db
+      ports:
+        - 3306
+  colorgram-bot:
+    build: ./bot
+    ports:
+      - 8888
+    # Change env variables also on bot/server.js
+    environment:
+      - COLORGRAM_URL=http://colorgram-app/
+      - USERNAME=admin
+      - PASSWORD=srdnlen{REDACTED}

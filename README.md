@@ -1458,6 +1458,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/767/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Srdnlen">Srdnlen</a></td>
+            <td><a href="Srdnlen/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1766/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="SyskronSecurity">Syskron Security</a></td>
             <td><a href="SyskronSecurity/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1148/tasks/">CTFtime</a></td>
