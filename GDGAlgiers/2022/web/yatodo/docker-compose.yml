@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app/
+    ports:
+        - "8000:80"
+    restart: on-failure
+  bot:
+    build: ./bot/
+    ports:
+        - "1337:1337"
+    init: true
+    restart: on-failure
+    environment:
+      - CHALLENGE_HOST=0.0.0.0
+      - FLAG=CyberErudites{fake_flag}
