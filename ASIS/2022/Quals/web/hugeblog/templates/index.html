@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>miniblog#</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="uk-container uk-margin-top">
+            <h1>Your Blog Posts</h1>
+            <div class="uk-margin">
+                <a class="uk-button uk-button-default" href="#modal-new" uk-toggle>New</a>
+                <a id="export" class="uk-button uk-button-primary" href="#">Export</a>
+                <a id="import" class="uk-button uk-button-danger" href="#">Import</a>
+            </div>
+            <hr>
+            {% for post in database %}
+            <div class="uk-margin">
+                <div class="uk-card uk-card-default uk-card-body">
+                    <a href="/post/{{ post['id'] }}" class="uk-link-muted" target="_blank">
+                        <h3 class="uk-card-title">{{ post['title'] }}</h3>
+                    </a>
+                    <div class="uk-text-center" uk-grid>
+                        <div class="uk-width-auto@m">
+                            <p>Published on {{ post['date'] }} by {{ post['author'] }}</p>
+                        </div>
+                        <div class="uk-width-1-5@m">
+                            <button class="uk-button uk-button-secondary" type="button" id="delete" name="{{ post['title'] }}">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div id="modal-new" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <h2 class="uk-modal-title">New Blog Post</h2>
+                <fieldset class="uk-fieldset">
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" placeholder="Title" id="title">
+                    </div>
+                    <div class="uk-margin">
+                        <textarea class="uk-textarea" rows="8" placeholder="Lorem ipsum" id="content">{{template}}</textarea>
+                    </div>
+                </fieldset>
+                <p class="uk-text-right">
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                    <button class="uk-button uk-button-primary" type="button" id="new">Post</button>
+                </p>
+            </div>
+            <script>
+             $('#new').on('click', function() {
+                 let data = {
+                     'title': $('#title').get(0).value,
+                     'content': $('#content').get(0).value,
+                 };
+                 $.ajax({
+                     type: 'POST',
+                     url: '/api/new',
+                     dataType: 'json',
+                     data: JSON.stringify(data),
+                     contentType: 'application/json',
+                     success: (data) => {
+                         if (data.result == 'OK') {
+                             location.reload();
+                         } else {
+                             UIkit.notification({
+                                 message: "<span uk-icon='icon: error'></span> Error: " + data.reason,
+                                 status: 'danger'
+                             });
+                         }
+                     },
+                     error: (data) => {
+                         UIkit.notification({
+                             message: "<span uk-icon='icon: error'></span> Request error",
+                             status: 'danger'
+                         });
+                     }
+                 });
+             });
+
+             $('#export').on('click', function() {
+                 $.ajax({
+                     type: 'GET',
+                     url: '/api/export',
+                     dataType: 'json',
+                     success: (data) => {
+                         if (data.result == 'OK') {
+                             let blob = new Blob([data.export], {"type": "text/plain"});
+                             console.log(blob);
+                             $('<a>', {
+                                 href: window.URL.createObjectURL(blob),
+                                 download: 'backup.db'
+                             }).get(0).click();
+                         } else {
+                             UIkit.notification({
+                                 message: "<span uk-icon='icon: error'></span> Error: " + data.reason,
+                                 status: 'danger'
+                             });
+                         }
+                     },
+                     error: (data) => {
+                         UIkit.notification({
+                             message: "<span uk-icon='icon: error'></span> Request error",
+                             status: 'danger'
+                         });
+                     }
+                 });
+             });
+
+             $('#import').on('click', function() {
+                 $('<input>', {
+                     type: 'file',
+                 }).on('change', function(e) {
+                     let reader = new FileReader();
+                     reader.readAsText(e.target.files[0]);
+                     reader.onload = (re) => {
+                         let data = {'import': re.target.result};
+                         $.ajax({
+                             type: 'POST',
+                             url: '/api/import',
+                             dataType: 'json',
+                             data: JSON.stringify(data),
+                             contentType: 'application/json',
+                             success: (data) => {
+                                 if (data.result == 'OK') {
+                                     location.reload();
+                                 } else {
+                                     UIkit.notification({
+                                         message: "<span uk-icon='icon: error'></span> Error: " + data.reason,
+                                         status: 'danger'
+                                     });
+                                 }
+                             },
+                             error: (data) => {
+                                 UIkit.notification({
+                                     message: "<span uk-icon='icon: error'></span> Request error",
+                                     status: 'danger'
+                                 });
+                             }
+                         });
+                     }
+                 }).get(0).click();
+             });
+
+             $('button[id="delete"]').on('click', function(e) {
+                 let data = {'id': $(this).get(0).name};
+                 e.preventDefault();
+                 e.target.blur();
+                 UIkit.modal.confirm('Are you sure you want to delete "<b>'+data.id+'</b>"?').then(() => {
+                     $.ajax({
+                         type: 'POST',
+                         url: '/api/delete',
+                         dataType: 'json',
+                         data: JSON.stringify(data),
+                         contentType: 'application/json',
+                         success: (data) => {
+                             if (data.result == 'OK') {
+                                 location.reload();
+                             } else {
+                                 UIkit.notification({
+                                     message: "<span uk-icon='icon: error'></span> Error: " + data.reason,
+                                     status: 'danger'
+                                 });
+                             }
+                         },
+                         error: (data) => {
+                             UIkit.notification({
+                                 message: "<span uk-icon='icon: error'></span> Request error",
+                                 status: 'danger'
+                             });
+                         }
+                     });
+                 });
+             });
+            </script>
+    </body>
+</html>

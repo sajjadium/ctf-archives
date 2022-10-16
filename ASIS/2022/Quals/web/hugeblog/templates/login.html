@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login - miniblog#</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="uk-container">
+            <div class="uk-section uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+                <div class="uk-width-1-1">
+                    <div class="uk-container">
+                        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+                            <div class="uk-width-1-1@m">
+                                <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+                                    <h3 class="uk-card-title uk-text-center">Login</h3>
+                                    <div>
+                                        <div class="uk-margin">
+                                            <div class="uk-inline uk-width-1-1">
+                                                <span class="uk-form-icon" uk-icon="icon: user"></span>
+                                                <input class="uk-input uk-form-large" type="text" id="username" placeholder="Username">
+                                            </div>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <div class="uk-inline uk-width-1-1">
+                                                <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                                                <input class="uk-input uk-form-large" type="text" id="password" placeholder="Password">
+                                            </div>
+                                        </div>
+                                        <div class="uk-margin">
+                                            <button class="uk-button uk-button-primary uk-button-large uk-width-1-1" id="login">Login</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+         $('#login').on('click', ()=>{
+             let data = {
+                 'username': $('#username')[0].value,
+                 'password': $('#password')[0].value
+             };
+             $.ajax({
+                 type: 'POST',
+                 url: '/api/login',
+                 dataType: 'json',
+                 data: JSON.stringify(data),
+                 contentType: 'application/json',
+                 success: (data) => {
+                     location.reload();
+                 },
+                 error: (data) => {
+                     UIkit.notification({
+                         message: "<span uk-icon='icon: error'></span> Request error",
+                         status: 'danger'
+                     });
+                 }
+             });
+         });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+version: "3.9"
+   
+services:
+  flag-container:
+    build: ./flag-container
+    environment:
+      - FLAG=ASIS{test-flag}
+    restart: always
+  firewalled-curl:
+    build: ./firewalled-curl
+    ports:
+      - "8000:80"
+    restart: always

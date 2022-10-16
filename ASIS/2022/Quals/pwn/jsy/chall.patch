@@ -1,0 +1,97 @@
+diff --git a/./original/jsbuiltin.c b/./challenge/jsbuiltin.c
+index d472079..3af58ce 100644
+--- a/./original/jsbuiltin.c
++++ b/./challenge/jsbuiltin.c
+@@ -194,6 +194,13 @@ static void jsB_encodeURIComponent(js_State *J)
+ 	Encode(J, js_tostring(J, 1), URIUNESCAPED);
+ }
+ 
++static void jsB_free(js_State *J){
++	js_Value *obj = js_tovalue(J, 1);
++	if(obj->type == JS_TOBJECT){
++		js_free(J,obj->u.object);
++	}
++}
++
+ void jsB_init(js_State *J)
+ {
+ 	/* Create the prototype objects here, before the constructors */
+@@ -250,4 +257,5 @@ void jsB_init(js_State *J)
+ 	jsB_globalf(J, "decodeURIComponent", jsB_decodeURIComponent, 1);
+ 	jsB_globalf(J, "encodeURI", jsB_encodeURI, 1);
+ 	jsB_globalf(J, "encodeURIComponent", jsB_encodeURIComponent, 1);
++	jsB_globalf(J, "free", jsB_free, 1);
+ }
+diff --git a/./original/jsrun.c b/./challenge/jsrun.c
+index cc76d69..22ae978 100644
+--- a/./original/jsrun.c
++++ b/./challenge/jsrun.c
+@@ -655,6 +655,7 @@ static void jsR_setarrayindex(js_State *J, js_Object *obj, int k, js_Value *valu
+ 			while (newcap < newlen)
+ 				newcap <<= 1;
+ 			obj->u.a.array = js_realloc(J, obj->u.a.array, newcap * sizeof(js_Value));
++			memset(obj->u.a.array,'\x00',newcap * sizeof(js_Value)); 
+ 			obj->u.a.capacity = newcap;
+ 		}
+ 		obj->u.a.length = newlen;
+diff --git a/./original/jsvalue.h b/./challenge/jsvalue.h
+index 3152dc2..cc439c0 100644
+--- a/./original/jsvalue.h
++++ b/./challenge/jsvalue.h
+@@ -11,7 +11,7 @@ enum {
+ 	JS_HSTRING
+ };
+ 
+-enum js_Type {
++enum __attribute__ ((__packed__)) js_Type {
+ 	JS_TSHRSTR, /* type tag doubles as string zero-terminator */
+ 	JS_TUNDEFINED,
+ 	JS_TNULL,
+@@ -22,7 +22,7 @@ enum js_Type {
+ 	JS_TOBJECT,
+ };
+ 
+-enum js_Class {
++enum __attribute__ ((__packed__)) js_Class {
+ 	JS_COBJECT,
+ 	JS_CARRAY,
+ 	JS_CFUNCTION,
+@@ -79,6 +79,7 @@ struct js_Regexp
+ 
+ struct js_Object
+ {
++	char noTcacheOverwrite[0x18]; 
+ 	enum js_Class type;
+ 	int extensible;
+ 	js_Property *properties;
+diff --git a/./original/main.c b/./challenge/main.c
+index fb8c986..9abb609 100644
+--- a/./original/main.c
++++ b/./challenge/main.c
+@@ -319,11 +319,11 @@ main(int argc, char **argv)
+ 	js_newcfunction(J, jsB_gc, "gc", 0);
+ 	js_setglobal(J, "gc");
+ 
+-	js_newcfunction(J, jsB_load, "load", 1);
+-	js_setglobal(J, "load");
++	// js_newcfunction(J, jsB_load, "load", 1);
++	// js_setglobal(J, "load");
+ 
+-	js_newcfunction(J, jsB_compile, "compile", 2);
+-	js_setglobal(J, "compile");
++	// js_newcfunction(J, jsB_compile, "compile", 2);
++	// js_setglobal(J, "compile");
+ 
+ 	js_newcfunction(J, jsB_print, "print", 0);
+ 	js_setglobal(J, "print");
+@@ -331,8 +331,8 @@ main(int argc, char **argv)
+ 	js_newcfunction(J, jsB_write, "write", 0);
+ 	js_setglobal(J, "write");
+ 
+-	js_newcfunction(J, jsB_read, "read", 1);
+-	js_setglobal(J, "read");
++	// js_newcfunction(J, jsB_read, "read", 1);
++	// js_setglobal(J, "read");
+ 
+ 	js_newcfunction(J, jsB_readline, "readline", 0);
+ 	js_setglobal(J, "readline");
