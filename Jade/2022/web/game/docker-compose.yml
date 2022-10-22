@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+    api:
+        container_name: api
+        build:
+            context: ./api
+            dockerfile: Dockerfile
+        volumes:
+            - ./api/src:/var/www/html/
+            - ./db:/var/www/db
+        ports:
+            - 9000:80
+    server:
+        container_name: server
+        build:
+            context: ./server
+            dockerfile: Dockerfile
+        volumes:
+            - ./server/src/:/var/www/html/
+            - ./db:/var/www/db
+        ports:
+            - 8000:80
