@@ -427,6 +427,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1258/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Cryptoverse">Cryptoverse</a></td>
+            <td><a href="Cryptoverse/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1735/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="CyBRICS">CyBRICS</a></td>
             <td><a href="CyBRICS/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1306/tasks/">CTFtime</a></td>
