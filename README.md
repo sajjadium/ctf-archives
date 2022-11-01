@@ -1038,7 +1038,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1173/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="MCTF">M*CTF</a></td>
+            <td rowspan=3><a href="MCTF">M*CTF</a></td>
+            <td><a href="MCTF/2022/Quals">2022 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1784/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="MCTF/2021/Quals">2021 Quals</a></td>
             <td><a href="https://ctftime.org/event/1439/tasks/">CTFtime</a></td>
         </tr>
