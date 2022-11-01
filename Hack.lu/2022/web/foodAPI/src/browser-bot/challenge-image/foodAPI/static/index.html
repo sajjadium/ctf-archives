@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/picocss/1.5.2/pico.min.css">
+    <meta name="referrer" content="no-referrer">
+    <title>FoodAPI</title>
+</head>
+
+<body>
+    <nav class="container-fluid">
+        <ul>
+            <li><a href="/"><b>FoodAPI</b></a></li>
+        </ul>
+        <ul>
+            <li>
+                <details role="list" dir="rtl">
+                <summary aria-haspopup="listbox" role="link" class="secondary">Theme</summary>
+                <ul role="listbox">
+                    <li><a href="#" data-theme-switcher="auto">Auto</a></li>
+                    <li><a href="#" data-theme-switcher="light">Light</a></li>
+                    <li><a href="#" data-theme-switcher="dark">Dark</a></li>
+                </ul>
+                </details>
+            </li>
+            <li>
+                <details role="list" dir="rtl">
+                    <summary aria-haspopup="listbox" role="link" class="secondary">Account</summary>
+                    <ul role="listbox">
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </details>
+            </li>
+        </ul>
+    </nav>
+    <main class="container">
+        <h1>A Food API</h1>
+
+        <figure>
+            <img src="https://i.imgur.com/21Ep7OF.png" alt="Minimal landscape">
+        </figure>
+
+    </main>
+    <script src="https://picocss.com/examples/js/minimal-theme-switcher.js"></script>
+</body>
+
+</html>

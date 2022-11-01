@@ -1,0 +1,46 @@
+@use "sass:color";
+@import "@fontsource/noto-mono";
+
+$gap: 10px;
+$padding: $gap;
+$textPadding: 2px 6px;
+$title-bg-color: #dddcdb;
+$title-fg-color: #000000;
+$play-fg-color: #ffffff;
+$play-bg-color: #0e76dd;
+$title-bg-error-color: #fc3e3e;
+$title-fg-error-color: #ffffff;
+$border-radius: 6px;
+
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 14px;
+}
+
+body {
+  margin: 0;
+  font-family: "Noto Mono", monospace;
+  display: grid;
+  font-weight: 600;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
+[contenteditable] {
+  border: 1px dashed;
+  &:focus {
+    outline: 2px solid;
+  }
+}
+
+@import "./write.scss";
+@import "./doc.scss";
+@import "./nav.scss";
+@import "./block.scss";
+@import "./literals.scss";
+@import "./ops.scss";
+@import "./index.scss";
+@import "./share.scss";

@@ -1,0 +1,18 @@
+.literal {
+  display: flex;
+  justify-content: space-between;
+  border-radius: $border-radius;
+  background-color: var(--color, red);
+  height: 20px;
+  padding: $textPadding;
+  align-items: center;
+
+  &[data-type]::after {
+    content: attr(data-type);
+    justify-self: end;
+    font-size: 0.8em;
+  }
+  &[data-value]::before {
+    content: attr(data-value);
+  }
+}

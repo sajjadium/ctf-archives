@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  db:
+    container_name: yummygifs_db
+    build: 
+      context: ./db/
+      args:
+        - RANDOM_ID
+    restart: unless-stopped
+    env_file: .env
+    networks:
+      - yummy_net
+  
+  web:
+    container_name: yummygifs_web
+    build: 
+      context: ./server/
+      args:
+        - RANDOM_ID
+    restart: unless-stopped
+    depends_on: 
+      - db
+    env_file: .env
+    ports:
+      - "80:80"
+    networks:
+      - yummy_net
+    # for nice DX, uncomment and run 'chmod 777 -R server/src/uploads/' on host
+    # volumes:
+    #   - ./server/src:/var/www/html
+  bot:
+    container_name: yummygifs_bot
+    build: ./adminbot/bot-master/
+    restart: unless-stopped
+    tty: true
+    depends_on: 
+      - db
+    networks:
+      - yummy_net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./adminbot/bot-master-config.json:/app/config.json:ro
+    env_file: .env
+
+networks:
+  yummy_net:
+    name: yummy_net

@@ -1,0 +1,10 @@
+{
+    "docker_image": "electron-bot",
+    "use_recaptcha": false,
+    "recaptcha_secret_key": "",
+    "recaptcha_public_key": "",
+    "worker_count": 2,
+    "timeout_secs": 10,
+    "link_pattern": "^[a-f0-9]{32}$",
+    "docker_network": "babyelectron_electron_net"
+}

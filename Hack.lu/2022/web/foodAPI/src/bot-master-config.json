@@ -1,0 +1,9 @@
+{
+    "docker_image": "challenge_image",
+    "use_recaptcha": false,
+    "recaptcha_secret_key": "changed",
+    "recaptcha_public_key": "changed",
+    "worker_count": 1,
+    "timeout_secs": 15,
+    "link_pattern": "^https?://.*"
+}

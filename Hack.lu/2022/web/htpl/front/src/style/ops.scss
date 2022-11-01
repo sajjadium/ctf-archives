@@ -1,0 +1,41 @@
+.bin-op {
+  display: grid;
+  grid-template-columns: auto 2em auto;
+  grid-template-areas: "a op b";
+  align-items: center;
+  gap: $gap;
+  & > *:first-child {
+    grid-area: "a";
+  }
+  & > *:last-child {
+    grid-area: "b";
+  }
+  &::before {
+    display: flex;
+    justify-content: center;
+    content: attr(data-op);
+    grid-area: op;
+  }
+}
+
+.unary-op {
+  display: grid;
+  grid-template-columns: 2em auto;
+  grid-template-areas: "op a";
+  align-items: center;
+  & > *:first-child {
+    grid-area: "a";
+  }
+
+  &::before {
+    display: flex;
+    justify-content: center;
+    content: attr(data-op);
+    grid-area: op;
+    background: rgb(221, 221, 221);
+    align-items: center;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    margin-right: -4px;
+  }
+}

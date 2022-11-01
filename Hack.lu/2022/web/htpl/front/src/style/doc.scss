@@ -1,0 +1,78 @@
+main#doc {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  padding: 2em;
+  overflow: auto;
+  height: 100%;
+
+  .definition {
+    flex-shrink: 0;
+    border-radius: $border-radius;
+    border: 1px solid;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    position: relative;
+    padding: 2.5em $padding $padding $padding;
+
+    &::before {
+      content: attr(id);
+      background: $title-bg-color;
+      color: $title-fg-color;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: $textPadding;
+    }
+
+    .example {
+      &::before {
+        content: "Example:\a\a";
+      }
+      white-space: pre;
+      background: rgb(240, 229, 209);
+      color: $title-fg-color;
+      padding: $textPadding;
+      border-radius: $border-radius;
+    }
+    .subclasses {
+      display: flex;
+      gap: 0.5em;
+      &::before {
+        content: "Subclasses: ";
+      }
+    }
+    .parent {
+      display: flex;
+      gap: 0.5em;
+      &::before {
+        content: "Inherit from: ";
+      }
+      & > *:not(:last-child) {
+        &::after {
+          content: ",";
+        }
+      }
+    }
+    .children {
+      &::before{
+        display: inline-block;
+        content: "Child nodes: ";
+        margin-bottom: .5em;
+      }
+      padding: 0;
+      counter-reset: child;
+      li {
+        gap: 10px;
+        display: flex;
+        counter-increment: child;
+        &::before{
+          content: counter(child) ".";
+        }
+      }
+    }
+  }
+}

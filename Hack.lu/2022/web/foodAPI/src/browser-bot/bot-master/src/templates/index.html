@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.min.css">
+    <title>Food API - Admin Bot</title>
+</head>
+</head>
+<body>
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-12">
+            <h2 class="text-center">Food API - Admin Bot</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-8 mx-auto">
+            <div class="alert alert-info" role="alert">
+                PLEASE LOOK AT THE CHALLENGE CODE FIRST!
+            </div>
+            <h5>Submit a Link that the Admin Bot should visit:</h5>
+            {% if msg %}
+            <div class="alert alert-success" role="alert">
+                {{msg}}
+            </div>
+            {% endif %}
+
+            {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{error}}
+            </div>
+            {% endif %}
+            <form id="form" method="POST">
+                <input id="recaptcha" name="recaptcha" type="hidden"/>
+                <div class="form-group">
+                    <label for="link">URL</label>
+                    <input type="text" required pattern="{{link_pattern}}" name="link" class="form-control" id="link" placeholder="{{link_pattern}}">
+                </div>
+               
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary mb-2">Submit Link</button>
+                    <a href="/info" class="btn btn-secondary mb-2" role="button">Bot Status</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% if use_recaptcha %}
+<script src="https://www.google.com/recaptcha/api.js?render={{recaptcha_public_key}}"></script>
+<script>
+    grecaptcha.ready(() => {
+        const form = document.querySelector('#form');
+        const submit = document.querySelector('#form button[type="submit"]');
+
+        form.onsubmit = (e) => {
+            e.preventDefault();
+
+            if (!form.checkValidity()) {
+                form.submit();
+                return false;
+            }
+
+            submit.disabled = true;
+            grecaptcha.execute('{{recaptcha_public_key}}', {action: 'submit_link'}).then(token => {
+                document.querySelector('#recaptcha').value = token;
+                form.submit();
+            });
+
+            return false;
+        };
+    });
+</script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,28 @@
+version: "3.6"
+
+services:
+  traefik:
+    image: traefik:latest
+    command:
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
+
+  front:
+    build: front
+
+    labels:
+      traefik.enable: true
+      traefik.http.routers.front.rule: PathPrefix(`/`)
+  bot:
+    build: bot
+    environment:
+      - FLAG=flag{FAKE_FLAG}
+    labels:
+      traefik.enable: true
+      traefik.http.routers.bot.rule: PathPrefix(`/api/`)

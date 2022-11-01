@@ -1,0 +1,58 @@
+.block {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: $border-radius;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 $padding $padding $padding;
+  gap: $gap;
+  position: relative;
+  &[data-error] {
+    border-color: $title-bg-error-color;
+    border-width: 2px;
+
+    &::before {
+      background: $title-bg-error-color;
+      color: $title-fg-error-color;
+    }
+  }
+
+  &::before {
+    display: flex;
+    align-items: center;
+    height: 1.8rem;
+    font-size: 0.8em;
+    padding-left: 1em;
+    margin: 0 -#{$padding} 0 -#{$padding};
+    background: $title-bg-color;
+    color: $title-fg-color;
+    white-space: nowrap;
+    text-transform: capitalize;
+    content: attr(data-name);
+  }
+  &[data-error]::before{
+    content: attr(data-name) ": " attr(data-error);
+  }
+}
+
+.run-btn {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  background: $play-bg-color;
+  color: $play-fg-color;
+  border: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.8rem;
+  width: 50px;
+  transition: 0.1s all;
+
+  &:hover {
+    text-shadow: 0 0 4px white;
+  }
+}

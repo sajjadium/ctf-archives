@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: ./api
+    restart: unless-stopped
+    ports:
+      - "0.0.0.0:1024:1024"
+    networks:
+      - electron_net
+
+  app:
+    build:
+      context: ./app
+    image: app
+
+  bot:
+    container_name: electron_master
+    build: ./adminbot/bot-master/
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8081:8081"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./adminbot/bot-master-config.json:/app/config.json:ro
+    env_file: .env
+    networks:
+      - electron_net
+
+networks:
+        electron_net:

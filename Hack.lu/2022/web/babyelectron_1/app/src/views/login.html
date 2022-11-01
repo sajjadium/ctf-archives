@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <script src="../js/bootstrap.bundle.js"></script>
+    <link href="../styles.css" rel="stylesheet">
+    <title>Real Estate Luxembourg</title>
+  </head>
+  <body>
+    <section class="hero has-background-light is-fullheight">
+      <div class="hero-body">
+        <div class="container d-flex p-2 justify-content-center">
+          <div class="columns is-centered">
+            <div class="column is-6">
+              <form class="box">
+                <div class="field">
+                  <h1 class=""><i><p style="color:red; display: inline;">RE</p>Login</i></h1>
+                  <div class="control">
+                    <input
+                      id="api" 
+                      value="https://relapi.flu.xxx"
+                      type="text"
+                      class="input"
+                      required
+                      style="display:none"
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Username</label>
+                  <div class="control">
+                    <input id="username" type="text" class="input form-outline mb-4" required />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Password</label>
+                  <div class="control">
+                    <input
+                      id="password"
+                      type="password"
+                      class="input form-outline mb-4"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="field justify-content-center">
+                  <div id="login" class="ml-2 button btn btn-primary is-primary">Login</div>
+                  <div id="register" class="ml-2 button btn btn-primary is-primary">
+                    Register
+                  </div>
+                </div>
+              </form>
+              <div id="error" class="is-hidden notification is-danger"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="../js/login.js"></script>
+  </body>
+</html>

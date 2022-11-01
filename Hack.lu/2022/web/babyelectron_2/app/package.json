@@ -1,0 +1,26 @@
+{
+  "name": "REL",
+  "version": "1.0.0",
+  "description": "Get the finest properties for your next culinary investment now!",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "GitHub",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^15.3.0"
+  },
+  "dependencies": {
+    "@doyensec/electronegativity": "^1.9.1",
+    "dompurify": "^2.4.0"
+  }
+}

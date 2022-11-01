@@ -1,0 +1,23 @@
+main#share {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em;
+  h1 {
+    margin-bottom: 2em;
+  }
+  form {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    textarea {
+      width: 600px;
+      height: 300px;
+      resize: vertical;
+    }
+    button {
+      align-self: flex-end;
+    }
+  }
+}

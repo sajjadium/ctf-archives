@@ -1,0 +1,10 @@
+{
+    "docker_image": "bot-worker",
+    "docker_network": "yummy_net",
+    "use_recaptcha": true,
+    "recaptcha_secret_key": "removed",
+    "recaptcha_public_key": "6LdCl7EiAAAAAKHPY9_16AVeLfqNR_pAtL9YUJyz",
+    "worker_count": 2,
+    "timeout_secs": 10,
+    "link_pattern": "^https://yummygifs.flu.xxx/.*"
+}

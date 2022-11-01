@@ -1,0 +1,125 @@
+diff --git a/boards/cc2538dk/include/periph_conf.h b/boards/cc2538dk/include/periph_conf.h
+index 28db02e01f..e54d6e3908 100644
+--- a/boards/cc2538dk/include/periph_conf.h
++++ b/boards/cc2538dk/include/periph_conf.h
+@@ -41,12 +41,22 @@ static const uart_conf_t uart_config[] = {
+ #ifdef MODULE_PERIPH_UART_HW_FC
+         .cts_pin  = GPIO_UNDEF,
+         .rts_pin  = GPIO_UNDEF
++#endif
++    },
++    {
++        .dev      = UART1_BASEADDR,
++        .rx_pin   = GPIO_PIN(0, 2),
++        .tx_pin   = GPIO_PIN(0, 3),
++#ifdef MODULE_PERIPH_UART_HW_FC
++        .cts_pin  = GPIO_UNDEF,
++        .rts_pin  = GPIO_UNDEF
+ #endif
+     }
+ };
+ 
+ /* interrupt function name mapping */
+ #define UART_0_ISR          isr_uart0
++#define UART_1_ISR          isr_uart1
+ 
+ /* macros common across all UARTs */
+ #define UART_NUMOF          ARRAY_SIZE(uart_config)
+diff --git a/examples/gnrc_networking/Makefile b/examples/gnrc_networking/Makefile
+index 202d1eb080..b150419626 100644
+--- a/examples/gnrc_networking/Makefile
++++ b/examples/gnrc_networking/Makefile
+@@ -9,25 +9,30 @@ RIOTBASE ?= $(CURDIR)/../..
+ 
+ # Include packages that pull up and auto-init the link layer.
+ # NOTE: 6LoWPAN will be included if IEEE802.15.4 devices are present
+-USEMODULE += netdev_default
++#USEMODULE += netdev_default
+ USEMODULE += auto_init_gnrc_netif
+ # Activate ICMPv6 error messages
+ USEMODULE += gnrc_icmpv6_error
+ # Specify the mandatory networking module for a IPv6 routing node
+ USEMODULE += gnrc_ipv6_router_default
+ # Add a routing protocol
+-USEMODULE += gnrc_rpl
+-USEMODULE += auto_init_gnrc_rpl
++#USEMODULE += gnrc_rpl
++#USEMODULE += auto_init_gnrc_rpl
+ # Additional networking modules that can be dropped if not needed
+ USEMODULE += gnrc_icmpv6_echo
+ USEMODULE += gnrc_udp_cmd
+ # Add also the shell, some shell commands
+ USEMODULE += shell
+ USEMODULE += shell_commands
+-USEMODULE += ps
+-USEMODULE += netstats_l2
+-USEMODULE += netstats_ipv6
+-USEMODULE += netstats_rpl
++#USEMODULE += ps
++#USEMODULE += netstats_l2
++#USEMODULE += netstats_ipv6
++#USEMODULE += netstats_rpl
++
++USEMODULE += gnrc_uhcpc
++USEMODULE += gnrc_pktbuf_cmd
++USEMODULE += gnrc_ipv6_ext_frag
++USEMODULE += stdio_ethos
+ 
+ # Optionally include DNS support. This includes resolution of names at an
+ # upstream DNS server and the handling of RDNSS options in Router Advertisements
+diff --git a/sys/include/net/gnrc/pktbuf.h b/sys/include/net/gnrc/pktbuf.h
+index b6cf0f7e65..f5a7f797f9 100644
+--- a/sys/include/net/gnrc/pktbuf.h
++++ b/sys/include/net/gnrc/pktbuf.h
+@@ -309,6 +309,8 @@ bool gnrc_pktbuf_is_empty(void);
+ bool gnrc_pktbuf_is_sane(void);
+ #endif
+ 
++void gnrc_pktbuf_lockdown(int active);
++
+ #ifdef __cplusplus
+ }
+ #endif
+diff --git a/sys/net/gnrc/pktbuf/gnrc_pktbuf.c b/sys/net/gnrc/pktbuf/gnrc_pktbuf.c
+index 96090f8b5a..5464869211 100644
+--- a/sys/net/gnrc/pktbuf/gnrc_pktbuf.c
++++ b/sys/net/gnrc/pktbuf/gnrc_pktbuf.c
+@@ -114,4 +114,13 @@ void gnrc_pktbuf_release_error(gnrc_pktsnip_t *pkt, uint32_t err)
+     mutex_unlock(&gnrc_pktbuf_mutex);
+ }
+ 
++void gnrc_pktbuf_lockdown(int active)
++{
++    if (active) {
++        mutex_lock(&gnrc_pktbuf_mutex);
++    } else {
++        mutex_unlock(&gnrc_pktbuf_mutex);
++    }
++}
++
+ /** @} */
+diff --git a/sys/shell/commands/sc_gnrc_pktbuf.c b/sys/shell/commands/sc_gnrc_pktbuf.c
+index ac7e22d89e..7ddf1af00a 100644
+--- a/sys/shell/commands/sc_gnrc_pktbuf.c
++++ b/sys/shell/commands/sc_gnrc_pktbuf.c
+@@ -18,9 +18,17 @@
+ 
+ static int _gnrc_pktbuf_cmd(int argc, char **argv)
+ {
+-    (void)argc;
+-    (void)argv;
+-    gnrc_pktbuf_stats();
++    if (argc < 2) {
++        gnrc_pktbuf_stats();
++        return 0;
++    } else if (strcmp("lock", argv[1]) == 0) {
++        // lock the pktbuf to allow analyzing the content without interference from other tasks
++        gnrc_pktbuf_lockdown(1);
++        puts("pktbuf locked");
++    } else if (strcmp("unlock", argv[1]) == 0) {
++        gnrc_pktbuf_lockdown(0);
++        puts("pktbuf unlocked");
++    }
+     return 0;
+ }
+ 

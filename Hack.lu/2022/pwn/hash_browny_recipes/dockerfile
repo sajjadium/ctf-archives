@@ -1,0 +1,20 @@
+FROM ubuntu:22.04
+
+RUN apt update
+RUN apt install socat -y
+RUN useradd -d /home/ctf -m -p ctf -s /bin/bash ctf
+RUN echo "ctf:ctf" | chpasswd
+
+WORKDIR /home/ctf
+
+ADD sources/target/debug/hash-brownie-recipes /home/ctf/
+COPY flag.txt /home/ctf/
+
+RUN chmod 555 /home/ctf/hash-brownie-recipes
+RUN chown root:root /home/ctf/hash-brownie-recipes
+RUN chown root:ctf /home/ctf/flag.txt
+RUN chmod 440 /home/ctf/flag.txt
+
+USER ctf
+
+CMD socat tcp-listen:4444,reuseaddr,fork exec:/home/ctf/hash-brownie-recipes,rawer,pty,echo=0

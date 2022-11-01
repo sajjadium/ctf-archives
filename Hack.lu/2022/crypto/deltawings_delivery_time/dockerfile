@@ -1,0 +1,18 @@
+# docker build -t deliverytime . && docker run -p 1337:1337 --rm -it deliverytime
+
+FROM ubuntu:22.04
+
+RUN apt-get update --fix-missing
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y socat python3
+RUN useradd -ms /bin/bash ctf
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gcc
+
+WORKDIR /home/ctf
+
+ADD ./algorithms ./algorithms
+COPY hmac.c .
+COPY run.sh .
+
+RUN chmod +x ./run.sh
+
+CMD ./run.sh

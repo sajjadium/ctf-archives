@@ -1,0 +1,19 @@
+version: "3"
+services:
+
+    xssbot:
+        build: ./browser-bot/bot-master/
+        restart: unless-stopped
+        tty: true
+        ports:
+            - 80:80
+        networks:
+            - challenge_net
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./bot-master-config.json:/app/config.json:ro
+            - ./env-challenge:/.env-challenge
+
+
+networks:
+    challenge_net:

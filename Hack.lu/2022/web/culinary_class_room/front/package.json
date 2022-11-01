@@ -1,0 +1,24 @@
+{
+  "name": "html_programming",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.24",
+    "sass": "^1.49.11",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.0",
+    "vite-plugin-handlebars": "^1.6.0"
+  },
+  "dependencies": {
+    "@fontsource/noto-mono": "^4.5.3",
+    "@fontsource/roboto-mono": "^4.5.5",
+    "monaco-editor": "^0.33.0",
+    "monaco-editor-webpack-plugin": "^7.0.1",
+    "vite-plugin-monaco-editor": "^1.0.10"
+  }
+}

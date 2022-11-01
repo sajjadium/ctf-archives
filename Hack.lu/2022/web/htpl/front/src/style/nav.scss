@@ -1,0 +1,31 @@
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #2a2b2c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  gap: 20px;
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  a + a::before {
+    margin-right: 1em;
+    content: "|";
+  }
+
+  .spacer {
+    flex-grow: 1;
+  }
+
+  .bitk {
+    font-size: 1.8rem;
+    transform: scaleX(-1);
+    letter-spacing: 3px;
+  }
+
+}

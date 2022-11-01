@@ -1,0 +1,23 @@
+FROM ubuntu:22.04
+
+RUN apt update
+RUN apt install socat -y
+RUN useradd -d /home/ctf -m -p ctf -s /bin/bash ctf
+
+RUN echo "ctf:ctf" | chpasswd
+
+EXPOSE 4444
+
+WORKDIR /home/ctf
+
+ADD byor /home/ctf/
+COPY flag.txt /home/ctf/
+
+RUN chmod 555 /home/ctf/byor
+RUN chown root:root /home/ctf/byor
+RUN chown root:ctf /home/ctf/flag.txt
+RUN chmod 440 /home/ctf/flag.txt
+
+USER ctf
+
+CMD socat tcp-listen:4444,reuseaddr,fork exec:/home/ctf/byor,rawer,pty,echo=0
