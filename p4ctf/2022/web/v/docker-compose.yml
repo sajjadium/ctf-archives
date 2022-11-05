@@ -1,0 +1,31 @@
+services:
+  nginx:
+    container_name: v-nginx
+    image: v-nginx
+    build: ./nginx
+    ports:
+    - 3000:3000
+    volumes:
+    - ./files:/files
+
+  node:
+    container_name: v-node
+    image: v-node
+    build: ./node
+    ports:
+    - 4000:4000
+    volumes:
+    - ./files:/files
+    environment:
+    - NODE_ENV=production
+
+  bot:
+    container_name: v-bot
+    build: ./bot
+    image: v-bot
+    environment:
+    - NODE_ENV=production
+    - LOGIN_URL=http://nginx:3000/login
+
+volumes:
+  files:
