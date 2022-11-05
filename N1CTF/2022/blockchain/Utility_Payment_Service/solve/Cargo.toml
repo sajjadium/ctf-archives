@@ -1,0 +1,13 @@
+[package]
+name = "utility-payment-solve"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+borsh = "0.9.3"
+borsh-derive = "0.9.3"
+solana-program = "1.8.14"
+utility-payment = { version = "1.0.0", path = "../program", features = ["no-entrypoint"]}
+
+[lib]
+crate-type = ["cdylib", "lib"]

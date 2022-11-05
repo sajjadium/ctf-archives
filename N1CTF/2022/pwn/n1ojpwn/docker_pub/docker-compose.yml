@@ -1,0 +1,13 @@
+version: "2.4"
+services:
+    pwn_n1oj:
+        privileged: true
+        build: ./
+        image: n1ctf_2022_n1oj
+        pull_policy: never
+        ports:
+            - "2333:8888"
+        expose:
+            - "8888"
+        cpuset: "0,1"
+        restart: unless-stopped

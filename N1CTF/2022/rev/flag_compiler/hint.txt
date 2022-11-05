@@ -1,0 +1,2 @@
+docker build -t cppchal .
+docker run -it --name n1chall cppchal 

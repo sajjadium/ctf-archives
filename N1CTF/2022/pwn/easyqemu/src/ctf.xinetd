@@ -1,0 +1,26 @@
+service ctf
+{
+    disable = no
+    socket_type = stream
+    protocol    = tcp
+    wait        = no
+    user        = root
+    type        = UNLISTED
+    port        = 1234
+    bind        = 0.0.0.0
+
+    server      = /spawner
+    server_args = -w 224,27,30 -t 180 -p -u -n -r -f 16 -d 268435456 -c /home/ctf/ /run.sh
+
+    # safety options
+    # per_source   = 20 # the maximum number of instances for a service per source IP address
+    instances    = 60 # the maximum number of requests xinetd can handle at once.
+    rlimit_as     = 100M   # the Address Space resource limit for the service
+    rlimit_cpu	  = 60     # the maximum number of CPU seconds that the service may use
+    rlimit_files  = 1024   # the maximum number of open files that the service may use
+
+    # log warning die
+    log_on_success  = USERID PID HOST EXIT DURATION
+    log_on_failure  = USERID HOST ATTEMPT
+    log_type        = FILE /var/log/xinted.log
+}

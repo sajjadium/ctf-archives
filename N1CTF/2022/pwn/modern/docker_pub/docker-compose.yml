@@ -1,0 +1,12 @@
+version: "2.4"
+services:
+    pwn_modern:
+        privileged: true
+        build: ./
+        image: n1ctf_2022_modern
+        pull_policy: never
+        ports:
+            - "1337:8888"
+        expose:
+            - "8888"
+        restart: unless-stopped
