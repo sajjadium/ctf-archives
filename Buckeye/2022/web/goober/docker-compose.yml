@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+    public:
+        build: ./public/
+        restart: always
+        ports:
+            - 80:5000
+        networks:
+            agent:
+                ipv4_address: 172.10.0.101
+    
+    internal:
+        build: ./internal/ 
+        restart: always
+        volumes:
+            - ./.env:/app/.env
+        networks:
+            agent:
+                ipv4_address: 172.10.0.102
+
+networks:
+    agent:
+        ipam:
+            config:
+                - subnet: 172.10.0.0/24

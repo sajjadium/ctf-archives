@@ -1,0 +1,19 @@
+body {
+    background-color: #ffdfd1 !important;
+}
+
+.subheading {
+    color: gray;
+}
+
+.cust-border {
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.flex-wrapper {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+  }
