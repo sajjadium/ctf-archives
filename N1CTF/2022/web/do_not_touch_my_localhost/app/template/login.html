@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LOGIN</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/css/login.css" rel="stylesheet">
+</head>
+<body class="text-center">
+<main class="form-signin">
+    <h2 class="fw-bold mb-3">Welcome To The MessageBoard</h2>
+    <div class="alert alert-danger d-none" role="alert"></div>
+    <form id="form">
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-4" id="username" placeholder="username">
+            <label for="username" class="form-label">username</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-4" id="password" placeholder="password">
+            <label for="password">password</label>
+        </div>
+        <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="button" id="login">login</button>
+    </form>
+    <p>*automatic registration for non-existent user</p>
+</main>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "proxy blocker",
+  "version": "0.1",
+  "description": "block all request by setting a proxy server",
+  "manifest_version": 3,
+  "permissions": ["proxy"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://{{networkAddr}}/*"],
+      "js": ["content_script.js"],
+      "run_at": "document_start"
+    }
+  ]
+}

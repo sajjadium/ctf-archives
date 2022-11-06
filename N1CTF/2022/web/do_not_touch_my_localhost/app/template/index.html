@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>MessageBoard</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container">
+    <main>
+        <div class="py-3 text-center">
+            <p class="fs-3">MessageBoard</p>
+        </div>
+        <div class="row">
+            {{range $index, $note := .Notes}}
+            <div class="col-6 g-3">
+                <div class="card">
+                    <div class="card-header">id: {{$index}}</div>
+                    <div class="card-body">
+                        <p class="card-text">{{$note}}</p>
+                        <a href="#" class="btn btn-primary view" data-id="{{$index}}">view</a>
+                        <a href="#" class="btn btn-secondary send" data-id="{{$index}}">sendToAdmin</a>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+        <div class="row justify-content-center">
+            <div class="text-center">
+                <p class="fs-3">Post New Message?</p>
+            </div>
+            <div class="col-md-6">
+                <form action="/api/post" method="post">
+                    <div class="my-3">
+                        <label for="content" class="form-label">content</label>
+                        <textarea id="content" name="content" class="form-control"></textarea>
+                    </div>
+                    <div>
+                        <button id="submit" class="w-100 btn btn-primary btn-lg" type="button">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/index.js"></script>
+</body>
+</html>

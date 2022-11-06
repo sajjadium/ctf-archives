@@ -1,0 +1,9 @@
+version: '3'
+services:
+  do_not_touch_my_local_host:
+    ports:
+      - "0.0.0.0:8888:8888"
+    restart: unless-stopped
+    build: .
+    environment:
+      - "flag=n1ctf{test-flag}"
