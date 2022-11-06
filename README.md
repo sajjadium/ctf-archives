@@ -779,7 +779,6 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1727/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="Hack.lu">Hack.lu</a></td>
             <td><a href="Hack.lu/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1452/tasks/">CTFtime</a></td>
         </tr>
@@ -2034,8 +2033,8 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1555/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="zer0pts">zer0pts</a></td>
             <td><a href="zer0pts/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1256/tasks/">CTFtime</a></td>
         </tr>
         <tr>
             <td><a href="zer0pts/2020">2020</a></td>
