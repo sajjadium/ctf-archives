@@ -834,7 +834,7 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1029/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="HackersPlayground">Hacker's Playground</a></td>
+            <td rowspan=2><a href="HackersPlayground">Hacker's Playground</a></td>
             <td><a href="HackersPlayground/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1396/tasks/">CTFtime</a></td>
         </tr>
@@ -1055,6 +1055,7 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1138/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="MeePwn">MeePwn</a></td>
             <td><a href="MeePwn/2018/Quals">2018 Quals</a></td>
             <td><a href="https://ctftime.org/event/625/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/MeePwn/2018/Quals">PersianCats</a></td>
         </tr>
@@ -1196,7 +1197,7 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1719/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="Patriot">Patriot</a></td>
+            <td rowspan=1><a href="Patriot">Patriot</a></td>
             <td><a href="Patriot/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1616/tasks/">CTFtime</a></td>
         </tr>
@@ -1349,7 +1350,7 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1068/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="SEC-T">SEC-T</a></td>
+            <td rowspan=1><a href="SEC-T">SEC-T</a></td>
             <td><a href="SEC-T/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1761/tasks/">CTFtime</a></td>
         </tr>
