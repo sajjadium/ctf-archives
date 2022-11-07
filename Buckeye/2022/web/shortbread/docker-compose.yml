@@ -1,0 +1,17 @@
+version: "3"
+services: 
+  shortbread-src:
+    build: src
+    depends_on:
+      - shortbread-mongo
+    env_file: ./server_vars.env
+
+  shortbread-proxy:
+    build: proxy
+    ports:
+      - 8080:80
+    depends_on:
+      - shortbread-src
+
+  shortbread-mongo:
+    image: mongo

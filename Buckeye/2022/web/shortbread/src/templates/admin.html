@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class='container-fluid'>
+    <h1 class='text-center'> Shortbread - Link extender | Admin Logs</h1>
+</div>
+<div class='container-fluid'>
+    <div>
+        <h3> Long url: {{url}} </h3>
+    </div>
+    {% for message in messages %}
+    <div class="alert alert-secondary" role="alert">
+      <p> {{message}} </p>  
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

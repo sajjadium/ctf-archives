@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class='container-fluid my-5'>
+    <h1 class='text-center'> Shortbread - The simple link extender </h1>
+</div>
+<div class='container-fluid m-3'>
+    <form action="javascript:void(0)">
+        <div class="form-group m-3">
+            <label for="input_url">URL:</label>
+            <input type='text' name='input_url' id='input_url'></input>
+        </div>
+        <button type='button' onclick="submitLink()" class="btn btn-outline-secondary btn-lg m-3">Submit URL</button>
+    </form>
+</div>
+<div class='container-fluid m-3'>
+    <small><i>*Note: the url must have a valid http/https protocol specified. </i></small>
+</div>
+{% endblock %}
