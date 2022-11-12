@@ -1,0 +1,35 @@
+services:
+    gateway:
+        container_name: gateway
+        image: devopsfaith/krakend:latest
+        restart: always
+        ports:
+            - 8010:9009
+        volumes:
+             - ./volume/gateway:/etc/krakend
+    api:
+        container_name: api
+        image: genshin-shop-api:latest
+        restart: always
+        volumes:
+            - ./volume/api:/mnt/config
+    cdn:
+        container_name: cdn
+        image: genshin-shop-cdn:latest
+        restart: always
+        ports:
+            - 8011:9009
+    db:
+        container_name: db
+        image: mysql:latest
+        restart: always
+        environment:
+            MYSQL_USER: genshin-shop
+            MYSQL_PASSWORD: redacted
+            MYSQL_ROOT_PASSWORD: redacted
+            MYSQL_DATABASE: genshinshop
+        volumes:
+             - ./volume/db:/var/lib/mysql
+    headless:
+        container_name: headless
+        image: chromedp/headless-shell:latest

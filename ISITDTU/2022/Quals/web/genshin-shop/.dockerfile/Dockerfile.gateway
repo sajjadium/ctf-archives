@@ -1,0 +1,10 @@
+FROM alpine:latest
+
+RUN mkdir -p /output
+
+RUN --mount=type=bind,source=./gateway,target=/work \
+    cd /work && \
+    cp krakend.json /output && \
+    true
+
+ENTRYPOINT ["cp", "/output/krakend.json", "/mnt/config"]

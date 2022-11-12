@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  chall:
+    build: .
+    container_name: chall-web
+    ports:
+      - 1337:80
+    restart: unless-stopped

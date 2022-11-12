@@ -1,0 +1,44 @@
+# -----------------------------------
+# STAGE 1
+# Build
+# -----------------------------------
+FROM caddy:latest as caddy-builder
+
+# 1. Prepare for build
+RUN mkdir -p /source
+RUN mkdir -p /output
+
+# 2. Build
+RUN --mount=type=bind,source=./cdn,target=/source/cdn \
+    --mount=type=bind,source=./web,target=/source/web \
+    cd /source/cdn && \
+    caddy adapt --config Caddyfile && \
+    cp Caddyfile /output && \
+    true
+
+# -----------------------------------
+# STAGE 2
+# Build
+# -----------------------------------
+FROM genshin-shop-pnpm:latest as vue3-builder
+
+RUN --mount=type=bind,source=./web,target=/source/web \
+    cd /source/web && \
+    pnpm build-only && \
+    true
+
+# -----------------------------------
+# STAGE 3
+# Deploy
+# -----------------------------------
+FROM caddy:latest
+
+# 1. Create source dir.
+RUN mkdir -p /caddy
+
+# 2. Copy file.
+COPY --chown=0:0 --from=caddy-builder /output/ /caddy/
+COPY --chown=0:0 --from=vue3-builder /output/ /caddy/static/
+
+# 3. Run.
+ENTRYPOINT [ "caddy", "run", "--config", "/caddy/Caddyfile" ]

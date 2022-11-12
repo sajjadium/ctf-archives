@@ -903,7 +903,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/763/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ISITDTU">ISITDTU</a></td>
+            <td rowspan=4><a href="ISITDTU">ISITDTU</a></td>
+            <td><a href="ISITDTU/2022/Quals">2022 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1757/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ISITDTU/2021/Quals">2021 Quals</a></td>
             <td><a href="https://ctftime.org/event/1464/tasks/">CTFtime</a></td>
         </tr>

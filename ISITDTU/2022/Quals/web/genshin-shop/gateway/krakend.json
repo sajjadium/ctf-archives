@@ -1,0 +1,91 @@
+{
+    "$schema": "https://www.krakend.io/schema/v3.json",
+    "version": 3,
+    "name": "Genshin Shop - API Gateway",
+    "timeout": "3000ms",
+    "cache_ttl": "300s",
+    "output_encoding": "json",
+    "port": 9009,
+    "endpoints": [
+        {
+            "endpoint": "/api/v0/advertise",
+            "method": "GET",
+            "output_encoding": "no-op",
+            "backend": [
+                {
+                    "url_pattern": "/advertise",
+                    "encoding": "no-op",
+                    "sd": "static",
+                    "method": "GET",
+                    "host": ["http://api:9009"],
+                    "disable_host_sanitize": false
+                }
+            ],
+            "input_query_strings": ["url"]
+        },
+        {
+            "endpoint": "/api/v0/products",
+            "method": "GET",
+            "output_encoding": "no-op",
+            "backend": [
+                {
+                    "url_pattern": "/products",
+                    "encoding": "no-op",
+                    "sd": "static",
+                    "method": "GET",
+                    "host": ["http://api:9009"],
+                    "disable_host_sanitize": false
+                }
+            ]
+        },
+        {
+            "endpoint": "/api/v0/product",
+            "method": "GET",
+            "output_encoding": "no-op",
+            "backend": [
+                {
+                    "url_pattern": "/product",
+                    "encoding": "no-op",
+                    "sd": "static",
+                    "method": "GET",
+                    "host": ["http://api:9009"],
+                    "disable_host_sanitize": false
+                }
+            ],
+            "input_query_strings": ["id"]
+        },
+        {
+            "endpoint": "/api/v0/flag",
+            "method": "GET",
+            "output_encoding": "no-op",
+            "backend": [
+                {
+                    "url_pattern": "/flag",
+                    "encoding": "no-op",
+                    "sd": "static",
+                    "method": "GET",
+                    "host": ["http://api:9009"],
+                    "disable_host_sanitize": false
+                }
+            ],
+            "input_headers": [
+                "X-FLAG-KEY"
+            ]
+        },
+        {
+            "endpoint": "/api/v0/feedback",
+            "method": "POST",
+            "output_encoding": "no-op",
+            "backend": [
+                {
+                    "url_pattern": "/feedback",
+                    "encoding": "no-op",
+                    "sd": "static",
+                    "method": "POST",
+                    "host": ["http://api:9009"],
+                    "disable_host_sanitize": false
+                }
+            ]
+        }
+    ]
+}

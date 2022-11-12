@@ -1,0 +1,37 @@
+# -----------------------------------
+# STAGE 1
+# Build
+# -----------------------------------
+FROM golang:alpine as builder
+
+# 1. Prepare for build
+RUN mkdir -p /source
+RUN mkdir -p /output
+
+# 2. Build
+RUN --mount=type=cache,mode=0755,target=/go/pkg/mod \
+    --mount=type=bind,source=./api,target=/source/api \
+    cd /source/api && \
+    go mod download && \
+    go mod verify && \
+    go build -v -ldflags "-s -w" -o /output/genshin-shop-api && \
+    cp config.yml /output/ && \
+    cp default.json /output/ && \
+    true
+
+# -----------------------------------
+# STAGE 2
+# Deploy
+# -----------------------------------
+FROM genshin-shop-bootstrap:latest
+
+# 1. Copy file.
+COPY --chown=0:0 --from=builder /output/genshin-shop-api /
+COPY --chown=0:0 --from=builder /output/config.yml /
+COPY --chown=0:0 --from=builder /output/default.json /
+
+# 2. Change working directory.
+WORKDIR /
+
+# 2. Run
+ENTRYPOINT ["bootstrap", "/genshin-shop-api"]

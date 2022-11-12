@@ -1,0 +1,21 @@
+# -----------------------------------
+# STAGE 1
+# Build
+# -----------------------------------
+FROM node:lts-alpine as builder
+
+RUN mkdir -p /source
+WORKDIR /source
+
+RUN wget "https://github.com/pnpm/pnpm/releases/latest/download/pnpm-linuxstatic-x64" -O /bin/pnpm; chmod +x /bin/pnpm;
+RUN --mount=type=bind,source=./web,target=/source/web \
+    mkdir -p /source/dummy && \
+    cd /source/dummy && \
+    cp /source/web/package.json . && \
+    cp /source/web/package-lock.json . && \
+    pnpm config set auto-install-peers true && \
+    pnpm import && \
+    pnpm install --store-dir /source/pkg --virtual-store-dir /source/pkg --frozen-lockfile && \
+    true
+
+ENTRYPOINT ["cp", "-R", "-P", "/source/dummy/node_modules", "/mnt/pnpm/"]

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+# 1. Sync service config.
+if test -f /mnt/config/config.yml; then
+    cp /mnt/config/config.yml config.yml
+else
+    if test -f config.yml; then
+        cp config.yml /mnt/config/config.yml
+    fi
+fi
+
+# 2. Sync service config.
+if test -f /mnt/config/default.json; then
+    cp /mnt/config/default.json default.json
+else
+    if test -f default.json; then
+        cp default.json /mnt/config/default.json
+    fi
+fi
+
+
+# 3. Run.
+exec "$@"

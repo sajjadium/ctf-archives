@@ -1,0 +1,6 @@
+FROM alpine:latest
+
+COPY bootstrap /usr/local/bin
+RUN chmod +x /usr/local/bin/bootstrap
+
+ENTRYPOINT ["true"]

@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  min-width: 260px;
+  color: #ff0a94;
+  text-align:center;
+  background-color:#ff0a94;
+}
+
+#main {
+  margin: 30px auto;
+  padding: 15px;
+  border: 0px solid;
+  border-radius: 5px;
+  background: black;
+}
+
+img {
+  padding: 20px;
+  max-width: 100%;
+  display: block;
+  height: auto;
+  margin: auto;
+}
+
+img:hover {
+  animation: dance 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes dance {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+#img-div  {
+  margin: -5px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+#img  {
+  margin: 15px;
+}
+
+img-caption {
+  font-size: 10px;
+  padding: 20px;
+  text-align: left;
+}
+
+ul  {
+  padding: 40px;
+  max-width: 70%;
+  margin: auto;
+  text-align: left;
+}
+
+li  {
+  margin: 15px;
+}
+
+headline  {
+  margin: 30px auto;
+  padding: 15px;
+  text-align: center;
+}
+
+a {
+  display: right;
+  text-decoration: none;
+  font-size: 20px;
+  transition:all 0.5s 0s;
+}
+
+a:hover {
+  font-size: 18px;
+}
+
+input[type="text"]{
+  background-color: transparent;
+  border: solid 1px #6E6E6E;
+  color: #ff1744;
+}
+
+input, button {
+  font: inherit;
+  border: 0;
+}
+
+input:focus, button:focus {
+  outline: none;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column: 2;
+}
+
+input {
+  padding: 0.5em 0.75em;
+}
+
+button {
+  padding: 0.5em 0.75em;
+  background: #8fef9f;
+}
+
+.content p {
+  font-family: Nintendoid1;
+  font-size: 1em;
+  line-height: 1;
+  letter-spacing: 0.125em;
+}

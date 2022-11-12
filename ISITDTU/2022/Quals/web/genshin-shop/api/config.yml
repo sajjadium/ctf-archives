@@ -1,0 +1,17 @@
+http:
+    host: api
+    port: 9009
+    origin: http://127.0.0.1:8009
+chrome_dp:
+    host: headless
+    port: 9999
+    lifespan: 16 # In seconds
+mysql:
+    host: db
+    port: 3306
+    username: genshin-shop
+    password: redacted
+    db: genshinshop
+flag:
+    genshin_shop_1: redacted
+    genshin_shop_2: redacted
