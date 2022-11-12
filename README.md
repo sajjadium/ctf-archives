@@ -1959,7 +1959,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/874/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="m0leCon">m0leCon</a></td>
+            <td rowspan=5><a href="m0leCon">m0leCon</a></td>
+            <td><a href="m0leCon/2022/Beginner">2022 Beginner</a></td>
+            <td><a href="https://ctftime.org/event/1813/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="m0leCon/2022/Quals">2022 Quals</a></td>
             <td><a href="https://ctftime.org/event/1615/tasks/">CTFtime</a></td>
         </tr>
