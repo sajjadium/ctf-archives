@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/github.min.css">
+  <style>
+    pre {
+      background-color: #fff;
+      padding: 0em;
+    }
+    pre code.hljs {
+      padding: 0em;
+    }
+  </style>
+  <title>denobox</title>
+</head>
+
+<body>
+  <section class="hero has-text-centered">
+    <div class="hero-body">
+      <p class="title">denobox</p>
+      <p class="subtitle">
+        Your program runs in a sandbox!
+      </p>
+    </div>
+  </section>
+  <div class="container is-max-desktop pb-6">
+    <div class="box">
+      <pre><code id="sourceTop" class="language-typescript"></code>
+        <textarea id="source" class="textarea"></textarea>
+      <code id="sourceBottom" class="language-typescript"></code></pre>
+    </div>
+    <div class="field has-text-centered">
+      <div class="control">
+        <button id="submit" class="button is-primary">Generate your program</button>
+      </div>
+      <p id="error" class="help is-danger"></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script>
+  <script>
+    const $ = document.querySelector.bind(document);
+
+    const writeSource = () => {
+      $("#sourceTop").textContent = `
+import { crypto } from "https://deno.land/std@0.161.0/crypto/mod.ts";
+
+const input = JSON.parse(Deno.args[0]);
+const output: Record<string, unknown> = {};
+        `.trim();
+
+      const sourceElm = $("#source");
+      if (sourceElm.value.length === 0) {
+        sourceElm.value = `
+output.key = input.key;
+output.sum = input.a + input.b + input.c;
+          `.trim();
+      }
+
+      $("#sourceBottom").textContent = `
+if ("{{FLAG}}" in output) {
+  delete output["{{FLAG}}"];
+}
+
+const filename = crypto.randomUUID().replaceAll("-", "") + ".json";
+await Deno.writeTextFile(filename, JSON.stringify(output));
+console.log(filename);
+        `.trim();
+
+      hljs.highlightAll();
+    };
+
+    const main = async () => {
+      writeSource();
+
+      let isLoading = false;
+      const submitElm = $("#submit");
+      submitElm.addEventListener("click", async () => {
+        if (isLoading) return;
+        isLoading = true;
+        submitElm.classList.add("is-loading");
+
+        const res = await fetch("/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            source: $("#source").value,
+          }),
+        });
+
+        if (res.status === 200) {
+          location.href = await res.text(); // redirect
+        } else {
+          $("#error").textContent = "Error: " + await res.text();
+        }
+
+        setTimeout(() => {
+          submitElm.classList.remove("is-loading");
+          isLoading = false;
+        }, 1000);
+      });
+    };
+
+    document.addEventListener("DOMContentLoaded", main);
+  </script>
+</html>

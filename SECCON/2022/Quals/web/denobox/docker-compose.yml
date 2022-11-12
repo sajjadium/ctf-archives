@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  web:
+    build: ./web
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - RUST_LOG=actix_web=info,actix_server=info
+      - FLAG=SECCON{dummydummy}

@@ -1,0 +1,30 @@
+diff --git a/linux-5.19.12/kernel/bpf/verifier.c b/linux-5.19.12-patched/kernel/bpf/verifier.c
+index 3391470611..44af26055b 100644
+--- a/linux-5.19.12/kernel/bpf/verifier.c
++++ b/linux-5.19.12-patched/kernel/bpf/verifier.c
+@@ -8925,10 +8925,8 @@ static int adjust_scalar_min_max_vals(struct bpf_verifier_env *env,
+                break;
+        case BPF_LSH:
+                if (umax_val >= insn_bitness) {
+-                       /* Shifts greater than 31 or 63 are undefined.
+-                        * This includes shifts by a negative number.
+-                        */
+-                       mark_reg_unknown(env, regs, insn->dst_reg);
++                       /* Shifts greater than 31 or 63 results in 0. */
++                       mark_reg_known_zero(env, regs, insn->dst_reg);
+                        break;
+                }
+                if (alu32)
+@@ -8938,9 +8936,7 @@ static int adjust_scalar_min_max_vals(struct bpf_verifier_env *env,
+                break;
+        case BPF_RSH:
+                if (umax_val >= insn_bitness) {
+-                       /* Shifts greater than 31 or 63 are undefined.
+-                        * This includes shifts by a negative number.
+-                        */
+-                       mark_reg_unknown(env, regs, insn->dst_reg);
++                       /* Shifts greater than 31 or 63 results in 0. */
++                       mark_reg_known_zero(env, regs, insn->dst_reg);
+                        break;
+                }
+                if (alu32)

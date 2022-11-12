@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/github.min.css">
+  <style>
+    pre {
+      background-color: #fff;
+      padding: 0em;
+    }
+    pre code.hljs {
+      padding: 0em;
+    }
+  </style>
+  <title>denobox</title>
+</head>
+
+<body>
+  <section class="hero has-text-centered">
+    <div class="hero-body">
+      <p class="title">denobox</p>
+      <p class="subtitle">
+        Your program runs in a sandbox!
+      </p>
+      <p>Go to <a href="/">home</a></p>
+    </div>
+  </section>
+  <div class="container is-max-desktop pb-6">
+    <div class="field">
+      <label class="label">Your code:</label>
+      <div class="box py-0">
+        <pre>
+          <code id="source" class="language-typescript"></code>
+        </pre>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Input JSON:</label>
+      <div class="control">
+        <textarea id="input" class="textarea"></textarea>
+      </div>
+    </div>
+    <div class="field has-text-centered">
+      <div class="control">
+        <button id="submit" class="button is-primary">Run</button>
+      </div>
+      <p id="error" class="help is-danger"></p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div id="modalBackground" class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <pre>
+          <code id="result" class="language-json"></code>
+        </pre>
+      </div>
+    </div>
+    <button id="modalClose" class="modal-close" aria-label="close"></button>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js"></script>
+  <script>
+    const $ = document.querySelector.bind(document);
+
+    const openModal = (result, extension) => {
+      const resultElm = $("#result");
+      resultElm.textContent = result;
+      hljs.highlightElement(resultElm);
+
+      $("#modal").classList.add("is-active");
+    };
+
+    const closeModal = () => {
+      $("#modal").classList.remove("is-active");
+    }
+
+    const main = async () => {
+      const sourceElm = $("#source");
+      sourceElm.textContent = await (
+        await fetch(`${location.href}/preview`)
+      ).text();
+      hljs.highlightElement(sourceElm);
+
+      const inputElm = $("#input");
+      if (inputElm.value.length === 0) {
+        inputElm.value = JSON.stringify({
+          key: "value", a: 1, b: 10, c: 100,
+        }, null, 2);
+      }
+
+      const submitElm = $("#submit");
+      let isLoading = false;
+      submitElm.addEventListener("click", async () => {
+        if (isLoading) return;
+        isLoading = true;
+        submitElm.classList.add("is-loading");
+
+        const res = await fetch(`${location.href}/run`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            input: inputElm.value,
+          }),
+        });
+
+        let error;
+        let url;
+        try {
+          const json = await res.json();
+          if (json.error_msg) {
+            error = json.error_msg;
+          } else {
+            url = `${location.href}/show/${json.filename}`;
+          }
+        } catch {
+          error = await res.text();
+        }
+
+        if (error) {
+          $("#error").textContent = "Error: " + error;
+        } else {
+          const result = await (await fetch(url)).text();
+          openModal(result);
+        }
+
+        setTimeout(() => {
+          submitElm.classList.remove("is-loading");
+          isLoading = false;
+        }, 1000);
+      });
+
+      $("#modalBackground").addEventListener("click", closeModal);
+      $("#modalClose").addEventListener("click", closeModal);
+    };
+
+    document.addEventListener("DOMContentLoaded", main);
+  </script>
+</html>

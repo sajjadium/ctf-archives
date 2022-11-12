@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="trusted-types default dompurify; require-trusted-types-for 'script'">
+  <title>piyosay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/nes.css/2.3.0/css/nes.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+  <style>
+    html, body, pre, code, kbd, samp {
+      font-family: 'Press Start 2P', 'Noto Emoji', sans-serif;
+      background-color: #212529;
+      color: #fff;
+    }
+    #message {
+      font-size: 28px;
+      overflow-wrap: anywhere;
+    }
+    #piyo {
+      font-size: 128px;
+      margin-top: -0.4em;
+    }
+  </style>
+</head>
+<body style="padding: 3rem;">
+  <template id="emojis"></template>
+  <div class="nes-balloon from-left is-dark" style="margin-left: 128px;">
+    <p id="message"></p>
+  </div>
+  <p id="piyo"></p>
+  <form action="/report" method="post">
+    <div class="nes-field is-inline" style="gap: 0.5rem;">
+      <button type="button" class="nes-btn" onclick="location = '/'">&lt; Back</button>
+      <input name="url" type="text" class="nes-input is-dark" placeholder="http://web:3000/result?emoji=...&message=...">
+      <button type="submit" class="nes-btn">Report &gt;</button>
+    </div>
+  </form>
+
+  <script>
+    trustedTypes.createPolicy("default", {
+      createHTML: (unsafe) => {
+        return DOMPurify.sanitize(unsafe)
+          .replace(/SECCON{.+}/g, () => {
+            // Delete a secret in RegExp
+            "".match(/^$/);
+            return "SECCON{REDACTED}";
+          });
+      },
+    });
+  </script>
+  <script>
+    const get = (path) => {
+      return path.split("/").reduce((obj, key) => obj[key], document.all);
+    };
+
+    const init = async () => {
+      const emojis = await (await fetch("/api/emojis")).json();
+      const fragment = document.createDocumentFragment();
+      for (const emoji of emojis) {
+        const elm = document.createElement("p");
+        elm.innerHTML = emoji;
+        fragment.appendChild(elm);
+      }
+      get("emojis").appendChild(fragment);
+
+      get("piyo").innerHTML = "🐥/🐣/🐤".split("/")[(Math.random()*3)|0];
+    };
+
+    const main = async () => {
+      const params = new URLSearchParams(location.search);
+
+      const message = `${params.get("message")}${
+        document.cookie.split("FLAG=")[1] ?? "SECCON{dummy}"
+      }`;
+      // Delete a secret in document.cookie
+      document.cookie = "FLAG=; expires=Thu, 01 Jan 1970 00:00:00 GMT";
+      get("message").innerHTML = message;
+
+      const emoji = get(params.get("emoji"));
+      get("message").innerHTML = get("message").innerHTML.replace(/{{emoji}}/g, emoji);
+    };
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      await init();
+      await main();
+    });
+  </script>
+</body>
+</html>

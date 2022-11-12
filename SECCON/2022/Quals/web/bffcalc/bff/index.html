@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
+  <title>Calculator</title>
+</head>
+
+<body>
+  <h1>Simple Calculator</h1>
+  <form action="/report" method="POST">
+    <div style="display: flex; gap: 1rem;">
+      <input id="expr" name="expr" type="text" required placeholder="1 + 2 + 3">
+      <button id="calc" type="button">Calculate</button>
+    </div>
+    <pre id="result" style="text-align: center; font-size: 128px; margin: 1rem 0;"> </pre>
+    <div style="display: flex; justify-content: flex-end;">
+      <button type="submit">Report</button>
+    </div>
+  </form>
+
+  <script>
+    const main = async () => {
+      document.getElementById("expr").addEventListener("keypress", (e) => {
+        if (e.keyCode === 13 /* enter key */) {
+          e.preventDefault();
+          return false;
+        }
+      });
+
+      let loading = false;
+      document.getElementById("calc").addEventListener("click", async () => {
+        const expr = document.getElementById("expr").value;
+        if (expr.length === 0) return;
+        if (loading) return;
+        loading = true;
+        setTimeout(() => loading = false, 1000);
+
+        const result = await (await fetch("/api?expr=" + encodeURIComponent(expr))).text();
+        document.getElementById("result").innerHTML = result || " ";
+      });
+    };
+    document.addEventListener("DOMContentLoaded", main);
+  </script>
+</body>
+
+</html>

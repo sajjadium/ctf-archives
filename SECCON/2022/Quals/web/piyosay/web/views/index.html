@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>piyosay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Emoji&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/nes.css/2.3.0/css/nes.min.css" rel="stylesheet">
+  <style>
+    html, body, pre, code, kbd, samp {
+      font-family: 'Press Start 2P', 'Noto Emoji', sans-serif;
+      background-color: #212529;
+      color: #fff;
+    }
+  </style>
+</head>
+<body style="padding: 3rem; display: flex; gap: 2rem; flex-direction: column; justify-content: start;">
+  <div class="nes-select is-dark">
+    <select id="emoji">
+      <option value="0" disabled selected hidden>Select...</option>
+    </select>
+  </div>
+  <input id="message" type="text" class="nes-input is-dark" placeholder="Hi{{emoji}}!">
+  <div style="display: flex; justify-content: right;">
+    <button id="submit" type="button" class="nes-btn">Go!</button>
+  </div>
+
+  <script>
+    const get = (path) => {
+      return path.split("/").reduce((obj, key) => obj[key], document.all);
+    };
+
+    const init = async () => {
+      const emojis = await (await fetch("/api/emojis")).json();
+      const fragment = document.createDocumentFragment();
+      for (const [i, emoji] of Object.entries(emojis)) {
+        const elm = document.createElement("option");
+        elm.value = i;
+        elm.innerHTML = emoji;
+        fragment.appendChild(elm);
+      }
+      get("emoji").appendChild(fragment);
+
+      get("submit").addEventListener("click", () => {
+        const emoji = `emojis/children/${get("emoji").value}/innerHTML`;
+        const message = get("message").value || get("message").placeholder;
+        location.href = `/result?${new URLSearchParams({
+          emoji,
+          message,
+        })}`;
+      });
+    };
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>

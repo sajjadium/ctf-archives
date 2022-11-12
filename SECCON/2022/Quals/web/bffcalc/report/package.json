@@ -1,0 +1,11 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "dependencies": {
+    "@fastify/formbody": "^7.3.0",
+    "fastify": "^4.9.2"
+  }
+}

@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  web:
+    build: ./web
+    restart: always
+    environment:
+      - FLAG=SECCON{dummydummy}
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - "8080:8080"

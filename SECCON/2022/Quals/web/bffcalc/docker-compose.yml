@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  nginx:
+    build: ./nginx
+    restart: always
+    ports:
+      - "3000:3000"
+  bff:
+    build: ./bff
+    restart: always
+  backend:
+    build: ./backend
+    restart: always
+  report:
+    build: ./report
+    restart: always
+  bot:
+    build: ./bot
+    restart: always
+    environment:
+      - FLAG=SECCON{dummydummy}

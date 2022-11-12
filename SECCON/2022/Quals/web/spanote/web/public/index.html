@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <title>Note</title>
+</head>
+
+<body>
+  <div class="container is-max-desktop p-4">
+    <article class="message">
+      <div class="message-header">
+        <h1 class="title has-text-white">Your notes</h1>
+      </div>
+      <div class="message-body">
+        <div class="field has-addons">
+          <div class="control is-expanded">
+            <input id="content" name="content" type="text" class="input" placeholder="Write something..." required>
+          </div>
+          <div class="control">
+            <button id="create" class="button is-dark">Create</button>
+          </div>
+        </div>
+        <table class="table is-fullwidth">
+          <tbody id="notes">
+          </tbody>
+        </table>
+      </div>
+    </article>
+    <div class="container px-6">
+      <p>If you notice something wrong, please report it to us:</p>
+      <form action="/report" method="post">
+        <div class="field has-addons">
+          <div class="control is-expanded">
+            <input name="url" type="text" class="input" placeholder="http://web:3000/..." required>
+          </div>
+          <div class="control">
+            <button type="submit" class="button is-dark">Report</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <template id="note-tmpl">
+    <tr>
+      <td class="note-content"></td>
+      <td class="has-text-right"><button class="delete note-delete"></button></td>
+    </tr>
+  </template>
+  <script>
+    const refresh = async () => {
+      const { token } = await (await fetch("/api/token")).json();
+
+      const noteIds = await (await fetch("/api/notes", {
+        headers: { "X-Token": token }
+      })).json();
+
+      const children = [];
+      for (const noteId of noteIds) {
+        const note = await (await fetch(`/api/notes/${noteId}`, {
+          headers: { "X-Token": token }
+        })).text();
+        const elm = document.getElementById("note-tmpl").content.cloneNode(true);
+        elm.querySelector(".note-content").textContent = note;
+        if (note.startsWith("deleted:")) {
+          elm.querySelector(".note-delete").remove();
+        } else {
+          elm.querySelector(".note-delete").addEventListener("click", async () => {
+            await fetch(`/api/notes/delete`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                noteId,
+              }),
+            });
+            await refresh();
+          });
+        }
+        children.push(elm);
+      }
+
+      document.getElementById("notes").innerHTML = "";
+      for (const child of children) {
+        document.getElementById("notes").appendChild(child);
+      }
+    };
+
+    const init = async () => {
+      document.getElementById("create").addEventListener("click", async () => {
+        const content = document.getElementById("content").value;
+        if (!content) return;
+        await fetch("/api/notes/create", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            content,
+          }),
+        });
+        await refresh();
+      });
+
+      await refresh();
+    };
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+
+</html>

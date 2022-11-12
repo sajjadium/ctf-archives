@@ -1,0 +1,14 @@
+version: '3'
+services:
+  lslice_dist:
+    build:
+      context: .
+    working_dir: /home/pwn
+    container_name: lslice_dist
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "9876:9999"
+    entrypoint: /etc/init.sh
+    restart: always
