@@ -1,0 +1,56 @@
+version: '3'
+services:
+  backend:
+    build: src/backend
+    read_only: true
+    dns: "8.8.8.8"
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=searchify
+      - BING_SEARCH_V7_SUBSCRIPTION_KEY=
+    networks:
+      searchify-network:
+        ipv4_address: x.x.x.x
+    deploy:
+      mode: replicated
+      replicas: 1
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: '300M'
+      restart_policy:
+        condition: on-failure
+        delay: 3s
+    image: searchify_backend
+
+  frontend:
+    build: src/frontend
+    depends_on:
+      - "backend"
+    ports:
+      - 11071-11072:80
+    networks:
+      - searchify-network
+    extra_hosts:
+      cdn.jsdelivr.net: 104.16.88.20
+      unpkg.com: 104.16.122.175
+      fonts.googleapis.com: 142.250.196.138
+    dns: "127.0.0.1"
+    deploy:
+      mode: replicated
+      replicas: 2
+      resources:
+        limits:
+          cpus: "0.15"
+          memory: '200M'
+      restart_policy:
+        condition: on-failure
+        delay: 3s
+    image: searchify_frontend
+
+networks:
+  searchify-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: REDACTED/24

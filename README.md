@@ -326,7 +326,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/544/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/C3CTF/2017">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="COMPFEST">COMPFEST</a></td>
+            <td rowspan=3><a href="COMPFEST">COMPFEST</a></td>
+            <td><a href="COMPFEST/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1811/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="COMPFEST/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1358/tasks/">CTFtime</a></td>
         </tr>
