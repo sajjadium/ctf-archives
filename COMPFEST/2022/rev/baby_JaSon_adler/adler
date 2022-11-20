@@ -1,0 +1,1 @@
+enc=[];holder1=[];holder2=[];fl4g.split("").map((x,y)=>{!y?holder1[y]=x.charCodeAt(0)+1:holder1[y]=((x.charCodeAt(0)+holder1[y-1])%(2**9<<16))});holder1.map((zZ,hh)=>{!hh?holder2[hh]=holder1[hh]:holder2[hh]=(zZ+holder1[hh-1])%(2**9<<8)});enc=holder1.concat(holder2);enc.map((wkwk,zz)=>{enc[zz]=String.fromCharCode(wkwk)});enc=enc.join("")
