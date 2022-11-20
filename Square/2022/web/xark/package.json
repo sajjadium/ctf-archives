@@ -1,0 +1,25 @@
+{
+  "name": "xark",
+  "version": "1.0.1",
+  "description": "A node.js CTF puzzle by Alok Menghrajani.",
+  "main": "index.js",
+  "author": "Alok Menghrajani",
+  "license": "Apache-2.0",
+  "private": false,
+  "scripts": {
+    "start": "node ./bin/www",
+    "prod": "NODE_ENV=prod node index.js",
+    "dev": "NODE_ENV=dev nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "config": "^3.3.8",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "knex": "^2.3.0",
+    "mysql": "^2.18.1",
+    "sqlite3": "^5.1.2"
+  }
+}
