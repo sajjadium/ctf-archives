@@ -1081,7 +1081,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1106/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="MetaRed">MetaRed</a></td>
+            <td rowspan=2><a href="MetaRed">MetaRed</a></td>
+            <td><a href="MetaRed/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1750/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="MetaRed/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1420/tasks/">CTFtime</a></td>
         </tr>
