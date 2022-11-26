@@ -1,0 +1,8 @@
+version: "3"
+services:
+  wtfshell:
+    build: .
+    ports:
+      - "42531:42531"
+    expose:
+      - "42531"

@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  web:
+    build: .
+    volumes:
+      - ./src:/var/www/html/
+    ports:
+      - "80:80/tcp"
+    environment:
+      - HCAPTCHA_SITE_KEY=10000000-ffff-ffff-ffff-000000000001
+      - HCAPTCHA_SECRET_KEY=0x0000000000000000000000000000000000000000
