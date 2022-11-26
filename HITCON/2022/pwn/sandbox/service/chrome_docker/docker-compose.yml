@@ -1,0 +1,11 @@
+services:
+    sandbox:
+        build: ./
+        image: hitcon2022_sandbox
+        volumes:
+            - ./tmp:/tmp:ro
+        cpu_percent: 80
+        cpus: 0.8
+        mem_limit: 512m
+        mem_reservation: 256m
+

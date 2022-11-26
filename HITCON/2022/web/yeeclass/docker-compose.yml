@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+
+  database:
+    image: mariadb:10
+    restart: always
+    volumes:
+      - ./files/healthcheck.cnf:/etc/mysql/healthcheck.cnf:ro
+      - ./files/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    environment:
+      - LANG=C.UTF-8
+      - MARIADB_MYSQL_LOCALHOST_USER=1
+      - MYSQL_RANDOM_ROOT_PASSWORD=1
+      - MYSQL_USER=yeeclass
+      - MYSQL_PASSWORD=yeeclass
+      - MYSQL_DATABASE=yeeclass
+    healthcheck:
+      test: ["CMD", "/usr/local/bin/healthcheck.sh", "--defaults-file=/etc/mysql/healthcheck.cnf", "--connect", "--innodb_initialized"]
+      interval: 20s
+      retries: 10
+
+  web:
+    build:
+      context: ./
+      # args:
+        # TURNSTILE_SECRETKEY: <your-own-key>
+        # TURNSTILE_SITEKEY: <your-own-key>
+    environment:
+      - FLAG=hitcon{not_flag}
+    ports:
+      - 16875:80/tcp
+    depends_on:
+      database:
+        condition: service_healthy
+    entrypoint:
+      - bash
+      - -c
+      - |
+        set -e
+        echo 'running init.php'
+        php -f /tmp/init.php
+        rm /tmp/init.php
+        
+        echo 'initialization done, starting apache'
+        exec apache2-foreground

@@ -1,0 +1,12 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "playwright-firefox": "^1.27.1"
+  },
+	"scripts": {
+		"start": "node app.js"
+	}
+}

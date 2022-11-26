@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+  bot:
+    build:
+      context: ./bot
+    environment:
+      - PORT=8080
+      - SITE=https://sdm.chal.hitconctf.com/
+      - REPORT_HOST=chall
+      - FLAG=hitcon{redacted}
+  chall:
+    build:
+      context: ./app
+    environment:
+      - HCAPTCHA_SECRET_KEY=0x0000000000000000000000000000000000000000
+      - BOT_HOST=bot
+      - BOT_PORT=8080
+      - HTTPS=1 # unset to use http mode
+    volumes:
+      # https credentials (not included)
+      - ./credentials:/opt/credentials
+    ports:
+      - "443:48763"

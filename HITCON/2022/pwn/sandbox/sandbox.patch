@@ -1,0 +1,217 @@
+diff --git a/content/browser/BUILD.gn b/content/browser/BUILD.gn
+index 0e81bb6da44ce..ba8af9ad8a3a9 100644
+--- a/content/browser/BUILD.gn
++++ b/content/browser/BUILD.gn
+@@ -2282,6 +2282,8 @@ source_set("browser") {
+     "worker_host/worker_script_loader.h",
+     "worker_host/worker_script_loader_factory.cc",
+     "worker_host/worker_script_loader_factory.h",
++    "sandbox/sandbox_impl.h",
++    "sandbox/sandbox_impl.cc",
+   ]
+ 
+   # TODO(crbug.com/1327384): Remove `permissions_common`.
+diff --git a/content/browser/browser_interface_binders.cc b/content/browser/browser_interface_binders.cc
+index d0e12faf3f16a..0f599997dbb5f 100644
+--- a/content/browser/browser_interface_binders.cc
++++ b/content/browser/browser_interface_binders.cc
+@@ -14,6 +14,7 @@
+ #include "build/branding_buildflags.h"
+ #include "build/build_config.h"
+ #include "cc/base/switches.h"
++#include "content/browser/sandbox/sandbox_impl.h"
+ #include "content/browser/aggregation_service/aggregation_service_internals.mojom.h"
+ #include "content/browser/aggregation_service/aggregation_service_internals_ui.h"
+ #include "content/browser/attribution_reporting/attribution_internals.mojom.h"
+@@ -110,6 +111,7 @@
+ #include "storage/browser/quota/quota_manager_proxy.h"
+ #include "third_party/blink/public/common/features.h"
+ #include "third_party/blink/public/common/storage_key/storage_key.h"
++#include "third_party/blink/public/mojom/sandbox/sandbox.mojom.h"
+ #include "third_party/blink/public/mojom/background_fetch/background_fetch.mojom.h"
+ #include "third_party/blink/public/mojom/background_sync/background_sync.mojom.h"
+ #include "third_party/blink/public/mojom/blob/blob_url_store.mojom.h"
+@@ -982,6 +984,8 @@ void PopulateFrameBinders(RenderFrameHostImpl* host, mojo::BinderMap* map) {
+   map->Add<blink::mojom::RenderAccessibilityHost>(
+       base::BindRepeating(&RenderFrameHostImpl::BindRenderAccessibilityHost,
+                           base::Unretained(host)));
++  map->Add<blink::mojom::Sandbox>(base::BindRepeating(
++      &RenderFrameHostImpl::CreateSandbox, base::Unretained(host)));
+ }
+ 
+ void PopulateBinderMapWithContext(
+diff --git a/content/browser/renderer_host/render_frame_host_impl.cc b/content/browser/renderer_host/render_frame_host_impl.cc
+index 142c6d093d80a..9f12815bf1def 100644
+--- a/content/browser/renderer_host/render_frame_host_impl.cc
++++ b/content/browser/renderer_host/render_frame_host_impl.cc
+@@ -2004,6 +2004,11 @@ RenderFrameHostImpl::~RenderFrameHostImpl() {
+   TRACE_EVENT_END("navigation", perfetto::Track::FromPointer(this));
+ }
+ 
++void RenderFrameHostImpl::CreateSandbox(
++    mojo::PendingReceiver<blink::mojom::Sandbox> receiver) {
++  SandboxImpl::Create(std::move(receiver));
++}
++
+ int RenderFrameHostImpl::GetRoutingID() const {
+   return routing_id_;
+ }
+diff --git a/content/browser/renderer_host/render_frame_host_impl.h b/content/browser/renderer_host/render_frame_host_impl.h
+index c9c0155bc626e..11329de446f78 100644
+--- a/content/browser/renderer_host/render_frame_host_impl.h
++++ b/content/browser/renderer_host/render_frame_host_impl.h
+@@ -37,6 +37,7 @@
+ #include "base/types/pass_key.h"
+ #include "base/unguessable_token.h"
+ #include "build/build_config.h"
++#include "content/browser/sandbox/sandbox_impl.h"
+ #include "content/browser/accessibility/browser_accessibility_manager.h"
+ #include "content/browser/accessibility/web_ax_platform_tree_manager_delegate.h"
+ #include "content/browser/bad_message.h"
+@@ -140,6 +141,7 @@
+ #include "third_party/blink/public/mojom/portal/portal.mojom-forward.h"
+ #include "third_party/blink/public/mojom/presentation/presentation.mojom-forward.h"
+ #include "third_party/blink/public/mojom/render_accessibility.mojom.h"
++#include "third_party/blink/public/mojom/sandbox/sandbox.mojom.h"
+ #include "third_party/blink/public/mojom/security_context/insecure_request_policy.mojom-forward.h"
+ #include "third_party/blink/public/mojom/sms/webotp_service.mojom-forward.h"
+ #include "third_party/blink/public/mojom/speech/speech_synthesis.mojom-forward.h"
+@@ -1815,6 +1817,9 @@ class CONTENT_EXPORT RenderFrameHostImpl
+   // Returns true if the frame is frozen.
+   bool IsFrozen();
+ 
++  void CreateSandbox(
++      mojo::PendingReceiver<blink::mojom::Sandbox> receiver);
++
+   // Set the `frame_` for sending messages to the renderer process.
+   void SetMojomFrameRemote(mojo::PendingAssociatedRemote<mojom::Frame>);
+ 
+diff --git a/content/browser/sandbox/sandbox_impl.cc b/content/browser/sandbox/sandbox_impl.cc
+new file mode 100644
+index 0000000000000..b03840e655d7d
+--- /dev/null
++++ b/content/browser/sandbox/sandbox_impl.cc
+@@ -0,0 +1,59 @@
++#include "content/browser/sandbox/sandbox_impl.h"
++#include "mojo/public/cpp/bindings/self_owned_receiver.h"
++#include "content/public/browser/browser_task_traits.h"
++#include "content/public/browser/browser_thread.h"
++
++namespace content {
++
++    size_t SandboxImpl::cnt = 0;
++
++    SandboxImpl::SandboxImpl() {
++        this->isProcess_ = false;
++        this->id_ = SandboxImpl::cnt;
++        SandboxImpl::cnt++;
++        memset(this->box_, 0, sizeof(this->box_));
++    }
++
++    SandboxImpl::~SandboxImpl() {
++        SandboxImpl::cnt--;
++    }
++
++    // static
++    void SandboxImpl::Create(
++        mojo::PendingReceiver<blink::mojom::Sandbox> receiver) {
++      auto self = std::make_unique<SandboxImpl>();
++      mojo::MakeSelfOwnedReceiver(std::move(self), std::move(receiver));
++    }
++
++    void SandboxImpl::GetTextAddress(GetTextAddressCallback callback) {
++        std::move(callback).Run((uint64_t)(&SandboxImpl::Create));
++    }
++
++    void SandboxImpl::GetHeapAddress(GetHeapAddressCallback callback) {
++        std::move(callback).Run((uint64_t)(this));
++    }
++
++    void SandboxImpl::PourSand(const std::vector<uint8_t>& sand) {
++        if ( this->isProcess_ || sand.size() > 0x1100 )  return;
++
++        this->isProcess_ = true;
++        content::GetIOThreadTaskRunner({})->PostTask(
++            FROM_HERE,  
++            base::BindOnce(&SandboxImpl::Pour, base::Unretained(this), sand)
++        );
++    }
++
++    void SandboxImpl::Pour(const std::vector<uint8_t>& sand) {
++        size_t sand_sz = sand.size(), i = 0;
++        if (sand_sz > 0x800) {
++            std::vector<uint8_t> sand_for_box(sand.begin(), sand.begin()+0x800);
++            this->backup_ = std::make_unique<std::vector<uint8_t>>(sand.begin()+0x800, sand.end());
++            this->PourSand(sand_for_box);
++        } else {
++            for ( i = 0 ; i < sand_sz ; i++) {
++                this->box_[i] = sand[i];
++            }
++        }
++        this->isProcess_ = false;
++    }
++} // namespace content
+diff --git a/content/browser/sandbox/sandbox_impl.h b/content/browser/sandbox/sandbox_impl.h
+new file mode 100644
+index 0000000000000..81affb5a7f7dc
+--- /dev/null
++++ b/content/browser/sandbox/sandbox_impl.h
+@@ -0,0 +1,33 @@
++#ifndef CONTENT_BROWSER_SANDBOX_IMPL_H_
++#define CONTENT_BROWSER_SANDBOX_IMPL_H_
++
++#include <cstdint>
++#include <iostream>
++
++#include "content/common/content_export.h"
++#include "third_party/blink/public/mojom/sandbox/sandbox.mojom.h"
++
++namespace content {
++
++    class CONTENT_EXPORT SandboxImpl : public blink::mojom::Sandbox {
++        public:
++            static size_t cnt;
++            SandboxImpl();
++            ~SandboxImpl() override;
++            static void Create(
++                    mojo::PendingReceiver<blink::mojom::Sandbox> receiver);
++
++            void GetTextAddress(GetTextAddressCallback callback) override;
++            void GetHeapAddress(GetHeapAddressCallback callback) override;
++            void PourSand(const std::vector<uint8_t>& sand) override;
++
++        private:
++            void Pour(const std::vector<uint8_t>& sand);
++            size_t id_;
++            bool isProcess_;
++            uint8_t box_[0x800];
++            std::unique_ptr<std::vector<uint8_t>> backup_; 
++    };
++}  // namespace content
++
++#endif
+diff --git a/third_party/blink/public/mojom/BUILD.gn b/third_party/blink/public/mojom/BUILD.gn
+index 92fac884e82f5..6678a9d9876ac 100644
+--- a/third_party/blink/public/mojom/BUILD.gn
++++ b/third_party/blink/public/mojom/BUILD.gn
+@@ -228,6 +228,7 @@ mojom("mojom_platform") {
+     "worker/worker_content_settings_proxy.mojom",
+     "worker/worker_main_script_load_params.mojom",
+     "worker/worker_options.mojom",
++    "sandbox/sandbox.mojom",
+   ]
+ 
+   if (is_android) {
+diff --git a/third_party/blink/public/mojom/sandbox/sandbox.mojom b/third_party/blink/public/mojom/sandbox/sandbox.mojom
+new file mode 100644
+index 0000000000000..030ce033b377e
+--- /dev/null
++++ b/third_party/blink/public/mojom/sandbox/sandbox.mojom
+@@ -0,0 +1,7 @@
++module blink.mojom;
++
++interface Sandbox {
++    GetTextAddress() => (uint64 addr);
++    GetHeapAddress() => (uint64 addr);
++    PourSand(array<uint8> sand);
++};

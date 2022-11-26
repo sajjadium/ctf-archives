@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  eaas:
+    build: ./
+    volumes:
+      - ./share:/home/eaas:ro
+      - ./xinetd:/etc/xinetd.d/eaas:ro
+    ports:
+      - "10101:10101"

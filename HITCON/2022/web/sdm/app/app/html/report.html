@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<head>
+<title>Report | Self Destruct Message</title>
+<link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+</head>
+<body>
+<main>
+<h1>Want to Report a Bug?</h1>
+<form action="/report" method="POST" class="form">
+    <input type="text" name="captcha" style="display: none">
+    <p>
+        <label>URL</label>
+        <input type="text" name="url" required>
+    </p>
+    <p>
+        <div class="h-captcha" data-sitekey="64418694-c21a-491f-928d-b89c4cf4b24b"></div>
+    </p>
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+</form>
+<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+</main>
+</body>
+

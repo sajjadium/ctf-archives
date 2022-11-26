@@ -1,0 +1,15 @@
+service warmuppwn
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/eaas/run.sh
+        socket_type = stream
+        protocol = tcp
+        user = eaas
+        port = 10101
+        flags = REUSE
+        per_source = 3
+        rlimit_cpu = 3
+        nice = 18
+}

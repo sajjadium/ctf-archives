@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link nonce="<%= nonce %>" rel="stylesheet" href="/static/css/simple.css" />
+		<title>🔒 Secure Paste</title>
+	</head>
+	<body>
+		<div class="container">
+			<header>
+				<h1>🔒 Secure Paste</h1>
+				<p>
+					Welcome to Secure Paste™, an <strong>end-to-end encrypted</strong> paste sharing service. Paste
+					content will be encrypted at client-side so the server can only see the ciphertext.
+				</p>
+			</header>
+			<main>
+				<form id="paste-form">
+					<div>
+						<span>Paste Type: </span>
+						<input id="plain" type="radio" name="type" value="plain" checked />
+						<label for="plain">Plaintext</label>
+						<input id="markdown" type="radio" name="type" value="markdown" disabled />
+						<label for="markdown">Markdown (Premium only)</label>
+					</div>
+					<div>
+						<label style="vertical-align: top" for="title">Title:</label>
+						<input style="vertical-align: top" id="title" name="title" required />
+					</div>
+					<div>
+						<label style="vertical-align: top" for="content">Paste Content:</label>
+						<textarea
+							style="vertical-align: top"
+							id="content"
+							name="content"
+							rows="10"
+							cols="40"
+							required
+						></textarea>
+					</div>
+					<button id="submit" type="submit">New Paste</button>
+				</form>
+				<div id="result-screen">
+					<label for="result-url">URL:</label>
+					<input id="result-url" type="text" readonly />
+					<button class="copy-btn" data-clipboard-target="#result-url">Copy URL</button>
+				</div>
+			</main>
+		</div>
+		<script nonce="<%= nonce %>" src="/static/js/bundle.js"></script>
+		<script nonce="<%= nonce %>" src="/static/lib/clipboard.min.js"></script>
+		<script nonce="<%= nonce %>">
+			if (document.cookie.includes('token=')) {
+				document.querySelector('#markdown').disabled = false
+			}
+			const base = `${location.protocol}//${location.host}`
+			const frm = document.querySelector('#paste-form')
+			const resultScreen = document.querySelector('#result-screen')
+			resultScreen.style.display = 'none'
+			frm.addEventListener('submit', async e => {
+				e.preventDefault()
+				const cu = new CryptoUtils()
+				const result = await cu.encrypt({
+					key: await cu.genkey('raw'),
+					pt: utils.textEncode(
+						JSON.stringify({
+							title: frm.title.value,
+							content: frm.content.value
+						})
+					)
+				})
+				fetch('/api/pastes', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: jsonplus.serialize({
+						type: frm.type.value,
+						content: result.ct
+					})
+				})
+					.then(r => r.json())
+					.then(r => {
+						if (r.success) {
+							frm.style.display = 'none'
+							resultScreen.style.display = 'block'
+							document.getElementById('result-url').value =
+								base +
+								`/paste?id=${r.id}#${btoa(jsonplus.serialize({ key: result.key, iv: result.iv }))}`
+							new ClipboardJS('.copy-btn')
+						} else {
+							alert(r.error)
+						}
+					})
+			})
+		</script>
+	</body>
+</html>

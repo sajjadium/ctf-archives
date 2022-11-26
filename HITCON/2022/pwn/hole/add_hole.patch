@@ -1,0 +1,67 @@
+diff --git a/src/builtins/builtins-array.cc b/src/builtins/builtins-array.cc
+index 6e0cd408e7..aafdfb8544 100644
+--- a/src/builtins/builtins-array.cc
++++ b/src/builtins/builtins-array.cc
+@@ -395,6 +395,12 @@ BUILTIN(ArrayPush) {
+   return *isolate->factory()->NewNumberFromUint((new_length));
+ }
+ 
++BUILTIN(ArrayHole){
++    uint32_t len = args.length();
++    if(len > 1) return ReadOnlyRoots(isolate).undefined_value();
++    return ReadOnlyRoots(isolate).the_hole_value();
++}
++
+ namespace {
+ 
+ V8_WARN_UNUSED_RESULT Object GenericArrayPop(Isolate* isolate,
+diff --git a/src/builtins/builtins-collections-gen.cc b/src/builtins/builtins-collections-gen.cc
+index 78b0229011..55aaaa03df 100644
+--- a/src/builtins/builtins-collections-gen.cc
++++ b/src/builtins/builtins-collections-gen.cc
+@@ -1763,7 +1763,7 @@ TF_BUILTIN(MapPrototypeDelete, CollectionsBuiltinsAssembler) {
+                          "Map.prototype.delete");
+ 
+   // This check breaks a known exploitation technique. See crbug.com/1263462
+-  CSA_CHECK(this, TaggedNotEqual(key, TheHoleConstant()));
++  //CSA_CHECK(this, TaggedNotEqual(key, TheHoleConstant()));
+ 
+   const TNode<OrderedHashMap> table =
+       LoadObjectField<OrderedHashMap>(CAST(receiver), JSMap::kTableOffset);
+diff --git a/src/builtins/builtins-definitions.h b/src/builtins/builtins-definitions.h
+index 0e98586f7f..28a46f2856 100644
+--- a/src/builtins/builtins-definitions.h
++++ b/src/builtins/builtins-definitions.h
+@@ -413,6 +413,7 @@ namespace internal {
+   TFJ(ArrayPrototypeFlat, kDontAdaptArgumentsSentinel)                         \
+   /* https://tc39.github.io/proposal-flatMap/#sec-Array.prototype.flatMap */   \
+   TFJ(ArrayPrototypeFlatMap, kDontAdaptArgumentsSentinel)                      \
++  CPP(ArrayHole)                                                               \
+                                                                                \
+   /* ArrayBuffer */                                                            \
+   /* ES #sec-arraybuffer-constructor */                                        \
+diff --git a/src/compiler/typer.cc b/src/compiler/typer.cc
+index 79bdfbddcf..c42ad4c789 100644
+--- a/src/compiler/typer.cc
++++ b/src/compiler/typer.cc
+@@ -1722,6 +1722,8 @@ Type Typer::Visitor::JSCallTyper(Type fun, Typer* t) {
+       return Type::Receiver();
+     case Builtin::kArrayUnshift:
+       return t->cache_->kPositiveSafeInteger;
++    case Builtin::kArrayHole:
++      return Type::Oddball();
+ 
+     // ArrayBuffer functions.
+     case Builtin::kArrayBufferIsView:
+diff --git a/src/init/bootstrapper.cc b/src/init/bootstrapper.cc
+index 9040e95202..a77333287a 100644
+--- a/src/init/bootstrapper.cc
++++ b/src/init/bootstrapper.cc
+@@ -1800,6 +1800,7 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
+                           Builtin::kArrayPrototypeFindIndex, 1, false);
+     SimpleInstallFunction(isolate_, proto, "lastIndexOf",
+                           Builtin::kArrayPrototypeLastIndexOf, 1, false);
++    SimpleInstallFunction(isolate_, proto, "hole", Builtin::kArrayHole, 0, false);
+     SimpleInstallFunction(isolate_, proto, "pop", Builtin::kArrayPrototypePop,
+                           0, false);
+     SimpleInstallFunction(isolate_, proto, "push", Builtin::kArrayPrototypePush,

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link nonce="<%= nonce %>" rel="stylesheet" href="/static/css/simple.css" />
+		<title>🔒 Secure Paste</title>
+	</head>
+	<body>
+		<div class="container">
+			<div id="display-area"></div>
+		</div>
+		<script nonce="<%= nonce %>" src="/static/js/bundle.js"></script>
+		<script nonce="<%= nonce %>" src="/static/lib/purify.min.js"></script>
+		<script nonce="<%= nonce %>" src="/static/lib/marked.min.js"></script>
+		<script nonce="<%= nonce %>">
+			const cu = new CryptoUtils()
+			const disp = document.querySelector('#display-area')
+			function updateTitleAndGetContent(data) {
+				document.title = data.title
+				return data.content
+			}
+			const getContent = fputils.acompose(updateTitleAndGetContent, JSON.parse, utils.textDecode, cu.decrypt)
+			async function load(resp) {
+				const data = jsonplus.deserialize(JSON.stringify(resp))
+				const ctx = jsonplus.deserialize(atob(location.hash.slice(1) || prompt('Decryption Key: ')))
+				if (data.error) {
+					alert(data.error)
+					return
+				}
+				if (data.type === 'markdown') {
+					const div = document.createElement('div')
+					div.innerHTML = await fputils.acompose(
+						DOMPurify.sanitize,
+						marked.parse,
+						getContent
+					)({ ...ctx, ct: data.content })
+					disp.appendChild(div)
+				} else {
+					const pre = document.createElement('pre')
+					pre.textContent = await getContent({ ...ctx, ct: data.content })
+					disp.appendChild(pre)
+				}
+			}
+			window.onload = () => {
+				const id = new URLSearchParams(location.search).get('id')
+				const script = document.createElement('script')
+				script.src = `/api/pastes/${id}?callback=load`
+				script.nonce = '<%= nonce %>'
+				document.body.appendChild(script)
+			}
+		</script>
+	</body>
+</html>

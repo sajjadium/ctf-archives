@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+html {
+    font-family: "Roboto Mono", "Consolas", monospace;
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: hsl(210, 95%, 39%);
+}
+
+a:hover {
+    text-decoration: underline;
+    color: hsl(210, 95%, 49%);
+}
+
+a.disabled {
+    color: hsl(0, 0%, 50%);
+}
+
+hr {
+    margin: 1.5em 0;
+}
+
+#main {
+    max-width: 800px;
+    padding: 1em 2em;
+    margin: auto;
+}
+
+#header > nav {
+    width: 100%;
+    display: flex;
+}
+
+#header > nav > .right {
+    margin-left: auto;
+}
+
+#homework article.homework:not(:first-child) {
+    margin-top: 1em;
+}
+
+article.homework {
+    border: 1px solid hsl(0, 0%, 15%);
+    padding: .5em;
+}
+
+article.homework h3 {
+    margin: 0;
+}
+
+article.homework h3 > span.open {
+    color: green;
+}
+
+article.homework h3 > span.closed {
+    color: red;
+}
+
+#submit {
+    padding: 1em 0;
+}
+
+#submit form label {
+    display: inline-block;
+    margin-bottom: 0.5em;
+}
+
+#submit form textarea {
+    width: 100%;
+    height: 5em;
+}
+
+#submit form input[type="submit"] {
+    margin-top: 0.5em;
+}
+
+#view pre {
+    display: block;
+}
+
+#list table tr td {
+    padding: .25em;
+    white-space: nowrap;
+    text-align: center;
+}
+    
+#list table tr td:first-child {
+    width: 100%;
+    text-align: left;
+}
+
+#list .total {
+    text-align: right;
+}
+
+#list .pager {
+    text-align: center;
+}
+
+#list .pager > a:not(:first-child) {
+    margin-left: 5em;
+}

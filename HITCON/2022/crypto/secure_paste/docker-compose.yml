@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  bot_web:
+    build:
+      context: ./bot_web
+    environment:
+      - TITLE=Admin Bot for Secure Paste
+      - PORT=8000
+      - URL_CHECK_REGEX=^https?://.{1,256}$
+      - HCAPTCHA_SITE_KEY=10000000-ffff-ffff-ffff-000000000001
+      - HCAPTCHA_SECRET_KEY=0x0000000000000000000000000000000000000000
+      - BOT_HOST=bot
+      - BOT_PORT=8080
+    ports:
+      - "8000:8000"
+  bot:
+    build:
+      context: ./bot
+    environment:
+      - PORT=8080
+      - REPORT_HOST=bot_web
+      # please note that `SITE` will be set to the actual domain
+      - SITE=http://chall:8763
+      - PREMIUM_TOKEN=0x12345678
+  # I can't use `app` here because Firefox consider it as `.app` gtld, which is HSTS protected...
+  chall:
+    build:
+      context: ./app
+    environment:
+      - PORT=8763
+      - PREMIUM_TOKEN=0x12345678
+    ports:
+      - "8763:8763"

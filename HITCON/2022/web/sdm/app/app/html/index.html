@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Destruct Message</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    <style>
+        small {
+            font-size: 40%;
+        }
+
+        textarea {
+            width: 100%;
+        }
+
+        #result {
+            margin-left: 1rem;
+        }
+
+        #preference {
+            display: none;
+            padding: 0.5rem 1rem 1rem;
+            width: 300px;
+            position: fixed;
+            top: 3rem;
+            right: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <aside id="preference">
+        <a href="#" onclick="parentElement.style.display='none'">
+            <p style="text-align:right; line-height:0">[x]</p>
+        </a>
+        Time to destruct:
+        <select id="time">
+            <option value="3">3 sec</option>
+            <option value="10">10 sec</option>
+            <option value="30">30 sec</option>
+            <option value="60">60 sec</option>
+        </select>
+        <p><a href="/report">Bug Reporting</a></p>
+    </aside>
+
+    <main>
+        <h1>Self Destruct Message
+            <small><a href="#" style="text-decoration:none" onclick="preference.style.display='block'">[⚙️]</a></small>
+        </h1>
+        <hr>
+        <p><textarea name="message" rows="5" placeholder="Message"></textarea></p>
+        <button id="submit">Create</button>
+        <span id="result"></span>
+    </main>
+    <script>
+        const button = document.getElementById('submit');
+        button.addEventListener('click', async function (event) {
+            const { id } = await fetch("/api/message", {
+                method: "PUT",
+                body: JSON.stringify({
+                    message: document.querySelector("textarea[name='message']").value
+                }),
+                headers: {
+                    'content-type': 'application/json'
+                }
+            }).then(r => r.json());
+
+            const link = document.createElement('a');
+            link.id = "link";
+            link.href = link.textContent = `${location.origin}/message/${id}`;
+            document.getElementById('result').appendChild(link);
+            document.getElementById('result').style.display = 'inline-block';
+        });
+
+        const time = document.getElementById('time');
+        time.onchange = async ({ target }) => {
+            await cookieStore.set('time', event.target.value);
+        }
+
+        async function load() {
+            const configTime = (await cookieStore.get('time'))?.value || 10;
+            time.value = configTime;
+        }
+
+        window.addEventListener('DOMContentLoaded', load);
+    </script>
+</body>
+
+</html>

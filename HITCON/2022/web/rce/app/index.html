@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>RCE</title>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css">
+    <style>
+        body {
+            font-family: "Pixelated MS Sans Serif";
+            background: url(https://images2.alphacoders.com/941/941898.jpg) no-repeat center center fixed;
+            background-size: cover;
+        }
+        progress {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="window" style="width: 400px; margin: 10% auto; text-align: center;">
+        <div class="title-bar">
+            <div class="title-bar-text">Random Code Executor</div>
+            <div class="title-bar-controls">
+                <button aria-label="Minimize"></button>
+                <button aria-label="Maximize"></button>
+                <button aria-label="Close"></button>
+            </div>
+        </div>
+        <div class="window-body">
+            <p><progress id="progress"></progress></p>
+            <section class="field-row" style="justify-content: flex-end">
+                <button id="RCE">RCE!</button>
+            </section>
+        </div>
+    </div>
+    <script>
+        RCE.onclick = async () => {
+            progress.max = 40;
+            RCE.disabled = true;
+            while (true) {
+                const data = await fetch("/random").then(r => r.json());
+                progress.value = data.progress;
+                if (data.result !== null) {
+                    document.querySelector('.window-body').innerHTML = '<h3>' + data.result + '</h3>';
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

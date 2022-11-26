@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+    <title>The Message</title>
+</head>
+
+<body>
+    <blockquote id="countdown"></blockquote>
+    <section>
+        <div id="content" style="white-space: pre-wrap"></div>
+    </section>
+    <script>
+        async function load() {
+            const id = location.pathname.split('/').pop();
+            history.replaceState(null, '', '/');
+
+            const countdown = (await cookieStore.get('time'))?.value || 10;
+            const { content } = await fetch(`/api/message/${id}`).then(r => r.json());
+            document.getElementById('content').attachShadow({ mode: "closed" }).append(content);
+            document.getElementById('countdown').innerHTML = `Destructing in <span style="color:red">${countdown}</span> seconds...`;
+
+            setTimeout(() => location.replace('/'), countdown * 1000);
+        }
+        window.addEventListener('DOMContentLoaded', load);
+    </script>
+</body>
+
+</html>
