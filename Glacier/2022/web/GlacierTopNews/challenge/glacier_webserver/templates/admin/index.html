@@ -1,0 +1,67 @@
+
+<div id="app">
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">System Environments</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr v-for="(value, name) in system_information.environment">
+                                <th>## name ##</th>
+                                <td>## value ##</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">System Information</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <th>System</th>
+                                <td>## system_information.system ##</td>
+                            </tr>
+                            <tr>
+                                <th>Machine</th>
+                                <td>## system_information.machine ##</td>
+                            </tr>
+                            <tr>
+                                <th>Platform</th>
+                                <td>## system_information.platform ##</td>
+                            </tr>
+                            <tr>
+                                <th>Version</th>
+                                <td>## system_information.version ##</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br />
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">RAM Usage (## formatPercentage(system_information.ram_usage) ##%)</h5>
+                    <canvas id="ram"></canvas>
+                    <div class="text-end">
+                        <small class="fw-lighter">RAM usage updates every 10 seconds</small>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">CPU Usage (## formatPercentage(system_information.cpu_usage) ##%)</h5>
+                    <canvas id="cpu"></canvas>
+                    <div class="text-end">
+                        <small class="fw-lighter">CPU usage updates every 10 seconds</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

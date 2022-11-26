@@ -1,0 +1,161 @@
+<div class="p-4 p-md-5 mb-4 text-white rounded bg-success">
+    <div class="col-md-12 px-0">
+      <h1 class="display-6 fst-italic">A news page from the community for the community</h1>
+      <p class="lead my-3">The Top Glacier Blog provides you with the latest news from the community about a variety of topics. Whether it is local news or global news, you are always up to date.</p>
+      <p class="lead mb-0"><a href="/unavailable" class="text-white fw-bold">Continue reading our vision...</a></p>
+    </div>
+  </div>
+
+  <div class="row mb-2">
+    <div class="col-md-8">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-primary">Local</strong>
+          <h3 class="mb-0">Featured post</h3>
+          <div class="mb-1 text-muted">Nov 12, 2022 by Joseph</div>
+          <div class="keywords">
+            <span class="badge bg-dark">Windischgarsten</span>
+            <span class="badge bg-success">Austria</span>
+            <span class="badge bg-primary">People helping people</span>
+          </div>
+          <p class="mb-auto">Hey guys, I have bad news. My cat Woody disappeared last night and didn't come back home. First I thought he is at my neighbour Olga, but he wasn't there. So I called ...</p>
+          <a href="/unavailable" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <img src="https://live.staticflickr.com/2155/2531123373_d0fde7044b_b.jpg" width="420" alt="">
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-secondary">History</strong>
+          <h3 class="mb-0">Found a coin from 1887</h3>
+          <div class="mb-1 text-muted">Nov 12, 2022 by Mary</div>
+          <div class="keywords">
+            <span class="badge bg-danger">Museum</span>
+            <span class="badge bg-success">Great Britain</span>
+            <span class="badge bg-dark">Numismatics</span>
+          </div>
+          <p class="mb-auto">Last week I was sitting in the park as suddenly a shimmer of light reached my eyes. First I thought it was imagination, but as I investigated that place, I have found a double Florin Arabic 1 coin from 1887. So I went to the pawn shop and ...</p>
+          <a href="/unavailable" class="stretched-link">Continue reading</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2" style="color: #d2a008 !important">Story</strong>
+          <h3 class="mb-0">Neighbours to be divorced</h3>
+          <div class="mb-1 text-muted">Nov 12, 2022 by Emma</div>
+          <div class="keywords">
+            <span class="badge bg-dark">France</span>
+            <span class="badge bg-danger">Neighbours</span>
+            <span class="badge bg-primary">People helping people</span>
+          </div>
+          <p class="mb-auto">Last week my neighbour Claire walked over to us and told me, that she is gonna divorce with her husband Gary. It all began as Gary didn't use a coaster for his drinking glass ...</p>
+          <a href="/unavailable" class="stretched-link">Continue reading</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-9">
+      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm position-relative">
+        <div class="col p-4 d-flex flex-column position-static">
+          <strong class="d-inline-block mb-2 text-success">Design</strong>
+          <h3 class="mb-0">Made it to Art Shool</h3>
+          <div class="keywords">
+            <span class="badge bg-dark">Beauty</span>
+            <span class="badge bg-danger">Art</span>
+          </div>
+          <div class="mb-1 text-muted">Oct 13 by Thomas</div>
+          <p class="mb-auto">Greeting fellows, I have finally made it to Art Shool. I have put a lot of effort in drawing the last years, as I finally got the perfect picture. It was a quite funny story though, because I first thought they reject me, but then ...</p>
+          <a href="/unavailable" class="stretched-link">Continue reading</a>
+        </div>
+        <div class="col-auto d-none d-lg-block">
+          <img src="/static/images/20221012_151422.jpg" width="420" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-5">
+    <div class="col-md-8">
+      <h3 class="pb-4 mb-4 fst-italic border-bottom">
+        Also got a burning interesting story for us?
+      </h3>
+      <div id="app">
+        <form onsubmit="return [confirm('Are you sure you want to submit this post?'), confirm('Are you really sure, there is no way back?'), confirm('A human then needs to verify this post manually, are you really sure you want to submit?')].filter(r => r === false).length === 0" action="/confirm" method="GET" enctype="multipart/form-data">
+        <label for="url"><strong>URL</strong></label>
+        <div class="input-group mb-3">
+          <input id="url" placeholder="Place here an URL for automatically parsing the news article ..." class="form form-control" @keyup="onFormURLUpdate" type="text" v-model="form.url" />
+          <button v-if="timing.requesting" class="btn btn-secondary" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <span class="visually-hidden">Loading...</span>
+          </button>  
+        </div>
+        <div><small class="fw-lighter">For example: https://www.businessinsider.com/eu-directives-law-2011-12</small></div>
+        <hr />
+        <label for="Headline"><strong>Headline</strong></label>
+        <input placeholder="The headline of the article" id="Headline" class="form form-control" v-model="form.post.Headline" type="text">
+        <br />
+        <label for="Content"><strong>Content</strong></label>
+        <quill-editor style="height: 400px; margin-bottom: 50px" v-model="form.post.Content" :options="quill_config"></quill-editor>
+        <br />
+        <label for="Author"><strong>Author</strong></label>
+        <input placeholder="The author of the article" id="Author" class="form form-control" v-model="form.post.Author" type="text">
+        <br />
+        <label for="Image"><strong>Image</strong></label><br /><br />
+        <div class="row">
+          <div class="col-md-5 text-center">
+            <input type="file" ref="file">
+          </div>
+          <div class="col-md-2"><small>OR</small></div>
+          <div class="col-md-5">
+            <a @click="getRandomImage" class="btn btn-secondary">Get Random Image</a>
+          </div>
+        </div>
+        <br />
+        <div>
+          <div :style="form.isCropping ? 'width: 500px; height: 500px; margin: auto;' : 'display: none'">
+            <img style="display: none" ref="Image" alt="">
+          </div>
+          <img height="300" :style="!form.isCropping ? 'display: block; margin: auto;' : 'display: none'" ref="CroppedCanvas" />
+          <br />
+          <div class="text-center">          
+            <a :style="!form.isCropping ? '' : 'display: none'" class="btn btn-primary" @click="startCrop">Crop Image</a>
+            <a :style="form.isCropping ? '' : 'display: none'" class="btn btn-primary" @click="stopCrop">Save</a>
+          </div>
+        </div>
+        <hr />
+        <div class="text-center">
+          <button type="submit" class="btn btn-danger">Send Post to Review</button>
+        </div>
+        <br />
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+        <div class="p-4 mb-3 bg-light rounded">
+          <h4 class="fst-italic">About</h4>
+          <p class="mb-0">Top Glacier Blog is a news page containing post entries written by users around the globe. You can submit your own post and after a review we will publish your post.</p>
+        </div>
+
+        <div class="p-4">
+          <h4 class="fst-italic">Archives</h4>
+          <ol class="list-unstyled mb-0">
+            <li><a href="/archives">November 2022</a></li>
+            <li><a href="/archives">October 2022</a></li>
+            <li><a href="/archives">September 2022</a></li>
+            <li><a href="/archives">August 2022</a></li>
+            <li><a href="/archives">July 2022</a></li>
+            <li><a href="/archives">June 2022</a></li>
+            <li><a href="/archives">May 2022</a></li>
+            <li><a href="/archives">April 2022</a></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>

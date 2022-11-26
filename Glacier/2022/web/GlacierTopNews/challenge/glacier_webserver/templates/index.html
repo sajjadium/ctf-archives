@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Website Uptime Checker</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <div class="centered">
+            <h1>Check if the Website is up</h1>
+            <form  method="post">
+            <label for="fname">Web-URL</label><br>
+            <input type="text" id="web_url" name="web_url" value="http://example.com"><br>
+            <input type="submit" value="Submit">
+            </form> 
+        </div>
+        <a style="color:white;" href="/admin">ADMIN</a>
+    </body>
+</html> 

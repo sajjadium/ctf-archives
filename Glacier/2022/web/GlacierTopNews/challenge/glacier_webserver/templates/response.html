@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Website Uptime Checker</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <div class="centered">
+            {% if error%}
+                <h1>An error occured: {{ error[0] }}!</h1>
+                {{ error[1] }}
+            {% else %}
+                {% if up%}
+                    <div class="website_up">
+                        <h1>Website is UP</h1>
+                    </div>
+                {% else %}
+                    <div class="website_down">
+                        <h1>Website is DOWN</h1>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </body>
+</html> 

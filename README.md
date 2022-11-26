@@ -692,6 +692,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1341/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Glacier">Glacier</a></td>
+            <td><a href="Glacier/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1803/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=5><a href="GoogleCTF">Google</a></td>
             <td><a href="GoogleCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1641/tasks/">CTFtime</a></td>
