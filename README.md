@@ -1622,7 +1622,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/758/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="TUCTF">TUCTF</a></td>
+            <td rowspan=2><a href="TUCTF">TUCTF</a></td>
+            <td><a href="TUCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1830/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="TUCTF/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/650/tasks/">CTFtime</a></td>
         </tr>
