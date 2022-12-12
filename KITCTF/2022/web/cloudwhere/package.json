@@ -1,0 +1,21 @@
+{
+  "name": "cloudwhere",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "type": "module",
+  "license": "MIT",
+  "dependencies": {
+    "@hapi/hapi": "^20.2.2",
+    "@hapi/inert": "^6.0.5"
+  },
+  "devDependencies": {
+    "@types/hapi__hapi": "^20.0.12",
+    "@types/hapi__inert": "^5.2.3",
+    "@types/node": "^17.0.42",
+    "typescript": "^4.7.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node --experimental-fetch --es-module-specifier-resolution=node ./dist/index.js"
+  }
+}

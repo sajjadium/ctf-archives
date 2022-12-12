@@ -1,0 +1,67 @@
+diff --git a/src/d8/d8-posix.cc b/src/d8/d8-posix.cc
+index c2571ef3a0..4ccab87e62 100644
+--- a/src/d8/d8-posix.cc
++++ b/src/d8/d8-posix.cc
+@@ -734,6 +734,7 @@ char* Shell::ReadCharsFromTcpPort(const char* name, int* size_out) {
+ }
+ 
+ void Shell::AddOSMethods(Isolate* isolate, Local<ObjectTemplate> os_templ) {
++  /*
+   if (options.enable_os_system) {
+     os_templ->Set(isolate, "system", FunctionTemplate::New(isolate, System));
+   }
+@@ -748,6 +749,7 @@ void Shell::AddOSMethods(Isolate* isolate, Local<ObjectTemplate> os_templ) {
+                 FunctionTemplate::New(isolate, MakeDirectory));
+   os_templ->Set(isolate, "rmdir",
+                 FunctionTemplate::New(isolate, RemoveDirectory));
++  */
+ }
+ 
+ }  // namespace v8
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index 264106094c..d8c3d33c91 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -3263,6 +3263,7 @@ static void AccessIndexedEnumerator(const PropertyCallbackInfo<Array>& info) {}
+ 
+ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+   Local<ObjectTemplate> global_template = ObjectTemplate::New(isolate);
++  /*
+   global_template->Set(Symbol::GetToStringTag(isolate),
+                        String::NewFromUtf8Literal(isolate, "global"));
+   global_template->Set(isolate, "version",
+@@ -3281,6 +3282,7 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+                        FunctionTemplate::New(isolate, ReadLine));
+   global_template->Set(isolate, "load",
+                        FunctionTemplate::New(isolate, ExecuteFile));
++  */
+   global_template->Set(isolate, "setTimeout",
+                        FunctionTemplate::New(isolate, SetTimeout));
+   // Some Emscripten-generated code tries to call 'quit', which in turn would
+@@ -3291,7 +3293,9 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+   }
+   global_template->Set(isolate, "testRunner",
+                        Shell::CreateTestRunnerTemplate(isolate));
+-  global_template->Set(isolate, "Realm", Shell::CreateRealmTemplate(isolate));
++  
++  // global_template->Set(isolate, "Realm", Shell::CreateRealmTemplate(isolate));
++
+   global_template->Set(isolate, "performance",
+                        Shell::CreatePerformanceTemplate(isolate));
+   global_template->Set(isolate, "Worker", Shell::CreateWorkerTemplate(isolate));
+@@ -3453,6 +3457,7 @@ Local<FunctionTemplate> Shell::CreateSnapshotTemplate(Isolate* isolate) {
+ }
+ Local<ObjectTemplate> Shell::CreateD8Template(Isolate* isolate) {
+   Local<ObjectTemplate> d8_template = ObjectTemplate::New(isolate);
++  /*
+   {
+     Local<ObjectTemplate> file_template = ObjectTemplate::New(isolate);
+     file_template->Set(isolate, "read",
+@@ -3535,6 +3540,7 @@ Local<ObjectTemplate> Shell::CreateD8Template(Isolate* isolate) {
+                               Local<Signature>(), 1));
+     d8_template->Set(isolate, "serializer", serializer_template);
+   }
++  */
+   return d8_template;
+ }
+ 
