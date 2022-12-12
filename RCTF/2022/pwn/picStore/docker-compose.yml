@@ -1,0 +1,7 @@
+version: "3"
+services: 
+  picstore: 
+    build: .
+    image: picstore:latest
+    ports: 
+      - "8888"

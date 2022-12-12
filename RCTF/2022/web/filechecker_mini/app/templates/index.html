@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>FileChecker</title>
+  <style>
+    .file-upload {
+      position: relative;
+      display: inline-block;
+    }
+    .file-upload__label {
+      display: block;
+      padding: 1em 2em;
+      color: #fff;
+      background: #222;
+      border-radius: 0.4em;
+      transition: background 0.3s;
+    }
+    .file-upload__label:hover {
+      cursor: pointer;
+      background: #000;
+    }
+    .file-upload__input {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      font-size: 1;
+      width: 0;
+      height: 100%;
+      opacity: 0;
+    }
+    html {
+      font-family: "helvetica neue", "arial", sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      padding-top: 5em;
+      -webkit-font-smoothing: antialiased;
+      text-align: center;
+      background: #8b3b37;
+    }
+    input[type=submit]{
+      border-radius: 0.5em;
+      background-color: #1b1d1c;
+      border: none;
+      font-weight: bold;
+      color: white;
+      padding: 1px 32px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+  </style>
+
+</head>
+<body>
+<h1>FileChecker</h1>
+<form action="/" class="file-upload" enctype="multipart/form-data" method="post">
+  <label for="upload" class="file-upload__label">CheckCheck😎😎</label>
+  <input id="upload" class="file-upload__input" type="file" name="file-upload">
+  <input type="submit" value="Submit">
+</form>
+<h3>{{ result }}</h3>
+</body>
+</html>

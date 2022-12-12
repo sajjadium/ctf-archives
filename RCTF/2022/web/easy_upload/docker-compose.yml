@@ -1,0 +1,37 @@
+version: "3"
+services:
+        web1:
+                image: easy_upload
+                ports:
+                        - "8000:80"
+
+        web2:
+                image: easy_upload
+                ports:
+                        - "8001:80"
+
+        web3:
+                image: easy_upload
+                ports:
+                        - "8002:80"
+
+        web4:
+                image: easy_upload
+                ports:
+                        - "8003:80"
+
+        web5:
+                image: easy_upload
+                ports:
+                        - "8004:80"
+
+        web6:
+                image: easy_upload
+                ports:
+                        - "8005:80"
+
+        web7:
+                image: easy_upload
+                ports:
+                        - "8006:80"
+

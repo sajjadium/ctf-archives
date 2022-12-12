@@ -1,0 +1,14 @@
+version: '2.4'
+services:
+  fe:
+    build: fe
+    restart: always
+    environment:
+      - HOST_TMP_PATH=/YOUR_TMP_PATH_HERE
+      - HCAPTCHA_SECRET=
+    volumes:
+      - ./logs:/app/logs
+      - /YOUR_TMP_PATH_HERE:/YOUR_TMP_PATH_HERE
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "3000:3000"

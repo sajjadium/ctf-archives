@@ -1,0 +1,1 @@
+flag = b'RCTF{----REDACTED----}'
