@@ -1,0 +1,115 @@
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Drunken Bathrobe</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="icon" href="/static/images/favicon.png">
+        <link rel="stylesheet" href="/static/css/search.css">
+    </head>
+
+    <body>
+        <div class="header">
+            <ul class="nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/search">Storage</a></li>
+                <li><a href="/report">Complaints</a></li>
+            </ul>
+        </div>
+        <% if (message) { %>
+            <div id="popup-container">
+                <div class="overlay">
+                    <div class="popup">
+                        <h2>Result</h2>
+                        <a class="close" href="/search">&times;</a>
+                        <div class="content">
+                            <%- message %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+                <div class="camera-commands">
+                    <a href="/" id="view-top-shelf">Shelf 1</a>
+                    <a href="/" id="view-middle-shelf">Shelf 2</a>
+                    <a href="/" id="view-bottom-shelf">Shelf 3</a>
+                </div>
+                <div class="scene">
+                    <!-- camera -->
+                    <div class="roll-camera">
+                        <div class="move-camera">
+                            <div class="wallpaper"></div>
+                            <!-- shelf -->
+                            <div class="shelf top">
+                                <div class="face top"></div>
+                                <div class="face front">
+
+                                    <a href="/search?query=rum cola" class="photocard">
+                                        <img src="/static/images/rum_cola.png" alt="">
+                                    </a>
+                                    <a href="/search?query=mojito" class="photocard">
+                                        <img src="/static/images/mojito.png" alt="">
+                                    </a>
+                                    <a href="/search?query=gin tonic" class="photocard">
+                                        <img src="/static/images/gin_tonic.png" alt="">
+                                    </a>
+
+                                </div>
+                                <div class="face back"></div>
+                                <div class="face left"></div>
+                                <div class="face bottom"></div>
+                            </div>
+                            <!-- /shelf -->
+
+                            <!-- shelf -->
+                            <div class="shelf middle">
+                                <div class="face top"></div>
+                                <div class="face front">
+
+                                    <a href="/search?query=spritz" class="photocard">
+                                        <img src="/static/images/spritz.png" alt="">
+                                    </a>
+                                    <a href="/search?query=negroni" class="photocard">
+                                        <img src="/static/images/negroni.png" alt="">
+                                    </a>
+                                    <a href="/search?query=long island" class="photocard">
+                                        <img src="/static/images/long_island.png" alt="">
+                                    </a>
+
+                                </div>
+                                <div class="face back"></div>
+                                <div class="face left"></div>
+                                <div class="face bottom"></div>
+                            </div>
+                            <!-- /shelf -->
+
+                            <!-- shelf -->
+                            <div class="shelf bottom">
+                                <div class="face top"></div>
+                                <div class="face front">
+
+                                    <a href="/search?query=capirinha" class="photocard">
+                                        <img src="/static/images/caipirinha.png" alt="">
+                                    </a>
+                                    <a href="/search?query=martini" class="photocard">
+                                        <img src="/static/images/martini.png" alt="">
+                                    </a>
+                                    <a href="/search?query=margarita" class="photocard">
+                                        <img src="/static/images/margarita.png" alt="">
+                                    </a>
+
+                                </div>
+                                <div class="face back"></div>
+                                <div class="face left"></div>
+                                <div class="face bottom"></div>
+                            </div>
+                            <!-- /shelf -->
+                        </div>
+                        <!-- /camera -->
+                    </div>
+                </div>
+    </body>
+    <script src="/static/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="/static/js/search.js"></script>
+
+</html>

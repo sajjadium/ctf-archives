@@ -1,0 +1,20 @@
+{
+    "name": "hr",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "keywords": [],
+    "author": "TRX",
+    "license": "ISC",
+    "dependencies": {
+        "fastify": "^4.9.2",
+        "puppeteer": "^8.0.0",
+        "sqlite-async": "^1.1.1"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.1"
+    }
+}

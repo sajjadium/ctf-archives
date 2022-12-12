@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<title>Log</title>
+<!-- DEBUG: current log type is {{ log_type }} -->
+<head>
+    <link href="{{ url_for('static', filename='css/pico.css') }}" rel="stylesheet"/>
+    <style>
+        .logbox {
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            padding: 10px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logbox span {
+            min-width: 120px;
+            padding-right: 20px;
+        }
+
+        .loglines {
+            min-height: 500px;
+            max-height: 500px;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<main class="container">
+    <div class="logbox">
+        <span>Log type:</span>
+        <select id="log" onchange="applylog()">
+            {% for log in log_types %}
+                {% if log_types[log] == log_type %}
+                    <option selected value="{{ log }}">{{ log_types[log] }}</option>
+                {% else %}
+                    <option value="{{ log }}">{{ log_types[log] }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <pre class="loglines">
+{{ log_lines }}
+        </pre>
+    </div>
+</main>
+<script src="{{ url_for('static', filename='js/logs.js') }}"></script>
+</body>
+</html>

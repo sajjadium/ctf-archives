@@ -1,0 +1,36 @@
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Drunken Bathrobe</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <link rel="icon" href="/static/images/favicon.png">
+        <link rel="stylesheet" href="/static/css/report.css">
+    </head>
+
+    <body>
+        <div class="header">
+            <ul class="nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/search">Storage</a></li>
+                <li><a href="/report">Complaints</a></li>
+            </ul>
+        </div>
+        <div class="report-container">
+            <div class="log-in">
+                <div class="logged-in-top">
+                    <div class="desc">Do you think a cocktail is about to run out? Tell us which one and one of our
+                        admins will check
+                        it and provide supplies!</div>
+                </div>
+                <form action="/report" method="POST" id="form">
+                    <div class="logged-in-bottom">
+                        <input class="query-input" type="text" id="query" name="query">
+                        <button type="submit" id="reportBtn">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+
+</html>

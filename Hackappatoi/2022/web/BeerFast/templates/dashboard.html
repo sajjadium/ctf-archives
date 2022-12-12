@@ -1,0 +1,535 @@
+
+<!--This template is based on: https://dribbble.com/shots/6531694-Marketing-Dashboard by Gregoire Vella -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+    <meta name="description" content="Dashboard">
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <!--Replace with your tailwind.css once created-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+
+    <script defer src="https://unpkg.com/alpinejs@3.10.5/dist/cdn.min.js"></script>
+
+    <style>
+        .nunito {
+            font-family: 'nunito', font-sans;
+        }
+
+        .border-b-1 {
+            border-bottom-width: 1px;
+        }
+
+        .border-l-1 {
+            border-left-width: 1px;
+        }
+
+        hover\:border-none:hover {
+            border-style: none;
+        }
+
+        #sidebar {
+            transition: ease-in-out all .3s;
+            z-index: 9999;
+        }
+
+        #sidebar span {
+            opacity: 0;
+            position: absolute;
+            transition: ease-in-out all .1s;
+        }
+
+        #sidebar:hover {
+            width: 150px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            /*shadow-2xl*/
+        }
+
+        #sidebar:hover span {
+            opacity: 1;
+        }
+
+        .ct-label {
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body lang="@LANG@" class="flex flex-col h-screen bg-white font-sans" x-data="{ section: 0 }">
+
+    <!-- Side bar-->
+    <div id="sidebar" class="h-screen w-16 menu bg-white text-white px-4 flex items-center nunito static fixed shadow">
+
+        <ul class="list-reset ">
+            <li class="my-2 md:my-0" @click="section = 0">
+                <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-blue-400">
+                    <i class="fas fa-home fa-fw mr-3" :class="{'text-blue-400': section === 0}"></i><span
+                        class="w-full inline-block pb-1 md:pb-0 text-sm">Home</span>
+                </a>
+            </li>
+            <li class="my-2 md:my-0" @click="section = 1">
+                <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-blue-400">
+                    <i class="fa fa-envelope fa-fw mr-3" :class="{'text-blue-400': section === 1}"></i><span
+                        class="w-full inline-block pb-1 md:pb-0 text-sm">Messages</span>
+                </a>
+            </li>
+            {% if user.is_admin %}
+            <li class="my-2 md:my-0" @click="section = 2">
+                <a href="#" class="block py-1 md:py-3 pl-1 align-middle text-gray-600 no-underline hover:text-blue-400">
+                    <i class="fas fa-chart-area fa-fw mr-3" :class="{'text-blue-400': section === 2}"></i><span
+                        class="w-full inline-block pb-1 md:pb-0 text-sm">Services</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+
+    </div>
+
+    <div class="flex flex-row flex-wrap justify-start items-center">
+        <div class="flex flex-row flex-wrap flex-1 flex-grow content-start pl-16">
+
+            <div class="h-40 lg:h-20 w-full flex flex-wrap">
+                <nav id="header"
+                    class="bg-gray-200 w-full lg:max-w-sm flex items-center border-b-1 border-white order-2 lg:order-1">
+
+                </nav>
+                <nav id="header1" class="bg-gray-200 w-auto flex-1 border-b-1 border-white order-1 lg:order-2">
+
+                    <div class="flex h-full justify-between items-center">
+
+                        <!--Search-->
+                        <div class="relative w-full max-w-3xl px-6">
+                            <div class="absolute h-10 mt-1 left-0 top-0 flex items-center pl-10">
+                                <svg class="h-4 w-4 fill-current text-gray-600" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z">
+                                    </path>
+                                </svg>
+                            </div>
+
+                            <input id="search-toggle" type="search" placeholder="Search"
+                                class="block w-full bg-gray-200 focus:outline-none focus:bg-white focus:shadow-md text-gray-700 font-bold rounded-full pl-12 pr-4 py-3"
+                                onkeyup="updateSearchResults(this.value);">
+
+                        </div>
+                        <!-- / Search-->
+
+                        <!--Menu-->
+
+                        <div class="flex relative inline-block pr-6">
+
+                            <div class="relative text-sm">
+                                <button id="userButton" class="flex items-center focus:outline-none mr-3">
+                                    <img class="w-8 h-8 rounded-full mr-4" src="http://i.pravatar.cc/300"
+                                        alt="Avatar of User"> <span class="hidden md:inline-block">Hi, {{ user.username }} </span>
+                                    <svg class="pl-2 h-2" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 129 129" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        enable-background="new 0 0 129 129">
+                                        <g>
+                                            <path
+                                                d="m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </button>
+                                <div id="userMenu"
+                                    class="bg-white nunito rounded shadow-md mt-2 absolute mt-12 top-0 right-0 min-w-full overflow-auto z-30 invisible">
+                                    <ul class="list-reset">
+                                        <li><a href="{{ url_for('logout') }}"
+                                                class="px-4 py-2 block text-gray-900 hover:bg-indigo-400 hover:text-white no-underline hover:no-underline">Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- / Menu -->
+
+                    </div>
+
+                </nav>
+            </div>
+
+
+            <div class="w-full flex flex-row flex-wrap justify-start items-start" x-show="section === 0">
+                <!--Dash Content -->
+                <div id="dash-content"
+                    class="bg-yellow-300 py-6 lg:py-0 md:h-full w-full lg:max-w-sm flex flex-wrap content-start">
+
+                    <div class="w-1/2 lg:w-full">
+                        <div
+                            class="border-2 border-black border-dashed hover:border-transparent hover:bg-white hover:shadow-xl rounded p-6 m-2 md:mx-10 md:my-6">
+                            <div class="flex flex-col items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-3 bg-white"><i
+                                            class="fa fa-trophy fa-fw fa-inverse text-indigo-500"></i></div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-3xl">55 <span class="text-green-500"><i
+                                                class="fas fa-caret-up"></i></span></h3>
+                                    <h5 class="font-bold text-black">Total Victories</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-1/2 lg:w-full">
+                        <div
+                            class="border-2 border-black border-dashed hover:border-transparent hover:bg-white hover:shadow-xl rounded p-6 m-2 md:mx-10 md:my-6">
+                            <div class="flex flex-col items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-3 bg-white"><i
+                                            class="fas fa-users fa-fw fa-inverse text-indigo-500"></i></div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-3xl">308 <span class="text-orange-500"><i
+                                                class="fas fa-exchange-alt"></i></span></h3>
+                                    <h5 class="font-bold text-black">Total Customers</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-1/2 lg:w-full">
+                        <div
+                            class="border-2 border-black border-dashed hover:border-transparent hover:bg-white hover:shadow-xl rounded p-6 m-2 md:mx-10 md:my-6">
+                            <div class="flex flex-col items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-3 bg-white"><i
+                                            class="fas fa-shipping-fast fa-fw fa-inverse text-indigo-500"></i></div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-3xl">2 <span class="text-yellow-600"><i
+                                                class="fas fa-caret-up"></i></span></h3>
+                                    <h5 class="font-bold text-black">New Bees</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w-1/2 lg:w-full">
+                        <div
+                            class="border-2 border-black border-dashed hover:border-transparent hover:bg-white hover:shadow-xl rounded p-6 m-2 md:mx-10 md:my-6">
+                            <div class="flex flex-col items-center">
+                                <div class="flex-shrink pr-4">
+                                    <div class="rounded-full p-3 bg-white"><i
+                                            class="fas fa-road fa-fw fa-inverse text-indigo-500"></i></div>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="font-bold text-3xl">21s</h3>
+                                    <h5 class="font-bold text-black">Fastest run</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Graph Content -->
+                <div id="main-content" class="w-full flex-1">
+
+                    <div class="flex flex-1 flex-wrap">
+
+                        <div class="w-full xl:w-2/3 p-6 xl:max-w-6xl">
+
+                            <!--"Container" for the graphs"-->
+                            <div class="max-w-full lg:max-w-3xl xl:max-w-5xl">
+
+                                <!--Bee Card-->
+                                <div class="border-b p-3">
+                                    <h5 class="font-bold text-black">Welcome: {{ user.username }}</h5>
+                                </div>
+                                <div class="p-5 w-64 object-contain">
+                                    <?xml version="1.0" standalone="no"?>
+                                    <!DOCTYPE svg
+                                        PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        id="body_1" width="200" height="200">
+
+                                        <g transform="matrix(0.33333334 0 0 0.33333334 0 0)">
+                                            <g transform="matrix(0.1 0 -0 -0.1 0 600)">
+                                                <path
+                                                    d="M2971 5579C 2752 5546 2503 5361 2355 5121L2355 5121L2318 5061L2267 5101C 2159 5187 1995 5249 1839 5265C 1657 5284 1381 5203 1218 5084C 1008 4929 896 4629 930 4314C 951 4117 1016 3908 1102 3762C 1120 3731 1176 3665 1225 3615C 1322 3519 1439 3442 1615 3360C 1821 3264 1909 3218 1975 3170C 2014 3142 2046 3116 2047 3112C 2049 3108 2022 3090 1988 3071C 1911 3029 1755 2911 1661 2824C 1621 2787 1531 2689 1461 2606C 1245 2351 1061 2190 903 2119C 867 2102 735 2050 611 2004C 488 1958 385 1918 382 1916C 380 1913 469 1865 581 1810C 834 1684 969 1601 1039 1530C 1069 1500 1150 1390 1218 1285C 1287 1181 1372 1058 1407 1013C 1674 670 2112 460 2645 419C 2964 395 3393 458 3747 581C 3812 604 3929 653 4008 691C 4472 913 4776 1237 4877 1617C 4899 1702 4903 1736 4904 1870C 4904 2048 4886 2142 4823 2290C 4736 2493 4589 2680 4392 2840L4392 2840L4350 2875L4387 2930C 4617 3275 4947 3473 5177 3405C 5249 3384 5342 3318 5386 3258C 5428 3201 5470 3095 5470 3047C 5470 3003 5451 2970 5411 2943C 5363 2910 5255 2911 5185 2944C 5097 2985 5060 3041 5060 3130C 5060 3191 5073 3226 5099 3235C 5147 3250 5270 3159 5270 3108C 5270 3090 5266 3088 5238 3093C 5220 3097 5196 3102 5185 3105C 5169 3110 5161 3104 5148 3076L5148 3076L5131 3042L5171 3026C 5232 3001 5296 3005 5325 3035C 5404 3113 5282 3293 5134 3315C 5010 3334 4931 3154 5003 3014C 5083 2856 5321 2784 5454 2878C 5476 2893 5504 2925 5518 2950C 5553 3015 5546 3127 5502 3224C 5430 3380 5242 3500 5070 3500C 4953 3500 4791 3435 4655 3333C 4558 3261 4422 3119 4344 3010C 4312 2966 4283 2930 4279 2930C 4275 2930 4234 2953 4188 2981C 4142 3009 4062 3053 4008 3078C 3900 3130 3911 3114 3884 3270C 3844 3510 3891 3751 3999 3859C 4086 3946 4236 3993 4353 3970C 4561 3930 4606 3817 4472 3677C 4376 3576 4255 3568 4164 3655C 4140 3678 4120 3703 4120 3711C 4120 3731 4168 3776 4203 3789C 4249 3807 4329 3803 4337 3783C 4341 3773 4337 3762 4324 3754C 4264 3714 4264 3713 4280 3684C 4303 3643 4317 3644 4365 3692C 4465 3792 4421 3880 4273 3880C 4199 3880 4134 3854 4084 3803C 4055 3775 4050 3762 4050 3724C 4050 3667 4067 3635 4123 3583C 4178 3532 4224 3517 4308 3522C 4393 3527 4469 3561 4533 3624C 4594 3683 4619 3738 4620 3811C 4620 3955 4483 4055 4285 4054C 4100 4054 3928 3947 3856 3789C 3786 3637 3771 3415 3816 3193L3816 3193L3822 3162L3704 3200C 3638 3220 3559 3243 3528 3250C 3496 3257 3470 3268 3470 3273C 3470 3287 3588 3492 3685 3645C 3793 3816 3844 3919 3890 4060C 3946 4229 3963 4345 3964 4540C 3964 4922 3887 5147 3693 5331C 3509 5507 3198 5613 2971 5579zM3255 5450C 3299 5438 3382 5406 3439 5379C 3528 5335 3555 5316 3629 5242C 3752 5119 3801 5020 3837 4820C 3861 4685 3861 4396 3837 4276C 3797 4080 3727 3912 3604 3720C 3525 3596 3398 3381 3310 3220C 3276 3157 3246 3103 3243 3101C 3241 3098 3212 3106 3177 3118C 3073 3155 2963 3172 2823 3172L2823 3172L2690 3173L2690 3267C 2690 3472 2619 3675 2459 3930C 2336 4125 2284 4270 2273 4441C 2255 4728 2394 5059 2622 5276C 2815 5461 3009 5514 3255 5450zM1944 5140C 2034 5117 2158 5055 2223 4999L2223 4999L2268 4960L2243 4900C 2204 4801 2179 4692 2172 4575C 2154 4314 2209 4117 2370 3865C 2487 3681 2580 3447 2580 3336L2580 3336L2580 3305L2476 3278C 2419 3264 2324 3233 2266 3210L2266 3210L2161 3167L2088 3223C 2048 3253 1990 3293 1960 3311C 1930 3329 1898 3349 1890 3355C 1882 3362 1830 3386 1775 3410C 1293 3617 1154 3765 1063 4169C 1027 4328 1025 4536 1058 4653C 1101 4805 1175 4917 1282 4993C 1488 5139 1735 5194 1944 5140zM2580 3186C 2580 3159 2556 3129 2528 3122C 2510 3118 2496 3111 2498 3107C 2499 3103 2500 3090 2500 3078C 2500 3035 2510 3031 2585 3045C 2698 3067 2837 3073 2935 3060C 2984 3054 3026 3047 3028 3045C 3030 3044 3016 3011 2997 2974C 2915 2810 2846 2580 2813 2363C 2789 2201 2790 1836 2814 1655C 2859 1326 2946 998 3080 657C 3103 597 3120 547 3119 545C 3117 543 3043 536 2955 530C 2764 515 2553 525 2421 556C 2400 561 2399 562 2415 573C 2430 585 2427 598 2376 743C 2206 1221 2139 1551 2140 1916C 2140 2220 2185 2456 2297 2735C 2357 2884 2509 3178 2529 3183C 2552 3190 2580 3191 2580 3186zM3813 3051C 3855 3033 3859 3028 3880 2963C 3910 2873 3980 2720 3992 2720C 3997 2720 4014 2727 4030 2735L4030 2735L4059 2750L4015 2847C 3945 3006 3943 3001 4046 2945C 4505 2698 4772 2338 4797 1935C 4810 1714 4748 1493 4621 1310C 4569 1235 4547 1225 4420 1225C 4332 1225 4307 1229 4264 1248C 4201 1276 4140 1338 4106 1406C 4074 1469 4074 1491 4101 1516C 4131 1543 4160 1604 4160 1640C 4160 1670 4158 1671 4123 1668C 4090 1665 4085 1661 4077 1631C 4056 1549 3987 1504 3894 1512C 3841 1517 3838 1516 3824 1487C 3812 1465 3811 1455 3820 1446C 3832 1434 3931 1431 3972 1442C 3997 1449 4000 1446 4028 1386C 4099 1235 4219 1156 4400 1142L4400 1142L4485 1135L4400 1062C 4287 965 4160 880 4026 813C 3911 755 3756 690 3735 690C 3718 690 3637 883 3565 1092C 3291 1887 3341 2551 3709 3012C 3734 3044 3758 3070 3762 3070C 3765 3070 3788 3061 3813 3051zM1774 2753C 1554 2252 1506 1831 1615 1345C 1645 1213 1713 994 1760 881C 1776 840 1790 805 1790 803C 1790 794 1695 867 1634 923C 1552 998 1452 1126 1348 1287C 1302 1357 1232 1462 1192 1520C 1152 1578 1100 1663 1078 1709C 1043 1781 1036 1806 1032 1872C 1028 1944 1030 1955 1059 2015C 1085 2067 1112 2099 1203 2182C 1353 2320 1418 2388 1566 2562C 1668 2682 1773 2790 1788 2790C 1789 2790 1783 2773 1774 2753z"
+                                                    stroke="none" fill="#000000" fill-rule="nonzero" />
+                                                <path
+                                                    d="M4244 2384C 4223 2376 4204 2370 4203 2370C 4202 2370 4192 2355 4181 2336C 4114 2228 4229 2098 4341 2155C 4357 2164 4380 2185 4390 2203C 4452 2304 4356 2423 4244 2384z"
+                                                    stroke="none" fill="#000000" fill-rule="nonzero" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <!--/Graph Card-->
+
+                                <!--Table Card-->
+                                <div class="p-3">
+                                    <div class="border-b p-3">
+                                        <h5 class="font-bold text-black">Our top bees</h5>
+                                    </div>
+                                    <div class="p-5">
+                                        <table class="w-full p-5 text-gray-700">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-left text-blue-900">Name</th>
+                                                    <th class="text-left text-blue-900">Color</th>
+                                                    <th class="text-left text-blue-900">Speed</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>Josh</td>
+                                                    <td>Yellow</td>
+                                                    <td>18mph</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Jonathan</td>
+                                                    <td>Yellow</td>
+                                                    <td>15mph</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Darth Vader</td>
+                                                    <td>Yellow</td>
+                                                    <td>12mph</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                                <!--/table Card-->
+
+                            </div>
+
+                        </div>
+
+                        <div class="w-full xl:w-1/3 p-6 xl:max-w-4xl border-l-1 border-white bg-black">
+
+                            <!--"Container" for the graphs"-->
+                            <div class="max-w-sm lg:max-w-3xl xl:max-w-5xl">
+
+                                <!--Graph Card-->
+
+                                <div class="border-b p-3">
+                                    <h5 class="font-bold text-white">Speed trend (mph/s)</h5>
+                                </div>
+                                <div class="p-5">
+                                    <div class="ct-chart ct-golden-section" id="chart2"></div>
+                                </div>
+
+                                <!--/Graph Card-->
+
+                                <!--Graph Card-->
+                                <div class="border-b p-3">
+                                    <h5 class="font-bold text-white">Earnings</h5>
+                                </div>
+                                <div class="p-5">
+                                    <div class="ct-chart ct-golden-section" id="chart3"></div>
+                                </div>
+
+                                <!--/Graph Card-->
+
+                                <!--Graph Card-->
+
+                                <div class="border-b p-3">
+                                    <h5 class="font-bold text-white">Bees by sector</h5>
+                                </div>
+                                <div class="p-5">
+                                    <div class="ct-chart ct-golden-section" id="chart4"></div>
+                                </div>
+
+                                <!--/Graph Card-->
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="shadow-lg rounded-lg pl-16 h-full w-full" x-show="section === 1">
+        <!-- headaer -->
+
+        <!-- Chatting -->
+        <div class="flex flex-row flex-wrap justify-between h-full bg-white">
+            <!-- chat list -->
+            <div class="flex flex-col w-full border-r-2 overflow-y-auto">
+                <!-- search compt -->
+                <div class="border-b-2 py-4 px-2">
+                    <input type="text" placeholder="search chatting"
+                        class="py-2 px-2 border-2 border-gray-200 rounded-2xl w-full" />
+                </div>
+                <!-- end search compt -->
+                <!-- user list -->
+                <div
+                    class="flex flex-row py-4 px-2 justify-center items-center border-b-2 cursor-pointer hover:bg-yellow-300">
+                    <div class="w-1/4">
+                        <img src="https://source.unsplash.com/_7LbC5J-jw4/600x600"
+                            class="object-cover h-12 w-12 rounded-full" alt="" />
+                        <hr tooltip="Online"
+                            class="w-4 h-4 rounded-full bg-green-400 transform -translate-y-3 translate-x-8">
+                    </div>
+                    <div class="w-full">
+                        <div class="text-lg font-semibold">Admin</div>
+                        <span class="text-gray-500">An ordinary administrator</span>
+                    </div>
+                </div>
+                <!-- end user list -->
+            </div>
+            <!-- end chat list -->
+            <!-- message -->
+            <div class="w-full px-5 flex flex-col justify-between blurred select-none">
+
+                <style>
+                    .blurred {
+                        -webkit-filter: blur(5px);
+                        -moz-filter: blur(5px);
+                        -o-filter: blur(5px);
+                        -ms-filter: blur(5px);
+                        filter: blur(5px);
+
+                    }
+                </style>
+
+                <div class="flex flex-col mt-5">
+                    <div class="flex justify-end mb-4">
+                        <div class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white">
+                            Welcome to group everyone !
+                        </div>
+                        <img src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+                            class="object-cover h-8 w-8 rounded-full" alt="" />
+                    </div>
+                    <div class="flex justify-start mb-4">
+                        <img src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+                            class="object-cover h-8 w-8 rounded-full" alt="" />
+                        <div class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat
+                            at praesentium, aut ullam delectus odio error sit rem. Architecto
+                            nulla doloribus laborum illo rem enim dolor odio saepe,
+                            consequatur quas?
+                        </div>
+                    </div>
+                    <div class="flex justify-end mb-4">
+                        <div>
+                            <div
+                                class="mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white">
+                                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                                Magnam, repudiandae.
+                            </div>
+
+                            <div
+                                class="mt-4 mr-2 py-3 px-4 bg-blue-400 rounded-bl-3xl rounded-tl-3xl rounded-tr-xl text-white">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Debitis, reiciendis!
+                            </div>
+                        </div>
+                        <img src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+                            class="object-cover h-8 w-8 rounded-full" alt="" />
+                    </div>
+                    <div class="flex justify-start mb-4">
+                        <img src="https://source.unsplash.com/vpOeXr5wmR4/600x600"
+                            class="object-cover h-8 w-8 rounded-full" alt="" />
+                        <div class="ml-2 py-3 px-4 bg-gray-400 rounded-br-3xl rounded-tr-3xl rounded-tl-xl text-white">
+                            happy holiday guys!
+                        </div>
+                    </div>
+                </div>
+                <div class="py-5">
+                    <input class="w-full bg-gray-300 py-5 px-3 rounded-xl" type="text"
+                        placeholder="type your message here..." disabled />
+                </div>
+            </div>
+            <!-- end message -->
+            <div class="w-full border-l-2 px-5">
+                <div class="flex flex-col">
+                    <div class="font-semibold text-xl py-4">Admin</div>
+                    <img src="https://source.unsplash.com/L2cxSuKWbpo/600x600" class="object-cover rounded-xl h-64"
+                        alt="" />
+                    <div class="font-light">
+                        An ordinary administrator
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if user.is_admin %}
+    <div class="w-full bg-gray-50 h-full flex flex-col items-center bg-gray-100 pl-16" x-show="section === 2">
+
+        <div class="mx-5 lg:w-6/12 mt-16 bg-gray-800 shadow-2xl rounded-lg overflow-hidden">
+            <div id="header-buttons" class="py-3 px-4 flex">
+                <div class="rounded-full w-3 h-3 bg-red-500 mr-2"></div>
+                <div class="rounded-full w-3 h-3 bg-yellow-500 mr-2"></div>
+                <div class="rounded-full w-3 h-3 bg-green-500"></div>
+            </div>
+            <div id="code-area" class="py-4 px-4 mt-1 text-white text-xl">
+                <div class="mb-2">
+                    GET <span class="text-blue-400">/server/start</span>
+                </div>
+            </div>
+        </div>
+
+        <button
+            class="block mt-16 uppercase mx-auto shadow bg-indigo-800 hover:bg-indigo-700 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">Start</button>
+    </div>
+    {% endif %}
+
+    <script>
+        var userMenuDiv = document.getElementById("userMenu");
+        var userMenu = document.getElementById("userButton");
+
+        document.onclick = check;
+
+        function check(e) {
+            var target = (e && e.target) || (event && event.srcElement);
+
+            //User Menu
+            if (!checkParent(target, userMenuDiv)) {
+                // click NOT on the menu
+                if (checkParent(target, userMenu)) {
+                    // click on the link
+                    if (userMenuDiv.classList.contains("invisible")) {
+                        userMenuDiv.classList.remove("invisible");
+                    } else {
+                        userMenuDiv.classList.add("invisible");
+                    }
+                } else {
+                    // click both outside link and outside menu, hide menu
+                    userMenuDiv.classList.add("invisible");
+                }
+            }
+
+        }
+
+        function checkParent(t, elm) {
+            while (t.parentNode) {
+                if (t == elm) {
+                    return true;
+                }
+                t = t.parentNode;
+            }
+            return false;
+        }
+    </script>
+    <script src="{{ url_for('static', filename='js/analytics.js') }}"></script>
+</body>
+
+</html>

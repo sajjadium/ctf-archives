@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.cocktail-party {
+  position: absolute;
+  height:5px;
+  width:330px;
+  background-color: #333;
+  border-radius:5px; 
+}
+
+.party {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size:40px;  
+}
+.green-drink {
+  position: absolute;
+  width:25px;
+  height: 25px;
+  border: 4px solid #333;
+  border-radius:50%;
+  top:-85px;
+  left:35px;
+  background: repeating-conic-gradient(
+  #333 20deg, #333 30deg, #ffea00 35deg, #ffea00 70deg); 
+  transition: .3s ease;
+}
+
+.green-drink:hover {
+  transform: translateY(-20px);
+}
+
+.green-drink:before {
+  content:"";
+  position: absolute;
+  width:40px;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-top: 70px solid #333;
+  height:0;
+  top:12px;
+  left:10px;
+}
+
+.green-drink:after {
+  content:"";
+  position: absolute;
+  width:32px;
+  border-top: 59px solid #70e000;
+  top:20px;
+  left:15.5px;
+  border-right: 8.5px solid transparent;
+  border-left: 8.5px solid transparent;
+  height:0;
+}
+
+.juice {
+  position: absolute;
+  width:46px;
+  border-top: 15px solid #fff;
+  top:16px;
+  left:15px;
+  border-right: 2px solid transparent;
+  border-left: 2px solid transparent;
+  height:0;
+  z-index:1;
+}
+
+.juice:before {
+  content:"";
+  position: absolute;
+  width:20px;
+  height:60px;
+  border-top: 4px solid #333;
+  border-left: 4px solid #333;
+  top:-35px;
+  left:25px;
+  transform: rotate(10deg);
+}
+
+.juice:after {
+  content:"";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255,255,255,0.5);
+  top:8px;
+  left:8px;
+  transform: rotate(25deg);
+  box-shadow: 20px 20px rgba(255,255,255,0.5), 25px 5px rgba(255,255,255,0.5);
+}
+
+.martini {
+  position: absolute;
+  position: absolute;
+  width:0;
+  height:0;
+  border-bottom: 25px solid #333;
+  border-right: 35px solid transparent;
+  border-left: 35px solid transparent;
+  top:-24px;
+  left:130px;
+  transition: .3s ease;
+}
+
+.martini:hover {
+  transform: translateY(-20px);
+}
+
+.martini:before {
+  content:"";
+  position: absolute;
+  width:0;
+  height:0;
+  border-bottom: 18px solid #fff;
+  border-right: 25px solid transparent;
+  border-left: 25px solid transparent;
+  left:-25px;
+  top:5px;
+}
+
+.martini:after {
+  content:"";
+  position: absolute;
+  width:4px;
+  height:40px;
+  background-color: #333;
+  top:-35px;
+  left:-2px;
+}
+
+.glass {
+  position: absolute;
+  position: absolute;
+  border-top:50px solid #333;
+  border-right: 50px solid transparent;
+  border-left: 50px solid transparent;
+  width:0;
+  height:0;
+  top:-82px;
+  left:-50px;
+}
+
+.glass:before {
+  content:"";
+  position: absolute;
+  border-top:40px solid #fff;
+  border-left:40px solid transparent;
+  border-right:40px solid transparent;
+  width:0;
+  height:0;
+  top:-46px;
+  left:-40px;
+}
+
+.glass:after {
+  content:"";
+  position: absolute;
+  border-top:30px solid #ff9500;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  width:0;
+  height:0;
+  top:-36px;
+  left:-30px;
+}
+
+.olives {
+  position: absolute;
+  background-color: #333;
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  left:25px;
+  top:-100px;
+}
+
+.olives:before {
+  content:"";
+  position: absolute;
+  background-color: #333;
+  border-radius:10px;
+  width:4px;
+  height:60px;
+  top:-10px;
+  left:-4px;
+  transform: rotate(35deg);
+}
+
+.olives:after {
+  content:"";
+  position: absolute;
+  width:5px;
+  height: 5px;
+  background-color: rgba(255,255,255,0.5);
+  border-radius:50%;
+  left:-20px;
+  top:45px;
+  box-shadow:-5px -10px rgba(255,255,255,0.5),-10px 5px rgba(255,255,255,0.5), 10px -10px rgba(255,255,255,0.5);
+}
+
+.whiskey {
+  position: absolute;
+  width: 55px;
+  height: 8px;
+  border: 5px solid #333;
+  top:-13px;
+  left:220px;
+  transition: .3s ease;
+}
+
+.whiskey:hover {
+  transform: translateY(-20px);
+}
+
+.whiskey:before {
+  content:"";
+  position: absolute;
+  width: 55px;
+  border: 5px solid #333;
+  height:35px;
+  top:-45px;
+  left:-5px;
+  box-shadow: inset 0 -20px #dd6e42;
+}
+
+.whiskey:after {
+  content:"";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255,255,255,0.5);
+  top:-22px;
+  left:7px;
+  transform: rotate(25deg);
+  box-shadow: 12px 1px rgba(255,255,255,0.5);
+}

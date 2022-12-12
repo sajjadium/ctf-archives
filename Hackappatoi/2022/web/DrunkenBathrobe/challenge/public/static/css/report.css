@@ -1,0 +1,121 @@
+html,
+body {
+    height: 100%;
+    font-family: "Englebert", Verdana, sans-serif;
+}
+body {
+    font-size: 10px;
+    margin: auto;
+    overflow-y: hidden;
+}
+
+div.header {
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    background: #2d2d2d;
+    box-shadow: 0px 1px 25px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+div.header ul.nav {
+    overflow: hidden;
+}
+div.header ul.nav li {
+    float: left;
+    margin: 0 10px;
+}
+div.header ul.nav li:first-child {
+    margin-left: 125px;
+}
+div.header ul.nav li a {
+    display: block;
+    padding: 0 10px;
+    font-size: 1.5em;
+    letter-spacing: 0.05em;
+    line-height: 2.5em;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-shadow: 1px 2px 2px #000000;
+    color: #e5e5e5;
+}
+
+.report-container {
+    background-image: url("/static/images/white_wall.png");
+    background-color: #526b22;
+    height: 100%;
+}
+
+.log-in {
+    padding-top: 4em !important;
+    max-width: 1200px;
+    padding: 0px 20px;
+    margin: 0 auto;
+}
+
+.log-in:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.logged-in-top {
+    position: flex;
+    text-align: center;
+    padding-bottom: 60px;
+}
+
+.logged-in-top .desc {
+    transform: translateY(10%);
+    font-size: 3em;
+    letter-spacing: 0.05em;
+}
+
+.logged-in-bottom {
+    text-align: center;
+    padding: 0 40px 50px;
+    padding-top: 40px;
+}
+
+.logged-in-bottom textarea {
+    resize: none;
+    margin-top: 40px;
+    padding: 0 40px 50px;
+    background-color: #abc0b7;
+    margin-bottom: 20px;
+    color: #000000;
+    border: 0;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.logged-in-bottom button {
+    padding: 0.5rem;
+    width: 97%;
+    height: 5%;
+    background: #1a4f1a;
+    color: #54fe55;
+    border: 0;
+    text-shadow: 0px 0px 10px #54fe55;
+    box-shadow: 0px 0px 10px #1a4f1a;
+    cursor: pointer;
+    font-size: 2em;
+    letter-spacing: 0.1em;
+}
+
+form button:focus {
+    outline: none;
+}
+
+.query-input {
+    padding: 0.5rem;
+    width: 97%;
+    height: 5%;
+    border: 0;
+    background-color: #abc0b7;
+    margin-bottom: 20px;
+    color: #000000;
+    border: 0;
+    font-size: 30px;
+}
