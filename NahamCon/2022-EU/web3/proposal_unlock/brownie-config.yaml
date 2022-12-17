@@ -1,0 +1,9 @@
+compiler:
+    solc:
+        optimize: true
+        runs: 200
+        version: 0.8.17
+        remappings:
+          - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.5.0"
+dependencies:
+    - OpenZeppelin/openzeppelin-contracts@4.5.0

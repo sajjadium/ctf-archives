@@ -1172,7 +1172,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1822/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="NahamCon">NahamCon</a></td>
+            <td rowspan=4><a href="NahamCon">NahamCon</a></td>
+            <td><a href="NahamCon/2022-EU">2022-EU</a></td>
+            <td><a href="https://ctftime.org/event/1843/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="NahamCon/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1630/tasks/">CTFtime</a></td>
         </tr>
