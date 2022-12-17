@@ -1,0 +1,31 @@
+{
+  "name": "fl4sh",
+  "version": "1.0.0",
+  "description": "Zen time",
+  "main": "index.js",
+  "scripts": {
+    "compile": "tsc",
+    "start": "tsc && node src/app.js"
+  },
+  "author": "meetcshah19",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.3.4"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.12",
+    "axios": "^0.21.1",
+    "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.4.0",
+    "express-jwt": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.2",
+    "mysql": "^2.18.1",
+    "redis": "^4.5.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.34"
+  }
+}
