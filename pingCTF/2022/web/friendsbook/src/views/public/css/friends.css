@@ -1,0 +1,11 @@
+.friends-box {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    position: relative;
+    overflow-y: scroll;
+    max-height: 300px;
+    width: 100%;
+}

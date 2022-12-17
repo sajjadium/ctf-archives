@@ -1,0 +1,7 @@
+version: '3'
+services:
+  pcg:
+    build: .
+    restart: always
+    ports:
+      - 30001:9999

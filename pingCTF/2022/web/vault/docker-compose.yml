@@ -1,0 +1,6 @@
+services:
+  secure-vault:
+    image: secure-vault
+    build: ./
+    ports:
+    - 10003:3000

@@ -1,0 +1,48 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.1/purify.min.js"></script>
+
+<center>
+    <br/>
+    <h1>NOTE VIEWER</h1>
+    <br/>
+    <h2 id="title"></h2>
+    <br/>
+    <div id="content">
+    </div>
+    <hr/>
+    <button id=report>Report this note to admin</button>
+</center>
+
+<script>
+
+let params = new URLSearchParams(location.search);
+
+(function() {
+    let login = prompt("LOGIN\nLogin: ")
+    let password = prompt("LOGIN\nPassword: ")
+
+    getNote();
+
+    async function getNote() {
+        var note = await (await fetch(`/api/notes/${params.get("id")}`, {
+            headers: {
+                NotCookie: btoa(`${login}:${password}`)
+            }
+        })).json();
+        
+        note.content = DOMPurify.sanitize(note.content);
+        note.content = note.content.replace(/<style>.*<\/style>/gs, '') // no leaking with styles :P
+
+        content.innerHTML = note.content
+        title.innerText = note.title
+    }
+
+    
+})()
+
+report.onclick = async () => {
+    alert(await (await fetch(`/api/report/${params.get("id")}`)).text());
+}
+
+
+</script>

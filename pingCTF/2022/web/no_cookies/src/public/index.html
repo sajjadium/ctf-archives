@@ -1,0 +1,49 @@
+
+<center>
+    <br/>
+    <h1>NOTE CREATOR</h1>
+    <br/>
+    <form id="form">
+        Note title:
+        <br/>
+        <input id="title">
+        <br/>
+        <br/>
+        Note content:
+        <br/>
+        <textarea cols="30" rows="20" id="content"></textarea>
+        <br/>
+        <br/>
+        <input type="submit">
+    </form>
+    <br/>
+    <div id=response></div>
+    </div>
+</center>
+
+<script>
+(function() {
+    let login = prompt("LOGIN/REGISTER\nLogin: ")
+    let password = prompt("LOGIN/REGISTER\nPassword: ")
+
+
+    form.onsubmit = async function(e) {
+
+        e.preventDefault();
+
+        var note = await (await fetch(`/api/create`, {
+            headers: {
+                NotCookie: btoa(`${login}:${password}`),
+                "Content-Type": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({title: title.value, content: content.value})
+        })).json();
+
+        response.innerHTML = `Your note is avaliable at <a href='/view.html?id=${note.id}'>this<a> link`
+        
+    }
+    
+})()
+
+</script>

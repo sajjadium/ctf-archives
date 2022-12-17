@@ -1,0 +1,38 @@
+{% include "common/header.html" %}
+
+{% if logged_in %}
+<a href="/files">Append file bytes</a><br>
+<a href="/chain">View your chain</a><br>
+<a onclick="clearBuffer" href="/clear" id="clear">Clear your buffer</a><br>
+<a onclick="specialBuffer" href="/special-buffer" id="special-buffer">Request special buffer</a><br><br>
+
+<a href="/logout">Logout</a>
+{% else %}
+<a href="/authentication">login / register</a><br>
+{% endif %}
+
+<script>
+    document.getElementById("clear").addEventListener("click", async (e) => {
+        e.preventDefault();
+        const response = await (await fetch("/clear", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })).text();
+        alert(response);
+    })
+
+    document.getElementById("special-buffer").addEventListener("click", async (e) => {
+        e.preventDefault();
+        const response = await (await fetch("/special-buffer", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })).text();
+        alert(response);
+    })
+</script>
+
+{% include "common/footer.html" %}

@@ -1,0 +1,16 @@
+doctype html
+html
+    include ./common/head.pug
+        title friendsbook
+    body
+        div.container.mt-2
+            header
+                h2 Create new post
+            content
+                div
+                    p You can create a new post here:
+                    include ./forms/post.pug
+            a(href="/wall") Go to your wall
+            include ./common/footer.pug
+            if user.username
+                p= "Logged as: " + user.username

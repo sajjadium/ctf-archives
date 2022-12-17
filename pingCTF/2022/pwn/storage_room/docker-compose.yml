@@ -1,0 +1,7 @@
+version: '3'
+services:
+  storage-room:
+    build: .
+    restart: always
+    ports:
+      - 30000:3000

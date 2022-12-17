@@ -1,0 +1,22 @@
+doctype html
+html
+    include ./common/head.pug
+        title friendsbook
+    body
+        div.container.mt-2
+            header
+                h2 Error :(
+                p  Something went wrong!
+            section
+                h3 Message
+                if error
+                    p= error
+                else
+                    p No error message
+                include ./common/footer.pug
+                br
+            footer 
+                if user.username
+                    p= "Logged as: " + user.username
+                else
+                    p No user logged in

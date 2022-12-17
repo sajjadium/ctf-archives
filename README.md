@@ -2060,6 +2060,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1121/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="pingCTF">pingCTF</a></td>
+            <td><a href="pingCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1769/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="redpwn">redpwn</a></td>
             <td><a href="redpwn/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1706/tasks/">CTFtime</a></td>

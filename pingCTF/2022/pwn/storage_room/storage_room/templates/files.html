@@ -1,0 +1,8 @@
+{% include "common/header.html" %}
+
+<form action="/files" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="file">
+    <input type="submit" value="Upload" name="submit">
+</form>
+
+{% include "common/footer.html" %}

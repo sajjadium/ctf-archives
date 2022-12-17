@@ -1,0 +1,11 @@
+form(action="/api/user/register", method="post")
+    div.form-group
+        label(for="username") Username
+        input.form-control(type="text", name="username", id="username")
+    div.form-group
+        label(for="password") Password
+        input.form-control(type="password", name="password", id="password")
+    div.form-group
+        label(for="password2") Confirm Password
+        input.form-control(type="password", name="password2", id="password2")
+    button.btn.btn-primary(type="submit") Register

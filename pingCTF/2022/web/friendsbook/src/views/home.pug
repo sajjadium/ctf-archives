@@ -1,0 +1,27 @@
+doctype html
+html
+    include ./common/head.pug
+        title friendsbook
+    body
+        div.container.mt-2
+            header
+                h1 Welcome
+                p  This is the best place for you and your best friends! 
+                p  Make sure you only share your likings with your best friends and not with the rest of the world!
+            section
+                h2 Meet your friends!
+                p Here you can see your friends and their likings! (Only if they allow it of course!)
+                if user.username
+                    include ./widgets/friends.pug
+                    a(href="/wall") Go to your wall
+                    br
+                    a(href="/logout") Logout
+                else 
+                    a(href="/login") Login
+                    br
+                    a(href="/register") Register
+            footer 
+                if user.username
+                    p= "Logged as: " + user.username
+                else
+                    p No user logged in

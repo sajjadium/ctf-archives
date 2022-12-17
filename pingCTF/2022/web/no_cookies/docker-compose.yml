@@ -1,0 +1,7 @@
+services:
+  no-cookies:
+    container_name: no-cookies
+    image: no-cookies
+    build: ./
+    ports:
+    - 10004:3000

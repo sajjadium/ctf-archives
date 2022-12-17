@@ -1,0 +1,22 @@
+doctype html
+html
+    include ./common/head.pug
+        title friendsbook
+        script
+            include ./public/js/wall.js
+        style 
+            include ./public/css/wall.css
+    body
+        div.container.mt-2
+            header
+                h2 Wall
+            content
+                div
+                    p You can search for your favorite posts here: 
+                    input(type="text" id="search-input" placeholder="Search for post content...")
+                div(id="content-box")
+            a(href="/wall/new") New post
+            include ./common/footer.pug
+            if user.username
+                include ./widgets/friends.pug
+                p= "Logged as: " + user.username

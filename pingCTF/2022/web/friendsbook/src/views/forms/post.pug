@@ -1,0 +1,9 @@
+p Create your post here:
+    form(action="/api/post", method="POST")
+        label(for="post-content") Post content:
+        textarea.form-control(name="content" id="post-content" rows="3" placeholder="Write your post here...")
+        br
+        label should be public? &nbsp;
+        input(type="checkbox", name="isPublic", checked)
+        br
+        input(type="submit", value="Post")
