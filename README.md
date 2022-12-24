@@ -530,7 +530,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1076/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="Damncon">Damncon</a></td>
+            <td rowspan=2><a href="Damncon">Damncon</a></td>
+            <td><a href="Damncon/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1726/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="Damncon/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1481/tasks/">CTFtime</a></td>
         </tr>
