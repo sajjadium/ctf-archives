@@ -1,0 +1,22 @@
+body{
+    background-color: black;
+    font-size: 5rem;
+}
+
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 70vh;
+    animation-name: flash-msg;
+    animation-duration: 0.25s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes flash-msg{
+    from {color: green;}
+    to {color : red;}
+}

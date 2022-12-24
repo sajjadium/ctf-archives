@@ -1,0 +1,13 @@
+body{
+    background-color: black;
+    font-size: 3rem;
+    color: red;
+}
+
+.center-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 70vh;
+}

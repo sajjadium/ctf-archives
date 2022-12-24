@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>NJWT</title>
+    <style>
+      body{
+        background-color: black;
+        color: red;
+      }
+      .flag{
+        font-size: 1.5rem;
+      }
+
+      .desp{
+        color: white;
+      }
+      hr{
+        color: red;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <main class="d-flex align-items-center justify-content-center flex-column mt-5 h-100">
+      <h1>NJWT</h1>
+      <p class="text-center mt-3 desp">
+        Since JWT has a lot of attacks against it we have decided to come up with our own token system.<br>
+        This is a NJWT (Not JWT) token generator. It's totally secure.<br>
+      </p>
+      <div class="container">
+        <div class="row text-white">
+            <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-3 w-100">
+                <div class="px-1">
+                    <form action="/generateToken" class="justify-content-center" method="POST">
+                        <div class="form-group">
+                            <label class="sr-only">username</label>
+                            <input type="text" class="form-control text-center" name="username" placeholder="Username">
+                        </div>
+                        <button type="submit" class="btn btn-dark btn-lg">GENERATE TOKEN</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+      <hr>
+      <!-- Either w-50 or w-100 -->
+      <p class="border border-danger px-5  pt-1 w-50 text-center">
+        Token: 
+        <code>
+          {{ display }}
+        </code>
+      </p>
+      <hr>
+      <div>
+        <form action="/verify" method="POST">
+          <button type="submit" class='text-center btn btn-dark mt-2 py-1 flag'>VERIFY ADMIN TOKEN</button>
+      </form>
+      </div>
+      </p>
+    </main>
+  </body>
+</html>
