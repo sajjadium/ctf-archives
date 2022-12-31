@@ -73,7 +73,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1091/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=10><a href="ASIS">ASIS</a></td>
+            <td rowspan=11><a href="ASIS">ASIS</a></td>
+            <td><a href="ASIS/2022/Finals">2022 Finals</a></td>
+            <td><a href="https://ctftime.org/event/1725/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ASIS/2022/Quals">2022 Quals</a></td>
             <td><a href="https://ctftime.org/event/1574/tasks/">CTFtime</a></td>
         </tr>

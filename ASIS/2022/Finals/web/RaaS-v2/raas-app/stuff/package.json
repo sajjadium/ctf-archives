@@ -1,0 +1,16 @@
+{
+  "name": "raas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/rate-limit": "^7.6.0",
+    "fastify": "^4.10.2",
+    "redis": "^4.5.1"
+  }
+}

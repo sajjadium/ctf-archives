@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx:latest
+    restart: always 
+    ports:
+      - "2000:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./fpm/web:/web/
+    depends_on:
+      - fpm
+  fpm:
+    build: ./fpm
+    restart: always 
+    read_only: true
+    volumes:
+      - ./no-write:/tmp:ro 
+      - ./no-write:/var/www/html:ro 
+      - ./no-write:/var/lock:ro 
+      - ./no-write:/dev/shm:ro 
+      - ./no-write:/var/tmp:ro 
+      - ./no-write:/dev/mqueue:ro 

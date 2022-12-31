@@ -1,0 +1,35 @@
+version: "3.9"
+services:
+  raas:
+    build: ./raas-app
+    restart: always 
+    depends_on:
+      - internal
+      - redis
+    ports:
+      - "8000:80"
+    environment:
+      - "ADMIN_USERNAME=REDACTED"
+      - "ADMIN_PASSWORD=REDACTED"
+    networks:
+      raasv2:
+        ipv4_address: 172.32.12.56
+  internal:
+    build: ./internal-app
+    restart: always 
+    environment:
+      - "FLAG=flag{test-flag}"
+    networks:
+      raasv2:
+        ipv4_address: 172.32.12.22
+  redis:
+    image: "redis:alpine"
+    restart: always 
+    networks:
+      raasv2:
+        ipv4_address: 172.32.12.4
+networks:
+  raasv2:
+    ipam:
+      config:
+        - subnet: 172.32.12.0/24

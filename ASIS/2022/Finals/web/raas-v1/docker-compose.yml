@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  web:
+    image: php:8-apache
+    restart: always 
+    volumes:
+      - ./flag.txt:/flag.txt:ro
+      - ./stuff/index.php:/var/www/html/index.php:ro
+    ports:
+      - 9000:80

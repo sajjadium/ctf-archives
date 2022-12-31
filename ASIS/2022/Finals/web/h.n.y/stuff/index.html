@@ -1,0 +1,16 @@
+<html>
+	<head>
+		<title>hi</title>
+	</head>
+	<body>
+		<h1>definitely not vulnerable to XSS</h1>
+		<div>
+			MSG
+		</div>
+		<script nonce="$nonce$">
+			try{
+				eval(window.h.a.p.p.y._.n.e.w._.y.e.a.r._.h.a.c.k.e.r.s.toString())
+			}catch(e){}
+		</script>
+	</body>
+</html>
