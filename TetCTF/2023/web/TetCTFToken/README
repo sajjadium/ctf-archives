@@ -1,0 +1,29 @@
+# from ducnt && khanghh import <3. GLHF everyone
+
+TetCTFCoin
+
+
+0x01: Build:
+	-	How to build: unzip TetCTFToken.zip && cd TetCTFToken && docker-compose up -d
+	-	Service will start on: http://<yourhost>:31337
+
+
+0x02: Proof of Work (PoW):
+
+It looks like a captcha that you need to verify before doing sth.
+
+Input a string which MD5 hash of it has 5 bytes started with: ...
+
+For example: Input a string which MD5 hash of it has first 5 bytes starting with: 318bb
+
+$ python3 TetCTFToken-PoW-Solver.py 318bb
+
+Result: HJhGG (The string HJhGG has the MD5 hash is 318bbe561edd0e60f8336719f2da35b0 which is eligible for the PoW)
+
+So you can input the HJhGG string in the box as the PoW.
+
+
+0x03. This is a Web (ft) BlockChain challenge. Pls dont run any automation tool for scanning or sth similar. We have protect mechanism on our server. If you do that and our protection mechanism detects it, you will be blocked 100s.
+
+
+We hope you will enjoy it. Happy New Year. ~Cheers,

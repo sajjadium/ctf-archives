@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TetCTF Token To The Moon :muchwow:</title>
+
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+    <link href="/static/css/jumbotron-narrow.css" rel="stylesheet">
+
+    <script src="/static/js/jquery-3.1.1.js"></script>
+    <script src="/static/js/jquery.ui.widget.js"></script>
+
+    <script type="text/javascript" src="/static/js/jquery.fileupload.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.fileupload-process.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.fileupload-ui.js"></script>
+
+    <script>
+      $(function(){
+            $('#fileupload').fileupload({
+                url: 'upload',
+                dataType: 'json',
+                add: function (e, data) {
+                  data.submit();
+                },
+                success:function(response,status) {
+                  var filePath = 'static/Uploads/' + response.filename;
+                  $('#imgUpload').attr('src',filePath);
+                  $('#filePath').val(filePath);
+                  console.log('success');
+                },
+                error:function(error){
+                        console.log(error);
+                }
+            });
+      })
+    </script>
+
+    <style>
+        .btn-file {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="header">
+          <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation"><a href="/showDashboard">Dasboard</a></li>
+                <li role="presentation" class="active"><a href="/showBuyFlag">Buy Flag</a></li>
+                <li role="presentation" ><a href="/logout">Logout</a></li>
+            </ul>
+          </nav>
+        <a href="/"><img src="/static/images/cryptocurrency.png" alt="cryptocurrency.png"/></a>
+        <center><img src="/static/images/tetctftoken.png" alt="cryptocurrency.png"/></center>
+        </div>
+
+        <form role="form" method="post" action="/buyflag">
+
+            <center><b><h2>You Need <font color="red">1337</font> TetCTF Token For Claiming The Flag.</h2></b></center>
+            <font color="#0d83ba">
+                <center><b><h4>We Are Automatic Check Your <font color="red">Current Username / Session</font> Able Can Claim The Flag on the Blockchain.</h4></b></center>                
+                <center><b><h4>After Deposit Enough <font color="red">1337</font> TetCTF Token, We Will Send You The Flag With This <font color="red">Username / Session.</font></h4></b></center>
+            </font>
+
+
+            <div class="form-group">
+                <label for="inputPoW" class="sr-only">Proof of Work</label>
+                <input type="text" name="inputPoW" id="inputPoW" class="form-control" placeholder="PoW" required autofocus><b><h4>PoW: Input a string which MD5 hash of it has 5 bytes started with: <font color="red">{{ pow }}</font><h4></b>
+            </div>
+            <br>
+
+            <div class="form-group">
+
+                <p class="text-center">
+                    <input id="singlebutton" name="singlebutton" class="btn btn-primary" type="submit" value="Buy Flag" />
+                </p>
+            </div>
+
+
+        </form>
+
+      <footer class="footer">
+            <b><p>from ducnt && khanghh import ❤️</p></b>
+      </footer>
+
+    </div>
+</body>
+
+</html>

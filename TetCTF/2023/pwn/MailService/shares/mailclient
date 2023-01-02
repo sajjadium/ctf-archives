@@ -1,0 +1,16 @@
+service mailclient
+{
+    disable = no
+    type = UNLISTED
+    wait = no
+    server = /home/mailclient/mailclient
+    socket_type = stream
+    protocol = tcp
+    user = mailclient
+    host = 127.0.0.1
+    port = 1337
+    flags = REUSE
+    per_source = 5
+    rlimit_cpu = 3
+    nice = 18
+}

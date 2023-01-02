@@ -1,0 +1,36 @@
+server {
+  listen 80;
+
+  server_name    admin.2023.tet.ctf;
+  access_log /var/log/nginx/admin-tetctf-access.log;
+  error_log /var/log/nginx/admin-tetctf-error.log;
+
+  location / {
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_pass http://127.0.0.1:8080;
+  }
+
+  location ~ .*api.* {
+        # prevent any cve for api endpoint :) 
+        deny all;
+  }
+
+  location ~ .*\/..\; {
+        # it's bad for Tomcat :)
+        deny all;
+  }
+
+  location ~ .*\/\; {
+        # it's bad for Tomcat :)
+        deny all;
+  }
+
+location ~ .*\; {
+        # it's bad for Tomcat :)
+        deny all;
+  }
+
+}
+

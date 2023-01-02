@@ -1,0 +1,1 @@
+mysql -u root -p'#####CENSORED#####' TetCTFToken < TetCTFToken.sql

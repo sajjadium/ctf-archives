@@ -1698,7 +1698,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1266/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="TetCTF">TetCTF</a></td>
+            <td rowspan=4><a href="TetCTF">TetCTF</a></td>
+            <td><a href="TetCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1842/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="TetCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1540/tasks/">CTFtime</a></td>
         </tr>

@@ -1,0 +1,28 @@
+version: "3.0"
+services:
+  tetctf:
+    container_name: images-services
+    build:
+      context: .
+      dockerfile: ./container/images-services/Dockerfile
+    user: "1000:1000"
+    restart: always
+
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: ./container/nginx/Dockerfile
+    restart: always
+    ports:
+      - "2023:80"
+
+  admin:
+    container_name: admin-portal
+    build:
+      context: .
+      dockerfile: ./container/adminPortal/Dockerfile
+    environment:
+     - LIFERAY_PORTAL_PERIOD_INSTANCE_PERIOD_PROTOCOL=http
+     - LIFERAY_WEB_PERIOD_SERVER_PERIOD_HTTP_PERIOD_PORT=80
+    restart: always

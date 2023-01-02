@@ -1,0 +1,11 @@
+[Unit]
+Description=Mailserver Service
+
+[Service]
+User=mailserver
+WorkingDirectory=/home/mailserver/
+ExecStart=/home/mailserver/mailserver
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
