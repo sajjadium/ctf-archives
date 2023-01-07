@@ -1,0 +1,12 @@
+version: '3'
+services:
+  web:
+    image: rwctf:the-cult-of-8bit
+    build: .
+    tty: true
+    ports:
+      - "12345:12345"
+    deploy:
+      resources:
+        limits:
+          memory: 2G

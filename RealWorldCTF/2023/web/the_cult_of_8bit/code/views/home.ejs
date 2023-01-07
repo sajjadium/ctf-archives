@@ -1,0 +1,147 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/assets/img/48x48M.png" />
+    <style>
+      body {
+        background-image: url('/assets/img/9bc27292880429.5e569ff84e4d0.gif');
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+    <title>Home</title>
+  </head>
+  <body>
+    <div class="mb-4">
+      <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color:#2e0428;">
+        <div class="navbar-menu is-active" id="nav-menu" style="background-color:rgba(68, 4, 68, 0.315);">
+          <div class="navbar-start">
+            <a class="navbar-item" style="background-color:rgba(224, 54, 224, 0.315);" href="/">
+              <span class="icon is-medium">
+                <img src="/assets/img/48x48Sorriso.png" />
+              </span>
+              <span style="color:white;">Home</span>
+            </a>
+            <a class="navbar-item" style="background-color:rgba(68, 4, 68, 0.315);" href="/report">
+              <span class="icon is-medium">
+                <img src="/assets/img/48x48M.png" />
+              </span>
+              <span style="color:white;">Report URL</span>
+            </a>
+          </div>
+          <%_ if (user) { _%>
+          <div class="navbar-end">
+            <a class="navbar-item" style="background-color:rgba(68, 4, 68, 0.315);" href="/api/logout?_csrf=<%= _csrf %>">
+              <span class="icon is-medium">
+                <img src="/assets/img/64x64blind.png" />
+              </span>
+              <span style="color:white;">Log out</span>
+            </a>
+          </div>
+          <%_ } _%>
+        </div>
+      </nav>
+    </div>
+    <div class="container has-text-centered">
+      <div class="column is-8 is-offset-2">
+        <%_ if (user) { _%>
+        <div class="box">
+          <div class="nes-container with-title is-centered my-4">
+            <p class="title">8-bit Cult</p>
+            <p class="is-size-4 has-text-left">Welcome, <%= user.user %>!</p>
+            <p class="is-size-5 has-text-weight-bold has-text-left">Your posts:</p>
+            <div class="content">
+              <ul>
+              <%_ user.posts.forEach(post => { _%>
+                <li class="has-text-left"><a href="/post/?id=<%= post %>"><%= post %></a></li>
+              <%_ }); _%>
+              </ul>
+            </div>
+            <p class="is-size-5 has-text-weight-bold has-text-left">Your todo list:</p>
+            <div class="content">
+              <ul>
+              <%_ user.todos.forEach(todo => { _%>
+                <%_ if (todo.isURL) { _%>
+                  <li class="has-text-left"><a target="_blank" href=<%= todo.text %>><%= todo.text %></a></li>
+                <%_ } else { _%>
+                <li class="has-text-left"><%= todo.text %></li>
+                <%_ } _%>
+              <%_ }); _%>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="box">
+          <div class="nes-container with-title my-4 is-centered">
+            <p class="title">Create a post</p>
+            <form method="POST" action="/api/create/post">
+              <div class="field">
+                <label class="label is-pulled-left">Name</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Name" name="name" />
+                </div>
+              </div>
+              <div class="field">
+                <label class="label is-pulled-left">Body</label>
+                <div class="control">
+                  <textarea class="textarea" placeholder="Body" name="body"></textarea>
+                </div>
+              </div>
+              <input class="is-hidden" type="hidden" name="_csrf" value="<%= _csrf %>" />
+              <div class="field">
+                <div class="control">
+                  <button class="button is-link" type="submit">Create</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="box">
+          <div class="nes-container with-title my-4 is-centered">
+            <p class="title">Add to todo list</p>
+            <form method="POST" action="/api/create/todo">
+              <div class="field">
+                <label class="label is-pulled-left">Text</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="Text" name="text" />
+                </div>
+              </div>
+              <input class="is-hidden" type="hidden" name="_csrf" value="<%= _csrf %>" />
+              <div class="field">
+                <div class="control">
+                  <button class="button is-link" type="submit">Create</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <%_ } else { _%>
+        <div class="box">
+          <div class="nes-container with-title is-centered my-4">
+            <p class="title">Welcome</p>
+            <p>Login or create an account to continue</p>
+            <a href="/login" class="button is-primary">Login</a>
+            <a href="/register" class="button is-danger">Register</a>
+          </div>
+        </div>
+        <%_ } _%>
+      </div>
+    </div>
+    <script>
+      window.onload = function() {
+        const msg = new URLSearchParams(window.location.search).get('msg');
+        if (!msg) {
+          return;
+        }
+
+        alert(msg);
+        history.replaceState(null, document.title, location.pathname);
+      }
+    </script>
+  </body>
+</html>

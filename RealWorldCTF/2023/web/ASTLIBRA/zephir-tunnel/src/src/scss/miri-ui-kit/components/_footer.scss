@@ -1,0 +1,46 @@
+footer {
+    .footer-content {
+        padding-bottom: 120px;
+    }
+    font-weight: $font-weight-light;
+
+    .navbar {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+.footer-social-links {
+    color: #777373;
+    a {
+        color: #777373;
+        margin-right: 10px;
+        font-size: 20px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:hover {
+            color: $black;
+        }
+
+        &.icon-fb:hover {
+            color: $primary;
+        }
+        &.icon-twitter:hover {
+            color: $info;
+        }
+        &.icon-insta:hover {
+            color: $danger;
+        }
+        &.icon-behance:hover {
+            color: $primary;
+        }
+        &.icon-dribbble:hover {
+            color: $danger;
+        }
+        &.icon-github:hover {
+            color: $black;
+        }
+    }
+}

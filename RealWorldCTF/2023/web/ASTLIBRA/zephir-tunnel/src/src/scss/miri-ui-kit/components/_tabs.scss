@@ -1,0 +1,122 @@
+.nav-tabs{
+    .nav-item.show .nav-link, .nav-link.active {
+        background-color: transparent;
+        border: none;
+        position: relative;
+        color: #000000;
+
+        &::after {
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-color: $nav-tabs-border-color;
+            border-width: 1px 1px 0 0;
+            border-style: solid;
+            background-color: $white;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translate(-5px, 5px)rotate(-45deg);
+        }
+    }
+    .nav-link, .nav-link:hover {
+        border: none;
+        color: #000000;
+    }
+
+    .nav-item{
+        margin-bottom: 0;
+    }
+
+    .nav-link {
+        font-size: 13px;
+        font-weight: $font-weight-medium;
+        padding: 18px 15px;
+
+        @media screen and (max-width: 576px) {
+            padding: 18px 6px
+        }
+    }
+}
+
+.tab-content {
+    padding-top: 1rem;
+}
+
+.nav-pills {
+    &.nav-pills-icon-rounded {
+        .nav-link {
+            min-width: 64px;
+            height: 62px;
+            font-size: 20px;
+            line-height: 0.6;
+            color: #040404;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: $nav-pill-bg;
+            margin-right: 21px;
+
+            @media screen and (max-width: 576px) {
+                font-size: 12px;
+                height: 42px;
+                min-width: 44px;
+                margin-right: 5px;
+            }
+        }
+
+        .show .nav-link, .nav-link.active {
+            color: $nav-pills-link-active-color;
+            background-color: $nav-pills-link-active-bg;
+        }
+    }
+
+    &.nav-pills-icon-text {
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px 18px 20px 18px;
+            font-size: 13px;
+            color: #000000; 
+            margin-right: 14px;
+            i {
+                font-size: 20px;
+                line-height: 0.6;
+                margin-bottom: 7px;
+            }
+            @media screen and (max-width: 576px) {
+                margin-right: 5px;
+                padding: 10px 9px 6px 9px;
+            }
+        }
+        .show .nav-link, .nav-link.active {
+            color: $nav-pills-link-active-color;
+            background-color: $nav-pills-link-active-bg;
+        }
+    }
+}
+
+.tab-content-vertical {
+    padding-top: 0;
+}
+
+.card-tab{
+    .card-header {
+        background-color: theme-color(primary);
+        .card-header-pills {
+            margin: 0;
+        }
+        .nav-link {
+            color: $nav-pills-link-active-color;
+        }
+        .show .nav-link, .nav-link.active {
+            color: theme-color(primary);
+            background-color: $white;
+            border-radius: 50rem;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+.miri-ui-kit-header{
+    display: flex;
+    flex-direction: column;
+    background-image: url(../images/header-bg-1.jpg);
+    height: 576px;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .miri-ui-kit-header-content {
+        margin-top: auto;
+        margin-bottom: auto;
+        transform: translateY(-30px);
+    }
+
+    &.header-navbar-only {
+        height: auto;
+    }
+
+    &.header-no-bg-img {
+        background-image: none;
+    }
+
+    &.header-bg-2 {
+        background-image: url(../images/header-bg-2.jpg);
+    }
+
+}

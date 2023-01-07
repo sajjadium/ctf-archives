@@ -1391,7 +1391,15 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1167/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="RealWorldCTF">Real World</a></td>
+            <td rowspan=4><a href="RealWorldCTF">Real World</a></td>
+            <td><a href="RealWorldCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1797/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="RealWorldCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1507/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="RealWorldCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1198/tasks/">CTFtime</a></td>
         </tr>

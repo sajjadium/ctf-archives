@@ -1,0 +1,18 @@
+version: '2'
+services:
+  zephir_tunnel:
+    build: ./zephir-tunnel
+    restart: always
+    links:
+      - db
+    ports:
+      - "0.0.0.0:8093:80"
+    depends_on:
+      - db
+  db:
+    build: ./db
+    restart: always
+    
+
+
+

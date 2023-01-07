@@ -1,0 +1,183 @@
+.input-group-text {
+    background-color: transparent;
+    border: none;
+    padding: 0 $input-padding-x;
+    font-size: 14px;
+}
+.form-control:focus {
+    box-shadow: none;
+    border-color: $input-border-color;
+}
+.input-group {
+    border: 1px solid $input-border-color;
+    .input-group-prepend {
+        .input-group-text{
+            padding-left: 19.5px;
+            padding-right: 6px;
+        }
+    }
+    .input-group-append {
+        .input-group-text{
+            padding-right: 19.5px;
+            padding-left: 6px;
+        }
+    }
+    .form-control {
+        border: none;
+        background-color: transparent;
+
+        &:not(:first-child) {
+            padding-left: 0;
+        }
+
+        &:not(:last-child) {
+            padding-right: 0;
+        }
+    }
+}
+
+.form-control-pill, .input-group-pill {
+    border-radius: 50rem;
+}
+
+.input-group-pill{
+    .form-control {
+        &:first-child {
+            border-top-left-radius: 50rem;
+            border-bottom-left-radius: 50rem;
+        }
+        &:last-child {
+            border-top-right-radius: 50rem;
+            border-bottom-right-radius: 50rem;
+        }
+    }
+}
+
+.was-validated .form-control:valid, .form-control.is-valid {
+    color: theme-color(success);
+    border-color: $input-border-color;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' style='width:24px;height:24px' viewBox='0 0 24 24'%3E%3Cpath fill='%2300c9a6' d='M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z' /%3E%3C/svg%3E");
+}
+
+.was-validated .form-control:invalid, .form-control.is-invalid {
+    color: theme-color(danger);
+    border-color: $input-border-color;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' style='width:24px;height:24px' viewBox='0 0 24 24'%3E%3Cpath fill='%23f12459' d='M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z' /%3E%3C/svg%3E");
+}
+
+.was-validated .form-control:valid:focus, .form-control.is-valid:focus, .was-validated .form-control:invalid:focus, .form-control.is-invalid:focus  {
+    border-color: $input-border-color;
+    box-shadow: none;
+}
+.form-control {
+    &.input-rounded {
+        border-radius: 50rem;
+    }
+}
+
+.form-check {
+    padding-left: 30px;
+    .form-check-input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+
+        &[type=checkbox] {
+            ~ .form-check-label::before {
+                border-radius: $input-border-radius;
+            }
+            &:checked  ~ .form-check-label::before {
+                content: "\F12C";
+            }
+        }
+
+        &[type=radio] {
+            ~ .form-check-label::before {
+                border-radius: 50%;
+            }
+
+            &:checked ~ .form-check-label::before {
+                content: "\F12F";
+            }
+        }
+
+        &:disabled ~ .form-check-label::before {
+            opacity: 0.5;
+        }
+
+        &:valid ~ .form-check-label::before{
+            .was-validated & {
+                background-color: theme-color(success);
+                border-color: theme-color(success);
+                color: $white;
+            }
+        }
+
+        &:invalid ~ .form-check-label::before{
+            .was-validated & {
+                background-color: theme-color(danger);
+                border-color: theme-color(danger);
+                color: $white;
+            }
+        }
+
+        &.is-valid ~ .form-check-label::before {
+            background-color: theme-color(success);
+            border-color: theme-color(success);
+            color: $white;
+        }
+        &.is-invalid ~ .form-check-label::before {
+            background-color: theme-color(danger);
+            border-color: theme-color(danger);
+            color: $white;
+        }
+    }
+    .form-check-label {
+        display: inline-block;
+        position: relative;
+        font-size: 12px;
+        line-height: 30px;
+
+        &::before {
+            content:"";
+            display: inline-block;
+            width: 26px;
+            height: 26px;
+            border: 1px solid $input-border-color;
+            margin-right: 11px;;
+            position: absolute;
+            left: -30px;
+            top: 2px;
+            font-family: "Material Design Icons";
+            color:  #000000;
+            text-align: center;
+            line-height: 26px;
+        }
+    }
+}
+
+
+
+.custom-switch {
+    .custom-control-label {
+        &::after {
+            transform: translateX(0.75rem);
+            background-color: theme-color(primary);
+        }
+    }
+
+    .custom-control-input:checked {
+        ~ .custom-control-label {
+            &::after {
+                transform: translateX(0);
+            }
+        }
+    }
+}
+
+.contact-form {
+    input{
+        height: 50px;
+        border-radius: 50rem;
+    }
+}

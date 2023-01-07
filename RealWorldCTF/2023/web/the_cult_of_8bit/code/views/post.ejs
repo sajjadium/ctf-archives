@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/assets/img/48x48M.png" />
+    <style>
+      body {
+        background-image: url('/assets/img/9bc27292880429.5e569ff84e4d0.gif');
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
+    <title>Post</title>
+  </head>
+  <body>
+    <div class="mb-4">
+      <nav class="navbar" role="navigation" aria-label="main navigation" style="background-color:#2e0428;">
+        <div class="navbar-menu is-active" id="nav-menu" style="background-color:rgba(68, 4, 68, 0.315);">
+          <div class="navbar-start">
+            <a class="navbar-item" style="background-color:rgba(224, 54, 224, 0.315);" href="/">
+              <span class="icon is-medium">
+                <img src="/assets/img/48x48Sorriso.png" />
+              </span>
+              <span style="color:white;">Home</span>
+            </a>
+            <a class="navbar-item" style="background-color:rgba(68, 4, 68, 0.315);" href="/report">
+              <span class="icon is-medium">
+                <img src="/assets/img/48x48M.png" />
+              </span>
+              <span style="color:white;">Report URL</span>
+            </a>
+          </div>
+          <%_ if (user) { _%>
+          <div class="navbar-end">
+            <a class="navbar-item" style="background-color:rgba(68, 4, 68, 0.315);" href="/api/logout?_csrf=<%= _csrf %>">
+              <span class="icon is-medium">
+                <img src="/assets/img/64x64blind.png" />
+              </span>
+              <span style="color:white;">Log out</span>
+            </a>
+          </div>
+          <%_ } _%>
+        </div>
+      </nav>
+    </div>
+
+    <div class="container has-text-centered">
+      <div class="column is-8 is-offset-2">
+        <div class="box">
+          <div class="nes-container with-title my-4 is-centered">
+            <p class="title" id="post-name"></p>
+            <div id="post-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      <%_ if (locals.POST_SERVER) { /* posts are stored on a different page */ _%>
+      const POST_SERVER = "<%= POST_SERVER %>";
+      <%_ } else { /* post server is on the same origin */ _%>
+      const POST_SERVER = "";
+      <%_ } _%>
+
+      const $ = document.querySelector.bind(document); // imagine using jQuery...
+
+      function load_post(post) {
+        if (!post.success) {
+          $("#post-name").innerText = "Error";
+          $("#post-body").innerText = post.error;
+          return;
+        }
+
+        $("#post-name").innerText = post.name;
+        $("#post-body").innerText = post.body;
+      }
+
+      window.onload = function() {
+        const id = new URLSearchParams(window.location.search).get('id');
+        if (!id) {
+          return;
+        }
+
+        // Load post from POST_SERVER
+        // Since POST_SERVER might be a different origin, this also supports loading data through JSONP
+        const request = new XMLHttpRequest();
+        try {
+          request.open('GET', POST_SERVER + `/api/post/` + encodeURIComponent(id), false);
+          request.send(null);
+        }
+        catch (err) { // POST_SERVER is on another origin, so let's use JSONP
+          let script = document.createElement("script");
+          script.src = `${POST_SERVER}/api/post/${id}?callback=load_post`;
+          document.head.appendChild(script);
+          return;
+        }
+
+        load_post(JSON.parse(request.responseText));
+      }
+    </script>
+  </body>
+</html>

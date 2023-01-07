@@ -1,0 +1,15 @@
+{
+  "name": "chatuwu",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "cr1337(@CurseRed)",
+  "dependencies": {
+    "express": "^4.18.2",
+    "isomorphic-dompurify": "^0.24.0",
+    "socket.io": "^4.5.4"
+  }
+}

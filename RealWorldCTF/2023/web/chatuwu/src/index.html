@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ChatUWU</title>
+    <style>
+        body {
+            margin: 0;
+            padding-bottom: 3rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        #form {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 0.25rem;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            height: 3rem;
+            box-sizing: border-box;
+            backdrop-filter: blur(10px);
+        }
+
+        #input {
+            border: none;
+            padding: 0 1rem;
+            flex-grow: 1;
+            border-radius: 2rem;
+            margin: 0.25rem;
+        }
+
+        #input:focus {
+            outline: none;
+        }
+
+        #form > button {
+            background: #114514;
+            border: none;
+            padding: 0 1rem;
+            margin: 0.25rem;
+            border-radius: 3px;
+            outline: none;
+            color: #fff;
+        }
+
+        #messages {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #messages > li {
+            padding: 0.5rem 1rem;
+        }
+
+        #messages > li:nth-child(odd) {
+            background: #efefef;
+        }
+    </style>
+</head>
+<body>
+<ul id="messages"></ul>
+<form id="form" action="">
+    <input id="input" autocomplete="off" maxlength="140"/>
+    <button>Send</button>
+</form>
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    function reset() {
+        location.href = `?nickname=guest${String(Math.random()).substr(-4)}&room=textContent`;
+    }
+
+    let query = new URLSearchParams(location.search),
+        nickname = query.get('nickname'),
+        room = query.get('room');
+    if (!nickname || !room) {
+        reset();
+    }
+    for (let k of query.keys()) {
+        if (!['nickname', 'room'].includes(k)) {
+            reset();
+        }
+    }
+    document.title += ' - ' + room;
+    let socket = io(`/${location.search}`),
+        messages = document.getElementById('messages'),
+        form = document.getElementById('form'),
+        input = document.getElementById('input');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (input.value) {
+            socket.emit('msg', {from: nickname, text: input.value});
+            input.value = '';
+        }
+    });
+
+    socket.on('msg', function (msg) {
+        let item = document.createElement('li'),
+            msgtext = `[${new Date().toLocaleTimeString()}] ${msg.from}: ${msg.text}`;
+        room === 'DOMPurify' && msg.isHtml ? item.innerHTML = msgtext : item.textContent = msgtext;
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    socket.on('error', msg => {
+        alert(msg);
+        reset();
+    });
+</script>
+</body>
+</html>
