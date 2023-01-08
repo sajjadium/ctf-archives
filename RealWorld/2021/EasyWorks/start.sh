@@ -1,0 +1,1 @@
+qemu-system-i386 -m 128 -net nic -net user,hostfwd=udp::2002-:2002 -no-reboot -nographic -snapshot -hda f.img -hdb flag.img

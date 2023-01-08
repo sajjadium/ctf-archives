@@ -1,0 +1,38 @@
+.pagination {
+    border-radius: 0;
+    border: 0;
+
+    .page-item {
+        .page-link {
+            border-radius: $btn-border-radius;
+            border-color: theme-color(primary);
+            border-width: 2px;
+            margin-right: 18px;
+            font-size: 12px;
+            padding: 8px 9px;
+            height: 34px;
+            min-width: 34px;
+            text-align: center;
+            line-height: 14px;
+
+            &:hover {
+                background-color: theme-color(primary);
+                color: $white;
+            }
+
+            @media screen and (max-width: 576px) {
+                height: 28px;
+                min-width: 28px;
+                margin-right: 4px;
+                padding: 5px 7px;
+            }
+        }
+    }
+    &.pagination-pill {
+        .page-item {
+            .page-link {
+                border-radius: 34px;
+            }
+        }
+    }
+}

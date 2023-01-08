@@ -1,9 +1,0 @@
-version: "3.7"
-services:
-  web:
-    build: .
-    environment:
-      HOSTNAME: 0.0.0.0
-      PORT: 58000
-    ports:
-      - 58000:58000

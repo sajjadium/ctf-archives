@@ -1,0 +1,22 @@
+.dropdown-toggle::after {
+    content: "\F140";
+    font-family: "Material Design Icons";
+    border: none;
+    vertical-align: middle;
+}
+.dropdown-menu {
+    border-radius: 4px;
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.125);
+    padding-bottom: 0;
+
+    .dropdown-item {
+        padding: 8px 24px;
+        display: flex;
+        align-items: center;
+
+        .dropdown-item-icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+    }
+}

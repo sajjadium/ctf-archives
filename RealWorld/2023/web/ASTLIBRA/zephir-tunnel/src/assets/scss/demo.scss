@@ -1,0 +1,162 @@
+/*!
+    Miri UI Kit Free V1.0.0
+    Developed by BootstrapDash(https://www.bootstrapdash.com/)
+*/
+
+@import "../../../src/scss/miri-ui-kit/variables";
+
+body {
+    font-size: 13px;
+}
+
+.bg-gradient-black {
+    background-image: linear-gradient($light,$dark )
+}
+.fixed-on-scroll.fixed-on-top .nav-link{
+    &.icon-fb:hover {
+        color: $primary;
+    }
+    &.icon-twitter:hover {
+        color: $info;
+    }
+    &.icon-insta:hover {
+        color: $danger;
+    }
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    &.icon-fb:hover {
+        color: $primary;
+    }
+    &.icon-twitter:hover {
+        color: $info;
+    }
+    &.icon-insta:hover {
+        color: $danger;
+    }
+}
+
+.icon-fb:hover {
+    color: $primary;
+}
+.icon-twitter:hover {
+    color: $info;
+}
+.icon-insta:hover {
+    color: $danger;
+}
+.icon-gmail:hover {
+    color: $danger;
+}
+
+.content-wrapper {
+    padding-top: 73px;
+    padding-bottom: 76px;
+}
+
+.card-demo-wrapper {
+    padding: 30px 25px;
+
+    .navbar {
+        z-index: 0;
+    }
+}
+
+.demo-color-box {
+    display: inline-block;
+    width: 130px;
+    height: 96px;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.miri-ui-kit-demo{
+    .btn, .badge {
+        margin-right: 5px;
+        margin-bottom: 8px;
+    }
+    .progress {
+        margin-top: 40px;
+    }
+}
+
+.card-title {
+    margin-bottom: 26px;
+}
+
+.pb-30 {
+    padding-bottom: 30px;
+}
+
+.example-section {
+    h2 {
+        padding-top: 76px;
+        padding-bottom: 69px;;
+    }
+
+    figcaption {
+        padding-top: 33px;
+        color: $white;
+    }
+
+    .img-thumbnail {
+        border-color: $white;
+    }
+}
+
+.miri-ui-kit-section {
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+.feature-box {
+  @media screen and (min-width: 992px) {
+      max-width: 280px;
+  }  
+}
+.how-we-work-section {
+    .btn-rounded {
+        font-size: 20px;
+        padding: 6px 9px;
+    }
+}
+.btn-label {
+    font-size: 12px;
+}
+
+// Profile page
+
+.experience-section {
+    padding-top: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+.preview-link {
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    &::before {
+        content: "\F349";
+        font-family: "Material design icons";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        opacity: 0;
+        background-color: rgba($black, 0.6);
+        transition: opacity 0.4s ease-in-out;
+        font-size: 2.5rem;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &:hover {
+        &::before {
+            opacity: 1;
+        }
+    }
+}

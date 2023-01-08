@@ -1,0 +1,87 @@
+diff --git a/libclamunrar/unrar.c b/libclamunrar/unrar.c
+index ee850c2c6..45fcf1b2d 100644
+--- a/libclamunrar/unrar.c
++++ b/libclamunrar/unrar.c
+@@ -1088,9 +1088,9 @@ static int rar_unpack29(int fd, int solid, unpack_data_t *unpack_data)
+ 	
+ 		}
+ 	}
+-	if (retval) {
++	/* if (retval) { */
+ 		unp_write_buf(unpack_data);
+-	}
++	/* } */
+ 	return retval;
+ }
+ 
+diff --git a/libclamunrar/unrarvm.c b/libclamunrar/unrarvm.c
+index 813ec0867..93722be03 100644
+--- a/libclamunrar/unrarvm.c
++++ b/libclamunrar/unrarvm.c
+@@ -311,11 +311,13 @@ void rarvm_set_memory(rarvm_data_t *rarvm_data, unsigned int pos, uint8_t *data,
+ 	}
+ }
+ 
+-static unsigned int *rarvm_get_operand(rarvm_data_t *rarvm_data,
++/* static unsigned int *rarvm_get_operand(rarvm_data_t *rarvm_data, */
++static size_t *rarvm_get_operand(rarvm_data_t *rarvm_data,
+ 				struct rarvm_prepared_operand *cmd_op)
+ {
+ 	if (cmd_op->type == VM_OPREGMEM) {
+-		return ((unsigned int *)&rarvm_data->mem[(*cmd_op->addr+cmd_op->base) & RARVM_MEMMASK]);
++		/* return ((unsigned int *)&rarvm_data->mem[(*cmd_op->addr+cmd_op->base) & RARVM_MEMMASK]); */
++		return ((size_t *)&rarvm_data->mem[(*cmd_op->addr+cmd_op->base) /*& RARVM_MEMMASK*/]);
+ 	} else {
+ 		return cmd_op->addr;
+ 	}
+@@ -589,7 +591,8 @@ static int rarvm_execute_code(rarvm_data_t *rarvm_data,
+ {
+ 	int max_ops=25000000, i, SP;
+ 	struct rarvm_prepared_command *cmd;
+-	unsigned int value1, value2, result, divider, FC, *op1, *op2;
++	unsigned int value1, value2, result, divider, FC/*, *op1, *op2*/;
++	size_t *op1, *op2;
+ 	const int reg_count=sizeof(rarvm_data->R)/sizeof(rarvm_data->R[0]);
+ 	
+ 	rar_dbgmsg("in rarvm_execute_code\n");
+diff --git a/libclamunrar/unrarvm.h b/libclamunrar/unrarvm.h
+index 5babd6840..91caf44e1 100644
+--- a/libclamunrar/unrarvm.h
++++ b/libclamunrar/unrarvm.h
+@@ -56,10 +56,13 @@ enum rarvm_op_type {
+ };
+ 
+ struct rarvm_prepared_operand {
+-	unsigned int *addr;
++	// unsigned int *addr;
++	size_t *addr;
+ 	enum rarvm_op_type type;
+-	unsigned int data;
+-	unsigned int base;
++	// unsigned int data;
++	size_t data;
++	// unsigned int base;
++	size_t base;
+ };
+ 
+ struct rarvm_prepared_command {
+@@ -76,7 +79,8 @@ struct rarvm_prepared_program {
+ 	uint8_t *filtered_data;
+ 	long global_size, static_size;
+ 	int cmd_count;
+-	unsigned int init_r[7];
++	// unsigned int init_r[7];
++	size_t init_r[7];
+ 	unsigned int filtered_data_size;
+ };
+ 
+@@ -89,7 +93,8 @@ typedef struct rarvm_input_tag {
+ 
+ typedef struct rarvm_data_tag {
+ 	uint8_t *mem;
+-	unsigned int R[8];
++	// unsigned int R[8];
++	size_t R[8];
+ 	unsigned int Flags;
+ } rarvm_data_t;
+ 

@@ -1,0 +1,46 @@
+.btn {
+    font-weight: $font-weight-normal;
+    &.btn-warning{
+        color: $white;
+    }
+
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.btn-pill {
+    border-radius: 50rem;
+}
+
+.btn-rounded {
+    border-radius: 50%;
+    padding: 10px 12px;
+    font-size: 12px;
+}
+
+.btn-squared {
+    border-radius: 0;
+}
+
+.social-login-btn {
+    color: $white;
+    font-size: 24px;
+    line-height: 1;
+    &:hover {
+        color: $white;  
+    }
+    margin: 0 4px;
+}
+
+@each $color,$value in $theme-colors {
+    .btn-solid-outline-#{$color} {
+        @include button-solid-outline-variant($value);
+    }
+}
+
+@each $color,$value in $theme-colors {
+    .btn-soft-#{$color} {
+        @include button-soft-variant($value);
+    }
+}

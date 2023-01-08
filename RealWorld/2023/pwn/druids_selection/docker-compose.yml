@@ -1,0 +1,12 @@
+version: '2'
+services:
+  web:
+    build: .
+    image: rwctf:druids-selection
+    tty: true
+    ports:
+      - "8888:8888"
+    deploy:
+      resources:
+        limits:
+          memory: 4G

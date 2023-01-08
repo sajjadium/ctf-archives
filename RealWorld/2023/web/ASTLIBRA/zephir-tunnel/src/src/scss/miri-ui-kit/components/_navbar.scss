@@ -1,0 +1,132 @@
+.navbar {
+    z-index: 9999;
+    @media screen and (min-width: 992px) {
+        padding: 20px 28px;
+    }
+    .nav-link {
+        font-size: 13px;
+        line-height: 1.23;
+        display: inline-flex;
+        align-items: center;
+
+        &.nav-icon{
+            padding: 0 5px;
+        }
+        i {
+            font-size: 22px;
+            height: 24px;
+            width: 22px;
+        }
+    }
+
+    .dropdown-menu {
+        font-size: 12px;
+    }
+}
+
+.navbar-nav {
+    align-items: center;
+    z-index: 9999;
+}
+
+.navbar-brand {
+    padding: 0;
+    line-height: 1;
+    
+    img {
+        height: 25px;
+    }
+}
+
+.navbar-toggler {
+    border: 0;
+    padding: 12px 0;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.footer-navbar {
+    padding-top: 34px;
+    padding-bottom: 34px;
+}
+
+.navbar-expand {
+    @each $breakpoint in map-keys($grid-breakpoints) {
+      $next: breakpoint-next($breakpoint, $grid-breakpoints);
+      $infix: breakpoint-infix($next, $grid-breakpoints);
+  
+      &#{$infix} {
+        @include media-breakpoint-down($breakpoint){
+            .form-inline, .nav-item, button, .btn {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+        }
+        @include media-breakpoint-up($next) {
+            .dropdown-toggle {
+                padding-top: 17.5px;
+                padding-bottom: 17.5px;
+                
+                &::after {
+                    transition: transform 0.2s ease-in-out;
+                }
+            }
+            .dropdown-menu {
+                animation-name: slideIn;
+                animation-duration: 0.3s;
+                animation-fill-mode: both;
+                margin-top: 0;
+            }
+
+            .dropdown:hover {
+                .dropdown-toggle {
+                    &::after {
+                        transform: rotate(-180deg);
+                    }
+                }
+                .dropdown-menu {
+                    display: block;
+                }
+            }
+        }
+      }
+    }
+}
+
+.fixed-on-scroll {
+    transition: background-color 0.3s ease-in-out;
+    &.fixed-on-top {
+        @extend .fixed-top;
+        @extend .bg-white;
+        box-shadow: 0 1px 10px rgba(151, 164, 175, 0.4);
+        
+        .nav-link {
+            color: $black;
+
+            &:hover, &:focus {
+                color:$black;
+            }
+        }
+
+        .navbar-toggler {
+            color: $black;
+        }
+    }
+}
+
+@keyframes slideIn {
+    0% {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+    100% {
+      transform:translateY(0rem);
+      opacity: 1;
+    }
+    0% {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+  }

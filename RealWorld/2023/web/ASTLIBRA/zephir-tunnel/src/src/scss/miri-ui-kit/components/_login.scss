@@ -1,0 +1,52 @@
+.login-page {
+    background-color: #00031d;
+    background-image: url('../images/login-bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+.login-card {
+    background-color: theme-color(dark);
+    margin: auto;
+    @media screen and (min-width: 768px) {
+        width: 336px
+    }
+    .card-body{
+        padding: 40px;
+    }
+    .login-brand {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 28px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .form-control {
+        color: $text-muted;
+        font-weight: $font-weight-normal;
+
+        &::-webkit-input-placeholder {
+            /* Edge */
+            color: $text-muted;
+            font-weight: $font-weight-normal;
+        }
+
+        &:-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: $text-muted;
+            font-weight: $font-weight-normal;
+        }
+
+        &::placeholder {
+            color: $text-muted;
+            font-weight: $font-weight-normal;
+        }
+    }
+}

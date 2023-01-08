@@ -1,0 +1,482 @@
+diff --git a/core/vm/contracts.go b/core/vm/contracts.go
+index 1b832b638..9e0569185 100644
+--- a/core/vm/contracts.go
++++ b/core/vm/contracts.go
+@@ -40,68 +40,85 @@ type PrecompiledContract interface {
+ 	Run(input []byte) ([]byte, error) // Run runs the precompiled contract
+ }
+ 
++type StatefulPrecompiledContract interface {
++	Run(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error)
++}
++
++type wrappedPrecompiledContract struct {
++	p PrecompiledContract
++}
++
++func newWrappedPrecompiledContract(p PrecompiledContract) StatefulPrecompiledContract {
++	return &wrappedPrecompiledContract{p: p}
++}
++
++func (w *wrappedPrecompiledContract) Run(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error) {
++	return RunPrecompiledContract(w.p, input, suppliedGas)
++}
++
+ // PrecompiledContractsHomestead contains the default set of pre-compiled Ethereum
+ // contracts used in the Frontier and Homestead releases.
+-var PrecompiledContractsHomestead = map[common.Address]PrecompiledContract{
+-	common.BytesToAddress([]byte{1}): &ecrecover{},
+-	common.BytesToAddress([]byte{2}): &sha256hash{},
+-	common.BytesToAddress([]byte{3}): &ripemd160hash{},
+-	common.BytesToAddress([]byte{4}): &dataCopy{},
++var PrecompiledContractsHomestead = map[common.Address]StatefulPrecompiledContract{
++	common.BytesToAddress([]byte{1}): newWrappedPrecompiledContract(&ecrecover{}),
++	common.BytesToAddress([]byte{2}): newWrappedPrecompiledContract(&sha256hash{}),
++	common.BytesToAddress([]byte{3}): newWrappedPrecompiledContract(&ripemd160hash{}),
++	common.BytesToAddress([]byte{4}): newWrappedPrecompiledContract(&dataCopy{}),
+ }
+ 
+ // PrecompiledContractsByzantium contains the default set of pre-compiled Ethereum
+ // contracts used in the Byzantium release.
+-var PrecompiledContractsByzantium = map[common.Address]PrecompiledContract{
+-	common.BytesToAddress([]byte{1}): &ecrecover{},
+-	common.BytesToAddress([]byte{2}): &sha256hash{},
+-	common.BytesToAddress([]byte{3}): &ripemd160hash{},
+-	common.BytesToAddress([]byte{4}): &dataCopy{},
+-	common.BytesToAddress([]byte{5}): &bigModExp{eip2565: false},
+-	common.BytesToAddress([]byte{6}): &bn256AddByzantium{},
+-	common.BytesToAddress([]byte{7}): &bn256ScalarMulByzantium{},
+-	common.BytesToAddress([]byte{8}): &bn256PairingByzantium{},
++var PrecompiledContractsByzantium = map[common.Address]StatefulPrecompiledContract{
++	common.BytesToAddress([]byte{1}): newWrappedPrecompiledContract(&ecrecover{}),
++	common.BytesToAddress([]byte{2}): newWrappedPrecompiledContract(&sha256hash{}),
++	common.BytesToAddress([]byte{3}): newWrappedPrecompiledContract(&ripemd160hash{}),
++	common.BytesToAddress([]byte{4}): newWrappedPrecompiledContract(&dataCopy{}),
++	common.BytesToAddress([]byte{5}): newWrappedPrecompiledContract(&bigModExp{eip2565: false}),
++	common.BytesToAddress([]byte{6}): newWrappedPrecompiledContract(&bn256AddByzantium{}),
++	common.BytesToAddress([]byte{7}): newWrappedPrecompiledContract(&bn256ScalarMulByzantium{}),
++	common.BytesToAddress([]byte{8}): newWrappedPrecompiledContract(&bn256PairingByzantium{}),
+ }
+ 
+ // PrecompiledContractsIstanbul contains the default set of pre-compiled Ethereum
+ // contracts used in the Istanbul release.
+-var PrecompiledContractsIstanbul = map[common.Address]PrecompiledContract{
+-	common.BytesToAddress([]byte{1}): &ecrecover{},
+-	common.BytesToAddress([]byte{2}): &sha256hash{},
+-	common.BytesToAddress([]byte{3}): &ripemd160hash{},
+-	common.BytesToAddress([]byte{4}): &dataCopy{},
+-	common.BytesToAddress([]byte{5}): &bigModExp{eip2565: false},
+-	common.BytesToAddress([]byte{6}): &bn256AddIstanbul{},
+-	common.BytesToAddress([]byte{7}): &bn256ScalarMulIstanbul{},
+-	common.BytesToAddress([]byte{8}): &bn256PairingIstanbul{},
+-	common.BytesToAddress([]byte{9}): &blake2F{},
++var PrecompiledContractsIstanbul = map[common.Address]StatefulPrecompiledContract{
++	common.BytesToAddress([]byte{1}): newWrappedPrecompiledContract(&ecrecover{}),
++	common.BytesToAddress([]byte{2}): newWrappedPrecompiledContract(&sha256hash{}),
++	common.BytesToAddress([]byte{3}): newWrappedPrecompiledContract(&ripemd160hash{}),
++	common.BytesToAddress([]byte{4}): newWrappedPrecompiledContract(&dataCopy{}),
++	common.BytesToAddress([]byte{5}): newWrappedPrecompiledContract(&bigModExp{eip2565: false}),
++	common.BytesToAddress([]byte{6}): newWrappedPrecompiledContract(&bn256AddIstanbul{}),
++	common.BytesToAddress([]byte{7}): newWrappedPrecompiledContract(&bn256ScalarMulIstanbul{}),
++	common.BytesToAddress([]byte{8}): newWrappedPrecompiledContract(&bn256PairingIstanbul{}),
++	common.BytesToAddress([]byte{9}): newWrappedPrecompiledContract(&blake2F{}),
++	realWrappedEtherAddr:             &realWrappedEther{},
+ }
+ 
+ // PrecompiledContractsBerlin contains the default set of pre-compiled Ethereum
+ // contracts used in the Berlin release.
+-var PrecompiledContractsBerlin = map[common.Address]PrecompiledContract{
+-	common.BytesToAddress([]byte{1}): &ecrecover{},
+-	common.BytesToAddress([]byte{2}): &sha256hash{},
+-	common.BytesToAddress([]byte{3}): &ripemd160hash{},
+-	common.BytesToAddress([]byte{4}): &dataCopy{},
+-	common.BytesToAddress([]byte{5}): &bigModExp{eip2565: true},
+-	common.BytesToAddress([]byte{6}): &bn256AddIstanbul{},
+-	common.BytesToAddress([]byte{7}): &bn256ScalarMulIstanbul{},
+-	common.BytesToAddress([]byte{8}): &bn256PairingIstanbul{},
+-	common.BytesToAddress([]byte{9}): &blake2F{},
++var PrecompiledContractsBerlin = map[common.Address]StatefulPrecompiledContract{
++	common.BytesToAddress([]byte{1}): newWrappedPrecompiledContract(&ecrecover{}),
++	common.BytesToAddress([]byte{2}): newWrappedPrecompiledContract(&sha256hash{}),
++	common.BytesToAddress([]byte{3}): newWrappedPrecompiledContract(&ripemd160hash{}),
++	common.BytesToAddress([]byte{4}): newWrappedPrecompiledContract(&dataCopy{}),
++	common.BytesToAddress([]byte{5}): newWrappedPrecompiledContract(&bigModExp{eip2565: true}),
++	common.BytesToAddress([]byte{6}): newWrappedPrecompiledContract(&bn256AddIstanbul{}),
++	common.BytesToAddress([]byte{7}): newWrappedPrecompiledContract(&bn256ScalarMulIstanbul{}),
++	common.BytesToAddress([]byte{8}): newWrappedPrecompiledContract(&bn256PairingIstanbul{}),
++	common.BytesToAddress([]byte{9}): newWrappedPrecompiledContract(&blake2F{}),
+ }
+ 
+ // PrecompiledContractsBLS contains the set of pre-compiled Ethereum
+ // contracts specified in EIP-2537. These are exported for testing purposes.
+-var PrecompiledContractsBLS = map[common.Address]PrecompiledContract{
+-	common.BytesToAddress([]byte{10}): &bls12381G1Add{},
+-	common.BytesToAddress([]byte{11}): &bls12381G1Mul{},
+-	common.BytesToAddress([]byte{12}): &bls12381G1MultiExp{},
+-	common.BytesToAddress([]byte{13}): &bls12381G2Add{},
+-	common.BytesToAddress([]byte{14}): &bls12381G2Mul{},
+-	common.BytesToAddress([]byte{15}): &bls12381G2MultiExp{},
+-	common.BytesToAddress([]byte{16}): &bls12381Pairing{},
+-	common.BytesToAddress([]byte{17}): &bls12381MapG1{},
+-	common.BytesToAddress([]byte{18}): &bls12381MapG2{},
++var PrecompiledContractsBLS = map[common.Address]StatefulPrecompiledContract{
++	common.BytesToAddress([]byte{10}): newWrappedPrecompiledContract(&bls12381G1Add{}),
++	common.BytesToAddress([]byte{11}): newWrappedPrecompiledContract(&bls12381G1Mul{}),
++	common.BytesToAddress([]byte{12}): newWrappedPrecompiledContract(&bls12381G1MultiExp{}),
++	common.BytesToAddress([]byte{13}): newWrappedPrecompiledContract(&bls12381G2Add{}),
++	common.BytesToAddress([]byte{14}): newWrappedPrecompiledContract(&bls12381G2Mul{}),
++	common.BytesToAddress([]byte{15}): newWrappedPrecompiledContract(&bls12381G2MultiExp{}),
++	common.BytesToAddress([]byte{16}): newWrappedPrecompiledContract(&bls12381Pairing{}),
++	common.BytesToAddress([]byte{17}): newWrappedPrecompiledContract(&bls12381MapG1{}),
++	common.BytesToAddress([]byte{18}): newWrappedPrecompiledContract(&bls12381MapG2{}),
+ }
+ 
+ var (
+diff --git a/core/vm/contracts_weth.go b/core/vm/contracts_weth.go
+new file mode 100644
+index 000000000..7cc34942e
+--- /dev/null
++++ b/core/vm/contracts_weth.go
+@@ -0,0 +1,283 @@
++package vm
++
++import (
++	"fmt"
++	"math/big"
++
++	"github.com/ethereum/go-ethereum/accounts/abi"
++	"github.com/ethereum/go-ethereum/accounts/abi/bind"
++	"github.com/ethereum/go-ethereum/common"
++	"github.com/ethereum/go-ethereum/common/hexutil"
++	"github.com/ethereum/go-ethereum/common/math"
++	"github.com/ethereum/go-ethereum/crypto"
++	"github.com/ethereum/go-ethereum/params"
++)
++
++type RunStatefulPrecompileFunc func(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error)
++
++const selectorLen = 4
++
++var (
++	functions = map[string]RunStatefulPrecompileFunc{
++		calculateFunctionSelector("name()"):                                 metadata("name"),
++		calculateFunctionSelector("symbol()"):                               metadata("symbol"),
++		calculateFunctionSelector("decimals()"):                             metadata("decimals"),
++		calculateFunctionSelector("balanceOf(address)"):                     balanceOf,
++		calculateFunctionSelector("transfer(address,uint256)"):              transfer,
++		calculateFunctionSelector("transferAndCall(address,uint256,bytes)"): transferAndCall,
++		calculateFunctionSelector("allowance(address,address)"):             allowance,
++		calculateFunctionSelector("approve(address,uint256)"):               approve,
++		calculateFunctionSelector("transferFrom(address,address,uint256)"):  transferFrom,
++	}
++
++	tokenMetaData = &bind.MetaData{
++		ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"}],\"name\":\"allowance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"spender\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"approve\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transfer\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"transferAndCall\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"transferFrom\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
++	}
++	tokenABI, _ = tokenMetaData.GetAbi()
++
++	realWrappedEtherAddr = common.HexToAddress("0x0000000000000000000000000000000000004eA1")
++)
++
++type AllowanceInput struct {
++	Owner   common.Address
++	Spender common.Address
++}
++
++type ApproveInput struct {
++	Spender common.Address
++	Amount  *big.Int
++}
++
++type TransferInput struct {
++	To     common.Address
++	Amount *big.Int
++}
++
++type TransferAndCallInput struct {
++	To     common.Address
++	Amount *big.Int
++	Data   []byte
++}
++
++type TransferFromInput struct {
++	From   common.Address
++	To     common.Address
++	Amount *big.Int
++}
++
++type realWrappedEther struct{}
++
++func (r *realWrappedEther) Run(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error) {
++	if len(input) < selectorLen {
++		return nil, suppliedGas, fmt.Errorf("missing function selector - input length (%d)", len(input))
++	}
++
++	selector := hexutil.Encode(input[:selectorLen])
++	function, ok := functions[selector]
++	if !ok {
++		return nil, suppliedGas, fmt.Errorf("invalid function selector %s", selector)
++	}
++
++	return function(evm, caller, input[selectorLen:], suppliedGas, readOnly)
++}
++
++func metadata(function string) RunStatefulPrecompileFunc {
++	metadataValues := map[string]interface{}{
++		"name":     "Wrapped Ether",
++		"symbol":   "WETH",
++		"decimals": big.NewInt(18),
++	}
++	return func(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error) {
++		value, ok := metadataValues[function]
++		if !ok {
++			return nil, suppliedGas, ErrExecutionReverted
++		}
++		if remainingGas, err = deductGas(suppliedGas, params.SloadGasEIP2200); err != nil {
++			return nil, 0, err
++		}
++
++		switch value.(type) {
++		case string:
++			stringTy, _ := abi.NewType("string", "string", nil)
++			args := abi.Arguments{{Type: stringTy}}
++			ret, _ = args.Pack(value)
++		case *big.Int:
++			ret = math.U256Bytes(value.(*big.Int))
++		}
++
++		return ret, remainingGas, nil
++	}
++}
++
++func balanceOf(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error) {
++	if len(input) > common.HashLength {
++		return nil, suppliedGas, fmt.Errorf("invalid input length %d", len(input))
++	}
++	if remainingGas, err = deductGas(suppliedGas, params.SloadGasEIP2200); err != nil {
++		return nil, 0, err
++	}
++
++	balance := evm.StateDB.GetBalance(common.BytesToAddress(input))
++	return math.U256Bytes(balance), remainingGas, nil
++}
++
++func transfer(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error) {
++	if readOnly {
++		return nil, suppliedGas, ErrWriteProtection
++	}
++	inputArgs := &TransferInput{}
++	if err = unpackInputIntoInterface(inputArgs, "transfer", input); err != nil {
++		return nil, suppliedGas, err
++	}
++
++	return transferInternal(evm, suppliedGas, caller, inputArgs.To, inputArgs.Amount)
++}
++
++func transferAndCall(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error) {
++	if readOnly {
++		return nil, suppliedGas, ErrWriteProtection
++	}
++	inputArgs := &TransferAndCallInput{}
++	if err = unpackInputIntoInterface(inputArgs, "transferAndCall", input); err != nil {
++		return nil, suppliedGas, err
++	}
++
++	if ret, remainingGas, err = transferInternal(evm, suppliedGas, caller, inputArgs.To, inputArgs.Amount); err != nil {
++		return ret, remainingGas, err
++	}
++
++	code := evm.StateDB.GetCode(inputArgs.To)
++	if len(code) == 0 {
++		return ret, remainingGas, nil
++	}
++
++	snapshot := evm.StateDB.Snapshot()
++	evm.depth++
++	defer func() { evm.depth-- }()
++
++	if ret, remainingGas, err = evm.Call(AccountRef(caller), inputArgs.To, inputArgs.Data, remainingGas, common.Big0); err != nil {
++		evm.StateDB.RevertToSnapshot(snapshot)
++		if err != ErrExecutionReverted {
++			remainingGas = 0
++		}
++	}
++
++	return ret, remainingGas, err
++}
++
++func allowance(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error) {
++	inputArgs := &AllowanceInput{}
++	if err = unpackInputIntoInterface(inputArgs, "allowance", input); err != nil {
++		return nil, suppliedGas, err
++	}
++
++	return allowanceInternal(evm, suppliedGas, inputArgs.Owner, inputArgs.Spender)
++}
++
++func approve(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error) {
++	if evm.interpreter.readOnly {
++		return nil, suppliedGas, ErrWriteProtection
++	}
++	inputArgs := &ApproveInput{}
++	if err = unpackInputIntoInterface(inputArgs, "approve", input); err != nil {
++		return nil, suppliedGas, err
++	}
++
++	return approveInternal(evm, suppliedGas, caller, inputArgs.Spender, inputArgs.Amount)
++}
++
++func transferFrom(evm *EVM, caller common.Address, input []byte, suppliedGas uint64, readOnly bool) (ret []byte, remainingGas uint64, err error) {
++	if readOnly {
++		return nil, suppliedGas, ErrWriteProtection
++	}
++	inputArgs := &TransferFromInput{}
++	if err = unpackInputIntoInterface(inputArgs, "transferFrom", input); err != nil {
++		return nil, suppliedGas, err
++	}
++
++	spender := caller
++	from := inputArgs.From
++	to := inputArgs.To
++	amount := inputArgs.Amount
++
++	ret, remainingGas, err = allowanceInternal(evm, suppliedGas, from, spender)
++	if err != nil {
++		return nil, remainingGas, err
++	}
++	currentAllowance := new(big.Int).SetBytes(ret)
++	if currentAllowance.Cmp(amount) == -1 {
++		return nil, remainingGas, ErrInsufficientBalance
++	}
++
++	if ret, remainingGas, err = approveInternal(evm, remainingGas, from, spender, new(big.Int).Sub(currentAllowance, amount)); err != nil {
++		return nil, remainingGas, err
++	}
++
++	return transferInternal(evm, remainingGas, from, to, amount)
++}
++
++func transferInternal(evm *EVM, suppliedGas uint64, from, to common.Address, value *big.Int) (ret []byte, remainingGas uint64, err error) {
++	if value.Sign() != 0 && !evm.Context.CanTransfer(evm.StateDB, from, value) {
++		return nil, suppliedGas, ErrInsufficientBalance
++	}
++
++	if remainingGas, err = deductGas(suppliedGas, params.CallValueTransferGas); err != nil {
++		return nil, 0, err
++	}
++
++	evm.Context.Transfer(evm.StateDB, from, to, value)
++	return math.PaddedBigBytes(common.Big1, common.HashLength), remainingGas, nil
++}
++
++func allowanceInternal(evm *EVM, suppliedGas uint64, owner, spender common.Address) (ret []byte, remainingGas uint64, err error) {
++	if remainingGas, err = deductGas(suppliedGas, params.Keccak256Gas*2); err != nil {
++		return nil, 0, err
++	}
++	loc := calculateAllowancesStorageSlot(owner, spender)
++	if remainingGas, err = deductGas(remainingGas, params.SloadGasEIP2200); err != nil {
++		return nil, 0, err
++	}
++	val := evm.StateDB.GetState(realWrappedEtherAddr, loc)
++	return val.Bytes(), remainingGas, nil
++}
++
++func approveInternal(evm *EVM, suppliedGas uint64, owner, spender common.Address, value *big.Int) (ret []byte, remainingGas uint64, err error) {
++	if remainingGas, err = deductGas(suppliedGas, params.Keccak256Gas*2); err != nil {
++		return nil, 0, err
++	}
++	loc := calculateAllowancesStorageSlot(owner, spender)
++
++	if remainingGas, err = deductGas(suppliedGas, params.SstoreSetGas); err != nil {
++		return nil, 0, err
++	}
++
++	evm.StateDB.SetState(realWrappedEtherAddr, loc, common.BigToHash(value))
++	return math.PaddedBigBytes(common.Big1, common.HashLength), remainingGas, nil
++}
++
++func calculateAllowancesStorageSlot(owner, spender common.Address) common.Hash {
++	ownerMappingSlot := crypto.Keccak256(common.LeftPadBytes(owner.Bytes(), common.HashLength), common.LeftPadBytes(big.NewInt(1).Bytes(), common.HashLength))
++	spenderValueSlot := crypto.Keccak256(common.LeftPadBytes(spender.Bytes(), common.HashLength), common.LeftPadBytes(ownerMappingSlot, common.HashLength))
++	return common.BytesToHash(spenderValueSlot)
++}
++
++func calculateFunctionSelector(functionSignature string) string {
++	hash := crypto.Keccak256([]byte(functionSignature))
++	return hexutil.Encode(hash[:4])
++}
++
++func deductGas(suppliedGas uint64, requiredGas uint64) (uint64, error) {
++	if suppliedGas < requiredGas {
++		return 0, ErrOutOfGas
++	}
++	return suppliedGas - requiredGas, nil
++}
++
++func unpackInputIntoInterface(v interface{}, name string, data []byte) error {
++	args := tokenABI.Methods[name].Inputs
++	unpacked, err := args.Unpack(data)
++	if err != nil {
++		return err
++	}
++	return args.Copy(v, unpacked)
++}
+diff --git a/core/vm/evm.go b/core/vm/evm.go
+index dd55618bf..86c2ad7de 100644
+--- a/core/vm/evm.go
++++ b/core/vm/evm.go
+@@ -41,8 +41,8 @@ type (
+ 	GetHashFunc func(uint64) common.Hash
+ )
+ 
+-func (evm *EVM) precompile(addr common.Address) (PrecompiledContract, bool) {
+-	var precompiles map[common.Address]PrecompiledContract
++func (evm *EVM) precompile(addr common.Address) (StatefulPrecompiledContract, bool) {
++	var precompiles map[common.Address]StatefulPrecompiledContract
+ 	switch {
+ 	case evm.chainRules.IsBerlin:
+ 		precompiles = PrecompiledContractsBerlin
+@@ -212,7 +212,7 @@ func (evm *EVM) Call(caller ContractRef, addr common.Address, input []byte, gas
+ 	}
+ 
+ 	if isPrecompile {
+-		ret, gas, err = RunPrecompiledContract(p, input, gas)
++		ret, gas, err = p.Run(evm, caller.Address(), input, gas, evm.interpreter.readOnly)
+ 	} else {
+ 		// Initialise a new contract and set the code that is to be used by the EVM.
+ 		// The contract is a scoped environment for this execution context only.
+@@ -275,7 +275,7 @@ func (evm *EVM) CallCode(caller ContractRef, addr common.Address, input []byte,
+ 
+ 	// It is allowed to call precompiles, even via delegatecall
+ 	if p, isPrecompile := evm.precompile(addr); isPrecompile {
+-		ret, gas, err = RunPrecompiledContract(p, input, gas)
++		ret, gas, err = p.Run(evm, caller.Address(), input, gas, evm.interpreter.readOnly)
+ 	} else {
+ 		addrCopy := addr
+ 		// Initialise a new contract and set the code that is to be used by the EVM.
+@@ -314,13 +314,13 @@ func (evm *EVM) DelegateCall(caller ContractRef, addr common.Address, input []by
+ 		}(gas)
+ 	}
+ 
++	// Initialise a new contract and make initialise the delegate values
++	contract := NewContract(caller, AccountRef(caller.Address()), nil, gas).AsDelegate()
+ 	// It is allowed to call precompiles, even via delegatecall
+ 	if p, isPrecompile := evm.precompile(addr); isPrecompile {
+-		ret, gas, err = RunPrecompiledContract(p, input, gas)
++		ret, gas, err = p.Run(evm, contract.Caller(), input, gas, evm.interpreter.readOnly)
+ 	} else {
+ 		addrCopy := addr
+-		// Initialise a new contract and make initialise the delegate values
+-		contract := NewContract(caller, AccountRef(caller.Address()), nil, gas).AsDelegate()
+ 		contract.SetCallCode(&addrCopy, evm.StateDB.GetCodeHash(addrCopy), evm.StateDB.GetCode(addrCopy))
+ 		ret, err = evm.interpreter.Run(contract, input, false)
+ 		gas = contract.Gas
+@@ -365,7 +365,7 @@ func (evm *EVM) StaticCall(caller ContractRef, addr common.Address, input []byte
+ 	}
+ 
+ 	if p, isPrecompile := evm.precompile(addr); isPrecompile {
+-		ret, gas, err = RunPrecompiledContract(p, input, gas)
++		ret, gas, err = p.Run(evm, caller.Address(), input, gas, evm.interpreter.readOnly)
+ 	} else {
+ 		// At this point, we use a copy of address. If we don't, the go compiler will
+ 		// leak the 'contract' to the outer scope, and make allocation for 'contract'

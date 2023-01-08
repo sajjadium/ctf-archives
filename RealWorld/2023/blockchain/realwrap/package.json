@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "prettier:check": "prettier --check 'contracts/**/*.sol'",
+    "prettier:write": "prettier --write 'contracts/**/*.sol' && prettier --write 'scripts/**/*.js'"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.12.5",
+    "prettier-plugin-solidity": "^1.0.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.8.0"
+  }
+}

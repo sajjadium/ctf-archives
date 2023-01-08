@@ -1,0 +1,130 @@
+/*!
+    Miri UI Kit Free V1.0.0
+    Developed by BootstrapDash(https://www.bootstrapdash.com/)
+*/
+body {
+  font-size: 13px; }
+
+.bg-gradient-black {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e4e5e7), to(#252631));
+  background-image: linear-gradient(#e4e5e7, #252631); }
+
+.fixed-on-scroll.fixed-on-top .nav-link.icon-fb:hover {
+  color: #444bf8; }
+
+.fixed-on-scroll.fixed-on-top .nav-link.icon-twitter:hover {
+  color: #2dd2f6; }
+
+.fixed-on-scroll.fixed-on-top .nav-link.icon-insta:hover {
+  color: #f12459; }
+
+.navbar-dark .navbar-nav .nav-link.icon-fb:hover {
+  color: #444bf8; }
+
+.navbar-dark .navbar-nav .nav-link.icon-twitter:hover {
+  color: #2dd2f6; }
+
+.navbar-dark .navbar-nav .nav-link.icon-insta:hover {
+  color: #f12459; }
+
+.icon-fb:hover {
+  color: #444bf8; }
+
+.icon-twitter:hover {
+  color: #2dd2f6; }
+
+.icon-insta:hover {
+  color: #f12459; }
+
+.icon-gmail:hover {
+  color: #f12459; }
+
+.content-wrapper {
+  padding-top: 73px;
+  padding-bottom: 76px; }
+
+.card-demo-wrapper {
+  padding: 30px 25px; }
+  .card-demo-wrapper .navbar {
+    z-index: 0; }
+
+.demo-color-box {
+  display: inline-block;
+  width: 130px;
+  height: 96px;
+  border-radius: 4px;
+  margin-right: 10px;
+  margin-bottom: 10px; }
+
+.miri-ui-kit-demo .btn, .miri-ui-kit-demo .badge {
+  margin-right: 5px;
+  margin-bottom: 8px; }
+
+.miri-ui-kit-demo .progress {
+  margin-top: 40px; }
+
+.card-title {
+  margin-bottom: 26px; }
+
+.pb-30 {
+  padding-bottom: 30px; }
+
+.example-section h2 {
+  padding-top: 76px;
+  padding-bottom: 69px; }
+
+.example-section figcaption {
+  padding-top: 33px;
+  color: #ffffff; }
+
+.example-section .img-thumbnail {
+  border-color: #ffffff; }
+
+.miri-ui-kit-section {
+  padding-top: 55px;
+  padding-bottom: 55px; }
+
+@media screen and (min-width: 992px) {
+  .feature-box {
+    max-width: 280px; } }
+
+.how-we-work-section .btn-rounded {
+  font-size: 20px;
+  padding: 6px 9px; }
+
+.btn-label {
+  font-size: 12px; }
+
+.experience-section {
+  padding-top: 22px;
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e3e3e3; }
+
+.preview-link {
+  display: inline-block;
+  position: relative;
+  overflow: hidden; }
+  .preview-link::before {
+    content: "\F349";
+    font-family: "Material design icons";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    opacity: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    -webkit-transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
+    font-size: 2.5rem;
+    color: #fff;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+            justify-content: center; }
+  .preview-link:hover::before {
+    opacity: 1; }
+
+/*# sourceMappingURL=demo.css.map */

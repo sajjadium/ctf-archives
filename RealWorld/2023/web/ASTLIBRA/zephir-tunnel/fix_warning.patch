@@ -1,0 +1,21 @@
+diff -uprN a/kernels/ZendEngine3/main.c b/kernels/ZendEngine3/main.c
+--- a/kernels/ZendEngine3/main.c	2022-12-13 20:04:10.140951009 -0600
++++ b/kernels/ZendEngine3/main.c	2022-12-13 20:06:41.810953135 -0600
+@@ -282,7 +282,7 @@ int zephir_fast_count_int(zval *value)
+  */
+ int zephir_function_exists(const zval *function_name)
+ {
+-	if (zend_hash_str_exists(CG(function_table), Z_STRVAL_P(function_name), Z_STRLEN_P(function_name)) != NULL) {
++	if (zend_hash_str_find(CG(function_table), Z_STRVAL_P(function_name), Z_STRLEN_P(function_name)) != NULL) {
+ 		return SUCCESS;
+ 	}
+ 
+@@ -298,7 +298,7 @@ int zephir_function_exists(const zval *f
+  */
+ int zephir_function_exists_ex(const char *function_name, unsigned int function_len)
+ {
+-	if (zend_hash_str_exists(CG(function_table), function_name, function_len) != NULL) {
++	if (zend_hash_str_find(CG(function_table), function_name, function_len) != NULL) {
+         return SUCCESS;
+     }
+ 

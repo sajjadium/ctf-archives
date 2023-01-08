@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  etcd:
+    image: "bitnami/etcd"
+    expose:
+      - "2379"
+    environment:
+      ALLOW_NONE_AUTHENTICATION: "yes"
+
+  apisix:
+    image: "apache/apisix"
+    ports:
+      - "9080"
+    volumes:
+      - "./conf/config.yaml:/usr/local/apisix/conf/config.yaml"
+      - "./flag.txt:/flag"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 1s
+        max_attempts: 5

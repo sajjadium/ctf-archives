@@ -1,0 +1,12 @@
+diff -uprN a/Library/StatementsBlock.php b/Library/StatementsBlock.php
+--- a/Library/StatementsBlock.php	2022-12-13 17:40:04.650829845 -0600
++++ b/Library/StatementsBlock.php	2022-12-13 17:40:58.120830595 -0600
+@@ -340,7 +340,7 @@ class StatementsBlock
+                     break;
+ 
+                 case 'cblock':
+-                    $compilationContext->codePrinter->output($statement['value']);
++                    //$compilationContext->codePrinter->output($statement['value']);
+                     break;
+ 
+                 case 'comment':
