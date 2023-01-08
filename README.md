@@ -1005,6 +1005,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1454/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Iris">Iris</a></td>
+            <td><a href="Iris/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1774/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="Jade">Jade</a></td>
             <td><a href="Jade/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1791/tasks/">CTFtime</a></td>

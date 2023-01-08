@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="flag"></div>
+        <div id="target"></div>
+        <script>
+            const flag = window.localStorage["flag"] || "irisctf{REDACTED_redacted_R3d4cT3d}";
+            console.assert(flag.length == 35);
+            document.getElementById("flag").innerText = flag;
+            const inp = decodeURIComponent(location.search.substr(1));
+            document.getElementById("target").setHTML(inp);
+        </script>
+    </body>
+</html>
