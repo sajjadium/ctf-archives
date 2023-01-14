@@ -1,0 +1,62 @@
+@font-face {
+    font-family: 'Chomsky';
+    src: url('Chomsky.otf');
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html,
+body {
+    height: 100%;
+    font-family: Helvetica, sans-serif;
+}
+
+main {
+    display: grid;
+    gap: 1rem;
+}
+
+nav {
+    border-bottom: 2px solid black;
+}
+
+nav h1 {
+    font-family: 'Chomsky', serif;
+    text-align: center;
+    font-size: 3rem;
+}
+
+h2 {}
+
+main {
+    max-width: 50rem;
+    margin: 0 auto;
+}
+
+article {
+    border: 1px solid black;
+    padding: 1rem;
+    word-break: break-all;
+}
+
+p {
+    width: 80ch;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#source {
+    text-decoration: underline;
+    color: dodgerblue;
+}

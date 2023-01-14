@@ -2031,7 +2031,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/567/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/iCTF/2018">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="idekCTF">idekCTF</a></td>
+            <td rowspan=2><a href="idekCTF">idekCTF</a></td>
+            <td><a href="idekCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1839/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="idekCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1512/tasks/">CTFtime</a></td>
         </tr>

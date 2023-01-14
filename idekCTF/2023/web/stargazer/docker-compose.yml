@@ -1,0 +1,16 @@
+version: "3.4"
+
+services:
+  webapp:
+    image: idek:web-stargazer
+    restart: always
+    env_file:
+      - ./.env
+    build:
+      context: webapp/
+    ports:
+      - "1337:1337"
+    deploy:
+      resources:
+        limits:
+          memory: 1G

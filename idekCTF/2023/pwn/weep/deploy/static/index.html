@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<script type="text/javascript" src="index.js"></script>
+	<script>
+		_add = Module.cwrap('add', null, ['number', 'string'])
+		_delete = Module.cwrap('delete', null, ['number'])
+		_edit = Module.cwrap('edit', null, ['number', 'string'])
+		_greet = Module.cwrap('greet', null, ['number'])
+		_setTitle = Module.cwrap('setTitle', null, ['number'])
+
+		Module.onRuntimeInitialized = function() {
+			if(location.hash.length > 1){
+				var payload = JSON.parse(atob(location.hash.slice(1)))
+				if(Array.isArray(payload)) {
+					for(var i=0; i<payload.length; i++){
+						if(!Array.isArray(payload[i])) break;
+						var op = payload[i][0]
+						switch(op){
+						case 0: // add
+							if(payload[i].length != 3) break
+							if(typeof payload[i][1] !== 'number') break
+							if(typeof payload[i][2] !== 'string') break
+							_add(payload[i][1],payload[i][2])
+							break
+						case 1: // delete
+							if(payload[i].length != 2) break
+							if(typeof payload[i][1] !== 'number') break
+							_delete(payload[i][1])
+							break
+						case 2: // edit
+							if(payload[i].length != 3) break
+							if(typeof payload[i][1] !== 'number') break
+							if(typeof payload[i][2] !== 'string') break
+							_edit(payload[i][1], payload[i][2])
+							break
+						case 3: // greet
+							if(payload[i].length != 2) break
+							if(typeof payload[i][1] !== 'number') break
+							_greet(payload[i][1])
+							break
+						case 4: // setTitle
+							if(payload[i].length != 2) break
+							if(typeof payload[i][1] !== 'number') break
+							_setTitle(payload[i][1])
+							break
+						}
+					}
+				}
+			}
+        }
+
+        var cur = []
+
+        function update(val) {
+        	cur.push(val)
+        	var payload = btoa(JSON.stringify(cur))
+        	document.getElementById('payload').innerText = payload
+        }
+
+        function addFunc(){
+        	var idx = parseInt(document.getElementById('add-idx').value)
+        	var name = document.getElementById('add-name').value
+        	_add(idx, name)
+        	update([0, idx, name])
+        }
+
+        function deleteFunc(){
+        	var idx = parseInt(document.getElementById('delete-idx').value)
+        	_delete(idx)
+        	update([1, idx])
+        }
+
+        function editFunc(){
+        	var idx = parseInt(document.getElementById('edit-idx').value)
+        	var name = document.getElementById('edit-name').value
+        	_edit(idx, name)
+        	update([2, idx, name])
+        }
+
+        function greetFunc(){
+        	var idx = parseInt(document.getElementById('greet-idx').value)
+        	_greet(idx)
+        	update([3, idx])
+        }
+
+        function setTitleFunc(){
+        	var idx = parseInt(document.getElementById('setTitle-idx').value)
+        	_setTitle(idx)
+        	update([4, idx])
+        }
+
+	</script>
+	<h1>Add name</h1>
+	<input type="number" id="add-idx" placeholder="index">
+	<input type="text" id="add-name" placeholder="name">
+	<button onclick="addFunc()">Submit</button>
+	<h1>Delete name</h1>
+	<input type="number" id="delete-idx" placeholder="index">
+	<button onclick="deleteFunc()">Submit</button>
+	<h1>Edit name</h1>
+	<input type="number" id="edit-idx" placeholder="index">
+	<input type="text" id="edit-name" placeholder="name">
+	<button onclick="editFunc()">Submit</button>
+	<h1>Greet name</h1>
+	<input type="number" id="greet-idx" placeholder="index">
+	<button onclick="greetFunc()">Submit</button>
+	<h1>Set Greet Title (Mr/Mrs)</h1>
+	<input type="number" id="setTitle-idx" placeholder="index">
+	<button onclick="setTitleFunc()">Submit</button>
+	<h1>Payload</h1>
+	<div id='payload'></div>
+
+	Found an issue? <a href="/admin.html">Click me</a>
+</html>

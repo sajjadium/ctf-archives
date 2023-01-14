@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+{% block main %}
+<h1>SimpleFileServer</h1>
+<p>A very simple website to host your very simple files on the cloud, for free.</p>
+<p>Features:</p>
+<ul>
+  <li>No file inspecting: we don't care what you upload, unless it's actually illegal</li>
+  <li>Permalinks: unlike some other sites, your files won't get deleted due to inactivity</li>
+  <li>Totally anonymous: people going to your files won't know who the uploader is</li>
+</ul>
+At this point in time, we only support 2MB zipped uploads, but we're hoping to increase this limit
+in the future when bandwidth isn't as expensive anymore.
+<h3>Try it out today!</h3>
+<a href="/login">Login</a> or <a href="/register">Register</a>
+{% endblock %}

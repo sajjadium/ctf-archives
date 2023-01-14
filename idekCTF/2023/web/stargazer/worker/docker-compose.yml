@@ -1,0 +1,22 @@
+version: "3.4"
+
+services:
+  worker:
+    restart: always
+    build:
+      context: ./
+    env_file:
+      - ../.env
+    ports:
+      - 7999:7999
+    extra_hosts:
+      - "frontend.magic.world backend.magic.world:34.86.140.156"
+    networks:
+      internals:
+        ipv4_address: 172.11.0.69
+
+networks:
+  internals:
+    ipam:
+      config:
+        - subnet: 172.11.0.0/24

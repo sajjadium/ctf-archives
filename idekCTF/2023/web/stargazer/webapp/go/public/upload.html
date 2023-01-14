@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/upload.css">
+</head>
+
+<body>
+    <div class="container">
+        <form action="/upload" id="upl" method="post" enctype="multipart/form-data">
+            <label for="et_pb_contact_brand_file_request_0" class="et_pb_contact_form_label">Enter<div class='file_names'></div></label>
+            <input type="hidden" name="title" id="title">
+            <input type="file" name="file" id="et_pb_contact_brand_file_request_0" class="file-upload">
+            <input type="hidden" name="_csrf" value="{{.csrf}}">
+        </form>
+    </div>
+    <script src="./assets/js/upload.js"></script>
+</body>
+
+</html>

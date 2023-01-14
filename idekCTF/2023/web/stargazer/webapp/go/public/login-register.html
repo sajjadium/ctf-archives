@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stargazer - Auth</title>
+    <link rel="stylesheet" href="./assets/css/login-register.css">
+    <meta content="{{.csrf}}" name="csrf-token" />
+</head>
+
+<body>
+
+    <body>
+        <section>
+            <div class="container">
+                <div class="user signinBx">
+                    <div class="imgBx"><img src="./assets/img/img1.jpg" alt="" /></div>
+                    <div class="formBx">
+                        <form id="login" method="post">
+                            <h2>Sign In</h2>
+                            <input type="text" name="username" id="username-login" minlength="8" placeholder="Username" />
+                            <input type="password" name="password" id="password-login" minlength="8" placeholder="Password" />
+                            <input type="submit" name="" value="Login" />
+                            <p class="signup">
+                                Don't have an account ?
+                                <a href="#" class="toogle">Sign Up.</a>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+                <div class="user signupBx">
+                    <div class="formBx">
+                        <form id="register" method="post">
+                            <h2>Create an account</h2>
+                            <input type="text" name="username" id="username-register" minlength="8" placeholder="Username" />
+                            <input type="password" name="password" id="password-register" minlength="8" placeholder="Create Password" />
+                            <input type="submit" name="" value="Sign Up" />
+                            <p class="signup">
+                                Already have an account ?
+                                <a href="#" id="toogle">Sign in.</a>
+                            </p>
+                        </form>
+                    </div>
+                    <div class="imgBx"><img src="./assets/img/img2.jpg" alt="" /></div>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script src="./assets/js/login-register.js"></script>
+</body>
+
+</html>

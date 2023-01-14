@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title>Stargazer - My Files</title>
+	<meta content="{{.csrf}}" name="csrf-token" />
+</head>
+<body>
+	<h1>My Files</h1>
+	<a href="./upload.html">Upload File</a>
+	<ul class="myfiles">
+		{{range .f}}
+			<li>
+				<a href="/file/{{.UUID}}/{{.Filename}}" >{{.Title}}</a>
+			</li>
+		{{end}}
+	</ul>
+
+<script src="./assets/js/myfiles.js"></script>
+</body>
+<!-- please bear with this design, i can't find good template -->
+</html>

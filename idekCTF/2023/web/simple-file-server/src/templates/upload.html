@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block main %}
+<h1>Upload</h1>
+You must put your files in a zip, and then upload it here. Maximum combined file size is 2MB.<br>
+To get the URL of a file at <code><pre style="display: inline;">images/chemistrytest.jpg</pre></code>, the URL will be <code><pre style="display: inline;">/uploads/a unique ID we will give you/images/chemistrytest.jpg</pre></code>
+<form method="POST" enctype="multipart/form-data">
+  <div class="mb-3">
+    <input class="form-control" type="file" name="file" accept=".zip">
+  </div>
+  <input type="submit" class="btn btn-primary" value="Upload">
+</form>
+{% endblock %}
