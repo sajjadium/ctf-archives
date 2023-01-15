@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src=/static/js/utils.js></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <title>🅱️ad🅱️locker™</title>
+</head>
+<body>
+
+<h1>🅱️ad🅱️locker™</h1>
+<p>
+    <strong>An extensionless cross-platform lightweight free-to-play adblocker</strong>
+</p>
+<p>Please note: if a page isn't displaying, it may have <code>X-Frame-Options</code> or <code>frame-ancestors</code> set</p>
+
+<form>
+    <fieldset>
+        <p>
+            <input name=url id=url type=text placeholder="example.com/index.html">
+        </p>
+        <p>
+            <button type=submit>Visit</button>
+            <button type=button id="clearHistory">Clear history</button>
+            <button type=button id="exportHistory">Create history import link</button>
+        </p>
+        <p><em id=info></em></p>
+    </fieldset>
+</form>
+
+<script>
+// show the full history
+showHistory(window.blockHistory, false);
+
+// QoL stuff
+document.forms[0].addEventListener("submit", e => {
+    e.preventDefault();
+    location.href = "/" + encodeURIComponent(document.getElementById("url").value);
+});
+
+document.getElementById("clearHistory").addEventListener("click", () => {
+    localStorage.clear();
+    location.reload();
+});
+
+document.getElementById("exportHistory").addEventListener("click", () => {
+    let shareLink = `${location.origin}/import-history.html?history=${encodeURIComponent(JSON.stringify(window.blockHistory))}`;
+    info.innerHTML = `Copy this link: <br><code style="word-break: break-word">${shareLink}</code>`;
+});
+</script>
+</body>
+</html>

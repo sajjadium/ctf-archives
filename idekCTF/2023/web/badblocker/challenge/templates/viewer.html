@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src=/static/js/utils.js></script>
+    <title>🅱️ad🅱️locker™</title>
+    <style>
+        #viewer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            z-index: 999999;
+        }
+    </style>
+</head>
+<body>
+<iframe id="viewer"></iframe>
+<script>
+let viewer = document.getElementById("viewer");
+let numBlocked = 0;
+let url = decodeURIComponent(location.pathname.slice(1));
+let date = Date.now();
+
+async function clearFrame(frame) {
+    return new Promise(async resolve => {
+        // there could be ads within your ads!! this gets rid of them
+        let numChildren = frame.length;
+        for (let i = 0; i < numChildren; i++) {
+            await clearFrame(frame[i]);
+        }
+
+        // add the ad count and redirect to the blockpage (unless it's the viewer)
+        numBlocked += numChildren;
+        if (frame === viewer.contentWindow) return resolve();
+        frame.location.href = "/blocked.html";
+
+        // wait until same-origin before logging the frame name
+        await sameOriginCheck(frame).then(() => {
+            console.debug(frame.name || "(no name)", "blocked");
+        })
+        .catch(e => console.log(e));
+
+        resolve();
+    });
+}
+
+async function sameOriginCheck(frame) {
+    return new Promise((resolve, reject) => {
+        let tries = 0;
+        let check = setInterval(() => {
+            tries++; // keep trying until same-origin
+            if (tries > 250) {
+                clearInterval(check);
+                return reject("Maximum number of tries exceeded");
+            }
+
+            try {
+                if (frame.origin === origin) {
+                    clearInterval(check);
+                    resolve();
+                }
+            }
+
+            catch(e) {
+                // if not same-origin, the above will throw a DOMException (expected)
+                // so don't throw in that case
+                if (!(e instanceof DOMException)) throw e;
+            }
+
+        }, 1);
+    });
+}
+
+window.addEventListener("load", () => {
+    // :( :( :( :( :( :( :( :(
+    // ----> javascript: <----
+    // :( :( :( :( :( :( :( :(
+    if (!/^https?:\/\//.test(url)) {
+        url = "http://" + url;
+    }
+
+    viewer.src = url;
+    viewer.addEventListener("load", () => {
+        // clear frames every 8 seconds
+        clearFrame(viewer.contentWindow);
+        setInterval(() => clearFrame(viewer.contentWindow), 8000);
+    }, { once: true });
+});
+
+window.addEventListener("beforeunload", () => {
+    // save the current session to history
+    window.blockHistory[date] = { url, numBlocked };
+    localStorage.setItem("blockHistory", JSON.stringify(window.blockHistory));
+});
+</script>
+</body>
+</html>

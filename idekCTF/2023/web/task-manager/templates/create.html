@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Task Manager</title>
+	<link rel="stylesheet" href="/static/css/pico.classless.css">
+	<link rel="stylesheet" href="/static/css/styles.css">
+	<script src="/static/js/create.js"></script>
+</head>
+<body>
+	<main>
+		<section>
+			<hgroup>
+				<h1>Create a new task</h1>
+				<h2><a href=/home.html>Back</a> • Leave <em>Status</em> empty to mark it as completed</h2>
+			</hgroup>
+			<article>
+				<form id="create-task-form">
+					<fieldset>
+						<label for="task">Task</label>
+						<textarea id="task" name="task" rows=3 placeholder="Win more CTFs" maxlength=150></textarea>
+
+						<label for="status">Status</label>
+						<input type="text" maxlength=50 id="status" name="status" placeholder="In progress">
+					</fieldset>
+					<input type=submit value=Submit>
+				</form>
+			</article>
+		</section>
+	</main>
+</body>
+</html>

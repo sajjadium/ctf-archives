@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src=/static/js/utils.js></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kimeiga/bahunya/dist/bahunya.min.css">
+    <title>🅱️ad🅱️locker™</title>
+</head>
+<body>
+
+<p id=info></p>
+
+<p><a href="/">Go home</a></p>
+
+<script>
+function confirm() {
+    // save the history to localStorage
+    localStorage.setItem("blockHistory", JSON.stringify(window.blockHistory));
+    document.getElementById("historyContainer").remove();
+    document.getElementById("info").innerHTML = "Your new history was imported!";
+}
+
+window.addEventListener("load", () => {
+    let newHistory;
+    try {
+        newHistory = JSON.parse(
+            new URLSearchParams(location.search).get("history")
+        );
+    } catch(e) {
+        document.getElementById("info").innerHTML = "Your history was malformed :(";
+        return;
+    }
+
+    // combine the current history with the new history & preview the resultant history
+    window.blockHistory = combineHistories(window.blockHistory, newHistory);
+    showHistory(window.blockHistory, true);
+
+    document.getElementById("info").innerHTML = `<b>This will merge with your current history</b><br>
+        Click <a href=# onclick=confirm()>here</a> to confirm that you still wish to import this history`
+});
+</script>
+
+</body>
+</html>

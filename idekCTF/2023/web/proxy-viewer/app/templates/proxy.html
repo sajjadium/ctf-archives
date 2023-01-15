@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block body %}
+{% if content %}
+{% if not auth %}
+<div class="alert alert-warning" role="alert">
+	Upgrade to premium membership to view the full response! Free tier members may only view headers.
+</div>
+{% endif %}
+<iframe name="content" height="100%" width="100%" srcdoc="{{ content }}">
+</iframe>
+{% else %}
+<div class="alert alert-danger" role="alert">
+	Page not found! Note: your requested url should include a scheme.
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,161 @@
+@media (max-width: 576px) {
+  body > header,
+  body > main,
+  body > footer,
+  section {
+      --block-spacing-vertical: calc(var(--spacing) * 1.25);
+  }
+  .task-card {
+    max-height: calc(var(--spacing) * 15);
+  }
+}
+@media (min-width: 576px) {
+  body > header,
+  body > main,
+  body > footer,
+  section {
+      --block-spacing-vertical: calc(var(--spacing) * 1.25);
+  }
+  .task-card {
+    max-height: calc(var(--spacing) * 11);
+  }
+}
+@media (min-width: 768px) {
+  body > header,
+  body > main,
+  body > footer,
+  section {
+    --block-spacing-vertical: calc(var(--spacing) * 1.5);
+  }
+  .task-card {
+    max-height: calc(var(--spacing) * 9.5);
+  }
+}
+@media (min-width: 992px) {
+  body > header,
+  body > main,
+  body > footer,
+  section {
+    --block-spacing-vertical: calc(var(--spacing) * 1.75);
+  }
+  .task-card {
+    max-height: calc(var(--spacing) * 7);
+  }
+}
+@media (min-width: 1200px) {
+  body > header,
+  body > main,
+  body > footer,
+  section {
+    --block-spacing-vertical: calc(var(--spacing) * 2);
+  }
+  .task-card {
+    max-height: calc(var(--spacing) * 6);
+  }
+}
+
+[type=checkbox] {
+  margin-top: -0.625em;
+  margin-right: -0.625em;
+}
+
+[type=checkbox] {
+  position: absolute;
+  top: 50%;
+  left: 1.65rem;
+}
+
+.task-card {
+  height: 1000000rem;
+  animation: fadein 0.25s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+
+  position: relative;
+  margin-bottom: 0;
+  margin-top: 0.75rem;
+  padding: 1.5rem 0 1.5rem;
+  /*height: 4.5rem;*/
+  transition: 0.5s background-color ease;
+}
+
+.task-card > div > em {
+  color: #4068a1;
+}
+
+.task-container {
+  margin-left: max(7.5%, 4.5rem);
+  margin-bottom: 0;
+  padding-right: 4rem;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: calc(75%);
+}
+
+.task:after {
+  content: " • ";
+}
+
+h1 {
+  padding-bottom: 1rem;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+/*@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}*/
+
+@keyframes fadein {
+  from {
+    max-height: 0px;
+    overflow: hidden;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    opacity: 0;
+  }
+}
+
+.shrink {
+/*  display: block;*/
+/*  margin-bottom: 0;*/
+/*  clip: rect(auto, auto, 0, auto);*/
+  max-height: 0px;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+  transition: 0.25s all ease;
+}
+
+details[open] summary ~ * {
+  animation: fadein 0.25s ease;
+}
+
+.edit {
+  margin-right: 2rem;
+  background-color: #00000000;
+  text-decoration: none;
+  cursor: pointer;
+  right: 0;
+  top: 50%;
+  position: absolute;
+  transform: translateY(-50%);
+}
+
+.editable {
+  background-color: var(--primary-focus);
+}
