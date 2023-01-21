@@ -1,0 +1,5 @@
+CREATE TABLE passwords (
+	id SERIAL NOT NULL AUTO_INCREMENT,
+	password VARCHAR(50) NOT NULL);
+CREATE TABLE secretDataHere (
+	data VARCHAR(50) NOT NULL);

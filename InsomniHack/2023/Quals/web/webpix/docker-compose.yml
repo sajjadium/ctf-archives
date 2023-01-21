@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  chall:
+    build: chall
+    ports:
+      - "443:443"
+      - "8080:8080"
+    
+  bot:
+    build: bot
+    environment:
+    - FLAG=INS{f4k3_fl49}
+    - URL=https://webpix.insomnihack.ch
+    ports:
+      - "8888:8888"

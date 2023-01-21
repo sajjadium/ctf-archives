@@ -991,7 +991,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1823/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="InsomniHack">Insomni'hack</a></td>
+            <td rowspan=3><a href="InsomniHack">Insomni'hack</a></td>
+            <td><a href="InsomniHack/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1831/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="InsomniHack/2022/Quals">2022 Quals</a></td>
             <td><a href="https://ctftime.org/event/1505/tasks/">CTFtime</a></td>
         </tr>

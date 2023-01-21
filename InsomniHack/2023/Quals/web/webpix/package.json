@@ -1,0 +1,25 @@
+{
+  "name": "teaser23_v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prod": "./node_modules/concurrently/dist/bin/concurrently.js --raw  \"http-server ./public -p 80 -i false -d false\" \"./node_modules/nodemon/bin/nodemon.js -x 'node index.js || touch index.js'\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apicache": "^1.6.3",
+    "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
+    "fs-extra": "^11.1.0",
+    "node-fetch": "^3.3.0",
+    "ufo": "^1.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0",
+    "nodemon": "^2.0.20"
+  }
+}
