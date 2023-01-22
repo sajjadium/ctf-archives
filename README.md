@@ -964,7 +964,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1344/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="InCTF">InCTF</a></td>
+            <td rowspan=5><a href="InCTF">InCTF</a></td>
+            <td><a href="InCTF/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1714/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="InCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1370/tasks/">CTFtime</a></td>
         </tr>

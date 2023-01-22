@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  frontend:
+    build: ./php
+    ports:
+      - 8000:80
+    depends_on:
+      - waf
+      - app
+    networks:
+      - frontend
+
+  
+  waf:
+    build: ./waf
+    networks:
+      - frontend
+      - backend
+    restart:
+      on-failure
+    
+
+  app:
+    build: ./app
+    environment:
+      - FLAG=fakeflag
+    networks:
+      - backend
+    restart:
+      on-failure
+
+
+networks:
+  frontend:
+  backend:    
+  
+
+    

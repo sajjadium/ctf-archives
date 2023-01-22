@@ -1,0 +1,119 @@
+/*SETUP*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+::-moz-selection {
+  background: #bbdeff;
+}
+::selection {
+  background: #bbdeff;
+}
+body {
+  background: #bbdeff;
+}
+/*WINDOW*/
+.window {
+  background: #f6f6f6;
+  border: solid 2px #3ba2ff;
+  position: fixed;
+  width: 400px;
+  min-width: 175px;
+  height: 400px;
+  top: 20px;
+  left: 25%
+}
+
+.window1 {
+  background: #f6f6f6;
+  border: solid 2px #3ba2ff;
+  position: fixed;
+  width: 400px;
+  min-width: 175px;
+  height: 160px;
+  top: 20px;
+  left: calc(100% - 450px);
+}
+.window2 {
+  background: #f6f6f6;
+  border: solid 2px #3ba2ff;
+  position: fixed;
+  width: 400px;
+  min-width: 175px;
+  height: 160px;
+  top: 20px;
+  left: 920px;
+  top: 40%;
+}
+.window .appToolBar {
+  width: 100%;
+  line-height: 40px;
+  background: #3ba2ff;
+  padding: 0 10px;
+  color: #f6f6f6;
+}
+.window1 .appToolBar {
+  width: 100%;
+  line-height: 40px;
+  background: #3ba2ff;
+  padding: 0 10px;
+  color: #f6f6f6;
+}
+.window2 .appToolBar {
+  width: 100%;
+  line-height: 40px;
+  background: #3ba2ff;
+  padding: 0 10px;
+  color: #f6f6f6;
+}
+.window .appToolBar li {
+  display: inline-block;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.window .appToolBar li:hover {
+  color: #f5d653;
+}
+.window1 .appToolBar li {
+  display: inline-block;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.window1 .appToolBar li:hover {
+  color: #f5d653;
+}
+
+.window2 .appToolBar li {
+  display: inline-block;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.window2 .appToolBar li:hover {
+  color: #f5d653;
+}
+.window textarea {
+  border: none;
+  resize: none;
+  background: #f6f6f6;
+  padding: 0 10px 5px 10px;
+  height: calc(100% - 40px);
+  width: 100%;
+  color: #0062bb;
+  height: 70%;
+}
+/*ICON*/
+.icon {
+  text-align: center;
+  margin: 20px 0 0 20px;
+  color: #F6F6F6;
+  max-width: 60px;
+}
+.icon li {
+  line-height: 30px;
+  cursor: pointer;
+}
+.icon li svg {
+  font-size: 48px;
+}

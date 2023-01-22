@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Hinty Notes</title>
+  <link rel="stylesheet" href="resources/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script src="/resources/api.js"></script>
+<form class="window2 drag">
+  <div class="appToolBar">
+    <ul>
+      <li class="close2 notepadClose"><i class="fas fa-times"></i></li>
+      <li class="save" onclick="search()"><i class="fa fa-search"></i></li>
+    </ul>
+    <p>Search Note</p>
+    <input type="text" id="search" placeholder="query"> 
+    <center>
+      <li id="searchout"></li>
+    </center>
+  </div>
+  <br>
+  <br>
+ 
+</form>
+<form class="window1 drag">
+  <div class="appToolBar">
+    <ul>
+      <li class="close1 notepadClose"><i class="fas fa-times"></i></li>
+      <li class="save" onclick="retrivenote()"><i class="fa fa-download"></i></li>
+    </ul>
+    <p>Retrive Note</p>
+    <input type="text" id="username1" placeholder="username">
+    <input type="password" id="password1" placeholder="password">
+    <input type="text" id="key1" placeholder="key"> 
+  </div>
+  <br>
+  <br>
+ 
+</form>
+<form class="window drag">
+  <div class="appToolBar">
+    <ul>
+      <li class="close notepadClose"><i class="fas fa-times"></i></li>
+      <li class="save" onclick="addnote()"><i class="fas fa-save save"></i></li>
+    </ul>
+    <input type="text" id="username" placeholder="username">
+    <input type="password" id="password" placeholder="password">
+    <input type="text" id="key" placeholder="key">
+  </div>
+  <textarea id="note" class="notepadTextArea"></textarea>
+</form>
+
+<ul class="icon">
+  <li class="notepadIcon"><i class="fas fa-file-alt"></i>Createnote.txt</li>
+  <br>
+  <li class="notepadIcon1"><i class="fas fa-file-alt"></i>Getnote.txt</li>
+  <br>
+  <li class="notepadIcon3" onclick="location.href='/about'"><i class="fas fa-file-alt"></i>about.txt</li>
+  <br>
+</ul>
+<br><br><br>
+<center> <i id="output"></i></center>
+<!-- partial -->
+  <script src='https://use.fontawesome.com/releases/v5.0.6/js/all.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script><script  src="resources/script.js"></script>
+
+</body>
+</html>

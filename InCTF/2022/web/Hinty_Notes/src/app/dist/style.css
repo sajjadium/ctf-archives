@@ -1,0 +1,71 @@
+/*SETUP*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+::-moz-selection {
+  background: #bbdeff;
+}
+::selection {
+  background: #bbdeff;
+}
+body {
+  background: #bbdeff;
+}
+/*WINDOW*/
+.window {
+  background: #f6f6f6;
+  border: solid 2px #3ba2ff;
+  position: absolute;
+  width: 300px;
+  min-width: 175px;
+  height: 350px;
+  top: 20px;
+  left: calc(50% - 150px);
+}
+.window .appToolBar {
+  width: 100%;
+  line-height: 40px;
+  background: #3ba2ff;
+  padding: 0 10px;
+  color: #f6f6f6;
+}
+.window .appToolBar li {
+  display: inline-block;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.window .appToolBar li:hover {
+  color: #f5d653;
+}
+.window textarea {
+  border: none;
+  resize: none;
+  background: #f6f6f6;
+  padding: 0 10px 5px 10px;
+  height: calc(100% - 40px);
+  width: 100%;
+  color: #0062bb;
+}
+/*ICON*/
+.icon {
+  text-align: center;
+  margin: 20px 0 0 20px;
+  color: #F6F6F6;
+  max-width: 60px;
+}
+.icon li {
+  line-height: 30px;
+  cursor: pointer;
+}
+.icon li svg {
+  font-size: 48px;
+}
+.center {
+  border: 5px solid #FFFF00;
+  text-align: center;
+  margin-top: 50%;
+  color: #FFFF00;
+}
