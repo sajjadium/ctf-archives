@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script type="module">
+            import * as chess from "/js/chess_wasm.js";
+            await chess.default();
+
+            window.onmessage = (e) => {
+                if (typeof e.data !== "object") return;
+                e.source.postMessage(chess.handle(JSON.stringify(e.data)), e.origin);
+            };
+
+            window.top.postMessage("ready", "*");
+        </script>
+    </body>
+</html>

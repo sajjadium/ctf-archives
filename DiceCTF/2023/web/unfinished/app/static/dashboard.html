@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>unfinished</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css@1.4.1/css/sakura.min.css" type="text/css">
+  </head>
+  <body>
+    <h1>unfinished</h1>
+    <hr />
+    <h3>Site uptime checker</h3>
+    <form action="/api/ping" method="POST">
+      <label for="url">URL</label>
+      <input id="url" placeholder="url" name="url" type="url" required />
+      <select id="opt" name="opt">
+        <option selected></option>
+        <option value="-X">GET</option>
+        <option value="-X">POST</option>
+        <option value="-d">POST w/ data</option>
+      </select>
+      <input id="data" placeholder="data" name="data" type="text" style="display:none" />
+      <br />
+      <input type="submit" />
+      <div id="output"></div>
+    </form>
+    <script>
+      const $ = document.querySelector.bind(document); // there's not enough time to even setup jQuery!!!
+      $("form").onsubmit = (e) => {
+        e.preventDefault();
+
+        $("#output").innerText = "";
+        
+        let url = $("#url").value;
+        let opt = $("#opt").options[$("#opt").selectedIndex].value;
+        let data = ["GET", "POST", $("#data").value].at(["GET", "POST"].indexOf($("#opt").options[$("#opt").selectedIndex].text));
+        
+        let body = `url=${encodeURIComponent(url)}`;
+        if (opt && data) body += `&opt=${encodeURIComponent(opt)}&data=${encodeURIComponent(data)}`;
+
+        fetch("/api/ping", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body
+        }).then(r => r.json()).then(res => {
+            if (res.success) $("#output").innerText = res.message;
+            else alert(res.message);
+        });
+      };
+      $("#opt").onchange = (e) => {
+        $("#data").style.display = e.target.options[e.target.selectedIndex].text === "POST w/ data" ? "block" : "none";
+      };
+    </script>
+  </body>
+</html>

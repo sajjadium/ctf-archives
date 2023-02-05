@@ -1,0 +1,38 @@
+diff --git a/Makefile b/Makefile
+index a30364c..925a568 100644
+--- a/Makefile
++++ b/Makefile
+@@ -17,7 +17,7 @@ SRC_DIR  = ./src
+ UTIL_DIR = ./utils
+ 
+ 
+-CFLAGS   := -O3 $(CFLAGS) -std=c11 -Wall -Wextra -Wpedantic -Werror -fno-omit-frame-pointer #-pg -g -fsanitize=address
++CFLAGS   := -O3 $(CFLAGS) -std=c11 -Wall -Wextra -Wpedantic -Werror -fno-omit-frame-pointer -fPIC #-pg -g -fsanitize=address
+ CXXFLAGS := -O3 $(CPPFLAGS) -Wall -Wextra -fno-exceptions -fno-rtti -nostdinc++
+ INCPATH  := -I/usr/local/include -I/opt/local/include -I/usr/include -I$(SRC_DIR) -I$(UTIL_DIR)
+ LDFLAGS  := $(LDFLAGS) #-fsanitize=address
+@@ -189,6 +189,10 @@ endif
+ all: $(EXE)
+ 
+ 
++libpqov.so: $(OBJ)
++	$(CC) -shared $(CFLAGS) $(INCPATH) -o $@ $^ $(LIBS)
++
++
+ neon-matxvec-test: $(OBJ) neon-matxvec-test.o
+ 	$(LD) $(LDFLAGS) $(LIBPATH) -o $@ $^ $(LIBS)
+ 
+diff --git a/src/ov.c b/src/ov.c
+index b62f3ca..0fd7e7f 100644
+--- a/src/ov.c
++++ b/src/ov.c
+@@ -52,8 +52,8 @@ int ov_sign( uint8_t * signature , const sk_t * sk , const uint8_t * message , u
+     // The computation:  H(M||salt)  -->   y  --C-map-->   x   --T-->   w
+     hash_init  (&h_m_salt_secret);
+     hash_update(&h_m_salt_secret, message, mlen);
+-    hash_update(&h_m_salt_secret, salt, _SALT_BYTE);
+     hash_ctx_copy(&h_vinegar_copy, &h_m_salt_secret);
++    hash_update(&h_m_salt_secret, salt, _SALT_BYTE);
+     hash_final_digest( y , _PUB_M_BYTE , &h_m_salt_secret);  // H(M||salt)
+ 
+     hash_update(&h_vinegar_copy, sk->sk_seed, LEN_SKSEED );   // H(M||salt||sk_seed ...

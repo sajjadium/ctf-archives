@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>jwtjail</title>
+    <link rel="stylesheet" href="https://unpkg.com/axist@latest/dist/axist.min.css" />
+    <style>
+      .title-link,
+      .title-link:hover {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .title:hover {
+        color: #494949;
+      }
+
+      .title::before {
+        content: "# ";
+        color: var(--primary);
+      }
+
+      .w-100 {
+        width: 100%;
+      }
+
+      pre {
+        overflow: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main role="main">
+      <div class="header">
+        <h2>JWT Verifier</h2>
+        <h6>Verify your JWTs here with this completely realistic app!</h6>
+      </div>
+
+      <section id="verify">
+        <a class="title-link" href="#verify">
+          <h3 class="title">Verify</h3>
+        </a>
+        <label for="verify-token">Token</label>
+        <textarea
+          id="verify-token"
+          rows="8"
+          placeholder="Enter your token here"
+          class="w-100"
+        ></textarea>
+        <br />
+        <label for="verify-secretOrPrivateKey">Secret or Private Key</label>
+        <textarea
+          id="verify-secretOrPrivateKey"
+          rows="8"
+          placeholder="Enter your secret or private key here"
+          class="w-100"
+        ></textarea>
+        <br />
+        <pre id="verify-output"></pre>
+      </section>
+    </main>
+
+    <script>
+      /* This code really isn't important to the chall, but if you want to read it, feel free. */
+      const $ = document.querySelector.bind(document);
+
+      const verify = () => {
+        let token = $("#verify-token").value;
+        let secretOrPrivateKey = $("#verify-secretOrPrivateKey").value;
+
+        $("#verify-output").style.border = "";
+        $("#verify-output").innerText = "";
+
+        if (!token || !secretOrPrivateKey) {
+          return;
+        }
+
+        token = JSON.stringify(token);
+        secretOrPrivateKey = JSON.stringify(secretOrPrivateKey);
+
+        fetch("/api/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          body: `token=${encodeURIComponent(token)}&secretOrPrivateKey=${encodeURIComponent(secretOrPrivateKey)}`
+        }).then(r => r.json()).then(res => {
+          $("#verify-output").style.border = res.success ? "1px #4BB543 solid" : "1px red solid";
+          if (typeof res.data === "string")
+            $("#verify-output").innerText = res.data;
+          else
+            $("#verify-output").innerText = JSON.stringify(res.data, null, 4);
+        });
+      };
+      $("#verify-token").onkeyup = verify;
+      $("#verify-secretOrPrivateKey").onkeyup = verify;
+    </script>
+  </body>
+</html>

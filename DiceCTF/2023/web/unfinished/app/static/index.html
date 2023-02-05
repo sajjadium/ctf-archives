@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>unfinished</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css@1.4.1/css/sakura.min.css" type="text/css">
+  </head>
+  <body>
+    <h1>unfinished</h1>
+    <hr />
+    <h3>Login</h3>
+    <form action="/api/login" method="POST">
+      <label for="user">Username</label>
+      <input id="user" placeholder="username" name="user" type="text" />
+      <label for="pass">Password</label>
+      <input id="pass" placeholder="password" name="pass" type="password" />
+      <br />
+      <input type="submit" />
+    </form>
+    <script>
+      const params = new URLSearchParams(location.search);
+      if (params.has("error")) {
+        history.pushState(null, null, location.pathname);
+        alert(params.get("error"));
+      }
+    </script>
+  </body>
+</html>

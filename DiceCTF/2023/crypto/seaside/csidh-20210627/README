@@ -1,0 +1,79 @@
+
+To build with default parameters, simply run "make".
+
+The build may be configured with other arguments:
+
+- BITS is one of the supported parameter sets.
+- UINT_IMPL is an unsigned integer implementation.
+- FP_IMPL is a finite field implementation.
+
+For example,
+
+    make BITS=1024
+
+builds the code with a 1024-bit parameter set, and
+
+    make UINT_IMPL=uint.c FP_IMPL=fp.c
+
+uses generic C arithmetic instead of assembly.
+
+
+Other parameter sets may be used by creating a directory modelled
+after the p512/ and p1024/ folders, optionally including specialized
+uint.s and fp.s files for assembly arithmetic. Otherwise the generic
+C implementation will be used.
+
+
+To build the benchmark code, run "make bench"; it also supports the
+arguments listed above.
+
+To configure benchmarking, use the following options:
+
+- BENCH_ITS is the number of iterations.
+- BENCH_VERBOSE enables counts of higher-level operations.
+
+For example,
+
+    make bench BENCH_ITS=1000 BENCH_VERBOSE=1
+
+builds a benchmark tool for 1000 iterations of the CSIDH group action
+(including public-key validation), which collects statistics on the
+number of clock cycles as well as precise counts for the underlying
+arithmetic operations.
+
+
+
+This implementation makes use of ideas from these references:
+
+* W. Castryck, T. Lange, C. Martindale, L. Panny, J. Renes:
+  CSIDH: An efficient post-quantum commutative group action.
+  Asiacrypt 2018, https://ia.cr/2018/383
+
+* M. Meyer, S. Reith:
+  A faster way to the CSIDH.
+  Indocrypt 2018, https://ia.cr/2018/782
+
+* D. J. Bernstein, T. Lange, C. Martindale, L. Panny:
+  Quantum circuits for the CSIDH: \
+    Optimizing quantum evaluation of isogenies.
+  Eurocrypt 2019, https://ia.cr/2018/1059
+
+* M. Meyer, F. Campos, S. Reith:
+  On Lions and Elligators: \
+    An efficient constant-time implementation of CSIDH.
+  PQCrypto 2019, https://ia.cr/2018/1198
+
+Furthermore, thanks to Daniel J. Bernstein and Bo-Yin Yang for
+providing the fast 511-bit finite-field inversion code in the
+directory p512/inv, which is based on the following paper:
+
+* D. J. Bernstein, B.-Y. Yang:
+  Fast constant-time gcd computation and modular inversion.
+  CHES 2019, https://ia.cr/2019/266
+
+
+
+This updated version of the CSIDH-512 software was originally produced
+based on the previous version 2018-08-26 between 2018-09 and 2019-05.
+It appears in public only as late as 2021 due to human error.
+

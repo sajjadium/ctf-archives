@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>codebox</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    * {
+        margin: 0;
+        font-family: monospace;
+        line-height: 1.5em;
+    }
+    
+    div {
+        margin: auto;
+        width: 80%;
+        padding: 20px;
+    }
+    
+    textarea {
+        width: 100%;
+        height: 200px;
+        max-width: 500px;
+    }
+
+    iframe {
+        border: 1px solid lightgray;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <h1>codebox</h1>
+    <p>Codebox lets you test your own HTML in a sandbox!</p>
+    <br>
+    <form action="/" method="GET">
+        <textarea name="code" id="code"></textarea>
+        <br><br>
+        <button>Create</button>
+    </form>
+    <br>
+    <br>
+  </div>
+  <div id="flag"></div>
+</body>
+<script>
+    const code = new URL(window.location.href).searchParams.get('code');
+    if (code) {
+        const frame = document.createElement('iframe');
+        frame.srcdoc = code;
+        frame.sandbox = '';
+        frame.width = '100%';
+        document.getElementById('content').appendChild(frame);
+        document.getElementById('code').value = code; 
+    }
+
+    const flag = localStorage.getItem('flag') ?? "flag{test_flag}";
+    document.getElementById('flag').innerHTML = `<h1>${flag}</h1>`;
+  </script>
+</html>

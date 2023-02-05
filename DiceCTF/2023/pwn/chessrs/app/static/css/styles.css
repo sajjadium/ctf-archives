@@ -1,0 +1,37 @@
+body {
+  background-color: #161925;
+  height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #f1f2f6;
+}
+
+.card-title, .card-text {
+  color: #161925;
+}
+
+.chessboard-parent {
+  width: 75vh;
+}
+
+#chessboard {
+  height: 100%;
+  width: 100%;
+}
+
+.history-parent {
+  max-height: 75vh;
+}
+
+#engine {
+  display: none;
+}
+
+.navbar > div > .navbar-brand {
+  color: black;
+}
+
+.navbar.navbar-dark > div > .navbar-brand {
+  color: white;
+}

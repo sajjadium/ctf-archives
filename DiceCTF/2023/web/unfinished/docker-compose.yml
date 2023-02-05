@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  app:
+    build: ./app/
+    ports:
+      - "4444:4444"
+  mongodb:
+    build: ./mongo/
