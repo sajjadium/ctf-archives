@@ -1,0 +1,20 @@
+[package]
+name = "sailor"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+solana-program = "1.14.11"
+anchor-lang = "0.26.0"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+cpi = ["no-entrypoint"]
+default = []
+
+[lib]
+crate-type = ["cdylib", "rlib"]

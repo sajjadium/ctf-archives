@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: RADACTED
+      POSTGRES_PASSWORD: RADACTED
+  queue:
+    build: queue/
+    restart: always
+    ports:
+      - "3001:3001"
+    environment:
+      startTime: 1674372589
+      POSTGRES_USER: RADACTED
+      POSTGRES_PASSWORD: RADACTED
+      FLAG_SERVER_URL: http://localhost:3000
+      PORT: 3001
+      ADMIN_SECRET: "RADACTED"
+    depends_on:
+      - "db"
+  flagserver:
+    build: flagserver/
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      QUEUE_SERVER_URL: http://localhost:3001
+      QUEUE_SERVER_PORT: 3001
+      FLAG: lactf{test}
+      PORT: 3000
+      ADMIN_SECRET: "RADACTED"
+    depends_on:
+      - "queue"

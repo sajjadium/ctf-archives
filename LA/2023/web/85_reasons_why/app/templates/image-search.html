@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block main %}
+<h1 class="mt-5">Image Search</h1>
+<div class="main-page">
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %} {% endwith %}
+  <div class="search-bar">
+    <form action="/image-search" method="POST" enctype="multipart/form-data">
+      <label for="image-query">Image</label><br />
+      <input type="file" name="image-query" /><br />
+      <input type="submit" value="search" /><br />
+      <small>or <a href="{{ url_for('search') }}">search</a></small>
+    </form>
+  </div>
+  <br />
+  <div class="container results">
+    <hr />
+    {% for post in results %}
+    <div class="message">
+      <a href="/posts?post_id={{post.id}}"><h3>{{ post.title }}</h3></a>
+      <p>{{ post.date }}</p>
+      <p>{{ post.content }}</p>
+      <p>Author: {{ post.author }}</p>
+      <hr />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

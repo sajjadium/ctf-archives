@@ -1,0 +1,13 @@
+html
+    head
+        style
+            include styles.css
+    body
+        div(class='center')
+            h1.
+                It's time! Click the button below to continue:
+            form(action=flagserverurl,method="post")
+                button Get my flag!
+                input(type="hidden",name="uuid",id="uuid",value=uuid)
+        p(class="footer").
+            LACTF 2023

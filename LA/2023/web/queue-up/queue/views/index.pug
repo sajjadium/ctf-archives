@@ -1,0 +1,16 @@
+html
+    head
+        title= `Queue pos: ${position}`
+        style
+            include styles.css
+        meta(http-equiv="refresh",content="300")
+    body
+        div(class='center')
+            h1.
+                Your approximate queue position is #{position}. #[br]
+                Estimated time remaining: #{time} #[br]
+                Please be patient; you will get your flag eventually.
+            p.
+                The time and queue position is updated every 5 minutes automatically.
+        p(class="footer").
+            LACTF 2023

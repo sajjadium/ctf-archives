@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block main %}
+<h1 class="mt-5">Blog</h1>
+<div class="main-page">
+  {% with messages = get_flashed_messages() %} {% if messages %}
+  <div class="alert alert-danger">
+    <ul>
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %} {% endwith %}
+  <br />
+  <div class="container posts">
+    <hr />
+    {% for post in posts %}
+    <div class="message">
+      <a href="/posts?post_id={{post.id}}"><h3>{{ post.title }}</h3></a>
+      <p>{{ post.date }}</p>
+      <p>{{ post.content }}</p>
+      <p>Author: {{ post.author }}</p>
+      <hr />
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

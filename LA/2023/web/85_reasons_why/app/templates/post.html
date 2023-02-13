@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block main %}
+
+<h1 class="mt-5">{{post.title}}</h1>
+<div class="content">
+    <br />
+    <p>Author: {{ post.author }}</p>
+    <p>{{ post.date }}</p>
+    <p>{{ post.content }}</p>
+    {% for image in images %}
+    <img src="{{ image }}" width="400" height="auto" />
+    {% endfor %}
+</div>
+
+<div class="comments">
+    <br><br>
+    <h1>Comments:</h1>
+    <hr>
+    {% for comment in post.comments %}
+    <div class="comment">
+        <p>{{ comment.author }}</p>
+        <p>{{ comment.comment }}</p>
+        <hr>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
