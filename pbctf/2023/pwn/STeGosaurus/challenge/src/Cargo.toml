@@ -1,0 +1,20 @@
+[package]
+name = "stegosaurus"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "stegosaurus"
+path = "src/lib.rs"
+
+[[bin]]
+name = "stegosaurus-runner"
+path = "src/main.rs"
+
+[dependencies]
+memchr = "*"
+serde = { version = "*", features = ["derive", "rc"]}
+bincode = "*"
+base64 = "*"

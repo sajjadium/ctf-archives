@@ -2109,7 +2109,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1793/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="pbctf">perfect blue</a></td>
+            <td rowspan=3><a href="pbctf">perfect blue</a></td>
+            <td><a href="pbctf/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1763/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="pbctf/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1371/tasks/">CTFtime</a></td>
         </tr>
