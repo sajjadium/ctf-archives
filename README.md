@@ -1036,6 +1036,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1590/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Kalmar">Kalmar</a></td>
+            <td><a href="Kalmar/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1878/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="KasperskyCTF">Kaspersky</a></td>
             <td><a href="KasperskyCTF/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/701/tasks/">CTFtime</a></td>

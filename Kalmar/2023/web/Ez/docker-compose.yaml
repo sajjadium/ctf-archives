@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  caddy:
+    image: caddy:2.4.5-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./files/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./files:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+    command: sh -c "apk add --update openssl nss-tools && rm -rf /var/cache/apk/ && openssl req -x509 -batch -newkey rsa:2048 -nodes -keyout /etc/ssl/private/caddy.key -days 365 -out /etc/ssl/certs/caddy.pem -subj '/C=DK/O=Kalmarunionen/CN=*.caddy.chal-kalmarc.tf' && mkdir -p backups/ && cp -r *.caddy.chal-kalmarc.tf backups/ && rm php.caddy.chal-kalmarc.tf/flag.txt && sleep 1 && caddy run"
+
+volumes:
+  caddy_data:
+    external: true
+  caddy_config:
+

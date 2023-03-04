@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Employee Directory</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script src="jquery.min.js"></script>
+    <style>
+        .container {
+            padding: 0 1em;
+        }
+
+        * {
+            font-family: 'Raleway', sans-serif;
+        }
+
+        code {
+            padding: 0;
+            color: #c7254e;
+            background-color: #fff;
+        }
+
+        .card {
+            border: solid 1px #ccc;
+        }
+
+        .card .header {
+            background-color: #e3e6e5;
+            height: 150px;
+            border-bottom: 4px solid #4e9a92;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-left: 1.5em;
+        }
+
+        .card .body {
+            padding: 20px;
+            font-size: 15px;
+            color: #58585b;
+        }
+
+        .card .footer {
+            text-align: right;
+            color: #4e9a92;
+        }
+
+        form {
+            background-color: #4e9a92;
+            height: 44px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        input {
+            all: unset;
+            font: 16px system-ui;
+            color: #fff;
+            height: 100%;
+            width: 100%;
+            padding: 6px 10px;
+        }
+
+        ::placeholder {
+            color: #fff;
+            opacity: 0.7;
+        }
+
+        svg {
+            color: #fff;
+            fill: currentColor;
+            width: 24px;
+            height: 24px;
+            padding: 10px;
+        }
+
+        button {
+            all: unset;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+        }
+
+        #template {
+            display: none;
+        }
+
+        #main {
+            display: grid;
+            margin: 4rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            grid-gap: 1rem;
+            align-items: center;
+            grid-template-columns: repeat(auto-fill, minmax(425px, 1fr));
+        }
+
+        #searchbar {
+            grid-column: 1 / -1;
+        }
+
+        #card-container {
+            display: contents;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        #errortext {
+            text-align: center;
+        }
+    </style>
+    <script>
+        const employees = [
+            {
+                name: "Cindelyn Giabuzzi",
+                title: "Nuclear Power Engineer",
+                phone_number: "720-634-0465",
+                location: "336c",
+                department: "Sales"
+            },
+            {
+                name: "Reed Bryer",
+                title: "Pharmacist",
+                phone_number: "652-314-1915",
+                location: "202a",
+                department: "Business Development"
+            },
+            {
+                name: "Woodie Jachimak",
+                title: "Information Systems Manager",
+                phone_number: "641-155-0945",
+                location: "306a",
+                department: "Engineering"
+            },
+            {
+                name: "King Hymas",
+                title: "Payment Adjustment Coordinator",
+                phone_number: "385-107-7031",
+                location: "377d",
+                department: "Training"
+            },
+            {
+                name: "Eduardo Ledamun",
+                title: "Programmer Analyst I",
+                phone_number: "559-387-8045",
+                location: "231d",
+                department: "Human Resources"
+            },
+            {
+                name: "Cleveland Eck",
+                title: "Operator",
+                phone_number: "868-749-8129",
+                location: "190d",
+                department: "Engineering"
+            },
+            {
+                name: "Terrel Lorking",
+                title: "Web Designer III",
+                phone_number: "584-127-1965",
+                location: "349c",
+                department: "Accounting"
+            },
+            {
+                name: "Suzie Jakoub",
+                title: "Tax Accountant",
+                phone_number: "156-798-3893",
+                location: "319c",
+                department: "Product Management"
+            },
+            {
+                name: "Noelle Cullabine",
+                title: "Civil Engineer",
+                phone_number: "947-373-8169",
+                location: "350c",
+                department: "Support"
+            },
+            {
+                name: "Jeannette Canti",
+                title: "Account Representative I",
+                phone_number: "621-921-1329",
+                location: "368b",
+                department: "Support"
+            },
+            {
+                name: "Tori Pargent",
+                title: "Administrative Officer",
+                phone_number: "184-730-5123",
+                location: "194d",
+                department: "Engineering"
+            },
+            {
+                name: "Winni Happer",
+                title: "Account Coordinator",
+                phone_number: "154-794-7801",
+                location: "392b",
+                department: "Training"
+            },
+            {
+                name: "Shirlee Adami",
+                title: "VP Product Management",
+                phone_number: "451-739-4822",
+                location: "274d",
+                department: "Business Development"
+            },
+            {
+                name: "Neddy Bodill",
+                title: "Electrical Engineer",
+                phone_number: "739-801-9395",
+                location: "204d",
+                department: "Human Resources"
+            },
+            {
+                name: "Von Joannet",
+                title: "Pharmacist",
+                phone_number: "898-906-2868",
+                location: "356d",
+                department: "Sales"
+            },
+            {
+                name: "Ricki Moreside",
+                title: "Electrical Engineer",
+                phone_number: "153-742-0458",
+                location: "145c",
+                department: "Services"
+            },
+            {
+                name: "Elyn Skough",
+                title: "Director of Sales",
+                phone_number: "146-852-4227",
+                location: "299d",
+                department: "Sales"
+            },
+            {
+                name: "Toinette Siggens",
+                title: "Help Desk Technician",
+                phone_number: "719-611-3370",
+                location: "307b",
+                department: "Services"
+            },
+            {
+                name: "Brigida Flatte",
+                title: "Sales Associate",
+                phone_number: "290-348-6996",
+                location: "171d",
+                department: "Legal"
+            },
+            {
+                name: "Frederik Glynne",
+                title: "VP Marketing",
+                phone_number: "229-674-7762",
+                location: "283a",
+                department: "Product Management"
+            }
+        ]
+
+        function renderCards(items) {
+            $('#card-container').empty();
+            items.forEach((item) => {
+                $(
+                    $('#template').html()
+                        .replace("{{employee.name}}", item.name)
+                        .replace("{{employee.title}}", item.title)
+                        .replace("{{employee.phone_number}}", item.phone_number)
+                        .replace("{{employee.location}}", item.location)
+                        .replace("{{employee.department}}", item.department)
+                ).appendTo("#card-container")
+            })
+        }
+
+        function filterEmployees(query) {
+            return employees.filter(function (obj) {
+                return Object.keys(obj).some(function (key) {
+                    return obj[key].includes(query);
+                })
+            });
+        }
+        window.onload = (e) => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('q')) {
+                $('#query').val(urlParams.get('q'))
+                document.title = "Employee Directory | " + urlParams.get('q')
+                let filteredEmployees = filterEmployees(urlParams.get('q'))
+                if (filteredEmployees.length == 0) {
+                    $('#errortext').html('No employees found for the term "' + urlParams.get('q') + '"')
+                } else {
+                    renderCards(filteredEmployees)
+                }
+            } else {
+                renderCards(employees)
+            }
+
+            $("#form").submit(function (e) {
+                e.preventDefault();
+                let query = $('#query').val()
+                $('#errortext').html("")
+                if (query) {
+                    let filteredEmployees = filterEmployees(query)
+                    if (filteredEmployees.length == 0) {
+                        $('#errortext').html('No employees found for the term "' + query + '"')
+                    }
+                    renderCards(filteredEmployees)
+                    window.history.pushState({}, "Employee Directory | " + query, "/?q=" + encodeURI(query));
+                } else {
+                    renderCards(employees)
+                    window.history.pushState({}, "Employee Directory", "/");
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Employee Directory</h1>
+    <div id="main">
+        <div id="searchbar">
+            <form role="search" id="form">
+                <input type="search" id="query" name="q" placeholder="Search..." aria-label="Search through employees">
+                <button>
+                    <svg viewBox="0 0 1024 1024">
+                        <path class="path1"
+                            d="M848.471 928l-263.059-263.059c-48.941 36.706-110.118 55.059-177.412 55.059-171.294 0-312-140.706-312-312s140.706-312 312-312c171.294 0 312 140.706 312 312 0 67.294-24.471 128.471-55.059 177.412l263.059 263.059-79.529 79.529zM189.623 408.078c0 121.364 97.091 218.455 218.455 218.455s218.455-97.091 218.455-218.455c0-121.364-103.159-218.455-218.455-218.455-121.364 0-218.455 97.091-218.455 218.455z">
+                        </path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <!--https://codepen.io/neil/pen/VEPoKR-->
+        <div id="template" class="cards">
+            <div class="card">
+                <div class="header">
+                    <div style="font-size: 17px; font-weight: 600; margin-left: 15px">
+                        {{employee.name}}<br />
+                        <div style="margin:0; font-size: 12px; font-weight: 400; ">
+                            {{employee.title}}
+                        </div>
+                        <div style="margin:0; font-size: 12px; font-weight: 400; margin-top: 10px;">
+                            {{employee.phone_number}}
+                        </div>
+                    </div>
+                </div>
+                <div class="body">
+                    <div><strong>Location: </strong> {{employee.location}}</div>
+                    <div><strong>Department: </strong>{{employee.department}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="card-container"></div>
+    </div>
+    <p id="errortext"></p>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+{
+    admin off
+    local_certs  # Let's not spam Let's Encrypt
+}
+
+caddy.chal-kalmarc.tf {
+    redir https://www.caddy.chal-kalmarc.tf
+}
+
+#php.caddy.chal-kalmarc.tf {
+#    php_fastcgi localhost:9000
+#}
+
+flag.caddy.chal-kalmarc.tf {
+    respond 418
+}
+
+*.caddy.chal-kalmarc.tf {
+    encode zstd gzip
+    log {
+        output stderr
+        level DEBUG
+    }
+
+    # block accidental exposure of flags:
+    respond /flag.txt 403
+
+    tls /etc/ssl/certs/caddy.pem /etc/ssl/private/caddy.key {
+        on_demand
+    }
+
+    file_server {
+        root /srv/{host}/
+    }
+}

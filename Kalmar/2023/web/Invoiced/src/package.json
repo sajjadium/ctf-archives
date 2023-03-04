@@ -1,0 +1,19 @@
+{
+  "name": "invoice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "node app.js"
+  },
+  "author": "",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "dompurify": "^2.4.3",
+    "express": "^4.18.2",
+    "jsdom": "^21.1.0",
+    "puppeteer": "^19.6.3",
+    "uuid": "^9.0.0"
+  }
+}

@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  chall:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+  memcached:
+    container_name: memcached
+    image: memcached:latest
+    ports:
+      - "11211:11211"

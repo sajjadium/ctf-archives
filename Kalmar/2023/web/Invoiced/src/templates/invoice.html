@@ -1,0 +1,253 @@
+<html>
+<!-- Credits: https://codepen.io/ChristosGeorgiou/pen/WrwxgM -->
+<head>
+    <title>Invoice for {{ name }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #EEE;
+            /* font-size:0.9em !important; */
+            ;
+        }
+
+        .invoice {
+            width: 970px !important;
+            margin: 50px auto;
+        }
+
+        .invoice .invoice-header {
+            padding: 25px 25px 15px;
+        }
+
+        .invoice .invoice-header h1 {
+            margin: 0;
+        }
+
+        .invoice .invoice-header .media .media-body {
+            font-size: .9em;
+            margin: 0;
+        }
+
+        .invoice .invoice-body {
+            border-radius: 10px;
+            padding: 25px;
+            background: #FFF;
+        }
+
+        .invoice .invoice-footer {
+            padding: 15px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #999;
+        }
+
+        .logo {
+            max-height: 70px;
+            border-radius: 10px;
+        }
+
+        .dl-horizontal {
+            margin: 0;
+        }
+
+        .dl-horizontal dt {
+            float: left;
+            width: 80px;
+            overflow: hidden;
+            clear: left;
+            text-align: right;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dl-horizontal dd {
+            margin-left: 90px;
+        }
+
+        .rowamount {
+            padding-top: 15px !important;
+        }
+
+        .rowtotal {
+            font-size: 1.3em;
+        }
+
+        .colfix {
+            width: 12%;
+        }
+
+        .mono {
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container invoice">
+        <div class="invoice-header">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h1>Invoice <small>With Credit</small></h1>
+                    <h4 class="text-muted">NO: 554775/R1 | Date: 01/01/2015</h4>
+                </div>
+                <div class="col-xs-4">
+                    <div class="media">
+                        <div class="media-left">
+                            <img class="media-object logo" src="https://dummyimage.com/70x70/000/fff&text=ACME" />
+                        </div>
+                        <ul class="media-body list-unstyled">
+                            <li><strong>Acme Corporation</strong></li>
+                            <li>Software Development</li>
+                            <li>Field 3, Moon</li>
+                            <li>info@acme.com</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="invoice-body">
+            <div class="row">
+                <div class="col-xs-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Company Details</h3>
+                        </div>
+                        <div class="panel-body">
+                            <dl class="dl-horizontal">
+                                <dt>Name</dt>
+                                <dd><strong>Acme Corporation</strong></dd>
+                                <dt>Address</dt>
+                                <dd>Field 3, Moon</dd>
+                                <dt>Phone</dt>
+                                <dd>123.4456.4567</dd>
+                                <dt>Email</dt>
+                                <dd>mainl@acme.com</dd>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-7">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Customer Details</h3>
+                        </div>
+                        <div class="panel-body">
+                            <dl class="dl-horizontal">
+                                <dt>Name</dt>
+                                <dd>{{ name }}</dd>
+                                <dt>Address</dt>
+                                <dd>{{ address }}</dd>
+                                <dt>Phone</dt>
+                                <dd>{{ phone }}</dd>
+                                <dt>Email</dt>
+                                <dd>{{ email }}</dd>
+                                <dt>&nbsp;</dt>
+                                <dd>&nbsp;</dd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Services / Products</h3>
+                </div>
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Item / Details</th>
+                            <th class="text-center colfix">Unit Cost</th>
+                            <th class="text-center colfix">Sum Cost</th>
+                            <th class="text-center colfix">Discount</th>
+                            <th class="text-center colfix">Tax</th>
+                            <th class="text-center colfix">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                FNACYCOAT
+                                <br>
+                                <small class="text-muted">MINIMALISTIC COAT IN COTTON-BLEND</small>
+                            </td>
+                            <td class="text-right">
+                                <span class="mono">$414.00</span>
+                                <br>
+                                <small class="text-muted">Including Shipping</small>
+                            </td>
+                            <td class="text-right">
+                                <span class="mono">$414.00</span>
+                                <br>
+                                <small class="text-muted">1 Units</small>
+                            </td>
+                            <td class="text-right">
+                                <span class="mono">- $414.00</span>
+                                <br>
+                                <small class="text-muted">{{ discount }}</small>
+                            </td>
+                            <td class="text-right">
+                                <span class="mono">$99.75</span>
+                                <br>
+                                <small class="text-muted">VAT 25%</small>
+                            </td>
+                            <td class="text-right">
+                                <strong class="mono">$0.00</strong>
+                                <br>
+                                <small class="text-muted mono"></small>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel panel-default">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <td class="text-center col-xs-1">Sub Total</td>
+                            <td class="text-center col-xs-1">Discount</td>
+                            <td class="text-center col-xs-1">Total</td>
+                            <td class="text-center col-xs-1">Tax</td>
+                            <td class="text-center col-xs-1">Final</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="text-center rowtotal mono">$414.00</th>
+                            <th class="text-center rowtotal mono">-$414.00</th>
+                            <th class="text-center rowtotal mono">$0.00</th>
+                            <th class="text-center rowtotal mono">$0.00</th>
+                            <th class="text-center rowtotal mono">$0.00</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xs-7">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <i>Comments / Notes</i>
+                            <hr style="margin:3px 0 5px" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Payment Method</h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>This order was free</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="invoice-footer">
+            Thank you for choosing our services.
+            <br /> We hope to see you again soon
+            <br />
+            <strong>~ACME~</strong>
+        </div>
+    </div>
+</body>
+
+</html>
