@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotify</title>
+</head>
+<body>
+    <!-- Get user feedback and quote_id from server and display it here for admin -->
+    <div class="feedback"></div> <!-- const clean = purify.sanitize(feedback, {FORBID_TAGS: ['math']) -->
+    <div class="quote_id"></div>
+</body>
+<script>
+    window.FRUITS = window.FRUITS || {
+        bananas: false,
+        apples: false,
+        oranges: false
+    } 
+    
+    function sus(info){
+        if(document.cookie.has_flag){
+            console.log("Hmmmmm");  
+            if(FRUITS.bananas) {
+                console.log("Got flag woohooo. Pretty simple right?");
+            }
+        }
+    }
+
+    function formatQuote(data){
+        let quote_content = document.querySelector('.quote-content')
+        if(quote_content == undefined){
+            quote_content = document.createElement('div')
+            quote_content.classList.add('quote-content')
+            document.body.appendChild(quote_content)
+        }
+        let quote = document.querySelector('.quote')
+        if(quote == undefined){
+            quote = document.createElement('div')
+            quote.classList.add('quote')
+            quote_content.insertBefore(quote, document.querySelector('.author'))
+        }
+        quote.innerHTML = data.quote;
+
+        let author = document.querySelector('.author')
+        if(author == undefined){
+            author = document.createElement('div')
+            author.classList.add('author')
+            quote_content.appendChild(author, document.querySelector('.quote'))
+        }
+        author.innerHTML = data.author;
+    }
+    
+    function getQuote(){
+        let temp_script = document.createElement('script')
+        const quote_id = document.querySelector('.quote_id').innerHTML
+        temp_script.src  = `http://bred.delta24.live/quotes/${quote_id}?callback=formatQuote`
+        temp_script.id = 'jsonp'
+        let old_script = document.getElementById('jsonp')
+        if(old_script == undefined) {
+            document.body.appendChild(temp_script)
+        }
+        else {
+            old_script.replaceWith(temp_script)
+        }
+
+    }
+    
+    getQuote()
+
+    
+</script>
+</html>

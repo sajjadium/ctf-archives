@@ -1324,7 +1324,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1049/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="Pragyan">Pragyan</a></td>
+            <td rowspan=3><a href="Pragyan">Pragyan</a></td>
+            <td><a href="Pragyan/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1931/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="Pragyan/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1330/tasks/">CTFtime</a></td>
         </tr>
