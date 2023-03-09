@@ -1246,7 +1246,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/583/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="NullconHackIM">HackIM</a></td>
+            <td rowspan=4><a href="NullconHackIM">HackIM</a></td>
+            <td><a href="NullconHackIM/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1900/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="NullconHackIM/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1718/tasks/">CTFtime</a></td>
         </tr>

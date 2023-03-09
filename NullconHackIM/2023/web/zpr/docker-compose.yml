@@ -1,0 +1,27 @@
+version: "3.1"
+services:
+  zpr:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    volumes:
+      - ./code:/app
+      - shared_data:/tmp/data
+    ports:
+      - 10015:8080
+    links:
+      - serve
+    depends_on:
+      - serve
+  serve:
+    build:
+      context: .
+      dockerfile: Dockerfile.serve
+    ports:
+      - 10016:8088
+    volumes:
+      - ./code:/app
+      - ./flag:/flag:ro
+      - shared_data:/tmp/data
+volumes:
+  shared_data:
