@@ -520,7 +520,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/608/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="DaVinci">DaVinci</a></td>
+            <td rowspan=3><a href="DaVinci">DaVinci</a></td>
+            <td><a href="DaVinci/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1858/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="DaVinci/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1559/tasks/">CTFtime</a></td>
         </tr>
