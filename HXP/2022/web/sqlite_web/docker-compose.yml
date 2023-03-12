@@ -1,0 +1,11 @@
+version: "3"
+services:
+# local proxy credentials hxp:hxp
+
+  chall:
+    build:
+      dockerfile: Dockerfile
+
+    restart: always
+    ports:
+      - 8096:8080

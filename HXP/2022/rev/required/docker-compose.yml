@@ -1,0 +1,6 @@
+version: "3"
+services:
+  chall:
+    build:
+      dockerfile: Dockerfile
+    tty: true

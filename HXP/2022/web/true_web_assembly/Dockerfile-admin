@@ -1,0 +1,40 @@
+# see docker-compose.yml
+
+FROM debian:bullseye
+
+USER root
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        python3 python3-pip chromium chromium-sandbox chromium-driver \
+    && rm -rf /var/lib/apt/lists/
+
+RUN pip3 install selenium webdriver_manager
+
+RUN useradd --create-home --shell /bin/bash admin
+WORKDIR /home/admin
+
+COPY admin.py flag.txt /home/admin/
+COPY ynetd /sbin/
+
+USER root
+
+#  # Permission
+#  7 rwx
+#  6 rw-
+#  5 r-x
+#  4 r--
+#  3 -wx
+#  2 -w-
+#  1 --x
+#  0 ---
+
+RUN chmod 555 admin.py
+RUN chmod 555 /sbin/ynetd
+
+USER admin
+# pre-install chromedriver
+RUN python3 -c "from selenium.webdriver.chrome.service import Service;from webdriver_manager.chrome import ChromeDriverManager;from webdriver_manager.core.utils import ChromeType;Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install());"
+USER root
+EXPOSE 1024
+CMD ynetd -u admin -lm -1 -lt 15 -t 30 -lpid 256 "./admin.py $CHALLENGE_IP $ADMIN_USERNAME $ADMIN_PASSWORD"

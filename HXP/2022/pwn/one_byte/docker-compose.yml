@@ -1,0 +1,14 @@
+version: "3"
+services:
+
+  chall:
+    build:
+      dockerfile: Dockerfile
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+
+    restart: always
+    ports:
+      - 9728:1024

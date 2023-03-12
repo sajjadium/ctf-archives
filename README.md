@@ -799,7 +799,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/821/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="HXP">HXP</a></td>
+            <td rowspan=4><a href="HXP">HXP</a></td>
+            <td><a href="HXP/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1845/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="HXP/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1447/tasks/">CTFtime</a></td>
         </tr>
