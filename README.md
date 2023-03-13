@@ -1523,6 +1523,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/1188/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="SpringForward">SpringForward</a></td>
+            <td><a href="SpringForward/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1927/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="SUSCTF">SUSCTF</a></td>
             <td><a href="SUSCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1566/tasks/">CTFtime</a></td>
