@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VitalikVault</title>
+    <script src="https://cdn.tailwindcss.com/"></script>
+</head>
+<script defer>
+    const bytecode = Object.freeze('608060405234801561001057600080fd5b506004361061002b5760003560e01c806353bd6d2214610030575b600080fd5b61004a60048036038101906100459190610380565b610060565b604051610057919061040a565b60405180910390f35b600073ab5801a7d398351b8be11c439e05c5b3259aec9b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146100ae57600080fd5b6126006113378518036101e4577fd99c58de1b06e3ebea3fcc471384836d2cb75955d84395dace86fba64505baab64525553487b6040516100ef9190610499565b60405180910390a17f101aa2511b4501cd6f4bedff54bee2f014409dfdf0c34e4a64b6f4f4e72d12a160001b8360405160200161012c9190610533565b60405160208183030381529060405280519060200120036101e3577f26b577bc367ce1111f29b7bb22eebb57a2086a020aa0c88c6c588e5b4cf0efdf6e4d684c674e377772326f427579636660405161018591906105c9565b60405180910390a160016002830110156101e2577f6751ff9969e5beee7bb9fd6731aba2e2a213bd96a1f54b0a24d11452a915ab96681f5b3a021c6444004f6040516101d19190610658565b60405180910390a1600190506101e9565b5b5b600090505b9392505050565b6000604051905090565b600080fd5b600080fd5b6000819050919050565b61021781610204565b811461022257600080fd5b50565b6000813590506102348161020e565b92915050565b600080fd5b600080fd5b6000601f19601f8301169050919050565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b61028d82610244565b810181811067ffffffffffffffff821117156102ac576102ab610255565b5b80604052505050565b60006102bf6101f0565b90506102cb8282610284565b919050565b600067ffffffffffffffff8211156102eb576102ea610255565b5b6102f482610244565b9050602081019050919050565b82818337600083830152505050565b600061032361031e846102d0565b6102b5565b90508281526020810184848401111561033f5761033e61023f565b5b61034a848285610301565b509392505050565b600082601f8301126103675761036661023a565b5b8135610377848260208601610310565b91505092915050565b600080600060608486031215610399576103986101fa565b5b60006103a786828701610225565b935050602084013567ffffffffffffffff8111156103c8576103c76101ff565b5b6103d486828701610352565b92505060406103e586828701610225565b9150509250925092565b60008115159050919050565b610404816103ef565b82525050565b600060208201905061041f60008301846103fb565b92915050565b6000819050919050565b60007fffffffffff00000000000000000000000000000000000000000000000000000082169050919050565b60008160d81b9050919050565b600061048361047e61047984610425565b61045b565b61042f565b9050919050565b61049381610468565b82525050565b60006020820190506104ae600083018461048a565b92915050565b600081519050919050565b600082825260208201905092915050565b60005b838110156104ee5780820151818401526020810190506104d3565b60008484015250505050565b6000610505826104b4565b61050f81856104bf565b935061051f8185602086016104d0565b61052881610244565b840191505092915050565b6000602082019050818103600083015261054d81846104fa565b905092915050565b6000819050919050565b60007fffffffffffffffffffffffffffffff000000000000000000000000000000000082169050919050565b60008160881b9050919050565b60006105b36105ae6105a984610555565b61058b565b61055f565b9050919050565b6105c381610598565b82525050565b60006020820190506105de60008301846105ba565b92915050565b6000819050919050565b60007fffffffffffffffffff000000000000000000000000000000000000000000000082169050919050565b60008160b81b9050919050565b600061064261063d610638846105e4565b61061a565b6105ee565b9050919050565b61065281610627565b82525050565b600060208201905061066d6000830184610649565b9291505056fea26469706673582212204f7f19c8f41f11ab0aea33bc0bc1e7722ca1e25002ff69eb851f46fd545a0ef664736f6c63430008120033');
+    const downloadBytecode = () => {
+        const element = document.createElement("a");
+        const file = new Blob([bytecode], {type: 'text/plain'});
+        element.href = URL.createObjectURL(file);
+        element.download = "vitalik-vault.bin";
+        document.body.appendChild(element);
+        element.click();
+    }
+</script>
+<body class="antialiased">
+    <div class="relative bg-silver-md">
+        <main class="relative max-w-5xl mx-auto">
+          <div class="flex flex-col min-h-screen lg:flex-row lg:items-center lg:p-8">
+            <div class="flex flex-col flex-grow bg-white lg:shadow-2xl lg:rounded-lg lg:overflow-hidden">
+              <header class="flex-grow flex flex-col justify-center p-12 pt-5">
+                <div class="md:pl-16 pl-0">
+                  <h1 class="sm:font-light text-2xl sm:text-3xl md:text-4xl text-primary-md mt-6">Vitalik's Vault</h1>
+                  <p class="sm:text-xl text-beta-md mt-3 leading-relaxed">Can you reverse this smart-contract?</p>
+                </div>
+              </header>
+              <section class="border-t-2 border-silver-md flex-grow flex flex-col justify-center py-10 pt-6 px-12">
+                <div class="md:pl-16 pl-0">
+                  <p class="text-slate-dk mt-1 text-sm md:text-base">
+                    I achieve to get Vitalik's Vault bytecode but I can do nothing with it.
+                  </p>
+                  <br>
+                  <p class="text-slate-dk mt-1 text-sm md:text-base">
+                    The only informations that I have are the followings:
+                  </p>
+                  <p class="text-slate-dk mt-1 text-sm md:text-base">
+                    - The flag is cut in three parts and each part is emited once.
+                  </p>
+                  <p class="text-slate-dk mt-1 text-sm md:text-base">
+                    - The first part is emited in raw bytes.
+                  </p>
+                  <p class="text-slate-dk mt-1 text-sm md:text-base">
+                    - The second part is emited in base58 encoding.
+                  </p>
+                  <p class="text-slate-dk mt-1 text-sm md:text-base">
+                    - The last part has to be xored with the second part.
+                  </p>
+                  <p class="text-slate-dk mt-1 text-sm md:text-base">
+                    - Flag would be: EmitedFlagPart1 + base58Decode(EmitedFlagPart2) + xor(EmitedFlagPart2, EmitedFlagPart3).
+                  </p>
+                  <br>
+                  <p class="text-slate-dk mt-1 text-sm md:text-base">
+                    Can you reverse it?
+                  </p>
+                </div>
+              </section>
+              <section class="border-t-2 border-silver-md">
+                <div class="flex flex-wrap">
+                  <div class="flex flex-col px-12 py-10 w-full sm:w-1/2 sm:border-r sm:border-b border-silver-md">
+                    <div class="flex flex-grow">
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8 md:h-10 md:w-10 md:-my-1">
+                          <g>
+                            <path class="fill-current text-slate-lt" d="M12 21a2 2 0 0 1-1.41-.59l-.83-.82A2 2 0 0 0 8.34 19H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4a5 5 0 0 1 4 2v16z" />
+                            <path class="fill-current text-charcoal-lt" d="M12 21V5a5 5 0 0 1 4-2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4.34a2 2 0 0 0-1.42.59l-.83.82A2 2 0 0 1 12 21z" />
+                          </g>
+                        </svg>
+                      </div>
+                      <section class="leading-relaxed flex flex-col ml-4 md:ml-6">
+                        <h2 class="font-medium text-charcoal-md text-lg hover:underline">
+                            <a href="https://gchq.github.io/CyberChef/" target="_blank">Cyberchef</a>
+                        </h2>
+                      </section>
+                    </div>
+                  </div>
+                  <div class="flex flex-col px-12 py-10 w-full sm:w-1/2 sm:border-r sm:border-b border-silver-md">
+                    <div class="flex flex-grow">
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8 md:h-10 md:w-10 md:-my-1">
+                          <g>
+                            <path class="fill-current text-slate-lt" d="M12 21a2 2 0 0 1-1.41-.59l-.83-.82A2 2 0 0 0 8.34 19H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4a5 5 0 0 1 4 2v16z" />
+                            <path class="fill-current text-charcoal-lt" d="M12 21V5a5 5 0 0 1 4-2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4.34a2 2 0 0 0-1.42.59l-.83.82A2 2 0 0 1 12 21z" />
+                          </g>
+                        </svg>
+                      </div>
+                      <section class="leading-relaxed flex flex-col ml-4 md:ml-6">
+                        <h2 class="font-medium text-charcoal-md text-lg hover:underline">
+                            <a href="https://www.evm.codes/?fork=merge" target="_blank">EVM Opcodes</a>
+                        </h2>
+                      </section>
+                    </div>
+                  </div>
+                  <div class="flex flex-col px-12 py-10 w-full sm:w-1/2 sm:border-r sm:border-b border-silver-md">
+                    <div class="flex flex-grow">
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8 md:h-10 md:w-10 md:-my-1">
+                          <g>
+                            <path class="fill-current text-slate-lt" d="M12 21a2 2 0 0 1-1.41-.59l-.83-.82A2 2 0 0 0 8.34 19H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4a5 5 0 0 1 4 2v16z" />
+                            <path class="fill-current text-charcoal-lt" d="M12 21V5a5 5 0 0 1 4-2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4.34a2 2 0 0 0-1.42.59l-.83.82A2 2 0 0 1 12 21z" />
+                          </g>
+                        </svg>
+                      </div>
+                      <section class="leading-relaxed flex flex-col ml-4 md:ml-6">
+                        <h2 class="font-medium text-charcoal-md text-lg hover:underline">
+                            <a href="https://coders-errand.com/logging-in-ethereum-part-2/" target="_blank">EVM Events</a>
+                        </h2>
+                      </section>
+                    </div>
+                  </div>
+                  <div class="flex flex-col px-12 py-10 w-full sm:w-1/2 sm:border-r sm:border-b border-silver-md">
+                    <div class="flex flex-grow">
+                      <div>
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 md:h-10 md:w-10 md:-my-1">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M9.163 2.819C9 3.139 9 3.559 9 4.4V11H7.803c-.883 0-1.325 0-1.534.176a.75.75 0 0 0-.266.62c.017.274.322.593.931 1.232l4.198 4.401c.302.318.453.476.63.535a.749.749 0 0 0 .476 0c.177-.059.328-.217.63-.535l4.198-4.4c.61-.64.914-.96.93-1.233a.75.75 0 0 0-.265-.62C17.522 11 17.081 11 16.197 11H15V4.4c0-.84 0-1.26-.164-1.581a1.5 1.5 0 0 0-.655-.656C13.861 2 13.441 2 12.6 2h-1.2c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656zM5 21a1 1 0 0 0 1 1h12a1 1 0 1 0 0-2H6a1 1 0 0 0-1 1z" fill="#000000"/>
+                        </svg>
+                      </div>
+                      <section class="leading-relaxed flex flex-col ml-4 md:ml-6">
+                        <h2 class="font-medium text-charcoal-md text-lg hover:underline hover:cursor-pointer" onclick="downloadBytecode()">
+                            Download the bytecode
+                        </h2>
+                      </section>
+                    </div>
+                  </div>
+                  <!-- You're not supposed to see that -->
+                  <!-- <div class="flex flex-col px-12 py-10 w-full sm:w-1/2 sm:border-r sm:border-b border-silver-md">
+                    <div class="flex flex-grow">
+                      <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-8 w-8 md:h-10 md:w-10 md:-my-1">
+                          <g>
+                            <path class="fill-current text-slate-lt" d="M12 21a2 2 0 0 1-1.41-.59l-.83-.82A2 2 0 0 0 8.34 19H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4a5 5 0 0 1 4 2v16z" />
+                            <path class="fill-current text-charcoal-lt" d="M12 21V5a5 5 0 0 1 4-2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-4.34a2 2 0 0 0-1.42.59l-.83.82A2 2 0 0 1 12 21z" />
+                          </g>
+                        </svg>
+                      </div>
+                      <section class="leading-relaxed flex flex-col ml-4 md:ml-6">
+                        <h2 class="font-medium text-charcoal-md text-lg hover:underline">
+                            <a href="https://library.dedaub.com/decompile" target="_blank">Solidity decompiler</a>
+                        </h2>
+                      </section>
+                    </div>
+                  </div> -->
+                </section>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+</body>
+</html>

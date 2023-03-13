@@ -1460,6 +1460,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/886/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Rush">Rush</a></td>
+            <td><a href="Rush/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1913/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="S4CTF">S4CTF</a></td>
             <td><a href="S4CTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1329/tasks/">CTFtime</a></td>
