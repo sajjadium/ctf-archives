@@ -1793,6 +1793,11 @@ Collection of CTF challenges.
             <td><a href="https://ctftime.org/event/651/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="TrellixHAX">TrellixHAX</a></td>
+            <td><a href="TrellixHAX/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1882/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="TrollCAT">TrollCAT</a></td>
             <td><a href="TrollCAT/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1257/tasks/">CTFtime</a></td>
