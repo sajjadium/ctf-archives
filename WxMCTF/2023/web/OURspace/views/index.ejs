@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <h1>Welcome to</h1>
+    <h2>☭☭☭ OURspace ☭☭☭</h2>
+    <% if(user) { %>
+        <br>
+        <p>Welcome back, <b><%= user.username %></b>!</p>
+        <br>
+        <a href='/profile'>View Profile</a>
+    <% } else { %>
+        <br>
+        <a href='/register'>Register</a>
+        <br>
+        <a href='/login'>Login</a>
+    <% } %>
+</body>
+
+</html>

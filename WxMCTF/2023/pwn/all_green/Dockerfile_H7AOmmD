@@ -1,0 +1,17 @@
+FROM ubuntu:focal as build
+
+RUN apt-get -q update
+RUN apt-get -q install -y build-essential
+RUN apt-get -q install -y gcc-multilib
+RUN mkdir /build
+WORKDIR /build
+COPY Makefile /build
+COPY green.c /build
+RUN make
+RUN mkdir /app && cp /build/green /app/run
+
+FROM pwn.red/jail
+COPY --from=build / /srv
+RUN ls -al /srv
+RUN ls -al /srv/app
+RUN ls -al /srv/app/run
