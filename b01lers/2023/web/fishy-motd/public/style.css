@@ -1,0 +1,68 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    display: flex;
+    flex-flow: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1 {
+    margin: 0 0 0 10px;
+}
+
+nav {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav span {
+    padding: 10px;
+    font-size: 24px;
+}
+
+a {
+    color: black;
+    padding: 0.5rem 1rem;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.button {
+    border: none;
+    background: rgb(72, 111, 217);
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.main {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.main div {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    margin-bottom: 10px;
+}
+
+.form {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+}

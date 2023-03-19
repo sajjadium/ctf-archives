@@ -2049,7 +2049,11 @@
             <td><a href="https://ctftime.org/event/577/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="b01lers">b01lers</a></td>
+            <td rowspan=4><a href="b01lers">b01lers</a></td>
+            <td><a href="b01lers/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1875/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="b01lers/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1583/tasks/">CTFtime</a></td>
         </tr>

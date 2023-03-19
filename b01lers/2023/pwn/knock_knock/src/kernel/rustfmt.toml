@@ -1,0 +1,13 @@
+max_width = 110
+unstable_features = true
+
+blank_lines_upper_bound = 2
+overflow_delimited_expr = true
+format_macro_matchers = true
+match_block_trailing_comma = true
+
+imports_granularity = "Module"
+group_imports = "StdExternalCrate"
+
+struct_lit_single_line = false
+use_field_init_shorthand = true

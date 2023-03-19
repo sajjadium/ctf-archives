@@ -1,0 +1,20 @@
+{
+  "name": "boilers-ctf-dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/formbody": "^7.4.0",
+    "@fastify/static": "^6.9.0",
+    "fastify": "^4.14.1",
+    "nanoid": "^4.0.1",
+    "puppeteer": "^19.7.5"
+  }
+}
