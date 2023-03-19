@@ -1,0 +1,42 @@
+<html>
+<head>
+    <title>OTP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css" integrity="sha512-KXol4x3sVoO+8ZsWPFI/r5KBVB/ssCGB5tsv2nVOKwLg33wTFP3fmnXa47FdSVIshVTgsYk/1734xSk9aFIa4A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="main">
+<div class="ui container grid centered">
+    <div class="column twelve wide">    
+        <h1>Here is your one time password!</h1>
+        <h4>Make sure to keep it secret...</h4>
+        <input id="otp" name="otp" type="text" value="<%= otp %>" disabled />
+    </div>
+
+    <div class="column four wide">
+        <div id="ad">
+            <div style="display: inline-block;">
+                <%- ad %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.main {
+    margin-top: 30px;
+}
+
+input#otp {
+    font-size: 2em;
+    text-align: center;
+    color: black;
+    cursor: text;
+}
+
+#ad {
+    width: 300px !important;
+    height: 300px !important;
+    border: 2px solid black;
+    overflow: hidden;
+}
+</style>
+</html>

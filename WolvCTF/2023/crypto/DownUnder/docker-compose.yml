@@ -1,0 +1,11 @@
+version: "2.2"
+
+services:
+  down-under:
+    build: .
+    image: down-under:1
+    container_name: down-under
+    init: true
+    restart: always
+    ports:
+      - 80:54321

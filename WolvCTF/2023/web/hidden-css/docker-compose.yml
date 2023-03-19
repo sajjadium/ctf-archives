@@ -1,0 +1,9 @@
+version: "2.2"
+
+services:
+  hidden-css:
+    build: .
+    image: hidden-css:1
+    container_name: hidden-css
+    ports:
+      - "80:8080"

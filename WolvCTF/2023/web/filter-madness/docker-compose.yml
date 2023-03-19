@@ -1,0 +1,11 @@
+version: "2.2"
+
+services:
+  filter-madness:
+    build: .
+    image: filter-madness:1
+    container_name: filter-madness
+    init: true
+    restart: always
+    ports:
+      - 80:80

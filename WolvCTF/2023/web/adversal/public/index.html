@@ -1,0 +1,20 @@
+<html>
+<head>
+    <title>Adversal</title>
+</head>
+<body>
+<h1>Overview</h1>
+<div>The web app of interest generates one time passwords for users. It lives at <a href="otp">/otp</a> </div>
+<div>The page can also display HTML for an advertisement, supplied by the '?ad=' query parameter </div>
+<div>Our admin bot will visit the OTP page with an advertisement on the page supplied by you </div>
+<div>You need to exfiltrate the OTP from the page. Note that the OTP is different every time the page is loaded. </div>
+<div>Good luck! </div>
+<h1>Admin Bot</h1>
+Supply your advertisement. The admin bot will visit /otp?ad=your_ad
+<form method="get" action="/visit">
+    <label for="ad">Ad:</label><br>
+    <textarea id="ad" name="ad"></textarea><br><br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
