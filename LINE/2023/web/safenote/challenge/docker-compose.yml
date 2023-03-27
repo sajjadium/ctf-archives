@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  safenote-mysql:
+    container_name: safenote-mysql
+    restart: always
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: 'toor'
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_DATABASE: 'ctf'
+      TZ: Asia/Tokyo
+    ports:
+      - 3306:3306
+
+  safenote:
+    restart: always
+    build:
+      context: .
+    container_name: safenote
+    ports:
+      - 8080:8080
+    depends_on:
+      - safenote-mysql

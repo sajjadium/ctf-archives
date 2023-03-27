@@ -1,0 +1,21 @@
+{
+    "name": "app",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "@apollo/server": "^4.3.0",
+        "cookie-parser": "~1.4.4",
+        "debug": "~2.6.9",
+        "dotenv": "^16.0.3",
+        "express": "~4.16.1",
+        "ioredis": "^5.2.4",
+        "jsonwebtoken": "^9.0.0",
+        "morgan": "~1.9.1",
+        "sqlite3": "^5.1.4",
+        "trek-captcha": "^0.4.0"
+    }
+}

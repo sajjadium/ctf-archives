@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head">
+</head>
+<body>
+<div th:replace="fragment :: header"></div>
+<main class="container">
+    <div class="mx-auto text-center" style="max-width: 500px">
+        <table class="table">
+            <tr th:each="bin: ${bins}" class="row">
+                <td>
+                    <a th:href="@{'/bin/'+${bin}}">[[${bin}]]</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</main>
+
+</body>
+</html>

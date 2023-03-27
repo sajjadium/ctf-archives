@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head">
+</head>
+<body>
+<main class="container text-center" style="max-width: 800px">
+    <div class="d-flex align-items-center min-vh-100">
+        <div class="mx-auto my-auto">
+            <h1>Memento</h1>
+            <p>You can post anonymously and share the URL.</p>
+            <p>You can also check the list of your posts.</p>
+            <a class="btn btn-secondary" th:href="@{'/bin/create'}">New post</a>
+            <!-- <a class="btn btn-secondary" th:href="@{'/auth/login'}">Login</a> -->
+        </div>
+    </div>
+</main>
+</body>
+</html>

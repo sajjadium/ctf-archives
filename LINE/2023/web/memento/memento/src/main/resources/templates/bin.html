@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head">
+</head>
+<body>
+<div th:replace="fragment :: header"></div>
+<main class="container" style="max-width: 800px">
+    <div class="mx-auto">
+        <code><pre>[[${bin}]]</pre></code>
+        <a onclick="report()">Report this bin</a>
+    </div>
+    <script>
+        function report() {
+            const url = origin + '/bin/report?urlString=' + encodeURIComponent(location.href);
+            fetch(url).then(res=>{
+                alert('Reported. Thank you.')
+            }) 
+        }
+    </script>
+</main>
+</body>
+</html>

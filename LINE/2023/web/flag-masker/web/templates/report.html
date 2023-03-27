@@ -1,0 +1,40 @@
+<script>
+    const report = () => {
+        const url = document.getElementById("url").value;
+        const captcha = document.getElementById("captcha").value;
+        fetch("/report", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ url: url, captcha: captcha }),
+        }).then((response) => {
+            if (response.status == 200) {
+                alert("Admin would be check your url soon!");
+                location.reload();
+            } else {
+                alert("Invalid captcha");
+                location.reload();
+            }
+        });
+    };
+</script>
+<h1>Report</h1>
+If you report with url path, admin would be check that url!
+<hr />
+<img src="data:image/jpeg;base64,{{captcha}}" />
+<br />
+<input
+    type="text"
+    id="captcha"
+    placeholder="Enter captcha image here!"
+    style="width: 300px"
+/>
+<br />
+<input
+    type="text"
+    id="url"
+    placeholder="/54c9af78-ebbf-47f9-ba54-4403201b4f42"
+    style="width: 300px"
+/>
+<button onclick="report()">Report</button>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<title>Index of /</title>
+<style>
+a:link { text-decoration: none; }
+a:visited { text-decoration: none; }
+a:hover { text-decoration: underline; }
+</style>
+<script>
+
+var cwd = '/opt/';
+
+function main() {
+    fs_dir();
+}
+
+function fs_dir(new_cwd) {
+    var box = document.getElementById('box');
+    var d = document.getElementById('d');
+
+    fetch('/api/v1/fs/list', { 
+            method: 'POST',
+            mode: 'cors',
+            cache: 'no-cache',
+            body: JSON.stringify({"path": new_cwd})
+    })
+    .then((response) => response.json())
+    .then((data) => {
+        cwd = data.data.root;
+
+        if (cwd != '/opt/') {
+            box.innerHTML = `<a href='#' onclick="fs_dir('${cwd}../')">..</a><br>`;
+            d.innerText = '';
+        } else {
+            box.innerHTML = '';
+            d.innerText = '';
+        }
+
+        if (data?.data?.entry) {
+            data.data?.entry.forEach((e) => {
+                let sz = e?.sz;
+
+                if (sz == undefined)
+                    sz = '';
+
+                sz = sz.padStart(20);
+
+                if (e.isDirectory) {
+                    e.path += '/';
+                    box.innerHTML += `<a href='#' onclick="fs_dir('${cwd}${e.path}')">${e.path.padEnd(30)}</a>${sz} ${e.lastWriteTime}<br>`;
+                } else {
+                    box.innerHTML += `<a href='#' onclick="fs_file('${cwd}${e.path}')">${e.path.padEnd(30)}</a>${sz} ${e.lastWriteTime}<br>`;
+                }
+            });
+        }
+    });
+}
+
+function fs_file(p) {
+    var d = document.getElementById('d');
+
+    d.innerText = '';
+
+    fetch('/api/v1/fs/file?fn=' + p, { 
+            method: 'GET',
+            mode: 'cors',
+            cache: 'no-cache',
+    })
+    .then((response) => response.blob())
+    .then(async (blob) => {
+        const stream = blob.stream().getReader();
+        let enc = new TextDecoder("utf-8");
+
+        for (let i = 0; i < 1; i++) {
+            let { done, value } = await stream.read();
+
+            if (done)
+                break;
+
+            d.innerText += enc.decode(value);
+        }
+    });
+}
+</script>
+</head>
+<body onload="main()">
+<h1>Index of /</h1>
+<hr>
+<pre id='box'>
+</pre>
+<hr>
+<xmp id='d'>
+</xmp>
+<script>
+</script>
+</body>
+</html>

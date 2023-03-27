@@ -1,0 +1,38 @@
+.cm-chessboard {
+  .arrow-default {
+    .arrow-head {
+      fill: blue;
+      fill-rule: nonzero;
+      fill-opacity: 1;
+    }
+    .arrow-line {
+      stroke: blue;
+      stroke-linecap: round;
+      opacity: 0.5;
+    }
+  }
+  .arrow-danger {
+    .arrow-head {
+      fill: red;
+      fill-rule: nonzero;
+      fill-opacity: 1;
+    }
+    .arrow-line {
+      stroke: red;
+      stroke-linecap: round;
+      opacity: 0.5;
+    }
+  }
+  .arrow-pointy {
+    .arrow-head {
+      fill: black;
+      fill-rule: nonzero;
+      fill-opacity: 1;
+    }
+    .arrow-line {
+      stroke: black;
+      stroke-linecap: round;
+      opacity: 0.5;
+    }
+  }
+}

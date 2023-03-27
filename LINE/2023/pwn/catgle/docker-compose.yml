@@ -1,0 +1,37 @@
+version: "3.1"
+
+services:
+    catgle:
+        restart: always
+        container_name: catgle
+        build: ./catgle/
+        ports:
+            - 4444:4444
+        depends_on:
+            - catgle_mysql
+        environment:
+            MYSQL_USER: redacted
+            MYSQL_PASSWORD: redacted
+            MYSQL_HOST: catgle_mysql
+            MYSQL_PORT: 3306
+
+    catgle_mysql:
+        container_name: catgle_mysql
+        image: mysql
+        restart: always
+        environment:
+            - TZ=Asia/Tokyo
+            - MYSQL_ROOT_PASSWORD=redacted
+            - MYSQL_USER=redacted
+            - MYSQL_PASSWORD=redacted
+            - MYSQL_DATABASE=redacted
+            - MYSQL_PORT=3306
+        command:
+            - mysqld
+            - --default-authentication-plugin=mysql_native_password
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+            - --skip-character-set-client-handshake
+        volumes:
+            - ./mysql_data/:/var/lib/mysql
+            - ./dbinit:/docker-entrypoint-initdb.d

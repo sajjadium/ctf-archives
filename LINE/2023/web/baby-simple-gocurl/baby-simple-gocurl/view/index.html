@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="/static/curl.js"></script>
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/curl.css">
+
+    <title>Baby Simple Go Curl</title>
+</head>
+<body>
+    <div class="main">
+        <p>
+            Welcome, <sapn id="client-ip">{{ .a }}</sapn>
+            <br/>
+            <input type="text" id="url" placeholder="e.g) https://line.me/en/"/>
+            <input type="text" id="header_key" placeholder="Header Key"/>
+            <input type="text" id="header_value" placeholder="Header Value"/>
+            <input type="button" value="CURL" onclick="curl()"/>
+            <br/>
+            <textarea id="output" placeholder="" readonly></textarea><br/>
+
+        </p>
+    </div>
+</body>
+</html>

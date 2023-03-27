@@ -1,0 +1,22 @@
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>memento</title>
+</head>
+
+<div th:fragment="header" class="mb-5">
+    <nav class="navbar navbar-expand navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="navbar-nav">
+                <a class="navbar-brand" href="/">Memento</a>
+                <a class="nav-link" th:href="@{'/bin/list'}">List</a>
+                <a class="nav-link" th:href="@{'/bin/create'}">Create</a>
+            </div>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,61 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.app
+    image: momomomomemomemo_app
+    ports:
+      - '4000:4000'
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - NODE_ENV=production
+    env_file:
+      - .env
+    healthcheck:
+      test: "curl --fail 'http://localhost:4000/login/ja/' || exit 1"
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 1s
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      default:
+        aliases:
+          - app.local
+
+  crawler:
+    build:
+      context: .
+      dockerfile: Dockerfile.crawler
+    image: momomomomemomemo_crawler
+    environment:
+      - CRAWL_ORIGIN=http://app.local:4000
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/google-chrome
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - NODE_ENV=production
+    env_file:
+      - .env
+    depends_on:
+      redis:
+        condition: service_healthy
+      app:
+        condition: service_healthy
+    deploy:
+      replicas: 1
+    restart: on-failure
+    
+  redis:
+    image: bitnami/redis:latest
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 5s

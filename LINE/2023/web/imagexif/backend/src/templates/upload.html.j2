@@ -1,0 +1,27 @@
+{% extends "base.html.j2" %}
+
+{% include 'head.html.j2' %}
+
+{% block title %}LINE CTF 2023 Web [{img.exif}]{% endblock %}
+
+{% block content %}
+
+
+<div class="row border">
+  <div class="col">
+    <h1>Upload File</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+
+      <div class=row>
+        <div class="col"><input type="file" class="form-control" name="file" id="file" /></div>
+        <div class="col"><input type="submit" class="btn btn-primary"></div>
+      </div>
+    </form>
+
+  </div>
+
+</div>
+
+
+
+{% endblock %}

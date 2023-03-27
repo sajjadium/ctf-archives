@@ -1,0 +1,26 @@
+<html>
+
+<head>
+  <title>Momomomomemomemo</title>
+  <link rel="stylesheet" href="/static/app.css">
+</head>
+
+<body id="reportbugBody">
+  <div id="login">
+    <h1>バグ報告</h1>
+    <p>バグを発見した場合はメモにその詳細を書いて、そのURLを報告してください。</p>
+    
+    <input id="url" placeholder="url">
+    <img id="captchaImg">
+    <input id="captchaCode" placeholder="captcha code"></input>
+    <button id="reportButton">報告</button>
+    <div class="errMsg" id="bugReportErr" ></div>
+    <div class="msg" id="bugReportMsg" ></div>
+
+    <a href="/">トップに戻る</a>
+
+    
+    <script src="/static/reportbug.js" type="module"></script>
+  </div>
+</body>
+</html>

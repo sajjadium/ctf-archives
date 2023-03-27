@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+    pwn-003-hackatris:
+        build: .
+        ports:
+            - "9999:9999"
+        privileged: true

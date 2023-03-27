@@ -1,0 +1,320 @@
+.cm-chessboard .board.input-enabled .square {
+  cursor: pointer; }
+
+.cm-chessboard .markers .marker.markerFrame, .cm-chessboard .markers .marker.marker-frame {
+  stroke: black;
+  stroke-width: 1.8px;
+  opacity: 0.5; }
+
+.cm-chessboard .markers .marker.markerFrameRed, .cm-chessboard .markers .marker.marker-frame-red {
+  stroke: #aa0000;
+  stroke-width: 1.8px;
+  opacity: 0.4; }
+
+.cm-chessboard .markers .marker.markerSquare, .cm-chessboard .markers .marker.marker-square {
+  fill: black;
+  opacity: 0.11; }
+
+.cm-chessboard .markers .marker.markerDot, .cm-chessboard .markers .marker.marker-dot {
+  fill: black;
+  opacity: 0.3; }
+
+.cm-chessboard .markers .marker.markerCircle, .cm-chessboard .markers .marker.marker-circle {
+  stroke: #000055;
+  stroke-width: 3px;
+  opacity: 0.4; }
+
+.cm-chessboard .markers .marker.markerCircleRed, .cm-chessboard .markers .marker.marker-circle-red {
+  stroke: #aa0000;
+  stroke-width: 3px;
+  opacity: 0.4; }
+
+.cm-chessboard .pieces, .cm-chessboard .markers {
+  pointer-events: none; }
+
+.cm-chessboard-content .list-inline {
+  padding-left: 0;
+  list-style: none; }
+
+.cm-chessboard-content .list-inline-item {
+  display: inline-block; }
+  .cm-chessboard-content .list-inline-item:not(:last-child) {
+    margin-right: 1rem; }
+
+.cm-chessboard-content .list-inline {
+  padding-left: 0;
+  list-style: none; }
+
+.cm-chessboard-content .list-inline-item {
+  display: inline-block; }
+  .cm-chessboard-content .list-inline-item:not(:last-child) {
+    margin-right: 1rem; }
+
+.cm-visually-hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden; }
+
+.cm-chessboard.default .board .square.white {
+  fill: #ecdab9; }
+
+.cm-chessboard.default .board .square.black {
+  fill: #c5a076; }
+
+.cm-chessboard.default.border-type-thin .board .border {
+  stroke: #c5a076;
+  stroke-width: 0.7%;
+  fill: #ecdab9; }
+
+.cm-chessboard.default.border-type-none .board .border {
+  stroke: #c5a076;
+  stroke-width: 0;
+  fill: #ecdab9; }
+
+.cm-chessboard.default.border-type-frame .board .border {
+  fill: #ecdab9;
+  stroke: none; }
+
+.cm-chessboard.default.border-type-frame .board .border-inner {
+  fill: transparent;
+  stroke: #c5a076;
+  stroke-width: 0.7%; }
+
+.cm-chessboard.default .coordinates {
+  pointer-events: none;
+  user-select: none; }
+  .cm-chessboard.default .coordinates .coordinate {
+    fill: #c5a076;
+    font-size: 7px;
+    cursor: default; }
+    .cm-chessboard.default .coordinates .coordinate.black {
+      fill: #ecdab9; }
+    .cm-chessboard.default .coordinates .coordinate.white {
+      fill: #c5a076; }
+
+.cm-chessboard.default-contrast .board .square.white {
+  fill: #ecdab9; }
+
+.cm-chessboard.default-contrast .board .square.black {
+  fill: #c5a076; }
+
+.cm-chessboard.default-contrast.border-type-thin .board .border {
+  stroke: #c5a076;
+  stroke-width: 0.7%;
+  fill: #ecdab9; }
+
+.cm-chessboard.default-contrast.border-type-none .board .border {
+  stroke: #c5a076;
+  stroke-width: 0;
+  fill: #ecdab9; }
+
+.cm-chessboard.default-contrast.border-type-frame .board .border {
+  fill: #ecdab9;
+  stroke: none; }
+
+.cm-chessboard.default-contrast.border-type-frame .board .border-inner {
+  fill: transparent;
+  stroke: #c5a076;
+  stroke-width: 0.7%; }
+
+.cm-chessboard.default-contrast .coordinates {
+  pointer-events: none;
+  user-select: none; }
+  .cm-chessboard.default-contrast .coordinates .coordinate {
+    fill: #c5a076;
+    font-size: 7px;
+    cursor: default; }
+    .cm-chessboard.default-contrast .coordinates .coordinate.black {
+      fill: #333; }
+    .cm-chessboard.default-contrast .coordinates .coordinate.white {
+      fill: #333; }
+
+.cm-chessboard.green .board .square.white {
+  fill: #E0DDCC; }
+
+.cm-chessboard.green .board .square.black {
+  fill: #4c946a; }
+
+.cm-chessboard.green.border-type-thin .board .border {
+  stroke: #4c946a;
+  stroke-width: 0.7%;
+  fill: #E0DDCC; }
+
+.cm-chessboard.green.border-type-none .board .border {
+  stroke: #4c946a;
+  stroke-width: 0;
+  fill: #E0DDCC; }
+
+.cm-chessboard.green.border-type-frame .board .border {
+  fill: #E0DDCC;
+  stroke: none; }
+
+.cm-chessboard.green.border-type-frame .board .border-inner {
+  fill: transparent;
+  stroke: #4c946a;
+  stroke-width: 0.7%; }
+
+.cm-chessboard.green .coordinates {
+  pointer-events: none;
+  user-select: none; }
+  .cm-chessboard.green .coordinates .coordinate {
+    fill: #4c946a;
+    font-size: 7px;
+    cursor: default; }
+    .cm-chessboard.green .coordinates .coordinate.black {
+      fill: #E0DDCC; }
+    .cm-chessboard.green .coordinates .coordinate.white {
+      fill: #4c946a; }
+
+.cm-chessboard.blue .board .square.white {
+  fill: #d8ecfb; }
+
+.cm-chessboard.blue .board .square.black {
+  fill: #86afcf; }
+
+.cm-chessboard.blue.border-type-thin .board .border {
+  stroke: #86afcf;
+  stroke-width: 0.7%;
+  fill: #d8ecfb; }
+
+.cm-chessboard.blue.border-type-none .board .border {
+  stroke: #86afcf;
+  stroke-width: 0;
+  fill: #d8ecfb; }
+
+.cm-chessboard.blue.border-type-frame .board .border {
+  fill: #d8ecfb;
+  stroke: none; }
+
+.cm-chessboard.blue.border-type-frame .board .border-inner {
+  fill: transparent;
+  stroke: #86afcf;
+  stroke-width: 0.7%; }
+
+.cm-chessboard.blue .coordinates {
+  pointer-events: none;
+  user-select: none; }
+  .cm-chessboard.blue .coordinates .coordinate {
+    fill: #86afcf;
+    font-size: 7px;
+    cursor: default; }
+    .cm-chessboard.blue .coordinates .coordinate.black {
+      fill: #d8ecfb; }
+    .cm-chessboard.blue .coordinates .coordinate.white {
+      fill: #86afcf; }
+
+.cm-chessboard.chess-club .board .square.white {
+  fill: #E6D3B1; }
+
+.cm-chessboard.chess-club .board .square.black {
+  fill: #AF6B3F; }
+
+.cm-chessboard.chess-club.border-type-thin .board .border {
+  stroke: #692e2b;
+  stroke-width: 0.7%;
+  fill: #E6D3B1; }
+
+.cm-chessboard.chess-club.border-type-none .board .border {
+  stroke: #692e2b;
+  stroke-width: 0;
+  fill: #E6D3B1; }
+
+.cm-chessboard.chess-club.border-type-frame .board .border {
+  fill: #692e2b;
+  stroke: none; }
+
+.cm-chessboard.chess-club.border-type-frame .board .border-inner {
+  fill: transparent;
+  stroke: #692e2b;
+  stroke-width: 0.7%; }
+
+.cm-chessboard.chess-club .coordinates {
+  pointer-events: none;
+  user-select: none; }
+  .cm-chessboard.chess-club .coordinates .coordinate {
+    fill: #E6D3B1;
+    font-size: 7px;
+    cursor: default; }
+    .cm-chessboard.chess-club .coordinates .coordinate.black {
+      fill: #E6D3B1; }
+    .cm-chessboard.chess-club .coordinates .coordinate.white {
+      fill: #AF6B3F; }
+
+.cm-chessboard.chessboard-js .board .square.white {
+  fill: #f0d9b5; }
+
+.cm-chessboard.chessboard-js .board .square.black {
+  fill: #b58863; }
+
+.cm-chessboard.chessboard-js.border-type-thin .board .border {
+  stroke: #404040;
+  stroke-width: 0.7%;
+  fill: #f0d9b5; }
+
+.cm-chessboard.chessboard-js.border-type-none .board .border {
+  stroke: #404040;
+  stroke-width: 0;
+  fill: #f0d9b5; }
+
+.cm-chessboard.chessboard-js.border-type-frame .board .border {
+  fill: #f0d9b5;
+  stroke: none; }
+
+.cm-chessboard.chessboard-js.border-type-frame .board .border-inner {
+  fill: transparent;
+  stroke: #404040;
+  stroke-width: 0.7%; }
+
+.cm-chessboard.chessboard-js .coordinates {
+  pointer-events: none;
+  user-select: none; }
+  .cm-chessboard.chessboard-js .coordinates .coordinate {
+    fill: #404040;
+    font-size: 7px;
+    cursor: default; }
+    .cm-chessboard.chessboard-js .coordinates .coordinate.black {
+      fill: #f0d9b5; }
+    .cm-chessboard.chessboard-js .coordinates .coordinate.white {
+      fill: #b58863; }
+
+.cm-chessboard.black-and-white .board .square.white {
+  fill: #ffffff; }
+
+.cm-chessboard.black-and-white .board .square.black {
+  fill: #9c9c9c; }
+
+.cm-chessboard.black-and-white.border-type-thin .board .border {
+  stroke: #9c9c9c;
+  stroke-width: 0.7%;
+  fill: #ffffff; }
+
+.cm-chessboard.black-and-white.border-type-none .board .border {
+  stroke: #9c9c9c;
+  stroke-width: 0;
+  fill: #ffffff; }
+
+.cm-chessboard.black-and-white.border-type-frame .board .border {
+  fill: #ffffff;
+  stroke: none; }
+
+.cm-chessboard.black-and-white.border-type-frame .board .border-inner {
+  fill: transparent;
+  stroke: #9c9c9c;
+  stroke-width: 0.7%; }
+
+.cm-chessboard.black-and-white .coordinates {
+  pointer-events: none;
+  user-select: none; }
+  .cm-chessboard.black-and-white .coordinates .coordinate {
+    fill: #9c9c9c;
+    font-size: 7px;
+    cursor: default; }
+    .cm-chessboard.black-and-white .coordinates .coordinate.black {
+      fill: #ffffff; }
+    .cm-chessboard.black-and-white .coordinates .coordinate.white {
+      fill: #9c9c9c; }
+
+/*# sourceMappingURL=cm-chessboard.css.map */

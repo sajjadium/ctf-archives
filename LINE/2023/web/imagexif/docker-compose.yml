@@ -1,0 +1,39 @@
+version: "3.5"
+
+services:
+    nginx:
+        build:
+            context: ./nginx/
+        container_name: line_linectf2023_nginx
+        restart: always
+        image: line_linectf2023_nginx
+        volumes:
+            - "./nginx/log:/var/log/nginx"
+        ports:
+            - "12000:80" # in -> out
+        networks:
+            - line-linectf2023-frontend
+            - line-linectf2023-internal
+        depends_on:
+            - backend
+
+    backend:
+        build:
+            context: ./backend/
+        container_name: line_linectf2023_backend
+        restart: always
+        environment:
+            - FLAG=LINECTF{redacted}
+            - SCRIPT_ENV=production
+        networks:
+            - line-linectf2023-internal
+
+networks:
+    line-linectf2023-frontend:
+        ipam:
+            driver: default
+            config:
+                - subnet: 172.27.0.0/16
+    line-linectf2023-internal:
+        driver: bridge
+        internal: true

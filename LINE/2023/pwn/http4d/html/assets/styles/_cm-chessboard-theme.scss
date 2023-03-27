@@ -1,0 +1,68 @@
+@mixin cm-chessboard-theme($name,
+$square-white, $square-black,
+$coordinates-white: $square-black, $coordinates-black: $square-white,
+$coordinates-frame: $square-black,
+$border: $square-black, $frame-bg: $square-white,) {
+  .cm-chessboard.#{$name} {
+    .board {
+      .square {
+        &.white {
+          fill: $square-white;
+        }
+
+        &.black {
+          fill: $square-black;
+        }
+      }
+    }
+    // border, with borderType "thin"
+    &.border-type-thin {
+      .board {
+        .border {
+          stroke: $border;
+          stroke-width: 0.7%;
+          fill: $square-white;
+        }
+      }
+    }
+    &.border-type-none {
+      .board {
+        .border {
+          stroke: $border;
+          stroke-width: 0;
+          fill: $square-white;
+        }
+      }
+    }
+    // border, with borderType "frame"
+    &.border-type-frame {
+      .board {
+        .border {
+          fill: $frame-bg;
+          stroke: none;
+        }
+        .border-inner {
+          fill: transparent;
+          stroke: $border;
+          stroke-width: 0.7%;
+        }
+      }
+    }
+    .coordinates {
+      pointer-events: none;
+      user-select: none;
+
+      .coordinate {
+        fill: $coordinates-frame;
+        font-size: 7px;
+        cursor: default;
+        &.black {
+          fill: $coordinates-black;
+        }
+        &.white {
+          fill: $coordinates-white;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+version: '0.1'    
+services:
+  server:
+    privileged: true
+    restart: always
+    build:
+      context: ./server
+    ports:
+      - "13443:13443"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./server/server_nix:/chroot/home/ctf/server
+      - ./server/flag:/chroot/home/ctf/flag
+      - ./server/simple_blogger.db:/chroot/home/ctf/simple_blogger.db
+      - ./server/nsjail.cfg:/home/ctf/nsjail.cfg
+  agent:
+    build:
+      context: ./agent
+    stdin_open: true
+    tty: true
+    environment:
+      ADMIN_USER: $ADMIN_USER
+      ADMIN_PASS: $ADMIN_PASS
+      TERM: "linux"
+      TERMINFO: "/etc/terminfo"

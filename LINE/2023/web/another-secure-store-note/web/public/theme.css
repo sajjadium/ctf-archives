@@ -1,0 +1,152 @@
+html, body {
+  height: 100%;
+  background-color: #daeae5;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+footer {
+  margin-top: 5vh;
+  border: solid 1px;
+  margin-left: -0.8%;
+  flex-shrink: 0;
+  text-align: center;
+  overflow: hidden;
+  width: 102%;
+  color: white;
+  background-color: #333;
+}
+
+img {
+  display: none;
+}
+
+.red {
+  color: red;
+  font-size: 1em;
+}
+
+.green {
+  color: #057048;
+  font-size: 1em;
+}
+
+#response {
+  color:forestgreen;
+}
+
+#captcha-img {
+  display: block !important;
+  margin-top: 10px;
+}
+
+#captcha-text {
+  padding: 5px;
+}
+
+#source {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 10vh;
+}
+
+input, textarea {
+  display: block;
+  margin-top: 10px;
+}
+
+input[type="submit"] {
+  transition-duration: 0.22s;
+  background-color: transparent;
+  border: solid 1px black;
+  padding: 7px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#auth {
+  margin-left: 20%;
+  width: 55%;
+}
+
+input[type="submit"]:hover {
+  background-color: #057048; /* Green */
+  color: white;
+}
+
+input[type="text"] {
+  padding: 8px;
+  width: 100%;
+}
+
+input[type="password"] {
+  padding: 8px;
+  width: 100%;
+}
+
+.change-name {
+  width: 300px !important;
+}
+
+h2 {
+  margin-top: 5vh;
+  margin-left: 15%;
+}
+
+.main {
+  background-color: white;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  width: 70%;
+  border: solid 1px transparent;
+  border-radius: 2px;
+  margin-left: 15%;
+  margin-top: 6vh;
+}
+
+textarea {
+  width: 50%;
+  height: 100px;
+  padding: 10px;
+}
+
+ul {
+  list-style-type: none;
+  overflow: hidden;
+  background-color: #333;
+  width: 102%;
+  margin-left: -0.8%;
+  margin-top: -0.8%;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}

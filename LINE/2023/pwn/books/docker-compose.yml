@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  evo:
+    build:
+      context: .
+      dockerfile: Dockerfile-envoy
+    restart: always
+    ports:
+      - 8000:8000
+    volumes:
+      - ./log/:/var/log/envoy/
+    networks:
+      - default
+      - trusted-zone
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile-booksd
+    restart: always
+    privileged: true
+    networks:
+      - trusted-zone
+
+
+networks:
+  trusted-zone:
+    internal: true

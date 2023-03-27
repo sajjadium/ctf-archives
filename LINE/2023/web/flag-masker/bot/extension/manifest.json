@@ -1,0 +1,22 @@
+{
+    "manifest_version": 3,
+    "name": "Flag Masker",
+    "description": "Extension for removing flag!",
+    "version": "1.0.0",
+    "icons": {
+        "16": "16x16.png",
+        "32": "32x32.png",
+        "64": "64x64.png",
+        "128": "128x128.png"
+    },
+    "background": {
+        "service_worker": "worker.js"
+    },
+    "content_scripts": [
+        {
+            "all_frames": true,
+            "matches": ["<all_urls>"],
+            "js": ["content.js"]
+        }
+    ]
+}

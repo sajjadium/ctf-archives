@@ -1,0 +1,27 @@
+version: "3.5"
+
+services:
+    redis:
+        build: ./redis
+        restart: always
+        container_name: redis
+
+    web:
+        build: ./web
+        restart: always
+        container_name: web
+        environment:
+            - secret=redacted
+        working_dir: /web
+        ports:
+            - "8000:8000"
+
+    bot:
+        build: ./bot
+        restart: always
+        container_name: bot
+        environment:
+            - session=redacted
+        working_dir: /bot
+        depends_on:
+            - redis

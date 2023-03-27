@@ -1,0 +1,57 @@
+(function_declarator
+  declarator: (identifier) @function.name
+  parameters: (
+      (parameter_list
+          (parameter_declaration) @argc
+          (
+              (parameter_declaration
+                  declarator: 
+                    (pointer_declarator
+                      (array_declarator 
+                        (identifier
+                          (#eq? @function.name "main")
+                        ) @unsafe-input-source
+                      )
+                    )
+              )
+          )
+      )
+  )
+)
+
+(assignment_expression) @AssignmentExpr
+(call_expression) @CallExpr
+(field_expression) @AccessExpr
+(subscript_expression) @ArrayAccessExpr
+(declaration) @DeclarationExpr
+(binary_expression) @BinaryOpExpr
+(unary_expression) @UnaryOpExpr
+(function_declarator) @FunctionDecl
+
+
+(function_declarator
+  declarator: ((identifier) @function.name)
+)
+
+
+([
+    (assignment_expression)
+    (call_expression)
+    (field_expression)
+    (subscript_expression)
+    (declaration)
+    (binary_expression)
+ ] @-taint-check
+ (#taint? unsafe-input-source tainted @-taint-check)
+) @tainted
+
+
+(
+  ((call_expression
+    function: (
+      (identifier) @call.target
+    )
+    (#match? @call.target "(strcpy|strcat|sprintf)")
+  ) @-taint-check2)
+  (#taint? unsafe-input-source tainted @-taint-check2)
+) @unsafe-string-copy

@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+    memento:
+        # Uncomment if your OS need to enable blow option to build.
+        # platform: linux/amd64
+        build: ./memento/
+        image: memento
+        hostname: memento
+        ports:
+            - 10000:10000
+
+    admin:
+        build: ./admin/
+        image: memento-admin
+        hostname: memento-admin
+        environment:
+            - FLAG=${FLAG}
+        networks:
+            - default
+
+networks:
+    default:
+        driver: bridge

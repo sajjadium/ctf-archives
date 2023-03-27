@@ -1,0 +1,132 @@
+@import "cm-chessboard-theme";
+
+// define markers (for all themes)
+.cm-chessboard {
+  .board {
+    &.input-enabled {
+      .square {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .markers {
+    .marker {
+      // use the second, the hyphens syntax
+      &.markerFrame, &.marker-frame {
+        stroke: black;
+        stroke-width: 1.8px;
+        opacity: 0.5;
+      }
+
+      &.markerFrameRed, &.marker-frame-red {
+        stroke: #aa0000;
+        stroke-width: 1.8px;
+        opacity: 0.4;
+      }
+
+      &.markerSquare, &.marker-square {
+        fill: black;
+        opacity: 0.11;
+      }
+
+      &.markerDot, &.marker-dot {
+        fill: black;
+        opacity: 0.3;
+      }
+
+      &.markerCircle, &.marker-circle {
+        stroke: #000055;
+        stroke-width: 3px;
+        opacity: 0.4;
+      }
+
+      &.markerCircleRed, &.marker-circle-red {
+        stroke: #aa0000;
+        stroke-width: 3px;
+        opacity: 0.4;
+      }
+    }
+  }
+
+  .pieces, .markers {
+    // important for the proper function
+    pointer-events: none;
+  }
+}
+.cm-chessboard-content {
+  .list-inline {
+    padding-left: 0;
+    list-style: none;
+  }
+  .list-inline-item {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.cm-chessboard-content {
+
+  .list-inline {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .list-inline-item {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
+
+}
+
+.cm-visually-hidden {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+// define themes
+@include cm-chessboard-theme(
+                "default", // name
+                #ecdab9, #c5a076 // squares
+);
+@include cm-chessboard-theme(
+                "default-contrast", // name
+                #ecdab9, #c5a076, // squares
+                #333, #333, // coordinates in squares (white, black)
+);
+@include cm-chessboard-theme(
+                "green", // name
+                #E0DDCC, #4c946a // squares
+);
+@include cm-chessboard-theme(
+                "blue", // name
+                #d8ecfb, #86afcf // squares
+);
+@include cm-chessboard-theme(
+                "chess-club", // name
+                #E6D3B1, #AF6B3F, // squares
+                #AF6B3F, #E6D3B1, // coordinates in squares (white, black)
+                #E6D3B1, // coordinates in frame-mode
+                #692e2b, #692e2b // border and frame background
+);
+@include cm-chessboard-theme(
+                "chessboard-js", // name
+                #f0d9b5, #b58863, // squares
+                #b58863, #f0d9b5, // coordinates in squares (white, black)
+                #404040, // coordinates in frame-mode
+                #404040, #f0d9b5 // border and frame background
+);
+@include cm-chessboard-theme(
+                "black-and-white", // name
+                #ffffff, #9c9c9c // squares
+);

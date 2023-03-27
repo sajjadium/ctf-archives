@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragment :: head">
+</head>
+<body>
+<div th:replace="fragment :: header"></div>
+<main class="container" style="max-width: 800px">
+    <h1>Create</h1>
+    <form action="/bin/create" method="POST">
+        <textarea name="bin" class="form-control mb-2" rows="20" required></textarea>
+        <button class="btn btn-primary">Create</button>
+    </form>
+</main>
+</body>
+</html>

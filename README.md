@@ -1088,7 +1088,11 @@
             <td><a href="https://ctftime.org/event/1732/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="LINE">LINE</a></td>
+            <td rowspan=3><a href="LINE">LINE</a></td>
+            <td><a href="LINE/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1716/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="LINE/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1472/tasks/">CTFtime</a></td>
         </tr>

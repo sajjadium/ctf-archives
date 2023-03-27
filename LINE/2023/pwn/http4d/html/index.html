@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="" />
+		<title>Betafish.js | Chess AI</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href="assets/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+		<link rel="stylesheet" href="../assets/styles/cm-chessboard.css" />
+
+		<!-- Custom styles for this template -->
+		<link href="styles.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="chessboard-1.0.0.min.css" type="text/css" />
+		<style>
+
+		.b-example-divider {
+			  flex-shrink: 0;
+			    width: 1.5rem;
+			      height: 100vh;
+				background-color: rgba(0, 0, 0, .1);
+				  border: solid rgba(0, 0, 0, .15);
+				    border-width: 1px 0;
+				      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+		}
+
+		.bi {
+			  vertical-align: -.125em;
+			    pointer-events: none;
+			      fill: currentColor;
+		}
+
+		.dropdown-toggle { outline: 0; }
+
+		.nav-flush .nav-link {
+			  border-radius: 0;
+		}
+
+		.btn-toggle {
+			  display: inline-flex;
+			    align-items: center;
+			      padding: .25rem .5rem;
+				font-weight: 600;
+				  color: rgba(0, 0, 0, .65);
+				    background-color: transparent;
+				      border: 0;
+		}
+		.btn-toggle:hover,
+		.btn-toggle:focus {
+			  color: rgba(0, 0, 0, .85);
+			    background-color: #d2f4ea;
+		}
+
+		.btn-toggle::before {
+			  width: 1.25em;
+			    line-height: 0;
+			      content: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%280,0,0,.5%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 14l6-6-6-6'/%3e%3c/svg%3e");
+				transition: transform .35s ease;
+				  transform-origin: .5em 50%;
+		}
+
+		.btn-toggle[aria-expanded="true"] {
+			  color: rgba(0, 0, 0, .85);
+		}
+		.btn-toggle[aria-expanded="true"]::before {
+			  transform: rotate(90deg);
+		}
+
+		.btn-toggle-nav a {
+			  display: inline-flex;
+			    padding: .1875rem .5rem;
+			      margin-top: .125rem;
+				margin-left: 1.25rem;
+				  text-decoration: none;
+		}
+		.btn-toggle-nav a:hover,
+		.btn-toggle-nav a:focus {
+			  background-color: #d2f4ea;
+		}
+
+		.scrollarea {
+			  overflow-y: auto;
+		}
+
+    .fw-semibold { font-weight: 600; }
+    .lh-tight { line-height: 1.25; }
+
+		</style>
+	</head>
+  <body class="d-flex flex-column h-100">
+    <div class="d-flex w-50">
+      <div>
+        <div class="flex-shrink-0 p-3 bg-white" style="width: 280px;">
+          <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+            <span class="fs-5 fw-semibold">Chess</span><br>
+          </a>
+          <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded" aria-expanded="true">
+                Home
+              </button>
+              <div class="collapse show" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="#" class="link-dark rounded">Overview</a></li>
+                  <li><a href="#" class="link-dark rounded">Updates</a></li>
+                  <li><a href="#" class="link-dark rounded">History</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded" aria-expanded="true">
+                Dashboard
+              </button>
+              <div class="collapse show" id="dashboard-collapse" style="">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="#" class="link-dark rounded">Overview</a></li>
+                  <li><a href="#" class="link-dark rounded">Openings</a></li>
+                  <li><a href="#" class="link-dark rounded">Tactics</a></li>
+                  <li><a href="#" class="link-dark rounded">Analysis</a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="border-top my-3"></li>
+            <li class="mb-1">
+              <button class="btn btn-toggle align-items-center rounded" aria-expanded="true">
+                Account
+              </button>
+              <div class="collapse show" id="account-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="#" class="link-dark rounded">New...</a></li>
+                  <li><a href="#" class="link-dark rounded">Profile</a></li>
+                  <li><a href="#" class="link-dark rounded">Settings</a></li>
+                  <li><a href="#" class="link-dark rounded">Sign in</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+          <div class="card">
+              <div class="card-header">
+                    Notice
+              </div>
+              <div class="card-body">
+                Site development in progress
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Begin page content -->
+      <!--<main class="flex-shrink-0">-->
+      <div class="container">
+        <h1 class="mt-2">Betafish.js</h1>
+        <p class="lead">Status: <span id="uiState"></span></p>
+        <div class="input-group mb-2">
+          <input type="text" class="form-control fw-light" id="fen" />
+          <button class="btn btn-outline-secondary" id="copyFEN" type="button">
+            Copy FEN
+          </button>
+          <button class="btn btn-outline-secondary" id="setFEN" type="button">
+            Set FEN
+          </button>
+        </div>
+        <div id="board" style="width: 100%"></div>
+
+        <div>
+          <div class="my-2 d-flex">
+            <button
+              type="button"
+              class="btn btn-outline-danger me-2"
+              id="reset"
+              >
+              Reset
+            </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary me-2"
+                id="takeBack"
+                >
+                Take Back
+              </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary me-2"
+                  id="makeMove"
+                  >
+                  AI Move
+                </button>
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary me-4"
+                    id="flipBoard"
+                    >
+                    Flip
+                  </button>
+                    <div class="flex-grow-1 d-sm-flex d-none">
+                      <div class="input-group">
+                        <label class="input-group-text" for="inputGroupSelect01"
+                                                        >Thinking time:</label
+                                                      >
+                                                      <select class="form-select" id="thinkingTime">
+                                                        <option selected value="1">1s</option>
+                                                        <option value="3">3s</option>
+                                                        <option value="5">5s</option>
+                                                        <option value="10">10s</option>
+                                                      </select>
+                      </div>
+                    </div>
+          </div>
+          <div class="flex-grow-1 d-sm-none d-flex">
+            <div class="input-group">
+              <label class="input-group-text" for="inputGroupSelect01"
+                                              >Thinking time:</label
+                                            >
+                                            <select class="form-select" id="thinkingTime">
+                                              <option selected value="1">1s</option>
+                                              <option value="3">3s</option>
+                                              <option value="5">5s</option>
+                                              <option value="10">10s</option>
+                                            </select>
+            </div>
+          </div>
+        </div>
+
+        <footer class="footer mt-auto py-3 bg-light">
+          <div class="container text-center">
+            <span class="text-muted"
+                  >Made with ❤️ by Gavin. <br />
+                  <a href="https://github.com/Strryke/betafish">View source</a></span
+                >
+          </div>
+        </footer>
+      </div>
+
+    </div>
+  </body>
+  <script src="js/betafish.js"></script>
+  <script type="module" src="js/main.js"></script>
+</html>

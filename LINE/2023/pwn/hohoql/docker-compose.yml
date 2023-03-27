@@ -1,0 +1,10 @@
+version: "3"
+services:
+    hohoql:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        privileged: true
+        ports:
+            - 9000:9000

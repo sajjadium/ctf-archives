@@ -1,0 +1,41 @@
+<%- include('header.ejs') %>
+<body>
+  <div class=content>
+    <ul>
+      <li><a class=active href='/'>Home</a></li>
+      <li><a href=/bot>Talk to admin</a></li>
+    </ul>
+    <img src=csp.gif>
+
+    <div class=main>
+      <h1>📕 <%- name %> secured notes 📕</h1>
+      <div>
+        <form method=POST>
+          Wanna change your name?
+          <input class=change-name type=text name=name placeholder="🐻 Brown">
+          <input type=hidden name=csrf id=_csrf>
+          <input type=submit value=Submit>
+          <p class=red id=error></p>
+          <p class=green id=message></p>
+        </form>
+      </div>
+    </div>
+
+    <div class=main>
+      Can you tell me a secret? It will securely kept in "localStorage" of this page.
+      <textarea id=secret></textarea>
+      <input id=submit_storage type=submit value=Store>
+      <script nonce=<%= nonce %> type='application/javascript'>
+        const btn = document.getElementById('submit_storage');
+        btn.addEventListener('click', (e) => {
+          localStorage.setItem('secret', document.getElementById('secret').value);
+          const resp = document.getElementById('response');
+          resp.innerText = 'Successfully stored secret';
+          setTimeout(() => resp.innerText = '', 1500);
+        });
+      </script>
+      <p id=response></p>
+    </div>
+  </div>
+  <%- include('footer.ejs') %>
+</body>

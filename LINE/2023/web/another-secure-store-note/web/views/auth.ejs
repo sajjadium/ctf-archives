@@ -1,0 +1,19 @@
+<%- include('header.ejs') %>
+<body>
+  <div class=content>
+    <div class=main>
+      <h1>📕 Secure store note 📕</h1>
+      <form id=auth method=POST>
+        <h3>Username:</h3>
+        <input id=username type=text name=username><br>
+        <h3>Password:</h3>
+        <input id=password type=password name=password><br>
+        <input type=hidden name=csrf id=_csrf>
+        <input id=submit type=submit value='Login or Register'>
+        <p class=red id=error></p>
+        <p class=green id=message></p>
+      </form>
+    </div>
+  </div>
+  <%- include('footer.ejs') %>
+</body>

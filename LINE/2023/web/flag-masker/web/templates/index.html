@@ -1,0 +1,107 @@
+<link
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+    rel="stylesheet"
+/>
+<style>
+    body {
+        margin-top: 20px;
+    }
+
+    ul.notes li {
+        margin: 10px 40px 50px 0px;
+        float: left;
+    }
+
+    ul.notes li,
+    ul.tag-list li {
+        list-style: none;
+    }
+
+    ul.notes li div small {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: 10px;
+    }
+
+    div.rotate-1 {
+        -webkit-transform: rotate(-6deg);
+        -o-transform: rotate(-6deg);
+        -moz-transform: rotate(-6deg);
+    }
+
+    div.rotate-2 {
+        -o-transform: rotate(4deg);
+        -webkit-transform: rotate(4deg);
+        -moz-transform: rotate(4deg);
+        position: relative;
+        top: 5px;
+    }
+
+    .yellow-bg {
+        background-color: #fff9a3;
+        color: #ffffff;
+        word-wrap: break-word;
+    }
+
+    ul.notes li div {
+        text-decoration: none;
+        color: #000;
+        display: block;
+        height: 210px;
+        width: 210px;
+        padding: 1em;
+        -moz-box-shadow: 5px 5px 7px #212121;
+        -webkit-box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+        box-shadow: 5px 5px 7px rgba(33, 33, 33, 0.7);
+        -moz-transition: -moz-transform 0.15s linear;
+        -o-transition: -o-transform 0.15s linear;
+        -webkit-transition: -webkit-transform 0.15s linear;
+    }
+</style>
+<script>
+  const writeMemo = () => {
+    const memo = document.getElementById("memo").value;
+    const secret = document.getElementById("secret").checked
+    fetch("", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({memo, secret})
+    }).then(() => location.reload())
+  }
+</script>
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+        <ul class="notes">
+            {% if memo %}
+              {% for index in range(memo|count) if not memo[index][1] or owner %}
+              <li>
+                {% if index % 2 == 0 %}
+                <div class="rotate-1 yellow-bg">
+                {% else %}
+                <div class="rotate-2 yellow-bg">
+                {% endif %}
+                  {% if memo[index][1] %}
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                  {% endif %}
+                      <p>{{ memo[index][0] }}</p>
+                  </div>
+              </li>
+              {% endfor %}
+            {% endif %}
+            {% if owner %}
+            <li>
+                <div class="yellow-bg">
+                    <textarea id="memo" style="height: 200px; width: 208px;"></textarea>
+                    <a class="pull-right">
+                      <i class="fa fa-lock fa-fw" aria-hidden="true"></i><input type="checkbox" id="secret">
+                      <i class="fa fa-pencil fa-fw" onclick="writeMemo()"></i>
+                    </a>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
