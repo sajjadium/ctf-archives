@@ -2206,7 +2206,11 @@
             <td><a href="https://ctftime.org/event/1042/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="vishwa">vishwa</a></td>
+            <td rowspan=3><a href="vishwa">vishwa</a></td>
+            <td><a href="vishwa/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1904/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="vishwa/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1548/tasks/">CTFtime</a></td>
         </tr>
