@@ -1,0 +1,7 @@
+version: '2.4'
+services:
+  alphabet:
+    build: .
+    ports:
+      - 5000:5000
+    privileged: true

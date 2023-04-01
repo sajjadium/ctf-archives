@@ -1401,7 +1401,11 @@
             <td><a href="https://ctftime.org/event/624/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/RCTF/2018">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="RITSEC">RITSEC</a></td>
+            <td rowspan=5><a href="RITSEC">RITSEC</a></td>
+            <td><a href="RITSEC/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1860/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="RITSEC/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1558/tasks/">CTFtime</a></td>
         </tr>
