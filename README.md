@@ -747,6 +747,11 @@
             <td><a href="https://ctftime.org/event/623/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="GREP">GREP</a></td>
+            <td><a href="GREP/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1958/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="GreyCatTheFlag">GreyCatTheFlag</a></td>
             <td><a href="GreyCatTheFlag/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1643/tasks/">CTFtime</a></td>
