@@ -846,7 +846,11 @@
             <td><a href="https://ctftime.org/event/699/tasks/">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/Hack.lu/2018">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="HackASat">HackASat</a></td>
+            <td rowspan=2><a href="HackASat">HackASat</a></td>
+            <td><a href="HackASat/2023/Quals">2023</a></td>
+            <td><a href="https://ctftime.org/event/1837/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="HackASat/2021/Quals">2021</a></td>
             <td><a href="https://ctftime.org/event/1365/tasks/">CTFtime</a></td>
         </tr>
