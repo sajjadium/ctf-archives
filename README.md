@@ -307,6 +307,11 @@
             <td><a href="https://ctftime.org/event/1303/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Bucket">Bucket</a></td>
+            <td><a href="Bucket/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1892/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="Buckeye">Buckeye</a></td>
             <td><a href="Buckeye/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1740/tasks/">CTFtime</a></td>
