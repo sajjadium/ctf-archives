@@ -1,0 +1,22 @@
+.outline-text {
+	position: relative;
+	z-index: 1;
+	font-family: "Pixel Arial 11";
+	font-size: 12px;
+	color: #000000;
+	align-self: center;
+
+	.outline {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		right: 0px;
+		z-index: -1;
+		text-align: inherit;
+		-webkit-text-stroke: 1px var(--halo-color);
+		@supports not (-webkit-text-stroke: 1px var(--halo-color)) {
+			-webkit-text-stroke: none;
+			text-shadow: 0px 0px 1px var(--halo-color);
+		}
+	}
+}

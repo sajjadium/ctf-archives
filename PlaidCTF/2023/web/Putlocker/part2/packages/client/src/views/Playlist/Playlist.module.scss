@@ -1,0 +1,107 @@
+.playlist {
+	display: grid;
+	gap: 16px 8px;
+	grid-template:
+		" episode    list" max-content
+		" navigation list" max-content
+		/ 3fr        1fr;
+
+	.episode {
+		grid-area: episode;
+	}
+
+	.navigation {
+		grid-area: navigation;
+	}
+
+	.list {
+		grid-area: list;
+
+		.creator {
+			margin-bottom: 4px;
+
+			.link {
+				color: #FFFFFF;
+				text-decoration: underline;
+			}
+		}
+
+		.controls {
+			display: flex;
+			border-bottom: 1px dashed #888888;
+			padding: 4px 0px 8px;
+			margin-bottom: 5px;
+
+			.autoplay {
+				display: flex;
+				align-items: center;
+				color: #FFFFFF;
+				gap: 4px;
+
+				.checkbox {
+					margin: 0px;
+				}
+			}
+
+			.delete {
+				margin-left: auto;
+				cursor: pointer;
+				padding: 4px 8px;
+				background: #FF7C00;
+				border-radius: 4px;
+
+				&:hover {
+					background: #AE5400;
+				}
+			}
+		}
+
+		.episode-list {
+			padding-left: 16px;
+			margin: 0px;
+			list-style-type: none;
+
+			.episode {
+				padding: 5px 0px;
+				border-bottom: 1px dashed #FF7C00;
+				color: #FFFFFF;
+
+				.name {
+					grid-area: name;
+					cursor: pointer;
+
+					&:hover {
+						color: #D74207;
+					}
+				}
+
+				.move-up {
+					grid-area: move-up;
+					cursor: pointer;
+				}
+
+				.move-down {
+					grid-area: move-down;
+					cursor: pointer;
+				}
+
+				.remove {
+					grid-area: remove;
+					cursor: pointer;
+				}
+
+				&.current {
+					list-style-type: disclosure-closed;
+				}
+
+				&.owner {
+					display: grid;
+					grid-template:
+						" name move-up move-down remove" 1fr
+						/ 1fr  20px    20px      20px;
+					align-items: center;
+				}
+			}
+		}
+	}
+}

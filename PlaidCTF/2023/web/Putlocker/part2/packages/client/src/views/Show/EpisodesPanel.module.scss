@@ -1,0 +1,20 @@
+.episodes-panel {
+	.episodes-list {
+		padding-left: 0px;
+		margin: 0px;
+		list-style-type: none;
+
+		.episode {
+			padding: 5px 0px;
+			border-bottom: 1px dashed #FF7C00;
+			font-size: 17px;
+			text-decoration: underline;
+			color: #ffffff;
+			padding: 5px 0px;
+
+			&:hover {
+				background: #FF7C00;
+			}
+		}
+	}
+}

@@ -1,0 +1,16 @@
+.genre {
+	display: grid;
+	gap: 16px 8px;
+	grid-template:
+		" shows promo" max-content
+		/ 4fr   1fr;
+
+	.shows-panel {
+		grid-area: shows;
+	}
+
+	.promo {
+		grid-area: promo;
+		justify-self: start;
+	}
+}

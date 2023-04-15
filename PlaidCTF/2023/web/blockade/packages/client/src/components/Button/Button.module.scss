@@ -1,0 +1,19 @@
+.button {
+	font-family: "Pixel Arial 11";
+	font-size: 11px;
+	background: #4575a5;
+	display: inline-block;
+	padding: 4px 8px;
+	color: #d8c008;
+	text-shadow:
+		-1px 0px 0px rgba(0, 0, 0, 0.5),
+		0.5px 0px 0px #f7eb8e;
+	border-radius: 4px;
+	border: 2px solid #000000;
+	cursor: pointer;
+	user-select: none;
+
+	&:active {
+		background: #3b6088;
+	}
+}

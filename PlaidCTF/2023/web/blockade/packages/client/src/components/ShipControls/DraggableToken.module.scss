@@ -1,0 +1,8 @@
+.draggable-token {
+	display: inline-block;
+
+	&.disabled {
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
+}

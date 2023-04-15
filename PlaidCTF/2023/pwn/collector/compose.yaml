@@ -1,0 +1,62 @@
+services:
+  web:
+    image: collector/web
+    build:
+      context: web
+    volumes:
+      - work-queue:/queue
+    environment:
+      PGPASSWORD: ${DBUSER_WEB_PASSWORD:-dbuser-web-password}
+      JWT_SECRET: ${JWT_SECRET:-jwt-secret}
+      SLINGSHOT_URL: ${SLINGSHOT_URL:-}
+      HOST: ${HOST:-} # set this value to block serving unless the hostname matches
+    ports:
+      - "${PORT:-3000}:3000"
+    restart: always
+  webhook:
+    image: collector/webhook
+    init: true
+    build:
+      context: webhook
+    volumes:
+      - work-queue:/queue
+    environment:
+      PGPASSWORD: ${DBUSER_WEBHOOK_PASSWORD:-dbuser-webhook-password}
+    deploy:
+      mode: replicated
+      replicas: 1
+    restart: always
+  maindb:
+    image: collector/maindb
+    build:
+      context: ./maindb
+    volumes:
+      # - maindb-data:/var/lib/postgresql/data
+      []
+    environment:
+      POSTGRES_PASSWORD: ${MAINDB_PASSWORD:-maindb-password}
+      DBUSER_REPLICATOR_PASSWORD: ${DBUSER_REPLICATOR_PASSWORD:-dbuser-replicator-password}
+      DBUSER_WEBHOOK_PASSWORD: ${DBUSER_WEBHOOK_PASSWORD:-dbuser-webhook-password}
+      DBUSER_WEB_PASSWORD: ${DBUSER_WEB_PASSWORD:-dbuser-web-password}
+      FLAG: ${FLAG:-this-is-a-test-flag}
+      LANG: en_US.UTF-8
+      LANGUAGE: en_US
+      LC_CTYPE: en_US.UTF-8
+      LC_ALL:
+  workerdb:
+    image: collector/workerdb
+    build:
+      context: ./workerdb
+    volumes:
+      # - workerdb-data:/var/lib/postgresql/data
+      []
+    environment:
+      DBUSER_REPLICATOR_PASSWORD: ${DBUSER_REPLICATOR_PASSWORD:-dbuser-replicator-password}
+      LANG: en_US.UTF-8
+      LANGUAGE: en_US
+      LC_CTYPE: en_US.UTF-8
+      LC_ALL:
+
+
+volumes:
+  work-queue:

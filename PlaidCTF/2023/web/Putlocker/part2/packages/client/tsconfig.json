@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.dom.json",
+	"compilerOptions": {
+		"outDir": "dist",
+    "jsx": "react",
+    "types": [
+      "vite/client"
+    ],
+    "paths": {
+      "@assets/*": ["./assets/*"],
+      "@/*": ["./src/*"]
+    }
+	},
+	"include": [
+		"src"
+	]
+}

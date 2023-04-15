@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+    # uncomment below if you want to persist data
+    # volumes:
+    #   - ./data:/var/lib/postgresql/data
+
+    # uncomment below when running server tests
+    # ports:
+    #   - 5432:5432
+
+  server:
+    image: puzzled/server:latest
+    build:
+      context: .
+      dockerfile: packages/server/Dockerfile
+    restart: always
+    environment:
+      PG_HOST: postgres
+      FLAG: ${FLAG:-PCTF{this_is_a_fake_flag}}
+
+  client:
+    image: puzzled/client:latest
+    build:
+      context: .
+      dockerfile: packages/client/Dockerfile
+    restart: always
+    ports:
+      - ${PORT:-80}:80
+    environment:
+      - HOST=${HOST:-localhost}

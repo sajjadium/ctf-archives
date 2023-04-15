@@ -1,0 +1,54 @@
+.info-panel {
+	.edit-link {
+		color: #E6E6E6;
+		text-decoration: underline;
+		margin-left: 8px;
+	}
+
+	.content {
+		display: grid;
+		grid-template:
+			"cover description" max-content
+			"cover genres     " minmax(max-content, 1fr)
+			"cover report     " minmax(max-content, 1fr)
+			/ max-content 1fr;
+		gap: 16px 8px;
+
+		.cover {
+			grid-area: cover;
+			max-width: 200px;
+			max-height: 400px;
+		}
+
+		.description {
+			grid-area: description;
+		}
+
+		.genres {
+			grid-area: genres;
+			display: flex;
+			flex-direction: column;
+
+			.genre {
+				display: inline-block;
+				padding: 4px 8px;
+				border-radius: 4px;
+				background: #FF7C00;
+				font-weight: 700;
+				font-size: 14px;
+				text-decoration: underline;
+				cursor: pointer;
+				text-align: center;
+				color: #ffffff;
+				margin-top: 4px;
+				align-self: start;
+			}
+		}
+
+		.report {
+			grid-area: report;
+			justify-self: start;
+			align-self: start;
+		}
+	}
+}

@@ -1,0 +1,26 @@
+{
+  "name": "@puzzled/messages",
+  "packageManager": "yarn@3.3.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/index.mts",
+      "import": "./src/index.mts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint --ext .mts src"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "eslint": "^8.35.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@puzzled/types": "workspace:^",
+    "zod": "^3.20.2"
+  }
+}

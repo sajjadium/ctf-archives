@@ -1,0 +1,18 @@
+// @use "./styles/color.scss";
+// @use "./styles/type.scss";
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0px;
+	// background-image: url("@assets/bg.png");
+	// background-size: 90px 68px;
+	overflow: hidden;
+}
+
+a:link, a:visited {
+	// color: color.palette(text);
+	text-decoration: none;
+}

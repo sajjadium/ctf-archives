@@ -1,0 +1,31 @@
+.base-view {
+	width: 980px;
+	max-width: 100%;
+	min-width: 768px;
+	min-height: 100vh;
+	margin: 0px auto;
+	background: #1E262D;
+	border-left: 2px solid #202020;
+	border-right: 2px solid #202020;
+	display: grid;
+	grid-template:
+		"header" max-content
+		"content" 1fr
+		"footer" max-content
+		/ 1fr;
+
+	.header {
+		grid-area: header;
+		margin-bottom: 20px;
+	}
+
+	.content {
+		grid-area: content;
+		padding: 0px 4px;
+	}
+
+	.footer {
+		grid-area: footer;
+		margin-top: 20px;
+	}
+}

@@ -1,0 +1,27 @@
+.draggable-fire-token {
+	display: inline-block;
+	border-radius: 20px;
+	border: 2px solid #000000;
+	transform: translate(0px, 0px);
+
+	&.large {
+		width: 40px;
+		height: 40px;
+		background-image: url("@assets/tokens.png");
+		background-size: 150px 100px;
+		background-position: -57px -57px;
+	}
+
+	&.small {
+		width: 24px;
+		height: 24px;
+		background-image: url("@assets/tokens.png");
+		background-size: 150px 100px;
+		background-position: -115px -65px;
+	}
+
+	&.disabled {
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
+}

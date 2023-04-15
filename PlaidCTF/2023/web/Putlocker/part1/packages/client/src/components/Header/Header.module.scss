@@ -1,0 +1,64 @@
+.header {
+	.top {
+		height: 40px;
+		margin-top: 20px;
+		background: #FF7C00;
+		color: #FFFFFF;
+		padding-left: 20px;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		font-size: 13px;
+
+		.link {
+			text-decoration: underline;
+
+			&:link {
+				color: #FFFFFF;
+			}
+
+			&:visited {
+				color: #FFFFFF;
+			}
+
+			&:hover {
+				color: #B85128;
+			}
+		}
+	}
+
+	.middle {
+		color: #FFFFFF;
+
+		.title {
+			padding-left: 8px;
+		}
+	}
+
+	.bottom {
+		height: 40px;
+		margin: 5px 4px 0px;
+		background: #FF7C00;
+		padding: 0px 8px;
+		border-radius: 8px;
+		display: flex;
+
+		.link {
+			display: flex;
+			align-items: center;
+			padding: 0px 15px;
+			color: #E6E6E6;
+			font-size: 14px;
+			font-weight: 700;
+
+			&.active,
+			&:hover {
+				background: #AE5400;
+			}
+
+			&.active {
+				color: #FFFFFF;
+			}
+		}
+	}
+}

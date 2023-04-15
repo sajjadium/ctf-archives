@@ -1,0 +1,19 @@
+.token {
+	width: 54px;
+	height: 54px;
+	background: url("@assets/tokens.png");
+	background-size: 150px 100px;
+	border: 2px solid #000000;
+
+	&.left {
+		background-position: 0px 0px;
+	}
+
+	&.right {
+		background-position: -50px 0px;
+	}
+
+	&.forward {
+		background-position: 0px -50px;
+	}
+}

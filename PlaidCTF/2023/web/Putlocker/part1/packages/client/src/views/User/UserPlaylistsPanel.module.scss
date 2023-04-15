@@ -1,0 +1,36 @@
+.user-playlists-panel {
+	.playlists {
+		.playlist {
+			display: grid;
+			grid-template:
+				" name        episode-count" max-content
+				" description description  " max-content
+				/ max-content 1fr;
+			gap: 8px;
+			padding: 8px 0px 16px;
+			border-bottom: 1px dashed #FF7C00;
+
+			.name {
+				grid-area: name;
+				font-size: 18px;
+				font-weight: 700;
+				color: #FFFFFF;
+				text-decoration: underline;
+			}
+
+			.episode-count {
+				grid-area: episode-count;
+				font-size: 18px;
+				font-weight: 400;
+				color: #E6E6E6;
+			}
+
+			.description {
+				grid-area: description;
+				font-size: 14px;
+				font-weight: 400;
+				color: #FFFFFF;
+			}
+		}
+	}
+}

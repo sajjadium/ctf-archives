@@ -1,0 +1,21 @@
+.shows-panel {
+	.title {
+		font-size: 44px;
+		font-weight: 700;
+		margin: 30px 0px;
+	}
+
+	.list {
+		.link {
+			display: block;
+			color: #FF7C00;
+			font-weight: 700;
+			text-decoration: underline;
+			padding: 2px;
+
+			&:hover {
+				color: #FFFFFF;
+			}
+		}
+	}
+}

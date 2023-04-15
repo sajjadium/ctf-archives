@@ -1,0 +1,22 @@
+.promo {
+	display: block;
+	height: 500px;
+	background: linear-gradient(30deg, #062e9c, #000000 20%, #000000 80%, #97000d);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 24px;
+	cursor: pointer;
+	user-select: none;
+
+	.logo {
+		width: 100%;
+	}
+
+	.text {
+		font-family: "aktiv-grotesk", sans-serif;
+		text-align: center;
+		color: #ffffff;
+		font-size: 18px;
+	}
+}

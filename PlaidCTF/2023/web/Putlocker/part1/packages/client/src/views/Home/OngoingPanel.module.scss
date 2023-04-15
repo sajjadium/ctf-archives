@@ -1,0 +1,19 @@
+.ongoing-panel {
+	.ongoing-list {
+		padding-left: 16px;
+		margin: 0px;
+
+		.show {
+			padding: 5px 0px;
+			border-bottom: 1px dashed #FF7C00;
+
+			.link {
+				color: #FFFFFF;
+
+				&:hover {
+					color: #D74207;
+				}
+			}
+		}
+	}
+}

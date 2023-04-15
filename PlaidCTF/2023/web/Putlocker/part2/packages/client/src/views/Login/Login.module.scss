@@ -1,0 +1,11 @@
+.login {
+	display: grid;
+	gap: 16px 8px;
+	grid-template:
+		" login" max-content
+		/ 1fr;
+
+	.login-panel {
+		grid-area: login;
+	}
+}

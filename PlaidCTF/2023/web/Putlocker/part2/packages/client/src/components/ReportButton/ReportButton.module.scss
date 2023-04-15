@@ -1,0 +1,16 @@
+.report-button {
+	display: inline-block;
+	padding: 4px 8px;
+	border-radius: 4px;
+	background: #FF7C00;
+	font-weight: 700;
+	font-size: 14px;
+	text-decoration: underline;
+	cursor: pointer;
+	text-align: center;
+
+	&.reported {
+		text-decoration: none;
+		cursor: default;
+	}
+}

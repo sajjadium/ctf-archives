@@ -1,0 +1,16 @@
+.episode {
+	display: grid;
+	gap: 16px 8px;
+	grid-template:
+		" episode promo" max-content
+		/ 4fr     1fr;
+
+	.episode-panel {
+		grid-area: episode;
+	}
+
+	.promo {
+		grid-area: promo;
+		justify-self: start;
+	}
+}

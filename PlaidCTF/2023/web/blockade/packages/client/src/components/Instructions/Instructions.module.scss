@@ -1,0 +1,82 @@
+.instructions-container {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 2;
+	min-height: 100vh;
+	overflow-y: auto;
+
+	.instructions {
+		max-width: 1000px;
+		width: 80vw;
+		margin: 120px auto;
+		background: #ccccaa;
+		z-index: 2;
+		font-family: "Pixel Arial 11";
+		font-size: 12px;
+		padding: 16px;
+		display: flex;
+		flex-direction: column;
+		border-radius: 6px;
+
+		.title {
+			font-family: "EB Garamond";
+			font-size: 32px;
+			text-align: center;
+			font-weight: 900;
+			color: #2e4b6b;
+			margin-bottom: 16px;
+		}
+
+		.text {
+			padding: 8px;
+			max-width: 600px;
+		}
+
+		.images {
+			display: flex;
+			flex-direction: row;
+
+			.sprite-container {
+				width: 100px;
+				height: 100px;
+				position: relative;
+			}
+
+			.image {
+				max-height: 200px;
+			}
+		}
+
+		.halo {
+			background: var(--halo-color);
+		}
+
+		.section {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			margin-bottom: 16px;
+		}
+
+		.you-control {
+			--halo-color: #00aaff;
+		}
+
+		.enemy-control {
+			margin-left: auto;
+			--halo-color: #ff3333;
+		}
+
+		.hazards {
+			margin-left: auto;
+		}
+
+		.close {
+			align-self: center;
+		}
+	}
+}

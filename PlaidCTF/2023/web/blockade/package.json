@@ -1,0 +1,21 @@
+{
+  "name": "puzzled-pirates",
+  "packageManager": "yarn@3.4.1",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck": "turbo run typecheck",
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
+    "eslint": "^8.35.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "turbo": "^1.7.0",
+    "typescript": "^4.9.4"
+  }
+}

@@ -1,0 +1,146 @@
+.ship-controls {
+	display: grid;
+	grid-template:
+		" ship   moves" max-content
+		" tokens moves" max-content
+		/ 1fr    120px;
+	background: #b7b78f;
+
+	.ship {
+		grid-area: ship;
+		padding-top: 24px;
+		--halo-color: #00aaff;
+
+		&.sunk {
+			--halo-color: #cccccc;
+		}
+
+		.header {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 12px;
+
+			.icon {
+				position: relative;
+				width: 45px;
+				height: 60px;
+				// overflow: hidden;
+
+				.halo {
+					background: var(--halo-color);
+				}
+			}
+
+			.name {
+				position: relative;
+
+				&.sloop {
+					top: 0px;
+				}
+
+				&.brig {
+					top: -4px;
+				}
+
+				&.galleon {
+					top: -8px;
+				}
+
+				&.frigate {
+					top: -12px;
+				}
+			}
+		}
+
+		.damage {
+			margin: 0px 16px;
+			height: 36px;
+			border: 2px solid #d8c008;
+			background: #2e4b6b;
+
+			.damage-filled {
+				background: #b84026;
+				height: 100%;
+			}
+		}
+
+		.cannonballs {
+			font-family: "Pixel Arial 11";
+			font-size: 12px;
+			color: #000000;
+			text-align: center;
+			margin-top: 32px;
+		}
+	}
+
+	.tokens {
+		grid-area: tokens;
+		display: flex;
+		justify-content: space-around;
+		align-self: center;
+
+		.token-pool {
+			display: grid;
+			grid-template:
+				" token" 60px
+				" count" 16px
+				/ 1fr;
+			gap: 8px;
+			justify-content: center;
+			align-items: center;
+
+			.count {
+				text-align: center;
+				font-family: "Pixel Arial 11";
+				font-size: 12px;
+			}
+		}
+	}
+
+	.moves {
+		grid-area: moves;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 4px;
+		background: url("@assets/controls-bg.png");
+		background-size: 100px 300px;
+		background-position: center top;
+		padding-top: 16px;
+		background-repeat: no-repeat;
+		height: 300px;
+
+		.move {
+			display: flex;
+			align-items: center;
+
+			.fire {
+				width: 28px;
+				height: 28px;
+				background: #6c91b7;
+				border: 2px solid #d8c008;
+				border-radius: 13px;
+
+				&.left {
+					position: relative;
+					left: 2px;
+				}
+
+				&.right {
+					position: relative;
+					left: -2px;
+				}
+			}
+
+			.movement {
+				width: 58px;
+				height: 58px;
+				background: #6c91b7;
+				border: 2px solid #d8c008;
+				border-radius: 3px;
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+.register {
+	display: grid;
+	gap: 16px 8px;
+	grid-template:
+		" register" max-content
+		/ 1fr;
+
+	.register-panel {
+		grid-area: register;
+	}
+}

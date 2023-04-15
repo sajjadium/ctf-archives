@@ -1,0 +1,10 @@
+$border-thickness: 3;
+
+.influence-zone {
+	border-radius: 50% 50%;
+	border: #{$border-thickness * 1px} solid #ffffff
+}
+
+:export {
+	border-thickness: $border-thickness;
+}

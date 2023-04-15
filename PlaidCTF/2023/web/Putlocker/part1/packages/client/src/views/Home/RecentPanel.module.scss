@@ -1,0 +1,24 @@
+.recent-panel {
+	.recent-list {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 2px 8px;
+
+		.episode {
+			width: calc(25% - 6px);
+			color: #FFFFFF;
+			font-size: 11px;
+			font-weight: 700;
+			text-decoration: underline;
+
+			.cover {
+				width: 100%;
+			}
+
+			.name {
+				text-align: center;
+			}
+		}
+	}
+}

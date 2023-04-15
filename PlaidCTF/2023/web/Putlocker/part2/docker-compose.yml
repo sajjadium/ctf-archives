@@ -1,0 +1,36 @@
+version: "3.7"
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./misc/init.sql:/docker-entrypoint-initdb.d/init.sql
+      # uncomment this line to persist data
+      # - ./data:/var/lib/postgresql/data
+
+  server:
+    image: davy-jones-locker/server:latest
+    build:
+      context: .
+      dockerfile: packages/server/Dockerfile
+    restart: always
+    environment:
+      PG_URL: postgres://postgres:postgres@postgres:5432/postgres
+      PUBLIC_HOST: ${HOST:-localhost}
+      PUBLIC_PORT: ${PORT:-80}
+      JWT_SECRET: ${JWT_SECRET:-secret}
+      FLAG: ${FLAG:-PCTF{fake_flag}}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-password}
+
+  client:
+    image: davy-jones-locker/client:latest
+    build:
+      context: .
+      dockerfile: packages/client/Dockerfile
+    restart: always
+    ports:
+      - ${PORT:-80}:80
+    environment:
+      - HOST=${HOST:-localhost}

@@ -1,0 +1,20 @@
+.show {
+	display: grid;
+	gap: 16px 8px;
+	grid-template:
+		" info     recent" max-content
+		" episodes recent" max-content
+		/ 3fr      1fr;
+
+	.info {
+		grid-area: info;
+	}
+
+	.episodes {
+		grid-area: episodes;
+	}
+
+	.recent {
+		grid-area: recent;
+	}
+}

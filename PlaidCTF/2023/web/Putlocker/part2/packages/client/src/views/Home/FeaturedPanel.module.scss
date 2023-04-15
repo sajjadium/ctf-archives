@@ -1,0 +1,23 @@
+.featured-panel {
+	.link {
+		color: inherit;
+	}
+
+	.content {
+		display: grid;
+		grid-template:
+			"cover description" max-content
+			/ max-content 1fr;
+
+		.cover {
+			grid-area: cover;
+			max-width: 200px;
+			max-height: 400px;
+		}
+
+		.description {
+			grid-area: description;
+			padding: 0px 8px;
+		}
+	}
+}

@@ -1,0 +1,27 @@
+.ship {
+	&.faction-1 {
+		--faction-color: #00aaff;
+	}
+
+	&.faction-2 {
+		--faction-color: #ff3333;
+	}
+
+	&.sunk {
+		--faction-color: #cccccc;
+	}
+
+	.halo {
+		background: var(--faction-color);
+	}
+
+	.sprite {}
+
+	.name {
+		color: var(--faction-color);
+	}
+
+	.influence-zone {
+		border-color: var(--faction-color);
+	}
+}

@@ -1,0 +1,19 @@
+.panel {
+	.title {
+		background: #FF7C00;
+		color: #FFFFFF;
+		min-height: 37px;
+		border-radius: 8px 8px 0px 0px;
+		padding: 9px 10px;
+		font-size: 15px;
+		font-weight: 700;
+	}
+
+	.content {
+		border: 2px solid #FF7C00;
+		border-radius: 0px 0px 8px 8px;
+		padding: 8px 8px 20px;
+		color: aliceblue;
+		font-size: 13px;
+	}
+}

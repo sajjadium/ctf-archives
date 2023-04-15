@@ -1,0 +1,11 @@
+.edit-episode {
+	display: grid;
+	gap: 16px 8px;
+	grid-template:
+		" panel" max-content
+		/ 1fr;
+
+	.panel {
+		grid-area: panel;
+	}
+}

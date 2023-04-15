@@ -1,0 +1,15 @@
+.user {
+	display: grid;
+	gap: 16px 8px;
+	grid-template:
+		" playlists shows" max-content
+		/ 3fr      1fr;
+
+	.playlists {
+		grid-area: playlists;
+	}
+
+	.shows {
+		grid-area: shows;
+	}
+}

@@ -1,0 +1,42 @@
+.add-to-playlist-button {
+	position: relative;
+
+	.button {
+		display: inline-block;
+		padding: 4px 8px;
+		border-radius: 4px;
+		background: #FF7C00;
+		font-weight: 700;
+		font-size: 14px;
+		text-decoration: underline;
+		cursor: pointer;
+		width: 130px;
+		text-align: center;
+	}
+
+	.dropdown {
+		position: absolute;
+		top: 100%;
+		left: 0px;
+		min-width: 130px;
+		z-index: 5;
+		color: #FFFFFF;
+		font-size: 13px;
+		border: 2px solid #FF7C00;
+		border-radius: 4px;
+
+		.playlist,
+		.empty {
+			padding: 8px 8px;
+			background: #1E262D;
+		}
+
+		.playlist {
+			cursor: pointer;
+
+			&:hover {
+				background: #2A353E;
+			}
+		}
+	}
+}

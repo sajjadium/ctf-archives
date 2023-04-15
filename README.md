@@ -1337,7 +1337,11 @@
             <td><a href="https://ctftime.org/event/1616/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="PlaidCTF">Plaid</a></td>
+            <td rowspan=6><a href="PlaidCTF">Plaid</a></td>
+            <td><a href="PlaidCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1770/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="PlaidCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1542/tasks/">CTFtime</a></td>
         </tr>

@@ -1,0 +1,20 @@
+.home {
+	display: grid;
+	gap: 16px 8px;
+	grid-template:
+		" featured ongoing" max-content
+		" recent   ongoing" max-content
+		/ 3fr      1fr;
+
+	.featured {
+		grid-area: featured;
+	}
+
+	.recent {
+		grid-area: recent;
+	}
+
+	.ongoing {
+		grid-area: ongoing;
+	}
+}

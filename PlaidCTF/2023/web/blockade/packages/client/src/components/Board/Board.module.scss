@@ -1,0 +1,35 @@
+.board {
+	position: relative;
+	overflow: hidden;
+
+	.container {
+		position: absolute;
+
+		.background {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			background-image: url("@assets/bg.png");
+			background-size: 90px 68px;
+			cursor: move;
+			filter: brightness(0.8);
+			z-index: 0;
+		}
+
+		.foreground {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			z-index: 1;
+			background-image: url("@assets/bg.png");
+			background-size: 90px 68px;
+		}
+
+		.content {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			z-index: 2;
+		}
+	}
+}
