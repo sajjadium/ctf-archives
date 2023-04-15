@@ -1815,6 +1815,11 @@
             <td><a href="https://ctftime.org/event/955/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="TexSAW">TexSAW</a></td>
+            <td><a href="TexSAW/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1959/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="TokyoWesterns">TokyoWesterns</a></td>
             <td><a href="TokyoWesterns/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1086/tasks/">CTFtime</a></td>
