@@ -865,7 +865,11 @@
             <td><a href="https://ctftime.org/event/652/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="HackPack">HackPack</a></td>
+            <td rowspan=4><a href="HackPack">HackPack</a></td>
+            <td><a href="HackPack/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1893/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="HackPack/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1620/tasks/">CTFtime</a></td>
         </tr>

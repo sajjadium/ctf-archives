@@ -1,0 +1,21 @@
+{
+  "name": "Wiki world",
+  "description": "Wikipedia world",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "js": [
+        "content_script.js"
+      ]
+    }
+  ],
+  "icons": {
+    "128": "icon/Wiki.png"
+  },
+  "manifest_version": 2
+}

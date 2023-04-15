@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  website:
+    build: ./note-app
+    ports:
+      - "5001:5000"
+  admin-bot:
+    build: ./admin-bot
+    ports:
+      - "1338:1337"
