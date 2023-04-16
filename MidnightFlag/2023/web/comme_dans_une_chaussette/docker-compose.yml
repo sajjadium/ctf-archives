@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+    web:
+        build: ./src/
+        container_name: web-nginx
+        ports:
+            - "0.0.0.0:80:80"
