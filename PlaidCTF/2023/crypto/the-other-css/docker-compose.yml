@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  css:
+    image: plaid:css
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 1996:1996
+    volumes:
+      - ./disks/a.disk:/problem/disks/a.disk
+    environment:
+      - "CSS_AUTHENTICATION_KEY=${CSS_AUTHENTICATION_KEY}"
+      - "CSS_PLAYER_KEY_ID=${CSS_PLAYER_KEY_ID}"
+      - "CSS_PLAYER_KEY_DATA=${CSS_PLAYER_KEY_DATA}"

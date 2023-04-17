@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "css"
+version = "0.1.0"
+description = ""
+authors = ["bluepichu <git@bluepichu.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+hexdump = "^3.3"
+z3-solver = "^4.12.1.0"
+typing-extensions = "^4.5.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

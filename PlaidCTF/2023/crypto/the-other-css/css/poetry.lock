@@ -1,0 +1,45 @@
+[[package]]
+name = "hexdump"
+version = "3.3"
+description = "dump binary data to hex format and restore from there"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
+name = "typing-extensions"
+version = "4.5.0"
+description = "Backported and Experimental Type Hints for Python 3.7+"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
+name = "z3-solver"
+version = "4.12.1.0"
+description = "an efficient SMT solver library"
+category = "main"
+optional = false
+python-versions = "*"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.8"
+content-hash = "93ce6305031ad0b3e290694666c254213b5f63fc941fb074f3569c037182f3d4"
+
+[metadata.files]
+hexdump = [
+    {file = "hexdump-3.3.zip", hash = "sha256:d781a43b0c16ace3f9366aade73e8ad3a7bd5137d58f0b45ab2d3f54876f20db"},
+]
+typing-extensions = [
+    {file = "typing_extensions-4.5.0-py3-none-any.whl", hash = "sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4"},
+    {file = "typing_extensions-4.5.0.tar.gz", hash = "sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb"},
+]
+z3-solver = [
+    {file = "z3-solver-4.12.1.0.tar.gz", hash = "sha256:c6b7c0f1c595ba47609d0e02b0cc263dc755def9f8d6f51c1943aec040a1eb2d"},
+    {file = "z3_solver-4.12.1.0-py2.py3-none-macosx_10_16_x86_64.whl", hash = "sha256:c4f1a53bce12b45698e8e49bd980cd3d3f0298c1ba4cf8c40525af86797565c8"},
+    {file = "z3_solver-4.12.1.0-py2.py3-none-macosx_11_0_arm64.whl", hash = "sha256:553ec3cd0188420bc5f007dd873fb0d87075d1b93808eca8c02324eb3a5f6f68"},
+    {file = "z3_solver-4.12.1.0-py2.py3-none-manylinux1_x86_64.whl", hash = "sha256:41cb9ac460af30b193811eebf919d61cf51a8856bbd74b200cbe6b21e3e955e4"},
+    {file = "z3_solver-4.12.1.0-py2.py3-none-win32.whl", hash = "sha256:85ff9f59b0f87df4dc0cd52baebb247b8049f2df6aad623151f4c4a21d3d01ac"},
+    {file = "z3_solver-4.12.1.0-py2.py3-none-win_amd64.whl", hash = "sha256:aa0e06d42070774a2f89818c412514d41fc84578f32d617de618b214e5ed8154"},
+]
