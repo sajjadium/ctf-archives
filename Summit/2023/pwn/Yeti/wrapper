@@ -1,0 +1,5 @@
+#!/bin/sh
+
+exec 2>/dev/null
+
+timeout --foreground -k 300 240 stdbuf -i0 -o0 -e0 /app/yeti

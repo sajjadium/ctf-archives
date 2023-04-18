@@ -1646,6 +1646,11 @@
             <td><a href="https://ctftime.org/event/1174/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Srdnlen">Srdnlen</a></td>
+            <td><a href="Srdnlen/2022">2022</a></td>
+            <td><a href="https://ctftime.org/event/1766/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=4><a href="StarCTF">*CTF</a></td>
             <td><a href="StarCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1609/tasks/">CTFtime</a></td>
@@ -1668,6 +1673,11 @@
             <td><a href="https://ctftime.org/event/1007/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Summit">Summit</a></td>
+            <td><a href="Summit/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1862/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=4><a href="Sunshine">Sunshine</a></td>
             <td><a href="Sunshine/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1629/tasks/">CTFtime</a></td>
@@ -1683,11 +1693,6 @@
         <tr>
             <td><a href="Sunshine/2019">2019</a></td>
             <td><a href="https://ctftime.org/event/767/tasks/">CTFtime</a></td>
-        </tr>
-        <tr>
-            <td rowspan=1><a href="Srdnlen">Srdnlen</a></td>
-            <td><a href="Srdnlen/2022">2022</a></td>
-            <td><a href="https://ctftime.org/event/1766/tasks/">CTFtime</a></td>
         </tr>
         <tr>
             <td rowspan=1><a href="SyskronSecurity">Syskron Security</a></td>

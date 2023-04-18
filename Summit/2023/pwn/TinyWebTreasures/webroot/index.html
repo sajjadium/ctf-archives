@@ -1,0 +1,47 @@
+<html>
+<head>
+<style type = "text/css">
+#rainbow {
+		  font-family: "Comic Sans MS";
+}
+</style>
+</head>
+<body id="rainbow">
+<h1>welcome to my brand new website!</h1>
+<h3 class="blink">less features, less opportunities for bugs :)</h3>
+<img src="skeleton.gif" />
+<img src="cow.gif" />
+
+<script>
+const rainbowElement = document.getElementById("rainbow");
+let hue = 0;
+let saturation = 100;
+let lightness = 50;
+
+function changeColor() {
+	  hue += 2;
+	  if (hue >= 360) {
+		      hue = 0;
+		    }
+	  rainbowElement.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
+setInterval(changeColor, 50);
+
+const blinkElements = document.querySelectorAll(".blink");
+
+function blink() {
+	  blinkElements.forEach((element) => {
+		      if (element.style.visibility === "visible") {
+			            element.style.visibility = "hidden";
+			          } else {
+					        element.style.visibility = "visible";
+					      }
+		    });
+}
+
+setInterval(blink, 500);
+
+
+</script>
+</body>
