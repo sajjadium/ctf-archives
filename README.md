@@ -566,7 +566,11 @@
             <td><a href="https://ctftime.org/event/1118/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="Dawg">Dawg</a></td>
+            <td rowspan=4><a href="Dawg">Dawg</a></td>
+            <td><a href="Dawg/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1974/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="Dawg/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1633/tasks/">CTFtime</a></td>
         </tr>
