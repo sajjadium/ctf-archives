@@ -1,0 +1,68 @@
+@import "node_modules/augmented-ui/aug-core.min.css";
+
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+
+* {
+  font-family: sans-serif;
+}
+
+body {
+  background-image: linear-gradient(to right, black , black, #5c0009);
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  font-size: 3vw;
+  font-weight: bold;
+}
+[role="page"]{
+  color: #FF4E3B;
+  padding: 4vw 2vw;
+  font-size: 2vw;
+  --aug-border: initial;
+  --aug-border-all: 0.125vw;
+  --aug-clip-tl1: initial;
+  --aug-tl1: 4vw;
+}   
+
+[role="button"]{
+	background: linear-gradient(
+		to right,
+		transparent 0px 1vw,
+		currentColor 1vw 1.125vw,
+		transparent 0.5vw
+	);
+	color: #FF4E3B;
+	font-size: 1.5vw;
+	border: none;
+	outline: none;
+	padding: 0vw 2vw;
+	--aug-border: initial;
+	--aug-border-all: 0.125vw;
+	--aug-clip-tr1: initial;
+	/*--aug-tr1: 4vw;*/
+	--aug-clip-bl1: initial;
+	/*--aug-bl1: 4vw;*/
+	--aug-inlay: initial;
+	--aug-inlay-all: 0px;
+}
+
+input{
+	background: grey;
+	color: white;
+	font-size: 1.25vw;
+	border: none;
+	outline: none;
+	--aug-border: initial;
+	--aug-border-all: 0.125vw;
+	--aug-clip-tr1: initial;
+	--aug-tr1: 4vw;
+	--aug-clip-bl1: initial;
+	--aug-bl1: 4vw;
+	--aug-inlay: initial;
+}

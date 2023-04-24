@@ -1,0 +1,6 @@
+/**
+ * augmented-ui
+ * BSD 2-Clause License
+ * Copyright (c) James0x57, PropJockey, 2020
+ */
+[data-augmented-ui~="both"]{--aug-inlay:initial;--aug-border:initial;}[data-augmented-ui~="inlay"]{--aug-inlay:initial;}[data-augmented-ui~="border"]{--aug-border:initial;}[data-augmented-ui~="delegated-inlay"]{--aug-inlay:initial;--aug-delegated-inlay:initial;}[data-augmented-ui~="delegated-border"]{--aug-border:initial;--aug-delegated-border:initial;}

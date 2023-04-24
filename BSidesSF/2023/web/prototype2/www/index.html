@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Register</title>
+  </head>
+  <body id="body">
+    <h1> <span style="color: white;">Submit a Ship Registration Request</span>
+    </h1>
+    <div class="table" style="margin-left=auto;margin-right:auto;">
+      <div class="center" role="page" data-augmented-ui="">
+        <form action="register" name="registrationForm" method="POST"> <label for="rperiod">Registration
+            Period (in years)</label> <input name="rperiod" id="rperiod" type="text"> <br>
+          <label for="rtype">Registration Type </label><input id="rtype" name="rtype"
+            type="text"> <br>
+          <label for="name">Owner's Full Legal Name</label> <input name="name"
+            id="name" type="text"> <br>
+          <label for="streetAddress">Owner's Address</label> <input name="streetAddress"
+            id="streetAddress" type="text"> <br>
+          <label for="city">Owner's City </label><input name="city" id="city" type="text">
+          <br>
+          <label for="province">Owner's State/Province </label><input name="province"
+            id="province" type="text"> <br>
+          <label for="country">Owner's Country</label> <input name="country" id="country"
+            type="text"> <br>
+          <label for="year">Year </label><input name="year" id="year" type="text">
+          <br>
+          <label for="make">Make</label> <input name="make" id="make" type="text">
+          <br>
+          <label for="model">Model</label> <input name="model" id="model" type="text">
+          <br>
+          <label for="color">Color</label> <input name="color" id="color" type="text">
+          <br>
+          <button role="button" type="submit" data-augmented-ui=""> Submit
+            Request </button></form>
+      </div>
+    </div>
+    
+  </body>
+</html>

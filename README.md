@@ -204,7 +204,11 @@
             <td><a href="https://ctftime.org/event/1397/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="BSidesSF">BSidesSF</a></td>
+            <td rowspan=5><a href="BSidesSF">BSidesSF</a></td>
+            <td><a href="BSidesSF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1932/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="BSidesSF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1666/tasks/">CTFtime</a></td>
         </tr>

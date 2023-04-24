@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_4_0.xsd">
+    <servlet>
+      <servlet-name>Validate Token</servlet-name>
+      <servlet-class>org.bsidessf.ctf.toolatte.ValidateTokenServlet</servlet-class>
+      <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>Validate Token</servlet-name>
+      <url-pattern>/validate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+      <servlet-name>Generate Token</servlet-name>
+      <servlet-class>org.bsidessf.ctf.toolatte.GenerateTokenServlet</servlet-class>
+      <load-on-startup>0</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>Generate Token</servlet-name>
+      <url-pattern>/generate</url-pattern>
+    </servlet-mapping>
+</web-app>
