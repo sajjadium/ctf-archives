@@ -1,0 +1,15 @@
+[package]
+edition = "2021"
+name = "server"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+borsh = "0.9.3"
+sol-ctf-framework = "0.1.0"
+poc-framework-osec = "0.1.1"
+solana-program = "*"
+solana-sdk = "*"
+rand = "0.7.0"
+threadpool = "1.8.1"

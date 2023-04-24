@@ -1,0 +1,19 @@
+[package]
+name = "sailors-revenge"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+solana-program = "1.14.11"
+borsh = "0.10.3"
+
+[features]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+default = []
+
+[lib]
+crate-type = ["cdylib", "rlib"]

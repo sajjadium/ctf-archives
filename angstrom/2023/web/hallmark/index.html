@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hallmark</title>
+
+        <style>
+            #text_div {
+                display: block;
+            }
+
+            #heart_div {
+                display: none;
+            }
+
+            #snowman_div {
+                display: none;
+            }
+
+            #flowers_div {
+                display: none;
+            }
+
+            #cake_div {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Hallmark Greeting Cards</h1>
+        <form action="/card" method="POST">
+            <label for="type">Type</label>
+            
+            <label for="select">Choose:</label>
+            <select id="test" name="svg" onchange="showDiv(this)">
+                <option value="text">Custom Text</option>
+                
+                <option value="heart">Heart</option>
+                <option value="snowman">Snowman</option>
+                <option value="flowers">Flowers</option>
+                <option value="cake">Cake</option>
+            </select>
+
+            <div id="text_div">
+                <input type="text" name="content" placeholder="Content" /><br />
+            </div>
+            
+            <div id="heart_div">
+                <p>Preview:</p>
+                <img width="400px" src="/static/heart.svg" />
+            </div>
+
+            <div id="snowman_div">
+                <p>Preview:</p>
+                <img width="400px" src="/static/snowman.svg" />
+            </div>
+
+            <div id="flowers_div">
+                <p>Preview:</p>
+                <img width="400px" src="/static/flowers.svg" />
+            </div>
+
+            <div id="cake_div">
+                <p>Preview:</p>
+                <img width="400px" src="/static/cake.svg" />
+            </div>
+            
+            <input type="submit" value="Send card" />
+        </form>
+
+        <script>
+            function showDiv(element) {
+                document.getElementById("text_div").style.display = element.value === "text" ? 'block' : 'none';
+                document.getElementById("heart_div").style.display = element.value === "heart" ? 'block' : 'none';
+                document.getElementById("snowman_div").style.display = element.value === "snowman" ? 'block' : 'none';
+                document.getElementById("flowers_div").style.display = element.value === "flowers" ? 'block' : 'none';
+                document.getElementById("cake_div").style.display = element.value === "cake" ? 'block' : 'none';
+            }
+        </script>
+    </body>
+</html>
