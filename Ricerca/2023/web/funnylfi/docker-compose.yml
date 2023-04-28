@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+  uwsgi:
+    build: ./challenge/app
+    volumes:
+      - ./challenge/app:/var/www
+    environment:
+      TZ: "Asia/Tokyo"
+    restart: always
+  nginx:
+    build: ./challenge/nginx
+    volumes:
+      - ./challenge/nginx/nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - uwsgi
+    ports:
+      - "31415:80"
+    environment:
+      TZ: "Asia/Tokyo"
+    restart: always

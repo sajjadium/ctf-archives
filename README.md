@@ -1420,6 +1420,15 @@
             <td><a href="https://ctftime.org/event/1691/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=2><a href="RACTF">RACTF</a></td>
+            <td><a href="RACTF/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1354/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="RACTF/2020">2020</a></td>
+            <td><a href="https://ctftime.org/event/1051/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=5><a href="RCTF">RCTF</a></td>
             <td><a href="RCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1806/tasks/">CTFtime</a></td>
@@ -1467,15 +1476,6 @@
             <td><a href="https://ctftime.org/event/1400/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="RACTF">RACTF</a></td>
-            <td><a href="RACTF/2021">2021</a></td>
-            <td><a href="https://ctftime.org/event/1354/tasks/">CTFtime</a></td>
-        </tr>
-        <tr>
-            <td><a href="RACTF/2020">2020</a></td>
-            <td><a href="https://ctftime.org/event/1051/tasks/">CTFtime</a></td>
-        </tr>
-        <tr>
             <td rowspan=1><a href="RaRCTF">RaRCTF</a></td>
             <td><a href="RaRCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1342/tasks/">CTFtime</a></td>
@@ -1501,6 +1501,11 @@
         <tr>
             <td><a href="RealWorld/2019/Quals">2019 Quals</a></td>
             <td><a href="https://ctftime.org/event/841/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td rowspan=1><a href="Ricerca">Ricerca</a></td>
+            <td><a href="Ricerca/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1920/tasks/">CTFtime</a></td>
         </tr>
         <tr>
             <td rowspan=1><a href="Rooters">Rooters</a></td>

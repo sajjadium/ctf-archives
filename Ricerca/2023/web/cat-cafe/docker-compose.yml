@@ -1,0 +1,11 @@
+version: '3'
+services:
+  dist_catcafe:
+    build: .
+    container_name: dist_catcafe
+    ports:
+      - "8000:8000"
+    environment:
+      - UWSGI_INI=/home/ctf/uwsgi.ini
+      - LISTEN_PORT=8000
+    restart: always

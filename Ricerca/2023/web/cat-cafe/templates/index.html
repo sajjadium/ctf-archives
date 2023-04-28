@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ricerca Cat Café</title>
+        <style>
+         @import url(https://fonts.googleapis.com/css?family=Amatic+SC);
+         @import url(https://fonts.googleapis.com/css?family=Chewy);
+
+         body {
+             font-family: 'Chewy', cursive;
+             font-size: 20px;
+             background-color: #FEEEED;
+             color: #110808;
+         }
+         h1 {
+             font-family: 'Amatic SC', cursive;
+             text-align: center;
+             font-size: 56px;
+         }
+         h2 {
+             font-family: 'Amatic SC', cursive;
+             font-size: 40px;
+         }
+         div.gallery {
+             margin: 0.5em;
+             --s: 0.5em;
+             padding: var(--s);
+             border: calc(2*var(--s)) solid #1110;
+             outline: 1px solid #111;
+             outline-offset: calc(-1*var(--s));
+             background: conic-gradient(from 90deg at 1px 1px,#1110 25%,#111 0);
+             float: left;
+             width: 10em;
+         }
+         div.gallery img {
+             width: 100%;
+             height: auto;
+         }
+         div.desc {
+             padding: 0.1em;
+             text-align: center;
+         }
+         div.block {
+             width: 80%;
+             margin: 0 auto;
+             margin-bottom: 2em;
+         }
+         div.block:after {
+	           content: "";
+	           display: block;
+	           clear: both;
+         }
+         ul {
+	           list-style-position: inside;
+	           width: 600px;
+	           max-width: 100%;
+	           background: #FFFFEF;
+	           box-shadow: 0.25rem 0.25rem 0.75rem rgb(0 0 0 / 0.15);
+	           padding: 0;
+	           margin: 0;
+	           border-radius: 0.1rem;
+         }
+         li {
+	           padding: 0.5rem 0 0.5rem 1rem;
+         }
+         li:not(:last-child) {
+	           border-bottom: 1px solid lightblue;
+         }
+         li:first-child {
+	           margin-top: 1rem;
+         }
+         li:last-child {
+	           margin-bottom: 1rem;
+         }
+        </style>
+    </head>
+    <body>
+        <h1>Ricerca Cat Café</h1>
+        <div class="block">
+            <h2>Staff</h2>
+            <div class="gallery">
+                <img src="/img?f=01.jpg" alt="Chabi" width="600" height="400">
+                <div class="desc">Chabi (8)</div>
+            </div>
+            <div class="gallery">
+                <img src="/img?f=02.jpg" alt="Juliet" width="600" height="400">
+                <div class="desc">Juliet (7)</div>
+            </div>
+            <div class="gallery">
+                <img src="/img?f=03.jpg" alt="Romeo" width="600" height="400">
+                <div class="desc">Romeo (7)</div>
+            </div>
+            <div class="gallery">
+                <img src="/img?f=04.jpg" alt="Tora" width="600" height="400">
+                <div class="desc">Tora (8)</div>
+            </div>
+            <div class="gallery">
+                <img src="/img?f=05.jpg" alt="Kuro" width="600" height="400">
+                <div class="desc">Kuro (6)</div>
+            </div>
+            <div class="gallery">
+                <img src="/img?f=06.jpg" alt="Himari" width="600" height="400">
+                <div class="desc">Himari (2)</div>
+            </div>
+            <div class="gallery">
+                <img src="/img?f=07.jpg" alt="Haru" width="600" height="400">
+                <div class="desc">Haru (5)</div>
+            </div>
+        </div>
+        <div class="block">
+            <h2>Info</h2>
+            <ul>
+                <li>Price: 1000 JPY / hour (with 1 free drink)</li>
+                <li>Operating Hours: 10:00 - 17:00 (Closed on Wednesday)</li>
+                <li>Address: X-X-X, Hongo, Bunkyo-ku, Tokyo, Japan 113-XXXX</li>
+                <li>Phone: XXX-XXXX-XXXX</li>
+            </ul>
+        </div>
+    </body>
+</html>

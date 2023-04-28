@@ -1,0 +1,49 @@
+version: "3.4"
+
+networks:
+  converter_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 123.45.67.0/24
+services:
+  frontend:
+    build:
+      context: ./distfiles/frontend
+    ports:
+      - 51514:5000
+    networks:
+      converter_network:
+        ipv4_address: 123.45.67.100
+    expose:
+      - "3000"
+    restart: always
+  proxy:
+    build: 
+      context: ./distfiles/proxy
+    networks:
+      converter_network:
+        ipv4_address: 123.45.67.101
+    expose:
+      - "3000"
+    restart: always
+  backend:
+    build:
+      context: ./distfiles/backend
+    networks:
+      converter_network:
+        ipv4_address: 123.45.67.102
+    expose:
+      - "3000"
+    restart: always
+  flag:
+    build:
+      context: ./distfiles/flag
+    networks:
+      converter_network:
+        ipv4_address: 123.45.67.103
+    expose:
+      - "3000"
+    environment:
+      - FLAG=RicSec{THIS_IS_DUMMY_FLAG}
+    restart: always
