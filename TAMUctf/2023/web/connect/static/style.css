@@ -1,0 +1,39 @@
+body {
+    size: 25px;
+    background-color: #f1faee;
+    color: #f1faee;
+}
+
+.container {
+    padding-top: 100px;
+}
+
+.forum {
+    margin-left: 35%;
+    margin-right: 35%;
+    padding-top: 35px;
+    padding-bottom: 50px;
+    background-color: #457b9d;
+    border-radius: 20px;
+}
+
+.input {
+    margin-right: 36px;
+    padding-left: 12px;
+    color: white;
+    size: 20px;
+    height: 25px;
+    background-color: #1d3557;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px #1d3557;
+}
+
+.output {
+    color: white;
+    margin-top: 20px;
+    background-color: #457b9d;
+    border: none;
+    resize: none;
+    width: 80%
+}

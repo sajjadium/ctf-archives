@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <title>Flag Fetcher</title>
+</head>
+<body>
+    <p>This is a demonstration of ED25519 signature requests! Complete the process to get the flag!</p>
+    <table>
+        <tr>
+            <td><input type="button" id="req" value="Request Challenge"></td>
+            <td></td>
+            <td id="req-data"></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="sign" value="Sign Challenge" disabled></td>
+            <td><input id="req-input" type="text" pattern="[0-9a-f]+" placeholder="Enter challenge data" disabled></td>
+            <td id="sign-data"></td>
+        </tr>
+        <tr>
+            <td><input type="button" id="flag" value="Get Your Flag!" disabled></td>
+            <td><input id="sign-input" type="text" pattern="[0-9a-f]+" placeholder="Enter signature data" disabled></td>
+            <td id="flag-data"></td>
+        </tr>
+    </table>
+    <script src="static/runtime.js"></script>
+</body>
+</html>

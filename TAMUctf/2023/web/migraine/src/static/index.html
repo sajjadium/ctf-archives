@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- imagine knowing how to web dev, could not be me -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>TAMUctf - Migrane</title>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.js"
+            type="text/javascript"
+            charset="utf-8"
+            ></script>
+        <link
+            href="https://cdn.jsdelivr.net/npm/modern-normalize@1.1.0/modern-normalize.min.css"
+            rel="stylesheet"
+            />
+        <link href="https://fonts.googleapis.com/css2?family=Recursive:wght,CASL,MONO@700,1,1&display=swap" rel="stylesheet"> 
+        <style>
+            :root {
+                --size-medium: 1rem;
+                --toolbar-height: 5rem;
+            }
+            body {
+                background-color: #22272e;
+                padding: var(--size-medium);
+                font-family: "Recursive", "Lucida Console", "Courier New", monospace;
+                color: #ffffff
+            }
+            #editor {
+                position: absolute;
+                width: calc(100% - (2 * var(--size-medium)));
+                top: var(--toolbar-height);
+                min-height: calc(100% - var(--toolbar-height) - var(--size-medium));
+                border-radius: 0.25rem;
+                border: #444c56 solid 0.25rem;
+            }
+            #toolbar {
+                display: flex;
+                flex-direction: row;
+            }
+            #toolbar > * + * {
+                padding-left: 1rem;
+            }
+            #offer {
+                background-color: #aa4422;
+                color: #ffffff;
+                border: none;
+                padding: var(--size-medium);
+                border-radius: 0.25rem;
+            }
+            #offer:hover {
+                background-color: #80331a;
+                cursor: pointer;
+            }
+            #offer:disabled {
+                background-color: #80331a;
+                cursor: default;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="toolbar">
+            <button id="offer" onclick="submitCode()">RUN</button>
+            <p id="status"><-- Click here to execute your code</p>
+        </div>
+        <div class="editor-container">
+            <div id="editor"></div>
+        </div>
+        <script>
+            const submit = document.getElementById("offer");
+            const status = document.getElementById("status");
+            const popup = document.getElementById("popup")
+            const editor = ace.edit("editor");
+            editor.resize();
+            editor.setTheme("ace/theme/tomorrow_night");
+            editor.getSession().setMode("ace/mode/javascript");
+            editor.setShowPrintMargin(false);
+            editor.setFontSize(18);
+            editor.setValue(
+                "// TODO: your wholesome code goes here!"
+            );
+
+            function failure(e) {
+                status.innerText = "Something went wrong -- try submitting again?"
+                submit.disabled = false;
+                console.error(e);
+            }
+
+            function submitCode() {
+              fetch("/", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({"src": editor.getValue()})
+              }).then(response => 
+                response.text()
+              ).then(data => {
+                if(data == "Success!") {
+                  status.innerText = "Done! Offer up some more code if you'd like :D";
+                  alert('Code executed successfully!');
+                } else if(data == "Bad character detected.") {
+                  alert(data);
+                  status.innerText = "Done! Offer up some more code if you'd like :D";
+                } else {
+                  failure(data);
+                }
+              }).catch(err => failure(err));
+            }
+        </script>
+        <noscript> You need to enable Javascript to run this challenge. </noscript>
+    </body>
+</html>

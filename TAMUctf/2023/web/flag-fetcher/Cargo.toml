@@ -1,0 +1,18 @@
+[package]
+name = "flag-fetcher"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-files = "0.6"
+actix-web = { version = "4", features = ["cookies"] }
+clru = "0.6"
+cookie = { version = "0.16", features = ["private"] }
+env_logger = "0.9"
+hex = "0.4.3"
+pem = "1"
+rand = "0.8"
+ring = "0.16"
+tokio = { version = "*", features = ["fs", "sync"] }
