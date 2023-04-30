@@ -1,0 +1,19 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import re
+
+def get_challenge_name(args):
+  tokens = []
+  for a in args:
+    tokens.extend(a.strip().split())
+
+  chal_name = re.sub('[^0-9a-zA-Z_-]+', '', '_'.join(tokens))
+  print(chal_name)
+
+  return chal_name
+
+if __name__ == '__main__':
+  os.system('mkdir %s' % get_challenge_name(sys.argv[1:]))
+
