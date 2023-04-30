@@ -1,0 +1,12 @@
+qemu-system-aarch64 \
+    -m 256M \
+    -cpu cortex-a57 \
+    -smp 2\
+    -M virt \
+    -device virtio-net,netdev=net0 \
+    -netdev user,id=net0,net=192.168.1.0/24,hostname=openwrt,hostfwd=tcp:0.0.0.0:9999-192.168.1.1:80 \
+    -drive file=squashfs-root.img,format=raw,if=virtio \
+    -nographic \
+    -kernel Image \
+    -append 'root=/dev/vda' \
+    -no-reboot

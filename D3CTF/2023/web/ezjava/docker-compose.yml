@@ -1,0 +1,15 @@
+version: '3'
+services:
+  registry:
+    build: 'registry'
+    ports:
+      - 8080:8080
+  server:
+    build: 'server'
+    # ports:
+      # - 8081:8080
+    depends_on:
+      - registry
+# networks:
+#   front:
+#     driver: custom-driver-1

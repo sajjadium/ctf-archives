@@ -1,0 +1,12 @@
+# docker run -d -p 27017:27017 --name test-mongo mongo:latest
+version: "3.9"
+services:
+  app:
+    build: .
+    ports:
+      - "7001:7001"
+  mongo:
+    image: "mongo:4"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: ********

@@ -1,0 +1,6 @@
+version: '3'
+services:
+  challenge:
+    build: ./challenge
+    ports:
+     - "8080:5000"

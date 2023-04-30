@@ -1,0 +1,47 @@
+{
+  "name": "egg4shell",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "egg": "^3",
+    "egg-audit-log": "^1.1.2",
+    "egg-scripts": "^2",
+    "md5": "^2.3.0",
+    "node-libcurl": "^3.0.0"
+  },
+  "devDependencies": {
+    "egg-bin": "^5",
+    "egg-ci": "^2",
+    "egg-mock": "^5",
+    "eslint": "^8",
+    "eslint-config-egg": "^12"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --title=egg-server-egg4shell",
+    "stop": "egg-scripts stop --title=egg-server-egg4shell",
+    "dev": "egg-bin dev",
+    "debug": "egg-bin debug",
+    "test": "npm run lint -- --fix && npm run test-local",
+    "test-local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov"
+  },
+  "ci": {
+    "version": "16, 18",
+    "type": "github"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "MIT"
+}
