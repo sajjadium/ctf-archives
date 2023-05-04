@@ -1,0 +1,44 @@
+<svg
+  width="192"
+  height="192"
+  viewBox="0 0 1600 1600"
+  xmlns="http://www.w3.org/2000/svg"
+>
+	<defs>
+		<filter id="ds">
+			<feDropShadow flood-color="white" dx="20" dy="20" stdDeviation="0" />
+		</filter>
+	</defs>
+  <g transform="rotate(-10, 800, 800)" filter="url(#ds)">
+    <circle
+      cx="50%"
+      cy="50%"
+      r="45%"
+      fill="none"
+      stroke="red"
+      stroke-width="5%"
+    />
+    <text
+      x="50%"
+      y="55%"
+      font-family="ＭＳ 明朝"
+      font-size="600"
+      font-weight="bold"
+      text-anchor="middle"
+      fill="red"
+    >
+      承認
+    </text>
+    <text
+      x="50%"
+      y="75%"
+      font-family="ＭＳ 明朝"
+      font-size="250"
+      font-weight="bold"
+      text-anchor="middle"
+      fill="red"
+    >
+      ワニ博士
+    </text>
+  </g>
+</svg>

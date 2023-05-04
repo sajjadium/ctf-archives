@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <title>Extract Service</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+</head>
+
+<body>
+  <section class="hero is-link">
+    <div class="hero-body">
+      <p class="title">
+        Extract Service
+      </p>
+    </div>
+  </section>
+  <section class="container px-5">
+    <form method="POST" action="/" enctype="multipart/form-data">
+      <div class="field mt-5">
+        <label class="label">Choose file</label>
+        <div id="file-js-example" class="file has-name">
+          <label class="file-label">
+            <input class="file-input" type="file" name="file">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose file…
+              </span>
+            </span>
+            <span class="file-name">
+              No file uploaded
+            </span>
+          </label>
+        </div>
+      </div>
+      <div class="field mt-5">
+        <label class="label">Choose file type</label>
+        <div class="control">
+          <div class="select">
+            <select name="target">
+              <option value="docx">.docx</option>
+              <option value="xlsx">.xlsx</option>
+              <option value="pptx">.pptx</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="field mt-5">
+        <div class="control">
+          <button type="submit" class="button is-link">Submit</button>
+        </div>
+      </div>
+    </form>
+  </section>
+  <section class="container px-5">
+    <div class="mt-5">
+      <p>{{ .result }}</p>
+    </div>
+  </section>
+
+  <script>
+    const fileInput = document.querySelector('#file-js-example input[type=file]');
+    fileInput.onchange = () => {
+      if (fileInput.files.length > 0) {
+        const fileName = document.querySelector('#file-js-example .file-name');
+        fileName.textContent = fileInput.files[0].name;
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -2048,6 +2048,11 @@
             <td><a href="https://ctftime.org/event/1775/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="Wani">Wani</a></td>
+            <td><a href="Wani/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1988/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="WeCTF">WeCTF</a></td>
             <td><a href="WeCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1546/tasks/">CTFtime</a></td>

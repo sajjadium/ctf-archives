@@ -5,22 +5,17 @@ import sys
 import tempfile
 import re
 
-def get_challenge_name(args):
-  tokens = []
-  for a in args:
-    tokens.extend(a.strip().split())
-
-  chal_name = re.sub('[^0-9a-zA-Z_-]+', '', '_'.join(tokens))
+def get_challenge_name(arg):
+  chal_name = '_'.join(re.sub('[^0-9a-zA-Z_\- ]+', '', arg).strip().split())
   print(chal_name)
-
   return chal_name
 
 archive_filename = sys.argv[1]
 
 if len(sys.argv) > 2:
-  dst_dir = get_challenge_name(sys.argv[2:])
+  dst_dir = get_challenge_name(sys.argv[2])
 else:
-  dst_dir = archive_filename.split('.')[0]
+  dst_dir = archive_filename.split('.')[0].lstrip('pwn-').lstrip('cry-').lstrip('rev-').lstrip('web-')
 
 os.system('mkdir "%s"' % dst_dir)
 
