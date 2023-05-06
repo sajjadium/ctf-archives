@@ -8,8 +8,12 @@ import time
 import tempfile
 import shutil
 
-def get_challenge_name(arg):
-  return '_'.join(re.sub('[^0-9a-zA-Z_\- ]+', '', arg).strip().split())
+def get_challenge_name(args):
+  tokens = []
+  for a in args:
+    tokens.extend(re.sub('[^0-9a-zA-Z_\- ]+', '', a).strip().split())
+
+  return '_'.join(tokens)
 
 if __name__ == '__main__':
   # find all the files downloaded in the past 60 seconds
@@ -20,7 +24,7 @@ if __name__ == '__main__':
       files.add(os.path.join(download_dir, f))
 
   # create challenge directory
-  chal_name = get_challenge_name(sys.argv[1])
+  chal_name = get_challenge_name(sys.argv[1:])
   shutil.rmtree(chal_name, ignore_errors=True)
   os.mkdir(chal_name)
 

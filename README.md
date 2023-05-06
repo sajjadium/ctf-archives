@@ -1599,6 +1599,11 @@
             <td><a href="https://ctftime.org/event/1566/tasks/">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="SanDiego">SanDiego</a></td>
+            <td><a href="SanDiego/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1910/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="Sekai">Sekai</a></td>
             <td><a href="Sekai/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1619/tasks/">CTFtime</a></td>
