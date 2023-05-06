@@ -15,7 +15,7 @@ archive_filename = sys.argv[1]
 if len(sys.argv) > 2:
   dst_dir = get_challenge_name(sys.argv[2])
 else:
-  dst_dir = archive_filename.split('.')[0].lstrip('pwn-').lstrip('cry-').lstrip('rev-').lstrip('web-')
+  dst_dir = re.sub('^(pwn|rev|cry|web)-', '', archive_filename)
 
 os.system('mkdir "%s"' % dst_dir)
 
