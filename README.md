@@ -1,5 +1,3 @@
-"Collection of CTF challenges.
-
 <table>
     <thead>
         <tr>
