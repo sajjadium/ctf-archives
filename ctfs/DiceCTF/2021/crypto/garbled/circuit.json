@@ -1,0 +1,9 @@
+{
+    "inputs" : [1, 2, 3, 4],
+    "outputs"   : [7],
+    "gates" : [
+        {"id" : 5, "type" : "AND", "in" : [1, 2]},
+        {"id" : 6, "type" : "AND", "in" : [3, 4]},
+        {"id" : 7, "type" : "AND", "in" : [5, 6]}
+    ]
+}

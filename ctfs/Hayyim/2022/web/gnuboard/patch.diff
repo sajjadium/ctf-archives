@@ -1,0 +1,12 @@
+diff --git a/gnuboard/entrypoint.sh b/gnuboard/entrypoint.sh
+index 722dde9..0b70cce 100755
+--- a/gnuboard/entrypoint.sh
++++ b/gnuboard/entrypoint.sh
+@@ -1,6 +1,6 @@
+ #!/bin/bash
+ 
+-password="$(head -100 /dev/urandom | sha256sum | cut -f' ' -f1)"
++password="$(head -100 /dev/urandom | sha256sum | cut -d' ' -f1)"
+ 
+ echo 'Require ip 127.0.0.1' >> /var/www/html/.htaccess
+ 

@@ -1,0 +1,8 @@
+cache:
+  build: ./
+  volumes:
+    - ./share:/home/cache:ro
+    - ./xinetd:/etc/xinetd.d/cache:ro
+    - ./tmp:/tmp:ro
+  ports:
+    - "27025:1337"

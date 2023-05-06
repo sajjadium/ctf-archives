@@ -1,0 +1,16 @@
+service heapschool666
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/heapschool666/HeapSchool666
+        socket_type = stream
+        protocol = tcp
+        user = heapschool666
+        port = 13370
+        flags = REUSE
+        per_source = 3
+        rlimit_cpu = 3
+        nice = 18
+}
+

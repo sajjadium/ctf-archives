@@ -1,0 +1,36 @@
+{% extends "backend/default_templates/base.html" %}
+
+{% block content %}
+
+<!-- Page Content -->
+<div class="container">
+  {% if success %}
+  <div class="alert alert-success mt-3">{{success}}</div>
+  {% endif %}
+  {% if error %}
+  <div class="alert alert-danger mt-3">{{error}}</div>
+  {% endif %}
+
+
+  <div class="row justify-content-center pt-5">
+    <div class="card">
+      <div class="card-body">
+        <form action="/signin" method="post">
+          <div class="form-group">
+            <label for="usernameInput">Username</label>
+            <input type="text" name="username" class="form-control" id="usernameInput" required>
+          </div>
+          <div class="form-group">
+            <label for="passwordInput">Password</label>
+            <input type="password" name="password" class="form-control" id="passwordInput" required>
+          </div>
+          <br>
+          <button id="submitButton" type="submit" class="mt-2 btn btn-primary">Sign in</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

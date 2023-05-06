@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% set active_page = "index" %}
+
+{% block content %}
+<h1>Generating...</h1>
+<p>Your request is beeing generating. You'll be redirected shortly to <a href="/generated?report_id={{ report_id }}&session_id={{ session_id }}">your report</a>.</p>
+
+{% if errormessage %}
+<p>Something went wrong:</p>
+<div class="alert alert-danger" role="alert">
+    {{ errormessage }}
+  </div>
+{% endif %}
+
+<script>
+setTimeout(function () {
+  window.location.href = "/generated?report_id={{ report_id }}&session_id={{ session_id }}"; 
+}, 2000);
+</script>
+{% endblock %}

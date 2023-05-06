@@ -1,0 +1,36 @@
+<html>
+	<head>
+		<title>Markdown Preview</title>
+        <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/style.css">
+	</head>
+	<body>
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#0">Markdown Editor</a>   
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-6">
+                    <textarea id="input-area" class="form-control"></textarea>
+                </div>
+                <div class="col-md-6">
+                    <iframe id="frame-area" src="/demo" width="500" height="300"></iframe>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <button id="preview" class="btn btn-info btn-block">Preview</button>
+                </div>
+                <div class="col-md-2">
+                    <button id="save" class="btn btn-success btn-block">Save</button>
+                </div>
+                <div class="col-md-4">
+                    <code id="status"></code>
+                </div>
+            </div>
+        </div>
+	</body>
+	<script src="/static/app.js"></script>
+</html>

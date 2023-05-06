@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  database:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: supersecretmysqlpasswordnotahint
+      MYSQL_DATABASE: mybb
+
+  mybb:
+    build:
+      context: ./mybb-server
+    ports: [80:80]
+    environment:
+      FLAG: ${FLAG}
+      HOSTNAME: ${HOSTNAME}
+      
+

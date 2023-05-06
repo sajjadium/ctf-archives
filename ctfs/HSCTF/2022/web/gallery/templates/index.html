@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Image Gallery</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/static/index.css" />
+	</head>
+	<body>
+		<h1 id="title">Image Gallery</h1>
+		<main class="image-grid">
+			{% for image in images %}
+			<div class="item"><img src="/image?image={{ image }}" /></div>
+			{% endfor %}
+		</main>
+	</body>
+</html>

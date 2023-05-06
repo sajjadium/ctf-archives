@@ -1,0 +1,19 @@
+<%- include("./partials/header.ejs") %>
+
+<h1>Hi, <%= user %></h1>
+
+<div class="container mid">
+    <h2>Tests</h2>
+    <div>
+        <% for(form of forms) { %> 
+            <div class="forms">
+                <a href="/<%= form._id %> "><%= form.name %></a>
+            </div>
+        <% } %> 
+    </div>
+</div>
+
+<footer>
+    <p><a href="/logout">Logout</a></p>
+
+<%- include("./partials/footer.ejs") %> 

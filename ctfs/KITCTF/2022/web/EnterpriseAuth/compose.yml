@@ -1,0 +1,48 @@
+services:
+  filemanager:
+    build: ./filemanager
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.filemanager.rule=Host(`files.ctf.localhost`)"
+      - "traefik.http.routers.filemanager.entrypoints=web"
+      - "traefik.http.routers.filemanager.middlewares=enterprise-auth"
+    depends_on:
+      - auth
+
+  tasktracker:
+    build: ./tasktracker
+    read_only: true
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.tasktracker.rule=Host(`task.ctf.localhost`)"
+      - "traefik.http.routers.tasktracker.entrypoints=web"
+      - "traefik.http.routers.tasktracker.middlewares=enterprise-auth"
+    depends_on:
+      - auth
+
+  auth:
+    build: ./auth
+    read_only: true
+    environment:
+      SECRET_KEY: "fake"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.enterprise-auth.rule=Host(`auth.ctf.localhost`)"
+      - "traefik.http.routers.enterprise-auth.entrypoints=web"
+      - "traefik.http.middlewares.enterprise-auth.forwardauth.address=http://auth:8000/auth"
+      - "traefik.http.middlewares.enterprise-auth.forwardauth.authResponseHeaders=remote-user"
+
+  traefik:
+    image: traefik:v2.8
+    command:
+      - "--providers.docker"
+      - "--entrypoints.web.address=:80"
+      - "--providers.docker.exposedbydefault=false"
+      - "--api.dashboard=true"
+      - "--api.insecure=true"
+    ports:
+      - "127.0.0.1:8844:80"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    depends_on:
+      - auth

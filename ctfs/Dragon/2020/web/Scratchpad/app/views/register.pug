@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  form.form-signin(action='/register', method='POST')
+    input(type='hidden', name='_csrf', value=csrfToken)
+    .mb-3
+      input.form-control(type='text', name='name', placeholder='Username')
+    .mb-3
+      input.form-control(type='password', name='password', placeholder='Password')
+    .mb-3
+      input.form-control(type='password', name='password_confirmation', placeholder='Repeat your password')
+    .mb-3
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') Register

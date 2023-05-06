@@ -1,0 +1,48 @@
+@font-face {
+    font-family: DungGeunMo;
+    src:url('/static/font/DungGeunMo.eot'); 
+    src:url('/static/font/DungGeunMo.eot?#iefix') format('embedded-opentype'),
+        url('/static/font/DungGeunMo.woff2') format('woff2'),
+        url('/static/font/DungGeunMo.woff') format('woff'),
+        url('/static/font/DungGeunMo.ttf') format('truetype');
+
+    font-display: swap;
+}
+
+body{
+    font-family: DungGeunMo;
+}
+
+.navbar {
+    min-height: 60px;
+  }
+  
+.navbar-brand {
+    padding: 0 15px;
+    height: 50px;
+    line-height: 60px;
+}
+  
+.navbar-toggle {
+    /* (60px - button height 34px) / 2 = 18px */
+    margin-top: 18px;
+    padding: 9px 10px !important;
+}
+  
+@media (min-width: 768px) {
+    .navbar-nav > li > a {
+      /* (60px - line-height of 17px) / 2 = 16.5px */
+      padding-top: 16.5px;
+      padding-bottom: 16.5px;
+      line-height: 17px;
+    }
+}
+
+*:focus {
+    outline: none;
+} 
+
+.chall-box{
+    display: inline-block;
+    width: 100%;
+}

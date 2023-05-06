@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block add_post %}
+<div class="wrapper">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <h1 style="margin: 30px;">Write your post</h1>
+      
+ <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            <input type="text" placeholder="Title" name="title" value="{{request.form.title}}"><br>
+                <textarea type="body_text" placeholder="Write your content here!" name="body" value="{{request.form.body }}"> </textarea><br>
+        </p>
+        <div  style="padding-right: 100px; padding-left: 100px; padding-bottom: 20px;">
+            <button class="btn btn-primary has-icon btn-block" type="submit">
+                Post
+            </button>
+            </div>
+    </div>
+</div>   
+</form>
+
+
+{% endblock %}
+

@@ -1,0 +1,17 @@
+{
+    "knex": {
+        "client": "mysql",
+        "connection": {
+            "host": "127.0.0.1",
+            "port": "3306",
+            "user": "xark",
+            "password": "secret",
+            "database": "xark",
+            "charset": "utf8mb4"
+        }
+    },
+    "init": {
+        "token": "put something secret here!",
+        "flag": "the flag is here!",
+    }
+}

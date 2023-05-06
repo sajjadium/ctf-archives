@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lovely Nonces</title>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'nonce-$NONCE$'">
+    <link href="./static/bootstrap.css" rel="stylesheet">
+    <link href="./static/cover.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+
+    <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+      <header class="masthead mb-auto">
+        <div class="inner">
+          <h3 class="masthead-brand">Lovely Nonce</h3>
+          <nav class="nav nav-masthead justify-content-center">
+            <a class="nav-link" href="#<p class=lead>They secure my webpage and i don't have to worry about unsafe html anymore.</p>">Home</a>
+            <a class="nav-link" href="#<p class=lead>You wanna steal my flag? it's in my cookie storage. come catch it!</p><form action=/report><input type=text name=url placeholder=URL><input type=submit></form><br><br>">flag</a>
+          </nav>
+        </div>
+      </header>
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">I love nonces.</h1>
+        <div id=desc>
+	        <p class="lead">They secure my webpage and i don't have to worry about unsafe html anymore.</p>
+        </div>
+        <p class="lead">
+          <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce" target="_blank" class="btn btn-lg btn-secondary">Learn more about nonces</a>
+        </p>
+      </main>
+      <footer class="mastfoot mt-auto">
+      </footer>
+    </div>
+
+    <script nonce="$NONCE$">
+    	document.location.hash = "";
+    	window.onhashchange = ()=>{
+    		if(document.location.hash) desc.innerHTML = decodeURIComponent(document.location.hash.slice(1));
+    		document.location.hash = "";
+    	};
+    </script>
+	<!-- Cover template by <a href="https://twitter.com/mdo">@mdo</a> -->
+  </body>
+</html>

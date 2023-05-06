@@ -1,0 +1,83 @@
+body {
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
+
+html {
+    font-size: 18px;
+}
+
+#app {
+    padding: 2em;
+
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+}
+
+@media screen and (min-width: 500px) {
+    #app {
+        padding: 5em;
+    }
+}
+
+@media screen and (min-width: 750px) {
+    #app {
+        padding: 10em;
+    }
+}
+
+form {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 0.5rem;
+}
+
+.header {
+    font-size: 2em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+a {
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.button {
+    font-family: inherit;
+    border: 1px #d0d0d0 solid;
+    border-radius: 2px;
+
+    outline: none;
+    cursor: pointer;
+    text-transform: none;
+    margin: 0;
+
+    font-size: 1rem;
+    padding: 0.75em 1em;
+
+    background-color: white;
+    color: #555;
+    text-decoration: none;
+
+    box-shadow: 0 3px 5px -2px rgba(0, 0, 0, 0.4);
+    transition: 0.25s;
+}
+
+#file-button {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: end;
+}
+
+#file-button > .material-icons {
+    margin-right: 0.5em;
+}
+
+.button:hover {
+    color: black;
+    box-shadow: 0 10px 12px -2px rgba(0, 0, 0, 0.4);
+    transition: 0.25s;
+}

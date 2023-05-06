@@ -1,0 +1,22 @@
+<div class="container text-center mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>Welcome to Secure Storage Services!</h1>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-4">
+            <img class="img-fluid" src="assets/img/vault.png">
+        </div>
+    </div>
+    <div class="row my-4">
+        <div class="col">
+            {{#if user}}
+            <a class="btn btn-primary" type="button" href="/home">Home</a>
+            {{else}}
+            <a class="btn btn-primary me-2" type="button" href="/login">Login</a>
+            <a class="btn btn-danger" type="button" href="/register">Register</a>
+            {{/if}}
+        </div>
+    </div>
+</div>
