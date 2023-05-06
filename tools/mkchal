@@ -4,35 +4,50 @@ import os
 import sys
 import re
 import subprocess
+import time
+import tempfile
+import shutil
 
 def get_challenge_name(arg):
-  chal_name = '_'.join(re.sub('[^0-9a-zA-Z_\- ]+', '', arg).strip().split())
-  print(chal_name)
-  return chal_name
+  return '_'.join(re.sub('[^0-9a-zA-Z_\- ]+', '', arg).strip().split())
 
 if __name__ == '__main__':
+  # find all the files downloaded in the past 60 seconds
+  download_dir = os.path.expanduser('~/Downloads')
+  files = set()
+  for f in os.listdir(download_dir):
+    if time.time() - os.path.getmtime(os.path.join(download_dir, f)) <= 60:
+      files.add(os.path.join(download_dir, f))
+
+  # create challenge directory
   chal_name = get_challenge_name(sys.argv[1])
-  #os.system('mkdir %s' % chal_name)
-  print(subprocess.check_output('find ~/Downloads -type f -mmin -1', stderr=subprocess.STDOUT, shell=True))
+  shutil.rmtree(chal_name, ignore_errors=True)
+  os.mkdir(chal_name)
 
-with tempfile.TemporaryDirectory() as tmp_path:
-  if archive_filename.endswith('.zip'):
-    os.system('unzip -d %s "%s"' % (tmp_path, archive_filename))
+  for f in files:
+    with tempfile.TemporaryDirectory() as tmp_path:
+      if f.endswith('.zip'):
+        os.system('unzip -d "%s" "%s" > /dev/null' % (tmp_path, f))
 
-  os.system('rm -rf `find %s -name __MACOSX`' % tmp_path)
+        os.system('rm -rf `find "%s" -name __MACOSX`' % tmp_path)
 
-  final_path = tmp_path
-  while True:
-    children = os.listdir(final_path)
-    if len(children) == 0 or len(children) > 1:
-      break
+        final_path = tmp_path
+        while True:
+          children = os.listdir(final_path)
+          if len(children) == 0 or len(children) > 1:
+            break
 
-    child_path = os.path.join(final_path, children[0])
+          child_path = os.path.join(final_path, children[0])
 
-    if not os.path.isdir(child_path):
-      break
+          if not os.path.isdir(child_path):
+            break
 
-    final_path = child_path
+          final_path = child_path
 
-  os.system('mv %s/* %s' % (final_path, dst_dir))
+        os.system('mv `find "%s" -name "*" -depth 1` "%s"' % (final_path, chal_name))
+        os.remove(f)
+      else:
+        os.system('mv "%s" "%s"' % (f, chal_name))
 
+  print(chal_name)
+  os.system('ls "%s"' % chal_name)

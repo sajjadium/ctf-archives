@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href={{ url_for( 'static',filename='styles/main.css' ) }}>
+    <title>Check notes</title>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h5 style="font-size: 16px;">Check if note is available</h5>
+            <form action="/" method="post" novalidate>
+                <!-- input -->
+                <div class="form-control">
+                    <label for="note">Note</label>
+                    <input type="text" name="note" id="note" placeholder="Enter note">
+                    <button type="submit">Check</button>
+                </div>
+            </form>
+        </div>
+        <div>
+            <h3>{{ result }}</h3>
+        </div>
+    </div>
+</body>
+
+</html>

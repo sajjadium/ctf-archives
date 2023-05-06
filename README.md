@@ -170,7 +170,11 @@
             <td><a href="https://ctftime.org/event/708/tasks/">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="BSidesAlgiers">BSides Algiers</a></td>
+            <td rowspan=2><a href="BSidesAlgiers">BSides Algiers</a></td>
+            <td><a href="BSidesAlgiers/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1950/tasks/">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="BSidesAlgiers/2020/Quals">2020 Quals</a></td>
             <td><a href="https://ctftime.org/event/1220/tasks/">CTFtime</a></td>
         </tr>
