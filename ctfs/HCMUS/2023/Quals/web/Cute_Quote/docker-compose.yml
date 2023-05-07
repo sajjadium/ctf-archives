@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  web:
+    build: app
+    environment:
+      - FLAG=HMCSU-CFT{real_flag}
+  nginx:
+    build: ./nginx
+    ports:
+    - '24001:80'
+    depends_on:
+    - web

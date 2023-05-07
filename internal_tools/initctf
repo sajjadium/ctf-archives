@@ -1,0 +1,45 @@
+#!/usr/bin/env python3
+
+import os
+import sys
+import re
+import subprocess
+import time
+import tempfile
+import shutil
+import requests
+from bs4 import BeautifulSoup
+import datetime
+
+if __name__ == '__main__':
+  event_url = sys.argv[1]
+  event_id = re.search('ctftime\.org/event/(\d+)', event_url).group(1)
+
+  # request the ctf event page
+  r = requests.get(sys.argv[1],
+                   allow_redirects=True,
+                   headers = {
+                    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36'
+                    })
+  soup = BeautifulSoup(r.content, 'html.parser')
+  for link in soup.find_all('a'):
+    if not link.get('href'):
+      continue
+
+    m = re.fullmatch('/ctf/(\d+)', link.get('href'))
+    if m:
+      ctf_id = m.group(1)
+      ctf_name = ''.join([x for x in link.text.strip().split() if x.upper() != 'CTF'])
+      break
+
+  os.chdir('ctfs')
+  os.system('mkdir %s' % ctf_name)
+  os.chdir(ctf_name)
+
+  open('README.md', 'w').write('[CTFtime Page](https://ctftime.org/ctf/%s)' % ctf_id)
+
+  os.system('mkdir %s' % datetime.date.today().year)
+  os.chdir(str(datetime.date.today().year))
+  open('README.md', 'w').write('[CTFtime Page](https://ctftime.org/event/%s)' % event_id)
+
+  print('ctfs/%s' % ctf_name)

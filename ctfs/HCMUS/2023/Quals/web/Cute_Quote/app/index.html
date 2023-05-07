@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        @font-face {
+            font-family: 'Rocher';
+            src: url(RocherColorGX.woff2);
+        }
+
+        body {
+            font-family: 'Rocher';
+            text-align: center;
+            font-size: 50px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        @font-palette-values --Grays {
+            font-family: Rocher;
+            base-palette: 9;
+        }
+
+        @font-palette-values --Purples {
+            font-family: Rocher;
+            base-palette: 6;
+        }
+
+        @font-palette-values --Mint {
+            font-family: Rocher;
+            base-palette: 7;
+        }
+
+        .grays {
+            font-palette: --Grays;
+        }
+
+        .purples {
+            font-palette: --Purples;
+        }
+
+        .mint {
+            font-palette: --Mint;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="mint">Welcome to the challenge</h1>
+    <div id="text">
+    </div>
+    <script>
+        var cnt = 0
+        function fetchQuote() {
+            if (Math.floor(Math.random() * 3) == Math.floor(Math.random() * 3))
+                url = "/api/public/fake"
+            else
+                url = "/api/public/quote"
+            fetch(url).then(resp => resp.text()).then(respText => {
+                elem = document.createElement("div")
+                if (cnt == 0) {
+                    elem.classList.add("grays");
+                } else if (cnt == 1) {
+                    elem.classList.add("purples");
+                } else {
+                    elem.classList.add("mint");
+                }
+                elem.innerText = respText
+                cnt = (cnt + 1) % 3
+                document.getElementById("text").innerHTML = elem.outerHTML
+            }).catch((error) => {
+                console.error("Error:", error);
+            })
+        }
+        setInterval(fetchQuote, 3000)
+        fetchQuote()
+    </script>
+</body>
+</html>
