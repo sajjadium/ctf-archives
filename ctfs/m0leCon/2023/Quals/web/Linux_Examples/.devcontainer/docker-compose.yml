@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  php:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    command: sleep infinity

@@ -1,0 +1,9 @@
+version: '3.7'
+
+services:
+  m0leconos:
+    container_name: challenge_vm_pwn
+    build: .
+    ports:
+      - "3333:3333"
+    restart: unless-stopped

@@ -29,7 +29,7 @@ if __name__ == '__main__':
     m = re.fullmatch('/ctf/(\d+)', link.get('href'))
     if m:
       ctf_id = m.group(1)
-      ctf_name = ''.join([x for x in link.text.strip().split() if x.upper() != 'CTF'])
+      ctf_name = re.compile('ctf', re.IGNORECASE).sub('', link.text).strip()
       break
 
   os.chdir('ctfs')

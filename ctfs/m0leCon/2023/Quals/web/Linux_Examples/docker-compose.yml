@@ -1,0 +1,7 @@
+version: '3.7'
+
+services:
+  m0lecon:
+    build: ./project
+    restart: unless-stopped
+    network_mode: host

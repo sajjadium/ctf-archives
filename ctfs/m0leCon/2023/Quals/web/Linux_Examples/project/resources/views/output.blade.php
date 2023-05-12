@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Output</title>
+    </head>
+    <body>
+        <code>
+            <pre>
+{{$stdout}}
+            </pre>
+        </code>
+    </body>
+</html>
