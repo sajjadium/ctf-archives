@@ -35,9 +35,13 @@ if __name__ == '__main__':
   for f in files:
     with tempfile.TemporaryDirectory() as tmp_path:
       if f.endswith('.zip'):
-        os.system('unzip -d "%s" "%s"' % (tmp_path, f))
+        if os.system('unzip -d "%s" "%s"' % (tmp_path, f)) != 0:
+          os.system('mv "%s" "%s"' % (f, chal_name))
+          continue
       elif f.endswith('.tar.gz') or f.endswith('.tgz'):
-        os.system('tar xzvf "%s" -C "%s"' % (f, tmp_path))
+        if os.system('tar xzvf "%s" -C "%s"' % (f, tmp_path)) != 0:
+          os.system('mv "%s" "%s"' % (f, chal_name))
+          continue
       else:
         os.system('mv "%s" "%s"' % (f, chal_name))
         continue
