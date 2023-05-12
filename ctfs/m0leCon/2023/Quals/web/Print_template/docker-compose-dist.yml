@@ -1,0 +1,47 @@
+services:
+  app:
+    build: ./app
+    environment:
+      - FLAG=ptm{flag}
+      - SSO_URL=http://sso.localtest.me:3001
+      - SSO_URL_INT=http://sso:3001
+      - CHALL_URL=http://print.localtest.me:3000
+      - CACHE_HOSTNAME=cache
+    # network_mode: host
+    ports:
+      - 3000:3000
+    networks:
+      - botnetwork
+      - backend
+  sso:
+    build: ./sso
+    environment:
+      - PREMIUM_CODE=PREMIUMCHANGEME
+      - CHALL_URL=http://print.localtest.me:3000
+      - BOT_SECRET=changeme
+      - BOT_URL=http://bot:9999/visit
+    #network_mode: host
+    ports:
+      - 3001:3001
+    networks:
+      - botnetwork
+      - backend
+  bot:
+    build: ./bot
+    environment:
+      - BOT_SECRET=changeme
+      - PREMIUM_CODE=PREMIUMCHANGEME
+      - MAX_PARALLEL_BOT=4
+      - SSO_URL=http://sso:3001
+    #network_mode: host
+    #ports:
+    #  - 9999:9999
+    networks:
+      - botnetwork
+  cache:
+    image: memcached
+    networks:
+      - backend
+networks:
+  botnetwork:
+  backend:

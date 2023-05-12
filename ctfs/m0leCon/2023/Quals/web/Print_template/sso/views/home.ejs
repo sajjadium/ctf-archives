@@ -1,0 +1,7 @@
+<%- include('header') %>
+
+<% if (loggedUser){ %>
+    <h3>Hi <%= loggedUser %>, you are logged in!</h3>
+<% } else { %>
+    <h3>Hi, you are not logged in</h3>
+<% } %>

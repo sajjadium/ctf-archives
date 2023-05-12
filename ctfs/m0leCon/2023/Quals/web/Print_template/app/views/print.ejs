@@ -1,0 +1,64 @@
+<%- include('header') %>
+
+We are ready to print your template, choose how to substitute the placeholders
+
+
+<form method="post" class="form-group col-lg-4 col-md-6 mx-auto mt-3">
+
+    <div class="row my-2">
+    
+        <input hidden value="{0}" name="tosub0">
+        <div class="col">
+            {0}
+            <input class="form-control my-1" id="addsub0" placeholder="Add data">
+            <select name="sub0" id="sub0" class="my-1 form-select d-inline" multiple>
+                <option selected value="test">test</option>
+                <option value="sample">sample</option>
+            </select>
+        </div>
+        
+        <input hidden value="{1}" name="tosub1">
+        <div class="col">
+            {1}
+            <input class="form-control my-1" id="addsub1" placeholder="Add data">
+            <select name="sub1" id="sub1" class="my-1 form-select d-inline" multiple>
+                <option selected value="test">test</option>
+                <option value="sample">sample</option>
+            </select>
+        </div>
+    
+    </div>
+    
+    <input name="csrf" hidden=true value="<%= csrftoken %>" />
+
+
+    <button class="btn btn-dark my-2 w-100" type="submit">Print</button>
+    
+</form>
+
+
+<script>
+    document.getElementById('addsub0').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault()
+      const new_opt = document.createElement('option')
+      new_opt.value = e.srcElement.value
+      new_opt.innerText = e.srcElement.value
+      new_opt.selected = true
+      document.getElementById('sub0').appendChild(new_opt)
+      e.srcElement.value = ''
+    }
+    })
+    
+    document.getElementById('addsub1').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            const new_opt = document.createElement('option')
+            new_opt.value = e.srcElement.value
+            new_opt.innerText = e.srcElement.value
+            new_opt.selected = true
+            document.getElementById('sub1').appendChild(new_opt)
+            e.srcElement.value = ''
+        }
+    })
+</script>

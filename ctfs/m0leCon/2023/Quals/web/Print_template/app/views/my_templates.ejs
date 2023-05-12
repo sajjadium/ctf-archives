@@ -1,0 +1,28 @@
+<%- include('header') %>
+
+<% if(templates.length === 0){ %>
+
+    No templates found, please import a template <a href="/get-templates">here</a>
+
+<% } else { %>
+
+    Your templates
+    <ul class="list-group col-xl-6 col-lg-8 col-md-10 col-12 mx-auto mt-3">
+
+        <% for (let i=0; i < templates.length; i++){ %>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+
+                    <span class="w-100"><%= templates[i].length <= 33 ? templates[i] : templates[i].slice(0,30) + '...' %></span>
+                    
+                    <span class="mx-1 d-inline-block" style="width: 80px">
+                        <a href="my-templates/<%= i %>" title="Open template" class="bi bi-file-earmark-code"></a>
+                        <a href="print/<%= i %>" title="Print template" class="bi bi-printer"></a>
+                        <a href="view-print/<%= i %>" title="Download prints" class="bi bi-view-list"></a>
+                    </span>
+            </li>
+        <% } %>
+    </ul>
+
+<% } %>
+
+

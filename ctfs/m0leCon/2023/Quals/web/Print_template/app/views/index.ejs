@@ -1,0 +1,21 @@
+<%- include('header') %>
+
+<% if (locals.loggedUser) { %>
+
+    <h2>Hello <%= locals.loggedUser %>!</h2>
+
+    <% if (locals.isPremium === true) { %>
+
+        <h3>Thank you for your support!</h3>
+        <%= flag %>
+
+    <% }  %>
+
+
+<% } else { %>
+    Please <a href="/login">login</a> 
+<% }  %>
+    
+
+
+

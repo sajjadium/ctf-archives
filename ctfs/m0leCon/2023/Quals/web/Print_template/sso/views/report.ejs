@@ -1,0 +1,59 @@
+<%- include('header') %>
+
+<h3>You can report a suspicious URL, our staff will check it!</h3>
+<form id="formurl" class="form-group" method="POST">
+    <input id="url" class="form-control my-2" type="url" name="url" placeholder="http://..."/>
+    <input id="pow" name="pow" hidden> 
+    <input name="pow_query" value="<%= pow %>" hidden> 
+    <button id="submit" class="btn btn-dark w-100 my-2" type="submit">Report</button>
+</form>
+
+
+
+<script>
+
+    function bufferToHex (buffer) {
+        return [...new Uint8Array (buffer)]
+            .map (b => b.toString (16).padStart (2, "0"))
+            .join ("");
+    }
+
+    async function pow(e){
+        
+        if (document.getElementById('pow').value !== ''){
+            return
+        }
+
+        e.preventDefault()
+
+        const pow_length = parseInt("<%= pow_length %>")
+        const pow = "<%= pow %>"
+        let pow_int = []
+
+        for (let i=0; i<(pow_length*2); i+=2){
+            pow_int.push(parseInt(pow.slice(i,i+2),16))
+        }
+
+        const prefix = "<%= prefix %>"
+        
+        const te = new TextEncoder()
+        
+        let test = ''
+        while (true){
+            test = prefix + Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2)
+            const p = te.encode(test)
+            const h = new Uint8Array(await crypto.subtle.digest('SHA-256', p))
+
+            if (pow_int.every((x,i)=>x===h[i]))
+                break
+        }
+
+        document.getElementById('pow').value = test
+
+        submit.click()
+    }
+
+    
+    document.getElementById('formurl').addEventListener('submit',pow)
+
+</script>

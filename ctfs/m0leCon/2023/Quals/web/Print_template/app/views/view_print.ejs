@@ -1,0 +1,83 @@
+<%- include('header') %>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" integrity="sha512-XMVd28F1oH/O71fzwBnV7HucLxVwtxf26XV8P4wPk26EDxuGZ91N8bsOttmnomcCD3CS5ZMRL50H0GgOHvegtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js" integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    i = 0;
+    tid = "<%= templateid %>";
+
+
+    async function prev(){
+        if (i<=0)
+            return
+
+        i --
+
+        button.href = "/printed/" + tid + "/" + i
+        const printtext = await (await fetch('/printed/'+tid+'/'+i)).text()
+        printpreview.innerText = printtext.length <= 60 ? printtext : printtext.slice(0,57) + '...'
+        printid.innerText = i
+    }
+    async function next(){
+        const resp = await fetch('/printed/'+tid+'/'+(i+1))
+
+        if (resp.status !== 200){
+            return
+        }
+        
+        i ++
+
+        const printtext = await resp.text()
+        button.href = "/printed/" + tid + "/" + i
+        printpreview.innerText = printtext.length <= 60 ? printtext : printtext.slice(0,57) + '...'
+        printid.innerText = i
+    }
+
+    async function download_all(){
+        zip = new JSZip()
+
+        let j = 0;
+        while(true){
+            const resp = await fetch('/printed/'+tid+'/'+j)
+            if (resp.status !== 200)
+                break  
+            
+            zip.file('printedbyptm_' + tid + '_' + j + '.txt', (await resp.text()))
+            j ++
+        }
+
+        zip.generateAsync({type:"blob"}).then(function(content) {
+            // see FileSaver.js
+            saveAs(content, "printedbyptm.zip");
+        });
+    }
+
+    async function start(){
+        const printtext = await (await fetch('/printed/'+tid+'/0')).text()
+        printpreview.innerText = printtext.length <= 60 ? printtext : printtext.slice(0,57) + '...'
+    }
+    start()
+</script>
+
+<p>We printed your templates, you can download the prints one by one: </p>
+
+<div class="card border-dark mx-auto col-lg-4 col-md-6 col-10 my-3">
+    <div class="card-header d-flex justify-content-between">
+        <i onclick="prev()" class="bi bi-arrow-left-circle-fill"></i>
+        <span>
+            <span id="printid">0</span>
+            <a id="button" class="bi bi-download d-inline" href="/printed/<%= templateid %>/0"></a>
+        </span>
+        <i onclick="next()" class="bi bi-arrow-right-circle-fill"></i> 
+    </div>
+    <div class="card-body text-dark">
+      <p class="card-text" id="printpreview"></p>
+    </div>
+  </div>
+
+
+<br>
+<p>Or all together in a zip: </p>
+
+<h1 class="bi bi-download" onclick="<%- isPremium ? 'download_all()' : `alert('Only premium users can use this feature')` %>"></h1>

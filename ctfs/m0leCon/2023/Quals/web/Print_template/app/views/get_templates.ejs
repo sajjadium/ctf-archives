@@ -1,0 +1,28 @@
+<%- include('header') %>
+
+
+Hi, select the templates that you want to import
+<br>
+<form class="form-group col-lg-4 col-md-6 col-10 mx-auto mt-3" method="post">
+
+    <select name="templates" class="form-select my-2" multiple>
+        <% for (const tn of template_names) { %>
+            <option value="<%= tn %>"><%= tn %></option>
+        <% } %>
+    </select>
+
+    <input name="csrf" hidden=true value="<%= csrftoken %>" />
+
+    <button class="btn btn-dark my-2 w-100" type="submit">Import</button>
+</form>
+
+<br>
+You can also import a template from an external server now!
+<br>
+<form class="form-group col-lg-4 col-md-6 col-10 mx-auto mt-3" method="post" action="get-templates-url">
+
+    <input class="form-control" name="url" type="url" placeholder="http://...">
+    <input name="csrf" hidden=true value="<%= csrftoken %>" />
+
+    <button class="btn btn-dark my-2 w-100" type="submit">Import</button>
+</form>
