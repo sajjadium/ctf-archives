@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center align-content-start">
+	<img class="menu fs-1" src="{{ url_for('static', filename='img/MENU.png') }}" alt="🍕 Menu 🍕">
+	<h4 class="d-flex flex-row justify-content-center align-items-center align-content-start">
+		Your current balance:&nbsp;
+		<span id="balance">...</span>
+	</h4>
+	<div id="orders" class="d-flex flex-column justify-content-center align-items-center align-content-start"></div>
+	<div id="products" class="d-flex flex-row justify-content-center align-items-start align-content-start flex-wrap">
+		{% for product in products %}
+		{% if product.theme == "golden" %}
+		{% set theme = "warning" %}
+		{% elif product.theme == "italian" %}
+		{% set theme = "success" %}
+		{% elif product.theme == "american" %}
+		{% set theme = "danger" %}
+		{% else %}
+		{% set theme = "primary" %}
+		{% endif %}
+		<div class="product card text-bg-{{ theme }} m-3" data-id="{{ product.id }}">
+			<img src="{{ url_for('static', filename=product.image) }}" class="card-img-top" alt="{{ product.name }}">
+			<div class="card-body">
+				<div class="d-flex flex-row justify-content-around align-items-center align-content-center flex-wrap">
+					<h5 class="card-title">{{ product.name }}</h5>
+					<div class="card-text">{{ "%.2f€"|format(product.price) }}</div>
+				</div>
+				<div class="d-flex flex-row justify-content-around align-items-center align-content-center">
+					<input type="number" value="1" min="1" max="99" class="form-control" aria-label="Quantity" aria-describedby="order-button-{{ product.id }}">
+					<button class="orderBtn btn btn-outline-light" type="button" id="order-button-{{ product.id }}">Order</button>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

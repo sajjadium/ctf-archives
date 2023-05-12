@@ -1,0 +1,25 @@
+.fill-screen {
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+img.welcome {
+    width: 100%;
+    max-width: 75vw;
+    height: auto;
+    max-height: 50vh;
+}
+
+img.promo {
+    width: 100%;
+    max-width: 75vw;
+    height: auto;
+    max-height: 50vh;
+}
+
+img.menu {
+    width: 100%;
+    max-width: 50vw;
+    height: auto;
+    max-height: 25vh;
+}

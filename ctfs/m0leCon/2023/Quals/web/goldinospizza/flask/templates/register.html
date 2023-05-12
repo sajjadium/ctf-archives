@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+
+<div class="d-flex flex-column justify-content-center align-items-center align-content-start">
+	<img class="promo" src="{{ url_for('static', filename='img/PROMO.png') }}" alt="HUGE 30€ 🍕 BONUS FOR ALL NEW USERS!!!">
+</div>
+
+<form method="POST" action="{{ url_for('auth.register') }}" class="d-flex flex-column align-items-center justify-content-center">
+	<h1>Register</h1>
+	{{ form.csrf_token }}
+	<div class="mb-3 d-flex flex-column align-items-center justify-content-center">
+		{{ form.username.label(class="form-label align-self-start") }}
+		{% if not form.username.errors %}
+		{{ form.username(class="form-control", required="") }}
+		{% else %}
+		{{ form.username(class="form-control is-invalid", required="") }}
+		{% for error in form.username.errors %}
+		<div class="invalid-feedback">{{ error }}</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+	<div class="mb-3 d-flex flex-column align-items-center justify-content-center">
+		{{ form.password.label(class="form-label align-self-start") }}
+		{% if not form.password.errors %}
+		{{ form.password(class="form-control", required="") }}
+		{% else %}
+		{{ form.password(class="form-control is-invalid", required="") }}
+		{% for error in form.password.errors %}
+		<div class="invalid-feedback">{{ error }}</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+	<div class="mb-3 d-flex flex-column align-items-center justify-content-center">
+		{{ form.confirm.label(class="form-label align-self-start") }}
+		{% if not form.confirm.errors %}
+		{{ form.confirm(class="form-control", required="") }}
+		{% else %}
+		{{ form.confirm(class="form-control is-invalid", required="") }}
+		{% for error in form.confirm.errors %}
+		<div class="invalid-feedback">{{ error }}</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+	<div class="d-flex flex-column align-items-center justify-content-center">
+		{% if not form.form_errors %}
+		{{ form.submit(class="btn btn-primary align-self-stretch") }}
+		{% else %}
+		{{ form.submit(class="btn btn-primary align-self-stretch is-invalid") }}
+		{% for error in form.form_errors %}
+		<div class="invalid-feedback">{{ error }}</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+	<span>
+		Already registered?
+		<a href="{{ url_for('auth.login') }}" class="d-flex align-items-center">Login here</a>
+	</span>
+</form>
+
+{% endblock %}
+
+{% block footer %}{% endblock %}
