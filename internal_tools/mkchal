@@ -24,13 +24,16 @@ if __name__ == '__main__':
       files.add(os.path.join(download_dir, f))
 
   # create challenge directory
-  lines = [l.strip() for l in sys.stdin]
+  lines = '\n'.join([l.strip() for l in sys.stdin.readlines()]).strip().split('\n')
   chal_name = get_challenge_name(lines[0].strip().split())
+
+  lines = '\n'.join(lines[1:]).strip().split('\n')
+
   shutil.rmtree(chal_name, ignore_errors=True)
   os.mkdir(chal_name)
 
   with open('%s/README.md' % chal_name, 'w') as f:
-    f.write('\n'.join(lines[2:]).strip())
+    f.write('\n'.join(lines[1:]).strip() + '\n')
 
   for f in files:
     with tempfile.TemporaryDirectory() as tmp_path:
@@ -64,5 +67,10 @@ if __name__ == '__main__':
       os.system('mv `find "%s" -name "*" -depth 1` "%s"' % (final_path, chal_name))
       os.remove(f)
 
+  print('\n\n+++++++++++++++++++++++++++++++++++++++++++++++')
   print(chal_name)
   os.system('ls "%s"' % chal_name)
+  print('+++++++++++++++++++++++++++++++++++++++++++++++\n')
+  print('\n-----------------------------------------------')
+  os.system('cat "%s/README.md"' % chal_name)
+  print('-----------------------------------------------\n')

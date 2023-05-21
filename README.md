@@ -606,6 +606,11 @@
             <td><a href="https://ctftime.org/event/843/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/DeadSec">DeadSec</a></td>
+            <td><a href="ctfs/DeadSec/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1962/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/DeconstruCT.F">DeconstruCT.F</a></td>
             <td><a href="ctfs/DeconstruCT.F/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1453/tasks/" target="_blank">CTFtime</a></td>
