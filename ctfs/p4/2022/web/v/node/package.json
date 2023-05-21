@@ -1,0 +1,16 @@
+{
+  "name": "v",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Bonus",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.13.4",
+    "koa-body": "^6.0.1",
+    "koa-ejs": "^4.3.0",
+    "koa-logger": "^2.0.0",
+    "koa-router": "^12.0.0"
+  }
+}

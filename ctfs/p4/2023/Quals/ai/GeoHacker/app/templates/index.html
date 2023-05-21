@@ -1,0 +1,201 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>World Map Guess</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+  <style>
+      #map {
+        height: 75%;
+        min-height: 500px;
+        width: 100%;
+      }
+      #sendGuess, #clearGuesses {
+        display: block;
+        margin: 10px auto;
+        font-size: 18px;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+      }
+      #sendGuess:hover {
+        background-color: #45a049;
+      }
+    </style>
+
+  <script>
+    let map;
+    let markers = [];
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 0, lng: 0},
+        zoom: 2
+      });
+      var streetViewLayer = new google.maps.StreetViewCoverageLayer();
+      streetViewLayer.setMap(map);
+      map.addListener('click', (e) => {
+        if (markers.length < 5) {
+          const marker = new google.maps.Marker({position: e.latLng, map: map});
+          google.maps.event.addListener(marker, 'rightclick', function(event) {
+              let idx = markers.indexOf(marker);
+              markers.splice(idx, 1);
+
+              marker.setMap(null);
+          });
+          markers.push(marker);
+        }
+      });
+    }
+  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaBPmezGIjqE5g81AACh3P6hhpV4JE5V8&callback=initMap" async defer></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <div class="container mt-4">
+  <h2 class="mb-4">I have big brainz, give locations, I download street view, if I cant predict based on panorama image, you win!</h1>
+  <p>Select 5 locations with street view, no closer than 50km of each other. <b>Right-click</b> to remove single marker.</p>
+  <div id="map" style="height: 75vh;"></div>
+  <div id="sendGuessContainer" class="text-center mt-3">
+    <div id="buttons" class="d-flex">
+        <button id="sendGuess" class="btn btn-primary">Send Guess</button>
+        <button id="clearGuesses" class="btn btn-secondary ms-2">Clear Locations</button>
+    </div>
+    <div id="loading" style="display: none;">
+      <div class="spinner"></div>
+      AI is thinking...
+    </div>
+    <div id="pow" style="display: none;">
+      <div class="spinner"></div>
+      Proof of work is being calculated...
+    </div>
+  </div>
+</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="responseModal" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="responseModalLabel">Message</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="responseContent" style="word-wrap: break-word;"></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<style>
+  .spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+    margin: 0 auto; /* Center the spinner */
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+</style>
+
+
+     <script>
+      async function findProof(prefix, difficulty) {
+          let nonce = 0;
+          let proof;
+          let hash;
+          const prefixCondition = "0".repeat(difficulty);
+          const encoder = new TextEncoder();
+          const prefixData = encoder.encode(prefix);
+
+          while (true) {
+            nonce++;
+            proof = `${prefix}${nonce}`;
+            const nonceData = encoder.encode(nonce);
+            const data = new Uint8Array(prefixData.length + nonceData.length);
+
+            data.set(prefixData);
+            data.set(nonceData, prefixData.length);
+
+            const digestBuffer = await crypto.subtle.digest('SHA-256', data);
+            const digestArray = new Uint8Array(digestBuffer);
+            hash = Array.from(digestArray, b => b.toString(16).padStart(2, '0')).join('').slice(0, difficulty);
+
+            if (hash === prefixCondition) {
+              break;
+            }
+          }
+
+          return { "prefix": prefix, "nonce": nonce };
+        }
+
+
+
+    $('#clearGuesses').click(()=>{
+        for(var i=0; i < markers.length; i++){
+            markers[i].setMap(null);
+        }
+        markers = [];
+
+    });
+    $('#sendGuess').click(async () => {
+      const locations = markers.map(m => ({lat: m.getPosition().lat(), lng: m.getPosition().lng()}));
+      const res = await fetch('/get_prefix');
+      const data = await res.json();
+      const prefix = data.prefix;
+      const difficulty = data.difficulty;
+
+      $('#sendGuess').hide(); // Hide the button
+      $('#clearGuesses').hide(); // Show the button
+      $('#pow').show(); // Show the spinner
+
+      const d = await findProof(prefix, difficulty);
+
+      $('#pow').hide(); // Show the spinner
+      $('#loading').show(); // Show the spinner
+
+
+      $.ajax({
+        type: 'POST',
+        url: '/guess',
+        contentType: 'application/json',
+        data: JSON.stringify({"locations": locations, "prefix": d.prefix, "nonce": d.nonce}),
+        success: (data) => {
+          const jsonResponse = JSON.parse(data);
+          $('#responseContent').html(`${jsonResponse.flag}`);
+          $('#responseModal').modal('show');
+
+          $('#loading').hide(); // Hide the spinner
+          $('#sendGuess').show(); // Show the button
+          $('#clearGuesses').show(); // Show the button
+        },
+        error: (err) => {
+          const jsonResponse = JSON.parse(err.responseText);
+          const reason = jsonResponse.reason || 'No reason provided';
+          $('#responseContent').html(`${reason}`);
+          $('#responseModal').modal('show');
+
+          $('#loading').hide(); // Hide the spinner
+          $('#sendGuess').show(); // Show the button
+          $('#clearGuesses').show(); // Show the button
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

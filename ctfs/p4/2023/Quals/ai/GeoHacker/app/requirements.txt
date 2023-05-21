@@ -1,0 +1,11 @@
+numpy
+matplotlib
+Pillow
+haversine
+flask
+gunicorn
+scikit-image
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+--extra-index-url https://download.pytorch.org/whl/cpu
+torchvision

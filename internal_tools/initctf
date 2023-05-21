@@ -32,16 +32,16 @@ if __name__ == '__main__':
       ctf_name = ''.join(re.compile('ctf', re.IGNORECASE).sub('', link.text).strip().split())
       break
 
-  os.system('mkdir %s' % ctf_name)
-  os.chdir(ctf_name)
+  full_name = '%s/%d' % (ctf_name, datetime.date.today().year)
+  title = soup.find_all('title')[0].text.lower()
+  if 'teaser' in title or 'qualifier' in title or 'quals' in title:
+    full_name += '/Quals'
 
-  open('README.md', 'w').write('[CTFtime Page](https://ctftime.org/ctf/%s)' % ctf_id)
-
-  year = datetime.date.today().year
-  os.system('mkdir %d' % year)
-  os.chdir(str(year))
+  os.system('mkdir -p %s' % full_name)
   for category in ['crypto', 'web', 'pwn', 'rev']:
-    os.system('mkdir %s' % category)
-  open('README.md', 'w').write('[CTFtime Page](https://ctftime.org/event/%s)' % event_id)
+    os.system('mkdir %s/%s' % (full_name, category))
 
-  print(ctf_name)
+  open('%s/README.md' % ctf_name, 'w').write('[CTFtime Page](https://ctftime.org/ctf/%s)\n' % ctf_id)
+  open('%s/README.md' % full_name, 'w').write('[CTFtime Page](https://ctftime.org/event/%s)\n' % event_id)
+
+  print(full_name)

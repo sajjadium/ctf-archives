@@ -2292,8 +2292,12 @@
             <td><a href="https://ctftime.org/event/1025/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/p4ctf">p4ctf</a></td>
-            <td><a href="ctfs/p4ctf/2022">2022</a></td>
+            <td rowspan=2><a href="ctfs/p4">p4</a></td>
+            <td><a href="ctfs/p4/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1976/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/p4/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1793/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

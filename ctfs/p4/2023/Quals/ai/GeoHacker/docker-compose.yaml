@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+  geotask:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
