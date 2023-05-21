@@ -32,14 +32,16 @@ if __name__ == '__main__':
       ctf_name = re.compile('ctf', re.IGNORECASE).sub('', link.text).strip()
       break
 
-  os.chdir('ctfs')
   os.system('mkdir %s' % ctf_name)
   os.chdir(ctf_name)
 
   open('README.md', 'w').write('[CTFtime Page](https://ctftime.org/ctf/%s)' % ctf_id)
 
-  os.system('mkdir %s' % datetime.date.today().year)
-  os.chdir(str(datetime.date.today().year))
+  year = datetime.date.today().year
+  os.system('mkdir %d' % year)
+  os.chdir(str(year))
+  for category in ['crypto', 'web', 'pwn', 'rev']:
+    os.system('mkdir %s' % category)
   open('README.md', 'w').write('[CTFtime Page](https://ctftime.org/event/%s)' % event_id)
 
-  print('ctfs/%s' % ctf_name)
+  print(ctf_name)

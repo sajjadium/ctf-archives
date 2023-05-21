@@ -1,0 +1,11 @@
+[package]
+name = "memory_safe_ecdsa"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ecdsa = { version = "=0.16", features = ["arithmetic", "hazmat"] }
+hex = { version = "=0.4.3" }
+p224 = { version = "=0.13", features = ["ecdsa"] }
+rdrand = { version = "=0.8.0" }
+sha256 = { version = "=1.1.2" }
