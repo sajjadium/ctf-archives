@@ -1,0 +1,50 @@
+---
+version: "2.2"
+
+services:
+
+  frontend:
+    build: frontend/
+    restart: always
+    ports:
+      - "8000:8000"
+    cpus: 0.4
+    mem_limit: 640m
+    environment:
+      - NEXT_PUBLIC_BACKEND=${BACKEND}
+
+  backend:
+    build: backend/
+    restart: always
+    ports:
+      - "3000:3000"
+    cpus: 0.4
+    mem_limit: 640m
+    environment:
+      - MYSQL_HOST=twatch_db
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - FRONTEND=${FRONTEND}
+      - SECRET_KEY=${SECRET_KEY}
+      - BOT_USER=${BOT_USER}
+      - BOT_PASSWORD=${BOT_PASSWORD}
+      - FRONTEND_BOT=${FRONTEND_BOT}
+      - NODE_ENV=production
+      - VIDEO_PATH=/app/videos
+
+  twatch_db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    expose:
+      - 3306
+    cpus: 0.6
+    mem_limit: 2048m
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - "./twatch_db/:/docker-entrypoint-initdb.d/"

@@ -1,0 +1,179 @@
+.logout-button:hover {
+    cursor: pointer;
+}
+
+.card {
+    background: #FFFFFF;
+    border-radius: 10px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 10px 3px #EAEAEA;
+}
+
+
+/* Upload */
+.upload{
+    display: inline-block;
+    margin: auto;
+    width: 500px;
+    height: 200px;
+    border: 4px dashed #000;
+}
+
+/* Button */
+.button.button-danger,
+button.button-danger,
+input[type="submit"].button-danger,
+input[type="reset"].button-danger,
+input[type="button"].button-danger {
+    color: #FFF;
+    background-color: #FF0101;
+    border-color: #FF0101;
+}
+.button.button-danger:hover,
+button.button-danger:hover,
+input[type="submit"].button-danger:hover,
+input[type="reset"].button-danger:hover,
+input[type="button"].button-danger:hover,
+.button.button-danger:focus,
+button.button-danger:focus,
+input[type="submit"].button-danger:focus,
+input[type="reset"].button-danger:focus,
+input[type="button"].button-danger:focus {
+    color: #FFF;
+    background-color: #FF5050;
+    border-color: #FF5050;
+}
+
+/* Margins */
+.mr-10 {
+    margin-right: 10px;
+}
+.mr-20 {
+    margin-right: 20px;
+}
+.mr-60 {
+    margin-right: 60px;
+}
+
+.ml-20 {
+    margin-left: 20px;
+}
+.ml-60 {
+    margin-left: 60px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+.mt-80 {
+    margin-top: 80px;
+}
+.mt-100 {
+    margin-top: 100px;
+}
+.mt-200 {
+    margin-top: 200px;
+}
+.mt-300 {
+    margin-top: 300px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+.mb-30 {
+    margin-bottom: 30px;
+}
+.mb-40 {
+    margin-bottom: 40px;
+}
+.mb-100 {
+    margin-bottom: 100px;
+}
+.mb-200 {
+    margin-bottom: 200px;
+}
+
+/* Padding */
+.p-50 {
+    padding: 50px;
+}
+
+/* https://codepen.io/alvarotrigo/pen/BaVBpYj */
+.alert {
+    position: relative;
+    top: 10;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin: 10px;
+    line-height: 1.8;
+    border-radius: 5px;
+    cursor: hand;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: 400;
+}
+  
+.alertCheckbox {
+    display: none !important;
+}
+  
+:checked + .alert {
+    display: none;
+}
+  
+.alertText {
+    display: table;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 16px;
+}
+  
+.alertClose {
+    float: right;
+    padding-top: 5px;
+    font-size: 10px;
+}
+  
+.clear {
+    clear: both;
+}
+  
+.info {
+    background-color: #EEE;
+    border: 1px solid #DDD;
+    color: #999;
+}
+  
+.success {
+    background-color: #EFE;
+    border: 1px solid #DED;
+    color: #9A9;
+}
+  
+.notice {
+    background-color: #EFF;
+    border: 1px solid #DEE;
+    color: #9AA;
+}
+  
+.warning {
+    background-color: #FDF7DF;
+    border: 1px solid #FEEC6F;
+    color: #C9971C;
+}
+
+.error {
+    background-color: #FEE;
+    border: 1px solid #EDD;
+    color: #A66;
+}
+
+.success {
+    background-color: #9FB;
+    border: 1px solid #EDD;
+    color: #050;
+}

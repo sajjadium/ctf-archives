@@ -1,0 +1,53 @@
+{% extends 'components/base.html' %}
+
+{% block container %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/contact-bg.jpg') }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Register</h1>
+                    <span class="subheading">Create an account and write posts.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% include 'components/flash.html' %}
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p>You need a <strong>private referral code</strong> if you want to register an account.</p>
+                <div class="my-5">
+
+                    <form id="contactForm" method="POST" action="{{ url_for('bp_routes.register') }}">
+                        {{ form.csrf_token }}
+                        <div class="form-floating">
+                            {{ form.username(class_="form-control") }}
+                            <label for="username">Username</label>
+                        </div>
+                        <div class="form-floating">
+                            {{ form.password(class_="form-control") }}
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="form-floating">
+                            {{ form.confirm_password(class_="form-control") }}
+                            <label for="confirm_password">Confirm password</label>
+                        </div>
+                        <div class="form-floating">
+                            {{ form.referral_code(class_="form-control") }}
+                            <label for="referral_code">Referral code</label>
+                        </div>
+                        <br>
+                        {{ form.submit(class_="btn btn-success text-uppercase") }}
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

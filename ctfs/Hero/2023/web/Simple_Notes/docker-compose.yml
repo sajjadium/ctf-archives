@@ -1,0 +1,8 @@
+---
+version: "3.3"
+
+services:
+  bot:
+    build: ./web/
+    ports:
+      - "443:5000"
