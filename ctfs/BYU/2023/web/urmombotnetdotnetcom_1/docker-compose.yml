@@ -1,0 +1,24 @@
+version: "1"
+services:
+  app:
+    container_name: urmombotnetdotnet.com-app
+    build: .
+    ports:
+      - "40000:8000"
+    depends_on:
+      - mysql
+    environment:
+      PYTHONDONTWRITEBYTECODE: 1
+      MYSQL_USER: ctf
+      MYSQL_PASSWORD: password
+      MYSQL_DB: ctf
+  mysql:
+    container_name: urmombotnetdotnet.com-mysql
+    image: "mysql"
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: also_password
+      MYSQL_DATABASE: ctf
+      MYSQL_USER: ctf
+      MYSQL_PASSWORD: password

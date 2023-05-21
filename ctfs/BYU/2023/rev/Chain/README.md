@@ -1,0 +1,3 @@
+Easy/Medium
+
+You know sometimes you just run out of ideas for challenge descriptions...

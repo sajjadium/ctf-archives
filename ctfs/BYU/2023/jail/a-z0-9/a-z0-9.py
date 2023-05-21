@@ -1,0 +1,1 @@
+eval((__import__("re").sub(r'[a-z0-9]','',input("code > ").lower()))[:130])

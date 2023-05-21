@@ -1,0 +1,3 @@
+Easy
+
+Obfuscated JavaScript?? Really??
