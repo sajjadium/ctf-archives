@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>100 Questions</title>
+    </head>
+
+    <body>
+        <h1>100 Questions</h1>
+        <p><b>Q{{qn_id}}: {{qn}}?</b></p>
+        <form action="/" method="GET">
+            <p hidden>Id: <input name="qn_id" value="{{qn_id}}"></p>
+            <p>Answer: <input name="ans"></p>
+            <p><input type="submit" value="Check Answer"></p>
+        </form>
+
+        {% if correct %}
+        <p style="color:green">Correct!</p>
+        {% else %}
+        <p style="color:red">No input / wrong!!!! Try harder</p>
+        {% endif %}
+    </body>
+</html>

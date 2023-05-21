@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  sortitout:
+    image: sortitout
+    ports:
+      - "9001:8080"
+    build:
+      context: .
+      dockerfile: ./Dockerfile

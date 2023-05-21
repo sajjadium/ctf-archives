@@ -1,0 +1,1 @@
+In the sacred realm of GreyCat, amidst the swirling mists of arcane power, a momentous trial unfolds, seeking the one destined to bear the mantle of the next mighty GreyCat wizard.

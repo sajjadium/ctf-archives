@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <h1>Login to Reverse Blog</h1>
+  <p>For my eyes only</p>
+  <!-- bot_login -->
+  <form method="post">
+    <label for="username" class="form-label">Username</label>
+    <input
+      name="username"
+      class="form-control form-control-lg"
+      id="username"
+      type="text"
+      placeholder="Username"
+    />
+    <label for="inputPassword5" class="form-label">Password</label>
+    <input
+      name="password"
+      type="password"
+      id="inputPassword5"
+      class="form-control"
+      aria-labelledby="passwordHelpBlock"
+    />
+    <br />
+    <button class="btn btn-primary" type="submit">Login</button>
+  </form>
+</div>
+{% endblock %}

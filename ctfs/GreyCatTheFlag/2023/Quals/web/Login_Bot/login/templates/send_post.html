@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <form method="post">
+    <div class="mb-3">
+      <label id='title' class="form-label">Title</label>
+      <input
+        name="title"
+        class="form-control form-control-lg"
+        id="title"
+        type="text"
+        placeholder=""
+      />
+      <label for="exampleFormControlTextarea1" class="form-label">
+        Message
+      </label>
+      <textarea
+        name="content"
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+      ></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}

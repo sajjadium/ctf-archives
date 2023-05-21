@@ -1,0 +1,37 @@
+version: '3.7'
+
+x-common-variables: &common-variables
+   FLAG: grey{fake_flag}
+
+
+services:
+  admin:
+    build: ./admin_page
+    container_name: radminpage
+    networks:
+      - backend
+
+  homepage:
+    build: ./homepage
+    container_name: rhomepage
+    networks:
+      - backend
+
+  gateway:
+    build: ./gateway
+    container_name: rgateway
+    ports:
+      - 5005:80
+    networks:
+      - backend
+
+  flag:
+    build: ./flag_page
+    container_name: rflagpage
+    environment:
+       <<: *common-variables
+    networks:
+      - backend
+
+networks:
+  backend: {}

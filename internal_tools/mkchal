@@ -24,13 +24,13 @@ if __name__ == '__main__':
       files.add(os.path.join(download_dir, f))
 
   # create challenge directory
-  chal_name = get_challenge_name(sys.argv[1:])
+  lines = [l.strip() for l in sys.stdin]
+  chal_name = get_challenge_name(lines[0].strip().split())
   shutil.rmtree(chal_name, ignore_errors=True)
   os.mkdir(chal_name)
 
   with open('%s/README.md' % chal_name, 'w') as f:
-    for line in sys.stdin:
-      f.write(line)
+    f.write('\n'.join(lines[2:]).strip())
 
   for f in files:
     with tempfile.TemporaryDirectory() as tmp_path:

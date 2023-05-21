@@ -1,0 +1,1 @@
+Well, it's just a small binary. Can you pwn it without running the executable?

@@ -1,0 +1,1 @@
+My RateYourMusic competitor will take off any day now. I just need to add rating... and CSS... and images... and a bunch of other things

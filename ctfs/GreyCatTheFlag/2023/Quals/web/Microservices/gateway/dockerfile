@@ -1,0 +1,9 @@
+FROM python:3.12.0a5-bullseye
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip3 install -r ./requirements.txt
+
+COPY . .
+
+ENTRYPOINT ["gunicorn", "app:app", "-w", "2", "--threads", "2", "-b", "0.0.0.0:80"]

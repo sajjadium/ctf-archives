@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  web:
+    container_name: web
+    image: ifpb/php:7.3-apache-pdo
+    build: .
+    networks:
+      - app-tier
+    ports:
+      - 8080:80
+    volumes:
+      - ./src/:/var/www/html/
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql
+    image: mysql:8.0
+    command:
+      - --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - app-tier
+    ports:
+      - 3306:3306
+    volumes:
+      - ./albums.sql:/docker-entrypoint-initdb.d/albums.sql
+
+networks:
+  app-tier:
+    driver: bridge

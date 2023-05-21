@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  web:
+    build: ./login
+    container_name: login_bot
+    networks:
+      - default
+
+  nginx:
+    build: ./nginx
+    ports:
+      - 5002:80
+    depends_on:
+      - web
+    networks:
+      - default
+    
+networks:
+  login_bot:
+    driver: bridge

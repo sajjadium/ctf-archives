@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+<!---->
+{% block content %}
+<h1>Report an issue</h1>
+<p>
+  Please report any issues that you have with this platform. Our admins will
+  take a look at each and every ticket.
+</p>
+<p>Only admins with a special cookie can see the tickets.</p>
+<br />
+<form action="/" method="post" target="_blank">
+  <textarea
+    class="form-control form-control-lg"
+    type="text"
+    name="message"
+    placeholder="Type your message here"
+    aria-label=".form-control-lg example"
+    rows="10"
+  ></textarea>
+  <br />
+  <button type="submit" class="btn-primary btn">Submit Ticket</button>
+</form>
+<hr />
+{% endblock %}

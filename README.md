@@ -780,7 +780,11 @@
             <td><a href="https://ctftime.org/event/1958/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/GreyCatTheFlag">GreyCatTheFlag</a></td>
+            <td rowspan=2><a href="ctfs/GreyCatTheFlag">GreyCatTheFlag</a></td>
+            <td><a href="ctfs/GreyCatTheFlag/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1938/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/GreyCatTheFlag/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1643/tasks/" target="_blank">CTFtime</a></td>
         </tr>

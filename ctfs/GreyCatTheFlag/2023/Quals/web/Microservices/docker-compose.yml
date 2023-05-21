@@ -1,0 +1,35 @@
+version: '3.7'
+
+x-common-variables: &common-variables
+   ADMIN_COOKIE: fake_cookie
+   FLAG: grey{fake_flag}
+
+
+services:
+  admin:
+    build: ./admin_page
+    container_name: admin_page
+    environment:
+       <<: *common-variables
+    networks:
+      - backend
+
+  homepage:
+    build: ./homepage
+    container_name: home_page
+    environment:
+       <<: *common-variables
+    networks:
+      - backend
+      
+
+  gateway:
+    build: ./gateway
+    container_name: gateway
+    ports:
+      - 5004:80
+    networks:
+      - backend
+
+networks:
+  backend: {}

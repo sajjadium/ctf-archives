@@ -1,0 +1,1 @@
+I enrolled in a data structures class in order to buff up my programming skills to complete my Indie Anime Stealth Action Video Game. I'm learning about sorting algorithms and their various time complexities now. Cool stuff!
