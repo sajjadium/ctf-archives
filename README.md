@@ -240,12 +240,12 @@
             <td><a href="https://ctftime.org/event/1078/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/BYU">BYU</a></td>
-            <td><a href="ctfs/BYU/2023">2023</a></td>
+            <td rowspan=2><a href="ctfs/BYUCTF">BYUCTF</a></td>
+            <td><a href="ctfs/BYUCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1935/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/BYU/2022">2022</a></td>
+            <td><a href="ctfs/BYUCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1660/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
@@ -2292,12 +2292,12 @@
             <td><a href="https://ctftime.org/event/1025/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/p4">p4</a></td>
-            <td><a href="ctfs/p4/2023/Quals">2023 Quals</a></td>
+            <td rowspan=2><a href="ctfs/p4ctf">p4ctf</a></td>
+            <td><a href="ctfs/p4ctf/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/1976/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/p4/2022">2022</a></td>
+            <td><a href="ctfs/p4ctf/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1793/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
