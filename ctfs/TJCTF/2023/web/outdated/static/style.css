@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+body {
+  font-family: 'Source Sans Pro';
+  margin: 0;
+  padding: 0;
+}
+details {
+  padding: 10px;
+}
+summary {
+  font-size: 20px;
+  color: #3278fa;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+nav ul {
+  list-style-type: none;
+  overflow: hidden;
+  display: inline-block;
+}
+nav ul li {
+  display: inline-block;
+  padding-right: 10px;
+}
+.upload-box {
+  margin: auto;
+  width: 50%;
+  font-size: 13pt;
+}
+
+.navbar {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: .5rem 0.1rem;
+  background: whitesmoke;
+}
+.jumbotron {
+  padding: 2rem 1rem;
+  margin-bottom: 2rem;
+  background-color: #e9ecef;
+  border-radius: .3rem;
+  margin: auto;
+  width: 50%;
+}
+.display-4 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+  text-align: center;
+  justify-content: center;
+}
+.centered {
+  text-align: center;
+  margin: auto;
+}
+.btn {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+.btn-success {
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745
+}

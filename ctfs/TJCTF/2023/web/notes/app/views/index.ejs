@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>notes</title>
+</head>
+
+<body>
+    <h1>
+        <%= user.username %>'s notes
+    </h1>
+    <form method="POST" action="/note/create">
+        <textarea name="note" id="note" cols="30" rows="10"></textarea>
+        <br>
+        <input type="submit" value="make note">
+    </form>
+
+    <br>
+    <hr>
+    <br>
+    <% for (let note of notes) { %>
+        <div>
+            <%= note.note %>
+        </div>
+    <% } %>
+    <br>
+    <hr>
+    <br>
+    <form method="POST" action="/user/delete">
+        <input type="password" name="password" placeholder="password to confirm deletion">
+        <input type="submit" value="delete account">
+    </form>
+    <br>
+    <div id="err"></div>
+    <br>
+    <script>
+        document.getElementById("err").innerHTML = new URLSearchParams(window.location.search).get("e");
+    </script>
+</body>
+
+</html>

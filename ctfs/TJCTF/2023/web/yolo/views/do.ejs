@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i will do...</title>
+
+    <style nonce="<%- nonce %>">
+        #main {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body {
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        h2 {
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        button {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main">
+        <div>
+            <h1><% if (isSelf) { %>you<% } else { %><%- name %><% } %>  will <%- toDo %>...</h1>
+            <% if (isSelf) { %>
+                <h2>achieve it.</h2>
+
+                <button id="copy">copy link to share with your friends!</button>
+            <% } else { %>
+                <h2>what will <a href="/">you</a> do?</h2>
+            <% } %>
+        </div>
+    </div>
+
+    <script nonce="<%- nonce %>">
+        <% if (isSelf) { %>
+            document.getElementById("copy").addEventListener("click", () => {
+                navigator.clipboard.writeText(window.location.href);
+            });
+        <% } %>
+
+        setTimeout(function () {
+            document.querySelector('h1').style.opacity = 1;
+
+            setTimeout(function () {
+                document.querySelector('h2').style.opacity = 1;
+            }, 2000);
+        }, 1000);
+    </script>
+</body>
+
+</html>

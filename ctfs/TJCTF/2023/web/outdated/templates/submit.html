@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Results</title>
+  <link rel="stylesheet" href="static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar">
+    <ul>
+      <li>Python code runner</li>
+      <li><a href="/upload">Upload</a></li>
+    </ul>
+  </nav>
+  <div style="padding: 10px;">
+    <p>Your code:</p>
+    <pre>
+      <code>
+        {% for line in code %}{{ line }}
+        {% endfor %}
+      </code>
+    </pre>
+    <p>Results of code:</p>
+    <pre>
+      <code>
+        {% for line in text %}{{ line }}
+        {% endfor %}
+      </code>
+    </pre>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "kpdfgo",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cookie": "^7.4.0",
+    "@fastify/formbody": "^7.0.1",
+    "@fastify/view": "^7.1.0",
+    "ejs": "^3.1.8",
+    "fastify": "^4.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "uuid": "^8.3.2"
+  }
+}

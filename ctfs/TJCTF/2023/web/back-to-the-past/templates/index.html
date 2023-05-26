@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>So Retro</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+  <h1>Now I'll judge your age:</h1>
+
+  <p>You are
+    <em class="judge">
+      {% if year > 2020 %}
+      extremely young
+      {% elif year > 2010 %}
+      pretty young
+      {% elif year > 2000 %}
+      maybe a tiny bit young
+      {% elif year > 1990 %}
+      kinda old
+      {% elif year > 1980 %}
+      very old
+      {% elif year > 1970 %}
+      extremely old
+      {% else %}
+      sooooooo old
+      {% endif %}
+    </em>
+  <p>
+</body>
+
+</html>

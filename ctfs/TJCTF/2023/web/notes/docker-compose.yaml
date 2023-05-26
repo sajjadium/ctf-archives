@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  mysql:
+    build: ./db
+    environment:
+      MYSQL_ROOT_PASSWORD: lmao
+      MYSQL_DATABASE: db
+  app:
+    build: ./app
+    depends_on:
+      - mysql
+    restart: on-failure
+    environment:
+      MYSQL_HOST: mysql
+    ports:
+      - 3000:3000

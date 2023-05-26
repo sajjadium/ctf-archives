@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+}
+
+nav {
+    background-color: #333;
+    overflow: hidden;
+    height: 60px;
+}
+
+nav a {
+    text-align: center;
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+nav a:hover {
+    background-color: #111;
+}
+
+.main {
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.complaint {
+    display: inline-block;
+    padding: 20px;
+}
+
+.complaint a {
+    text-decoration: none;
+    color: #333;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+}
+
+button[type="submit"] {
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+    background-color: #333;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #111;
+}
+
+textarea {
+    padding: 10px;
+    width: calc(100% - 40px);
+    outline: none !important;
+}

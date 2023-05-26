@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&family=Roboto&display=swap');
+.grid-container {
+  display: grid;
+  grid-template-areas:
+  'title title title title title title'
+  'limg limg content rimg rimg rimg'
+  'limg limg content rimg rimg rimg'
+  'limg limg bimg rimg rimg rimg';
+  gap: 10px;
+  padding: 10px;
+}
+.limg {
+  grid-area: limg;
+}
+.title {
+  grid-area: title;
+  height: 75px;
+  font-size: 30pt;
+  font-family: 'Comfortaa';
+}
+.rimg {
+  grid-area: rimg;
+  place-self: left;
+}
+.bimg {
+  grid-area: bimg;
+  place-self: center;
+}
+.content {
+  height: 50px;
+  width: 200px;
+  grid-area: content;
+  padding: 30px;
+  place-self: center;
+}
+.side_img {
+  height: auto;
+  width: px;
+}
+body {
+  font-family: 'Roboto';
+  background-color: #444444;
+  color: #dddddd;
+  text-align: center
+}

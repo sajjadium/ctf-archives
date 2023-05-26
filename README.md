@@ -1817,7 +1817,11 @@
             <td><a href="https://ctftime.org/event/1381/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/TJCTF">TJCTF</a></td>
+            <td rowspan=3><a href="ctfs/TJCTF">TJCTF</a></td>
+            <td><a href="ctfs/TJCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1865/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/TJCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1599/tasks/" target="_blank">CTFtime</a></td>
         </tr>

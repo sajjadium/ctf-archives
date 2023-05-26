@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <style>
+        body {
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            display: grid;
+            justify-items: center;
+            align-items: center;
+            text-align: left;
+        }
+
+        #options {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        #canvas {
+            border: 1px solid black;
+            height: 75vh;
+            max-height: 1000px;
+            image-rendering: pixelated;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <h1 id="name-h1"></h1>
+        <canvas id="canvas" tabindex="-1"></canvas>
+        <div>
+            <input type="color" id="color-picker">
+            <select id="layers">
+                <option value="0">Top Layer</option>
+                <option value="1">Middle Layer</option>
+                <option value="2">Bottom Layer</option>
+            </select>
+            <input type="text" id="name" placeholder="Name">
+            <button id="save">Save</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const canvas = document.getElementById('canvas');
+        Module = {
+            canvas: canvas
+        };
+
+        window.addEventListener('keydown', (e) => {
+            e.stopImmediatePropagation();
+        }, true);
+
+        window.addEventListener('keyup', (e) => {
+            e.stopImmediatePropagation();
+        }, true);
+
+        const strToCharArr = (str) => {
+            const ptr = _malloc(str.length + 1);
+            Module.stringToUTF8(str, ptr, str.length + 1);
+            return ptr;
+        };
+
+        const base64ToArr = (enc) => {
+            const binary = atob(enc);
+            const bytes = new Uint8Array(binary.length);
+            for (let i = 0; i < bytes.length; i++) {
+                bytes[i] = binary.charCodeAt(i);
+            }
+
+            return bytes;
+        }
+
+        const arrToCharArr = (arr) => {
+            const ptr = _malloc(arr.length);
+            Module.writeArrayToMemory(arr, ptr);
+            return ptr;
+        }
+
+        const setName = () => {
+            const name = UTF8ToString(_getName());
+            document.getElementById('name-h1').innerHTML = name;
+        }
+
+        Module.onRuntimeInitialized = () => {
+            _clearCanvas();
+
+            {% if saved %}
+
+            const px = '{{ px }}';
+            const name = '{{ name }}';
+
+            _clearCanvas();
+            const bin = base64ToArr(px);
+            const arr = arrToCharArr(bin);
+            _copyCanvas(arr, bin.length);
+            _setName(strToCharArr(name), name.length);
+
+            {% endif %}
+
+            document.addEventListener('mousemove', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const scale = canvas.width / rect.width;
+                _draw((e.clientX - rect.left) * scale, (e.clientY - rect.top) * scale);
+            });
+
+            document.addEventListener('mousedown', (e) => {
+                _toggleLeftMouseButton(1);
+            });
+
+            document.addEventListener('mouseup', (e) => {
+                _toggleLeftMouseButton(0);
+            });
+
+            document.getElementById('color-picker').addEventListener('input', (e) => {
+                const c = e.target.value.match(/[0-9a-fA-F]{2}/g).map(v => parseInt(v, 16));
+                _setColor(...c);
+            });
+
+            document.getElementById('layers').addEventListener('change', (e) => {
+                _setLayer(parseInt(e.target.value));
+            });
+
+            document.getElementById('name').addEventListener('input', (e) => {
+                const name = e.target.value;
+                _setName(strToCharArr(name), name.length);
+            });
+
+            document.getElementById('save').addEventListener('click', (e) => {
+                const out = new Uint8Array(4 * canvas.width * canvas.height * 3);
+
+                for (let i = 0; i < 3; i++) {
+                    const layerPtr = _getLayer(i);
+                    const layer = new Uint8Array(Module.HEAPU8.buffer, layerPtr, 4 * canvas.width * canvas.height);
+                    out.set(layer, 4 * canvas.width * canvas.height * i);
+                }
+
+                const binary = btoa(String.fromCharCode(...out));
+                const name = document.getElementById('name').value;
+
+                fetch('/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        img: binary
+                    })
+                }).then((res) => {
+                    if (res.status === 200) {
+                        navigator.clipboard.writeText(res.url);
+                        alert('Save URL copied to clipboard!');
+                    } else {
+                        alert('Failed to save!');
+                    }
+                });
+            })
+        };
+    </script>
+
+    <script src="/static/index.js"></script>
+</body>
+
+</html>

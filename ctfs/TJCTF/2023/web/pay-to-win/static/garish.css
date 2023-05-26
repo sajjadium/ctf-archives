@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+body {
+  font-family: "Fredoka One";
+  background-color: red;
+  color: limegreen;
+  text-align: center;
+}
+.title {
+  font-size: 40pt;
+  padding-top: 20px;
+  border-style: dashed;
+  color: transparent;
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+  -webkit-background-clip: text;
+  border-width: 5px; 
+  border-color: purple;
+}
+a {
+  visibility: visible;
+  color: #e6de4d;
+}

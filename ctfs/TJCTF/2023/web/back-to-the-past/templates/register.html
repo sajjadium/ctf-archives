@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+  <h1>Register</h1>
+  <form action="/register" method="POST">
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username">
+
+    <br>
+
+    <label for="year">Choose your birth date:</label>
+    <select name="year" for="year">
+      {% for i in range(1971, 2024)%}
+      <option value="{{ i }}">{{ i }}</option>
+      {% endfor %}
+    </select>
+
+    <br>
+
+    <button type="submit">Register</button>
+
+    <br>
+
+    <a href="/login">or login</a>
+
+    <br>
+    
+    <span style="color:#ff7c7c;">{{ request.args.get('msg', '') }}</span>
+  </form>
+</body>
+
+</html>

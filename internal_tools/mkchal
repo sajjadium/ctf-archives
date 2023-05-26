@@ -8,6 +8,15 @@ import time
 import tempfile
 import shutil
 
+def is_points_or_solves(line):
+  if line.lower().startswith('points:') or line.lower().startswith('solves:'):
+    return True
+
+  if 'points' in line.lower() and 'solves' in line.lower():
+    return True
+
+  return False
+
 def get_challenge_name(args):
   tokens = []
   for a in args:
@@ -25,14 +34,10 @@ if __name__ == '__main__':
 
   # create challenge directory
   lines = '\n'.join([l.strip() for l in sys.stdin.readlines()]).strip().split('\n')
-  chal_name = get_challenge_name(lines[0].strip().split())
+  chal_name = get_challenge_name(lines[0].strip().split('/')[-1].strip().split())
 
   lines = '\n'.join(lines[1:]).strip().split('\n')
-  while lines:
-    if lines[0].lower().startswith('points:') or lines[0].lower().startswith('solves:'):
-      lines.pop(0)
-    else:
-      break
+  lines = [l for l in lines if not is_points_or_solves(l)]
 
   shutil.rmtree(chal_name, ignore_errors=True)
   os.mkdir(chal_name)

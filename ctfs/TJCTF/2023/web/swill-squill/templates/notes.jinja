@@ -1,0 +1,17 @@
+{% extends "base.jinja" %}
+{% block title %}Notes{% endblock %}
+{% block content %}
+    {% for note in notes %}
+      <p>{{ note }}</p>
+    {% endfor %}
+  
+    <form action="/api" method="POST">
+        <label for="note">Note</label>
+        <input type="text" name="note" id="note">        
+
+        <br>
+
+        <button type="submit">Save Note</button>
+
+    </form>
+{% endblock %}

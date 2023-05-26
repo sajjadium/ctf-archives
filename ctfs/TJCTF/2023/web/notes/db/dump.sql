@@ -1,0 +1,4 @@
+CREATE TABLE users (id VARCHAR(36) PRIMARY KEY, username VARCHAR(255) UNIQUE, password VARCHAR(255));
+CREATE TABLE notes (id INT AUTO_INCREMENT PRIMARY KEY, note VARCHAR(255), user_id VARCHAR(36));
+
+flush privileges;
