@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %} Awesome {% endblock %}</title>
+    {% block head %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    {% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<a class="navbar-brand" href="#">My Site</a>
+{% block nav %}
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+
+          <li class="nav-item">
+                <a class="nav-link" href="{{url_for('secret')}}">Secret</a>
+          </li>
+
+          <li class="nav-item">
+                <a class="nav-link" href="{{url_for('complexview')}}">Validated</a>
+          </li>
+
+          <li class="nav-item">
+            {% if is_logged_in() %}
+                <span class="nav-link">{{ get_username() }}
+                <a  href="{{url_for('simplelogin.logout')}}"> Logout</a></span>
+            {% else %}
+                <a class="nav-link" href="{{url_for('simplelogin.login')}}">Login</a>
+            {% endif %}
+          </li>
+
+        </ul>
+      </div>
+{% endblock %}
+</nav>
+
+<div class="jumbotron">
+    <div class="container">
+    {% block messages %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <ul class="flashes alert">
+          {% for category, message in messages %}
+            <li class="flashes alert alert-{{category}}">{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% else %}
+          {% if request.path == url_for('simplelogin.login') %}
+          <ul class="flashes alert alert-primary">
+            <li>Please provide username and password to login</li>
+          </ul>
+          {% endif %}
+        {% endif %}
+        {% endwith %}
+    {% endblock %}
+    </div>
+</div>
+
+<div class="container">
+{% block page_body %}
+<div class="row">
+<p>
+    Content comes here!
+</p>
+</div>
+{% endblock %}
+</div>
+
+<div class="container">
+<footer>
+{% block footer %}
+    <address>
+    Written by <a href="mailto:webmaster@example.com">Jon Doe</a>.<br>
+    Visit us at: Example.com Box 564, Disneyland USA<br>
+    Copyright 1996
+    </address>
+{% endblock %}
+</footer>
+</div>
+
+{% block tail%}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+{% endblock %}
+
+</body>
+</html>

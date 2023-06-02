@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block messages %}
+   {{super()}}
+   {%if form.errors %}
+     <ul class="alert alert-danger">
+       {% for field, errors in form.errors.items() %}
+         <li>{{field}} {% for error in errors %}{{ error }}{% endfor %}</li>
+       {% endfor %}
+     </ul>
+   {% endif %}
+{% endblock %}
+
+{% block page_body %}
+       <form action="{{ url_for('simplelogin.login') }}" method="post">
+            <div class="form-group">
+            {{ form.csrf_token }}
+            {{form.username.label}}<div class="form-control">{{ form.username }}</div><br>
+            {{form.password.label}}<div class="form-control"> {{ form.password }}</div><br>
+            {% if next %}<input type="hidden" name="next" value="{{next}}">{% endif %}
+            </form>
+           <input type="submit" value="Send">
+       </form>
+{% endblock %}

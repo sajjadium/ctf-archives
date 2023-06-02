@@ -43,7 +43,7 @@ if __name__ == '__main__':
   os.mkdir(chal_name)
 
   with open('%s/README.md' % chal_name, 'w') as f:
-    f.write('\n'.join(lines[1:]).strip() + '\n')
+    f.write('\n'.join(lines[0:]).strip() + '\n')
 
   for f in files:
     with tempfile.TemporaryDirectory() as tmp_path:

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Flask Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class="flashes alert">
+      {% for category, message in messages %}
+        <li class="flashes alert alert-{{category}}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% else %}
+      <ul class="flashes alert alert-primary">
+        <li>Please provide username and password to login</li>
+      </ul>
+    {% endif %}
+    {% endwith %}
+
+    {%if form.errors %}
+    <ul class="alert alert-danger">
+      {% for field, errors in form.errors.items() %}
+        <li>{{field}} {% for error in errors %}{{ error }}{% endfor %}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    
+    <div class="d-flex h-100">
+        <div class="m-auto">
+            <form action="{{ url_for('simplelogin.login') }}" method="post">
+            {{ form.csrf_token }}
+                <div class="form-group row">
+                    <label for="username" class="col-sm-3 col-form-label">{{form.username.label}}</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="username" name="username">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="password" class="col-sm-3 col-form-label">{{form.password.label}}</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                </div>
+                
+                {% if next %}<input type="hidden" name="next" value="{{next}}">{% endif %}
+            
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+    
+            </form>
+        </div>
+     </div>
+
+</body>
+</html>
