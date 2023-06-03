@@ -8,14 +8,17 @@ import time
 import tempfile
 import shutil
 
-def is_points_or_solves(line):
+def is_valid(line):
   if line.lower().startswith('points:') or line.lower().startswith('solves:'):
-    return True
+    return False
 
   if 'points' in line.lower() and 'solves' in line.lower():
-    return True
+    return False
 
-  return False
+  if line.strip().isnumeric():
+    return False
+
+  return True
 
 def get_challenge_name(args):
   tokens = []
@@ -37,7 +40,7 @@ if __name__ == '__main__':
   chal_name = get_challenge_name(lines[0].strip().split('/')[-1].strip().split())
 
   lines = '\n'.join(lines[1:]).strip().split('\n')
-  lines = [l for l in lines if not is_points_or_solves(l)]
+  lines = [l for l in lines if is_valid(l)]
 
   shutil.rmtree(chal_name, ignore_errors=True)
   os.mkdir(chal_name)

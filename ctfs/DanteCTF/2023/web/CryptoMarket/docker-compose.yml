@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - 56565:1999
+    environment:
+      MYSQL_DATABASE_USER: agent
+      MYSQL_DATABASE_PASSWORD: SUPERSECUREUNCRACKABLEPASSWORD
+      MYSQL_DATABASE_DB: cryptomarket
+      MYSQL_DATABASE_HOST: database
+    entrypoint: ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    build:
+      context: .
+      dockerfile: database.Dockerfile
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-uagent", "-pSUPERSECUREUNCRACKABLEPASSWORD"]
+      timeout: 20s
+      retries: 10

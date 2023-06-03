@@ -1,0 +1,1641 @@
+:root {
+    --glitched-duration: 0.9s;
+    --glitched-long-duration: 3s;
+    --yellow-color: #f9f002;
+    --yellow-color-opacity: #f9f00242;
+    --orange-color: #ff9800;
+    --border-color: #8ae66e;
+    --red-color: #ff003c;
+    --blue-color: #0c5f74;
+    --green-color: #298d29;
+    --purple-color: purple;
+    --neon-color: #39ff14;
+    --black-color: #000;
+  }
+
+  @font-face {
+    font-family: 'Hacked';
+    src: url(data:font/ttf;charset=utf-8;base64,AAEAAAAPAIAAAwBwR1NVQiCLJXoAAAD8AAAAVE9TLzJ2RIcFAAABUAAAAGBjbWFw18hFEgAAAbAAAAGGY3Z0IAAAAAAAAAk8AAAADmZwZ21iLvl6AAAJTAAADgxnYXNwAAAAEAAACTQAAAAIZ2x5ZtwCkboAAAM4AAACZGhlYWQepKJiAAAFnAAAADZoaGVhBzsDVAAABdQAAAAkaG10eAhg//4AAAX4AAAADGxvY2EApgEyAAAGBAAAAAhtYXhwARsOrgAABgwAAAAgbmFtZc2dGBkAAAYsAAACzXBvc3Rw/i1VAAAI/AAAADZwcmVwfrY7tgAAF1gAAACcAAEAAAAKADAAPgACREZMVAAObGF0bgAaAAQAAAAAAAAAAQAAAAQAAAAAAAAAAQAAAAFsaWdhAAgAAAABAAAAAQAEAAQAAAABAAgAAQAGAAAAAQAAAAQCywGQAAUAAAJ6ArwAAACMAnoCvAAAAeAAMQECAAACAAUDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFBmRWQAwCAiJc8DUv9qAFoDrACWAAAAAQAAAAAAAAAAAAAAAAACAAAABQAAAAMAAAAsAAAABAAAAV4AAQAAAAAAWAADAAEAAAAsAAMACgAAAV4ABAAsAAAABgAEAAEAAiAiJc///wAAICIlz///AAAAAAABAAYABgAAAAEAAgAAAQYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAAAAAAAKAAAAAAAAAACAAAgIgAAICIAAAABAAAlzwAAJc8AAAACAAAAAQAA/2oCIwNTAGMANEAxPjY1AwMCDAsEAwQAAQJMAAIAAwECA2kAAQAAAVkAAQEAXwAAAQBPUlA6OR4cJgQGFyslFAYHFRQGKwEiJjc1LgQnJj8BPgEfARYXFjMyNjc0LgEvASYnLgEvAS4FNTQ2NzU0NhczMhYdAR4EFxYPAQ4BJyYvAS4CIyIGFxQeAh8BFhceBgIicFgKCEsHDAElRC4kEAIJCDoDEgUBP0gVFS1EARISGCUNIBUaFSMOJBYcDApuVwoISwgKIDwkJAYGCQYuBBAHAgcVDiYuGDVEAQgaEhYiDBseHjgcKBQQvVZ6EGEICgoIYQUaGBwOAwwLTAUCBgE3DwQwLBAcEgwSBgwJCgoRBxoWICAqF010EWQHDAEKCGIDFBIWDAELC1EJAgYCBQ4JEgwwJg4aFBAKDwUKCwwcFCQiNAAAAAAB//7/+AI/AwsAQwBgQF0iAQQFMjEUAwMEPDsKCQQBAkEBAAEETAYBBQQFhQsBAAEAhgcBBAgBAwIEA2cJAQIBAQJXCQECAgFfCgEBAgFPAQBAPjg3NjQuLSonHhsYFhAPDgwGBQBDAUMMBhYrBSMiJj0BIyImNzU0NjsBNSMiJjc1NDY7AQMmNjsBMh8BFhc+AT8BNjsBMhYHAzMyFgcVFAYrARUzMhYHFRQGKwEVFAYBUWAICqEHDAEKCKGhBwwBCgh3swQKCmwLBXgLFQUYA2sEDGoKCgSveAcMAQoIoqIHDAEKCKIKBwoIuAoIOQgKMAoHOggKAUMJEgruFTANMgnqCxEK/r0KCDoHCjAKCDkICrgHDAAAAQAAAAEAAIhLvj1fDzz1AA8D6AAAAADdza9gAAAAAN3Nr2D//v9qA+gDUwAAAAgAAgAAAAAAAAABAAADUv9qAAAD6P/+//4D6AABAAAAAAAAAAAAAAAAAAAAAwPoAAACOwAAAj3//gAAAAAApgEyAAEAAAADAGQAAQAAAAAAAgAYADwAjQAAAHEODAAAAAAAAAASAN4AAQAAAAAAAAA1AAAAAQAAAAAAAQAIADUAAQAAAAAAAgAHAD0AAQAAAAAAAwAIAEQAAQAAAAAABAAIAEwAAQAAAAAABQALAFQAAQAAAAAABgAIAF8AAQAAAAAACgArAGcAAQAAAAAACwATAJIAAwABBAkAAABqAKUAAwABBAkAAQAQAQ8AAwABBAkAAgAOAR8AAwABBAkAAwAQAS0AAwABBAkABAAQAT0AAwABBAkABQAWAU0AAwABBAkABgAQAWMAAwABBAkACgBWAXMAAwABBAkACwAmAclDb3B5cmlnaHQgKEMpIDIwMjEgYnkgb3JpZ2luYWwgYXV0aG9ycyBAIGZvbnRlbGxvLmNvbWZvbnRlbGxvUmVndWxhcmZvbnRlbGxvZm9udGVsbG9WZXJzaW9uIDEuMGZvbnRlbGxvR2VuZXJhdGVkIGJ5IHN2ZzJ0dGYgZnJvbSBGb250ZWxsbyBwcm9qZWN0Lmh0dHA6Ly9mb250ZWxsby5jb20AQwBvAHAAeQByAGkAZwBoAHQAIAAoAEMAKQAgADIAMAAyADEAIABiAHkAIABvAHIAaQBnAGkAbgBhAGwAIABhAHUAdABoAG8AcgBzACAAQAAgAGYAbwBuAHQAZQBsAGwAbwAuAGMAbwBtAGYAbwBuAHQAZQBsAGwAbwBSAGUAZwB1AGwAYQByAGYAbwBuAHQAZQBsAGwAbwBmAG8AbgB0AGUAbABsAG8AVgBlAHIAcwBpAG8AbgAgADEALgAwAGYAbwBuAHQAZQBsAGwAbwBHAGUAbgBlAHIAYQB0AGUAZAAgAGIAeQAgAHMAdgBnADIAdAB0AGYAIABmAHIAbwBtACAARgBvAG4AdABlAGwAbABvACAAcAByAG8AagBlAGMAdAAuAGgAdAB0AHAAOgAvAC8AZgBvAG4AdABlAGwAbABvAC4AYwBvAG0AAAAAAgAAAAAAAAAKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADAQIBAwEEAAZkb2xsYXIDeWVuAAAAAAABAAH//wAPAAAAAAAAAAAAAAAAAAAAALAALCCwAFVYRVkgIEu4AA5RS7AGU1pYsDQbsChZYGYgilVYsAIlYbkIAAgAY2MjYhshIbAAWbAAQyNEsgABAENgQi2wASywIGBmLbACLCMhIyEtsAMsIGSzAxQVAEJDsBNDIGBgQrECFENCsSUDQ7ACQ1R4ILAMI7ACQ0NhZLAEUHiyAgICQ2BCsCFlHCGwAkNDsg4VAUIcILACQyNCshMBE0NgQiOwAFBYZVmyFgECQ2BCLbAELLADK7AVQ1gjISMhsBZDQyOwAFBYZVkbIGQgsMBQsAQmWrIoAQ1DRWNFsAZFWCGwAyVZUltYISMhG4pYILBQUFghsEBZGyCwOFBYIbA4WVkgsQENQ0VjRWFksChQWCGxAQ1DRWNFILAwUFghsDBZGyCwwFBYIGYgiophILAKUFhgGyCwIFBYIbAKYBsgsDZQWCGwNmAbYFlZWRuwAiWwDENjsABSWLAAS7AKUFghsAxDG0uwHlBYIbAeS2G4EABjsAxDY7gFAGJZWWRhWbABK1lZI7AAUFhlWVkgZLAWQyNCWS2wBSwgRSCwBCVhZCCwB0NQWLAHI0KwCCNCGyEhWbABYC2wBiwjISMhsAMrIGSxB2JCILAII0KwBkVYG7EBDUNFY7EBDUOwAGBFY7AFKiEgsAhDIIogirABK7EwBSWwBCZRWGBQG2FSWVgjWSFZILBAU1iwASsbIbBAWSOwAFBYZVktsAcssAlDK7IAAgBDYEItsAgssAkjQiMgsAAjQmGwAmJmsAFjsAFgsAcqLbAJLCAgRSCwDkNjuAQAYiCwAFBYsEBgWWawAWNgRLABYC2wCiyyCQ4AQ0VCKiGyAAEAQ2BCLbALLLAAQyNEsgABAENgQi2wDCwgIEUgsAErI7AAQ7AEJWAgRYojYSBkILAgUFghsAAbsDBQWLAgG7BAWVkjsABQWGVZsAMlI2FERLABYC2wDSwgIEUgsAErI7AAQ7AEJWAgRYojYSBksCRQWLAAG7BAWSOwAFBYZVmwAyUjYUREsAFgLbAOLCCwACNCsw0MAANFUFghGyMhWSohLbAPLLECAkWwZGFELbAQLLABYCAgsA9DSrAAUFggsA8jQlmwEENKsABSWCCwECNCWS2wESwgsBBiZrABYyC4BABjiiNhsBFDYCCKYCCwESNCIy2wEixLVFixBGREWSSwDWUjeC2wEyxLUVhLU1ixBGREWRshWSSwE2UjeC2wFCyxABJDVVixEhJDsAFhQrARK1mwAEOwAiVCsQ8CJUKxEAIlQrABFiMgsAMlUFixAQBDYLAEJUKKiiCKI2GwECohI7ABYSCKI2GwECohG7EBAENgsAIlQrACJWGwECohWbAPQ0ewEENHYLACYiCwAFBYsEBgWWawAWMgsA5DY7gEAGIgsABQWLBAYFlmsAFjYLEAABMjRLABQ7AAPrIBAQFDYEItsBUsALEAAkVUWLASI0IgRbAOI0KwDSOwAGBCIGC3GBgBABEAEwBCQkKKYCCwFCNCsAFhsRQIK7CLKxsiWS2wFiyxABUrLbAXLLEBFSstsBgssQIVKy2wGSyxAxUrLbAaLLEEFSstsBsssQUVKy2wHCyxBhUrLbAdLLEHFSstsB4ssQgVKy2wHyyxCRUrLbArLCMgsBBiZrABY7AGYEtUWCMgLrABXRshIVktsCwsIyCwEGJmsAFjsBZgS1RYIyAusAFxGyEhWS2wLSwjILAQYmawAWOwJmBLVFgjIC6wAXIbISFZLbAgLACwDyuxAAJFVFiwEiNCIEWwDiNCsA0jsABgQiBgsAFhtRgYAQARAEJCimCxFAgrsIsrGyJZLbAhLLEAICstsCIssQEgKy2wIyyxAiArLbAkLLEDICstsCUssQQgKy2wJiyxBSArLbAnLLEGICstsCgssQcgKy2wKSyxCCArLbAqLLEJICstsC4sIDywAWAtsC8sIGCwGGAgQyOwAWBDsAIlYbABYLAuKiEtsDAssC8rsC8qLbAxLCAgRyAgsA5DY7gEAGIgsABQWLBAYFlmsAFjYCNhOCMgilVYIEcgILAOQ2O4BABiILAAUFiwQGBZZrABY2AjYTgbIVktsDIsALEAAkVUWLEOBkVCsAEWsDEqsQUBFUVYMFkbIlktsDMsALAPK7EAAkVUWLEOBkVCsAEWsDEqsQUBFUVYMFkbIlktsDQsIDWwAWAtsDUsALEOBkVCsAFFY7gEAGIgsABQWLBAYFlmsAFjsAErsA5DY7gEAGIgsABQWLBAYFlmsAFjsAErsAAWtAAAAAAARD4jOLE0ARUqIS2wNiwgPCBHILAOQ2O4BABiILAAUFiwQGBZZrABY2CwAENhOC2wNywuFzwtsDgsIDwgRyCwDkNjuAQAYiCwAFBYsEBgWWawAWNgsABDYbABQ2M4LbA5LLECABYlIC4gR7AAI0KwAiVJiopHI0cjYSBYYhshWbABI0KyOAEBFRQqLbA6LLAAFrAXI0KwBCWwBCVHI0cjYbEMAEKwC0MrZYouIyAgPIo4LbA7LLAAFrAXI0KwBCWwBCUgLkcjRyNhILAGI0KxDABCsAtDKyCwYFBYILBAUVizBCAFIBuzBCYFGllCQiMgsApDIIojRyNHI2EjRmCwBkOwAmIgsABQWLBAYFlmsAFjYCCwASsgiophILAEQ2BkI7AFQ2FkUFiwBENhG7AFQ2BZsAMlsAJiILAAUFiwQGBZZrABY2EjICCwBCYjRmE4GyOwCkNGsAIlsApDRyNHI2FgILAGQ7ACYiCwAFBYsEBgWWawAWNgIyCwASsjsAZDYLABK7AFJWGwBSWwAmIgsABQWLBAYFlmsAFjsAQmYSCwBCVgZCOwAyVgZFBYIRsjIVkjICCwBCYjRmE4WS2wPCywABawFyNCICAgsAUmIC5HI0cjYSM8OC2wPSywABawFyNCILAKI0IgICBGI0ewASsjYTgtsD4ssAAWsBcjQrADJbACJUcjRyNhsABUWC4gPCMhG7ACJbACJUcjRyNhILAFJbAEJUcjRyNhsAYlsAUlSbACJWG5CAAIAGNjIyBYYhshWWO4BABiILAAUFiwQGBZZrABY2AjLiMgIDyKOCMhWS2wPyywABawFyNCILAKQyAuRyNHI2EgYLAgYGawAmIgsABQWLBAYFlmsAFjIyAgPIo4LbBALCMgLkawAiVGsBdDWFAbUllYIDxZLrEwARQrLbBBLCMgLkawAiVGsBdDWFIbUFlYIDxZLrEwARQrLbBCLCMgLkawAiVGsBdDWFAbUllYIDxZIyAuRrACJUawF0NYUhtQWVggPFkusTABFCstsEMssDorIyAuRrACJUawF0NYUBtSWVggPFkusTABFCstsEQssDsriiAgPLAGI0KKOCMgLkawAiVGsBdDWFAbUllYIDxZLrEwARQrsAZDLrAwKy2wRSywABawBCWwBCYgICBGI0dhsAwjQi5HI0cjYbALQysjIDwgLiM4sTABFCstsEYssQoEJUKwABawBCWwBCUgLkcjRyNhILAGI0KxDABCsAtDKyCwYFBYILBAUVizBCAFIBuzBCYFGllCQiMgR7AGQ7ACYiCwAFBYsEBgWWawAWNgILABKyCKimEgsARDYGQjsAVDYWRQWLAEQ2EbsAVDYFmwAyWwAmIgsABQWLBAYFlmsAFjYbACJUZhOCMgPCM4GyEgIEYjR7ABKyNhOCFZsTABFCstsEcssQA6Ky6xMAEUKy2wSCyxADsrISMgIDywBiNCIzixMAEUK7AGQy6wMCstsEkssAAVIEewACNCsgABARUUEy6wNiotsEossAAVIEewACNCsgABARUUEy6wNiotsEsssQABFBOwNyotsEwssDkqLbBNLLAAFkUjIC4gRoojYTixMAEUKy2wTiywCiNCsE0rLbBPLLIAAEYrLbBQLLIAAUYrLbBRLLIBAEYrLbBSLLIBAUYrLbBTLLIAAEcrLbBULLIAAUcrLbBVLLIBAEcrLbBWLLIBAUcrLbBXLLMAAABDKy2wWCyzAAEAQystsFksswEAAEMrLbBaLLMBAQBDKy2wWyyzAAABQystsFwsswABAUMrLbBdLLMBAAFDKy2wXiyzAQEBQystsF8ssgAARSstsGAssgABRSstsGEssgEARSstsGIssgEBRSstsGMssgAASCstsGQssgABSCstsGUssgEASCstsGYssgEBSCstsGcsswAAAEQrLbBoLLMAAQBEKy2waSyzAQAARCstsGosswEBAEQrLbBrLLMAAAFEKy2wbCyzAAEBRCstsG0sswEAAUQrLbBuLLMBAQFEKy2wbyyxADwrLrEwARQrLbBwLLEAPCuwQCstsHEssQA8K7BBKy2wciywABaxADwrsEIrLbBzLLEBPCuwQCstsHQssQE8K7BBKy2wdSywABaxATwrsEIrLbB2LLEAPSsusTABFCstsHcssQA9K7BAKy2weCyxAD0rsEErLbB5LLEAPSuwQistsHossQE9K7BAKy2weyyxAT0rsEErLbB8LLEBPSuwQistsH0ssQA+Ky6xMAEUKy2wfiyxAD4rsEArLbB/LLEAPiuwQSstsIAssQA+K7BCKy2wgSyxAT4rsEArLbCCLLEBPiuwQSstsIMssQE+K7BCKy2whCyxAD8rLrEwARQrLbCFLLEAPyuwQCstsIYssQA/K7BBKy2whyyxAD8rsEIrLbCILLEBPyuwQCstsIkssQE/K7BBKy2wiiyxAT8rsEIrLbCLLLILAANFUFiwBhuyBAIDRVgjIRshWVlCK7AIZbADJFB4sQUBFUVYMFktAEu4AMhSWLEBAY5ZsAG5CAAIAGNwsQAHQrEAACqxAAdCsQAKKrEAB0KxAAoqsQAHQrkAAAALKrEAB0K5AAAACyq5AAMAAESxJAGIUViwQIhYuQADAGREsSgBiFFYuAgAiFi5AAMAAERZG7EnAYhRWLoIgAABBECIY1RYuQADAABEWVlZWVmxAA4quAH/hbAEjbECAESzBWQGAERE) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  body {
+    background-color: var(--yellow-color);
+    padding: 0px;
+    margin: 0px;
+    font-size: 20px;
+  }
+
+  body * {
+    font-family: "Advent Pro", arial;
+  }
+
+  /* Form fields */
+
+  input[type="text"].cyberpunk,
+  input[type="date"].cyberpunk,
+  input[type="time"].cyberpunk,
+  input[type="file"].cyberpunk,
+  input[type="number"].cyberpunk,
+  input[type="phone"].cyberpunk,
+  input[type="password"].cyberpunk,
+  textarea.cyberpunk,
+  select.cyberpunk,
+  .cyberpunk input[type="text"],
+  .cyberpunk input[type="date"],
+  .cyberpunk input[type="time"],
+  .cyberpunk input[type="file"],
+  .cyberpunk input[type="number"],
+  .cyberpunk input[type="phone"],
+  .cyberpunk input[type="password"],
+  .cyberpunk textarea,
+  .cyberpunk select {
+    width: calc(100% - 30px);
+    border: 30px solid var(--black-color);
+    border-left: 5px solid var(--black-color);
+    border-right: 5px solid var(--black-color);
+    border-bottom: 15px solid var(--black-color);
+    clip-path: polygon(0px 25px, 26px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px)  calc(100% - 10px), calc(80% - 15px) calc(100% - 0px), 10px  calc(100% - 0px), 0% calc(100% - 10px));
+    margin-bottom: 10px;
+    padding: 12px;
+    font-size: 1.7rem;
+    font-weight: 700;
+    /*caret-shape: underscore;*/
+  }
+
+  input[type="password"].cyberpunk,
+  .cyberpunk input[type="password"] {
+    font-family: 'Hacked';
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 2px;
+  }
+
+  textarea.cyberpunk,
+  .cyberpunk textarea {
+    min-height: 120px;
+    clip-path: polygon(0px 0px, 50px 0px, 75px 26px, 105px 26px, 130px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px)  calc(100% - 10px), calc(80% - 15px) calc(100% - 0px), 10px  calc(100% - 0px), 0% calc(100% - 10px));
+  }
+
+  select.cyberpunk,
+  .cyberpunk select {
+    width: 100%;
+    appearance: none;
+    position: relative;
+    clip-path: polygon(0px 25px, 60px 25px, 85px 0px, calc(60% - 25px) 0px, 60% 25px, calc(100% - 80px) 25px, calc(100% - 55px) 0px, 100% 0px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px) calc(100% - 10px), calc(80% - 15px) calc(100% - 0px), 10px calc(100% - 0px), 0% calc(100% - 10px));
+  }
+
+  select.cyberpunk option,
+  .cyberpunk select option {
+    color: var(--yellow-color);
+    background-color: var(--black-color);
+  }
+
+  input[type="radio"].cyberpunk,
+  .cyberpunk input[type="radio"] {
+    border-radius: 15%;
+    z-index: 100;
+    height: 14px;
+    width: 20px;
+    appearance: none;
+    outline: none;
+    background-color: var(--black-color);
+    cursor: pointer;
+    position: relative;
+    margin: 0px;
+    display: inline-block;
+  }
+
+  input[type="radio"].cyberpunk:after,
+  .cyberpunk input[type="radio"]:after {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 6px;
+    background-color: var(--yellow-color);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: background 0.3s, left 0.3s;
+  }
+
+  input[type="radio"].cyberpunk:checked:after ,
+  .cyberpunk input[type="radio"]:checked:after{
+    background-color: var(--border-color);
+    left: 10px;
+  }
+
+  input[type="checkbox"].cyberpunk,
+  .cyberpunk input[type="checkbox"] {
+    border-radius: 15%;
+    z-index: 100;
+    height: 20px;
+    width: 20px;
+    appearance: none;
+    outline: none;
+    background-color: var(--black-color);
+    cursor: pointer;
+    position: relative;
+    margin: 0px;
+    margin-bottom: -3px;
+    display: inline-block;
+  }
+
+  input[type="checkbox"].cyberpunk:before,
+  .cyberpunk input[type="checkbox"]:before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 8px;
+    border: 2px solid var(--yellow-color);
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 4px;
+  }
+
+  input[type="checkbox"].cyberpunk:after,
+  .cyberpunk input[type="checkbox"]:after {
+    content: "";
+    display: block;
+    width: 2px;
+    height: 7px;
+    background-color: var(--yellow-color);
+    position: absolute;
+    top: 3px;
+    left: 9px;
+  }
+
+  input[type="checkbox"].cyberpunk:checked:before,
+  .cyberpunk input[type="checkbox"]:checked:before {
+    border-color: var(--border-color);
+    border-top-color: transparent;
+  }
+
+  input[type="checkbox"].cyberpunk:checked:after,
+  .cyberpunk input[type="checkbox"]:checked:after {
+    background-color: var(--border-color);
+  }
+
+  .cyberpunk fieldset,
+  fieldset.cyberpunk {
+    border: 3px dotted var(--purple-color);
+    margin: 10px 0px;
+  }
+
+  /* Scrollbar */
+
+  ::-webkit-scrollbar {
+    background-color: var(--yellow-color);
+  }
+  ::-webkit-scrollbar-button {
+    display: none;
+  }
+  ::-webkit-scrollbar-track {
+    display: none;
+  }
+  ::-webkit-scrollbar-track-piece {
+    display: none;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--red-color);
+    border-bottom: 2px solid var(--border-color);
+    border-right: 2px solid var(--border-color);
+    transition: background var(--glitched-duration);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--orange-color);
+  }
+  ::-webkit-scrollbar-corner {
+    display: none;
+  }
+  ::-webkit-resizer {
+    display: none;
+  }
+
+  /* Separator */
+
+  hr.cyberpunk {
+    height: 14px;
+    background-color: var(--black-color);
+    width: 100%;
+    border: none;
+    clip-path: polygon(0px 7px, 100% 7px, 100% 8px, 0px 8px);
+  }
+
+  hr.cyberpunk.glitched {
+    animation-name: hr;
+    animation-duration: var(--glitched-long-duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  @keyframes hr {
+    0% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 7px, 100% 7px, 100% 8px, 0px 8px);
+      margin-left: 0px;
+    }
+    15% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 7px, 100% 7px, 100% 8px, 0px 8px);
+      margin-left: 0px;
+    }
+    16% {
+      transform: skew(20deg);
+      clip-path: polygon(1px 0px, 0px 0px, 0px 0px, 8px 14px, 13px 14px, 22px 7px, 42px 6px, 49px 2px, 100% 2px, 100% 0px, 42px 0px, 35px 5px, 22px 6px, 13px 13px, 9px 13px);
+      margin-left: -20px;
+
+    }
+    20% {
+      transform: skew(-20deg);
+      clip-path: polygon(1px 0px, 0px 0px, 0px 0px, 8px 14px, 13px 14px, 22px 7px, 42px 6px, 49px 2px, 100% 2px, 100% 0px, 42px 0px, 35px 5px, 22px 6px, 13px 13px, 9px 13px);
+      margin-left: 20px;
+    }
+    21% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 7px, 100% 7px, 100% 8px, 0px 8px);
+      margin-left: 0px;
+    }
+    65% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 7px, 100% 7px, 100% 8px, 0px 8px);
+      margin-left: 0px;
+      transform: scaleX(1);
+    }
+    66% {
+      transform: skew(20deg);
+      clip-path: polygon(1px 0px, 0px 0px, 0px 0px, 8px 14px, 13px 14px, 22px 7px, 42px 6px, 49px 2px, 100% 2px, 100% 0px, 42px 0px, 35px 5px, 22px 6px, 13px 13px, 9px 13px);
+      margin-left: -5px;
+      transform: scaleX(-1);
+
+    }
+    70% {
+      transform: skew(40deg);
+      clip-path: polygon(1px 0px, 0px 0px, 0px 0px, 8px 14px, 13px 14px, 22px 7px, 42px 6px, 49px 2px, 100% 2px, 100% 0px, 42px 0px, 35px 5px, 22px 6px, 13px 13px, 9px 13px);
+      margin-left: 20px;
+      transform: scaleX(-1);
+    }
+    71% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 7px, 100% 7px, 100% 8px, 0px 8px);
+      margin-left: 0px;
+      transform: scaleX(0);
+    }
+    100% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 7px, 100% 7px, 100% 8px, 0px 8px);
+      margin-left: 0px;
+    }
+  }
+
+  /* Images frames */
+
+  img.cyberpunk,
+  .cyberpunk img {
+    padding: 30px ;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 15px;
+    clip-path: polygon(0px 25px, 26px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px)  calc(100% - 10px), calc(80% - 15px) calc(100% - 0px), 10px  calc(100% - 0px), 0% calc(100% - 10px));
+    background-color: var(--black-color);
+    max-width: calc(100% - 10px);
+  }
+
+  /* Paragraphs and lists */
+
+  p.cyberpunk,
+  .cyberpunk p {
+    border: 30px solid var(--black-color);
+    border-right: 5px solid var(--black-color);
+    border-left: 5px solid var(--black-color);
+    border-bottom: 24px solid var(--black-color);
+    padding: 5px;
+    clip-path: polygon(0px 25px, 26px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px) calc(100% - 10px), calc(80% - 15px) 100%, 80px calc(100% - 0px), 65px calc(100% - 15px), 0% calc(100% - 15px));
+    background-color: var(--yellow-color);
+    font-size: 1.2rem;
+    position: relative;
+  }
+
+  p.cyberpunk.inverse,
+  .cyberpunk p.inverse {
+    border: none;
+    padding: 40px 15px 30px;
+    clip-path: polygon(0px 25px, 26px 0px, calc(60% - 25px) 0px, 60% 25px, 100% 25px, 100% calc(100% - 10px), calc(100% - 15px) calc(100% - 10px), calc(80% - 10px) calc(100% - 10px), calc(80% - 15px) 100%, 80px calc(100% - 0px), 65px calc(100% - 15px), 0% calc(100% - 15px));
+    background-color: var(--black-color);
+    color: var(--yellow-color);
+    border-right: 3px solid var(--border-color);
+  }
+
+  p.cyberpunk:before,
+  .cyberpunk p:before {
+    content: "P-14";
+    display: block;
+    position: absolute;
+    bottom: -12px;
+    right: 25px;
+    padding: 2px 2px 0px 2px;
+    font-size: 0.6rem;
+    line-height: 0.6rem;
+    color: var(--black-color);
+    background-color: var(--yellow-color);
+    border-left: 2px solid var(--border-color);
+  }
+
+  p.cyberpunk.inverse:before,
+  .cyberpunk p.inverse:before {
+    content: "T-71";
+    right:90px;
+    bottom: 9px;
+  }
+
+  section.cyberpunk.black p.cyberpunk.inverse:before,
+  section.cyberpunk.black p.cyberpunk:before,
+  section.cyberpunk.black p.inverse:before,
+  section.cyberpunk.black p:before {
+   background-color: var(--black-color);
+   color: var(--yellow-color);
+  }
+
+  p.cyberpunk:hover:before,
+  .cyberpunk p:hover:before {
+    animation-name: buttonhoverafter;
+    animation-duration: var(--glitched-duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  p.cyberpunk.scannedh,
+  p.cyberpunk.scannedv,
+  .cyberpunk p.scannedh,
+  .cyberpunk p.scannedv {
+    position: relative;
+  }
+
+  p.cyberpunk.scannedh:after,
+  .cyberpunk p.scannedh:after {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 0px;
+    width: 100%;
+    height: 3px;
+    background-color: var(--border-color) !important;
+    box-shadow: 0px 0px 10px 4px var(--border-color);
+    animation-name: scannedh;
+    animation-duration: var(--glitched-long-duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+  }
+
+  @keyframes scannedh {
+    0% {
+      top: -27px;
+    }
+    50% {
+    }
+    51% {
+    }
+    100% {
+      top: calc(100% + 12px);
+    }
+  }
+
+  p.cyberpunk.scannedv:after,
+  .cyberpunk p.scannedv:after {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: 0px;
+    height: calc(100% + 55px);
+    width: 3px;
+    background-color: var(--border-color) !important;
+    box-shadow: 0px 0px 10px 4px var(--border-color);
+    animation-name: scannedv;
+    animation-duration: calc(var(--glitched-long-duration) * 3);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+  }
+
+  @keyframes scannedv {
+    0% {
+      left: 0px;
+    }
+    50% {
+    }
+    51% {
+    }
+    100% {
+      left: 100%;
+    }
+  }
+
+  @keyframes hxafter {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    51% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  ul.cyberpunk > li,
+  .cyberpunk ul > li {
+    list-style: none;
+    position: relative;
+    font-size: 1.2rem;
+  }
+
+  ul.cyberpunk > li:before:not(ul.steps li:before),
+  .cyberpunk ul > li:before:not(ul.steps li:before)  {
+    content: " ";
+    top: 0px;
+    left: calc(-1.2rem - 10px);
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: var(--black-color);
+    position: absolute;
+    display: block;
+    clip-path: polygon(0% 10%, 100% 70%, 40% 100%, 50% 70%);
+  }
+
+  ol.cyberpunk,
+  .cyberpunk ol {
+    list-style-type:hiragana-iroha; counter-reset: li
+  }
+
+  ol.cyberpunk > li,
+  .cyberpunk ol > li {
+    list-style: none;
+    position: relative;
+    font-size: 1.2rem;
+    counter-increment: li;
+  }
+
+  ol.cyberpunk li:before,
+  .cyberpunk ol > li:before {
+    content: counter(li);
+    top: 0px;
+    left: calc(-1.2rem - 10px);
+    width: 1.2rem;
+    height: 1.2rem;
+    color:var(--yellow-color);
+    background-color: var(--black-color);
+    font-weight: 700;
+    position: absolute;
+    display: block;
+    clip-path: polygon(0% 0%, 60% 0%, 100% 40%, 100% 100%, 0% 100%);
+  }
+
+  ol.cyberpunk li.glitched,
+  ul.cyberpunk li.glitched,
+  .cyberpunk ol > li.glitched,
+  .cyberpunk ul > li.glitched {
+    animation-name: liglitched;
+    animation-duration: var(--glitched-duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  ol.cyberpunk li.glitched:nth-child(3n+3),
+  ul.cyberpunk li.glitched:nth-child(1),
+  .cyberpunk ol > li.glitched:nth-child(3n+3),
+  .cyberpunk ul > li.glitched:nth-child(1) {
+    animation-duration: calc(var(--glitched-duration) * 0.5);
+  }
+
+  ol.cyberpunk li.glitched:nth-child(5n+5),
+  ul.cyberpunk li.glitched:nth-child(5n+5),
+  .cyberpunk ol > li.glitched:nth-child(5n+5),
+  .cyberpunk ul > li.glitched:nth-child(5n+5) {
+    animation-duration: calc(var(--glitched-duration) * 0.7);
+    animation-timing-function: ease-out;
+  }
+
+  ol.cyberpunk li.glitched:nth-child(2n+2),
+  ul.cyberpunk li.glitched:nth-child(2n+2),
+  .cyberpunk ol > li.glitched:nth-child(2n+2),
+  .cyberpunk ul > li.glitched:nth-child(2n+2) {
+    animation-duration: calc(var(--glitched-duration) * 1.5);
+    animation-timing-function: ease-in-out;
+  }
+
+  ol.cyberpunk li.glitched:nth-child(4n+4),
+  ul.cyberpunk li.glitched:nth-child(4n+4),
+  .cyberpunk ol > li.glitched:nth-child(4n+4),
+  .cyberpunk ul > li.glitched:nth-child(4n+4) {
+    animation-duration: calc(var(--glitched-duration) * 1.2);
+    animation-timing-function: ease-in;
+  }
+
+  @keyframes liglitched {
+    0% {
+      transform: skew(-3deg);
+      margin-left: -2px;
+    }
+    10% {
+      transform: skew(3deg);
+      margin-left: inherit;
+    }
+    11% {
+      transform: skew(0deg);
+      margin-left: 2px;
+    }
+    50% {
+      transform: skew(0deg);
+      margin-left: inherit;
+    }
+    51% {
+      transform: skew(3deg);
+      margin-left: 5px;
+    }
+    59% {
+      transform: skew(-3deg);
+      margin-left: 5px;
+    }
+    60% {
+      transform: skew(0deg);
+      margin-left: inherit;
+    }
+    100% {
+      transform: skew(0deg);
+    }
+  }
+
+  .cyberpunk a {
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+  }
+
+  .cyberpunk a:after {
+    content: " ";
+    position: absolute;
+    bottom: -1px;
+    left: 0px;
+    width: 100%;
+    height: 1.5px;
+    background-color: var(--border-color);
+    box-shadow: 0px 0px 8px 3px var(--border-color);
+  }
+
+  .cyberpunk a:hover:after {
+    animation-name: scanneda;
+    animation-duration: var(--glitched-duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-direction: alternate;
+  }
+
+  @keyframes scanneda {
+    0% {
+      bottom: -1px;
+    }
+    100% {
+      bottom: calc(100% + 1px);
+    }
+  }
+
+  /* Titles */
+
+  h1.cyberpunk,
+  h2.cyberpunk,
+  h3.cyberpunk,
+  h4.cyberpunk,
+  .cyberpunk h1,
+  .cyberpunk h2,
+  .cyberpunk h3,
+  .cyberpunk h4 {
+    font-size: 2rem;
+    line-height: 2.2rem;
+    font-weight: 200;
+    position: relative;
+    padding-bottom: 15px;
+  }
+
+  h2.cyberpunk,
+  .cyberpunk h2 {
+    font-size: 1.7rem;
+    line-height: 1.9rem;
+    font-weight: 300;
+  }
+
+  h3.cyberpunk,
+  .cyberpunk h3 {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    font-weight: 500;
+  }
+
+  h4.cyberpunk,
+  .cyberpunk h4 {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    font-weight: 700;
+  }
+
+  h1.cyberpunk:before,
+  h2.cyberpunk:before,
+  h3.cyberpunk:before,
+  h4.cyberpunk:before,
+  .cyberpunk h1:before,
+  .cyberpunk h2:before,
+  .cyberpunk h3:before,
+  .cyberpunk h4:before {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 2px;
+    width: 100%;
+    height: 10px;
+    background-color: var(--black-color);
+    clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
+  }
+
+  h1.cyberpunk.glitched,
+  .cyberpunk h1.glitched {
+    animation-name: h1glitched;
+    animation-duration: calc(var(--glitched-duration) * 1.4);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  h2.cyberpunk.glitched,
+  .cyberpunk h2.glitched {
+    animation-name: h1glitched;
+    animation-duration: calc(var(--glitched-duration) * 1.7);
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    animation-timing-function: linear;
+  }
+
+  h3.cyberpunk.glitched,
+  .cyberpunk h3.glitched {
+    animation-name: h1glitched;
+    animation-duration: calc(var(--glitched-duration) * 1.1);
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    animation-timing-function: ease-out;
+  }
+
+  h4.cyberpunk.glitched,
+  .cyberpunk h4.glitched {
+    animation-name: h1glitched;
+    animation-duration: calc(var(--glitched-duration) * 2.1);
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+
+  @keyframes h1glitched {
+    0% {
+      transform: skew(-20deg);
+      left: -4px;
+    }
+    10% {
+      transform: skew(-20deg);
+      left: -4px;
+    }
+    11% {
+      transform: skew(0deg);
+      left: 2px;
+    }
+    50% {
+      transform: skew(0deg);
+    }
+    51% {
+      transform: skew(10deg);
+    }
+    59% {
+      transform: skew(10deg);
+    }
+    60% {
+      transform: skew(0deg);
+    }
+    100% {
+      transform: skew(0deg);
+    }
+  }
+
+  h1.cyberpunk.glitched:before,
+  .cyberpunk h1.glitched:before {
+    animation-name: h1beforeglitched;
+    animation-duration: calc(var(--glitched-duration) * 2);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  @keyframes h1beforeglitched {
+    0% {
+      transform: skew(-20deg);
+      left: -4px;
+      clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
+    }
+    10% {
+      transform: skew(-20deg);
+      left: -4px;
+      clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
+    }
+    11% {
+      transform: skew(0deg);
+      left: 2px;
+      clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
+    }
+    50% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
+    }
+    51% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 40% 5px, calc(40% - 30px) 0px, calc(40% + 30px) 0px, calc(45% - 15px) 5px, 100% 5px, 100% 6px, calc(45% - 14px) 6px, calc(40% + 29px) 1px, calc(40% - 29px) 1px, calc(40% + 1px) 6px, 85px 6px, 80px 10px, 0px 10px);
+    }
+    59% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 40% 5px, calc(40% - 30px) 0px, calc(40% + 30px) 0px, calc(45% - 15px) 5px, 100% 5px, 100% 6px, calc(45% - 14px) 6px, calc(40% + 29px) 1px, calc(40% - 29px) 1px, calc(40% + 1px) 6px, 85px 6px, 80px 10px, 0px 10px);
+    }
+    60% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
+    }
+    100% {
+      transform: skew(0deg);
+      clip-path: polygon(0px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 0px 10px);
+    }
+  }
+
+  h2.cyberpunk:before,
+  .cyberpunk h2:before {
+    clip-path: polygon(0px 5px, 35px 5px, 40px 0px, 85px 0px, 90px 5px, 100% 5px, 100% 6px, 85px 6px, 80px 10px, 20px 10px, 15px 6px, 0px 6px);
+  }
+
+  h2.cyberpunk.glitched:before,
+  .cyberpunk h2.glitched:before {
+    animation-name: h2beforeglitched;
+    animation-duration: calc(var(--glitched-duration) * 2);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  @keyframes h2beforeglitched {
+    0% {
+      transform: scaleY(1);
+    }
+    10% {
+      transform: scaleY(1);
+    }
+    11% {
+      transform: scaleY(-1);
+    }
+    50% {
+      transform: scaleY(-1);
+    }
+    51% {
+      transform: scaleY(1);
+    }
+    59% {
+      transform: scaleY(1);
+    }
+    60% {
+      transform: scaleY(1);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  h3.cyberpunk:before,
+  .cyberpunk h3:before {
+    clip-path: polygon(0px 5px, 10px 5px, 15px 0px, 40px 0px, 45px 5px, 100% 5px, 100% 6px, 31px 6px, 27px 2px, 15px 2px, 8px 10px, 0px 10px);
+  }
+
+  h4.cyberpunk:before,
+  .cyberpunk h4:before {
+    clip-path: polygon(0px 3px, 15px 3px, 20px 0px, 80px 0px, 85px 3px, 100% 3px, 100% 4px, 85px 4px, 80px 7px, 20px 7px, 15px 4px, 0px 4px);
+  }
+
+  h1.cyberpunk:after,
+  h2.cyberpunk:after,
+  h3.cyberpunk:after,
+  h4.cyberpunk:after,
+  p.cyberpunk:after,
+  .cyberpunk h1:after,
+  .cyberpunk h2:after,
+  .cyberpunk h3:after,
+  .cyberpunk h4:after,
+  .cyberpunk p:after {
+    content: "_";
+    animation-name: hxafter;
+    animation-duration: var(--glitched-duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  h3.cyberpunk:after,
+  h4.cyberpunk:after,
+  .cyberpunk h3:after,
+  .cyberpunk h4:after {
+    animation-direction: reverse;
+    animation-duration: calc(var(--glitched-duration) / 2);
+  }
+
+  /* Buttons and links */
+
+  button.cyberpunk,
+  input[type=submit].cyberpunk,
+  a.cyberpunk {
+    --text: "R-25";
+    --background-color: var(--red-color);
+    display: block;
+    border: none;
+    border-radius: 0%;
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 35px 75px;
+    margin: 10px 20px 10px 0px;
+    position: relative;
+    color: #fff;
+    border-right: 3px solid var(--border-color);
+    clip-path: polygon(
+      -15px 0%,
+      calc(100% + 15px) 0%,
+      calc(100% + 15px) 100%,
+      20px 100%,
+      -15px calc(100% - 35px)
+    );
+    cursor: pointer;
+    background-color: var(--background-color);
+    outline: none;
+    display: inline-block;
+  }
+
+  button.cyberpunk:hover,
+  a.cyberpunk:hover,
+  input[type=submit].cyberpunk:hover,
+  button.cyberpunk:focus,
+  a.cyberpunk:focus,
+  input[type=submit].cyberpunk:focus{
+    animation-name: buttonhover;
+    animation-duration: var(--glitched-duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  button.cyberpunk.green,
+  input[type=submit].cyberpunk.green,
+  a.cyberpunk.green {
+    --background-color: var(--green-color);
+  }
+
+  button.cyberpunk.purple,
+  input[type=submit].cyberpunk.purple,
+  a.cyberpunk.purple {
+    --background-color: var(--purple-color);
+  }
+
+  button.cyberpunk.blue,
+  input[type=submit].cyberpunk.blue,
+  a.cyberpunk.blue {
+    --background-color: var(--blue-color);
+  }
+
+  button.cyberpunk:after,
+  input[type=submit].cyberpunk:after,
+  a.cyberpunk:after {
+    content: var(--text);
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    right: 25px;
+    padding: 2px 2px 0px 2px;
+    font-size: 0.6rem;
+    line-height: 0.6rem;
+    color: var(--black-color);
+    background-color: var(--yellow-color);
+    border-left: 2px solid var(--border-color);
+  }
+
+  button.cyberpunk:hover:after,
+  a.cyberpunk:hover:after,
+  input[type=submit].cyberpunk:after,
+  button.cyberpunk:focus:after,
+  a.cyberpunk:focus:after,
+  input[type=submit].cyberpunk:after {
+    animation-name: buttonhoverafter;
+    animation-duration: var(--glitched-duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  button.cyberpunk:before,
+  a.cyberpunk:before,
+  input[type=submit].cyberpunk:before {
+    --outside: 4px;
+    content: "";
+    position: absolute;
+    display: none;
+    background-color: var(--background-color);
+    width: calc(100% + (var(--outside) * 2));
+    height: 12px;
+    top: 0px;
+    left: calc(0px - 1px - var(--outside));
+    border-left: 2px solid var(--border-color);
+    border-right: 2px solid var(--border-color);
+  }
+
+  button.cyberpunk:hover:before,
+  a.cyberpunk:hover:before,
+  input[type=submit].cyberpunk:hover:before,
+  button.cyberpunk:focus:before,
+  a.cyberpunk:focus:before,
+  input[type=submit].cyberpunk:focus:before  {
+    display: block;
+    animation-name: buttonhoverbefore;
+    animation-duration: var(--glitched-duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  @keyframes buttonhover {
+    0% {
+      transform: skew(0deg);
+    }
+    60% {
+      transform: skew(0deg);
+    }
+    61% {
+      transform: skew(10deg);
+    }
+    70% {
+      transform: skew(10deg);
+    }
+    71% {
+      transform: skew(0deg);
+    }
+    100% {
+      transform: skew(0deg);
+    }
+  }
+
+  @keyframes buttonhoverbefore {
+    0% {
+      display: none;
+      top: 0px;
+    }
+    10% {
+      display: none;
+      top: 0px;
+    }
+    11% {
+      display: block;
+      top: 10px;
+      left: calc(0px - 0px - var(--outside));
+    }
+    29% {
+      top: 10px;
+    }
+    30% {
+      display: none;
+      top: 0px;
+    }
+    50% {
+      display: none;
+      top: 0px;
+    }
+    51% {
+      display: block;
+      top: 55px;
+      filter: blur(1px);
+      height: 22px;
+    }
+    90% {
+      display: block;
+      top: 55px;
+      height: 22px;
+    }
+    91% {
+      filter: blur(0px);
+      display: none;
+      top: 0px;
+      height: 12px;
+    }
+    100% {
+      display: none;
+      top: 0px;
+    }
+  }
+
+  @keyframes buttonhoverafter {
+    0% {
+      right: 45px;
+    }
+
+    10% {
+      right: 45px;
+    }
+    11% {
+      right: 35px;
+    }
+    20% {
+      transform: skew(0deg);
+    }
+    21% {
+      transform: skew(-10deg);
+    }
+    40% {
+      transform: skew(-10deg);
+    }
+    41% {
+      transform: skew(0deg);
+    }
+    49% {
+      right: 35px;
+    }
+    50% {
+      right: 55px;
+    }
+
+    60% {
+      right: 55px;
+    }
+    61% {
+      right: 35px;
+    }
+    70% {
+      transform: skew(0deg);
+    }
+    71% {
+      transform: skew(10deg);
+    }
+    80% {
+      transform: skew(10deg);
+    }
+    81% {
+      transform: skew(0deg);
+    }
+    100% {
+      right: 35px;
+    }
+  }
+
+  /* Section */
+  section.cyberpunk {
+    background-color: var(--yellow-color);
+    color: var(--black-color);
+    padding: 60px 60px;
+    position: relative;
+    margin-top: -1px;
+    margin-bottom: -1px;
+  }
+  section.cyberpunk:after,
+  section.cyberpunk.black:after {
+    content: " ";
+    display: block;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 30px;
+    background-color: var(--black-color);
+    position: absolute;
+    clip-path: polygon(0% 0%, 22% 0%, calc(22% + 30px) 30px, 52% 30px, calc(52% + 15px) 15px, 70% 15px, calc(70% + 15px) 30px, 90% 30px, calc(90% + 30px) 0px, 100% 0px, 100% 30px, 0px 30px);
+  }
+
+  section.cyberpunk.black:after {
+    background-color: var(--yellow-color);
+  }
+
+  section.cyberpunk.black {
+    background-color: var(--black-color);
+    color: var(--yellow-color);
+  }
+
+  .dotted,
+  .dotted:before,
+  .dotted:after {
+    background: var(--black-color);
+    background-image: radial-gradient(var(--yellow-color-opacity) 1px, transparent 0);
+    background-size: 5px 5px;
+    background-position: -13px -3px;
+  }
+
+  section.cyberpunk.black .dotted,
+  section.cyberpunk.black .dotted:before,
+  section.cyberpunk.black .dotted:after {
+    background: var(--yellow-color);
+    background-image: radial-gradient(#00000021 1px, transparent 0);
+    background-size: 5px 5px;
+    background-position: -13px -3px;
+  }
+
+  section.cyberpunk:before,
+  section.cyberpunk.black:before {
+    content: " ";
+    display: block;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 30px;
+    background-color: var(--yellow-color);
+    position: absolute;
+    clip-path: polygon(calc(22% + 28px) -1px, calc(22% + 45px) 15px, 34% 15px, calc(34% + 15px) -1px, 70% 0px)
+  }
+
+  section.cyberpunk:before {
+    background-color: var(--black-color);
+  }
+
+  section.cyberpunk:nth-child(even):after,
+  section.cyberpunk:nth-child(odd):before {
+   transform: scaleX(-1);
+  }
+
+  section.cyberpunk.black h1,
+  section.cyberpunk.black h2,
+  section.cyberpunk.black h3,
+  section.cyberpunk.black h4 {
+    color: var(--yellow-color);
+  }
+
+  section.cyberpunk.black h1:before,
+  section.cyberpunk.black h2:before,
+  section.cyberpunk.black h3:before,
+  section.cyberpunk.black h4:before,
+  section.cyberpunk.black hr {
+    background-color: var(--yellow-color);
+  }
+
+  section.cyberpunk.black img.cyberpunk,
+  section.cyberpunk.black img {
+    background-color: var(--yellow-color);
+  }
+
+  section.cyberpunk.black textarea.cyberpunk,
+  section.cyberpunk.black input[type="text"].cyberpunk,
+  section.cyberpunk.black input[type="date"].cyberpunk,
+  section.cyberpunk.black input[type="time"].cyberpunk,
+  section.cyberpunk.black input[type="file"].cyberpunk,
+  section.cyberpunk.black input[type="number"].cyberpunk,
+  section.cyberpunk.black input[type="phone"].cyberpunk,
+  section.cyberpunk.black input[type="password"].cyberpunk,
+  section.cyberpunk.black select.cyberpunk,
+  section.cyberpunk.black textarea.cyberpunk,
+  section.cyberpunk.black input[type="text"],
+  section.cyberpunk.black input[type="date"],
+  section.cyberpunk.black input[type="time"],
+  section.cyberpunk.black input[type="file"],
+  section.cyberpunk.black input[type="number"],
+  section.cyberpunk.black input[type="phone"],
+  section.cyberpunk.black input[type="password"],
+  section.cyberpunk.black select {
+    border-color: var(--yellow-color);
+    background-color: var(--black-color);
+    color: var(--yellow-color);
+  }
+
+  section.cyberpunk.black input[type="time"]::-webkit-calendar-picker-indicator,
+  section.cyberpunk.black input[type="date"]::-webkit-calendar-picker-indicator{
+    filter: invert(82%) sepia(91%) saturate(803%) hue-rotate(352deg) brightness(107%) contrast(104%);
+  }
+
+  section.cyberpunk.black input[type="radio"].cyberpunk,
+  section.cyberpunk.black input[type="radio"] {
+    background-color: var(--yellow-color);
+  }
+
+  section.cyberpunk.black input[type="radio"].cyberpunk:after,
+  section.cyberpunk.black input[type="radio"]:after {
+    background-color:  var(--black-color);
+  }
+
+  section.cyberpunk.black input[type="radio"].cyberpunk:checked:after,
+  section.cyberpunk.black input[type="radio"]:checked:after  {
+    background-color: var(--red-color);
+  }
+
+  section.cyberpunk.black input[type="checkbox"].cyberpunk:checked:before,
+  section.cyberpunk.black input[type="checkbox"]:checked:before {
+    border-color: var(--red-color);
+    border-top-color: transparent;
+  }
+
+  section.cyberpunk.black input[type="checkbox"].cyberpunk:checked:after,
+  section.cyberpunk.black input[type="checkbox"]:checked:after {
+    background-color: var(--red-color);
+  }
+
+  section.cyberpunk.black p.cyberpunk,
+  section.cyberpunk.black p {
+    border: 30px solid var(--yellow-color);
+    border-right: 5px solid var(--yellow-color);
+    border-left: 5px solid var(--yellow-color);
+    border-bottom: 24px solid var(--yellow-color);
+    background-color: var(--black-color);
+  }
+
+  section.cyberpunk.black p.cyberpunk.inverse,
+  section.cyberpunk.black p.inverse {
+    border: none;
+    background-color: var(--yellow-color);
+    color: var(--black-color);
+    border-right: 2px solid var(--border-color);
+  }
+
+  section.cyberpunk.black ul.cyberpunk > li:before,
+  section.cyberpunk.black ul > li:before:not(ul.steps li:before) {
+    background-color: var(--yellow-color);
+  }
+
+  section.cyberpunk.black ol.cyberpunk li:before,
+  section.cyberpunk.black ol > li:before {
+    color: var(--black-color);
+    background-color: var(--yellow-color);
+  }
+
+  /* Aside */
+
+  aside.cyberpunk {
+    --width: 230px;
+    position: fixed;
+    top: 50%;
+    left: calc(100% - 43px);
+    width: var(--width);
+    transition: left 0.3s;
+  }
+
+  aside.cyberpunk:hover {
+    left: calc(100% - var(--width) + 5px);
+  }
+
+  aside.cyberpunk ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  aside.cyberpunk ul li {
+    display: block;
+    background-color: var(--yellow-color);
+    border: 1px solid var(--black-color);
+    border-left: 10px solid var(--black-color);
+    border-bottom: 10px solid var(--black-color);
+    border-right: none;
+    font-size: 1.3rem;
+    margin: 3px 0px;
+    transform: skew(-15deg);
+    transition: background 0.3s, color 0.3s;
+    width: 100%;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 40% calc(100% - 9px), 0% 100%, 1% 62%);
+  }
+
+  aside.cyberpunk ul li:hover {
+    background-color: var(--black-color);
+  }
+
+  aside.cyberpunk ul li a {
+    display: block;
+    padding: 5px 10px;
+    color: var(--black-color);
+    transform: skew(15deg);
+    transition: color 0.3s;
+  }
+
+  aside.cyberpunk ul li:hover a {
+    color: var(--yellow-color);
+  }
+
+  aside.cyberpunk a:after {
+    display: none;
+  }
+
+
+
+  /* BoxTree */
+  .cyberpunk .boxtree {
+    --gap: 15px;
+    --border-height: 1px;
+    --padding: 5px;
+    --resolved-text: "RESOLVED";
+    --pending-text: "NO ACCESS";
+  }
+
+
+  @media (min-width: 600px) {
+      .cyberpunk .boxtree {
+      --gap: 20px;
+      --border-height: 3px;
+      --padding: 10px;
+      }
+  }
+
+  @media (min-width: 900px) {
+      .cyberpunk .boxtree {
+      --gap: 30px;
+      --border-height: 5px;
+      --padding: 20px;
+      }
+  }
+
+  .cyberpunk .boxtree {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: stretch;
+    gap: var(--gap);
+    margin: 60px -50px;
+  }
+
+  .cyberpunk .boxtree > div {
+    width: calc(100% - var(--gap));
+    box-sizing: border-box;
+    border: var(--border-height) dashed var(--blue-color);
+    /*border-bottom: var(--border-height) dashed var(--purple-color); */
+    padding: var(--padding);
+    color: var(--blue-color);
+    position: relative;
+  }
+
+  .cyberpunk.black .boxtree > div {
+    color: var(--yellow-color);
+    border: var(--border-height) dashed var(--yellow-color);
+  }
+
+  /*.cyberpunk .boxtree > div.children0 {
+    border-bottom: var(--border-height) dashed var(--yellow-color);
+  }*/
+
+  .cyberpunk .boxtree > div:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: var(--gap);
+    background-color: var(--blue-color);
+    left: 0px;
+    bottom: calc( 0px - var(--gap) - var(--border-height));
+    clip-path: polygon(calc(50% - 2px) 0%, calc(50% - 2px) 100%, calc(50% + 2px) 100%, calc(50% + 2px) 0%);
+  }
+
+  .cyberpunk.black .boxtree > div:after {
+    background-color: var(--yellow-color);
+  }
+
+  .cyberpunk .boxtree > div {
+    width: calc(50% - var(--gap));
+  }
+
+  .cyberpunk.black .boxtree > div.resolved {
+    border-color: var(--neon-color);
+  }
+
+  .cyberpunk .boxtree > div.resolved {
+    border-color: var(--green-color);
+  }
+
+  .cyberpunk .boxtree > div *:before {
+    background-color: var(--blue-color);
+  }
+
+  .cyberpunk .boxtree > div.resolved,
+  .cyberpunk .boxtree > div.resolved *,
+  .cyberpunk .boxtree > div.resolved *:after {
+    color: var(--green-color);
+  }
+
+  .cyberpunk .boxtree > div.resolved:after,
+  .cyberpunk .boxtree > div.resolved *:before {
+    background-color: var(--green-color);
+  }
+
+  .cyberpunk.black .boxtree > div.resolved,
+  .cyberpunk.black .boxtree > div.resolved *,
+  .cyberpunk.black .boxtree > div.resolved *:after {
+    color: var(--neon-color);
+  }
+
+  .cyberpunk.black .boxtree > div.resolved:after,
+  .cyberpunk.black .boxtree > div.resolved *:before {
+    background-color: var(--neon-color);
+  }
+
+  .cyberpunk .boxtree > div.pending {
+    border-color: var(--purple-color);
+  }
+
+  .cyberpunk .boxtree > div.pending,
+  .cyberpunk .boxtree > div.pending *,
+  .cyberpunk .boxtree > div.pending *:after {
+    color: var(--purple-color);
+  }
+
+  .cyberpunk .boxtree > div.pending:after,
+  .cyberpunk .boxtree > div.pending *:before {
+    background-color: var(--purple-color);
+  }
+
+  .cyberpunk .boxtree > .children2:after {
+    clip-path: polygon(50% 0%, 25% 100%, 28% 100%, 50% 10%, 72% 100%, 75% 100%);
+  }
+
+  .cyberpunk .boxtree > .width1 {
+    width: calc(100% - var(--gap));
+  }
+
+  .cyberpunk .boxtree > .width3 {
+    width: calc(25% - var(--gap));
+  }
+
+  .cyberpunk .boxtree > .children0:after {
+    display: none;
+  }
+
+  @media (max-width: 599px) {
+    .cyberpunk .boxtree > div.width3 {
+      word-break: break-all;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .cyberpunk .boxtree {
+      margin: 0px;
+    }
+    .cyberpunk .boxtree > div.resolved:before,
+    .cyberpunk .boxtree > div.pending:before {
+      content: var(--resolved-text);
+      font-family: 'VT323';
+      display: block;
+      opacity: 0.7;
+      font-size: 3em;
+      color: var(--green-color);
+      position: absolute;
+      transform: rotate(-15deg);
+      transform-origin: center center;
+      text-align: center;
+      width: 100%;
+      left: 0px;
+      top: calc(50% - 0.5em);
+      z-index: 10;
+    }
+
+    .cyberpunk.black .boxtree > div.resolved:before {
+      color: var(--neon-color);
+    }
+
+    .cyberpunk .boxtree > div.pending:before {
+      content: var(--pending-text);
+      color: var(--purple-color);
+    }
+
+    .cyberpunk .boxtree > div.resolved:before,
+    .cyberpunk .boxtree > div.pending:before {
+      font-size: 4.7em;
+      top: calc(50% - 0.5em);
+    }
+
+    .cyberpunk .boxtree > div.width3:before {
+      font-size: 2.5em;
+      top: calc(50% - 0.5em);
+    }
+  }
+
+  /* Steps */
+
+  .cyberpunk ul.steps {
+    --size: 25px;
+    margin: 0px;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    counter-reset: my-counter;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    align-content: center;
+  }
+
+  @media (max-width: 599px) {
+    .cyberpunk ul.steps li br {
+      display: none;
+    }
+  }
+
+  @media (min-width: 600px) {
+    .cyberpunk ul.steps {
+      flex-direction: row;
+    }
+  }
+
+  .cyberpunk ul.steps li {
+    display: flex;
+    align-items: end;
+    color: var(--black-color);
+    padding: 0px 20px 5px 0px;
+    position: relative;
+    font-size: 12px;
+    line-height: 12px;
+    min-width: 80px;
+    margin-bottom: 40px;
+    counter-increment: my-counter;
+    padding-left: 50px;
+  }
+
+  @media (min-width: 600px) {
+    .cyberpunk ul.steps li {
+      padding-left: 0px;
+      margin-bottom: 60px;
+    }
+  }
+
+  .cyberpunk.black ul.steps li {
+    color: var(--yellow-color)
+  }
+
+  .cyberpunk ul.steps li:last-child {
+    min-width: 0px;
+    padding: 0px 0px 5px 50px;
+  }
+
+  @media (min-width: 600px) {
+    .cyberpunk ul.steps li:last-child {
+      padding: 0px 0px 5px 0px;
+    }
+  }
+
+  .cyberpunk ul.steps li:before {
+    position: absolute;
+    content: counter(my-counter);
+    color: var(--yellow-color);
+    background-color: var(--purple-color);
+    display: flex;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    bottom: -8px;
+    left: 0px;
+    font-size: 20px;
+    font-weight: 700;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (min-width: 600px) {
+    .cyberpunk ul.steps li:before {
+      bottom: -40px;
+    }
+  }
+
+  .cyberpunk ul.steps li.current:before {
+    background-color: var(--black-color);
+  }
+
+  .cyberpunk.black ul.steps li.current:before {
+    background-color: var(--yellow-color);
+    color: var(--black-color);
+  }
+
+  .cyberpunk ul.steps li:after {
+    position: absolute;
+    content: "";
+    background-color: var(--purple-color);
+    display: none;
+  }
+
+  @media (min-width: 600px) {
+    .cyberpunk ul.steps li:after {
+      display: block;
+      width: calc(100% - 40px);
+      height: 2px;
+      bottom: -20px;
+      left: 40px;
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+
+  .cyberpunk ul.steps li:last-of-type:after {
+    display: none;
+  }
+
+  .cyberpunk ul.steps li.current:after {
+   background-color: var(--black-color);
+  }
+
+  .cyberpunk.black ul.steps li.current:after {
+    background-color: var(--yellow-color);
+  }

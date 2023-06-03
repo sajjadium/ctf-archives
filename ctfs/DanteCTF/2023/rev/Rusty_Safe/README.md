@@ -1,0 +1,3 @@
+Medium
+
+I found this rusty safe in the depths of the hell, but I need a code to (hopefully) open it...

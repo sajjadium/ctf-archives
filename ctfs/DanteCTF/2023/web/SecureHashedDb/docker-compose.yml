@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  app:
+    build: challenge/app
+    ports:
+      - 56563:1999
+    environment:
+      JWT_SECRET: fake-ZDg2NzdiMTEwNjU3OGQ0YzU3ZWIyOWM3NDIzYTIxYjUK
+      BACKEND_HOST: backend
+      MYSQL_DATABASE_HOST: database
+      MYSQL_DATABASE_USER: agent
+      MYSQL_DATABASE_PASSWORD: SUPERSECUREUNCRACKABLEPASSWORD
+      MYSQL_DATABASE_DB: securehash
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_started
+      database:
+        condition: service_healthy
+
+  backend:
+    build: challenge/backend
+    ports:
+      - 56564:1717
+    environment:
+      JWT_SECRET: fake-ZDg2NzdiMTEwNjU3OGQ0YzU3ZWIyOWM3NDIzYTIxYjUK
+    restart: unless-stopped
+
+  database:
+    build: challenge/mysql
+    environment:
+        MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost","-uagent","-pSUPERSECUREUNCRACKABLEPASSWORD"]
+      timeout: 20s
+      retries: 10

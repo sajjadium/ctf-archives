@@ -579,6 +579,11 @@
             <td><a href="https://ctftime.org/event/1481/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/DanteCTF">DanteCTF</a></td>
+            <td><a href="ctfs/DanteCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2000/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/DarkCTF">Dark</a></td>
             <td><a href="ctfs/DarkCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1118/tasks/" target="_blank">CTFtime</a></td>
