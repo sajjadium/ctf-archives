@@ -1,0 +1,12 @@
+version: '3'
+services:
+  safeblog:
+    build: .
+    container_name: safeblog
+    ports:
+      - "8080:8080"
+    environment:
+      - UWSGI_INI=/home/ctf/uwsgi.ini
+      - NGINX_MAX_UPLOAD=1m
+      - LISTEN_PORT=8080
+    restart: always

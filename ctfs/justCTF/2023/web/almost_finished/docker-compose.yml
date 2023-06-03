@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  app:
+    build: ./app/
+    container_name: sandbox_un_one_1
+    read_only: true
+    tmpfs:
+      - /tmp/sandbox
+    ports:
+      - "5900:5900"
+  mongodb:
+    build: ./mongo/
+    network_mode: "container:sandbox_un_one_1"
+

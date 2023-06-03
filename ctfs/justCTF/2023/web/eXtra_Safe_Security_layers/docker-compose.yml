@@ -1,0 +1,9 @@
+version: "3"
+services:
+    web_extra-safe-security-layers:
+        build: .
+        ports:
+            - "10001:3000"
+        restart: always
+        tty: true
+        stdin_open: true

@@ -61,6 +61,10 @@ if __name__ == '__main__':
         if os.system('tar xzvf "%s" -C "%s"' % (f, tmp_path)) != 0:
           os.system('mv "%s" "%s"' % (f, chal_name))
           continue
+      elif f.endswith('.7z'):
+        if os.system('7z x "%s" -o"%s"' % (f, tmp_path)) != 0:
+          os.system('mv "%s" "%s"' % (f, chal_name))
+          continue
       else:
         os.system('mv "%s" "%s"' % (f, chal_name))
         continue

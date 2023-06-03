@@ -1,0 +1,22 @@
+{
+  "name": "extra-safe-security-layers",
+  "version": "1.0.0",
+  "main": "app.js",
+  "author": "tomek7667",
+  "type": "module",
+  "scripts": {
+    "start": "node app.js",
+    "start:watch": "nodemon app.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "1.4.6",
+    "ejs": "3.1.8",
+    "express-rate-limit": "6.7.0",
+    "express-xss-sanitizer": "1.1.6",
+    "puppeteer": "20.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.20"
+  }
+}
