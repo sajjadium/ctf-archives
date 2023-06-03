@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build/client",
+
+    "module": "es6",
+    "target": "es6",
+    "jsx": "react",
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules", "server", "build", "assets", "tools"]
+}

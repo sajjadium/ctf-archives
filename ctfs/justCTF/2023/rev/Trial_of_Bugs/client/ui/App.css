@@ -1,0 +1,53 @@
+.load-status {
+    position: absolute;
+    bottom: 16px;
+    left: 24px;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.error-screen {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.error-screen h1 {
+    position: relative;
+    margin: 0 0 0 0;
+    padding: 0;
+}
+
+.error-screen h1:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -6px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+.error-screen p {
+    margin: 24px 0 0 0;
+    padding: 0;
+}
+
+.error-screen .error-footer {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.disconnect-warning {
+    position: absolute;
+    left: 50%;
+    top: 16px;
+    transform: translateX(-50%);
+    background: rgba(255, 0, 0, 0.5);
+    padding: 16px 32px;
+    font-weight: bold;
+    font-size: 24px;
+}

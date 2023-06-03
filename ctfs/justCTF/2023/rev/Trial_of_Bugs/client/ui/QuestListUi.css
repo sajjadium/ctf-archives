@@ -1,0 +1,113 @@
+.quest-list {
+    position: absolute;
+    left: 30px;
+    top: 120px;
+    max-width: 340px;
+    color: white;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+}
+.quest-info {
+    padding: 8px 24px;
+}
+.quest-title {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    margin: 8px 20px 16px 20px;
+}
+.quest-title h4 {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    font-weight: 800;
+    color: var(--accent);
+    text-shadow: 0 0 6px var(--accent-glow);
+}
+.quest-title-underline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.quest-title-underline > div {
+    position: absolute;
+    background: var(--accent);
+    box-shadow: 0 0 6px var(--accent-glow);
+}
+.quest-title-underline > .u-1, .quest-title-underline > .u-2 {
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+}
+.quest-title-underline > .u-1 {
+    right: -2px;
+}
+.quest-title-underline > .u-2 {
+    top: 4px;
+    left: -2px;
+}
+.quest-title-underline > .c-1, .quest-title-underline > .c-2 {
+    width: 5px;
+    height: 2px;
+    transform: rotate(45deg);
+}
+.quest-title-underline > .c-1 {
+    top: 4px;
+    left: -7px;
+    transform-origin: bottom right;
+}
+.quest-title-underline > .c-2 {
+    right: -7px;
+    top: 0;
+    transform-origin: top left;
+}
+.quest-title-underline > .d-1, .quest-title-underline > .d-2 {
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+}
+.quest-title-underline > .d-1 {
+    left: -6px;
+}
+.quest-title-underline > .d-2 {
+    right: -6px;
+    top: 2px;
+}
+.quest-info-task {
+    position: relative;
+    margin: 8px 0;
+}
+.quest-info-task svg {
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+}
+.quest-appear-anim {
+    position: absolute;
+    left: -30px;
+    top: 0;
+    bottom: 0;
+    right: -60px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0), rgba(255, 255, 255, 255), rgba(255, 255, 255, 255), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0));
+    mask-image: linear-gradient(90deg, transparent 0%, white 10%, white 70%, rgba(0, 0, 0, 0.4) 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, white 10%, white 70%, rgba(0, 0, 0, 0.4) 80%, transparent 100%);
+    background-size: 500% 100%;
+    opacity: 0;
+    animation: quest-update-anim 0.5s linear;
+}
+
+@keyframes quest-update-anim {
+    0% {
+        opacity: 0.8;
+        background-position: 100% 50%;
+    }
+    20% {
+        opacity: 0.8;
+        background-position: 60% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

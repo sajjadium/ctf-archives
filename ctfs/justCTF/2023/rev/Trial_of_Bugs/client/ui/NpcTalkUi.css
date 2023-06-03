@@ -1,0 +1,66 @@
+.npc-dialogue-complete-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.npc-dialogue {
+    position: absolute;
+    left: 140px;
+    right: 140px;
+    bottom: 40px;
+    background: rgba(31, 42, 64, 0.9);
+    box-shadow: 0 0 2px var(--accent);
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    padding: 16px;
+    pointer-events: none;
+}
+
+.npc-dialogue h2, .npc-dialogue p {
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.npc-dialogue h2 {
+    position: absolute;
+    top: -20px;
+    margin-bottom: 16px;
+    background: var(--accent);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 16px;
+}
+
+.npc-dialogue p {
+    height: 50px;
+    margin: 16px 8px;
+    font-weight: 600;
+}
+
+.npc-choice {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    position: absolute;
+    right: 140px;
+    bottom: 180px;
+    width: 280px;
+}
+
+.npc-choice button {
+    display: block;
+    background: rgba(91, 94, 102, 0.93);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 8px;
+    font-weight: bold;
+}
+.npc-choice button:hover {
+    background: rgba(104, 107, 115, 1);
+}

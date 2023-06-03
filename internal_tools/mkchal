@@ -18,6 +18,12 @@ def is_valid(line):
   if line.strip().isnumeric():
     return False
 
+  if all(not l.isalnum() for l in line.strip()):
+    return False
+
+  if line.strip().lower() in ['web', 're', 'rev', 'pwn', 'crypto']:
+    return False
+
   return True
 
 def get_challenge_name(args):
@@ -44,9 +50,6 @@ if __name__ == '__main__':
 
   shutil.rmtree(chal_name, ignore_errors=True)
   os.mkdir(chal_name)
-
-  with open('%s/README.md' % chal_name, 'w') as f:
-    f.write('\n'.join(lines[0:]).strip() + '\n')
 
   for f in files:
     with tempfile.TemporaryDirectory() as tmp_path:
@@ -79,6 +82,12 @@ if __name__ == '__main__':
 
       os.system('mv `find "%s" -name "*" -depth 1` "%s"' % (final_path, chal_name))
       os.remove(f)
+
+  readme = ''
+  if os.path.exists('%s/README.md' % chal_name):
+    readme = open('%s/README.md' % chal_name).read()
+  readme = '\n'.join(lines[0:]).strip() + '\n' + '\n\n' + readme
+  open('%s/README.md' % chal_name, 'w').write(readme.strip() + '\n')
 
   print('\n\n+++++++++++++++++++++++++++++++++++++++++++++++')
   print(chal_name)

@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'Rubik';
+    src: url('../assets/static/fonts/Rubik-VariableFont_wght.ttf');
+}
+
+:root {
+    --accent: #509CB6;
+    --accent-glow: rgba(80, 156, 182, 0.2);
+}
+
+html, body {
+    font-family: 'Rubik', sans-serif;
+    background: #000;
+    color: white;
+    user-select: none;
+}
+#container-aspect-ratio {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    container-type: size;
+    justify-content: center;
+    align-items: center;
+}
+#container {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    max-width: 1920px;
+    max-height: 1080px;
+}
+@container (min-aspect-ratio: 16 / 9) {
+    #container {
+        width: auto;
+        height: 100%;
+    }
+}
+canvas, #app {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
