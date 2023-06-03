@@ -29,7 +29,7 @@ if __name__ == '__main__':
     m = re.fullmatch('/ctf/(\d+)', link.get('href'))
     if m:
       ctf_id = m.group(1)
-      ctf_name = ''.join([t for t in link.text.strip().split() if t.lower() != 'ctf'])
+      ctf_name = ''.join([t[0].upper() + t[1:] for t in link.text.strip().split() if t.lower() != 'ctf'])
       break
 
   full_name = '%s/%d' % (ctf_name, datetime.date.today().year)
