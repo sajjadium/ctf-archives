@@ -1,0 +1,2 @@
+ewang
+Cosmic rays are high-energy particles or clusters of particles (primarily represented by protons or atomic nuclei) that move through space at nearly the speed of light. They originate from the Sun, from outside of the Solar System in our own galaxy, and from distant galaxies. Upon impact with Earth's atmosphere, cosmic rays produce showers of secondary particles, some of which reach the surface, although the bulk is deflected off into space by the magnetosphere or the heliosphere.

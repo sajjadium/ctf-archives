@@ -846,7 +846,11 @@
             <td><a href="https://ctftime.org/event/485/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/HSCTF">HSCTF</a></td>
+            <td rowspan=5><a href="ctfs/HSCTF">HSCTF</a></td>
+            <td><a href="ctfs/HSCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1984/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/HSCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1627/tasks/" target="_blank">CTFtime</a></td>
         </tr>

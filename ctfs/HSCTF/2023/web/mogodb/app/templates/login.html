@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Login</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		/>
+		<link rel="stylesheet" href="/static/index.css" />
+	</head>
+
+	<body>
+		<main>
+			<h3>Login</h3>
+			<form method="POST" id="login" class="card">
+				<input name="user" placeholder="Username" />
+				<input name="password" type="password" placeholder="Password" />
+				<input type="submit" />
+			</form>
+			<a href="/register">Register</a>
+			{% if error %}
+			<div class="alert alert-danger" id="error">{{error}}</div>
+			{% endif %}
+		</main>
+	</body>
+</html>

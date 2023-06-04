@@ -1,0 +1,41 @@
+html {
+	height: 100%;
+}
+body {
+	min-height: 100%;
+}
+main {
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 5px;
+	font-size: 0.9rem;
+}
+
+form > * {
+	margin: 5px;
+}
+
+#error {
+	margin: 5px;
+	display: none;
+}
+
+#lyrics {
+	white-space: pre-line;
+}
+
+#lyrics-container {
+	display: flex;
+	gap: 50px;
+	width: 800px;
+}

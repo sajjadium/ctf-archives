@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>PNG Wizard</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		/>
+		<link rel="stylesheet" href="/static/index.css" />
+	</head>
+
+	<body>
+		<main>
+			<h1>Convert any image to a PNG!</h1>
+			<form method="POST" id="upload" class="card" enctype="multipart/form-data">
+				<div id="upload-header">Upload an image:</div>
+				<input type="file" name="file" />
+				<input type="submit" name="Submit" />
+			</form>
+			{% if error%}
+			<div class="alert alert-danger" id="error">{{error}}</div>
+			{% endif %}
+			<div id="note">Note: File will be deleted after download</div>
+			<a id="version" href="/version">What was this site built with?</a>
+		</main>
+	</body>
+</html>

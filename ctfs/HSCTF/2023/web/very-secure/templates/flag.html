@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="static/css/style.css" />
+    <title>Flag</title>
+</head>
+
+<body>
+    {% if admin %}
+    <h1>Here is your flag: {{flag}}</h1>
+    {% else %}
+    <h1>No flag for you</h1>
+    {% endif %}
+</body>
+
+</html>

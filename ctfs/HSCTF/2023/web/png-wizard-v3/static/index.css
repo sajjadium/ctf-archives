@@ -1,0 +1,34 @@
+main {
+	padding: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+#upload {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 5px;
+	font-size: 0.9rem;
+}
+
+#upload > * {
+	margin: 5px;
+}
+#upload-header {
+	font-size: 1.1rem;
+}
+#note {
+	font-style: italic;
+}
+
+#note,
+#version {
+	font-size: 0.8rem;
+}
+
+#error {
+	margin: 5px;
+}
+

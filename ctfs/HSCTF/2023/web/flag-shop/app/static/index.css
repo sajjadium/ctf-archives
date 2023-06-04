@@ -1,0 +1,54 @@
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 15px;
+	padding: 15px;
+}
+
+body,
+input,
+button {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+	margin-top: 0.1em;
+	margin-bottom: 0.1em;
+}
+
+input,
+td,
+th {
+	padding: 5px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 700px;
+}
+
+table,
+tbody,
+thead,
+th,
+td {
+	border-radius: 5px;
+}
+
+table,
+th {
+	border: 1px solid black;
+}
+
+td {
+	border: 1px solid #b6b6b6;
+}
+
+td:nth-child(1) {
+	width: 60%;
+}
+
+td:nth-child(3) {
+	text-align: center;
+}

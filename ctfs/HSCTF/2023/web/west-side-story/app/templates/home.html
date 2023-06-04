@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>West Side Story</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+		/>
+		<link rel="stylesheet" href="/static/index.css" />
+		<script src="/static/scripts/home.js" defer></script>
+	</head>
+
+	<body>
+		<main>
+			<h3>Welcome, {{session["user"]}}</h3>
+			{% if session["admin"] %}
+			<p>The flag is {{flag}}</p>
+			{% endif %}
+			<div id="lyrics-container">
+				<div class="list-group" id="songs-list"></div>
+				<p id="lyrics"></p>
+			</div>
+			<a href="/logout">Logout</a>
+		</main>
+	</body>
+</html>
