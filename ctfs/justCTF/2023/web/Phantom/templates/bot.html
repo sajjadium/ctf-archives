@@ -1,0 +1,40 @@
+{{define "bot"}}
+
+{{template "header"}}
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script>
+  function onSubmit(token) {
+    document.getElementById("bot-form").submit();
+  }
+</script>
+
+<div class="container mt-5">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <h1>Submit URL</h1>
+      <div class="error mb-3">{{.Error}}</div>
+      {{ if .Success }}
+        <div class="alert alert-success" role="alert">{{.Success}}</div>
+      {{ end }}
+      <form id="bot-form" name="edit" method="POST" action="/bot" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="url">URL</label>
+          <input type="text" id="url" name="url" class="form-control" placeholder="Name" autofocus>
+        </div>
+        <div>
+          <input type="hidden" name="gorilla.csrf.Token" value="{{ .csrfToken }}">
+          <button class="g-recaptcha" 
+        data-sitekey="6Ld4B2YmAAAAABrG0RoL3iFQgSrZYkzn9R2GMO9e" 
+        data-callback='onSubmit' 
+        data-action='submit' class="btn btn-primary btn-block">Submit</button>
+        </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.0/purify.min.js"></script>
+
+
+{{template "footer"}}
+
+{{end}}

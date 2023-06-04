@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        .product-description {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            height: 4.2em;
+            line-height: 1.4em;
+
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <header data-bs-theme="dark">
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <strong>Perfect Product</strong>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="py-5 text-center container" id="addProductBanner">
+            <div class="row py-lg-5">
+                <div class="col-lg-8 col-md-8 mx-auto">
+                    <h1 class="fw-light">Advertise with us!</h1>
+                    <p class="lead text-body-secondary">Perfect products are made every day by people like you.<br>Add
+                        your product today!</p>
+                    <p>
+                        <a id="addProductButton" class="btn btn-primary my-2">Add your product</a>
+                        <a id="later" href="#" class="btn btn-secondary my-2">Remind me later</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-body-tertiary">
+            <div class="container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <% for (var i=0; i < products.length; i++) { %>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <img src=<%=products[i].image %>>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= products[i].name %>
+                                    </h5>
+                                    <p class="card-text product-description">
+                                        <%- products[i].description %>
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-sm btn-outline-secondary product-view"
+                                                data-name="<%=products[i].name %>"
+                                                data-values="<%= JSON.stringify([products[i].description,products[i].price,products[i].tax,products[i].country]) %>">View</button>
+                                        </div>
+                                        <small class="text-body-secondary">
+                                            <%= products[i].price %>
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="text-body-secondary py-5">
+        <div class="container">
+            <p class="float-end mb-1">
+                <a href="#">Back to top</a>
+            </p>
+        </div>
+    </footer>
+
+
+    <div class="modal fade p-4 py-md-5" tabindex="-1" role="dialog" id="productModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow" id="productModalContent"></div>
+        </div>
+    </div>
+
+    <div class="modal fade p-4 py-md-5" tabindex="-1" role="dialog" id="addProductModal">
+        <div class="modal-dialog" role="document">
+            <form action='' method='POST' class="modal-content rounded-4 shadow">
+                <div class="modal-header border-bottom-0">
+                    <h1 class="modal-title fs-5">Add product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-0">
+                    <div class="mb-3">
+                        <label for="apmName" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="apmName" name="name" placeholder="Perfect Product">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apmPrice" class="form-label">Price</label>
+                        <input type="text" class="form-control" id="apmPrice" name="price" placeholder="Just right">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apmTax" class="form-label">Tax</label>
+                        <input type="text" class="form-control" id="apmTax" name="tax" placeholder="100%">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apmCountry" class="form-label">Country</label>
+                        <input type="text" class="form-control" id="apmCountry" name="country" placeholder="Poland">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apmImage" class="form-label">Image</label>
+                        <input type="text" class="form-control" id="apmImage" name="image" placeholder="http://your-domain/image.png">
+                    </div>
+                    <div class="mb-3">
+                        <label for="apmDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="apmDescription" name="description" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+                    <button type="submit" class="btn btn-lg btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script>
+        async function showProductDetails(ev) {
+            console.log(ev);
+            ev.preventDefault();
+            const element = ev.target;
+
+            const pname = element.dataset.name;
+            const values = JSON.parse(element.dataset.values);
+            const phtml = await fetch('/product', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                    v: values,
+                    name: pname
+                })
+            }).then(e => e.text());
+            document.getElementById('productModalContent').innerHTML = phtml;
+            document.getElementById('pmPrint').href = `/product?print=1&name=${pname}&${values.map(e => `v[]=${e}`).join('&')}`
+
+            const productModal = new bootstrap.Modal(document.getElementById('productModal'), {});
+            productModal.show();
+        }
+        for (const el of document.getElementsByClassName("product-view"))
+            el.addEventListener('click', showProductDetails);
+
+        document.getElementById('addProductButton').onclick = function () {
+            const addModal = new bootstrap.Modal(document.getElementById('addProductModal'), {});
+            addModal.show();
+        }
+        document.getElementById('later').onclick = function () {
+            document.getElementById('addProductBanner').style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

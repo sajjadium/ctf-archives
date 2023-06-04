@@ -1,0 +1,16 @@
+[package]
+name = "framework"
+version = "0.1.0"
+edition = "2021"
+exclude = ["chall/"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+quote = "1.0.26"
+threadpool = "1.8.1"
+
+move-core-types = { git = "https://github.com/MystenLabs/sui", branch = "devnet", package = "move-core-types" }
+move-transactional-test-runner = { git = "https://github.com/MystenLabs/sui", branch = "devnet", package = "move-transactional-test-runner" }
+sui-transactional-test-runner = { git = "https://github.com/MystenLabs/sui", branch = "devnet", package = "sui-transactional-test-runner"}
+sui-ctf-framework = { git = "https://github.com/otter-sec/sui-ctf-framework" }

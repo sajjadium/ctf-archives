@@ -1,0 +1,32 @@
+{{define "signup"}}
+
+{{template "header"}}
+
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+      <div class="col-md-6">
+        <h1>Sign Up</h1>
+        <div class="error mb-3">{{.Error}}</div>
+        <form method="POST" action="/signup">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+          </div>
+          <input type="hidden" name="gorilla.csrf.Token" value="{{ .csrfToken }}">
+          <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{{template "footer"}}
+
+{{end}}

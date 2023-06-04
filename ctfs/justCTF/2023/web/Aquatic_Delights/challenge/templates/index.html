@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Aquatic Delights</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <div class="uk-container uk-margin-top">
+            <h1 class="uk-text-center">Aquatic Delights</h1>
+            <div id="justCoins" class="uk-text-primary">justCoins: {{ just_coins }}</div>
+            <hr>
+            <table class="uk-table uk-table-striped uk-text-middle uk-table-middle">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink">Preview</th>
+                        <th class="uk-table-exapnd">Name</th>
+                        <th class="uk-table-shrink">Available</th>
+                        <th class="uk-table-shrink">Price</th>
+                        <th class="uk-table-shrink">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="database">
+                    {% for name, item in shop.items() %}
+                    <tr>
+                        <td><img src="{{ url_for('static', filename=name.replace(' ', '_') +'.png') }}" /></td>
+                        <td>{{ name }}</td>
+                        <td id="available_{{ name.replace(' ', '_') }}">{{ item[1] }}</td>
+                        <td id="price_{{ name.replace(' ', '_') }}">{{ item[0] }}</td>
+                        <td>
+                            <div class="uk-button-group">
+                                <button name="{{ name }}" action="buy" class="uk-button uk-button-primary" href="#">Buy</button>
+                                <button name="{{ name }}" action="sell" class="uk-button uk-button-danger" href="#">Sell</button>
+                                <button name="{{ name }}" action="eat" class="uk-button uk-button-default" href="#" {% if inv.get(name)==0 %}disabled{% endif %} >
+                                    <span id="eat_{{ name.replace(' ', '_') }}" class="uk-text-nowrap">Eat ({{ inv.get(name) }})</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <script>
+            $('button').on('click', function() {
+                let data = {
+                    'name': $(this).attr('name'),
+                    'amount': 1
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/' + $(this).attr('action'),
+                    dataType: 'json',
+                    data: JSON.stringify(data),
+                    contentType: 'application/json',
+                    success: (data) => {
+                        if (data.result == 'OK') {
+                            $("#justCoins").text(`justCoins: ${data.justCoins}`);
+                            for (var key in data.data) {
+                                $(`#available_${key}`).text(data.data[key].available);
+                                $(`#price_${key}`).text(data.data[key].price);
+                                $(`#eat_${key}`).text(`Eat (${data.data[key].eat})`);
+                                if (data.data[key].eat > 0) 
+                                    $(`#eat_${key}`).parent().removeAttr('disabled');
+                                else 
+                                    $(`#eat_${key}`).parent().attr('disabled', 1);
+                            }
+
+                            UIkit.notification({
+                                message: "<span uk-icon='icon: info'></span> " + data.response,
+                                status: 'primary'
+                            });
+                        } else {
+                            UIkit.notification({
+                                message: "<span uk-icon='icon: warning'></span> " + data.reason,
+                                status: 'warning'
+                            });
+                        }
+                    },
+                    error: (data) => {
+                        UIkit.notification({
+                            message: "<span uk-icon='icon: ban'></span> " + data.responseJSON.reason,
+                            status: 'danger'
+                        });
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

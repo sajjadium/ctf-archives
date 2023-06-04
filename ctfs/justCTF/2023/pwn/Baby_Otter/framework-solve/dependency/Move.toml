@@ -1,0 +1,9 @@
+[package]
+name = 'baby_otter_challenge'
+version = '1.0.0'
+
+[dependencies]
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "devnet" }
+
+[addresses]
+challenge =  "8107417ED30FCC2D0B0DFD680F12F6EAD218CB971CB989AFC8D28AD37DA89467"

@@ -1,0 +1,23 @@
+{{define "profile"}}
+
+{{template "header"}}
+
+<div class="container mt-5">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <h1>User Profile</h1>
+      <div class="error mb-3">{{.Error}}</div>
+      <div class="profile">
+        <h4 id="name">Name: {{.Name}}</h2>
+          <h4>Description:</h4>
+        <div id="description">{{.Description}}</div>
+        <a href="/profile/edit"><button>Edit profile</button></a>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+{{template "footer"}}
+
+{{end}}

@@ -1,0 +1,29 @@
+{{define "edit"}}
+
+{{template "header"}}
+
+<div class="container mt-5">
+  <div class="row justify-content-md-center">
+    <div class="col-md-6">
+      <h1>Edit Profile</h1>
+      <div class="error mb-3">{{.Error}}</div>
+      <form name="edit" method="POST" action="/profile/edit" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{{.User.Name}}" autofocus>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" id="description" name="description" class="form-control" placeholder="Description">{{.description}}</input>
+        </div>
+        <input type="hidden" name="gorilla.csrf.Token" value="{{ .csrfToken }}">
+        <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+{{template "footer"}}
+
+{{end}}

@@ -1,0 +1,10 @@
+version: '3'
+services:
+  shop:
+    build: .
+    container_name: aquatic_delights
+    ports:
+      - "8080:8080"
+    environment:
+      - FLAG=justCTF{here_should_be_a_flag}
+    restart: always

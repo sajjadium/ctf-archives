@@ -1,0 +1,23 @@
+
+<div class="modal-header border-bottom-0">
+    <h1 class="modal-title fs-5"><%= productname %></h1>
+    <% if(!print){ %>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <% } %>
+</div>
+<div class="modal-body py-0">
+    <p><%- _1 %></p>
+    <p>
+        <strong>Price:</strong> <%= _2 %> (tax: <%= _3 %>)<br>
+        <strong>Country:</strong> <%= _4 %>
+    </p>
+</div>
+<% if(!print){ %>
+<div class="modal-footer flex-column align-items-stretch w-100 gap-2 pb-3 border-top-0">
+    <a id="pmPrint" class="btn btn-lg btn-secondary" href="#" role="button">Print</a>
+</div>
+<% } %>
+
+<% if(print){ %>
+<script>window.print();</script>
+<% } %>
