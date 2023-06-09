@@ -1,0 +1,1 @@
+CTF's need infrastructure. This year we decided to implement our "own" operating system to get the most out of the bare metal. Furthermore we decided to use some cutting edge technologies that are thought in some classes as KIT. Sadly we lacked the time to build any real challenge. So can you please build your own ?

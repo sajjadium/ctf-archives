@@ -1,0 +1,68 @@
+diff --git a/js/src/jit/IonAnalysis.cpp b/js/src/jit/IonAnalysis.cpp
+--- a/js/src/jit/IonAnalysis.cpp
++++ b/js/src/jit/IonAnalysis.cpp
+@@ -3768,10 +3768,12 @@ static bool TryEliminateBoundsCheck(Boun
+     return false;
+   }
+ 
++  /*
+   if (dominating == dominated) {
+     // We didn't find a dominating bounds check.
+     return true;
+   }
++  */
+ 
+   // We found two bounds checks with the same hash number, but we still have
+   // to make sure the lengths and index terms are equal.
+diff --git a/js/src/jit/JitOptions.cpp b/js/src/jit/JitOptions.cpp
+--- a/js/src/jit/JitOptions.cpp
++++ b/js/src/jit/JitOptions.cpp
+@@ -273,7 +273,7 @@ DefaultJitOptions::DefaultJitOptions() {
+   SET_DEFAULT(spectreValueMasking, false);
+   SET_DEFAULT(spectreJitToCxxCalls, false);
+ #else
+-  SET_DEFAULT(spectreIndexMasking, true);
++  SET_DEFAULT(spectreIndexMasking, false);
+   SET_DEFAULT(spectreObjectMitigations, true);
+   SET_DEFAULT(spectreStringMitigations, true);
+   SET_DEFAULT(spectreValueMasking, true);
+diff --git a/js/src/shell/js.cpp b/js/src/shell/js.cpp
+--- a/js/src/shell/js.cpp
++++ b/js/src/shell/js.cpp
+@@ -10350,6 +10350,7 @@ static JSObject* NewGlobalObject(JSConte
+       return nullptr;
+     }
+ #endif
++    /*
+     if (!JS_InitReflectParse(cx, glob)) {
+       return nullptr;
+     }
+@@ -10372,16 +10373,20 @@ static JSObject* NewGlobalObject(JSConte
+     if (!JS_DefineProperties(cx, glob, TestingProperties)) {
+       return nullptr;
+     }
++    */
+ 
+     if (!fuzzingSafe) {
++      /*
+       if (!JS_DefineFunctionsWithHelp(cx, glob, fuzzing_unsafe_functions)) {
+         return nullptr;
+       }
++      */
+       if (!DefineConsole(cx, glob)) {
+         return nullptr;
+       }
+     }
+ 
++    /*
+     if (!DefineOS(cx, glob, fuzzingSafe, &gOutFile, &gErrFile)) {
+       return nullptr;
+     }
+@@ -10420,6 +10425,7 @@ static JSObject* NewGlobalObject(JSConte
+         return nullptr;
+       }
+     }
++    */
+ 
+     /* Initialize FakeDOMObject. */
+     static const js::DOMCallbacks DOMcallbacks = {InstanceClassHasProtoAtDepth};

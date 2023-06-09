@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Signup</title>
+</head>
+<body>
+    <div class="centered">
+        <form class="signup-form" onsubmit="event.preventDefault(); signup();">
+            <h1>Signup</h1>
+            <input id="username" name="username" placeholder="Username"/>
+            <input id="password" name="password" type="password" placeholder="Password"/>
+            <input type="submit" name="Signup" value="Signup"/>
+        </form>
+    </div>
+
+    <script>
+        function signup(e) {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            fetch('/user/signup', {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "POST",
+                body: JSON.stringify({
+                    username,
+                    password,
+                })
+            }).then(async (res) => {
+                const signupResult = await res.json();
+
+                if (signupResult?.username && signupResult?.id) {
+                    location.href = '/login.html';
+                }
+            }).catch(() => {
+                console.log('Error signing up');
+            });
+        }
+    </script>
+</body>
+</html>

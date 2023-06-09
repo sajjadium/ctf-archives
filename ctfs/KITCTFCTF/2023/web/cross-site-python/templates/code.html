@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/pyscript.css" />
+    <script defer src="/static/pyscript.js"></script>
+    <script defer src="/static/index.js"></script>
+  </head>
+  <body>
+    <div class="menubar">
+      <h1>Python Playground</h1>
+      <a href='#' id="new">New</a>
+      <a href='#' id="edit">Edit</a>
+    </div>
+    <div id="buttons">
+  </div>
+    <py-config>
+      [[interpreters]]
+        src = "/static/pyodide/pyodide.js"
+        name = "pyodide-0.23.0"
+        lang = "python"
+      [splashscreen]
+        enabled = true
+      terminal = false
+    </py-config>
+    <py-terminal"></py-terminal>
+    <py-script>
+{{code}}
+    </py-script>
+  </body>
+</html>

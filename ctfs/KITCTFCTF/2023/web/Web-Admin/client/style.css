@@ -1,0 +1,91 @@
+* {
+    font-family: sans-serif;
+    font-size: 1.1rem;
+    color: antiquewhite;
+    background-color: rgb(0, 92, 84);
+}
+
+html, body {
+    padding: 0;
+}
+
+nav {
+    width: '100%';
+    height: 70px;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    padding: 0;
+}
+
+h1 {
+    width: '100%';
+    margin-bottom: 32px;
+    text-align: center;
+    font-weight: 600;
+    font-size: x-large;
+}
+
+.login-form, .signup-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+}
+
+.login-form > input, .signup-form > input {
+    margin: 8px;
+    padding: 4px;
+    line-height: 3;
+}
+
+a {
+    padding: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: x-large;
+}
+
+/* CSS */
+button {
+    background-color: antiquewhite;
+    cursor: pointer;
+    border-radius: 8px;
+    border-width: 0;
+    color: #333333;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 10px 12px;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+input {
+    background-color: antiquewhite;
+    border-radius: 8px;
+    border-width: 0;
+    color: #333333;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 20px;
+    list-style: none;
+    margin: 0;
+    padding: 10px 12px;
+    text-align: center;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+nav > a {
+    float: right;
+    margin: 12px;
+}

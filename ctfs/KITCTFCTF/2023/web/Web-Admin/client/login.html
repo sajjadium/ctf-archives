@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="centered">
+        <form class="login-form" onsubmit="event.preventDefault(); login();">
+            <h1>Login</h1>
+            <input id="username" name="username" placeholder="Username"/>
+            <input id="password" name="password" type="password" placeholder="Password"/>
+            <input type="submit" name="Login" value="Login" />
+        </form>
+    </div>
+
+    <script>
+        function login(e) {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            
+            fetch('/user/login?' + new URLSearchParams({
+                username: username,
+                password: password,
+            })).then(async (res) => {
+                const loginResult = await res.json();
+
+                if (loginResult?.auth_token) {
+                    localStorage.setItem("authorization", loginResult.auth_token);
+                    location.href = '/';
+                }
+            }).catch(() => {
+                console.log('Error logging in');
+            });
+        }
+    </script>
+</body>
+</html>

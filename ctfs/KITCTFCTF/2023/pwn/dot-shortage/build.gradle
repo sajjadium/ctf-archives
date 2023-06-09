@@ -1,0 +1,49 @@
+plugins {
+	id 'java'	
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'commons-jxpath:commons-jxpath:1.3'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.intrigus.ctf.gpnctf23.Main'
+    }
+}
+
+task buildReadFlag(type: Exec) {
+    it.inputs.file('readflag.c')
+    it.outputs.file('readflag')
+    commandLine 'gcc', 'readflag.c', '-o', 'readflag'
+}
+
+task createHandout(type: Tar) {
+    dependsOn("buildReadFlag")
+    dependsOn("shadowJar")
+    def outputDir = file("../handout")
+    def baseName = "dot-shortage"
+    archiveFileName = "${baseName}.tar.gz"
+    compression = Compression.GZIP
+    destinationDirectory = outputDir
+    from(".") {
+        filesMatching("flag.txt") {
+            filter {
+                String line -> line.replaceAll("\\{.*\\}", "{fake_flag}")
+            }
+        }
+        exclude(".gradle/")
+        exclude("build/")
+        exclude("challenge.md")
+        into(baseName)
+    }
+    from(".") {
+        include("build/libs/")
+        into(baseName)
+    }
+}
