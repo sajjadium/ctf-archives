@@ -1,9 +1,0 @@
-#!/bin/sh
-
-mount -t proc none /proc
-mount -t sysfs none /sys
-
-chown 0:0 /flag.txt
-chmod 400 /flag.txt
-
-exec su -l ctf /bin/sh -c ./sandbox

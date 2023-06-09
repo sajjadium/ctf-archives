@@ -1,0 +1,13 @@
+diff --git a/src/compiler/typer.cc b/src/compiler/typer.cc
+index 1df9506319b..3cbe8c3f5d6 100644
+--- a/src/compiler/typer.cc
++++ b/src/compiler/typer.cc
+@@ -2278,7 +2278,7 @@ Type Typer::Visitor::TypeStringFromCodePointAt(Node* node) {
+ }
+ 
+ Type Typer::Visitor::TypeStringIndexOf(Node* node) {
+-  return Type::Range(-1.0, String::kMaxLength, zone());
++  return Type::Range(-1.0, String::kMaxLength - 1.0, zone());
+ }
+ 
+ Type Typer::Visitor::TypeStringLength(Node* node) {

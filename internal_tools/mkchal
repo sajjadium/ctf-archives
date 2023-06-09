@@ -9,6 +9,9 @@ import tempfile
 import shutil
 
 def is_valid(line):
+  if re.search('\d+[ \t]+points', line):
+    return False
+
   if line.lower().startswith('points:') or line.lower().startswith('solves:'):
     return False
 

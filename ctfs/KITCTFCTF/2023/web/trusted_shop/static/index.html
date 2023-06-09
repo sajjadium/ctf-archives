@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>
+    <title>Bookstore</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Welcome to our bookstore</h1>
+
+<ul class="product-list">
+</ul>
+<script>
+    const data = JSON.parse(':data')
+    const list = document.querySelector('.product-list')
+
+    data.forEach(i => {
+      const e = document.createElement('li')
+      e.innerText = `${i.title}. Price: ${i.price} `
+
+      const l = document.createElement('a')
+      l.href = `/checkout/${i.id}`
+      l.innerText = 'Buy'
+      e.appendChild(l)
+
+      list.appendChild(e)
+    })
+</script>
+</body>

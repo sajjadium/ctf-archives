@@ -1,0 +1,10 @@
+[package]
+name = "optimal_technology_project"
+version = "0.2.0"
+edition = "2021"
+
+[dependencies]
+rand = "0.8.5"
+base64 = "0.13.0"
+
+[features]

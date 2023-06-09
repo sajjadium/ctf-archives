@@ -1,3 +1,0 @@
-php: php-fpm
-cleanup: php /var/www/html/cleanup.php
-nginx: nginx -g "daemon off; pid /var/lib/nginx/tmp/nginx.pid;"

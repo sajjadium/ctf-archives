@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task tracker</title>
+    <meta name="description" content="Just a pure semantic HTML markup, without .classes.  Built with Pico CSS.">
+
+    <!-- Pico.css (Classless version) -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css">
+</head>
+
+<body>
+
+<main>
+    <section>
+        <h1>Task tracker</h1>
+        Keep track of all the tasks you have completted.
+    </section>
+    <section>
+        <ul>
+            {% for log in logs %}
+            <li>{{ log }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+    <section>
+        <form method="post" action="/">
+            <input type="text" name="task" placeholder="Some task you did">
+            <input type="submit" value="Save">
+        </form>
+    </section>
+</main>
+</body>
