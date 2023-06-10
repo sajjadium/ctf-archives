@@ -1,0 +1,1 @@
+I created an Arduino simulator CLI you can interact with at runtime. You can run it with code to start off, and then its built in interpreter will let you run code as you go. It's supposed to print out the flag but it's not working. Can you help me figure out what's wrong? I ran the main.ino file on the board, included below with the flag redacted.

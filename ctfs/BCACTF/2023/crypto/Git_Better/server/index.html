@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version Control System 0.1.22</title>
+    <script>
+        /**
+         * @param {MouseEvent} event
+         */
+        function requestResponse(event) {
+            (async () => {
+                const block = [...document.getElementsByTagName("textarea")].find(area => area.id === "block-input");
+                const outputArea = [...document.getElementsByTagName("div")].find(div => div.id === "output");
+                if (!block || !outputArea) alert("Page error, please try again.");
+    
+                try {
+                    console.log(block.value);
+                    const response = await fetch("/submit", { method: "POST", body: block.value });
+                    const text = await response.text();
+                    outputArea.textContent = text;
+                } catch (e) {
+                    alert("Error communicating with server.");
+                    return;
+                }
+            })();
+            console.log(":)");
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            display:flex;
+            align-items:center;
+            justify-content: center;
+            /* width: 100vw; */
+            height: 90vh;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .main {
+            align-self:center;
+            justify-self: center;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        textarea.input {
+            width: 50vw;
+            height: 30vh;
+            box-sizing: border-box;
+            
+            font-size: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+
+
+            appearance: none;
+            outline: none;
+            border: 1px solid black;
+            border-radius: 1rem;
+            padding: 1rem;
+            resize: none;
+        }
+        button.submit-button {
+            appearance: none;
+            outline: none;
+            border: 1px solid black;
+            background-color: transparent;
+            margin: 1rem;
+
+            width: 10vw;
+            height: 5vh;
+
+            cursor: pointer;
+        }
+        div.output-area {
+            border: 1px solid black;
+            padding: 1rem;
+
+            font-family: 'Courier New', Courier, monospace;
+
+            white-space: pre;
+
+            width: 50vw;
+            height: 20vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>We appreciate your help and cooperation</h1>
+        <h3>Enter the block here</h3>
+        <textarea id="block-input" class="input"></textarea>
+        <button onmousedown="requestResponse()" class="submit-button">Submit</button>
+        <div id="output" class="output-area" />
+    </div>
+</body>
+</html>
