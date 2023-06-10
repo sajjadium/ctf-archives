@@ -1,0 +1,238 @@
+diff --git a/orig/linux-6.3.5/arch/x86/tools/relocs_common.c b/linux-6.3.5/arch/x86/tools/relocs_common.c
+index 6634352..fc0f107 100644
+--- a/orig/linux-6.3.5/arch/x86/tools/relocs_common.c
++++ b/linux-6.3.5/arch/x86/tools/relocs_common.c
+@@ -1,5 +1,9 @@
+ // SPDX-License-Identifier: GPL-2.0
+ #include "relocs.h"
++#include <linux/limits.h>
++
++#define MAX_LINE_LENGTH 1000
++#define MAX_WORDS 100
+ 
+ void die(char *fmt, ...)
+ {
+@@ -16,60 +20,17 @@ static void usage(void)
+ 	    " vmlinux\n");
+ }
+ 
+-int main(int argc, char **argv)
++int relocs_main(const char *fname, int show_absolute_syms, int show_absolute_relocs, int show_reloc_info, int as_text, int use_real_mode)
+ {
+-	int show_absolute_syms, show_absolute_relocs, show_reloc_info;
+-	int as_text, use_real_mode;
+-	const char *fname;
+ 	FILE *fp;
+-	int i;
+ 	unsigned char e_ident[EI_NIDENT];
+ 
+-	show_absolute_syms = 0;
+-	show_absolute_relocs = 0;
+-	show_reloc_info = 0;
+-	as_text = 0;
+-	use_real_mode = 0;
+-	fname = NULL;
+-	for (i = 1; i < argc; i++) {
+-		char *arg = argv[i];
+-		if (*arg == '-') {
+-			if (strcmp(arg, "--abs-syms") == 0) {
+-				show_absolute_syms = 1;
+-				continue;
+-			}
+-			if (strcmp(arg, "--abs-relocs") == 0) {
+-				show_absolute_relocs = 1;
+-				continue;
+-			}
+-			if (strcmp(arg, "--reloc-info") == 0) {
+-				show_reloc_info = 1;
+-				continue;
+-			}
+-			if (strcmp(arg, "--text") == 0) {
+-				as_text = 1;
+-				continue;
+-			}
+-			if (strcmp(arg, "--realmode") == 0) {
+-				use_real_mode = 1;
+-				continue;
+-			}
+-		}
+-		else if (!fname) {
+-			fname = arg;
+-			continue;
+-		}
+-		usage();
+-	}
+-	if (!fname) {
+-		usage();
+-	}
+ 	fp = fopen(fname, "r");
+ 	if (!fp) {
+ 		die("Cannot open %s: %s\n", fname, strerror(errno));
+ 	}
+ 	if (fread(&e_ident, 1, EI_NIDENT, fp) != EI_NIDENT) {
+-		die("Cannot read %s: %s", fname, strerror(errno));
++		die("Cannot read from fp");
+ 	}
+ 	rewind(fp);
+ 	if (e_ident[EI_CLASS] == ELFCLASS64)
+@@ -80,6 +41,160 @@ int main(int argc, char **argv)
+ 		process_32(fp, use_real_mode, as_text,
+ 			   show_absolute_syms, show_absolute_relocs,
+ 			   show_reloc_info);
++	
+ 	fclose(fp);
+ 	return 0;
+ }
++
++void handle_upload(const char *fname) {
++	FILE *fp = fopen(fname, "w");
++	if (!fp) {
++		die("Cannot open %s: %s\n", fname, strerror(errno));
++	}
++	char ch = 0;
++	int n, total = 0;
++	while ((n = fread(&ch, 1, 1, stdin)) > 0) {
++		if (ch == '\n')
++			break;
++		fwrite(&ch, 1, 1, fp);
++		total += n;
++		if (total > 0x100) {
++			die("File too large\n");
++		}
++	}
++	fclose(fp);
++}
++
++char *strip(char *s)
++{
++	char *p = s + strlen(s) - 1;
++	while (p >= s && (*p == '\n' || *p == '\r')) {
++		*p = '\0';
++		p--;
++	}
++	return s;
++}
++
++void get_args(int *argc, char **argv)
++{
++	char raw_input[MAX_LINE_LENGTH];
++	printf("> ");
++	fgets(raw_input, MAX_LINE_LENGTH, stdin);
++	strip(raw_input);
++	*argc = 0;
++	char* token = strtok(raw_input, " ");
++    while (token != NULL && *argc < MAX_WORDS) {
++        argv[*argc] = strdup(token);
++        (*argc)++;
++        token = strtok(NULL, " ");
++    }
++}
++
++void sanitize_fname(const char *fname)
++{
++	if (!fname)
++		return;
++	if (strlen(fname) < 6)
++		die("Filename too short: %s\n", fname);
++	if (strncmp(fname, "/tmp/", 5) != 0)
++		die("Filename must start with /tmp/: %s\n", fname);
++	char allowed[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
++	int i;
++	for (i = 5; fname[i]; i++) {
++		if (!strchr(allowed, fname[i])) {
++			die("Invalid character in filename: %s\n", fname);
++		}
++	}
++}
++
++int main(int _argc, char **_argv)
++{
++	int show_absolute_syms, show_absolute_relocs, show_reloc_info;
++	int as_text, use_real_mode;
++	const char *fname;
++	FILE *fp;
++	int i;
++	int argc;
++	char *argv[MAX_WORDS];
++
++	puts("Welcome to <call relocs.c as a service>!");
++	puts("Do you feel like pwning some OG code today? Hopefully yes :D");
++		
++	for (;;)
++	{
++		// 1. Get args from command line
++		get_args(&argc, argv);
++
++		// 2. Parse args
++		show_absolute_syms = 0;
++		show_absolute_relocs = 0;
++		show_reloc_info = 0;
++		as_text = 0;
++		use_real_mode = 0;
++		fname = NULL;
++		for (i = 1; i < argc; i++) {
++			char *arg = argv[i];
++			if (*arg == '-') {
++				if (strcmp(arg, "--abs-syms") == 0) {
++					show_absolute_syms = 1;
++					continue;
++				}
++				if (strcmp(arg, "--abs-relocs") == 0) {
++					show_absolute_relocs = 1;
++					continue;
++				}
++				if (strcmp(arg, "--reloc-info") == 0) {
++					show_reloc_info = 1;
++					continue;
++				}
++				if (strcmp(arg, "--text") == 0) {
++					as_text = 1;
++					continue;
++				}
++				if (strcmp(arg, "--realmode") == 0) {
++					use_real_mode = 1;
++					continue;
++				}
++			}
++			else if (!fname) {
++				fname = arg;
++				continue;
++			}
++		}
++
++		sanitize_fname(fname);
++
++		// 3. Do stuffs
++		if (!strcmp(argv[0], "upload")) {
++			if (fname)
++				handle_upload(fname);
++		} else if (!strcmp(argv[0], "relocs")) {
++			if (fname) {
++				relocs_main(fname, show_absolute_syms, show_absolute_relocs, show_reloc_info, as_text, use_real_mode);
++			}
++		} else if (!strcmp(argv[0], "print_flag")) {
++			relocs_main("flag.elf", show_absolute_syms, show_absolute_relocs, show_reloc_info, as_text, use_real_mode);
++		} else if (!strcmp(argv[0], "help")) {
++			puts("Commands:");
++			puts("  upload <fname>");
++			puts("  relocs <fname> --abs-syms --abs-relocs --reloc-info --text --realmode");
++			puts("  print_flag --abs-syms --abs-relocs --reloc-info --text --realmode");
++			puts("  help");
++			puts("  exit");
++		}
++		else if (!strcmp(argv[0], "exit")) {
++			puts("Bye!");
++			exit(0);
++		}
++		else {
++			puts("Unknown command");
++		}
++		
++		// 4. Clear args
++		for (int i = 0; i < argc; i++) {
++			free(argv[i]);
++		}
++
++		argc = 0;
++	}
++}

@@ -1,0 +1,19 @@
+[package]
+name = "jitland"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+solana_rbpf = "0.4.0"
+syscalls = { version = "0.6.12", default-features = false }
+hex = "0.4.3"
+
+[[bin]]
+name = "server"
+path = "src/server.rs"
+
+[[bin]]
+name = "client"
+path = "src/client.rs"

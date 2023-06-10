@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  backend:
+    build: backend/
+    container_name : "proxed_backend"
+    environment:
+      - ADMIN_SECRET=secret
+      - FLAG=flag{placeholder}
+
+  proxy:
+    build: proxy/
+    container_name: "proxed_proxy"
+    environment:
+      - BACKEND_DOMAIN=proxed_backend
+    ports:
+      - 80:8000
+
+  bot:
+    build: bot/
+    container_name: "proxed_bot"
+    environment:
+      - ADMIN_SECRET=secret
+      - URL=http://proxed_proxy:8000/

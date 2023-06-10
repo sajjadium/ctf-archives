@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+  mysql_shop:
+    build: shop/db
+    container_name: "flagify3_shop_db"
+    privileged: false
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=shop_db
+
+  mysql_bank:
+    build: bank/db
+    container_name: "flagify3_bank_db"
+    privileged: false
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=bank_db
+    
+  shop:
+    build: shop/server
+    container_name : "flagify3_shop"
+    volumes:
+      - ./shop/server:/app
+    environment:
+      - SHARED_SECRET=shared_secret
+      - PAYURL=http://bank.flagify3.fibonhack.it
+      - APPURL=http://shop.flagify3.fibonhack.it
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=shop_db
+      - DBHOST=flagify3_shop_db
+
+  bank:
+    build: bank/server
+    container_name: "flagify3_bank"
+    volumes:
+      - ./bank/server:/app
+    environment:
+      - SHARED_SECRET=shared_secret
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=bank_db
+      - DBHOST=flagify3_bank_db
+      - CAPTCHA_KEY=captcha_key
+
+  nginx:
+    build: ./
+    container_name: "flagify3_frontend"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
+
+  bot:
+    build: bot/
+    container_name: "flagify3_bot"
+    environment:
+      - PUBLIC_DOMAIN=bank.flagify3.fibonhack.it
+      - INTERNAL_DOMAIN=flagify3_frontend
+      - ADMIN_PASSWORD=admin_password

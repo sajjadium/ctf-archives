@@ -1,0 +1,5 @@
+export {default as LoginForm} from "./login"
+export {default as RegisterForm} from "./register"
+export {default as Home} from "./home"
+export {default as Pay} from "./pay"
+export {default as Report} from "./report"
