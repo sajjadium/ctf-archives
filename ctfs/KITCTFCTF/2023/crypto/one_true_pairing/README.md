@@ -1,0 +1,2 @@
+The new chip I bought might have been too cheap. After installing it, my computer sometimes behaved weirdly. Upon researching, I found some weird communication with a single remote host. They all start with "RDY" and continue with seemingly random data. Because I was not successful at extracting more information from the suspicious chip, I tried exploring the remote host.
+I could extract the python script that is running on the remote. One dependency is missing. I replaced it with a script that behaves similar. Please find out, what information you can get from the remote.

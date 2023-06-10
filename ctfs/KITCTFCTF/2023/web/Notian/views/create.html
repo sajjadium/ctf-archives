@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/resources/css/pico.css">
+    <title>Notian - Next generation notes app</title>
+</head>
+<body>
+
+<nav class="container-fluid">
+    <ul>
+        <li>
+            <a href="/" class="contrast">
+                <strong>Notian</strong>
+            </a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a href="/list">Your notes</a>
+        </li>
+        <li>
+            <a href="/create">Add note</a>
+        </li>
+    </ul>
+</nav>
+
+<main class="container">
+    <div class="grid">
+        <section>
+            <h2>Add note</h2>
+            <form
+                hx-target="body"
+                hx-post="/create"
+                _="on submit transition opacity to 0 then remove me"
+            >
+                <textarea name="content">Hello World 2</textarea>
+                <input type="submit">
+            </form>
+        </section>
+    </div>
+</main>
+
+<script src="/resources/js/htmx.min.js"></script>
+<script src="/resources/js/hyperscript.min.js"></script>
+
+</body>
+</html>
