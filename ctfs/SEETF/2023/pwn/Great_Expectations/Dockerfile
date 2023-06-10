@@ -1,0 +1,8 @@
+FROM ubuntu:20.04 AS app
+
+COPY chall /app/run
+COPY flag /flag
+
+# You don't need to care about this
+FROM pwn.red/jail
+COPY --from=app / /srv

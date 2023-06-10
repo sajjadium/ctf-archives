@@ -1630,7 +1630,11 @@
             <td><a href="https://ctftime.org/event/1362/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/SEETF">SEETF</a></td>
+            <td rowspan=2><a href="ctfs/SEETF">SEETF</a></td>
+            <td><a href="ctfs/SEETF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1828/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/SEETF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1543/tasks/" target="_blank">CTFtime</a></td>
         </tr>

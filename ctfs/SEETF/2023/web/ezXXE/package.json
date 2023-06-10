@@ -1,0 +1,19 @@
+{
+    "name": "ezxxe",
+    "version": "1.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "zeyu2001",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.18.2",
+      "express-fileupload":"1.4.0",
+      "express-session": "^1.17.3",
+      "session-file-store": "^1.5.0",
+      "libxmljs": "^0.19.10"
+    },
+    "devDependencies": {}
+  }

@@ -1,0 +1,15 @@
+version: "3"
+services:
+  chall:
+    build: app
+    restart: always 
+    ports:
+      - 8000:80
+  admin:
+    build: admin
+    restart: always 
+    ports:
+      - 8001:80
+    environment:
+      - FLAG=SEE{redacted}
+    privileged: true

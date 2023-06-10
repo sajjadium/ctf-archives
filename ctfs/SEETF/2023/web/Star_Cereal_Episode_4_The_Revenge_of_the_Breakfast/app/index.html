@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>Star Cereal</title>
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="mt-3">Star Cereal</h1>
+        <form action="/set" method="POST">
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="customFile">Upload Cereal</label>
+                <input type="file" class="form-control" id="cereal" accept="image/png" required />
+                <input type="hidden" id="cereal-data" name="cereal" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/xRwy_rKc7gI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <!-- SCRIPT -->
+        <script src="/static/main.js"></script>
+    </div>
+</body>
+
+</html>

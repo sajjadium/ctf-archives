@@ -1,0 +1,9 @@
+version: "3"
+services:
+  chall:
+    build: .
+    restart: always 
+    environment:
+      - FLAG=SEE{aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa}  # redacted
+    ports:
+      - 8000:3000

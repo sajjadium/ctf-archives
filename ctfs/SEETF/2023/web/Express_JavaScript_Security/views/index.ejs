@@ -1,0 +1,31 @@
+<html>
+    <title>
+        Express Javascript Secure
+    </title>
+    <form>
+        <input type="text" name="username" placeholder="username" />
+        <select name="font">
+            <option value="Arial">Arial</option>
+            <option value="Comic Sans MS">Comic Sans MS</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Impact">Impact</option>
+            <option value="Lucida Console">Lucida Console</option>
+            <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+            <option value="Palatino Linotype">Palatino Linotype</option>
+            <option value="Tahoma">Tahoma</option>
+            <option value="Times New Roman">Times New Roman</option>
+            <option value="Trebuchet MS">Trebuchet MS</option>
+            <option value="Verdana">Verdana</option>
+        </select>
+        <input type="submit" value="Submit" />
+    </form>
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var username = document.querySelector('input[name="username"]').value;
+            var font = document.querySelector('select[name="font"]').value;
+            window.location.href = '/greet?name=' + username + '&font=' + font + '&fontSize=20'
+        });
+    </script>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script defer src="/static/module.js"></script>
+  <script defer src="/static/main.js"></script>
+</head>
+
+<body class="bg-gray-800">
+  <div class="text-center mt-10">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+      The Cult of Wasmabism
+    </h1>
+    <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">
+      We are the New Web Order. We will not stop until WebAssembly is the only way to run code on the web.
+      With the power of the Holy Pigeon, we will bring traditional JavaScriptianity to its knees.
+    </p>
+  </div>
+  <h2 class="text-2xl font-bold text-center text-gray-100 dark:text-gray-200">
+    Save New Note
+  </h2>
+  <p class="text-center text-gray-500 dark:text-gray-400">
+    To prevent conversion to JavaScriptianity, any notes with characters "j" or "s" will be censored.
+  </p>
+  <form id="note-form" action="/" method="GET">
+    <textarea id="note" name="note" class="w-full h-64 p-4 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600">Down with the JS empire!</textarea>
+    <button type="submit" class="w-full px-4 py-2 mt-4 font-semibold text-white bg-gray-800 rounded-lg hover:bg-gray-700 dark:bg-gray-600 dark:hover:bg-gray-500">
+      Save
+    </button>
+  </form>
+  <h2 class="text-2xl font-bold text-center text-gray-100 dark:text-gray-200">
+    Your Saved Note
+  </h2>
+  <div id="note-container" class="w-full h-64 p-4 bg-gray-100 border border-gray-300 rounded-lg dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600">
+    <p id="note-text"></p>
+  </div>
+</body>
+
+</html>

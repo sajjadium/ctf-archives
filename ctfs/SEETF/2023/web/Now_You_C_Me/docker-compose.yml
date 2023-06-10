@@ -1,0 +1,20 @@
+version: "3"
+services:
+  chall:
+    build: app
+    restart: always 
+    ports:
+      - 8000:80
+    read_only: true
+    environment:
+      - SECRET=Basic UkVEQUNURUQ6UkVEQUNURUQ= # REDACTED:REDACTED
+      - FLAG=SEE{REDACTED}
+  admin:
+    build: admin
+    restart: always 
+    ports:
+      - 8001:80
+    environment:
+      - USERNAME=REDACTED
+      - PASSWORD=REDACTED
+    privileged: true

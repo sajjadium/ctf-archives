@@ -1,0 +1,8 @@
+version: "3"
+services:
+  chall:
+    build: .
+    restart: always
+    read_only: true
+    ports:
+      - 8000:3000

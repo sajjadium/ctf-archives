@@ -1,0 +1,3 @@
+FROM plantuml/plantuml-server:tomcat
+
+COPY flag.txt /usr/local/tomcat/flag.txt

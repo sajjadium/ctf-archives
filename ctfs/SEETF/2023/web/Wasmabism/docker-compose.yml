@@ -1,0 +1,19 @@
+version: "3"
+services:
+  chall:
+    build: app
+    restart: always
+    read_only: true
+    ports:
+      - 8000:80
+    environment:
+      - FLAG=REDACTED
+      - SECRET=REDACTED
+  admin:
+    build: admin
+    restart: always 
+    ports:
+      - 8001:80
+    environment:
+      - SECRET=REDACTED
+    privileged: true
