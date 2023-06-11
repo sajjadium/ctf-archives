@@ -1,0 +1,1 @@
+I went to a blacksmith (sometimes called a smithy) the other day to get my copper sword fixed. When I came to pick it up, the smith told me he RSA-encoded it, and gave me a key to decrypt it with. Unfortunately, he accidentally gave me a public key instead of a private key, and now I can't access my sword.
