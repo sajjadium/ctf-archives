@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome!</h1>
+      {% if file_link %}
+      <p>File uploaded: <a href="{{ file_link }}">{{ file_link }}</a></p>
+      {% endif %}
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+          {{ error }}
+        </div>
+        {% endif %}
+        <div class="mb-3">
+          <label for="file" class="form-label">Upload File</label>
+          <input class="form-control" type="file" id="file" name="file">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

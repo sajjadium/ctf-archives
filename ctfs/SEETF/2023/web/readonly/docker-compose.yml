@@ -1,0 +1,23 @@
+version: "3"
+services:
+  php:
+    build: ./php
+    restart: always
+    read_only: true # no webshells for you
+    volumes:
+      - ./readonly:/tmp:ro 
+      - ./readonly:/var/www/html:ro 
+      - ./readonly:/var/lock:ro 
+      - ./readonly:/dev/shm:ro 
+      - ./readonly:/var/tmp:ro 
+      - ./readonly:/dev/mqueue:ro 
+  nginx:
+    image: nginx:latest
+    restart: always 
+    ports:
+      - "2000:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./php/app:/app/
+    depends_on:
+      - php

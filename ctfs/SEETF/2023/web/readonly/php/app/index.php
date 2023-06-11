@@ -1,0 +1,1 @@
+<?php error_reporting(0) && (isset($_GET["page"]) && include "/app/".$_GET["page"]) || header("Location: /?page=birds.html") ?>

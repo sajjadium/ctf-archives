@@ -1,0 +1,12 @@
+version: "2.4"
+services:
+  web:
+    build: .
+    ports:
+      - "29384:5000"
+    read_only: true
+    restart: always
+    tmpfs: 
+      - /home/userr/app/static:uid=1010
+    image: file-uploader-1
+    container_name: file-uploader-1

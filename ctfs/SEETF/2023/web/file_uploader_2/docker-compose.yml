@@ -1,0 +1,12 @@
+version: "2.4"
+services:
+  web:
+    build: .
+    ports:
+      - "10293:5000"
+    read_only: true
+    restart: always
+    tmpfs: 
+      - /home/userr/app/templates/static:uid=1010
+    image: file-uploader-2
+    container_name: file-uploader-2

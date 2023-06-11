@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        background-color: #f2f2f2;
+      }
+
+      .form-login {
+        background-color: #ffffff;
+        padding: 50px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      h4 {
+        color: #444444;
+        font-size: 2em;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .form-control {
+        border-radius: 5px;
+        margin-bottom: 20px;
+        font-size: 1.2em;
+        padding: 10px;
+        border: none;
+        border: 1px solid #d2d2d2;
+      }
+
+      .wrapper {
+        text-align: center;
+      }
+
+      .group-btn {
+        display: inline-block;
+        margin-top: 20px;
+      }
+
+      .btn-primary {
+        background-color: #1abc9c;
+        border-color: #1abc9c;
+        border-radius: 5px;
+        padding: 10px 30px;
+        font-size: 1.2em;
+        transition: background-color 0.2s;
+      }
+
+      .btn-primary:hover {
+        background-color: #16a085;
+        border-color: #16a085;
+      }
+
+      .col-centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-centered">
+          <div class="form-login">
+            <h4>Login to File Uploader 2</h4>
+            {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+            <form action="{{ url_for('login') }}" method="POST">
+              <input type="text" id="username" name="username" class="form-control"
+                placeholder="Username" required />
+              <input type="password" id="password" name="password" class="form-control"
+                placeholder="Password" required />
+              <div class="wrapper">
+                <span class="group-btn">
+                  <button type="submit" class="btn btn-primary btn-md">Login</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
