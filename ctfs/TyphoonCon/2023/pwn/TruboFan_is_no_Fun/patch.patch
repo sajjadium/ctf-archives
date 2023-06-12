@@ -1,0 +1,62 @@
+diff --git a/src/compiler/simplified-lowering.cc b/src/compiler/simplified-lowering.cc
+index aada8a8cfb..46716efeb9 100644
+--- a/src/compiler/simplified-lowering.cc
++++ b/src/compiler/simplified-lowering.cc
+@@ -1871,7 +1871,7 @@ class RepresentationSelector {
+ 
+     // Conversions, if requested and needed, will be handled by the
+     // representation changer, not by the lower-level Checked*Bounds operators.
+-    CheckBoundsFlags new_flags =
++    CheckBoundsFlags const new_flags =
+         p.flags().without(CheckBoundsFlag::kConvertStringAndMinusZero);
+ 
+     if (length_type.Is(Type::Unsigned31())) {
+@@ -1890,10 +1890,10 @@ class RepresentationSelector {
+             // The bounds check is redundant if we already know that
+             // the index is within the bounds of [0.0, length[.
+             // TODO(neis): Move this into TypedOptimization?
+-            new_flags |= CheckBoundsFlag::kAbortOnOutOfBounds;
++            DeferReplacement(node, node->InputAt(0));
++          } else {
++            ChangeOp(node, simplified()->CheckedUint32Bounds(feedback, new_flags));
+           }
+-          ChangeOp(node,
+-                   simplified()->CheckedUint32Bounds(feedback, new_flags));
+         }
+       } else if (p.flags() & CheckBoundsFlag::kConvertStringAndMinusZero) {
+         VisitBinop<T>(node, UseInfo::CheckedTaggedAsArrayIndex(feedback),
+diff --git a/src/compiler/typer.cc b/src/compiler/typer.cc
+index 3cf9de67b6..36d9fc4eac 100644
+--- a/src/compiler/typer.cc
++++ b/src/compiler/typer.cc
+@@ -1722,7 +1722,7 @@ Type Typer::Visitor::JSCallTyper(Type fun, Typer* t) {
+   }
+   switch (function.shared(t->broker()).builtin_id()) {
+     case Builtin::kMathRandom:
+-      return Type::PlainNumber();
++      return Type::Range(0.0, 1.0, t->zone());
+     case Builtin::kMathFloor:
+     case Builtin::kMathCeil:
+     case Builtin::kMathRound:
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index 7c57acde43..09cd7420f2 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -3340,7 +3340,7 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+                        String::NewFromUtf8Literal(isolate, "global"));
+   global_template->Set(isolate, "version",
+                        FunctionTemplate::New(isolate, Version));
+-
++/*
+   global_template->Set(isolate, "print", FunctionTemplate::New(isolate, Print));
+   global_template->Set(isolate, "printErr",
+                        FunctionTemplate::New(isolate, PrintErr));
+@@ -3390,7 +3390,7 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+     global_template->Set(isolate, "async_hooks",
+                          Shell::CreateAsyncHookTemplate(isolate));
+   }
+-
++*/
+   if (options.throw_on_failed_access_check ||
+       options.noop_on_failed_access_check) {
+     global_template->SetAccessCheckCallbackAndHandler(

@@ -1965,7 +1965,11 @@
             <td><a href="https://ctftime.org/event/1442/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/TyphoonCon">TyphoonCon</a></td>
+            <td rowspan=3><a href="ctfs/TyphoonCon">TyphoonCon</a></td>
+            <td><a href="ctfs/TyphoonCon/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1997/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/TyphoonCon/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1672/tasks/" target="_blank">CTFtime</a></td>
         </tr>

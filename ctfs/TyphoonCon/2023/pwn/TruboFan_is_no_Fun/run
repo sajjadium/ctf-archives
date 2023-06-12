@@ -1,0 +1,33 @@
+#!/bin/bash
+
+FILENAME=/tmp/$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13; echo).js
+
+cat <<EOF > $FILENAME
+class Vault {
+    #flag = ""
+    setFlag(flag) {
+        this.#flag = flag;
+    }
+}
+
+const vault = new Vault();
+vault.setFlag("$(cat flag.txt)");
+
+EOF
+
+echo '--=[ T U R B O R A N D ]=--'
+echo ''
+echo '> Welcome!'
+echo '> Enter your JavaScript and terminate it with an "EOF" line.'
+
+while read line
+do
+if [[ "$line" == "EOF" ]]; then
+    break
+fi
+echo "$line" >> $FILENAME
+done
+
+./d8 $FILENAME
+rm $FILENAME
+
