@@ -1,0 +1,1 @@
+Sources say there is some Spectrography Strangness happening here, The hint said you'll have to be a "Da-da-da-da, da-da-da-da, da-da-da-da, Inspector Gadget. (Duh-duh-duh-duh) ooh-ooh, (Duh-duh-duh-duh) Inspector Gadget, (Duh-duh-duh-duh) ooh-ooh!"

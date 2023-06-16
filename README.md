@@ -62,6 +62,11 @@
             <td><a href="https://ctftime.org/event/1077/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/4N0NYM0US3">4N0NYM0US3</a></td>
+            <td><a href="ctfs/4N0NYM0US3/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2028/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/ADDA">ADDA</a></td>
             <td><a href="ctfs/ADDA/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1736/tasks/" target="_blank">CTFtime</a></td>

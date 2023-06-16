@@ -1,0 +1,1 @@
+We snagged these two files from a network packet capture we don't know if this is a encoding/encryption but something definitely is happening here. Looks like it maybe a FLAG someone doesn't want us to find. If we could only AsC4theKey.!!

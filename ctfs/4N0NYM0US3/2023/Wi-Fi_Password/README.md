@@ -1,0 +1,1 @@
+In 2019 on my trip to George Town, Penang Island Malaysia I had dinner and a beer at a little Café there, I ordered a Royal Stout and Pork Noodles which I have to say they were pretty tasty and the service was fast and friendly also the place had free wifi.

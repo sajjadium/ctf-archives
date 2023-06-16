@@ -1,0 +1,1 @@
+My favorite VHS video is starting to degrade probably from watching it so many times. I'm starting to see unknown artifacts in the video. Or possibly it is because I tried to fix the distortion with my Hex Editor. It's like I'm seeing double or is it triple!?

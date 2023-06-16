@@ -1,0 +1,1 @@
+We found this 7zip file on a Wonka Laptop looks like someone copied SECRET Candy files from Willy Wonka's Destop but we can't unzip it without the password maybe you can guess it of not just crack it and find the Flag.
