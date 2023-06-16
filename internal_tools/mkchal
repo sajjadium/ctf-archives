@@ -45,7 +45,7 @@ if __name__ == '__main__':
       files.add(os.path.join(download_dir, f))
 
   # create challenge directory
-  lines = '\n'.join([l.strip() for l in sys.stdin.readlines()]).strip().split('\n')
+  lines = '\n'.join([re.sub(r'(\d+[ \t]+points)', r'\n\1', l.strip()) for l in sys.stdin.readlines()]).strip().split('\n')
   chal_name = get_challenge_name(lines[0].strip().split('/')[-1].strip().split())
 
   lines = '\n'.join(lines[1:]).strip().split('\n')

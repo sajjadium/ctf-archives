@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Transfer - Files</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5">Transfer - Files</h1>
+      <ul class="mt-5 list-group">
+        {% for file in files %}
+          <li class="list-group-item">
+            {{ file[0] }}
+            <a href="/download/{{ file[0] }}/{{ session['session_id'] }}" class="btn btn-primary float-right">Download</a>
+          </li>
+        {% endfor %}
+      </ul>
+      <form action="/upload" method="post" enctype="multipart/form-data" class="mt-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" id="file" name="file">
+          <label class="custom-file-label" for="file">Choose file</label>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Upload</button>
+      </form>
+      <a href="/logout" class="btn btn-danger mt-3">Logout</a>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="mt-3 alert alert-danger">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+</body>
+</html>

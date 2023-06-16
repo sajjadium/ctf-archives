@@ -1,0 +1,28 @@
+diff --git a/payloads/Demon/Source/Demon.c b/payloads/Demon/Source/Demon.c
+index 62c51fd..2b94233 100644
+--- a/payloads/Demon/Source/Demon.c
++++ b/payloads/Demon/Source/Demon.c
+@@ -20,6 +20,15 @@
+ SEC_DATA INSTANCE Instance      = { 0 };
+ SEC_DATA BYTE     AgentConfig[] = CONFIG_BYTES;
+
++#pragma GCC push_options
++#pragma GCC optimize("O0")
++
++__attribute__((section(".data")))
++static char FLAG[] = "flag{this_is_not_the_flag}";
++
++#pragma GCC pop_options
++
++
+ /*
+  * In DemonMain it should go as followed:
+  *
+@@ -1044,4 +1053,4 @@ VOID DemonConfig()
+     Instance.Config.Inject.Technique        = INJECTION_TECHNIQUE_SYSCALL;
+
+     ParserDestroy( &Parser );
+-}
+\ No newline at end of file
++}
+
