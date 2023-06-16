@@ -200,6 +200,11 @@
             <td><a href="https://ctftime.org/event/700/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/BSidesDelhi/2018">PersianCats</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/BSidesIndore">BSides Indore</a></td>
+            <td><a href="ctfs/BSidesIndore/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2017/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/BSidesMumbai">BSides Mumbai</a></td>
             <td><a href="ctfs/BSidesMumbai/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1800/tasks/" target="_blank">CTFtime</a></td>
