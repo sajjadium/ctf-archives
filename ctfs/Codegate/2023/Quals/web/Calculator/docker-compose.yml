@@ -1,0 +1,30 @@
+version: '3.0'
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+    links:
+      - db
+      - bot
+    volumes:
+      - ./html:/var/www/html
+  bot:
+    build: ./bot
+    volumes:
+      - ./bot:/usr/src/app
+    restart: always
+    environment: 
+      - TZ=Asia/Seoul 
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: codegate
+      MYSQL_USER: codegate
+      MYSQL_PASSWORD: codegate111!
+      MYSQL_ROOT_PASSWORD: rootroot(_)!@
+    volumes:
+      - ./mysql-init-files:/docker-entrypoint-initdb.d
+    networks:
+      - default

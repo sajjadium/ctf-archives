@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+    ipc:
+        build: ./
+        ports:
+            - "9000:9000"
+        privileged: true

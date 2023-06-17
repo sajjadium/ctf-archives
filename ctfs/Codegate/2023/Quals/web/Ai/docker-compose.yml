@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  mysql:
+    restart: always
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=ai
+      - MYSQL_ROOT_PASSWORD=this_is_fake
+      - MYSQL_ROOT_HOST=%
+      - TZ=Asia/Tokyo
+    expose:
+      - '3306'
+  redis:
+    restart: always
+    image: redis
+    expose:
+      - '6379'
+  app:
+    restart: always
+    build:
+      context: .
+    ports:
+      - 34543:8080
+    depends_on:
+      - mysql
+      - redis

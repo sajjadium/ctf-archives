@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  codegate2023-quals-sea:
+    container_name: codegate2023-quals-sea
+    build:
+      context: .
+      args:
+        IMAGE: ubuntu@sha256:b795f8e0caaaacad9859a9a38fe1c78154f8301fdaf0872eaf1520d66d9c0b98
+        USER: user
+        TIMEOUT: 60
+        EXEC: sea
+        SERVICE: sea
+    ports:
+       - "45510:45510"
+    restart: always

@@ -1,0 +1,12 @@
+service ipc
+{
+    disable = no
+    flags = REUSE
+    socket_type = stream
+    protocol = tcp
+    user = ipc
+    wait = no
+    server = /home/ipc/ipc
+    type = UNLISTED
+    port = 9000
+}

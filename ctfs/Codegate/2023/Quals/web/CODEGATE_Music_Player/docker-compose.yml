@@ -1,0 +1,53 @@
+version: '2'
+services:
+  nginx:
+    image: nginx:latest
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    links:
+      - server
+
+  frontend:
+    build: ./frontend
+    restart: always
+    environment:
+      - API_FETCH=/api/list
+    depends_on:
+      - nginx
+      - server
+
+  server:
+    build: ./server
+    restart: always
+    environment:
+      - API_URL=https://fe.gy/copyright-free-content/
+      - SECRET=CHEESE_SECRET
+      - FLAG=codegate2023{exmaple_flag}
+      - REDIS_URL_CACHE=redis://redis:6379/0
+      - REDIS_URL_QUERY=redis://redis:6379/1
+      - STATIC_HOST=/api/
+      - DIFFICULTY=6
+      - APP_HOST=0.0.0.0
+      - APP_PORT=5000
+    links:
+      - redis
+
+  redis:
+    image: redis:5
+    command: "redis-server /redis.conf"
+    volumes:
+      - ./redis/redis.conf:/redis.conf
+    restart: always
+    mem_limit: 512M
+
+  worker:
+    build: ./worker
+    environment:
+      - SECRET=CHEESE_SECRET
+    links:
+      - nginx
+      - redis
+    restart: always

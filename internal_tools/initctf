@@ -32,9 +32,10 @@ if __name__ == '__main__':
       ctf_name = ''.join([t[0].upper() + t[1:] for t in link.text.strip().split() if t.lower() != 'ctf'])
       break
 
+  ctf_name = ctf_name.replace('Preliminary', '').strip()
   full_name = '%s/%d' % (ctf_name, datetime.date.today().year)
   title = soup.find_all('title')[0].text.lower()
-  if 'teaser' in title or 'qualifier' in title or 'quals' in title:
+  if 'teaser' in title or 'qualifier' in title or 'quals' in title or 'preliminary' in title:
     full_name += '/Quals'
 
   os.system('mkdir -p %s' % full_name)

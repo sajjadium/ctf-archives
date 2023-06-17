@@ -1,0 +1,1 @@
+Last year, Finalists were involved to put their favorite songs on the playlist to avoid from playing the organizer's loud weeb songs on-site. This year, we decided to provide some good music for the qualification round as well. Good luck solving CTF challenges!

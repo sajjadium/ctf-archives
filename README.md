@@ -468,7 +468,11 @@
             <td><a href="https://ctftime.org/event/636/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/Codegate">Codegate</a></td>
+            <td rowspan=4><a href="ctfs/Codegate">Codegate</a></td>
+            <td><a href="ctfs/Codegate/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2006/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Codegate/2022/Quals">2022 Quals</a></td>
             <td><a href="https://ctftime.org/event/1538/tasks/" target="_blank">CTFtime</a></td>
         </tr>
