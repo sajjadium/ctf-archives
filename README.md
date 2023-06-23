@@ -790,7 +790,11 @@
             <td><a href="https://ctftime.org/event/1803/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/GoogleCTF">Google</a></td>
+            <td rowspan=6><a href="ctfs/GoogleCTF">Google</a></td>
+            <td><a href="ctfs/GoogleCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1929/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/GoogleCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1641/tasks/" target="_blank">CTFtime</a></td>
         </tr>

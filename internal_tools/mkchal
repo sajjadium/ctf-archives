@@ -12,6 +12,9 @@ def is_valid(line):
   if re.search('\d+[ \t]+points', line):
     return False
 
+  if re.search('\d+pt', line):
+    return False
+
   if line.lower().startswith('points:') or line.lower().startswith('solves:'):
     return False
 
