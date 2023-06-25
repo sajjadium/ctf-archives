@@ -1,0 +1,1 @@
+AM1 works for the African anti-terrorist unit. He stumbles across the server that provides instructions to the terrorists, but these instructions are encrypted. Nevertheless, he has managed to obtain the encryption algorithm. Help him decipher the terrorists' instructions to save innocent lives.

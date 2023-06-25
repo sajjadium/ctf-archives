@@ -1,0 +1,1 @@
+The SEYI hacker group hacked into a well-known company and installed a backdoor on their system. The company called the BUG|PWN team to help manage the incident. During our investigation, we found the backdoor: it's a BPFdoor Fork. Here's the binary, take a look.

@@ -1,0 +1,2 @@
+Our little wunderkind has come up with a new way to encode messages using an ultra-advanced number system. The problem is, we can't seem to make heads or tails of it. Your mission, should you choose to accept it, is to crack the code and reveal the hidden messages.
+The encoding method involves a unique base system, which can be challenging to understand at first. However, with a bit of brainpower and a lot of creativity, you'll be able to decipher the encoded messages and retrieve the original strings.

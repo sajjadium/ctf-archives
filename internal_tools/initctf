@@ -35,11 +35,11 @@ if __name__ == '__main__':
   ctf_name = ctf_name.replace('Preliminary', '').strip()
   full_name = '%s/%d' % (ctf_name, datetime.date.today().year)
   title = soup.find_all('title')[0].text.lower()
-  if 'teaser' in title or 'qualifier' in title or 'quals' in title or 'preliminary' in title:
+  if 'teaser' in title or 'qualifier' in title or 'quals' in title or 'preliminary' in title or 'prequal' in title:
     full_name += '/Quals'
 
   os.system('mkdir -p %s' % full_name)
-  for category in ['crypto', 'web', 'pwn', 'rev']:
+  for category in ['crypto', 'web', 'pwn', 'rev', 'misc']:
     os.system('mkdir %s/%s' % (full_name, category))
 
   open('%s/README.md' % ctf_name, 'w').write('[CTFtime Page](https://ctftime.org/ctf/%s)\n' % ctf_id)
