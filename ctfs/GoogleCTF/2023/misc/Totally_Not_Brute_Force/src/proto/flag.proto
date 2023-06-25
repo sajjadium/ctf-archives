@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option go_package = "bpftracer/proto";
+
+package bpftracer.proto;
+
+service FlagService {
+  rpc CheckFlag(CheckFlagRequest) returns (CheckFlagResponse) {}
+  rpc Ping(Empty) returns (Empty) {}
+}
+
+message CheckFlagRequest {
+  string flag = 1;
+}
+
+message CheckFlagResponse {
+  bool ok = 1;
+}
+
+message Empty {}

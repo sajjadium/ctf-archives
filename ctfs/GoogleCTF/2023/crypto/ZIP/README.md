@@ -1,0 +1,1 @@
+Someone rolled their own implementation of PKZIP-compatible encryption to produce an encrypted ZIP file. The PKZIP-compatible cipher is old and known to be weak, but did the author leak sufficient information for you to decrypt the flag?

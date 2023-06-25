@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  node-app:
+    build: .
+    image: notes-app
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017/notesapp?readPreference=primary&directConnection=true&tls=false
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mongodb
+    volumes:
+      - .:/src
+    networks:
+      - node-network
+    env_file:
+      - .env.local
+
+  mongodb:
+    image: mongo:6-jammy
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata7:/data/db
+    networks:
+      - node-network
+
+volumes:
+  dbdata7:
+
+networks:
+  node-network:
+    driver: bridge
