@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Password Manager",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "content_security_policy": "script-src 'self' 'wasm-unsafe-eval' 'inline-speculation-rules' http://localhost:* http://127.0.0.1:*; object-src 'self'",
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
+

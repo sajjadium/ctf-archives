@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  backend:
+    image: ${CI_REGISTRY_IMAGE:-bsidestlv}/backend
+    build: backend
+    deploy:
+      replicas: 2
+    ports:
+      - "8000:8000"
+    labels:
+      kompose.image-pull-policy: Always
+      kompose.service.expose: opa-opa-opa-opa-opa-hei.ctf.bsidestlv.com
+      kompose.service.expose.ingress-class-name: nginx
+      kompose-ex.service.expose.tls: "true"
+    restart: always
+
+  opa:
+    image: openpolicyagent/opa
+    command: [ "run", "--server" ]
+    expose:
+      - "8181"
+    environment:
+      FLAG: BSidesTLV2023{Dummy}
+    restart: always

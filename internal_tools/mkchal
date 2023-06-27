@@ -35,7 +35,7 @@ def is_valid(line):
 def get_challenge_name(args):
   tokens = []
   for a in args:
-    tokens.extend(re.sub('[^0-9a-zA-Z_\- ]+', '', a).strip().split())
+    tokens.extend(re.sub('[^0-9a-zA-Z_\-. ]+', '', a).strip().split())
 
   return '_'.join(tokens)
 

@@ -246,7 +246,11 @@
             <td><a href="https://ctftime.org/event/753/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/BSidesSF/2019">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/BSidesTLV">BSidesTLV</a></td>
+            <td rowspan=4><a href="ctfs/BSidesTLV">BSidesTLV</a></td>
+            <td><a href="ctfs/BSidesTLV/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2008/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/BSidesTLV/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1680/tasks/" target="_blank">CTFtime</a></td>
         </tr>

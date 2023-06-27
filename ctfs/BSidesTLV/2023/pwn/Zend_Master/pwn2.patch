@@ -1,0 +1,28 @@
+--- ext/opcache/opcache_arginfo.h	2023-05-10 09:39:33.000000000 -0400
++++ ext/opcache/opcache_arginfo.h	2023-06-01 09:55:51.009254428 -0400
+@@ -30,6 +30,18 @@
+ ZEND_FUNCTION(opcache_get_configuration);
+ ZEND_FUNCTION(opcache_is_script_cached);
+ 
++/* [BSidesTLV] */
++// prototype
++ZEND_FUNCTION(jit_optimize);
++
++// arg
++ZEND_BEGIN_ARG_INFO_EX(arginfo_jit_optimize, 0, 0, 2)
++    ZEND_ARG_INFO(0, func_name)
++    ZEND_ARG_INFO(0, offset)
++ZEND_END_ARG_INFO()
++
++/* [/BSidesTLV] */
++
+ 
+ static const zend_function_entry ext_functions[] = {
+ 	ZEND_FE(opcache_reset, arginfo_opcache_reset)
+@@ -38,5 +50,6 @@
+ 	ZEND_FE(opcache_invalidate, arginfo_opcache_invalidate)
+ 	ZEND_FE(opcache_get_configuration, arginfo_opcache_get_configuration)
+ 	ZEND_FE(opcache_is_script_cached, arginfo_opcache_is_script_cached)
++	ZEND_FE(jit_optimize, arginfo_jit_optimize)
+ 	ZEND_FE_END
+ };

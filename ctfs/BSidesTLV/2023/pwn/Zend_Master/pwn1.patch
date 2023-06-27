@@ -1,0 +1,72 @@
+--- ext/opcache/zend_accelerator_module.c	2023-05-10 09:39:33.000000000 -0400
++++ ext/opcache/zend_accelerator_module.c	2023-06-13 14:15:53.288817388 -0400
+@@ -936,3 +936,68 @@
+ 
+ 	RETURN_BOOL(filename_is_in_cache(script_name));
+ }
++
++
++/* {{{ BsidesTLV CTF: Optimizing a JIT'ed code. top perf! */
++#include "Zend/zend_execute.h"
++#include "Zend/zend_exceptions.h"
++#include "Zend/zend_vm.h"
++#include "Zend/zend_closures.h"
++#include "Zend/zend_constants.h"
++#include "Zend/zend_API.h"
++
++#include <ZendAccelerator.h>
++#include "Optimizer/zend_func_info.h"
++#include "Optimizer/zend_call_graph.h"
++// #include "zend_jit.h"
++#if ZEND_JIT_TARGET_X86
++# include "jit/zend_jit_x86.h"
++#elif ZEND_JIT_TARGET_ARM64
++# include "zend_jit_arm64.h"
++#endif
++
++#include "ext/opcache/jit/zend_jit_internal.h"
++
++#define ZEND_JIT_TRACE_NUM     traces[0].id
++
++ZEND_FUNCTION(jit_optimize)
++{
++	// define locals
++	zend_string *arg_func_name;
++	zend_long offset = 0;
++	// void* code_start;
++	uint32_t idx = 1;
++	uint32_t found = 0;
++	zend_jit_trace_info* traces = ZCSG(jit_traces);
++
++	// fetch arg(s) from PHP land
++	ZEND_PARSE_PARAMETERS_START(2, 2)
++		Z_PARAM_STR(arg_func_name)
++		Z_PARAM_LONG(offset)
++	ZEND_PARSE_PARAMETERS_END();
++
++
++	// find the JIT object of the target func
++	for(idx = 1; idx < ZEND_JIT_TRACE_NUM; idx++) {
++		zend_jit_trace_info* cur_trace = &traces[idx];
++		zend_string* cur_func_name = cur_trace->op_array->function_name;
++		// code_start = cur_trace->code_start;
++
++		if(cur_func_name != NULL && strcmp(ZSTR_VAL(cur_func_name), ZSTR_VAL(arg_func_name)) == 0) {
++			printf("[+] Found! \n\targ_func_name=%s\n\tfunc_name=%s\n\taddr=%p\n\n", ZSTR_VAL(arg_func_name), ZSTR_VAL(cur_func_name), cur_trace->code_start);
++			found = 1;
++			printf("[~] Optimizing JIT'ed func/trace...\n");
++			cur_trace->code_start += offset;
++			((zend_op*)cur_trace->opline)->handler += offset;
++			printf("[+] Done! new addr @ %p\n", cur_trace->code_start);
++			break;
++		}
++	}
++
++	if(!found) {
++		printf("[!] %s() not found, perhaps not hot enough\n", ZSTR_VAL(arg_func_name));
++	}
++		fflush(stdout);
++
++}
++/* }}} */
+\ No newline at end of file
