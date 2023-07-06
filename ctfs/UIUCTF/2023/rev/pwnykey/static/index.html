@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@themesberg/windows-95-ui-kit/css/w95.css"
+    />
+    <title>Static Template</title>
+  </head>
+  <body>
+    <main>
+      <section
+        class="min-vh-100 d-flex align-items-center bg-tertiary"
+        style="background-image: url(static/setup.png);"
+      >
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-8 d-flex align-items-center justify-content-center">
+              <div class="card card-tertiary w-100">
+                <div class="card-header text-center">
+                  <span>PwnyOS Setup Wizard</span>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-3">
+                      <img
+                        class="img-fluid"
+                        style="max-height: 400px;"
+                        src="static/setup-disks-pc.bmp"
+                      />
+                    </div>
+                    <div class="col-9">
+                      <form id="f" action="/check" method="POST">
+                        <h4>Product Identification</h4>
+                        <p>
+                          Please locate your 25-character CD Key and type it in
+                          the space below. You will find this key on the yellow
+                          sticker on the back of your CD case. Then click Next
+                          to continue.
+                        </p>
+                        <div class="form-group">
+                          <label for="email" class="mb-2">CD Key:</label>
+                          <input
+                            id="key"
+                            name="key"
+                            type="text"
+                            class="form-control"
+                            placeholder="XXXXX-XXXXX-XXXXX-XXXXX-XXXXX"
+                            required=""
+                          />
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <hr />
+                  <div
+                    class="d-block d-sm-flex justify-content-end align-items-center mt-4"
+                  >
+                    <button class="btn btn-sm btn-primary" disabled>
+                      <span>Back</span>
+                    </button>
+                    <button
+                      class="btn btn-sm btn-primary"
+                      form="f"
+                      name="Submit"
+                      value="Submit"
+                    >
+                      <span>Next &gt;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+

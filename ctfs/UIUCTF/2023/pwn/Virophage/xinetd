@@ -1,0 +1,11 @@
+service virus
+{
+    disable = no
+    type = UNLISTED
+    socket_type = stream
+    protocol = tcp
+    port = 9488
+    wait = no
+    user = virus
+    server = /home/virus/run.sh
+}

@@ -1,0 +1,2 @@
+beginner
+Usage: ./chal program

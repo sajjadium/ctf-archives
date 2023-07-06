@@ -1,0 +1,8 @@
+version: "3"
+services:
+  virus:
+    build: .
+    ports:
+      - "9488:9488"
+    expose:
+      - "9488"

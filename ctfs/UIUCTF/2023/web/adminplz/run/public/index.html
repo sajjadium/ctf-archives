@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Admin Login</title>
+</head>
+<body>
+<p>Only admins can access the flag</p>
+
+<h3>Login</h3>
+<form action="/login" method="POST">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <input type="submit" value="Submit">
+</form>
+
+<h3>Need an admin?</h3>
+<form action="/report" method="POST">
+    <input type="text" name="url" placeholder="http://example.com">
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
