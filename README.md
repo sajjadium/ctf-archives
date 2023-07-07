@@ -494,7 +494,11 @@
             <td><a href="https://ctftime.org/event/542/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/Codegate/2018/Quals">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/Crypto">Crypto</a></td>
+            <td rowspan=3><a href="ctfs/Crypto">Crypto</a></td>
+            <td><a href="ctfs/Crypto/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1857/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Crypto/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1573/tasks/" target="_blank">CTFtime</a></td>
         </tr>
