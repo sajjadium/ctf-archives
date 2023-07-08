@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  webapp:
+    build: .
+    restart: unless-stopped
+    environment:
+      FLAG: "CSR{TESTFLAG}"
+    ports:
+      - "8328:5000"
+  database:
+    image: 'postgres:latest'
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: cybercyber
+      POSTGRES_DB: project

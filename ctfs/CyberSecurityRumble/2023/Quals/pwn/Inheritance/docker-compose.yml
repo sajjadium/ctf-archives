@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  inheritance:
+    container_name: inheritance
+    build:
+      context: ./deploy
+      dockerfile: Dockerfile
+    ports:
+      - 1024:1024
+    restart: unless-stopped

@@ -1,0 +1,8 @@
+{% extends "layout/base.html" %}
+{% block content %}
+    <h1 class="title">Home of {{ session['name'] }}</h1>
+
+    <a class="button is-info" href="/set_pubkey">Set Public Key</a>
+    <a class="button is-info" href="/request_challenge">Request Certificate</a>
+    <a class="button is-danger" href="/request_flag">Request Flag</a>
+{% endblock %}

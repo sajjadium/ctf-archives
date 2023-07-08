@@ -530,7 +530,11 @@
             <td><a href="https://ctftime.org/event/1012/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/CyberSecurityRumble">CyberSecurityRumble</a></td>
+            <td rowspan=4><a href="ctfs/CyberSecurityRumble">CyberSecurityRumble</a></td>
+            <td><a href="ctfs/CyberSecurityRumble/2023/Quals">2023</a></td>
+            <td><a href="https://ctftime.org/event/1942/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/CyberSecurityRumble/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1665/tasks/" target="_blank">CTFtime</a></td>
         </tr>

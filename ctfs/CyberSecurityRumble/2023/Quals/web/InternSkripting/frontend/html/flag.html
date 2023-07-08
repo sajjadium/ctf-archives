@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="stylesheet" href="/static/style.css" />
+	<script src="/static/app.js"></script>
+</head>
+
+<body>
+	<header>
+		<nav class="menu">
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/flag.html">Flag Dispenser</a></li>
+			</ul>
+		</nav>
+	</header>
+	<main>
+		<h1>Coffee Flag Dispenser</h1>
+		<p>
+			Enter your coffee secret below to get a coffee flag. This can then be
+			redeemed at the machine to get coffee.
+		</p>
+		<p>
+			<input type="text" id="flag_secret"/>
+			<button onclick="get_flag()">Get Coffee Flag!</button>
+		</p>
+		<p>
+			<div id="flag_target"></div>
+		</p>
+	</main>
+	<footer>
+		<p>Copyright 2023</p>
+	</footer>
+</body>
+
+</html>

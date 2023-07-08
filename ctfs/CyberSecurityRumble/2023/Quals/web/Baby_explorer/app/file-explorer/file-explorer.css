@@ -1,0 +1,243 @@
+.fe_fileexplorer_hidden { display: none !important; }
+.fe_fileexplorer_invisible { visibility: hidden; }
+.fe_fileexplorer_disabled { filter: grayscale(95%); opacity: 0.6; }
+
+.fe_fileexplorer_open_icon { background-image: url('fileexplorer_sprites.png'); width: 24px; height: 24px; background-position: -48px -96px; image-rendering: pixelated; }
+
+.fe_fileexplorer_wrap { position: relative; font-size: 1.0em; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; cursor: default; height: 100%; min-height: 9em; }
+.fe_fileexplorer_wrap .fe_fileexplorer_operation_in_progress { cursor: progress; }
+.fe_fileexplorer_wrap .fe_fileexplorer_operation_in_progress button { cursor: progress; }
+.fe_fileexplorer_wrap .fe_fileexplorer_dropzone_wrap { height: 100%; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap { border: 1px solid #AAAAAA; color: #000000; background-color: #FFFFFF; display: flex; flex-direction: column; height: 100%; box-sizing: border-box; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused { border: 1px solid #0063B1; }
+
+.fe_fileexplorer_wrap button::-moz-focus-inner { border: 0; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_toolbar { display: flex; margin-top: 0.4em; align-items: center; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_navtools { display: flex; margin-left: 5px; margin-right: 0.1em; }
+.fe_fileexplorer_wrap .fe_fileexplorer_navtools button { padding: 0; border: 0 none; box-sizing: border-box; height: 24px; background-color: transparent; outline: none; background-repeat: no-repeat; image-rendering: pixelated; }
+.fe_fileexplorer_wrap .fe_fileexplorer_navtools button.fe_fileexplorer_disabled { opacity: 0.4; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_navtool_back { background-image: url('fileexplorer_sprites.png'); width: 32px; background-position: -0px -0px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_navtool_forward { background-image: url('fileexplorer_sprites.png'); width: 32px; background-position: -64px -0px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_navtool_history { background-image: url('fileexplorer_sprites.png'); width: 18px; background-position: -84px -24px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_navtool_up { background-image: url('fileexplorer_sprites.png'); width: 24px; background-position: -0px -24px; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_navtool_back:not(.fe_fileexplorer_disabled):hover, .fe_fileexplorer_wrap .fe_fileexplorer_navtool_back:not(.fe_fileexplorer_disabled):focus { background-image: url('fileexplorer_sprites.png'); width: 32px; background-position: -32px -0px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_navtool_forward:not(.fe_fileexplorer_disabled):hover, .fe_fileexplorer_wrap .fe_fileexplorer_navtool_forward:not(.fe_fileexplorer_disabled):focus { background-image: url('fileexplorer_sprites.png'); width: 32px; background-position: -96px -0px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_navtool_history:not(.fe_fileexplorer_disabled):hover, .fe_fileexplorer_wrap .fe_fileexplorer_navtool_history:not(.fe_fileexplorer_disabled):focus { background-image: url('fileexplorer_sprites.png'); width: 18px; background-position: -102px -24px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_navtool_up:not(.fe_fileexplorer_disabled):hover, .fe_fileexplorer_wrap .fe_fileexplorer_navtool_up:not(.fe_fileexplorer_disabled):focus { background-image: url('fileexplorer_sprites.png'); width: 24px; background-position: -24px -24px; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_path_wrap { display: flex; flex: 1; align-items: center; overflow: hidden; border: 1px solid #D9D9D9; margin-right: 12px; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_path_icon { height: 24px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_icon_inner { background-image: url('fileexplorer_sprites.png'); width: 24px; height: 24px; margin-left: 2px; margin-right: 4px; background-position: -72px -96px; image-rendering: pixelated; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segments_scroll_wrap { flex: 1; position: relative; overflow-x: scroll; box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segments_scroll_wrap::-webkit-scrollbar { height: 0px; background: transparent; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segments_wrap { display: flex; flex: 1; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segments_wrap button { padding: 0.5em; border: 1px solid transparent; box-sizing: border-box; line-height: 1; background-color: transparent; outline: none; font-size: 0.75em; white-space: nowrap; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segments_wrap::after { content: ''; padding-left: 10%; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap { display: flex; border: 1px solid transparent; outline: none; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap::-moz-focus-inner { border: 0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap .fe_fileexplorer_path_opts { padding: 0; background-repeat: no-repeat; background-image: url('fileexplorer_sprites.png'); width: 18px; background-position: -48px -24px; image-rendering: pixelated; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap:hover { border: 1px solid #CCE8FF; background-color: #E5F3FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap:hover .fe_fileexplorer_path_opts { padding: 0; border-left: 1px solid #CCE8FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap:focus, .fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap.fe_fileexplorer_path_segment_wrap_focus { border: 1px solid #99D1FF; background-color: #CCE8FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap:focus .fe_fileexplorer_path_opts, .fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap.fe_fileexplorer_path_segment_wrap_focus .fe_fileexplorer_path_opts { border-left: 1px solid #99D1FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap.fe_fileexplorer_path_segment_wrap_down .fe_fileexplorer_path_name { padding: calc(0.5em + 1px) calc(0.5em - 1px) calc(0.5em - 1px) calc(0.5em + 1px); }
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap.fe_fileexplorer_path_segment_wrap_down .fe_fileexplorer_path_opts { background-image: url('fileexplorer_sprites.png'); background-position: -84px -24px; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_path_segment_wrap.fe_fileexplorer_drag_hover { border: 1px solid #99D1FF; background-color: #CCE8FF; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_body_wrap_outer { flex: 1; display: flex; margin-top: 0.3em; overflow: hidden; position: relative; }
+.fe_fileexplorer_wrap .fe_fileexplorer_body_wrap { display: flex; align-items: stretch; overflow: hidden; min-height: 5em; width: 100%; height: 100%; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tools_scroll_wrap { padding: 0.4em 10px; border-right: 1px solid #CCE8FF; overflow-y: scroll; box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; position: relative; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tools_scroll_wrap::-webkit-scrollbar { width: 0px; background: transparent; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tools { display: flex; flex-direction: column; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tools button { margin-bottom: 0.3em; border: 1px solid transparent; box-sizing: border-box; padding: 4px; width: 34px; height: 34px; background-color: transparent; outline: none; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tools button::before { display: block; width: 24px; height: 24px; content: ''; background-repeat: no-repeat; image-rendering: pixelated; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tools button:not(.fe_fileexplorer_disabled):hover, .fe_fileexplorer_wrap .fe_fileexplorer_folder_tools button:not(.fe_fileexplorer_disabled):focus { border: 1px solid #99D1FF; background-color: #E5F3FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tool_separator { margin: 0 -0.1em 0.3em; border-top: 1px solid #DFE7F0; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tool_new_folder::before { background-image: url('fileexplorer_sprites.png'); background-position: -24px -144px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tool_new_file::before { background-image: url('fileexplorer_sprites.png'); background-position: -0px -144px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tool_upload::before { background-image: url('fileexplorer_sprites.png'); background-position: -96px -144px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tool_download::before { background-image: url('fileexplorer_sprites.png'); background-position: -96px -120px; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tool_copy::before { background-image: url('fileexplorer_sprites.png'); background-position: -24px -120px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tool_paste::before { background-image: url('fileexplorer_sprites.png'); background-position: -48px -144px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tool_cut::before { background-image: url('fileexplorer_sprites.png'); background-position: -48px -120px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tool_delete::before { background-image: url('fileexplorer_sprites.png'); background-position: -72px -120px; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_folder_tool_item_checkboxes::before { background-image: url('fileexplorer_sprites.png'); background-position: -72px -144px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_show_item_checkboxes .fe_fileexplorer_folder_tool_item_checkboxes::before { background-image: url('fileexplorer_sprites.png'); background-position: -0px -120px; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_items_scroll_wrap { flex: 1; overflow-y: auto; box-sizing: border-box; outline: none; position: relative; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_scroll_wrap::-moz-focus-inner { border: 0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_scroll_wrap_inner { position: relative; min-height: 100%; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_message_wrap { padding: 1.5em 1em 1em 1em; color: #6D6D6D; font-size: 0.75em; text-align: center; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_wrap { display: flex; flex-wrap: wrap; padding: 0.3em 12px 0.2em 4px; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_wrap { margin-left: 0.56em; margin-bottom: 1px; width: 4.7em; box-sizing: border-box; text-align: center; overflow: hidden; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_wrap_inner { position: relative; border: 1px solid transparent; padding: 0.1em 0.3em; outline: none; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_wrap_inner::-moz-focus-inner { border: 0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_wrap_inner:hover { background-color: #E5F3FF; border-color: #E5F3FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap:not(.fe_fileexplorer_inner_wrap_focused) .fe_fileexplorer_item_selected .fe_fileexplorer_item_wrap_inner { background-color: #D9D9D9; border-color: #D9D9D9; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap:not(.fe_fileexplorer_inner_wrap_focused) .fe_fileexplorer_item_selected .fe_fileexplorer_item_wrap_inner:hover { background-color: #E5F3FF; border-color: #99D1FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap:not(.fe_fileexplorer_items_focus) .fe_fileexplorer_item_selected .fe_fileexplorer_item_wrap_inner { background-color: #D9D9D9; border-color: #D9D9D9; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap:not(.fe_fileexplorer_items_focus) .fe_fileexplorer_item_wrap_inner:hover { background-color: #E5F3FF; border-color: #99D1FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap.fe_fileexplorer_items_selecting .fe_fileexplorer_item_wrap_inner { background-color: transparent; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap.fe_fileexplorer_items_focus .fe_fileexplorer_item_selected .fe_fileexplorer_item_wrap_inner { background-color: #CDE8FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap.fe_fileexplorer_items_focus .fe_fileexplorer_item_selected .fe_fileexplorer_item_wrap_inner:hover { border-color: #99D1FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap.fe_fileexplorer_items_focus .fe_fileexplorer_item_selected.fe_fileexplorer_item_focused .fe_fileexplorer_item_wrap_inner { background-color: #CCE8FF; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap.fe_fileexplorer_items_focus .fe_fileexplorer_item_focused .fe_fileexplorer_item_wrap_inner { border-color: #99D1FF; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap .fe_fileexplorer_items_wrap .fe_fileexplorer_item_wrap.fe_fileexplorer_drag_hover .fe_fileexplorer_item_wrap_inner { background-color: #CDE8FF; }
+
+/*
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap.fe_fileexplorer_items_copy { cursor: copy; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap.fe_fileexplorer_items_move_copy .fe_fileexplorer_item_folder:not(.fe_fileexplorer_item_selected) .fe_fileexplorer_item_wrap_inner:hover { background-color: #CDE8FF; border-color: transparent; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap.fe_fileexplorer_items_move_copy .fe_fileexplorer_item_wrap:not(.fe_fileexplorer_item_folder):not(.fe_fileexplorer_item_selected) .fe_fileexplorer_item_wrap_inner { opacity: 0.7; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap.fe_fileexplorer_items_move_copy .fe_fileexplorer_item_wrap:not(.fe_fileexplorer_item_folder):not(.fe_fileexplorer_item_selected) .fe_fileexplorer_item_wrap_inner:hover { background-color: transparent; border-color: transparent; }
+.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap.fe_fileexplorer_items_move_copy .fe_fileexplorer_item_wrap.fe_fileexplorer_item_selected:not(.fe_fileexplorer_item_focused) .fe_fileexplorer_item_wrap_inner:hover { border-color: transparent; }
+*/
+
+.fe_fileexplorer_wrap .fe_fileexplorer_item_checkbox { position: absolute; left: 0; top: 0; margin: 2px; z-index: 1; display: none; padding: initial; border: initial; transform: none; }
+.fe_fileexplorer_wrap .fe_fileexplorer_show_item_checkboxes .fe_fileexplorer_item_wrap_inner:hover .fe_fileexplorer_item_checkbox { display: block; }
+.fe_fileexplorer_wrap .fe_fileexplorer_show_item_checkboxes .fe_fileexplorer_item_selected .fe_fileexplorer_item_checkbox { display: block; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon { width: 48px; height: 48px; margin-left: auto; margin-right: auto; background-repeat: no-repeat; position: relative; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_img { width: auto; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon img { position: absolute; bottom: 2px; left: 50%; transform: translateX(-50%); max-width: 100%; max-height: calc(100% - 2px); -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.15); -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.15); box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.15); }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_text { margin-top: 0.1em; font-size: 0.75em; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; word-wrap: break-word; overflow: hidden; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_text.fe_fileexplorer_invisible { color: transparent; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_folder { background-image: url('fileexplorer_sprites.png'); background-position: -48px -48px; image-rendering: pixelated; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file { background-image: url('fileexplorer_sprites.png'); background-position: -0px -48px; image-rendering: pixelated; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext)::after { position: absolute; bottom: 10px; left: 0px; box-sizing: border-box; content: attr(data-ext); color: #FFFFFF; font-size: 11px; padding: 1px 3px; width: 36px; overflow: hidden; white-space: nowrap; background-color: #888888; text-transform: uppercase; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_a::after { background-color: #F03C3C; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_b::after { background-color: #F05A3C; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_c::after { background-color: #F0783C; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_d::after { background-color: #F0963C; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_e::after { background-color: #E0862B; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_f::after { background-color: #DCA12B; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_g::after { background-color: #C7AB1E; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_h::after { background-color: #C7C71E; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_i::after { background-color: #ABC71E; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_j::after { background-color: #8FC71E; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_k::after { background-color: #72C71E; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_l::after { background-color: #56C71E; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_m::after { background-color: #3AC71E; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_n::after { background-color: #1EC71E; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_o::after { background-color: #1EC73A; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_p::after { background-color: #1EC756; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_q::after { background-color: #1EC78F; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_r::after { background-color: #1EC7AB; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_s::after { background-color: #1EC7C7; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_t::after { background-color: #1EABC7; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_u::after { background-color: #1E8FC7; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_v::after { background-color: #1E72C7; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_w::after { background-color: #3C78F0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_x::after { background-color: #3C5AF0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_y::after { background-color: #3C3CF0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_z::after { background-color: #5A3CF0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_0::after { background-color: #783CF0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_1::after { background-color: #963CF0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_2::after { background-color: #B43CF0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_3::after { background-color: #D23CF0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_4::after { background-color: #F03CF0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_5::after { background-color: #F03CD2; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_6::after { background-color: #F03CB4; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_7::after { background-color: #F03C96; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_8::after { background-color: #F03C78; }
+.fe_fileexplorer_wrap .fe_fileexplorer_item_icon_file:not(.fe_fileexplorer_item_icon_file_no_ext).fe_fileexplorer_item_icon_ext_9::after { background-color: #F03C5A; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_wrap { position: absolute; left: 53px; top: 0; width: calc(100% - 53px); height: 100%; pointer-events: none; z-index: 2; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_wrap.fe_fileexplorer_items_show_clipboard_overlay_paste { height: 200px; max-height: 75%; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_inner_wrap { position: relative; height: 100%; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_text_wrap { position: absolute; left: 0; top: 0; width: 100%; height: 100%; box-sizing: border-box; background-color: rgba(255, 255, 255, 0.95); border: 2px dashed #AAAAAA; -webkit-box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.15); -moz-box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.15); box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.15); }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_wrap:hover .fe_fileexplorer_items_clipboard_overlay_paste_text_wrap, .fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_wrap_focus .fe_fileexplorer_items_clipboard_overlay_paste_text_wrap { border-color: #3298FE; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_wrap:not(.fe_fileexplorer_items_show_clipboard_overlay_paste) .fe_fileexplorer_items_clipboard_overlay_paste_text_wrap { display: none; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_text { position: absolute; left: 50%; top: 50%; color: #888888; transform: translate(-50%, -50%); text-align: center; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_text_big { font-size: 2em; margin-bottom: 0.3em; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_text_small { font-size: 0.75em; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay { position: absolute; left: 0; top: -10px; width: 100%; height: calc(100% + 10px); margin: 0; border: 0 none; padding: 0; color: transparent; background-color: transparent; text-shadow: 0px 0px 0px transparent; caret-color: transparent; cursor: default; resize: none; box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; text-align: center; outline: none; font-size: 1px; line-height: 1; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_wrap.fe_fileexplorer_items_clipboard_contextmenu .fe_fileexplorer_items_clipboard_overlay { pointer-events: auto; }
+.fe_fileexplorer_wrap .fe_fileexplorer_items_clipboard_overlay_paste_wrap.fe_fileexplorer_items_show_clipboard_overlay_paste .fe_fileexplorer_items_clipboard_overlay { pointer-events: auto; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_select_box { position: absolute; box-sizing: border-box; border: 1px solid #0078D7; background-color: rgba(0, 120, 215, 0.33); }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_statusbar_wrap { display: flex; white-space: nowrap; font-size: 0.75em; color: #14273E; }
+.fe_fileexplorer_wrap .fe_fileexplorer_statusbar_wrap.fe_fileexplorer_statusbar_wrap_multiline { display: block; }
+.fe_fileexplorer_wrap .fe_fileexplorer_statusbar_text_wrap { display: flex; margin-left: 15px; margin-right: 12px; padding-top: 0.3em; padding-bottom: 0.3em; overflow: hidden; flex: 1; line-height: 1.1; }
+.fe_fileexplorer_wrap .fe_fileexplorer_statusbar_text_segment_wrap { padding-right: 1em; border-right: 1px solid #F0F0F0; margin-right: 1em; }
+.fe_fileexplorer_wrap .fe_fileexplorer_statusbar_text_segment_wrap_last { padding-right: 0; border-right: 0 none; margin-right: 0; overflow: hidden; text-overflow: ellipsis; }
+.fe_fileexplorer_wrap .fe_fileexplorer_statusbar_measure_em_size { display: inline-block; position: fixed; left: -9999px; width: 1em; height: 1em; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_action_wrap { display: flex; }
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_wrap { display: flex; padding-top: 0.3em; padding-bottom: 0.3em; overflow: hidden; }
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_msg_wrap { margin-left: 1em; border-left: 1px solid #F0F0F0; padding-left: 1em; overflow: hidden; text-overflow: ellipsis; line-height: 1.1; }
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_msg_wrap_last { margin-right: 0.4em; }
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_cancel_wrap { padding-left: 0.6em; padding-right: 0.6em; line-height: 1.1; }
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_cancel_wrap::after { content: '\00D7'; font-weight: bold; outline: none; }
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_cancel_wrap:hover::after, .fe_fileexplorer_wrap .fe_fileexplorer_action_progress_cancel_wrap:focus::after { color: #E81123; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_statusbar_wrap.fe_fileexplorer_statusbar_wrap_multiline .fe_fileexplorer_action_progress_wrap { width: 100%; }
+.fe_fileexplorer_wrap .fe_fileexplorer_statusbar_wrap.fe_fileexplorer_statusbar_wrap_multiline .fe_fileexplorer_action_progress_msg_wrap:first-child { margin-left: 15px; border-left: 0 none; padding-left: 0; }
+.fe_fileexplorer_wrap .fe_fileexplorer_statusbar_wrap.fe_fileexplorer_statusbar_wrap_multiline .fe_fileexplorer_action_progress_msg_wrap_last { flex-grow: 1; }
+
+@font-face { font-family: 'fe_fileexplorer_actions'; src: url('fileexplorer_actions.woff?20200530-01') format('woff'); font-weight: normal; font-style: normal; font-display: block; }
+
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_msg_icon { font-family: 'fe_fileexplorer_actions' !important; speak: none; font-weight: normal; font-variant: normal; text-transform: none; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; line-height: 1; }
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_msg_icon.fe_fileexplorer_action_progress_msg_icon_uploads_in_progress::before { content: '\E900'; }
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_msg_icon.fe_fileexplorer_action_progress_msg_icon_queued::before { content: '\E901'; }
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_msg_icon.fe_fileexplorer_action_progress_msg_icon_done::before { content: '\E902'; }
+.fe_fileexplorer_wrap .fe_fileexplorer_action_progress_msg_icon.fe_fileexplorer_action_progress_msg_icon_errors::before { content: '\E903'; }
+
+.fe_fileexplorer_popup_wrap { position: absolute; left: -9999px; max-height: 33vh; overflow: hidden; overflow-y: auto; border: 1px solid #A0A0A0; background-color: #F2F2F2; min-width: 11em; max-width: 17em; z-index: 100; -webkit-box-shadow: 5px 5px 4px -3px rgba(0, 0, 0, 0.57); -moz-box-shadow: 5px 5px 4px -3px rgba(0, 0, 0, 0.57); box-shadow: 5px 5px 4px -3px rgba(0, 0, 0, 0.57); font-size: 1.0em; user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; cursor: default; outline: none; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_inner_wrap { position: relative; padding: 2px; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_split { margin-left: 34px; margin-top: 0.1em; border-top: 1px solid #D7D7D7; padding-top: 0.1em; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_wrap { display: flex; align-items: center; box-sizing: border-box; outline: none; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_wrap:focus { background-color: #C3DEF5; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_icon { height: 24px; image-rendering: pixelated; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_icon_inner { width: 24px; height: 24px; margin-left: 5px; margin-right: 5px; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_text { overflow: hidden; text-overflow: ellipsis; font-size: 0.75em; line-height: 1; white-space: nowrap; padding: 0.5em 0.3em; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_text.fe_fileexplorer_popup_item_active { font-weight: bold; }
+
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_wrap.fe_fileexplorer_popup_item_disabled:focus { background-color: #E5E5E5; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_wrap.fe_fileexplorer_popup_item_disabled .fe_fileexplorer_popup_item_text { color: #6D6D6D; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_wrap.fe_fileexplorer_popup_item_disabled .fe_fileexplorer_popup_item_icon_inner { filter: grayscale(95%); opacity: 0.9; }
+
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_wrap:focus .fe_fileexplorer_popup_item_icon_back { background-image: url('fileexplorer_sprites.png'); background-position: -96px -48px; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_wrap:focus .fe_fileexplorer_popup_item_icon_forward { background-image: url('fileexplorer_sprites.png'); background-position: -24px -96px; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_icon_check { background-image: url('fileexplorer_sprites.png'); background-position: -0px -96px; }
+.fe_fileexplorer_popup_wrap .fe_fileexplorer_popup_item_icon_folder { background-image: url('fileexplorer_sprites.png'); background-position: -96px -96px; }
+
+.fe_fileexplorer_textarea { position: absolute; resize: none; border: 1px solid #000000; padding: 1px; font-family: inherit; font-size: 0.75em; overflow-y: auto; box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none; text-align: center; outline: none; z-index: 2; }
+.fe_fileexplorer_textarea::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
+.fe_fileexplorer_textarea[readonly] { color: #666666; }
+
+.fe_fileexplorer_floating_drag_icon_wrap { position: fixed; left: -9999px; padding: 1.5em; pointer-events: none; border: 1px solid rgba(151, 220, 252, 0.4); background-image: linear-gradient(rgba(227, 245, 252, 0.4), rgba(189, 231, 252, 0.4)); z-index: 100; -webkit-box-shadow: 5px 5px 4px -3px rgba(0, 0, 0, 0.3); -moz-box-shadow: 5px 5px 4px -3px rgba(0, 0, 0, 0.3); box-shadow: 5px 5px 4px -3px rgba(0, 0, 0, 0.3); user-select: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }
+.fe_fileexplorer_floating_drag_icon_wrap .fe_fileexplorer_floating_drag_icon_wrap_inner { position: relative; width: 48px; height: 48px; overflow: hidden; }
+.fe_fileexplorer_floating_drag_icon_wrap .fe_fileexplorer_item_icon { width: 48px; height: 48px; background-repeat: no-repeat; position: relative; opacity: 0.82; image-rendering: pixelated; }
+.fe_fileexplorer_floating_drag_icon_wrap .fe_fileexplorer_item_icon_folder { background-image: url('fileexplorer_sprites.png'); background-position: -48px -48px; image-rendering: pixelated; }
+.fe_fileexplorer_floating_drag_icon_wrap .fe_fileexplorer_item_icon_file { background-image: url('fileexplorer_sprites.png'); background-position: -0px -48px; image-rendering: pixelated; }
+.fe_fileexplorer_floating_drag_icon_wrap .fe_fileexplorer_floating_drag_icon_wrap_inner[data-numitems]::after { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -30%); padding: 0.1em 0.3em; font-size: 0.75em; background-color: #0074CC; border: 1px solid #FFFFFF; color: #FFFFFF; content: attr(data-numitems); }
+
+.fe_fileexplorer_download_iframe_wrap { position: fixed; left: -9999px; border: 0 none; width: 1px; height: 1px; }
+
+@media (pointer: coarse) {
+	.fe_fileexplorer_wrap .fe_fileexplorer_item_wrap { margin-top: 0.1em; margin-bottom: 0.1em; }
+	.fe_fileexplorer_wrap .fe_fileexplorer_show_item_checkboxes .fe_fileexplorer_item_checkbox { display: block; }
+
+	.fe_fileexplorer_wrap .fe_fileexplorer_item_wrap_inner:hover { background-color: transparent; border-color: transparent; }
+	.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap:not(.fe_fileexplorer_inner_wrap_focused) .fe_fileexplorer_item_selected .fe_fileexplorer_item_wrap_inner:hover { background-color: transparent; border-color: transparent; }
+	.fe_fileexplorer_wrap .fe_fileexplorer_inner_wrap.fe_fileexplorer_inner_wrap_focused .fe_fileexplorer_items_wrap:not(.fe_fileexplorer_items_focus) .fe_fileexplorer_item_wrap_inner:hover { background-color: transparent; border-color: transparent; }
+}

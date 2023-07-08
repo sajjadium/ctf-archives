@@ -1,0 +1,42 @@
+upstream theapi {
+    server backend:9696;
+}
+
+
+server {
+        listen ${NGINX_PORT} default;
+
+        root /app;
+        index index.html;
+
+        server_name frontend.csr;
+
+        if ($request_method != GET) {
+                return 405;
+        }
+
+        location /api {
+                proxy_pass http://theapi/;
+                
+                set $disa 0;
+                set $debug_api 0;
+
+                if ($http_x_coffee_secret = 0){
+                        return 418;
+                }
+
+                if ($http_x_coffee_secret != ${COFFEE_SECRET}) {
+                        set $disa 1;
+                }
+
+                if ($cookie_debug ~* debսg) {
+                        set $disa $http_x_coffee_secret;
+                        set $debug_api $cookie_debug;
+                }
+
+                proxy_pass_header X-Coffee-Secret;
+                proxy_pass_header X-Coffee-Disallow;
+                proxy_set_header X-Coffee-Disallow $disa;
+                proxy_set_header X-Coffee-Debug $debug_api;
+        }
+}

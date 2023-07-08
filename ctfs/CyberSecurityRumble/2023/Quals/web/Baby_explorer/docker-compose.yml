@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  baby-explorer:
+    build: .
+    restart: unless-stopped
+    ports:
+      - 4444:80

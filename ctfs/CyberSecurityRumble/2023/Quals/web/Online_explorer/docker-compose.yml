@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  online-explorer:
+    build: .
+    restart: unless-stopped
+    ports:
+      - 2753:2753

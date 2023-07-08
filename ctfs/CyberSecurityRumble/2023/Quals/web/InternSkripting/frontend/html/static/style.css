@@ -1,0 +1,72 @@
+:root {
+    --main-color: #e9d2b6;
+    --header-footer-color: #f7f0e3;
+    --secondary-color: #3a2b0f;
+    --max-width: 80em;
+    font-family: sans-serif;
+}
+
+body {
+    background-image: url("/static/Roasted_coffee_beans.jpg");
+    margin: 0;
+}
+
+nav > ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+nav > ul > li > a {
+    padding: 1em;
+    color: var(--secondary-color);
+}
+nav > ul > li  {
+    padding: 1em;
+}
+nav > ul > li > a:hover {
+    background-color: var(--secondary-color);   
+    color: white; 
+}
+
+header {
+    background-color: var(--header-footer-color) !important;
+    margin: 0;
+}
+
+main {
+    max-width: var(--max-width);
+    margin: auto;
+    background-color: var(--main-color);
+    padding: 2em;
+    min-height: 80vh;
+}
+
+footer {
+    position: absolute;
+    color: var(--secondary-color);
+    background-color: var(--header-footer-color) !important;
+    width: inherit;
+    padding: 0;
+    width: 100vw;
+}
+footer > p{
+    padding: 1em;
+
+}
+
+button {
+    padding: 1em;
+    background-image: url("/static/Roasted_coffee_beans.jpg");
+    color: white;
+}
+
+input {
+    padding: 1em;
+}
+
+.error {
+    background-color: red;
+}

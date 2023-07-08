@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  login:
+    restart: unless-stopped
+    build: app
+    ports:
+      - "42323:1337"

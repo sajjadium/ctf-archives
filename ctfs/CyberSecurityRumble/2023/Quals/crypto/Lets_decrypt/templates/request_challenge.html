@@ -1,0 +1,17 @@
+{% extends "layout/base.html" %}
+{% block content %}
+    <div class="card">
+        <div class="card-content">
+            <div class="content">
+                <form method='POST'>
+                    <div class="field">
+                        Please provide a signature of the string "{{ user.challenge }}" in the _acme.{{ user.domain }} TXT dns record.
+                    </div>
+                    <div class="field">
+                        <a class="button is-success mt-2 mr-1" type='submit' href="/get_certificate">Done</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

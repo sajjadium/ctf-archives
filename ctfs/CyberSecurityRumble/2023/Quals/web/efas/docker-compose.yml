@@ -1,0 +1,37 @@
+version: '3.8'
+
+x-task-meta:
+  name: efas
+  points: 300
+  port: 80
+  category: web
+  flag: CSR{did_I_leak_the_flag_by_accident?}
+  public_desc: |
+    Welcome to the electronic flag assingment service. Please draw a number and wait for your flag request to be processed.
+  private_desc: |
+    This is private! Noting to see here.
+
+services:
+  flag_service:
+    build: ./flag_service/
+    restart: unless-stopped
+    networks:
+      mynet:
+        aliases:
+          - "this.could.be.your.domain.tld"
+  proxy:
+    build: ./proxy/
+    restart: unless-stopped
+    ports:
+      - 80:80
+    networks:
+      mynet:
+
+networks:
+  mynet:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.25.0.0/16
+          ip_range: 10.25.25.0/24
+          gateway: 10.25.0.1

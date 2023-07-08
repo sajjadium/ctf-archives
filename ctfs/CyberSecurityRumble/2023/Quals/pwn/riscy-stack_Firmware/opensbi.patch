@@ -1,0 +1,62 @@
+diff --git a/lib/sbi/sbi_ecall_legacy.c b/lib/sbi/sbi_ecall_legacy.c
+index e20de76..6022a37 100644
+--- a/lib/sbi/sbi_ecall_legacy.c
++++ b/lib/sbi/sbi_ecall_legacy.c
+@@ -8,6 +8,8 @@
+  *   Atish Patra <atish.patra@wdc.com>
+  */
+ 
++#include <libfdt.h>
++#include <sbi_utils/fdt/fdt_helper.h>
+ #include <sbi/riscv_asm.h>
+ #include <sbi/sbi_console.h>
+ #include <sbi/sbi_domain.h>
+@@ -42,6 +44,38 @@ static int sbi_load_hart_mask_unpriv(ulong *pmask, ulong *hmask,
+ 	return 0;
+ }
+ 
++static int sbi_ecall_fdt_count_properties(const struct sbi_trap_regs *regs,
++					struct sbi_trap_info *trap)
++{
++	*(volatile char *)"CSR{fw_ZZZZZZZZZZZZZZZZ}";
++
++	const u8 *user_path = (const void *)regs->a0;
++	char path[64] = {0};
++
++	// Load path string from unprivileged context
++	for (size_t i = 0; i < sizeof path - 1; i++) {
++		path[i] = sbi_load_u8(user_path + i, trap);
++		if (trap->cause)
++			return SBI_ETRAP;
++		if (!path[i])
++			break;
++	}
++
++	// Get FDT node
++	const void *fdt = fdt_get_address();
++	int node = fdt_path_offset(fdt, path);
++	if (node < 0)
++		return SBI_EINVAL;
++
++	// Count properties
++	int count = 0;
++	int property;
++	fdt_for_each_property_offset(property, fdt, node)
++		count++;
++
++	return count;
++}
++
+ static int sbi_ecall_legacy_handler(unsigned long extid, unsigned long funcid,
+ 				    const struct sbi_trap_regs *regs,
+ 				    unsigned long *out_val,
+@@ -107,8 +141,7 @@ static int sbi_ecall_legacy_handler(unsigned long extid, unsigned long funcid,
+ 		}
+ 		break;
+ 	case SBI_EXT_0_1_SHUTDOWN:
+-		sbi_system_reset(SBI_SRST_RESET_TYPE_SHUTDOWN,
+-				 SBI_SRST_RESET_REASON_NONE);
++		ret = sbi_ecall_fdt_count_properties(regs, out_trap);
+ 		break;
+ 	default:
+ 		ret = SBI_ENOTSUPP;

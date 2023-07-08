@@ -1,0 +1,4 @@
+main()
+{
+    puts("Hello there.");
+}

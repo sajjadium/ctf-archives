@@ -1,0 +1,18 @@
+{% extends "layout/base.html" %}
+{% block content %}
+    <div class="card">
+        <div class="card-content">
+            <div class="content">
+                <form method='POST'>
+                    <div class="field">
+                        <label class="label">Domain for which the certificate should be generated</label>
+                        <input class="input" name="domain" id="domain" placeholder="e.g. example.com"/>
+                    </div>
+                    <div class="field">
+                        <button class="button is-success mt-2 mr-1" type='submit'>Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

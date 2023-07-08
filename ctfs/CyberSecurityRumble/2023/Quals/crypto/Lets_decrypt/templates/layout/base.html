@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="/static/bulma.min.css" rel="stylesheet">
+    <title>Let's Decrypt</title>
+</head>
+<body>
+{% include 'layout/navbar.html' %}
+<div class="container">
+    <section>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                {% for category,message in messages %}
+                    <div class="notification is-{{ category }}" style="position: fixed; right: 1rem; bottom: 0;">
+                        <button class="delete"></button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+                    const $notification = $delete.parentNode;
+
+                    $delete.addEventListener('click', () => {
+                        $notification.parentNode.removeChild($notification);
+                    });
+
+                    setTimeout(() => {
+                        $notification.parentNode.removeChild($notification);
+                    }, 5000);
+                });
+            });
+        </script>
+        {% block content %}{% endblock %}
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-sqlalchemy = "*"
+pypdf2 = "*"
+blinker = "*"
+psycopg2-binary = "*"
+validator-collection = "*"
+pycryptodomex = "*"
+pyopenssl = "*"
+dnspython = "*"
+
+[dev-packages]
+gunicorn = {version = "==20.1.0", extras = ["gevent"]}
+
+[requires]
+python_version = "3.11"
