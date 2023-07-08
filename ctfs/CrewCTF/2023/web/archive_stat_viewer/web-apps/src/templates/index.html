@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Archive Analyzer</title>
+</head>
+<body>
+	<form method="POST" action="/analyze" enctype="multipart/form-data">
+		<input type="file" name="archive">
+		<input type="submit" value="Analyze file">
+	</form>
+	<ul>
+		{% for archive in archives %}
+			<li><a href="/results/{{archive['id']}}">{{archive['name']}}</a></li>
+		{% endfor %}
+	</ul>
+	<a href="/clean">Clean results</a>
+</body>
+</html>

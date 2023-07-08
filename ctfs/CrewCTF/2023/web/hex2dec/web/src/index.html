@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="content-security-policy" content="default-src 'none'; script-src 'unsafe-inline';">
+	<title>hex2dec tool</title>
+</head>
+<body>
+	<form method="GET">
+		<input type="text" name="v" placeholder="deadbeef">
+		<input type="submit" value="To decimal">
+	</form>
+	<div id="result">
+	</div>
+	<script type="text/javascript">
+		const params = new URLSearchParams(document.location.search.substring(1));
+		const v = params.get("v");
+		if (/^[0-f +-]+$/g.test(v)) {
+			result.innerHTML = `${v} = ${parseInt(v, 16)}`;
+		}
+	</script>
+</body>
+</html>
