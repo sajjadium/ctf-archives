@@ -71,6 +71,10 @@ if __name__ == '__main__':
         if os.system('7z x "%s" -o"%s"' % (f, tmp_path)) != 0:
           os.system('mv "%s" "%s"' % (f, chal_name))
           continue
+      elif f.endswith('.rar'):
+        if os.system('unrar x "%s" -op"%s"' % (f, tmp_path)) != 0:
+          os.system('mv "%s" "%s"' % (f, chal_name))
+          continue
       else:
         os.system('mv "%s" "%s"' % (f, chal_name))
         continue

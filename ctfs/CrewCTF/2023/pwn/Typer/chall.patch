@@ -1,0 +1,30 @@
+diff --git a/src/compiler/js-call-reducer.cc b/src/compiler/js-call-reducer.cc
+index 1a1f2b59183..a22530094f7 100644
+--- a/src/compiler/js-call-reducer.cc
++++ b/src/compiler/js-call-reducer.cc
+@@ -6370,9 +6370,9 @@ Reduction JSCallReducer::ReduceArrayIteratorPrototypeNext(Node* node) {
+     // This extra check exists to refine the type of {index} but also to break
+     // an exploitation technique that abuses typer mismatches.
+     index = etrue = graph()->NewNode(
+-        simplified()->CheckBounds(p.feedback(),
+-                                  CheckBoundsFlag::kAbortOnOutOfBounds),
+-        index, length, etrue, if_true);
++            common()->TypeGuard(
++              Type::Range(0.0, length_access.type.Max() - 1.0, graph()->zone())),
++            index, etrue, if_true);
+ 
+     done_true = jsgraph()->FalseConstant();
+     if (iteration_kind == IterationKind::kKeys) {
+diff --git a/src/compiler/operation-typer.cc b/src/compiler/operation-typer.cc
+index bd57b79ed49..154ace2450e 100644
+--- a/src/compiler/operation-typer.cc
++++ b/src/compiler/operation-typer.cc
+@@ -363,7 +363,7 @@ Type OperationTyper::NumberAbs(Type type) {
+     type = Type::Union(type, cache_->kSingletonZero, zone());
+   }
+   if (maybe_nan) {
+-    type = Type::Union(type, Type::NaN(), zone());
++    type = Type::PlainNumber();
+   }
+   return type;
+ }

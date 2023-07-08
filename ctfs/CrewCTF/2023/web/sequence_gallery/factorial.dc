@@ -1,0 +1,22 @@
+50 sn  # n = 50
+2 si   # i = 2
+
+# define f
+[
+d  # A = $1
+1 - # A = A - 1
+d  # B = A
+2<f  # if (2 < A) execute f(B)
+*  # top = A * $1
+] sf
+
+[
+li n [: ] n li lf x n [
+] n  # print f(i)
+li 1 + si   # i += 1
+li          # push i
+ln          # push n
+>m          # if n > i execute m
+] sm
+
+lm x

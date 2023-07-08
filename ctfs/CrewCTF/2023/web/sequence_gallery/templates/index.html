@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sequence Gallery</title>
+</head>
+<body>
+	<form>
+		<select name="sequence">
+			<option value="power">f(n) = n^2</option>
+			<option value="factorial">f(n) = !n</option>
+			<option value="fibonacchi">f(n) = f(n-1) + f(n-2)</option>
+		</select>
+		<input type="submit" value="View">
+		<div>
+			{% if output is defined %}
+				{% for line in output.split("\n") %}
+					{{ line }} <br/>
+				{% endfor%}
+			{% endif%}
+		</div>
+	</form>
+</body>
+</html>
