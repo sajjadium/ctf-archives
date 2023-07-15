@@ -27,7 +27,7 @@ def is_valid(line):
   if all(not l.isalnum() for l in line.strip()):
     return False
 
-  if line.strip().lower() in ['web', 're', 'rev', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry']:
+  if line.strip().lower() in ['web', 're', 'rev', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves']:
     return False
 
   return True
