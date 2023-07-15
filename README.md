@@ -154,6 +154,11 @@
             <td><a href="https://ctftime.org/event/2024/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/AmateursCTF">AmateursCTF</a></td>
+            <td><a href="ctfs/AmateursCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1983/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/AppSecVillage">AppSecVillage (CTF)2</a></td>
             <td><a href="ctfs/AppSecVillage/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1110/tasks/" target="_blank">CTFtime</a></td>

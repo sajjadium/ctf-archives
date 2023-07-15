@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sanity - <%= title %></title>
+</head>
+
+<body>
+    <h1 id="title">
+        <script>
+            const sanitizer = new Sanitizer();
+            document.getElementById("title").setHTML(decodeURIComponent(`<%- title %>`), { sanitizer });
+        </script>
+    </h1>
+    <div id="paste">
+        <script>
+            class Debug {
+                #sanitize;
+                constructor(sanitize = true) {
+                    this.#sanitize = sanitize
+                }
+
+                get sanitize() {
+                    return this.#sanitize;
+                }
+            }
+
+            async function loadBody() {
+                let extension = null;
+                if (window.debug?.extension) {
+                    let res = await fetch(window.debug?.extension.toString());
+                    extension = await res.json();
+                }
+
+                const debug = Object.assign(new Debug(true), extension ?? { report: true });
+                let body = decodeURIComponent(`<%- body %>`);
+                if (debug.report) {
+                    const reportLink = document.createElement("a");
+                    reportLink.innerHTML = `Report <%= id %>`;
+                    reportLink.href = `report/<%= id %>`;
+                    reportLink.style.marginTop = "1rem";
+                    reportLink.style.display = "block"
+
+                    document.body.appendChild(reportLink)
+                }
+
+                if (debug.sanitize) {
+                    document.getElementById("paste").setHTML(body, { sanitizer })
+                } else {
+                    document.getElementById("paste").innerHTML = body
+                }
+            }
+
+            loadBody();
+        </script>
+    </div>
+
+</body>
+
+</html>
