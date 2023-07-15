@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zer0pts CTF 2022 Archives (demo)</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap');
+
+        body {
+            margin: 0 auto;
+            width: 90%;
+            max-width: 60em;
+            font-family: 'Roboto', sans-serif;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <h1>zer0pts CTF 2022 Archives (demo)</h1>
+    <p>Below is an incomplete list of challenges in zer0pts CTF 2022.</p>
+    <p>You can filter keys using the form below. Some functions are disabled because this is a demo version.</p>
+    <hr>
+    <div>
+        Keys:
+        <label>
+            <input type="checkbox" name="name" id="name" checked>
+            Name
+        </label>
+        <label>
+            <input type="checkbox" name="tags" id="tags" checked>
+            Tags
+        </label>
+        <label>
+            <input type="checkbox" name="author" id="author" checked>
+            Author
+        </label>
+        <label>
+            <input type="checkbox" name="flag" id="flag" checked>
+            Flag
+        </label>
+    </div>
+    <div>
+        Conditions:
+        <ul id="conds"></ul>
+        <button id="add">Add condition</button>
+    </div>
+    <div>
+        <button id="search">Search</button>
+    </div>
+    <hr>
+    <div id="output"></div>
+
+    <script>
+        async function query(keys, conds=null) {
+            const params = new URLSearchParams();
+            params.append('keys', keys.join(','));
+            if (conds != null && conds.length !== 0) {
+                params.append('conds', conds.join(','));
+            }
+
+            return fetch('/api/search?' + params).then(r => r.json());
+        }
+
+        const KEYS = ['name', 'tags', 'author', 'flag'];
+        function getKeys() {
+            let result = [];
+            for (const key of KEYS) {
+                const checkbox = document.getElementById(key);
+                if (checkbox.checked) {
+                    result.push(key);
+                }
+            }
+            return result;
+        }
+
+        const conds = document.getElementById('conds');
+        let condElements = [];
+        function getConds() {
+            let result = [];
+            for (const { select, input } of condElements) {
+                result.push(`${input.value} in ${select.selectedOptions[0].value}`);
+            }
+            return result;
+        }
+        function addCond() {
+            const select = document.createElement('select');
+            for (const key of KEYS) {
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = key;
+                select.appendChild(option);
+            }
+
+            const input = document.createElement('input');
+            const a = document.createElement('a');
+            a.href = '#';
+            a.textContent = '(Remove condition)';
+
+            const li = document.createElement('li');
+            li.appendChild(select);
+            li.appendChild(document.createTextNode(' contains '));
+            li.appendChild(input);
+            li.appendChild(a);
+            conds.appendChild(li);
+
+            const id = Math.random();
+            a.addEventListener('click', e => {
+                conds.removeChild(li);
+                const index = condElements.findIndex(x => x.id === id);
+                condElements.splice(index, 1);
+                e.preventDefault();
+                return false;
+            }, false);
+
+            condElements.push({
+                id, select, input
+            });
+        }
+
+        const output = document.getElementById('output');
+        function renderResult(result) {
+            if ('error' in result) {
+                const div = document.createElement('div');
+                div.textContent = `Error: ${result.error}`;
+                output.innerHTML = '';
+                output.appendChild(div);
+                return;
+            }
+
+            const table = document.createElement('table');
+
+            const keys = Object.keys(result[0]);
+            const head = document.createElement('tr');
+            for (const key of keys) {
+                const th = document.createElement('th');
+                th.textContent = key;
+                head.appendChild(th);
+            }
+            table.appendChild(head);
+
+            for (const row of Object.values(result)) {
+                const tr = document.createElement('tr');
+                for (const key of keys) {
+                    const td = document.createElement('td');
+                    td.textContent = row[key];
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+
+            output.innerHTML = '';
+            output.appendChild(table);
+        }
+
+        document.getElementById('add').addEventListener('click', () => {
+            addCond();
+        }, false);
+        document.getElementById('search').addEventListener('click', async () => {
+            const result = await query(getKeys(), getConds());
+            renderResult(result);
+        }, false);
+
+        (async () => {
+            const result = await query(KEYS);
+            renderResult(result);
+        })();
+    </script>
+</body>
+</html>

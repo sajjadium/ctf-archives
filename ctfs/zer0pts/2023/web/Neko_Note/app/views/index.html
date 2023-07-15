@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neko Note ᓚᘏᗢ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <h1>Neko Note <span class="cat"><span class="tail">ᓚ</span>ᘏᗢ</span></h1>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <h1>Create a new note</h1>
+    <div class="hidden" id="message"></div>
+    <div class="form-item">
+        <label>
+            Title: <input type="text" name="title" id="title" placeholder="e.g. I like cats"><br>
+        </label>
+    </div>
+    <div class="form-item">
+        <label>
+            Body: <textarea name="body" id="body" cols="30" rows="10" placeholder="e.g. Because cats are cats."></textarea><br>
+            <small class="note">You can use syntax like <code>[6f16cd75-c50d-4ea2-b845-a085ff982a57]</code> to add links to other notes. Those tags will be automatically replaced to links like <a href=/note/6f16cd75-c50d-4ea2-b845-a085ff982a57 title=Sample>Sample</a>.</small><br>
+        </label>
+    </div>
+    <div class="form-item">
+        <label>
+            Password: <input type="text" name="password" id="password" placeholder=""><br>
+            <small class="note">You can set a password to lock your note. If you want to make it visible to everyone, leave it empty.</small><br>
+        </label>
+    </div>
+    <button id="submit">Submit</button>
+
+    <h1>Your notes</h1>
+    <ul id="history"></ul>
+    <button id="clear">Clear</button>
+
+    <script>
+        const title = document.getElementById('title');
+        const body = document.getElementById('body');
+        const password = document.getElementById('password');
+
+        const message = document.getElementById('message');
+
+        function showMessage(cl, mes) {
+            message.innerHTML = mes;
+            message.classList.remove('info', 'error');
+            message.classList.add(cl);
+            message.classList.remove('hidden');
+        }
+
+        const notes = document.getElementById('history');
+
+        function getHistory() {
+            const res = localStorage.getItem('neko-note-history');
+            if (res === null) {
+                return [];
+            }
+            return JSON.parse(res);
+        }
+
+        function setHistory(hist) {
+            localStorage.setItem('neko-note-history', JSON.stringify(hist))
+        }
+
+        function renderHistory(id, title) {
+            let a = document.createElement('a');
+            a.href = `/note/${id}`;
+            a.textContent = title;
+
+            let li = document.createElement('li');
+            li.appendChild(a);
+            notes.appendChild(li);
+        }
+
+        function addHistory(id, title) {
+            let hist = getHistory();
+            hist.push({ id, title });
+            setHistory(hist);
+            renderHistory(id, title);
+        }
+
+        const clear = document.getElementById('clear');
+        clear.addEventListener('click', () => {
+            setHistory([]);
+            location.reload();
+        }, false);
+
+        for (const { id, title } of getHistory()) {
+            renderHistory(id, title);
+        }
+
+        const button = document.getElementById('submit');
+        button.addEventListener('click', async () => {
+            let form = new FormData();
+            form.append('title', title.value);
+            form.append('body', body.value);
+            form.append('password', password.value);
+
+            const req = await fetch('/api/note/new', {
+                method: 'PUT',
+                body: form
+            });
+            const res = await req.json();
+            if (res.status !== 'ok') {
+                showMessage('error', res.message)
+                return;
+            }
+
+            addHistory(res.id, title.value);
+            showMessage('info', `Note created: <a href="/note/${res.id}">${title.value}</a>`);
+        }, false);
+    </script>
+</body>
+</html>

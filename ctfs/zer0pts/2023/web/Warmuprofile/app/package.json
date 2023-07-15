@@ -1,0 +1,21 @@
+{
+  "name": "warmuprofile",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-basic-auth": "^1.2.1",
+    "express-session": "^1.17.3",
+    "sequelize": "^6.32.1",
+    "sqlite3": "^5.1.6"
+  }
+}

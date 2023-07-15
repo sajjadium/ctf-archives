@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in - <%= chall_name %></title>
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+    <h1>Log in</h1>
+    <% if (flash) { %>
+    <div class="error"><%= flash %></div>
+    <% } %>
+    <form action="/login" method="post">
+        <label>
+            Username: <input type="text" name="username" id="username">
+        </label>
+        <label>
+            Password: <input type="password" name="password" id="password">
+        </label>
+        <input type="submit" value="Log in">
+    </form>
+</body>
+</html>

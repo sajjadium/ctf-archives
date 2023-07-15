@@ -1,0 +1,32 @@
+version: '3'
+services:
+  challenge:
+    build: ./app
+    ports:
+      - "8005:8080"
+    links:
+      - redis
+    environment:
+      - GIN_MODE=release
+      - REDIS_ADDR=redis:6379
+      #- RECAPTCHA_SITE_KEY=XXXXXXXXXX
+      #- RECAPTCHA_SECRET_KEY=XXXXXXXXXX
+      #- ENABLE_RECAPTCHA=yes
+      - MASTER_KEY=dummy
+    restart: always
+
+  bot:
+    build: ./bot
+    links:
+      - challenge
+      - redis
+    environment:
+      - REDIS_ADDR=redis:6379
+      - FLAG=nek0pts{DUMMY}
+      - MASTER_KEY=dummy
+      - BASE_URL=http://challenge:8080
+    restart: always
+
+  redis:
+    build: ./redis
+    restart: always

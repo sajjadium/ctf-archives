@@ -1,0 +1,43 @@
+version: '3'
+services:
+  api:
+    build: ./api
+    ports:
+      - "8400:4567"
+    environment:
+      - FLAG=nek0pts{DUMMY}
+      #- ALLOWED_ORIGIN=http://plain-blog.2023.zer0pts.com:8401,http://frontend
+      - ALLOWED_ORIGIN=http://localhost:8401,http://frontend
+      - ADMIN_KEY=XXXXXXXXXX
+    restart: always
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8401:80"
+    links:
+      - redis
+    environment:
+      #- API_BASE_URL=http://plain-blog.2023.zer0pts.com:8400
+      - API_BASE_URL=http://localhost:8400
+      - API_BASE_URL_FOR_ADMIN=http://api:4567
+      #- RECAPTCHA_SITE_KEY=XXXXXXXXXX
+      #- RECAPTCHA_SECRET_KEY=XXXXXXXXXX
+      #- ENABLE_RECAPTCHA=yes
+    restart: always
+
+  bot:
+    build: ./bot
+    links:
+      - api
+      - frontend
+      - redis
+    environment:
+      - REDIS_ADDR=redis:6379
+      - ADMIN_KEY=XXXXXXXXXX
+      - FRONTEND_BASE_URL=http://frontend
+    restart: always
+
+  redis:
+    build: ./redis
+    restart: always

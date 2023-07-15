@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neko Note ᓚᘏᗢ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Neko Note <span class="cat"><span class="tail">ᓚ</span>ᘏᗢ</span></h1>
+        <nav>
+            <a href="/">Home</a>
+        </nav>
+    </header>
+
+    <h1 id="title">Loading ...</h1>
+    <div class="hidden" id="message"></div>
+    <div id="body"></div>
+    <hr>
+    {{ if .useRecaptcha }}
+    <button id="report" class="g-recaptcha"
+            data-sitekey="{{ .siteKey }}"
+            data-callback="onReport"
+            data-action="submit">Report this note to admin</button>
+    {{ else }}
+    <button id="report" onclick="onReport()">Report this note to admin</button>
+    {{ end }}
+
+    <template id="lockedNote">
+        <p>This note is locked 🔒</p>
+        <p>Enter password to unlock this note.</p>
+        <label>Password: <input type="text"></label>
+        <button>Unlock</button>
+        <hr>
+    </template>
+
+    <template id="unlockedNote">
+        <div></div>
+        <button>Show the note</button>
+    </template>
+
+    <script>
+        const title = document.getElementById('title');
+        const body = document.getElementById('body');
+        const message = document.getElementById('message');
+        function showMessage(cl, mes) {
+            message.innerHTML = mes;
+            message.classList.remove('info', 'error');
+            message.classList.add(cl);
+            message.classList.remove('hidden');
+        }
+
+        const lockedTemplate = document.getElementById('lockedNote');
+        const unlockedTemplate = document.getElementById('unlockedNote');
+
+        function addUnlockedNote(content) {
+            const element = unlockedTemplate.content.cloneNode(true);
+            const div = element.querySelector('div');
+            const button = element.querySelector('button');
+
+            button.addEventListener('click', () => {
+                div.innerHTML = content;
+                button.remove();
+            }, false);
+
+            body.appendChild(element);
+        }
+
+        const path = location.pathname;
+        const id = path.split('/').slice(-1)[0];
+
+        async function onReport(token) {
+            let form = new FormData();
+            form.append('token', token);
+
+            const req = await fetch(`/api/note/${id}/report`, {
+                method: 'POST',
+                body: form
+            });
+            const res = await req.json();
+
+            if (res.status !== 'ok') {
+                showMessage('error', res.message);
+                return;
+            }
+
+            showMessage('info', 'Reported to admin!');
+        }
+
+        (async () => {
+            const req = await fetch(`/api/note/${id}`);
+            const res = await req.json();
+
+            if (res.status !== 'ok') {
+                showMessage('error', res.message);
+                return;
+            }
+
+            const { note } = res;
+            title.textContent = note.title;
+            if (note.locked) {
+                const form = lockedTemplate.content.cloneNode(true);
+                const password = form.querySelector('input');
+                const unlockButton = form.querySelector('button');
+                const p = form.querySelector('p');
+
+                unlockButton.addEventListener('click', async () => {
+                    const params = new URLSearchParams({
+                        password: password.value
+                    });
+                    const req = await fetch(`/api/note/${id}/unlock?${params}`);
+                    const res = await req.json();
+                    
+                    if (res.status !== 'ok') {
+                        showMessage('error', res.message);
+                        return;
+                    }
+
+                    p.textContent = 'This note is unlocked 🔓';
+                    unlockButton.remove();
+                    addUnlockedNote(res.note.body);
+                }, false);
+
+                body.appendChild(form);
+            } else {
+                addUnlockedNote(note.body);
+            }
+        })();
+    </script>
+</body>
+</html>

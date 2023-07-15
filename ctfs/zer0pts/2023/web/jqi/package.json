@@ -1,0 +1,16 @@
+{
+  "name": "jq-chall",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.18.0",
+    "node-jq": "^2.3.5"
+  }
+}

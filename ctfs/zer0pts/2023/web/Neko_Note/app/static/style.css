@@ -1,0 +1,56 @@
+h1 {
+    margin-top: 2rem;
+}
+
+textarea {
+    font-family: var(--nc-font-sans);
+    vertical-align: top;
+}
+
+input, textarea {
+    width: 100%;
+}
+
+.form-item {
+    margin-bottom: 1rem;
+}
+
+.note {
+    color: darkgray;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    color: #bb2222;
+    background: #ffbbbb;
+    border: 2px solid #bb2222;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.info {
+    color: #222;
+    background: #fff;
+    border: 2px solid #222;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
+
+.tail {
+    display: inline-block;
+    transform-origin: right bottom;
+}
+
+.cat:hover .tail {
+    animation: wag 1s linear infinite;
+}
+
+@keyframes wag {
+    0% { transform: rotateZ(0deg); }
+    25% { transform: rotateZ(-10deg); }
+    50% { transform: rotateZ(0deg); }
+    75% { transform: rotateZ(10deg); }
+}

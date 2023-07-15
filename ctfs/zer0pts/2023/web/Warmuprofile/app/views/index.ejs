@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - <%= chall_name %></title>
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+    <h1><%= chall_name %></h1>
+    <% if (flash) { %>
+    <div class="error"><%= flash %></div>
+    <% } %>
+    <p>Welcome to <%= chall_name %>! In this app, you can share your profile or view other users' profile.</p>
+    <% if (loggedIn) { %>
+        <p>Hello, <%= user.username %>!</p>
+        <ul>
+            <li><a href="/user/<%= user.username %>">Check my profile</a></li>
+            <li><a href="/user/<%= user.username %>/delete">Delete my profile</a></li>
+            <li><a href="/flag">Get the flag (admin only)</a></li>
+            <li><a href="/logout">Log out</a></li>
+        </ul>
+    <% } else { %>
+        <p>You are not logged in. <a href="/register">Register</a> or <a href="/login">log in</a> to access the contents.</p>
+    <% } %>
+</body>
+</html>

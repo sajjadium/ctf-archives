@@ -1,0 +1,38 @@
+{
+    "name": "zer0pts CTF 2022",
+    "start_date": "2022-03-19 09:00:00 +09:00",
+    "end_date": "2022-03-20 21:00:00 +09:00",
+    "description": "zer0pts CTF is a jeopardy-style CTF. We provide many fun challenges of varying difficulty and categories, and none of them require any guessing skills.",
+    "challenges": [
+        {
+            "name": "GitFile Explorer",
+            "tags": ["web", "warmup"],
+            "author": "ptr-yudai",
+            "flag": "zer0pts{foo/bar/../../../../../directory/traversal}"
+        },
+        {
+            "name": "Zer0TP",
+            "tags": ["misc", "web"],
+            "author": "ptr-yudai, keymoon",
+            "flag": "zer0pts{U_s4v3d_1337_USD_:yay:}"
+        },
+        {
+            "name": "CurveCrypto",
+            "tags": ["crypto"],
+            "author": "theoremoon",
+            "flag": "zer0pts{th3_g00d_3ncrypti0n_c0m3s_fr0m_th3_g00d_curv3}"
+        },
+        {
+            "name": "Flag Checker",
+            "tags": ["rev"],
+            "author": "x0r19x91",
+            "flag": "zer0pts{me$s4g3_p4$$1ng_thru|p1pez_4r3_gr347!83157e16e25aa73f8a1fa1af06ac897a0f47d5be53ebb601953a43b6b3b4ca49}"
+        },
+        {
+            "name": "MemSafeD",
+            "tags": ["pwn"],
+            "author": "ptr-yudai",
+            "flag": "zer0pts{1.Use_@trusted_escapes/2.Use_boundscheck=safeonly/3.Trust_GC}"
+        }
+    ]
+}

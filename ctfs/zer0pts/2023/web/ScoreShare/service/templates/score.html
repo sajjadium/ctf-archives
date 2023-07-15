@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Play | ScoreShare</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/abcjs-audio.css">
+    <script src="/static/js/abcjs-basic-min.js"></script>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>{{ title }}</h1>
+        <input type="hidden" value="{{ sid }}" id="sid">
+        <textarea id="abc" hidden>{{ abc }}</textarea>
+        <div id="audio" class="player"></div>
+        <div id="paper"></div>
+      </section>
+      {% if link %}
+      <section>
+        <h1>Related Website</h1>
+        <iframe sandbox="allow-same-origin" name="{{ title }}" src="{{ link }}"></iframe>
+      </section>
+      {% endif %}
+    </main>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/score.js"></script>
+  </body>
+</html>

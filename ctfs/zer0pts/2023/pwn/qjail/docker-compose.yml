@@ -1,0 +1,10 @@
+version: '3'
+services:
+  dist_qjail:
+    build: .
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "9005:9999"
+    restart: unless-stopped

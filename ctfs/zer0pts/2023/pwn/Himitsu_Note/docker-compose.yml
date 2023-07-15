@@ -1,0 +1,11 @@
+version: '3'
+services:
+  dist_himitsu:
+    build: .
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "9003:9999"
+    entrypoint: /etc/init.sh
+    restart: unless-stopped

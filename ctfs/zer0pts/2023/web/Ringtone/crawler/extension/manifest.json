@@ -1,0 +1,24 @@
+{
+    "name": "Ringtone",
+    "version": "1.0.0",
+    "description": "Best extension to ring around",
+    "manifest_version": 3,
+    "key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzyW25xojoIthon4SzVp+YJ1FAplYACiiBIK+g+t7XCogNvbNpK87SpoVaxMcruPS44ltYsLCX/Ab/dRaG6LdBpaOvc9MzZ92BQcgp7Otn1bHmFT/l7On/Dx70iaOAiwlI4t6uskIzsi5rsIQsel4Qlg0ROtK8bTUO6hVygIN/5r7GVczwuQOtoEdGArimHeVOg/nT0VATogJoEYw6LJ7sLmDGyHGZpotwq4GlBRt4IT5S2SQGhuVYkL1vGABAl/46PkAhTEVmuoTG6yzfN7jXFZO+pGDLlxqQgUJjQ/LqP0gmo9Nn9hxaTNCoQ7bjR5g1kFRTHstGdsN/FQV/c+PSQIDAQAB",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [{
+    "matches": ["*://*.zer0pts.com/*","http://localhost/*","http://challenge/*"],
+    "js": ["content.js"]
+  }],
+  "externally_connectable": {
+    "matches": ["*://*.zer0pts.com/*","*://localhost/*","http://challenge/*"]
+},
+    "host_permissions":["<all_urls>"],
+    "permissions":["history","activeTab","tabs"],
+    "author": "kahla",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Ringtone Extension"
+    }
+}

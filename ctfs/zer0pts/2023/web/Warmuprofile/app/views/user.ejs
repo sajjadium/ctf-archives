@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= user.username %>'s profile - <%= chall_name %></title>
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+    <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+    <h1><%= user.username %>'s profile</h1>
+    <% if (flash) { %>
+    <div class="error"><%= flash %></div>
+    <% } %>
+    <ul>
+        <li>Username: <code><%= user.username %></code></li>
+        <li>Profile: <%= user.profile %></li>
+    </ul>
+</body>
+</html>

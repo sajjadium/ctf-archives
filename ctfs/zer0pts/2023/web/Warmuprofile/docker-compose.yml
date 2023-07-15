@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "8600:3000"
+    environment:
+      - FLAG=nek0pts{FAKE_FLAG}
+    restart: always

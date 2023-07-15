@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Share | ScoreShare</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>Share Music</h1>
+        {% with errors = get_flashed_messages() %}
+        {% if errors %}
+        {% for error in errors%}
+        <div class="error">{{ error }}</div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <p>Paste <a href="https://abcnotation.com/" target="_blank">ABC notation</a> of your music.</p>
+        <form method="POST" action="/">
+          <input type="text" name="title" id="title" placeholder="Title of the Music" required>
+          <textarea class="abc" name="abc" id="abc" required></textarea>
+          <small>* You can add a link to a website related to this music.</small>
+          <input type="url" name="link" id="link" placeholder="URL">
+          <input type="submit" value="Upload">
+        </form>
+      </section>
+    </main>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/upload.js"></script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+body {
+    width: 100%;
+    background: #f0f0f0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+}
+
+main {
+    width: 60%;
+    margin: 2em auto 2em auto;
+}
+
+a {
+  color: #337ab7;
+  text-decoration: none;
+  box-shadow: 0px 1px 0px #ccc;
+}
+
+a:active {
+  color: #23527c;
+}
+
+a:hover {
+  text-decoration: underline double;
+  box-shadow: 0px 2px 0px #ccc;
+  color: #23527c;
+}
+
+form {
+    display: block;
+    margin: 1em auto 0 auto;
+    width: 80%;
+}
+
+input, textarea {
+    margin: 0.5em;
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+    border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+    border-image: none;
+    border-radius: 6px 6px 6px 6px;
+    border-style: none solid solid none;
+    border-width: medium 1px 1px medium;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+    color: #555555;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding: 5px 8px;
+    transition: background-color 0.2s ease 0s;
+}
+
+input {
+    width: 100%;
+    height: 1.5em;
+}
+
+textarea.abc {
+    width: 100%;
+    height: 20em;
+}
+
+textarea:focus {
+    background: none repeat scroll 0 0 #FFFFFF;
+    outline-width: 0;
+}
+
+input[type="submit"] {
+    margin-top: 1em;
+    float: right;
+    background-color: #337ab7;
+    color: #f0f0f0;
+    border: none;
+    border-radius: 0.5em;
+    width: 8em;
+    height: 2.5em;
+    box-shadow: 0px 1px 0px #ccc;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+input[type="submit"]:hover {
+    background-color: #23527c;
+    box-shadow: 0px 2px 0px #ccc;
+}
+
+iframe {
+    width: 80%;
+    height: 32em;
+    border: 0.2em solid #ccc;
+}
+
+.player {
+    width: 4em;
+}
+
+.error {
+    padding: 1em;
+    border-radius: 0.5em;
+    background-color: #f44346;
+    color: #eee;
+    margin: 0.5em;
+}
