@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lahoot Game</title>
+        <!-- i'm sorry...but -->
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+        <script src="https://www.unpkg.com/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
+        <link rel="stylesheet" href="https://www.unpkg.com/jquery-toast-plugin@1.3.2/dist/jquery.toast.min.css">
+    </head>
+    <body class="h-screen flex flex-col">
+        <div class="h-16 md:h-24 bg-white shadow-lg flex" id="header">
+            <h1 id="header-text" class="text-center text-2xl text-bold font-bold leading-tight text-grey-900 m-auto flex items-center justify-center h-full">
+                Loading Game Title...
+            </h1>
+        </div>
+        <div class="flex flex-grow">
+            <div class="block h-full w-full">
+                <div id="loader">
+                    <div class="p-8" id="loader-text">Please wait...</div>
+                    <noscript>
+                        <h1>Please turn on js to play the game. </h1>
+                    </noscript>
+                </div>
+                <div id="lobby" class="p-8">
+                    <h1 class="text-lg text-center text-bold">Waiting for server...</h1>
+                    <p class="text-md text-center" id="lobby-estimate">Loading estimated wait time...</p>
+                    <br />
+                    <div class="md:w-3/4 lg:w-1/2 w-full bg-sky-200 m-auto rounded shadow-2xl drop-shadow-2xl">
+                        <input type="text" class="w-full bg-sky-200 p-2 rounded" placeholder="Type here to change your name. Min 3 chars, max 23 chars. " id="name-changer">
+                    </div>
+                    <br />
+                    <div id="lobby-playerlist" class="rounded shadow-2xl drop-shadow-2xl md:w-3/4 lg:w-1/2 w-full m-auto">
+                        
+                    </div>
+                    <br />
+                    <div id="lobby-motd" class="rounded shadow-2xl drop-shadow-2xl md:w-3/4 lg:w-1/2 w-full bg-pink-200 p-2 m-auto motd">
+                        Loading message of the day. 
+                    </div>
+                </div>
+                <div id="question-tease" class="w-full h-full">
+                    <h1 id="tease-question-text" class="text-3xl font-bold text-center h-full flex justify-center items-center"></h1>
+                </div>
+                <div id="question-answering" class="w-full h-full">
+                    <div class="text-3xl font-bold h-2/5" id="answering-question-wrapper">
+                        <div id="question-bar" class="h-2 bg-orange-500 block"></div>
+                        <br />
+                        <h1 id="answering-question-text" class="text-3xl font-bold text-center"></h1>
+                        <img id="answering-question-image" src="" class="m-auto h-full w-auto">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 w-full h-3/5 p-4" id="answering-wrapper">
+                        <div id="red" class="slot bg-red-600 flex items-center justify-center text-3xl font-bold text-white rounded-md" data-color-class="bg-red-600">
+
+                        </div>
+                        <div id="blue" class="slot bg-blue-600 flex items-center justify-center text-3xl font-bold text-white rounded-md" data-color-class="bg-blue-600">
+                            
+                        </div>
+                        <div id="yellow" class="slot bg-yellow-400 flex items-center justify-center text-3xl font-bold text-white rounded-md" data-color-class="bg-yellow-400">
+                            
+                        </div>
+                        <div id="green" class="slot bg-green-500 flex items-center justify-center text-3xl font-bold text-white rounded-md" data-color-class="bg-green-500">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div id="answer-and-leaderboard">
+                    <br />
+                    <div class="rounded shadow-2xl drop-shadow-2xl md:w-3/4 lg:w-1/2 w-full p-2 m-auto text-align font-extrabold text-white" id="review-outcome">
+                        Outcome...
+                    </div>
+                    <div class="rounded shadow-2xl drop-shadow-2xl md:w-3/4 lg:w-1/2 w-full p-2 m-auto" id="review-question-wrapper">
+                        <h1 class="text-2xl" id="review-question"></h1>
+                        <h2 class="text-xl text-lime-500 text-bold" id="review-answer"></h2>
+                    </div>
+                    <br />
+                    <div class="rounded shadow-2xl drop-shadow-2xl md:w-3/4 lg:w-1/2 w-full p-2 m-auto" id="you-stats">
+                        <h1 class="text-2xl" id="review-streak">Loading streak...</h1>
+                        <h2 class="text-xl text-bold" id="review-points">Loading points...</h2>
+                    </div>
+                    <br />
+                    <div class="rounded shadow-2xl drop-shadow-2xl md:w-3/4 lg:w-1/2 w-full p-2 m-auto font-bold" id="streak-stats">
+                        Streak stats loading
+                    </div>
+                    <br />
+                    <div class="rounded shadow-2xl drop-shadow-2xl md:w-3/4 lg:w-1/2 w-full p-2 m-auto" id="leaderboard">
+                        Leaderboard loading
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hidden" hidden id="tailwindhack">
+        </div>
+        <script src="/app.js"></script>
+    </body>
+</html>

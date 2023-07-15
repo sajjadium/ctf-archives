@@ -1,0 +1,43 @@
+<!-- Utility page for converting -->
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<textarea id="input" rows="25" cols="100" placeholder="Insert kahoot data here"></textarea> <br />
+<input type="text" id="prefix" placeholder="Question prefix"/> <br />
+<textarea id="output" rows="25" cols="100" placeholder="Generated quiz goes here"></textarea>
+
+<script>
+    $(function(){
+        $("#input").on("change", function(){
+            let input = $(this).val();
+            let json = JSON.parse(input);
+            let kahoot = json.kahoot;
+            let questions = kahoot.questions;
+            let output = [];
+            let prefix = $("#prefix").val();
+            for(let question of questions){
+                
+                if(!question.points) continue;
+                
+                // TODO: copy time for question
+                
+                let transformedQuestion = {};
+                transformedQuestion.question = {
+                    text: prefix + question.question
+                };
+
+                if(question.image){
+                    transformedQuestion.question.image = "https://external-content.duckduckgo.com/iu/?u=" + question.image;
+                }
+
+                let correctAnswer = question.choices.find(c => c.correct).answer;
+                let wrongAnswers = question.choices.filter(c => !c.correct).map(c => c.answer);
+                transformedQuestion.answers = [correctAnswer, ...wrongAnswers];
+                output.push(transformedQuestion);
+            }
+            try{
+                $("#output").val(JSON.stringify(output,null,4));
+            }catch(ex){
+                $("#output").val(ex);
+            }
+        })
+    });
+</script>

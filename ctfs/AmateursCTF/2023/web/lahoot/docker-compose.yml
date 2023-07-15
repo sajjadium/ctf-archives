@@ -1,0 +1,40 @@
+version: "3"
+services:
+  node:
+    build: .
+    user: "node"
+    restart: always
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+      - PORT=8081
+    volumes:
+      - ./:/home/node/app
+    ports:
+      - "0.0.0.0:8081:8081"
+    command: "npm start"
+    depends_on:
+      - database
+    healthcheck:
+      test: ["CMD-SHELL", "curl", "http://127.0.0.1:8081"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s  
+  database:
+    image: postgres:15.3-alpine3.18
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: s3cur1ty_by_netw0rk_is0lation_m0m3nt
+      POSTGRES_USER: service
+      POSTGRES_DB: lahoot
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "lahoot"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s  
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
