@@ -9,7 +9,7 @@ import tempfile
 import shutil
 
 def is_valid(line):
-  if re.search('\d+[ \t]+points', line) or re.search('\d+[ \t]+solves', line):
+  if re.search('\d+[ \t]+points', line) or re.search('\d+[ \t]+solves', line) or re.search('\d+[ \t]+solve', line):
     return False
 
   if re.search('\d+pt', line):
