@@ -1,0 +1,11 @@
+version: "3"
+# rcds simulator
+services:
+  node:
+    build: .
+    environment:
+      - NODE_ENV=production
+      - PORT=8082
+    ports:
+      - "0.0.0.0:8082:8082"
+

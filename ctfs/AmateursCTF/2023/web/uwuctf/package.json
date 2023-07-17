@@ -1,0 +1,20 @@
+{
+  "name": "lahoot",
+  "version": "1.0.0",
+  "description": "Self-hostable kahoot clone. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "shell-quote": "^1.8.1"
+  },
+  "type": "module"
+}
