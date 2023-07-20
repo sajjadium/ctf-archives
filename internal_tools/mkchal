@@ -9,6 +9,9 @@ import tempfile
 import shutil
 
 def is_valid(line):
+  if line.strip().lower().startswith('download link'):
+    return False
+
   if re.search('\d+[ \t]+points', line) or re.search('\d+[ \t]+solves', line) or re.search('\d+[ \t]+solve', line):
     return False
 
