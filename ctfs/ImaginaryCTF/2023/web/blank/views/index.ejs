@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>The greatest webapp ever.</h1>
+  
+  <% if (loggedIn) { %>
+    <p>Hello, <%= username %>!</p>
+    <a href="/logout">Logout</a>
+  <% } else { %>
+    <a href="/login">Login</a>
+  <% } %>
+</body>
+</html>

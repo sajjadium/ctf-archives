@@ -1,1 +1,0 @@
-My friend sent me a message with a flag inside. More importantly, it also speaks about apple tarts. To test your dedication about apple tarts, I made a fancy caesar cipher to encrypt it. Retrieve the flag and hail the tarts! Note: flag format is ictf{ALLCAPSNOUNDERSCORE}

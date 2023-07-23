@@ -1,0 +1,7 @@
+version: '3.3'
+services:
+  minimal:
+    build: .
+    ports:
+      - 42042:5000
+    privileged: true

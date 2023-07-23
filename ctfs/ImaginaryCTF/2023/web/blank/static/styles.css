@@ -1,0 +1,93 @@
+/* styles.css */
+
+/* Global Styles */
+body {
+  font-family: Verdana;
+  margin: 10;
+  padding: 10;
+  text-align: center
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Styles */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+/* Navigation Styles */
+nav {
+  margin-top: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 15px; /* Increased margin */
+}
+
+nav ul li a {
+  color: #333;
+  text-decoration: none;
+  padding: 5px 10px;
+  border: 1px solid #333;
+  border-radius: 3px;
+}
+
+/* Content Styles */
+.content {
+  margin-top: 20px;
+}
+
+/* Form Styles */
+form {
+  margin-bottom: 30px; /* Increased margin */
+}
+
+form input[type="text"],
+form input[type="password"] {
+  width: 200px;
+  padding: 5px;
+  margin-bottom: 10px; /* Increased margin */
+}
+
+form button {
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px; /* Increased margin */
+}
+
+/* Message Styles */
+.message {
+  padding: 10px;
+  margin-bottom: 30px; /* Increased margin */
+  border-radius: 3px;
+}
+
+.success {
+  background-color: #c8f7c5;
+  color: #228B22;
+}
+
+.error {
+  background-color: #f7c5c5;
+  color: #ff0000;
+}

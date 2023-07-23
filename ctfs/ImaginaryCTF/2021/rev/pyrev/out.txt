@@ -1,0 +1,25 @@
+  2           0 LOAD_CONST               1 ((0, 6, -17, 14, -21, 25, -23, 5, 15, 2, -12, 11, -1, 6, -4, -12, -6, 9, 8, 5, -3, -3, 6, -6, 4, -18, -6, 26, -2, -18, 20, -17, -9, -4))
+              2 GET_ITER
+        >>    4 FOR_ITER                28 (to 34)
+              6 STORE_FAST               1 (x)
+
+  3           8 LOAD_FAST                0 (n)
+             10 LOAD_FAST                1 (x)
+             12 INPLACE_SUBTRACT
+             14 STORE_FAST               0 (n)
+
+  4          16 LOAD_GLOBAL              0 (print)
+             18 LOAD_GLOBAL              1 (chr)
+             20 LOAD_FAST                0 (n)
+             22 CALL_FUNCTION            1
+             24 LOAD_CONST               2 ('')
+             26 LOAD_CONST               3 (('end',))
+             28 CALL_FUNCTION_KW         2
+             30 POP_TOP
+             32 JUMP_ABSOLUTE            4
+
+  5     >>   34 LOAD_GLOBAL              0 (print)
+             36 CALL_FUNCTION            0
+             38 POP_TOP
+             40 LOAD_CONST               0 (None)
+             42 RETURN_VALUE

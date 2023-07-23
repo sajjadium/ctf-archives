@@ -30,15 +30,17 @@ def is_valid(line):
   if all(not l.isalnum() for l in line.strip()):
     return False
 
-  if line.strip().lower() in ['web', 're', 'rev', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves']:
+  if line.strip().lower() in ['web', 're', 'rev', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description']:
     return False
 
   return True
 
-def get_challenge_name(args):
+def get_challenge_name(line):
+  args = re.sub('(\d+ solves|\d+ pts)', '', line.strip().split('/')[-1]).strip().split()
+
   tokens = []
   for a in args:
-    tokens.extend(re.sub('[^0-9a-zA-Z_\-. ]+', '', a).strip().split())
+    tokens.extend(re.sub('[^0-9a-zA-Z_]+', ' ', a).strip().split())
 
   return '_'.join(tokens)
 
@@ -52,7 +54,7 @@ if __name__ == '__main__':
 
   # create challenge directory
   lines = '\n'.join([re.sub(r'(\d+[ \t]+points)', r'\n\1', l.strip()) for l in sys.stdin.readlines()]).strip().split('\n')
-  chal_name = get_challenge_name(lines[0].strip().split('/')[-1].strip().split())
+  chal_name = get_challenge_name(lines[0])
 
   lines = '\n'.join(lines[1:]).strip().split('\n')
   lines = [l for l in lines if is_valid(l)]

@@ -1,0 +1,1 @@
+Someone has corrupted our super safe decryption script. Can you help me restore the file and decrypt Bob's message? FYI: If you don't want to deal with sage on your PC, you can do all sage related stuff here: https://sagecell.sagemath.org/ or with https://github.com/cryptohack/cryptohack-docker

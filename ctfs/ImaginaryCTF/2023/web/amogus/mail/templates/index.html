@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Email Reader</title>
+</head>
+<body>
+    <h1>Email Reader</h1>
+    <ul>
+        {% for user in users %}
+        <div class="username-box">
+            <li>
+                <a href="/emails/{{ user.id }}">
+                    <p class="username">{{ user.username }}</p>
+                </a>
+            </li>
+        </div>
+        {% endfor %}
+    </ul>
+</body>
+</html>

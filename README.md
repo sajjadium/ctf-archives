@@ -1100,12 +1100,16 @@
             <td><a href="https://ctftime.org/event/642/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/Imaginary">Imaginary</a></td>
-            <td><a href="ctfs/Imaginary/2022">2022</a></td>
+            <td rowspan=3><a href="ctfs/ImaginaryCTF">ImaginaryCTF</a></td>
+            <td><a href="ctfs/ImaginaryCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2015/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/ImaginaryCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1670/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Imaginary/2021">2021</a></td>
+            <td><a href="ctfs/ImaginaryCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1344/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

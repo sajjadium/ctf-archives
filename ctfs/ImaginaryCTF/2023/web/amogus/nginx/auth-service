@@ -1,0 +1,11 @@
+server {
+        server_name auth.supersus.corp;
+
+        location / {
+            proxy_pass http://localhost:8081/;
+        }
+
+        add_header Content-Security-Policy "sandbox allow-forms allow-same-origin; img-src *; default-src none; style-src 'self'; script-src none; object-src http: https:; frame-src http: https:;" always;
+
+        listen 80;
+}

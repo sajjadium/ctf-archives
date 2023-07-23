@@ -1,0 +1,9 @@
+server {
+        server_name mail.supersus.corp;
+
+        location / {
+            proxy_pass http://localhost:8080/;
+        }
+
+        listen 80;
+}

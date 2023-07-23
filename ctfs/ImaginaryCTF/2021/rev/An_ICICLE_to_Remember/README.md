@@ -1,0 +1,1 @@
+The last interpreter was just simple arithmetic, but we all know that a language isn't interesting if you can't loop! Add in some control flow, and while you're at it, add in some memory, too. Check the updated spec, changes are bolded or marked with (new!). Once again, run the file to get the flag.

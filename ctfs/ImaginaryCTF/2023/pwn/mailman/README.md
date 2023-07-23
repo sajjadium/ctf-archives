@@ -1,0 +1,3 @@
+by Eth007
+I'm sure that my post office is 100% secure! It uses some of the latest software, unlike some of the other post offices out there...
+Flag is in ./flag.txt.
