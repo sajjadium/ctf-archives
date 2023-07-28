@@ -1886,7 +1886,11 @@
             <td><a href="https://ctftime.org/event/2002/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/TFC">TFC</a></td>
+            <td rowspan=3><a href="ctfs/TFC">TFC</a></td>
+            <td><a href="ctfs/TFC/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2034/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/TFC/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1647/tasks/" target="_blank">CTFtime</a></td>
         </tr>

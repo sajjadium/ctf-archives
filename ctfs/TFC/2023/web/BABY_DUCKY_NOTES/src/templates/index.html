@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <title>Baby Ducky Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+</head>
+
+<body>
+    
+    <nav class="navbar">
+        <div id="trapezoid">
+            <a href="/login" class="expandHome">Login</a>
+            <a href="/register" class="expandHome">Register</a>
+            <a href="/posts/view/{{session.get('username')}}" class="expandHome">View</a>
+            <a href="/posts/create" class="expandHome">Create</a>
+        </div>
+    </nav>
+
+    <div class="duck_logo">
+        <img src="{{ url_for('static', filename='images/logo.png') }}">
+    </div>
+
+    
+    <footer>
+        <div class="footer-content">
+            <h3>Disclaimer</h3>
+            <p>This challenge is made to be hacked. Any indication of proper usage or untapped activity will result in legal sanctions. Happy hacking!</p>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy; <a href="#">Sagi / The Few Chosen CTF 2023 </a>  </p>
+            <div id="pot">
+                <img src="{{ url_for('static', filename='images/duck.gif') }}" width=100px height=100px>
+              </div>
+            <div class="footer-menu">{{current_date}}</div>
+        </div>
+
+    </footer>
+    
+</body>
+
+</html>

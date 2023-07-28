@@ -1,0 +1,22 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Builder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" />
+</head>
+
+<body style="background-image:url('/static/background.jpg');background-position:center;background-size:cover;">
+<div class="flex flex-col justify-center items-center h-screen">
+    <form class="max-w-md mx-auto my-8 p-4 bg-white rounded-lg shadow-lg" method="POST" action="/bot">
+        <div class="mb-4">
+            <label class="block text-gray-700 font-bold mb-2" for="fields">
+                Fields
+            </label>
+            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="fields" type="text" name="fields">
+        </div>
+        <div class="flex items-center justify-between">
+            <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer" type="submit">
+        </div>
+    </form>
+</div>
+</body>

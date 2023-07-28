@@ -1,0 +1,54 @@
+;
+; ProcessMonitor.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%ManufacturerName%
+DriverVer = 07/26/2023,23.49.15.549
+CatalogFile=ProcessMonitor.cat
+PnpLockdown=1
+
+;This template is supported for OS version 17763 (Windows 10 version 1809) and after.
+;For Windows OS prior to Windows 10 1809 set DefaultDestDir = 12
+[DestinationDirs]
+DefaultDestDir
+MiniFilter.CopyDriverFiles = 12
+
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+ProcessMonitor.sys=1,,
+
+[Manufacturer]
+
+[Standard.NTamd64]
+
+[DefaultInstall.ntamd64]
+OptionDesc = %ServiceDescription%
+CopyFiles = MiniFilter.CopyDriverFiles
+
+[DefaultInstall.ntamd64.Services]
+AddService = %ServiceName%,,MiniFilter.Service
+
+[MiniFilter.CopyDriverFiles]
+%DriverName%.sys
+
+[MiniFilter.Service]
+DisplayName = %ServiceName%
+ServiceBinary = "%12%\%DriverName%.sys"
+ServiceType = 2
+StartType = 1
+ErrorControl = 1
+
+
+[Strings]
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+DiskName="ProcessMonitor Source Disk"
+DriverName="ProcessMonitor"
+ServiceDescription="CTF Challenge"
+ServiceName="ProcessMonitor"

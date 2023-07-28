@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Note</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" />
+</head>
+
+<body style="background-image:url('/static/background.jpg');background-position:center;background-size:cover;">
+    <div class="flex flex-col justify-center items-center h-screen">
+        <div class="max-w-md bg-white rounded-md shadow-md p-6">
+            <h1 class="text-2xl font-bold mb-4">Note saved</h1>
+            <ul class="list-disc pl-4 text-center">
+                {% for property in formdata %}
+                    <li>{{ property }}: {{ formdata[property] }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

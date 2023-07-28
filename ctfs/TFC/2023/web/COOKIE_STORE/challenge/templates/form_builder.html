@@ -1,0 +1,60 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Builder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" />
+</head>
+
+<body style="background-image:url('/static/background.jpg');background-position:center;background-size:cover;">
+<div class="flex flex-col justify-center items-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-lg mb-4">
+        <input onkeydown="if (event.keyCode === 13) add_field()" type="text" name="new_field" id="new_field" placeholder="New field" class="shadow appearance-none border rounded mb-4 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <button id="add_field" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="add_field()">Add field</button>
+    </div>
+    <form method="post" action="form_builder" class="bg-white p-8 rounded-lg shadow-lg">
+        <input type="hidden" name="csrf_token" value="{{ session['csrf_token'] }}">
+        <div class="mb-4">
+            <label for="title" class="block text-gray-700 font-bold mb-2">Title</label>
+            <input type="text" name="title" id="title" placeholder="Nothing here" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div id="form_builder" class="mb-4">
+        </div>
+        <input type="submit" value="Submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer">
+    </form>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const fields = urlParams.get('fields');
+
+    let form_html = '';
+    let fields_list = [];
+    if (fields) {
+        fields_list = fields.split(',');
+        fields_list.forEach(element => {
+            form_html += `<div class="mb-4">
+                <label for="${element}" class="block text-gray-700 font-bold mb-2">${element}</label>
+                <input type="text" name="${element}" id="${element}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>`;
+        });
+    }
+    // This will sanitize the input
+    document.querySelector('#form_builder').setHTML(form_html);
+
+    function add_field() {
+        const new_field = document.querySelector('#new_field').value;
+        if (new_field === '') {
+            return;
+        }
+        if (fields_list === null || fields_list.includes(new_field)) {
+            return;
+        }
+        if (fields) {
+            location.search = `?fields=${fields},${new_field}`;
+        } else {
+            location.search = `?fields=${new_field}`;
+        }
+        // location.reload();
+    }
+</script>
+</body>
