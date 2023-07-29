@@ -1,0 +1,16 @@
+{
+  "name": "pdf-gen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^20.9.0",
+    "@fastify/static": "^6.9.0",
+    "fastify": "^4.21.0"
+  }
+}

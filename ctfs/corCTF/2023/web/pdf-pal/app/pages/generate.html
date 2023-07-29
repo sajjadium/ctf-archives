@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>pdf-pal</title>
+        <link rel="stylesheet" href="https://unpkg.com/axist@latest/dist/axist.min.css" />
+    </head>
+    <body>
+        <section>
+            <h2>pdf-pal</h2>
+            <p>pdf-pal is a helpful tool to store your PDFs and generate them from links!</p>
+            <a href="/home">Home</a>
+        </section>
+        <hr />
+        <section>
+            <h5>Generate from URL:</h5>
+            <form method="POST" action="/generate">
+                <input type="url" name="url" placeholder="http(s)://" style="width: 100%" />
+                <input type="submit" style="margin-top: 1rem" />
+            </form>
+        </section>
+    </body>
+</html>

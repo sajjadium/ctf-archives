@@ -1,0 +1,15 @@
+[package]
+name = "tribunal"
+version = "1.0.0"
+edition = "2021"
+
+[features]
+no-entrypoint = []
+
+[dependencies]
+borsh = "0.10.3"
+borsh-derive = "0.10.3"
+solana-program = "1.16.5"
+
+[lib]
+crate-type = ["cdylib", "lib"]

@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block title %}🦀 crabspace 🦀 - home{% endblock title %}
+{% block content %}
+<h5>Hello, {{ user.name }}!</h5>
+<a href="/space/{{ user.id }}">➡️ See your space</a>
+<p>You have {{ user.followers | length }} followers.</p>
+<h6>Change your space:</h6>
+<form method="POST" action="/api/space">
+    <fieldset>
+        <p>
+            <textarea rows=12 name="space">{{ user.space }}</textarea>
+        </p>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+</form>
+{% endblock content %}
+{% block footer %}{% endblock title %}

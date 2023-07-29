@@ -1,0 +1,17 @@
+[package]
+name = "tribunal-server"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.59"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+solana-program-test = "1.9.13"
+solana-program = "1.9.13"
+solana-logger = "1.9.13"
+solana-sdk = "1.9.13"
+spl-token = "3.3.0"
+sol-ctf-framework = { git = "https://github.com/otter-sec/sol-ctf-framework", branch="rewrite-v2" }
+threadpool = "1.8.1"
+borsh = "0.10.3"

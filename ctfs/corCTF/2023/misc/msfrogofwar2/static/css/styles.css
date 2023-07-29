@@ -1,0 +1,22 @@
+body {
+  background-color: #161925;
+  height: 100vh;
+  cursor: url("/img/msfrogcursor.png"), auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #f1f2f6;
+}
+
+.card-title, .card-text {
+  color: #161925;
+}
+
+.chessboard-parent {
+    width: 75vh;
+}
+
+#chessboard {
+    height: 100%;
+    width: 100%;
+}

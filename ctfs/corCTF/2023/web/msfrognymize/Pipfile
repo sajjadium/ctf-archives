@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+opencv-python = "*"
+flask = "*"
+dlib = "*"
+numpy = "*"
+cryptography = "*"
+pillow = "*"
+piexif = "*"
+gunicorn = "*"
+redisbeat = "*"
+celery = "*"
+redis = "*"
+celery-redbeat = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

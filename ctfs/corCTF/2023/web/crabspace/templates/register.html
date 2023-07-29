@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}🦀 crabspace 🦀 - register{% endblock title %}
+{% block content %}
+<h4 class="title">Register</h4>
+<form method="POST" action="/api/register">
+    <fieldset>
+        <p>
+            <label for="name">Username</label>
+            <input type="text" name="name" id="name" placeholder="Username" minlength="5" />
+        </p>
+        <p>
+            <label for="pass">Password</label>
+            <input type="password" name="pass" id="pass" placeholder="Password" minlength="7" />
+        </p>
+        <p>
+            <input type="submit" value="Register" />
+        </p>
+    </fieldset>
+</form>
+{% endblock content %}

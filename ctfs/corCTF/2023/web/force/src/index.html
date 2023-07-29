@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>force</title>
+    <style>
+        * {
+            margin: 0;
+            font-family: monospace;
+        }
+        body {
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <br>
+    <h1>force</h1>
+    <br>
+    <hr>
+    <br>
+    <form id="queryform">
+        <textarea placeholder="your graphql query here" rows="10" cols="70" id="query">{
+    flag(pin: 1234)
+}</textarea>
+        <br><br>
+        <button>query!</button>
+    </form>
+    <br>
+    <pre><code id="result"></code></pre>
+</body>
+<script>
+queryform.onsubmit = async e => {
+    e.preventDefault();
+
+    result.innerText = await (await fetch('/', {
+        method: 'POST',
+        headers: {
+            'Content-Length': 0
+        },
+        body: query.value
+    })).text()
+}
+</script>
+</html>

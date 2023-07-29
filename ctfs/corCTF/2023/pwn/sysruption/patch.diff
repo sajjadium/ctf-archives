@@ -1,0 +1,21 @@
+--- orig_entry_64.S
++++ linux-6.3.4/arch/x86/entry/entry_64.S
+@@ -150,13 +150,13 @@
+ 	ALTERNATIVE "shl $(64 - 48), %rcx; sar $(64 - 48), %rcx", \
+ 		"shl $(64 - 57), %rcx; sar $(64 - 57), %rcx", X86_FEATURE_LA57
+ #else
+-	shl	$(64 - (__VIRTUAL_MASK_SHIFT+1)), %rcx
+-	sar	$(64 - (__VIRTUAL_MASK_SHIFT+1)), %rcx
++	# shl	$(64 - (__VIRTUAL_MASK_SHIFT+1)), %rcx
++	# sar	$(64 - (__VIRTUAL_MASK_SHIFT+1)), %rcx
+ #endif
+ 
+ 	/* If this changed %rcx, it was not canonical */
+-	cmpq	%rcx, %r11
+-	jne	swapgs_restore_regs_and_return_to_usermode
++	# cmpq	%rcx, %r11
++	# jne	swapgs_restore_regs_and_return_to_usermode
+ 
+ 	cmpq	$__USER_CS, CS(%rsp)		/* CS must match SYSRET */
+ 	jne	swapgs_restore_regs_and_return_to_usermode
+

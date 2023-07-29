@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}🦀 crabspace 🦀{% endblock title %}
+{% block content %}
+<iframe sandbox="allow-scripts" srcdoc="<link rel='stylesheet' href='/public/axist.min.css' />{{ space }}" class="space"></iframe>
+{% if user and id != user.id %}
+<form method="POST" action="/api/follow">
+    <input type="hidden" name="id" value="{{ id }}">
+    <input type="submit" value="{% if user.following is containing(id) %}Unfollow{% else %}Follow{% endif %}" />
+</form>
+{% endif %}
+{% if user and user.name == "admin" %}
+<a href="/admin/{{ id }}">Admin Panel</a>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>🐸 of War 2</title>
+    <link rel="stylesheet" href="/css/chessboard-1.0.0.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <div class="d-flex flex-column h-100">
+        <nav class="navbar navbar-dark navbar-expand-md bg-primary">
+            <div class="container">
+                <a class="navbar-brand text-white" href="/">
+                    🐸 of War 2 // <div id="turn" class="d-inline-block">Your Turn</div>
+                </a>
+            </div>
+        </nav>
+        <div class="container d-xl-flex flex-column flex-grow-1 my-4">
+            <div class="row d-xl-flex flex-grow-1 mt-4">
+                <div class="col-md-8 d-flex justify-content-center">
+                   <div class="chessboard-parent d-flex h-100">
+                       <div id="chessboard"></div>
+                   </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <h4 class="card-title">Chat</h4>
+                            <div id="chat"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-xl-flex align-self-end mt-3">
+                <div class="col">
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-danger" type="button" onclick="restart()">Restart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/chessboard-1.0.0.min.js"></script>
+    <script src="/js/sweetalert2.min.js"></script>
+    <script src="/js/socket.io.min.js"></script>
+    <script src="/js/game.js"></script>
+</body>
+
+</html>

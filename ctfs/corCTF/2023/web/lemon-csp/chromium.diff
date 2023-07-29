@@ -1,0 +1,16 @@
+diff --git a/third_party/blink/renderer/modules/peerconnection/rtc_peer_connection.idl b/third_party/blink/renderer/modules/peerconnection/rtc_peer_connection.idl
+index 9468801576..a3ad73ea89 100644
+--- a/third_party/blink/renderer/modules/peerconnection/rtc_peer_connection.idl
++++ b/third_party/blink/renderer/modules/peerconnection/rtc_peer_connection.idl
+@@ -61,10 +61,7 @@ enum RTCPeerConnectionState {
+ // https://w3c.github.io/webrtc-pc/#interface-definition
+ 
+ [
+-    ActiveScriptWrappable,
+-    Exposed=Window,
+-    LegacyWindowAlias=webkitRTCPeerConnection,
+-    LegacyWindowAlias_Measure
++    ActiveScriptWrappable
+ ] interface RTCPeerConnection : EventTarget {
+     // TODO(https://crbug.com/1318448): Deprecated `mediaConstraints` should be removed.
+     [CallWith=ExecutionContext, RaisesException] constructor(optional RTCConfiguration configuration = {}, optional GoogMediaConstraints mediaConstraints);

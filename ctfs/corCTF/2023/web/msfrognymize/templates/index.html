@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap">
+    <title>MsFrognymize</title>
+    <style>
+        body {
+            display: flex;
+            font-family: 'Comic Neue', cursive;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        h1 {
+            background: linear-gradient(to right, red, orange, green, blue, indigo, violet);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            margin-bottom: 16px;
+        }
+
+        .img {
+            background-image: url("{{ url_for('static', filename='img/img.png') }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 285px;
+            width: 400px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f5f5f5;
+        }
+
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MsFrognymize</h1>
+        <div class="img"></div>
+        <p>Value your privacy</p>
+        <form method="post" enctype="multipart/form-data" action="/" >
+            <input type="file" name="file" accept=".jpg,.jpeg">
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+</body>
+</html>

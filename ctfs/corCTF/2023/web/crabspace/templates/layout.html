@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/public/axist.min.css" />
+    <link rel="stylesheet" href="/public/styles.css" />
+    <title>{% block title %}{% endblock title %}</title>
+  </head>
+  <body>
+    <main role="main">
+      <div class="header">
+        <h2>🦀 crabspace 🦀</h2>
+        <p>sick of all the boring social networks? try something 🦀</p>
+      </div>
+      <hr />
+      <section>
+        {% if error %}
+          <div class="error">{{ error }}</div>
+        {% endif %}
+        {% if info %}
+          <div class="info">{{ info }}</div>
+        {% endif %}
+        {% block content %}{% endblock content %}
+      </section>
+      {% block footer %}
+        <hr />
+        <section>
+          <a href="/">← Back</a>
+        </section>
+      {% endblock footer %}
+    </main>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block title %}🦀 crabspace 🦀 - admin panel{% endblock title %}
+{% block content %}
+<h5>Viewing user: {{ target.name }} ({{ target.id }})</h5>
+<h5>Space:</h5>
+<textarea>{{ target.space }}</textarea>
+<h5>Followers:</h5>
+<table>
+    <thead>
+        <tr>
+            <th><a href="?sort=id">ID</a></th>
+            <th><a href="?sort=name">Name</a></th>
+            <th><a href="?sort=following">Following</a></th>
+            <th><a href="?sort=followers">Followers</a></th>
+            <th>View</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for f in target.followers | sort(attribute=sort) %}
+        <tr>
+            <td>{{ f.id }}</td>
+            <td>{{ f.name }}</td>
+            <td>{{ f.following | length }}</td>
+            <td>{{ f.followers | length }}</td>
+            <td><a href="/space/{{ f.id }}">Link</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<h5>Following:</h5>
+<table>
+    <thead>
+        <tr>
+            <th><a href="?sort=id">ID</a></th>
+            <th><a href="?sort=name">Name</a></th>
+            <th><a href="?sort=following">Following</a></th>
+            <th><a href="?sort=followers">Followers</a></th>
+            <th>View</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for f in target.following | sort(attribute=sort) %}
+        <tr>
+            <td>{{ f.id }}</td>
+            <td>{{ f.name }}</td>
+            <td>{{ f.following | length }}</td>
+            <td>{{ f.followers | length }}</td>
+            <td><a href="/space/{{ f.id }}">Link</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

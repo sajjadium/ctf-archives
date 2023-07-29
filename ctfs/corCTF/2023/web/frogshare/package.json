@@ -1,0 +1,35 @@
+{
+  "name": "frogshare",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@hookform/error-message": "^2.0.1",
+    "@next/font": "13.1.6",
+    "axios": "^1.4.0",
+    "bcryptjs": "^2.4.3",
+    "cookie": "^0.5.0",
+    "external-svg-loader": "^1.6.8",
+    "jsonwebtoken": "^9.0.1",
+    "next": "13.1.6",
+    "next-auth": "^4.22.1",
+    "next-strict-csp": "^1.0.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.1",
+    "react-toastify": "^9.1.3",
+    "react-tooltip": "^5.8.3",
+    "reactjs-popup": "^2.0.5",
+    "sqlite3": "^5.1.6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.6"
+  }
+}

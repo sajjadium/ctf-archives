@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>pdf-pal</title>
+        <link rel="stylesheet" href="https://unpkg.com/axist@latest/dist/axist.min.css" />
+        <style>
+            button {
+                float: right;
+                padding: 0rem 1rem;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <h2>pdf-pal</h2>
+            <p>pdf-pal is a helpful tool to store your PDFs and generate them from links!</p>
+            <a href="/generate">Generate</a>
+        </section>
+        <hr />
+        <section>
+            <h5>Your Files:</h5>
+            <ul id="output"></ul>
+        </section>
+        <form action="/rename" method="POST">
+            <input name="original_name" type="hidden" />
+            <input name="new_name" type="hidden" />
+        </form>
+        <script>
+            const $ = document.querySelector.bind(document); // imagine using jQuery...
+            fetch("/files").then(r => r.json()).then(files => {
+                let output = $("#output");
+                for(let file of files) {
+                    let li = document.createElement("li");
+                    let a = document.createElement("a");
+                    let btn = document.createElement("button");
+
+                    a.href = "/view/" + encodeURIComponent(file.pdf);
+                    a.innerText = file.pdf;
+
+                    btn.innerText = "Rename";
+                    btn.onclick = async () => {
+                        let newName = prompt("Rename file:", file.pdf);
+                        $("input[name='original_name']").value = file.pdf;
+                        $("input[name='new_name']").value = newName;
+                        $("form").submit();
+                    };
+
+                    li.appendChild(a);
+                    li.appendChild(btn);
+                    output.appendChild(li);
+                }
+            });
+        </script>
+    </body>
+</html>

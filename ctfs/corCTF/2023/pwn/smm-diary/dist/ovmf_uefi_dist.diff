@@ -1,0 +1,239 @@
+diff --git a/OvmfPkg/Corctf/Corctf.c b/OvmfPkg/Corctf/Corctf.c
+new file mode 100644
+index 0000000..3919d98
+--- /dev/null
++++ b/OvmfPkg/Corctf/Corctf.c
+@@ -0,0 +1,141 @@
++#include <Uefi.h>
++#include <Library/UefiLib.h>
++#include <Library/BaseLib.h>
++#include <Library/BaseMemoryLib.h>
++#include <Library/DebugLib.h>
++#include <Library/PcdLib.h>
++#include <Library/SmmServicesTableLib.h>
++
++#include "Corctf.h"
++
++const CHAR8 *Flag = "corctf{test_flag_test_flag_test}";
++
++typedef struct
++{
++    UINT8 Note[16];
++}DIARY_NOTE;
++
++#define NUM_PAGES 20
++
++DIARY_NOTE Book[NUM_PAGES];
++
++#define ADD_NOTE 0x1337
++#define GET_NOTE 0x1338
++#define DUMP_NOTES 0x31337
++
++typedef struct
++{
++    UINT32 Cmd;
++    UINT32 Idx;
++    union TRANSFER_DATA
++    {
++        DIARY_NOTE Note;
++        UINT8 *Dest;
++    } Data;
++}COMM_DATA;
++
++VOID
++TransferNote (
++    IN DIARY_NOTE *Note,
++    IN UINT32 Idx,
++    IN BOOLEAN In
++    )
++{
++    if (In)
++    {
++        CopyMem(&Book[Idx], Note, sizeof(DIARY_NOTE));
++    }
++    else
++    {
++        CopyMem(Note, &Book[Idx], sizeof(DIARY_NOTE));
++    }
++}
++
++VOID
++DumpNotes (
++    IN UINT8 *Dest
++    )
++{
++    CopyMem(Dest, &Book, sizeof(Book));
++}
++
++EFI_STATUS
++EFIAPI
++CorctfSmmHandler (
++    IN EFI_HANDLE  DispatchHandle,
++    IN CONST VOID  *Context         OPTIONAL,
++    IN OUT VOID    *CommBuffer      OPTIONAL,
++    IN OUT UINTN   *CommBufferSize  OPTIONAL
++    )
++{
++    COMM_DATA *CommData = (COMM_DATA *)CommBuffer;
++
++    if (*CommBufferSize != sizeof(COMM_DATA))
++    {
++        DEBUG((DEBUG_INFO, "Invalid size passed to %a\n", __FUNCTION__));
++        DEBUG((DEBUG_INFO, "Expected Size: 0x%lx, got 0x%lx\n", sizeof(COMM_DATA), *CommBufferSize));
++        goto Failure;
++    }
++    
++    if ((CommData->Cmd == ADD_NOTE || CommData->Cmd == GET_NOTE) && CommData->Idx >= NUM_PAGES)
++    {
++        DEBUG((DEBUG_INFO, "Invalid idx passed to %a\n", __FUNCTION__));
++        goto Failure;
++    }
++
++    switch (CommData->Cmd)
++    {
++        case ADD_NOTE:
++            TransferNote(&(CommData->Data.Note), CommData->Idx, TRUE);
++            break;
++        case GET_NOTE:
++            TransferNote(&(CommData->Data.Note), CommData->Idx, FALSE);
++            break;
++        case DUMP_NOTES:
++            DumpNotes(CommData->Data.Dest);
++            break;
++        default:
++            DEBUG((DEBUG_INFO, "Invalid cmd passed to %a, got 0x%lx\n", __FUNCTION__, CommData->Cmd));
++            goto Failure;
++    }
++
++    return EFI_SUCCESS;
++
++    Failure:
++    *CommBufferSize = -1;
++    return EFI_SUCCESS;
++}
++
++EFI_STATUS
++EFIAPI
++CorctfSmmInit (
++    IN EFI_HANDLE ImageHandle,
++    IN EFI_SYSTEM_TABLE* SystemTable
++    )
++{
++    EFI_STATUS Status;
++    EFI_HANDLE DispatchHandle;
++
++    ASSERT (FeaturePcdGet (PcdSmmSmramRequire));
++    DEBUG ((DEBUG_INFO, "Corctf Diary Note Handler initiailizing\n"));
++    Status = gSmst->SmiHandlerRegister (
++                CorctfSmmHandler,
++                &gEfiSmmCorctfProtocolGuid,
++                &DispatchHandle
++                );
++
++    if (EFI_ERROR (Status)) 
++    {
++        DEBUG ((DEBUG_ERROR, "%a: SmiHandlerRegister(): %r\n",
++            __FUNCTION__, Status));
++    }
++    else
++    {
++        DEBUG ((DEBUG_INFO, "Corctf SMM Diary Note handler installed successfully!\n"));
++        DEBUG ((DEBUG_INFO, "Unlike heap notes, storing your notes in SMM will give you true secrecy!\n", 0));
++        DEBUG ((DEBUG_INFO, "This place is so secretive that we even hid a flag in here!\n"
++            "Just to tease you a bit, the first few characters are: %.6a\n", Flag));
++    }
++
++    return Status;
++}
+\ No newline at end of file
+diff --git a/OvmfPkg/Corctf/Corctf.h b/OvmfPkg/Corctf/Corctf.h
+new file mode 100644
+index 0000000..5f57570
+--- /dev/null
++++ b/OvmfPkg/Corctf/Corctf.h
+@@ -0,0 +1,7 @@
++#include <Uefi.h>
++
++// b888a84d-2888-480e-9583-813725fd398b
++#define EFI_CORCTF_SMM_PROTOCOL_GUID \
++    { 0xb888a84d, 0x3888, 0x480e, { 0x95, 0x83, 0x81, 0x37, 0x25, 0xfd, 0x39, 0x8b } }
++
++extern EFI_GUID gEfiSmmCorctfProtocolGuid;
+\ No newline at end of file
+diff --git a/OvmfPkg/Corctf/Corctf.inf b/OvmfPkg/Corctf/Corctf.inf
+new file mode 100644
+index 0000000..f5b0e72
+--- /dev/null
++++ b/OvmfPkg/Corctf/Corctf.inf
+@@ -0,0 +1,30 @@
++[Defines]
++  INF_VERSION                    = 1.29
++  BASE_NAME                      = CorCtfSmm
++  FILE_GUID                      = 6217a808-f2d4-4c7b-a50e-7f8803b8d316
++  MODULE_TYPE                    = DXE_SMM_DRIVER
++  ENTRY_POINT                    = CorctfSmmInit
++  PI_SPECIFICATION_VERSION       = 0x00010046  
++
++[sources]
++  Corctf.h
++  Corctf.c
++
++[Packages]
++  MdePkg/MdePkg.dec
++  OvmfPkg/OvmfPkg.dec
++
++[LibraryClasses]
++  UefiDriverEntryPoint
++  UefiLib
++  PcdLib
++  SmmServicesTableLib
++
++[Protocols]
++  gEfiSmmCorctfProtocolGuid
++
++[FeaturePcd]
++  gUefiOvmfPkgTokenSpaceGuid.PcdSmmSmramRequire
++
++[Depex]
++  TRUE
+\ No newline at end of file
+diff --git a/OvmfPkg/OvmfPkg.dec b/OvmfPkg/OvmfPkg.dec
+index 8c20480..acdb900 100644
+--- a/OvmfPkg/OvmfPkg.dec
++++ b/OvmfPkg/OvmfPkg.dec
+@@ -172,6 +172,7 @@
+   gQemuAcpiTableNotifyProtocolGuid      = {0x928939b2, 0x4235, 0x462f, {0x95, 0x80, 0xf6, 0xa2, 0xb2, 0xc2, 0x1a, 0x4f}}
+   gEfiMpInitLibMpDepProtocolGuid        = {0xbb00a5ca, 0x8ce,  0x462f, {0xa5, 0x37, 0x43, 0xc7, 0x4a, 0x82, 0x5c, 0xa4}}
+   gEfiMpInitLibUpDepProtocolGuid        = {0xa9e7cef1, 0x5682, 0x42cc, {0xb1, 0x23, 0x99, 0x30, 0x97, 0x3f, 0x4a, 0x9f}}
++  gEfiSmmCorctfProtocolGuid             = {0xb888a84d, 0x3888, 0x480e, {0x95, 0x83, 0x81, 0x37, 0x25, 0xfd, 0x39, 0x8b}}
+ 
+ [PcdsFixedAtBuild]
+   gUefiOvmfPkgTokenSpaceGuid.PcdOvmfPeiMemFvBase|0x0|UINT32|0
+diff --git a/OvmfPkg/OvmfPkgX64.dsc b/OvmfPkg/OvmfPkgX64.dsc
+index 1448f92..fe4e828 100644
+--- a/OvmfPkg/OvmfPkgX64.dsc
++++ b/OvmfPkg/OvmfPkgX64.dsc
+@@ -697,7 +697,9 @@
+ ################################################################################
+ [Components]
+   OvmfPkg/ResetVector/ResetVector.inf
+-
++!if $(SMM_REQUIRE) == TRUE
++      OvmfPkg/Corctf/Corctf.inf
++!endif
+   #
+   # SEC Phase modules
+   #
+diff --git a/OvmfPkg/OvmfPkgX64.fdf b/OvmfPkg/OvmfPkgX64.fdf
+index 438806f..55e1b9e 100644
+--- a/OvmfPkg/OvmfPkgX64.fdf
++++ b/OvmfPkg/OvmfPkgX64.fdf
+@@ -380,7 +380,7 @@ INF  OvmfPkg/CpuHotplugSmm/CpuHotplugSmm.inf
+ INF  UefiCpuPkg/CpuIo2Smm/CpuIo2Smm.inf
+ INF  MdeModulePkg/Universal/LockBox/SmmLockBox/SmmLockBox.inf
+ INF  UefiCpuPkg/PiSmmCpuDxeSmm/PiSmmCpuDxeSmm.inf
+-
++INF  OvmfPkg/Corctf/Corctf.inf
+ #
+ # Variable driver stack (SMM)
+ #
