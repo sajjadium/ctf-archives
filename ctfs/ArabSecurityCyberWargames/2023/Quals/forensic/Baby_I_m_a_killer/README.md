@@ -1,0 +1,1 @@
+A hacker managed to install and deploy another kernel driver in the same machine from which we received the memory dump in the first two challenges, Could you find when it was first installed and its first key value? NOTE: you need to download this memdump, as it's entirely different from the one in the first two challenges.

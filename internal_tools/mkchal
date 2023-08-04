@@ -30,7 +30,13 @@ def is_valid(line):
   if all(not l.isalnum() for l in line.strip()):
     return False
 
-  if line.strip().lower() in ['web', 're', 'rev', 'reverse', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic']:
+  if line.strip().lower() in ['web', 're', 'rev', 'reverse', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score']:
+    return False
+
+  if re.fullmatch("category (forensics|reverse|web|crypto|pwn)", line.strip().lower()):
+    return False
+
+  if re.fullmatch("level (easy|medium|hard)", line.strip().lower()):
     return False
 
   return True
@@ -99,7 +105,7 @@ if __name__ == '__main__':
 
         final_path = child_path
 
-      os.system('mv `find "%s" -name "*" -depth 1` "%s"' % (final_path, chal_name))
+      os.system('find "%s" -name "*" -depth 1 | while read line; do mv "$line" "%s"; done' % (final_path, chal_name))
       os.remove(f)
 
   readme = ''

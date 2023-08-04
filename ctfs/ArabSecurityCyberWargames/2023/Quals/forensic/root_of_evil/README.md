@@ -1,0 +1,1 @@
+During our investigation in the memory dump from the first challenge, our investigator stumbled upon a signed malicious driver that wes deployed on the machine, could you get the address of the windows API functions, which the driver was using?

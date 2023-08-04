@@ -164,6 +164,11 @@
             <td><a href="https://ctftime.org/event/1110/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/ArabSecurityCyberWargames">ArabSecurityCyberWargames</a></td>
+            <td><a href="ctfs/ArabSecurityCyberWargames/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2046/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/AzureAssassinAlliance">AzureAssassinAlliance</a></td>
             <td><a href="ctfs/AzureAssassinAlliance/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1682/tasks/" target="_blank">CTFtime</a></td>
