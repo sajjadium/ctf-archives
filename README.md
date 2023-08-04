@@ -1802,7 +1802,11 @@
             <td><a href="https://ctftime.org/event/1766/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/StarCTF">*CTF</a></td>
+            <td rowspan=5><a href="ctfs/StarCTF">*CTF</a></td>
+            <td><a href="ctfs/StarCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2045/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/StarCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1609/tasks/" target="_blank">CTFtime</a></td>
         </tr>
