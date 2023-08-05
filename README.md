@@ -754,6 +754,11 @@
             <td><a href="https://ctftime.org/event/1696/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/ESCAPE">ESCAPE</a></td>
+            <td><a href="ctfs/ESCAPE/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2022/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Engineer">Engineer</a></td>
             <td><a href="ctfs/Engineer/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1595/tasks/" target="_blank">CTFtime</a></td>
