@@ -30,7 +30,7 @@ def is_valid(line):
   if all(not l.isalnum() for l in line.strip()):
     return False
 
-  if line.strip().lower() in ['web', 're', 'rev', 'reverse', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score']:
+  if line.strip().lower() in ['web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography']:
     return False
 
   if re.fullmatch("category (forensics|reverse|web|crypto|pwn)", line.strip().lower()):
