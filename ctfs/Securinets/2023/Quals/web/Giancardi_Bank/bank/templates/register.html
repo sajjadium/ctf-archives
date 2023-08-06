@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration Page</title>
+         <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="flex items-center justify-center h-screen bg-gradient-to-r from-red-500 via-orange-500 to-red-500"
+  >
+    <div class="p-10 bg-white rounded shadow-md w-80">
+      <h2 class="text-center text-2xl text-red-600 mb-8">Register</h2>
+      <form action="/register" method="post" class="space-y-6">
+        <div>
+          <label for="username" class="block text-sm text-gray-600"
+            >Username</label
+          >
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
+        <div>
+          <label for="password" class="block text-sm text-gray-600"
+            >Password</label
+          >
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="w-full px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          >
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

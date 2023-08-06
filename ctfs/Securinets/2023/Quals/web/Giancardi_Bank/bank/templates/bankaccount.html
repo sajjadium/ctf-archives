@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Account | Giancardi Bank</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-red-100">
+  {{template "partials/nav" .}}
+    <div class="container mx-auto py-8">
+        <h1 class="text-4xl font-bold mb-8">Your Bank Account</h1>
+        <div class="bg-white p-6 rounded shadow mb-6">
+            <p>Account ID: <strong class="font-semibold">{{.account.ID}}</strong></p>
+            <p>Balance: <strong class="font-semibold">{{.account.Balance}}</strong></p>
+        </div>
+
+        <h2 class="text-2xl font-bold mb-4">Your Transactions</h2>
+        {{range .account.Transactions}}
+            <div class="bg-white p-4 rounded shadow mb-4">
+                <p>ID: <strong class="font-semibold">{{.ID}}</strong></p>
+                <p>Amount: <strong class="font-semibold">{{.Amount}}</strong></p>
+                <p>Type: <strong class="font-semibold">{{.Type}}</strong></p>
+                <p>Description: <strong class="font-semibold">{{.Description}}</strong></p>
+                <p>Created at: <strong class="font-semibold">{{.CreatedAt}}</strong></p>
+            </div>
+        {{end}}
+    </div>
+
+    <div class="container mx-auto py-8">
+        <h2 class="text-2xl font-bold mb-4">New Operation</h2>
+        <form action="/account" method="POST" class="bg-white p-6 rounded shadow">
+            <div class="mb-4">
+                <label for="operation" class="block text-sm font-medium text-gray-700">Operation:</label><br>
+                <select id="operation" name="operation" onchange="handleOperationChange(this)" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="deposit">Deposit</option>
+                    <option value="withdraw">Withdraw</option>
+                    <option value="transfer">Transfer</option>
+                </select>
+            </div>
+
+            <div id="transfer_to" style="display: none;" class="mb-4">
+                <label for="to" class="block text-sm font-medium text-gray-700">To (Account ID):</label><br>
+                <input type="number" id="to" name="to" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+
+            <div class="mb-4">
+                <label for="amount" class="block text-sm font-medium text-gray-700">Amount:</label><br>
+                <input type="number" step="0.01" min="0" id="amount" name="amount" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+
+            <input type="submit" value="Submit" class="w-full bg-red-600 text-white py-2 px-4 rounded hover:bg-red-700">
+        </form>
+    </div>
+
+    <script>
+        function handleOperationChange(select) {
+            var toDiv = document.getElementById("transfer_to");
+            if(select.value === "transfer") {
+                toDiv.style.display = "block";
+            } else {
+                toDiv.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>

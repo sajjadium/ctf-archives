@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Users | Giancardi Bank</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col justify-center items-center min-h-screen bg-gradient-to-r from-red-500 to-orange-500">
+  {{template "partials/nav-admin" .}}
+  <div class="p-8 w-80 bg-white rounded shadow-md">
+    <h1 class="mb-6 text-2xl text-center text-red-600">Users</h1>
+    {{range .users}}
+    <div class="mb-4">
+      <h2 class="text-lg text-red-600">{{.Username}}</h2>
+      <p>User ID: {{.ID}}</p>
+    </div>
+    {{end}}
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>New Transaction | Giancardi Bank</title>
+         <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="flex flex-col items-center min-h-screen bg-gradient-to-r from-red-500 to-orange-500"
+  >
+    {{template "partials/nav" .}}
+    <div class="flex flex-col p-8 bg-white rounded shadow-md w-80">
+      <h1 class="text-2xl text-red-600 text-center mb-6">New Transaction</h1>
+      <form action="/transactions" method="post" class="space-y-4">
+        <div>
+          <label for="amount" class="block text-sm text-gray-600">Amount</label>
+          <input
+            type="text"
+            id="amount"
+            name="amount"
+            required
+            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
+        <div>
+          <label for="description" class="block text-sm text-gray-600"
+            >Description</label
+          >
+          <input
+            type="text"
+            id="description"
+            name="description"
+            required
+            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          />
+        </div>
+        <div>
+          <label for="type" class="block text-sm text-gray-600">Type</label>
+          <select
+            id="type"
+            name="type"
+            required
+            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+          >
+            <option value="deposit">Deposit</option>
+            <option value="withdraw">Withdraw</option>
+            <option value="transfer">Transfer</option>
+          </select>
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="w-full py-3 bg-red-600 text-white rounded hover:bg-red-700"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

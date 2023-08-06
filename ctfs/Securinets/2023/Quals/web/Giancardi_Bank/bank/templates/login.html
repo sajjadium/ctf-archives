@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | Giancardi Bank</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex justify-center items-center min-h-screen bg-gradient-to-r from-red-500 to-orange-500">
+  <div class="p-8 w-96 bg-white rounded shadow-md">
+    <h2 class="mb-8 text-2xl font-bold text-center">Giancardi Bank</h2>
+    <form action="/login" method="post">
+      <div class="mb-5">
+        <label for="username" class="block mb-2 text-sm font-medium text-gray-600">Username</label>
+        <input type="text" name="username" id="username"
+          class="py-2 px-3 w-full placeholder-gray-500 text-gray-900 rounded-md border" placeholder="Username" required
+          autofocus />
+      </div>
+      <div class="mb-5">
+        <label for="password" class="block mb-2 text-sm font-medium text-gray-600">Password</label>
+        <input type="password" name="password" id="password"
+          class="py-2 px-3 w-full placeholder-gray-500 text-gray-900 rounded-md border" placeholder="Password"
+          required />
+      </div>
+      <button type="submit"
+        class="py-2 px-4 w-full text-sm font-medium text-white bg-red-600 rounded-md border border-transparent shadow-sm hover:bg-red-700">
+        Login
+      </button>
+    </form>
+  </div>
+</body>
+
+</html>

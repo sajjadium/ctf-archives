@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard | Giancardi Bank</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-r from-red-500 to-orange-500">
+  {{template "partials/nav" .}}
+  <div class="container p-8 mx-auto">
+    <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3">
+      <!-- Card 1 -->
+      <div class="flex items-center p-4 bg-white rounded-lg shadow-xs">
+        <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v5h8v-5z"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="mb-2 text-sm font-medium text-gray-600">Bank Account</p>
+          <p class="text-lg font-semibold text-gray-700">
+            Balance: ${{.BankAccount.Balance}}
+          </p>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="flex items-center p-4 bg-white rounded-lg shadow-xs">
+        <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 12a6 6 0 110-12 6 6 0 010 12zm0 2a8 8 0 100-16 8 8 0 000 16z"></path>
+            <path d="M9 9a3 3 0 11-6 0 3 3 0 016 0zm-2 3a4 4 0 100-8 4 4 0 000 8z"></path>
+          </svg>
+        </div>
+        <div>
+          <p class="mb-2 text-sm font-medium text-gray-600">Pet Pictures</p>
+          <p class="text-lg font-semibold text-gray-700">
+            <!-- Pet Pictures -->
+            Number of pictures: {{len .PetFiles}}
+          </p>
+          <a href="/user/pet-files">View your pets pictures</a>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="flex items-center p-4 bg-white rounded-lg shadow-xs">
+        <div class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              d="M2 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6zm2-4a4 4 0 00-4 4v12a4 4 0 004 4h12a4 4 0 004-4V6a4 4 0 00-4-4H4z">
+            </path>
+          </svg>
+        </div>
+        <div>
+          <p class="mb-2 text-sm font-medium text-gray-600">
+            Personal Finance Notes
+          </p>
+          <p class="text-lg font-semibold text-gray-700">
+            <!-- Personal Finance Notes -->
+            Number of notes saved: {{len .Notes}}
+          </p>
+          <a href="/user/financial-note">View your notes</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <!--  -->
+  </div>
+</body>
+
+</html>

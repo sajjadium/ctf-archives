@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  bank:
+    container_name: bankapp
+    build:
+      context: ./bank
+      dockerfile: Dockerfile
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - ACCOUNTANT_PASSWORD=REDACTED
+      - REDIS_HOST=redis:6379
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis
+    networks:
+      - internal
+  redis:
+    container_name: redis
+    image: "redis:6.2.5-alpine3.14"
+    networks:
+      - internal
+  accountant:
+    container_name: accountant
+    build:
+      context: ./accountant
+      dockerfile: Dockerfile
+    environment:
+      - ACCOUNTANT_PASSWORD=REDACTED
+    depends_on:
+      - redis
+      - bank
+    networks:
+      - internal
+networks:
+  internal:
+    driver: bridge
+
+

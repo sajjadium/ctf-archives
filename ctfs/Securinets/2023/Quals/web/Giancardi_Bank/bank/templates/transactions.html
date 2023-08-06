@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Transactions | Giancardi Bank</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col items-center min-h-screen bg-gradient-to-r from-red-500 to-orange-500">
+  {{template "partials/nav" .}}
+  <div class="p-8 w-80 bg-white rounded shadow-md">
+    <h1 class="mb-6 text-2xl text-center text-red-600">Transactions</h1>
+    {{range .transactions}}
+    <div class="mb-4">
+      <h2 class="text-lg text-red-600">{{.Type}} | {{.Amount}}</h2>
+      <p>{{.Description}}</p>
+      <a href="/transactions/{{.ID}}" class="text-red-600 hover:text-red-700">View details</a>
+    </div>
+    {{end}}
+    <div class="mt-8">
+      <a href="/transactions/new"
+        class="block py-3 w-full text-center text-white bg-red-600 rounded hover:bg-red-700">New Transaction</a>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Profile | Giancardi Bank</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col items-center min-h-screen bg-gradient-to-r from-red-500 to-orange-500">
+  {{template "partials/nav" .}}
+  <div class="flex flex-col p-8 w-80 bg-white rounded shadow-md">
+    <h1 class="mb-6 text-2xl text-center text-red-600">Profile</h1>
+    <p><strong>Username:</strong> {{.Username}}</p>
+    <p><strong>Role:</strong> {{.Role}}</p>
+    <p><strong>Bank Account:</strong> {{.BankAccount.Balance}}</p>
+    <div class="mt-8">
+      <a href="/user/password-change"
+        class="block py-3 w-full text-center text-white bg-red-600 rounded hover:bg-red-700">Change Password</a>
+    </div>
+  </div>
+</body>
+
+</html>

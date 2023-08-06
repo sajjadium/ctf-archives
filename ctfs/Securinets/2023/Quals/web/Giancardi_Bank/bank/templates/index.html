@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Giancardi Bank | Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col justify-center items-center bg-red-700 min-h-[80vh]">
+  <div class="flex flex-col items-center p-8 space-y-8 bg-white rounded shadow-md w-100">
+    <img src="https://static.wikia.nocookie.net/witcher/images/3/30/COA_Giancardi.svg/revision/latest?cb=20190621194702"
+      alt="Giancardi Bank Logo" class="w-32" />
+    <h1 class="text-3xl text-center text-red-600">
+      Welcome to Giancardi Bank
+    </h1>
+    <img src="/static/bank-img.jpg" class="w-32 rounded-full shadow" />
+    <!-- Replace 'owner_image_link' with the actual owner's image link -->
+    <p class="text-center">
+      Our financial institution, headed by the renowned dwarf Molnar of the
+      Giancardi family, is dedicated to offering you superior banking
+      services. Our main branch is situated in the prestigious city of Gors
+      Velen, yet we strive to cater to clients globally.
+    </p>
+    <p class="text-center">
+      We are a bank with a rich history, having weathered the tumultuous waves
+      of the dark ages, and we are proud to emerge stronger than ever in the
+      21st century. Today, we are ready to beat down the competition and
+      newcomers with our impeccable services and the trust of our clients.
+    </p>
+    <div class="flex space-x-4">
+      <a href="/register" class="py-3 px-4 text-white bg-red-600 rounded hover:bg-red-700">Register</a>
+      <a href="/login" class="py-3 px-4 text-white bg-orange-500 rounded hover:bg-orange-600">Login</a>
+    </div>
+  </div>
+  <div class="absolute bottom-0 mt-12 w-full l-0 r-0">
+    <footer class="p-6 text-white bg-gray-800">
+      <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+        <div>
+          <h3 class="mb-2 text-lg">Navigation</h3>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="/user" class="text-orange-400 hover:text-orange-500">Profile</a>
+            </li>
+            <li>
+              <a href="/user/financial_note" class="text-orange-400 hover:text-orange-500">Financial Notes</a>
+            </li>
+            <li>
+              <a href="/user/pet-files" class="text-orange-400 hover:text-orange-500">Pet Files</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mb-2 text-lg">Support</h3>
+          <ul class="space-y-2 text-sm">
+            <li>
+              <a href="#" class="text-orange-400 hover:text-orange-500">Help Center</a>
+            </li>
+            <li>
+              <a href="#" class="text-orange-400 hover:text-orange-500">FAQ</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mb-2 text-lg">Contact Us</h3>
+          <form action="#" method="post" class="space-y-4">
+            <input type="text" name="name" placeholder="Your Name"
+              class="py-2 px-3 w-full text-white bg-gray-700 rounded focus:ring-2 focus:ring-orange-500 focus:outline-none" />
+            <input type="email" name="email" placeholder="Your Email"
+              class="py-2 px-3 w-full text-white bg-gray-700 rounded focus:ring-2 focus:ring-orange-500 focus:outline-none" />
+            <textarea name="message" placeholder="Your Message"
+              class="py-2 px-3 w-full text-white bg-gray-700 rounded focus:ring-2 focus:ring-orange-500 focus:outline-none"></textarea>
+            <button type="submit" class="py-2 w-full text-white bg-red-600 rounded hover:bg-red-700">
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>

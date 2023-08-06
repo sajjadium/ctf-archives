@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Financial Note {{.Title}} | Giancardi Bank</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col items-center min-h-screen bg-gradient-to-r from-red-500 to-orange-500">
+    {{template "partials/nav" .}}
+    <div class="p-8 bg-white rounded shadow-md w-[500px]">
+        <h1 class="mb-6 text-2xl text-center text-red-600">Financial Notes</h1>
+        <div class="py-10 px-10 mb-4 bg-gray-200">
+            <h2 class="text-lg text-red-600">{{.Title}}</h2>
+            <p class="mt-4">{{.Note}}</p>
+        </div>
+        <div class="mt-8">
+            <a href="/user/financial-note/new"
+                class="block py-3 w-full text-center text-white bg-red-600 rounded hover:bg-red-700">Add New Note</a>
+        </div>
+    </div>
+</body>
+
+</html>
+
