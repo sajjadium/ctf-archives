@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  container1:
+    build: varnish/
+    container_name: varnish
+    networks:
+      - my_network
+    ports:
+      - "80:80"
+    mem_limit: 5g
+    restart: on-failure
+
+  container2:
+    build: backend/
+    container_name: backend
+    networks:
+      - my_network
+    mem_limit: 5g
+    restart: on-failure
+
+networks:
+  my_network:

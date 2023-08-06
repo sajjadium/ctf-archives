@@ -1,0 +1,12 @@
+version: '2.4'
+services:
+  execservice:
+    build: .
+    ports:
+      - 5000:5000
+    read_only: true
+    cap_drop:
+      - all
+    mem_limit: 1G
+    restart: on-failure
+

@@ -1,0 +1,73 @@
+{% extends "layouts/base.njk" %}
+{% block title %}Pinder - Create Profile{% endblock %}
+{% block content %}
+{% include "layouts/authNavbar.njk" %}
+
+<div class="content">
+    <div class="mb-12">
+        <h1 class="text-7xl">Create your profile</h1>
+    </div>
+
+    <div class="container min-w-[700px]">
+        <form  id="form" class="flex flex-col gap-12 items-center">
+            <div class="flex flex-col gap-4">
+                <label for="first_name" class="font-bold ">First name</label>
+                <br>
+                <input id="first_name" type="text" placeholder="First name" class="input input-bordered w-full max-w-xs min-w-[400px] min-h-[50px] "
+                    name="first_name" />
+                </div> 
+
+<div class="flex flex-col gap-4">
+                <label for="last_name">Last name</label>
+                <br>
+                <input id="last_name" type="text" placeholder="Last name" class="input input-bordered w-full max-w-xs min-w-[400px] min-h-[50px] "
+                    name="last_name" />
+                </div> 
+
+<div class="flex flex-col gap-4">
+                <label for="profile_picture_link">Profile's picture link</label>
+                <br>
+                <input id="profile_picture_link" type="text" placeholder="Profile's picture link" class="input input-bordered w-full max-w-xs min-w-[400px] min-h-[50px] "
+                    name="profile_picture_link" />
+                </div> 
+            
+            <button type="submit" class="btn btn-primary w-[70%] py-10">Create profile</button>
+        </form>
+    </div>
+</div>
+
+<script src="/static/api.js"></script>
+<script src="/static/alert.js"></script>
+
+<script>
+
+    const form = document.querySelector("#form");
+    form.addEventListener("submit", createProfileHandler);
+
+    async function createProfileHandler (event){
+        event.preventDefault();
+        const first_name = document.querySelector("#first_name").value;
+        const last_name = document.querySelector("#last_name").value;
+        const profile_picture_link = document.querySelector("#profile_picture_link").value;
+
+        try {
+            const response = await createProfile(first_name, last_name, profile_picture_link)
+            if (response.error ) {
+                showAlert("error", "Something went wrong");
+            } else {
+                showAlert("success", "Profile created successfully, redirecting")
+                setTimeout(() => {
+                    document.location.replace("/my-profile");
+                }, 1000)
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+    };
+
+</script>
+
+
+
+{% endblock %}

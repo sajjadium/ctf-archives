@@ -1,0 +1,1 @@
+A lonely developer who only loves his machines and home server decided to help his fellow developers find their dream waifu, but he's not that good smh. Get the flag and show him that you don't need his pathetic app.

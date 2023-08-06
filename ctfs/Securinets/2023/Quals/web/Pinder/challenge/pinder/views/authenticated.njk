@@ -1,0 +1,21 @@
+
+{% extends "layouts/base.njk" %}
+
+{% block title %}Pinder - Homepage{% endblock %}
+
+
+{% block content %}
+{% include "layouts/authNavbar.njk" %}
+<div class="hero min-h-screen" style="background-image: url(/static/a.png);">
+  <div class="hero-overlay bg-opacity-60"></div>
+  <div class="hero-content text-center text-neutral-content">
+    <div class="max-w-md">
+      <h1 class="mb-5 text-5xl font-bold">Welcome to Pinder</h1>
+      <p class="mb-5">A futuristic dating app that will can help you find your waifu but in a human form ( enough of pillows )</p>
+      <p class="mb-5">The app is not fully released yet, you can tinker with your profile for now</p>
+
+      <a class="btn btn-primary" href="/my-profile">Your profile</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

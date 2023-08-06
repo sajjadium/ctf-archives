@@ -1,0 +1,22 @@
+{
+	"name": "pinder",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"keywords": [],
+	"authors": [
+		"fir3cr4ckers"
+	],
+	"dependencies": {
+		"express": "^4.18.1",
+		"express-session": "1.17.3",
+		"i": "^0.3.7",
+		"mysql": "^2.18.1",
+		"npm": "^9.4.2",
+		"nunjucks": "^3.2.3",
+		"puppeteer": "^13.0.1"
+	}
+}

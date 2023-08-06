@@ -1,0 +1,24 @@
+{% extends "layouts/base.njk" %}
+{% block title %} Pinder - Search profile {% endblock %}
+
+{% block content %}
+{% include "layouts/authNavbar.njk" %}
+<div>
+    <main>
+        <h1>For now this feature is not available, it will be released soon</h1>
+        <div>
+            <form action="/search-profile">
+                <label for="search">Search profile</label>
+                <input type="text" name="search" id="search" placeholder="User's first name" class="px-12 py-8">
+            </form>
+            {%for profile in search%}
+            <a  id="{{profile}}"  >
+                {{profile}}
+                </a>
+            {%endfor%}
+
+
+        </div>
+    </main>
+</div>
+{% endblock %}

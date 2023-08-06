@@ -1,0 +1,67 @@
+{% extends "layouts/base.njk" %}
+{% block title %} Pinder - Register {% endblock %}
+
+{% block content %}
+{% include "layouts/nonAuthNavbar.njk" %}
+<div class="content flex flex-col items-center gap-16 min-w-[700px]">
+    <div class="mb-12">
+        <h1 class="text-7xl ">Register</h1>
+    </div>
+
+    <div class="container">
+        <form  id="form" class="flex flex-col items-center  gap-8">
+            <div class="flex flex-col gap-4">
+                <label for="username" class="text-2xl">Username</label>
+            <input id="username" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs min-w-[400px] min-h-[50px]  px-12 py-8" name="username" />
+
+            </div>
+
+<div class="flex flex-col gap-4">
+                <label for="password" class="text-2xl">Password</label>
+            <input id="password" type="password"  class="input input-bordered w-full max-w-xs min-w-[400px] min-h-[50px]  px-12 py-8" name="password" />
+            </div>
+
+            <div class="flex flex-col gap-4">
+            <label for="confirm-password" class="text-2xl">Confirm password</label>
+            <input id="confirm-password" type="password"  class="input input-bordered w-full max-w-xs min-w-[400px] min-h-[50px]  px-12 py-8" name="confirm-password" />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-[70%] py-10">Register</button>
+        </form>
+    </div>
+</div>
+
+<script src="/static/api.js"></script>
+<script src="/static/alert.js"></script>
+
+<script>
+
+    const form = document.querySelector("#form");
+    form.addEventListener("submit", registerHandler);
+    async function registerHandler(e) {
+        e.preventDefault();
+        const username = document.querySelector("#username").value;
+        const password = document.querySelector("#password").value;
+        const confirmPassword = document.querySelector("#confirm-password").value;
+
+  if(confirmPassword!==password){
+             showAlert("error","Confirm password and password don't match")
+             return 
+        }
+
+        try{
+            const result = await register(username, password)
+            if (result.error ) {
+            return  showAlert("error", result.error);
+        }
+
+            showAlert("success", "You have successfully registered");
+        
+        }
+        catch(err){
+            showAlert("error","Idk what happened just move on")
+        }
+    }
+
+    </script>
+{% endblock %}

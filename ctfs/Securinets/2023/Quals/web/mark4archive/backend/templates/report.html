@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>mark4archive</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+<body>
+<div class="container">
+      <div class="text">
+         Github Static code analyzer
+      </div>
+      <p style="text-align: center;">Give us your code, we will give you back a vulnerability report!</p>
+      <p style="text-align: center;">Follow <b><a href="/instructions">these instructions</a></b> to retrive the following fields</p>
+      <p style="text-align: center;">Test new project? <b><a href="/">click here</a></b> </p>
+
+      <form action="/makereport" method="post">
+         <div class="form-row">
+            <div class="input-data">
+               <input type="text" name="hash" required>
+               <div class="underline"></div>
+               <label for="">Token</label>
+            </div>
+            
+         </div>
+        
+            <br />
+            <div class="form-row submit-btn">
+               <div class="input-data">
+                  <div class="inner"></div>
+                  <input type="submit" value="submit">
+               </div>
+            </div>
+      </form>
+      </div>
+  
+</body>
+</html>

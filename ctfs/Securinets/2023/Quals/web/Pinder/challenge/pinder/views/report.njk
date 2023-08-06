@@ -1,0 +1,54 @@
+{% extends "layouts/base.njk" %}
+{% block title %}Pinder - Report to admin{% endblock %}
+{% block content %}
+{% include "layouts/authNavbar.njk" %}
+
+<div class="content">
+    <div class="mb-12">
+        <h1 class="text-7xl">Report to Admin</h1>
+    </div>
+
+    <div class="container min-w-[700px]">
+        <form  id="form" class="flex flex-col gap-12 items-center">
+
+            <div class="flex flex-col gap-4">
+                <label for="url">URL to visit</label>
+                <br>
+                <input id="url" type="text" placeholder="http://localhost/path" class="input input-bordered w-full max-w-xs min-w-[400px] min-h-[50px] "
+                    name="url" />
+                </div> 
+
+            <button type="submit" class="btn btn-primary py-10 w-[70%]">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script src="/static/api.js"></script>
+<script src="/static/alert.js"></script>
+<script>
+    const form = document.querySelector("#form");
+    form.addEventListener("submit", reportToAdmin);
+
+    async function reportToAdmin (event){
+        event.preventDefault();
+        const url = document.querySelector("#url").value;
+
+        try {
+            const response = await report(url)
+            if (response.error ) {
+                showAlert("error", "Something went wrong");
+            } else {
+                showAlert("success", "Reported to admin")
+                
+            }
+        }
+        catch (err) {
+            console.log(err)
+        }
+    };
+
+    </script>
+
+
+
+{% endblock %}

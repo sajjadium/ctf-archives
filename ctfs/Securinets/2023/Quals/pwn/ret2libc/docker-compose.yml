@@ -1,0 +1,10 @@
+version: '2.4'
+services:
+  retlibc:
+    build: .
+    ports:
+      - 4004:1234
+    read_only: true
+      
+    mem_limit: 1G
+    restart: on-failure

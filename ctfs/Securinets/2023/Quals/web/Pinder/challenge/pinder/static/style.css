@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    font-family: "Gloria Hallelujah", cursive;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+wired-card {
+    margin: 0 auto;
+    padding: 20px;
+    display: block;
+}
+
+wired-button {
+    background: yellow;
+    color: red;
+    margin: 8px;
+}

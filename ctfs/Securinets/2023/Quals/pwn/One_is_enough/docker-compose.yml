@@ -1,0 +1,12 @@
+version: '2.4'
+services:
+  one:
+    build: .
+    ports:
+      - 4003:5000
+    read_only: true
+    privileged: true
+    cap_drop:
+      - all
+      
+    restart: on-failure

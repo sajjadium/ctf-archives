@@ -1,0 +1,57 @@
+
+{% extends "layouts/base.njk" %}
+{% block title %} Pinder - Login {% endblock %}
+{% block content %}
+{% include "layouts/nonAuthNavbar.njk" %}
+
+<div class="content min-w-[700px] flex flex-col items-center gap-16">
+    <div class="flex flex-col">
+        <h1 class="text-6xl">Login</h1>
+    </div>
+
+    <div class="container flex flex-col space-y-8">
+        <form   id="form" class="space-y-4 flex flex-col items-center">
+            <div class="flex flex-col gap-4">
+                <label for="username" class="text-2xl">Username</label>
+            <input id="username" type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs min-w-[400px] min-h-[50px]  px-12 py-8" name="username" />
+            </div>
+
+
+            <div class="flex flex-col gap-4">
+                <label for="password" class="text-2xl">Password</label>
+            <input id="password" type="password" class="input  input-bordered w-full max-w-xs min-w-[400px] min-h-[50px]  px-12 py-8" name="password" />
+            </div>
+            <button type="submit" id="submit-button" class="btn btn-primary w-[70%] py-10">Login</button>
+        </form>
+    </div>
+</div>
+
+<script src="/static/api.js"></script>
+<script src="/static/alert.js"></script>
+
+<script>
+  const form = document.querySelector("#form");
+    form.addEventListener("submit", loginHandler);
+
+    async function loginHandler(e) {
+        e.preventDefault();
+        const username = document.querySelector("#username").value;
+        const password = document.querySelector("#password").value;
+
+        try{
+        const result = await login(username, password)
+        if (result.error) {
+
+            return showAlert("error", result.erroro);
+        }
+            showAlert("success", "You have successfully logged in");
+            setTimeout(()=>{
+                document.location.replace("/")
+            })
+        }
+        catch(error){
+            showAlert("error", "Idk what happened just move on");
+        }
+    }
+</script>
+{% endblock %}

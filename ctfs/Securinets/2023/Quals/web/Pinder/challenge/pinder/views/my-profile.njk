@@ -1,0 +1,27 @@
+{% extends "layouts/base.njk" %}
+{% block title %}Pinder - My Profile{% endblock %}
+{% block content %}
+{% include "layouts/authNavbar.njk" %}
+
+<div class="card w-96 bg-neutral text-neutral-content">
+    <div class="card-body items-center text-center space-y-10">
+        <div>
+        <h2 class="card-title">Your cool profile !</h2>
+        <p class="card-subtitle" style="display:none">#{{profile.user_id}}</p>
+        <p>Make sure it's perfect for you perfect match</p>
+        </div>
+
+        <div class="flex flex-row space-x-5">
+            <p class="font-bold">First name</p>
+            <p> {{profile.first_name | safe}} </p>
+        </div>
+        <div class="flex flex-row space-x-5">
+            <p class="font-bold">Last name</p>
+            <p>{{profile.last_name}}</p>
+        </div>
+        <figure><img src={{profile.profile_picture_link}} alt="profile link" /></figure>
+    </div>
+</div>
+
+
+{% endblock %}

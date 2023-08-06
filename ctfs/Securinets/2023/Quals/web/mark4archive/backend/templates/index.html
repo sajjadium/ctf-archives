@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>mark4archive</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="/static/style.css">
+<script>
+   var socket;
+
+   const onSubmit = async () => {
+         if (!socket || socket.readyState === WebSocket.CLOSED) {
+          socket = new WebSocket('ws://localhost/echo');
+          socket.onopen = () => {
+            console.log('WebSocket connection opened.');
+          };
+
+          socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            const progress = data.progress;
+            progressBar.style.width = progress + '%';
+          };
+        }
+        const data = new FormData(document.getElementById("analyse-form"));
+        fetch("/analyze", {method: "POST", body: data}).then(async (resp) => {
+         console.log(resp)
+         const text = await resp.text()
+         document.getElementById("result-div").innerText = text;
+        }).catch((error) => {
+         alert("Error occured.")
+        })
+
+        return true;
+      }
+</script>
+</head>
+<body>
+<div class="container">
+      <div class="text">
+         Github Static code analyzer
+      </div>
+      <p style="text-align: center;">Give us your code, we will give you back a vulnerability report!</p>
+      <p style="text-align: center;">Follow <b><a href="/instructions">these instructions</a></b> to retrive the following fields</p>
+      </p>
+      <p style="text-align: center;">Download report <b><a href="/makereport">from here</a></b> </p>
+
+      <form id="analyse-form" >
+         <div class="form-row">
+            <div class="input-data">
+               <input type="text" name="repo_name" required>
+               <div class="underline"></div>
+               <label for="">Repository Name</label>
+            </div>
+            <div class="input-data">
+               <input type="text" name="username" required>
+               <div class="underline"></div>
+               <label for="">Github username</label>
+            </div>
+         </div>
+         <div class="form-row">
+            <div class="input-data">
+               <input type="text" name="token" required>
+               <div class="underline"></div>
+               <label for="">Token</label>
+            </div>
+            <div class="input-data">
+               <input type="text" name="branch" required>
+               <div class="underline"></div>
+               <label for="">Branch</label>
+            </div>
+         </div>
+         <div class="form-row">
+         <div class="input-data textarea">
+            <textarea rows="8" cols="80" required></textarea>
+            <br />
+            <div class="underline"></div>
+            <label for="">As an AI model, give me instructions if you want me to focus more on some vulnerabilities ..</label>
+            <br />
+            <div id="progress-bar" style="width: 0%; height: 20px; background-color: rgb(55, 26, 170);"></div>
+            <p style="text-align: center; margin-top: 10px;" id="result-div"> 
+            <div class="form-row submit-btn">
+               <div class="input-data">
+                  <div class="inner"></div>
+                  <input type="button" onclick="onSubmit()" value="submit" id="start-button">
+               </div>
+            </div>
+      </form>
+      
+      </div>
+
+   
+    <script>
+      
+      const progressBar = document.getElementById('progress-bar');
+      const startButton = document.getElementById('start-button');
+
+      
+    </script>
+  
+</body>
+</html>

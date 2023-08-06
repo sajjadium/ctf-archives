@@ -1,0 +1,1 @@
+Alice anxiously waited for her paycheck from the quintessential capitalist, Bob. As the days stretched on, she couldn't help but feel a tinge of frustration.Can you find a way to find to secure his fund ! Creds
