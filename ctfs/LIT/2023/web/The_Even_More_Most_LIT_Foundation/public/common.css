@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    font-family: "Overpass", "Comic Sans MS", sans-serif;
+    min-width: 64em;
+    line-height: 1.28;
+}
+
+header {
+    background-color: #398ad7;
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    padding: 0 1em;
+}
+
+header a {
+    color: unset;
+    text-decoration: unset;
+    font-size: 2em;
+}
+
+header h2 {
+    color: white;
+    font-size: 1em;
+    margin-block: 0.67em;
+}
+
+main {
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#balance {
+    font-size: 4em;
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+}
+
+.entry {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+}
+
+.entry img {
+    width: 8em;
+    height: 8em;
+}
+
+.entry h3 {
+    margin: 0;
+}
+
+.tada {
+    color: #398ad7;
+}

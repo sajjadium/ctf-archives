@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Donate to the Most 🔥 Foundation</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./common.css">
+        <script type="module">
+            const getFunds = async () => {
+                const entrys = document.getElementById("funds");
+                entrys.innerText = "loading...";
+                const res = await (await fetch("/api/funds")).json();
+                entrys.replaceChildren();
+                for (const [fund, props] of Object.entries(res)) {
+                    entrys.insertAdjacentHTML("beforeend", `
+                        <label class="entry">
+                            <input type="radio" name="fund" value="${fund}">
+                            <img src="${props.image}">
+                            <div>
+                                <h3>${props.name}</h3>
+                                <div><i>${props.desc}</i></div>
+                                <div>Goal: LIT$${props.goal.toFixed(2)}</div>
+                                <div>Raised: LIT$${props.raised.toFixed(2)}${props.message ? " 🎉" : ""}</div>
+                                ${props.message ? `<div class="tada"><i>${props.message}</i></div>` : ""}
+                            </div>
+                        </label>
+                    `);
+                }
+            }
+
+            const form = document.getElementById("donate");
+            const submit = document.getElementById("submit");
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                submit.setAttribute("disabled", "");
+                const out = document.getElementById("response");
+                out.style = "";
+                out.innerText = "processing...";
+                const data = Object.fromEntries(new FormData(form));
+                const res = await (await fetch("/api/donate", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                })).json();
+                submit.removeAttribute("disabled");
+                if (res.error) {
+                    out.style.color = "red";
+                    out.innerText = `Error: ${res.message}`;
+                    return;
+                }
+                out.innerText = `Success! Remaining balance: LIT$${res.money.toFixed(2)}`;
+                await getFunds();
+            });
+
+            await getFunds();
+        </script>
+    </head>
+    <body>
+        <header>
+            <a href="./"><h2>The Most 🔥 Foundation</h2></a>
+            <a href="./balance.html">Balance</a>
+            <a href="./add-funds.html">Add funds</a>
+            <a href="./donate.html">Donate</a>
+        </header>
+        <main>
+            <h1>Donate</h1>
+            <form id="donate">
+                <fieldset>
+                    <legend>Choose a fund to donate to:</legend>
+                    <div id="funds">loading...</div>
+                </fieldset>
+                <p>
+                    <label for="amount">Amount to donate: LIT$</label><input type="number" id="amount" name="amount" min="0.01" step="0.01">
+                </p>
+                <input type="submit" id="submit" value="Donate!">
+                <span id="response"></span>
+            </form>
+        </main>
+    </body>
+</html>
