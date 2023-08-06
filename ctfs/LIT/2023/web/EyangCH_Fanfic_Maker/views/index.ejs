@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>EYANGCH Fanfic Maker <3</title>
+        <style>
+            .bg{
+                background-image: url("https://cdn.discordapp.com/avatars/622575440305061910/e0fa5d8c91cc24f83af648736072d330.webp?size=256");
+                background-repeat: repeat;
+                opacity: 0.3;
+                top: 0;
+                left: 0;
+                right: 0;
+                position: absolute;
+                z-index: -1; 
+                height: 300%; 
+            }
+            pre code {
+                background-color: #eee;
+                border: 1px solid #999;
+                display: block;
+                padding: 10px;
+                font-size: 18px;
+            }
+
+            textarea {
+            	width: 50%;
+            	height: 400px;
+                font-size: 18px;
+            }
+        </style> 
+    </head>
+    <body>
+        <div class="bg"></div>
+        <h1>Welcome to EYANGCH Fanfic Maker</h1>
+        <h3>About</h3>
+        <p>This is EYANGCH's biggest fan club. And CodeTiger (Alex Fan) is obviously EyangCH's BIGGEST FAN!!!</p>
+        <h3>EYANGCH OTZ ACHIEVEMENT LIST OTZ OTZ OTZ</h3>
+        <ul style="font-size: 20px;">
+            <li>CF Master, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Grandmaster performance <a href="https://codeforces.com/contest/1536">on a DIV 2</a>, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>USACO Finalist Camper, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>USACO Platinum Division, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>USAPhO Bronze Medalist and 2 times Qualifier, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>God at Web, Rev, and Crypto, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Carries the entire LIT infrastructure, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Pico CTF Winner 1st place, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Top 9 in Texas at the Texas UIL CS State Qualifier, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>National Cybersecurity Finalist, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>2 times AIME Qualifier, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Best CPer in his entire school district, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Has an OP Profile Picture, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Cracked at playing the Cello, All-region Celloist, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Has an OP personal website</a>, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Has an OP Calories Tracker</a>, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Has published arxiv research papers on Graph Theory, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Made the website template that I stole to make this challenge, WOW! EYANG OTZ OTZ OTZ</li>
+            <li>Is super OTZ OTZ OTZ, WOW! EYANG OTZ OTZ OTZ</li>
+
+        </ul>
+        <h3>Make Some Eyangch Fanfic 💖💖💖</h3>
+        <form action="/makeFanfic" method="POST" id="makeFanficForm">
+            <textarea name="code" form="makeFanficForm">Enter eyangch fanfic here :D</textarea><br>
+            <input type="submit" value="Submit Code" style="font-size: 30px;margin-top: 10px;">
+        </form>
+        <h3>Example</h3>
+        <pre>
+            <code><%= `
+<fanfic name="EyangORZ" prefix="Obviously, by now you should know that Eyang is not just GOD at everything, he Eyang IS God, reborn on Earth. The prophet has spoken and we must listen to the following three tales of EyangCH's Greatness and All-powerfulness: 1. ">
+    <eyangstory1></eyangstory1>
+    <fanfic name="EyangORZORZ" prefix=" Obviously, you can tell that Eyang is unhumanly ORZ at EVERYTHING he does. But to further illustrate this point. I'd like to say 2. ">
+        <eyangstory2></eyangstory2>
+        <fanfic name="EyangORZORZORZ" prefix=" While any sane person would have recognized how ORZ eyang is by now, the last tale will end all non-believers. 3. ">
+            <eyangstory3></eyangstory3>
+        </fanfic>
+    </fanfic>
+</fanfic>
+
+<EyangORZ></EyangORZ><EyangORZ></EyangORZ><EyangORZ></EyangORZ><EyangORZ></EyangORZ><EyangORZ></EyangORZ><EyangORZ></EyangORZ>
+
+                ` %></code>
+        </pre>
+        <h3>Documentation</h3>
+        <p>Here is a quick summary <s>because I'm too lazy to write actual documentation</s>. You have 3 types of literals <%="<eyangstory1></eyangstory1>"-%> <%="<eyangstory2></eyangstory2>"-%> and <%="<eyangstory3></eyangstory3>"-%>. And you can make predefined fanfics <%="<fanfic name='name of fanfic'></fanfic>"-%>, each describing a story of the great almight Eyang ORZ. However, note that you cannot nest predefined fanfics while defining another fanfic, so you can only use literals or declare new fanfics. The rest should be self-explanatory by reading the sample-code or just reading the interpreter (DM me if you have any further question).</p>
+    </body>
+</html>
