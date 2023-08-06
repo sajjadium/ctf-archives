@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="button" onclick="submitForm()">Login</button>
+    </form>
+
+    <div id="responseMessage"></div>
+
+    <script>
+        function submitForm() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const loginData = {
+                username: username,
+                password: password
+            };
+
+            // Convert loginData to JSON string
+            const jsonData = JSON.stringify(loginData);
+
+            // Send the JSON object to the PHP server
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', 'login.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/json');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Response from the server
+                    const response = JSON.parse(xhr.responseText);
+                    displayResponseMessage(response);
+                }
+            };
+            xhr.send(jsonData);
+        }
+
+        function displayResponseMessage(response) {
+            const messageContainer = document.getElementById('responseMessage');
+            messageContainer.textContent = response.message;
+        }
+    </script>
+</body>
+</html>

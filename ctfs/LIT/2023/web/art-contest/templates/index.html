@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>ASCII Art Contest 2023</title>
+	</head>
+	<body>
+		<h1>Welcome to the ASCII Art Contest 2023 submission page.</h1>
+		<hr>
+		<h3>Last year's winner:</h3>
+		<code><pre>
+
+    "a smiley face"
+
+      |       |
+      |       |
+  _________________
+ |                 |
+ \                 /
+  \               /
+   -_____________-
+
+		</pre></code>
+		<hr>
+		<h2>2023 Submissions</h2>
+		<p>All 2023 submissions will automatically be graded and given immediate feedback by our special highly advanced grader. Submit your ASCII art using the form below.</p>
+		<form action="/upload" method="POST" enctype="multipart/form-data">
+			<input type="file" name="file"/>
+			<input type="submit" value="send to graders"/>
+		</form>
+		<br><hr>
+		<h2>Request Judging</h2>
+		<p>Enter your submission id below to begin the judging process.</p>
+		<form action="/judge" method="POST">
+			<input type="text" name="id" size="69"/>
+			<input type="submit" value="judge!"/>
+		</form>
+		<br><hr>
+	</body>
+</html>

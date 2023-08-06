@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <title>Ping a Website &#127955;</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .form-inline {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+    }
+
+    .form-inline input {
+      vertical-align: middle;
+      margin: 5px 10px 5px 0;
+      padding: 10px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    .form-inline button {
+      padding: 10px 20px;
+      background-color: dodgerblue;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      color: white;
+    }
+
+    .form-inline button:hover {
+      background-color: royalblue;
+    }
+
+    @media (max-width: 800px) {
+      .form-inline input {
+        margin: 10px 0;
+      }
+
+      .form-inline {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+  <body>
+  <h1>Ping a Website! &#127955;</h1>
+  <form class="form-inline" action="" method="post">
+    <input type="text" placeholder="Hostname" name="hostname" value="{{
+      request.form.hostname }}">
+    <button type="submit">Ping!</button>
+  </form>
+  <br>
+  <br>
+  {% if output %}
+    <h2>Output:</h2>
+    <p>{{ output }}</p>
+  {% endif %}
+  </body>
+</html>
+
