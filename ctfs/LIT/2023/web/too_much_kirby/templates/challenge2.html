@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        h1 {
+          color: #ff4081;
+        }
+        body {
+            background-color: #f8c0cd; 
+            font-family: 'Arial', sans-serif;
+        }
+
+        .chatbox {
+            border: 10px solid #ff95ba; 
+            background-color: #fff; 
+            padding: 10px;
+            height: 200px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        .chat-container {
+            width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .user-input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            border: 10px solid #ff95ba;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .user-input::placeholder {
+            color: #ff95ba;
+        }
+
+        .user-input:focus {
+            border-color: #ff4081; 
+        }
+
+        .submit-btn {
+            background-color: #ff95ba;
+            color: #fff; 
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #ff4081; 
+        }
+
+        .chatbox p {
+            margin: 0;
+        }
+
+        .kirby-image {
+            width: 100px;
+            height: auto;
+        }
+
+        .password-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 30px;
+            color: #fff; 
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+        .password-input {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .password-submit-btn {
+            padding: 5px 10px;
+            background-color: #ff95ba;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <img class="kirby-image" src="https://cdn.wikirby.com/thumb/8/87/KPR_Warp_Star_artwork.png/500px-KPR_Warp_Star_artwork.png" alt="Kirby" />
+        <h1>Kirby... Again</h1>
+        <div class="chatbox">
+            {% for message in messages %}
+                {% if message.role == 'user' %}
+                    <p style="color: #ff95ba;">You: {{ message.content }}</p>
+                {% elif message.role == 'assistant' %}
+                    <p style="color: #ff4081;">Kirby: {{ message.content }}</p>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <form method="post">
+            <input class="user-input" type="text" name="user_input" placeholder="Type your message...">
+            <button type="submit" class="submit-btn">Send</button>
+        </form>
+
+        <div class="password-box">
+            <input class="password-input" type="password" placeholder="Enter the password" id="password">
+            <button class="password-submit-btn" onclick="checkPassword()">Submit</button>
+            <p class="error-message" id="error-message"></p>
+        </div>
+    </div>
+    <script>
+      function checkPassword() {
+          const password = "[REDACTED]";
+          const enteredPassword = document.getElementById("password").value;
+
+          if (enteredPassword === password) {
+            window.location.href = "/challenge3";
+          } else {
+            document.getElementById("error-message").textContent = "Incorrect password. Try again.";
+          }
+        }
+    </script>
+</body>
+</html>

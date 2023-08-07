@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #f8c0cd; 
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color:  #ff4081;
+        }
+        p {
+            color: #ff60a1;
+        }
+
+        form {
+            margin: 50px auto;
+            max-width: 300px;
+            padding: 20px;
+            background-color: #ff95ba;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            color: #fff;;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+          
+        }
+
+        input[type="submit"] {
+            background-color: hotpink; 
+            color: #FFF;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: deeppink;
+        }
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to my Kirby fanpage <33</h1>
+    <p>please dont sql inject me!</p>
+    <form action="/challenge3" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username"><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password"><br>
+        <input type="submit" value="Login">
+    </form>
+   {% if error %}
+    <p class="error-message">{{ error }}</p>
+    {% endif %}
+</body>
+</html>

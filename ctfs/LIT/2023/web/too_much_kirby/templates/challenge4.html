@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+    <style>
+        body {
+            background-color: #FFC0CB; 
+            font-family: "Poppins", sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #FF4081; 
+        }
+
+        p {
+            color: #FF95BA;
+        }
+
+        form {
+            margin: 50px auto;
+            max-width: 300px;
+            padding: 20px;
+            background-color: #FFF0F5;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #FF4021;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #F7AEAA; 
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #F0A0A0; 
+            color: #FFF;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #F0CED1; 
+        }
+
+        .password-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 30px;
+            color: #FFF; 
+        }
+
+        .password-input {
+            padding: 5px 10px;
+            border: 1px solid #CCC; 
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .password-submit-btn {
+            padding: 5px 10px;
+            background-color: #FF95BA; 
+            color: #FFF; 
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: #FF0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>kirby</h1>
+    <p>:weary:</p>
+
+    <form>
+        <label for="inputField">Enter your name:</label>
+        <input type="text" name="inputField" id="inputField">
+        <button type="button" onclick="displayMessage()">Submit</button>
+    </form>
+
+    <div id="output"></div>
+
+    <div class="password-box">
+        <input class="password-input" type="password" placeholder="Enter the password" id="password">
+        <button class="password-submit-btn" onclick="checkPassword()">Submit</button>
+        <p class="error-message" id="error-message"></p>
+    </div>
+
+    <script>
+        function displayMessage() {
+            const input = document.getElementById('inputField').value;
+            document.getElementById('output').innerHTML = '<p>hi ' + input + '! :>> </p>';
+
+            const password = '[REDACTED]';
+        }
+
+        function checkPassword() {
+            const password = "[REDACTED]"; 
+            const enteredPassword = document.getElementById("password").value;
+
+            if (enteredPassword === password) {
+                window.location.href = "/challenge5"; 
+            } else {
+                document.getElementById("error-message").textContent = "Incorrect password. Try again.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #FFCCE5; 
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            color: #FF669D; 
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #FF99C2; 
+        }
+
+        form {
+            margin: 50px auto;
+            max-width: 300px;
+            padding: 20px;
+            background-color: #FFF0F5; 
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="file"] {
+            background-color: #FFB3D1; 
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #FF669D; 
+            color: #FFF;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #FF99C2;
+        }
+
+        #output {
+            margin-top: 20px;
+            color: #FF669D; 
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .error-message {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>hm</h1>
+    <p>im looking for a kirby fanfiction 'kirby.txt' can you help me find it?</p>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file">
+        <input type="submit" value="Upload">
+    </form>
+    
+
+    <div id="output"></div>
+    {% if error %}
+    <p class="error-message">{{ error }}</p>
+    {% endif %}
+    
+
+    <script>
+        function allowedFileType(filename) {
+            const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+            const extension = filename.split('.').pop().toLowerCase();
+            return allowedExtensions.includes(extension);
+        }
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const fileInput = document.getElementById('file');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select a file.');
+                return;
+            }
+
+            if (!allowedFileType(file.name)) {
+                alert('Invalid file type. Only JPG, JPEG, PNG, and GIF files are allowed.');
+                return;
+            }
+
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: new FormData(form)
+            });
+
+            if (response.ok) {
+                const text = await response.text();
+                document.getElementById('output').innerHTML = text;
+            } else {
+                alert('File upload failed. Please try again.');
+            }
+        });
+    </script>
+</body>
+</html>

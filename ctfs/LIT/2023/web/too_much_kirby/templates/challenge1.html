@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #FFF0F5;
+    }
+
+    #container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      
+    }
+
+    .kirby {
+      position: absolute;
+      width: 100px;
+      height: 120px;
+      margin-top: 10px;
+      z-index: 0;
+      background-image: url("https://cdn.wikirby.com/thumb/8/87/KPR_Warp_Star_artwork.png/500px-KPR_Warp_Star_artwork.png");
+      background-size: cover;
+    }
+
+
+    .password-box {
+      position: absolute;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-top: 30px;
+    }
+
+    .password-input {
+      position: absolute;
+      z-index: 1;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .submit-btn {
+      position: absolute;
+      margin-top: 70px;
+      z-index: 1;
+      padding: 5px 10px;
+      background-color: #ff95ba;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .error-message {
+      margin-top: 170px;
+      color: red;
+    }
+
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div class="kirby"></div>
+  </div>
+  <div class="password-box">
+    <input class="password-input" type="password" placeholder="Enter the password" id="password">
+    <button class="submit-btn" onclick="checkPassword()">Submit</button>
+    <p class="error-message" id="error-message"></p>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('container');
+
+      container.addEventListener('click', (event) => {
+        if (event.target.classList.contains('kirby')) {
+          createFloatingkirby(event.clientX, event.clientY);
+        }
+      });
+
+      const originalkirby = document.querySelector('.kirby');
+      originalkirby.addEventListener('click', () => {
+        showNextText();
+      });
+
+      animateFloatingkirby(originalkirby);
+    });
+
+    function createFloatingkirby(x, y) {
+      const numkirbys = 5;
+
+      for (let i = 0; i < numkirbys; i++) {
+        const newkirby = document.createElement('div');
+        newkirby.classList.add('kirby');
+        const offsetX = (Math.random() - 0.5) * 50; // Slightly offset the position of new kirbys
+        const offsetY = (Math.random() - 0.5) * 50;
+        newkirby.style.left = `${x + offsetX}px`;
+        newkirby.style.top = `${y + offsetY}px`;
+
+        newkirby.addEventListener('click', () => {
+          showNextText();
+        });
+
+        document.getElementById('container').appendChild(newkirby);
+        animateFloatingkirby(newkirby);
+      }
+    }
+
+    function animateFloatingkirby(kirby) {
+      const container = document.getElementById('container');
+      const kirbySize = 50;
+
+      const animationDuration = Math.random() * 4000 + 2000;
+      const targetX = Math.random() * (container.offsetWidth - kirbySize);
+      const targetY = Math.random() * (container.offsetHeight - kirbySize);
+
+      const keyframes = [
+        { left: `${parseFloat(kirby.style.left)}px`, top: `${parseFloat(kirby.style.top)}px` },
+        { left: `${targetX}px`, top: `${targetY}px` },
+      ];
+
+      const options = {
+        duration: animationDuration,
+        easing: 'ease-in-out',
+        fill: 'forwards',
+      };
+
+      kirby.animate(keyframes, options).onfinish = () => {
+        animateFloatingkirby(kirby);
+      };
+    }
+
+    const popupTexts = [
+      'The password is in all lowercase.',
+      '“Lhsl w qluswlt dcejxny!” kwwu Dvqtf; “G kuqi bw kdikwsvx vn jiit a lwhsjfyxv.”',
+      'Blb sm xt oso wegomu: tfc wyh ngo kbcb dme jlahch hayd, oeg rmi gyae zgiyzpsehn cg br rhc ihgmcvk wrik tfc wyh ngo pvv usoyu qgzc uoj ykwej dpipseh rwe daphch nwfs gltm ihsl hcmhvg xbpbel. Uijkp, vfzodvs, qfe upilwz tfu k nvx kgnsiek lk gvh sn jic uaq voafc hf vrzzoi ynw uujldsi: vrm wfjr a jxtlda bvufwlt yzosi tzao; “tfu sb djeft ccd, qgq yerg,” arjb Ylgre lg dsivotw, “jl ky edify kik dvbfhcrhcg, laca o tdxlcf. G uolsej odok L cpfvjb bc aicw pvvq?” Kvu tfc tpxev lk trqmg niyr tft fdsis fi k krobje gh laca owwoz kic aalslw ao pcrgv fvr, dop hhw ukicg xwk sckekqej wrsi kkdzoe qecc smud o kksvx.',
+      'Bdrep p wzahs, wlxlzoe rhyi ngldwej wwif fypntnwv, ovv gokzecb ol voafc wewy byf eyrbtn sl kbth; lck, bjys ddr hgkf Roskv! xfcn qwe ygp hf wrm upmp, sft fgmjr jko pre dmredtlwj hyh vqkujc gmadwf gsp, dxl nicl sft wwfp prfu bf ufc tyqlw xkf zw, cpv gmsnb hhw ukicg xwk qmqsgqlq jaotk sb: jic aosad kwa wk teqkf njagclq ldffxqp kic elyhs, sfz gyh dzzfb fep qekl pc tosus vn mnc df lza zvjc ww ufc tyqlw, tqh zw gij umm sjxphwnm; rqn eyfl qhc wav lefvg rmitcjf mjt oapv kuiqeh, rfe ndoj dehkoo byjle syi dgoj oeg mzzfb.',
+    '“Aokt, tzwns’j qy cjf gl cpnify hwbh dpru!” qyib Plaua hf kozjfjd, ryihwj ovruztp; “J ybvghe qgq hf ooimf mdf rwik eeblwo!” Ayf ecncgaddu uryo pvsqcld kejq ccfg klmjac, (tfduyz ovv yozp tcjdmb fgdhcnhn qk), blb smbelaisj vrm jdmjdcs hwjosci cw jftcrcay sk pc susvx ucyrq xnlg dsi himj; blb olre kza fvpousfpcd rgyafc hf eyf yfp mwl tajk bci kkdzoe ahcptwv dsivotw jl y gybe gx yfftemk tfc wyh pdsuwej korjlqt ftrkwht, wrb byjq aupxomk yvzon ert tcrw uofv kt guobvobgne io tw pkf sowgmc. “Zur xt’k fk ijh xwn,” ufmuewt hgkf Roskv, “um nrciefv pc sh def qcmpjt! Wzq, pvvuo’a ybpblw tngmcv fi wm cfdr tm bacw kbv uoagfarazae hwngfq!”',
+      'Cwfo fcr cne xwhz fq k tzurje eaakk xco wrik xyq lwxny mjrvu dpv uyzlc: hhw glsehn qk, blb fmjnv aj wk d fmiz qkaja csca, ce zrqti rfe udrvk “AOK PO” evsc zeyjtaxqzcb wiilcb il rujjwbkv. “Gmcm, G’jl cpt al,” oozg Ktzdc, “ynb xf al iobhc uv hpmw jprywn, W tdx zvbaf tft kwq; wbu lp qk nyieq be yjkk jpktcfp, G cyc cjwad lqnmi ufc dmdr; kg awkkoz nbw G’lj vel ajhf wrm xbpbel, pnv A zce’w miif ufiaw hshlsev!”',
+      'Cpv brc a jxtlda pzw, kvu tygd ycxagqgcb dw yfpqeju, “Wzayv ndi? Eyjaf wyn?”, hgdzwej rmi iyld mc tzw pcg rp pvs fcab io xwaz nksky xyw ir lak yncnlxo, rob qhc lak iqwkh cciqpgscs tg xebu wrik tfc rcbaafar kko arnc qixt: tg ta gluo, byjq eeltrsdhm ydzxvoq uhcc ofw aokv mibf, zst Yaiuw dou jyb jp kscf xnlg pvv zkg fg cvpcrtafc bfwrqeh zst mjt-gx-pvv-zkg kiglgq io zsldvq, dpru gr sctmwv mizwo llmj ynb htmher wrb tzgc ro ed of aj hyh mwdnml wyn.',
+      'Sg kds jhd bf xmpk, ycd nwnm jryv wjlgsftd gxb hyh mibf.'
+    ];
+    let textIndex = 0;
+    let inputPassword = "";
+
+    function showNextText() {
+      const popup = window.open('', '_blank', 'width=300,height=200');
+      popup.document.write(`<p>${popupTexts[textIndex]}</p>`);
+
+      textIndex = (textIndex + 1) % popupTexts.length;
+    }
+
+    function checkPassword() {
+      const password = "[REDACTED]";
+      const enteredPassword = document.getElementById("password").value;
+
+      if (enteredPassword === password) {
+        window.location.href = "/unlock";
+      } else {
+        document.getElementById("error-message").textContent = "Incorrect password. Try again.";
+      }
+    }
+  </script>
+</body>
+</html>
