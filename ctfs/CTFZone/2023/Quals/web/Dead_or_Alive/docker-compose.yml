@@ -1,0 +1,29 @@
+version: '3'
+services:
+  neo4j:
+    image: neo4j:5.8.0-enterprise
+    volumes:
+      - ./neo4j/data:/data
+      - ./neo4j/logs:/logs
+      - ./hospitalgraph.dump:/tmp/hospitalgraph.dump
+      - ./configure_db.sh:/tmp/configure_db.sh
+    environment:
+      - NEO4J_AUTH=neo4j/rootroot
+      - NEO4J_initial_dbms_default__database=hospitalgraph
+      - NEO4J_ACCEPT_LICENSE_AGREEMENT=yes
+      - NEO4J_db_lock_acquisition_timeout=30s
+      - NEO4J_db_transaction_timeout=30s
+    restart: on-failure
+    entrypoint: bash -c '(bash /tmp/configure_db.sh&) && neo4j-admin database load hospitalgraph --from-path=/tmp --verbose --overwrite-destination=true && /startup/docker-entrypoint.sh neo4j'
+
+  web:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    environment:
+      - DB=neo4j
+    depends_on:
+      - neo4j
+    restart: always
+    ports:
+      - 3000:3000

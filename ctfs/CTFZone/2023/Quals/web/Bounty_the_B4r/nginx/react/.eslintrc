@@ -1,0 +1,51 @@
+{
+  "extends": [
+    "react-app",
+    "plugin:import/errors"
+  ],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "react"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true
+      },
+      "node": {
+        "extensions": [
+          ".ts",
+          ".tsx",
+          ".d.ts"
+        ],
+        "moduleDirectory": [
+          "src",
+          "node_modules"
+        ]
+      }
+    }
+  }
+}

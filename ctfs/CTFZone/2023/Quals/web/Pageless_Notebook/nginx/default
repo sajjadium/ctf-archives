@@ -1,0 +1,14 @@
+server {
+         listen   80;
+         server_name  localhost;
+         access_log   /var/log/nginx/access.log;
+         error_log    /var/log/nginx/error.log;
+         root /app/SimpleNotebook/;
+
+         location / {
+                 index index.html index.htm default.aspx Default.aspx;
+                 fastcgi_index Default.aspx;
+                 fastcgi_pass 127.0.0.1:9000;
+                 include /etc/nginx/fastcgi_params;
+         }
+ }

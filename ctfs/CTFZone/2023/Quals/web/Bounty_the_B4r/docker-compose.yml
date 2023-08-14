@@ -1,0 +1,26 @@
+version: '3'
+services:
+  golang:
+    build:
+      context: golang
+      dockerfile: Dockerfile
+    env_file:
+      - golang.env
+    depends_on:
+      - postgres_db
+    restart: always
+
+  nginx:
+    build: 
+      context: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - golang
+    restart: always
+
+  postgres_db:
+    image: postgres:15-alpine
+    restart: always
+    env_file:
+      - postgres.env

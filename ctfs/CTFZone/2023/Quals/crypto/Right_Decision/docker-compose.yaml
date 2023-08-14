@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  task:
+    build: .
+    ports:
+      - 31339:31339
+    restart: always

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <title>HealthGraph</title>
+
+    <link type="image/x-icon" href="/static/images/favicon.png" rel="icon" />
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="/static/fontawesome/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="/static/fontawesome/css/all.min.css" />
+
+    <link rel="stylesheet" href="/static/css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="/static/css/jquery-ui.structure.min.css" />
+    <link rel="stylesheet" href="/static/css/jquery-ui.theme.min.css" />
+
+    <link rel="stylesheet" href="/static/css/style.css" />
+
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/jquery-ui.min.js"></script>
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+
+    <script src="static/js/slick.js"></script>
+</head>
+
+<body>
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header class="header">{% include 'navbar_home.html' %}</header>
+        <!-- header -->
+
+        <!-- Clinic and Specialities -->
+        <section class="section section-specialities" style="padding-top: 80px">
+            <div class="container-fluid">
+                <div class="section-header text-center">
+                    <h2>AI Powered Diseases Diagnosis</h2>
+                    <p class="sub-title">
+                    </p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-9">
+                        <!-- Slider -->
+                        <div class="specialities-slider slider">
+                            <!-- Slider Item -->
+                            <div class="speicality-item text-center">
+                                <div class="speicality-img">
+                                    <img src="/static/images/specialities-01.png" class="img-fluid" alt="Speciality" />
+                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                </div>
+                                <p>Urology</p>
+                            </div>
+                            <!-- /Slider Item -->
+
+                            <!-- Slider Item -->
+                            <div class="speicality-item text-center">
+                                <div class="speicality-img">
+                                    <img src="/static/images/specialities-02.png" class="img-fluid" alt="Speciality" />
+                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                </div>
+                                <p>Neurology</p>
+                            </div>
+                            <!-- /Slider Item -->
+
+                            <!-- Slider Item -->
+                            <div class="speicality-item text-center">
+                                <div class="speicality-img">
+                                    <img src="/static/images/specialities-03.png" class="img-fluid" alt="Speciality" />
+                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                </div>
+                                <p>Orthopedic</p>
+                            </div>
+                            <!-- /Slider Item -->
+
+                            <!-- Slider Item -->
+                            <div class="speicality-item text-center">
+                                <div class="speicality-img">
+                                    <img src="/static/images/specialities-04.png" class="img-fluid" alt="Speciality" />
+                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                </div>
+                                <p>Cardiologist</p>
+                            </div>
+                            <!-- /Slider Item -->
+
+                            <!-- Slider Item -->
+                            <div class="speicality-item text-center">
+                                <div class="speicality-img">
+                                    <img src="/static/images/specialities-05.png" class="img-fluid" alt="Speciality" />
+                                    <span><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                </div>
+                                <p>Dentist</p>
+                            </div>
+                            <!-- /Slider Item -->
+                        </div>
+                        <!-- /Slider -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Clinic and Specialities -->
+
+        <!-- Popular Section -->
+        <section class="section section-doctor" id="about">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="section-header">
+                            <h2>The Power of Graph Theory</h2>
+                        </div>
+                        <div class="about-content">
+                            <p>
+                                HealthGraph is an innovative application that harnesses the power of graph theory to aid in the determination of medical diagnoses. By applying graph-based algorithms and techniques, this app provides a cutting-edge approach to medical diagnostics, offering accurate and efficient results.
+
+                                Utilizing a vast network of interconnected medical data, HealthGraph analyzes complex relationships between symptoms, diseases, medical history, and other relevant factors. By representing this information as a graph, the app can uncover hidden patterns and correlations that may not be readily apparent using traditional diagnostic methods.                     
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- /Popular Section -->
+
+        <!-- Availabe Features -->
+        <section class="section section-features">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-5 features-img">
+                        <img src="static/images/pppp.jpg" class="img-fluid" alt="Feature" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="section-header">
+                            <h2 class="mt-2">Try it out</h2>
+                            <p>
+                                Here You can access AI powered diseases diagnosis system. You can choose
+                                several symptoms by which your diagnoses will be determined.
+
+                            </p>
+                            <br/>
+                            <form id="submitForm">
+                                <input class="form-control" id="ssn" placeholder="Enter SSN" required>
+                                <br/>
+                                <input class="form-control" id="fullname" placeholder="Enter your full name" required>
+                                <br/>
+                                <input class="form-control" id="dateOfBirth" placeholder="Enter your date of birth in DD/MM/YY" required>
+                                <br/>
+                                <input class="form-control" id="weight" placeholder="Enter your weight" required>
+                                <br/>
+                                <label>Find your symptoms</label>
+                                <div class="input-group">
+                                    <select id="selectSymptom" class="form-control">
+                                        {% for item in items %}
+                                        <option value="{{ item._fields[0] }}" description="{{ item._fields[1] }}">
+                                            {{ item._fields[0] }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="input-group-addon input-group-button">
+                                        <button id="setSymptomBtn" type="button" class="btn btn-secondary">Add</button>
+                                    </div>
+                                </div>
+
+                                <br/>
+                                <label>Current symptoms</label>
+                                <table id="symptomTable" class="table table-bordered">
+                                </table>
+                                <small id="help" class="form-text text-muted">
+                                    By clicking the submit button, you agree that we will store 
+                                    your data in order to further research in the field of medicine 
+                                    and improve our service. Data will be anonymized.</small>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div id="dialog-message"></div>
+        <!-- Availabe Features -->
+
+        <!-- Footer -->
+        {% include 'footer.html' %}
+        <!-- /Footer -->
+    </div>
+    <script>
+        //$("#spinner").hide();
+		$('.specialities-slider').slick({
+			dots: true,
+			autoplay:false,
+			infinite: true,
+			variableWidth: true,
+			prevArrow: false,
+			nextArrow: false
+		});
+        $("[data-toggle='tooltip']").tooltip();
+        $( "#dialog-message" ).dialog({
+            modal: true,
+            autoOpen: false,
+            buttons: {
+                Ok: function() {
+                $( this ).dialog( "close" );
+                }
+            }
+        });
+        document.getElementById('submitForm').onsubmit = function() {
+            return submitForm();
+        };
+        document.getElementById('setSymptomBtn').onclick = function() {
+            return addSymptom();
+        };
+        let patientInfo = {}
+        let symptoms = {}
+
+        function addSymptom(){
+            let selected = $('#selectSymptom option:selected');
+            let name = selected.attr('value');
+            let description = selected.attr('description');
+            selected.remove()
+
+            symptoms[name] = description;
+            $('#symptomTable').append(`
+                               <tr>
+                                  <td>
+                                    <label>${name}</label>
+                                    <i class="fa fa-question-circle" data-toggle="tooltip" title="${description}"></i>
+                                    <button type="button" class="btn btn-outline-secondary btn-sm float-right" data-type="minus" onclick="removeSymptom(this)">
+                                        <span class="fa fa-minus"></span>
+                                    </button>
+                                  </td>
+                                </tr>`);
+
+            if (!$('#selectSymptom option:selected').attr('value')){
+                $('#setSymptomBtn').prop("disabled", true);
+            }
+        }
+
+        function removeSymptom(btn){
+            let row = $(btn).parent();
+            let symptom = row.children('label').text();
+            row.remove();
+            
+            $('#selectSymptom').append(`<option value="${symptom}" description="${symptoms[symptom]}">
+                ${symptom}</option>`);
+            delete symptoms.symptom;
+            $('#setSymptomBtn').prop("disabled", false);
+        }
+
+        async function submitForm(){
+            $( "#dialog-message" ).html(`<img src="/static/images/wait.gif" />`)
+            $( "#dialog-message" ).dialog('open');
+            event.preventDefault();
+            patientInfo.ssn = $('#ssn').val();
+            patientInfo.fullname = $('#fullname').val();
+            patientInfo.dateOfBirth = $('#dateOfBirth').val();
+            patientInfo.weight = $('#weight').val();
+
+            let res = await fetch('/api/setUser', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(patientInfo)
+            });
+
+            let json = await res.json();
+            if (json.status == 'error'){
+                $( "#dialog-message" ).dialog('option', 'title', `Status: error`);
+                $( "#dialog-message" ).html(json.message);
+                return false;
+            }
+
+            res = await fetch('/api/setSymptoms', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ssn: patientInfo.ssn,
+                    symptoms: Object.keys(symptoms)
+                })
+            });
+
+            json = await res.json();
+            if (json.status == 'error'){
+                $( "#dialog-message" ).dialog('option', 'title', `Status: error`);
+                $( "#dialog-message" ).html(json.message);
+                return false;
+            }
+
+            res = await fetch('/api/getDiagnosis', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ssn: patientInfo.ssn,
+                })
+            });
+
+            json = await res.json();
+            if (json.status == 'error'){
+                $( "#dialog-message" ).dialog('option', 'title', `Status: error`);
+                $( "#dialog-message" ).html(json.message);
+                return false;
+            }
+            
+            $( "#dialog-message" ).dialog('option', 'title', `Status: ${json['status']}`);
+            $( "#dialog-message" ).html(
+                    json['message'].map(d => `
+                    <span>
+                        ${d['name']} <i class="fa fa-question-circle" data-toggle="tooltip" title="${d['description']}"></i>
+                    </span>
+                    `).join('<hr/>')
+                );
+            // do not submit because sent with fetch already
+            return false;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+The Board of Directors uses Shamir’s scheme to make decisions. We were able to convince 7 members of the board of directors to vote for project X. 8 votes are needed to make a decision. The rest are against it so far. Let’s help them make the right decision.

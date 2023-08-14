@@ -7,6 +7,7 @@ import subprocess
 import time
 import tempfile
 import shutil
+import string
 
 def is_valid(line):
   if line.strip().lower().startswith('download link'):
@@ -48,7 +49,7 @@ def get_challenge_name(line):
   for a in args:
     tokens.extend(re.sub('[^0-9a-zA-Z_\-]+', ' ', a).strip().split())
 
-  return '_'.join(tokens)
+  return '_'.join(tokens).rstrip(string.digits)
 
 if __name__ == '__main__':
   # find all the files downloaded in the past 60 seconds
@@ -70,11 +71,11 @@ if __name__ == '__main__':
 
   for f in files:
     with tempfile.TemporaryDirectory() as tmp_path:
-      if f.endswith('.zip'):
+      if f.endswith('.zip') or re.match(r'.*\.zip\.[0-9a-f]+$', f):
         if os.system('unzip -d "%s" "%s"' % (tmp_path, f)) != 0:
           os.system('mv "%s" "%s"' % (f, chal_name))
           continue
-      elif f.endswith('.tar.gz') or f.endswith('.tgz') or f.endswith('.txz'):
+      elif f.endswith('.tar.gz') or f.endswith('.tgz') or f.endswith('.txz') or f.endswith('.tar.xz'):
         if os.system('tar xzvf "%s" -C "%s"' % (f, tmp_path)) != 0:
           os.system('mv "%s" "%s"' % (f, chal_name))
           continue

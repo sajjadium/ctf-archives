@@ -1,0 +1,396 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Bug Bounty
+  description: |-
+    Best platform in the world.
+servers:
+  - url: /api
+paths:
+  /user/login:
+    post:
+      tags:
+        - user
+      summary: Login using username and password
+      requestBody:
+        description: Username and password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+        '404':
+          description: User not found
+  /user/register:
+    post:
+      tags:
+        - user
+      summary: Register using username and password
+      requestBody:
+        description: Username and password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /user/info:
+    get:
+      tags:
+        - user
+      summary: Check authenticated api
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfoResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /user/import_reputation:
+    post:
+      tags:
+        - user
+      summary: Import current user's reputation from HackerOne
+      requestBody:
+        description: Report details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportRepoRequest'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /report/{r_uuid}:
+    get:
+      tags:
+        - report
+      summary: Get report
+      parameters:
+        - in: path
+          name: r_uuid
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: Report UUID
+        - in: query
+          name: pow
+          schema:
+            type: string
+            format: string
+          required: true
+          description: Proof of work to let participants know that bruteforce is not an option
+      responses:
+        '200':
+          description: Get report by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetReportResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'  
+  /discovery:
+   get:
+      tags:
+        - report
+      summary: Get findings summary
+      responses:
+        '200':
+          description: Get findings month summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDiscoveryResponse'
+  /report:
+    post:
+      tags:
+        - report
+      summary: Submit report
+      requestBody:
+        description: Report details
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitReportRequest'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmitReportResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericResponse'
+  /programs:
+   get:
+      tags:
+        - program
+      summary: List of all programs
+      responses:
+        '200':
+          description: List of all programs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProgramsResponse'
+  /program/joined:
+   get:
+      tags:
+        - program
+      summary: List of program user joined
+      responses:
+        '200':
+          description: List of program user joined
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProgramJoinedResponse'
+  /program/{p_uuid}/join:
+    post:
+      tags:
+        - program
+      summary: Join to BB program
+      parameters:
+        - in: path
+          name: p_uuid
+          schema:
+            type: string
+            format: uuid
+          required: true
+          description: Program UUID
+      responses:
+        '200':
+          description: Join to program by id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JoinProgramResponse'
+                
+
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          format: string
+          example: "admin"
+        password:
+          type: string
+          format: string
+          example: "admin"
+
+    UserInfoResponse:
+      type: object
+      properties:
+        username:
+          type: string
+          format: string
+          example: "admin"
+        reputation:
+          type: integer
+          format: uint64
+          example: 0
+        pow:
+          type: string
+          format: string
+          example: "abcde"
+        md5:
+          type: string
+          format: string
+          example: ""
+    
+    AuthToken:
+      type: object
+      properties:
+        token:
+          type: string
+          format: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxMSwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.AyfGCs_0U46w9dQXZbzI-691-1LjP08KrvpmEQqHlvo"
+    
+    GenericResponse:
+      type: object
+      properties:
+        error:
+          type: integer
+          format: uint64
+          example: 1337
+        message:
+          type: string
+          format: string
+          example: "Error while composing error message"
+
+    ImportRepoRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          format: string
+          example: "L33tH@cker"
+        validator:
+          type: string
+          format: string
+          example: "abcdef00000000000"
+   
+    SubmitReportRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          format: string
+          example: "COOL BUG"
+        program:
+          type: string
+          format: string
+          example: "GitLab"
+        weakness:
+          type: string
+          format: string
+          example: "XSS"
+        severity:
+          type: string
+          format: string
+          example: "High"
+        description:
+          type: string
+          format: string
+          example: "Your PoC here"
+    
+    SubmitReportResponse:
+      type: object
+      properties:
+        reportID:
+          type: string
+          format: string
+          example: "12345678-90ab-cdef-1234-567890abcdef"
+
+    GetReportResponse:
+      type: object
+      properties:
+        title:
+          type: string
+          format: string
+          example: "COOL BUG"
+        description:
+          type: string
+          format: string
+          example: "COOL BUG BC YARA-YARA"
+        severity:
+          type: string
+          format: string
+          example: "CRITICAL"
+        weakness:
+          type: string
+          format: string
+          example: "CRITICAL"
+        published:
+          type: integer
+          format: int64
+        programId:
+          type: string
+          format: string
+          example: "12345678-90ab-cdef-1234-567890abcdef"
+        programName:
+          type: string
+          format: string
+          example: "Amazing Program"
+
+    GetDiscoveryResponse:
+      type: object
+      properties:
+        title:
+          type: string
+          format: string
+          example: "COOL BUG"
+        severity:
+          type: string
+          format: string
+          example: "CRITICAL"
+        published:
+          type: integer
+          format: int64
+
+    JoinProgramResponse:
+      type: object
+      properties:
+        success:
+          type: string
+          format: string
+          example: "Joined"
+    GetProgramsResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/Program"
+    Program:
+      type: object
+      properties:
+        name:
+          type: string
+          format: string
+          example: "CTFZone"
+        id:
+          type: string
+          format: string
+          example: "12345678-90ab-cdef-1234-567890abcdef"
+        programType:
+          type: integer
+          format: int
+          example: 0
+
+        
+    GetProgramJoinedResponse:
+      type: object
+      properties:
+        programs:
+          type: array
+          items:
+            type: string
+

@@ -1,0 +1,1 @@
+We developed secure messenger based on signal specification. We also used only secure analogs of known algorithms. But our comminications has been compromised. An attacker was able to intercepted the message with flag (flag.pcapng). He knows that it was 8th message between clients and they had started chat about 1 min before intercepted message. Can he decrypt the flag?

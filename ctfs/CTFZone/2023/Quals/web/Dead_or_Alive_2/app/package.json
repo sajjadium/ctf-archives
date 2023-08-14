@@ -1,0 +1,17 @@
+{
+    "name": "@deno/dead-or-alive",
+    "scripts": {
+      "start": "deno run --allow-net --allow-read --allow-env --allow-sys app.js",
+      "dev": "denon run --allow-net --allow-read --allow-env --allow-sys app.js",
+      "debug": "deno run --allow-net --allow-read --allow-write --allow-env --allow-sys --inspect-brk app.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "nunjucks": "^3.2.4",
+      "redis": "^4.6.7",
+      "neo4j-driver": "^5.9.0",
+      "md5": "^2.3.0",
+      "moment": "^2.29.4"
+    }
+  }
+  
