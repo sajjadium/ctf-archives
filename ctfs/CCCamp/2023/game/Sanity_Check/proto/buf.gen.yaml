@@ -1,0 +1,4 @@
+version: v1
+plugins:
+  - plugin: python_betterproto
+    out: ../src/shared/shared/gen

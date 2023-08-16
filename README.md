@@ -471,8 +471,12 @@
             <td><a href="https://ctftime.org/event/1445/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/ChaosCommunicationCamp">Chaos Communication Camp</a></td>
-            <td><a href="ctfs/ChaosCommunicationCamp/2019">2019</a></td>
+            <td rowspan=2><a href="ctfs/CCCamp">CCCamp</a></td>
+            <td><a href="ctfs/CCCamp/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2048/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/CCCamp/2019">2019</a></td>
             <td><a href="https://ctftime.org/event/854/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

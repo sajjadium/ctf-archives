@@ -1,0 +1,162 @@
+syntax = "proto3";
+
+package messages.v1;
+
+import "messages/v1/tile.proto";
+
+message Object {
+    string uuid = 1;
+    Coords coords = 2;
+    ObjectType type = 3;
+    bool remove = 4;
+    EnemyInfo enemy_info = 5;
+    Polygon area = 6;
+    Item pickupable = 7;
+}
+
+message EnemyInfo {
+    int32 health = 1;
+    int32 health_max = 2;
+    string name = 3;
+    double last_attack = 4;
+}
+
+message Objects {
+    repeated Object objects = 1;
+}
+
+message ObjectAssetRequest {
+    string uuid = 1;
+}
+
+enum Direction {
+    DIRECTION_UNSPECIFIED = 0;
+    DIRECTION_NORTH = 1;
+    DIRECTION_EAST = 2;
+    DIRECTION_SOUTH = 3;
+    DIRECTION_WEST = 4;
+}
+
+enum Activity {
+    ACTIVITY_UNSPECIFIED = 0;
+    ACTIVITY_IDLE = 1;
+    ACTIVITY_WALKING = 2;
+    ACTIVITY_ATTACKING = 3;
+    ACTIVITY_DEATH = 4;
+}
+
+message EntityAsset {
+    int32 id = 1;
+    Direction direction = 2;
+    Activity activity = 3;
+}
+
+message EntityAssets {
+    int32 height = 1;
+    int32 width = 2;
+    Tileset tileset = 3;
+    repeated EntityAsset entity_assets = 4;
+    repeated TileCollision collisions = 5;
+}
+
+enum ObjectType {
+    OBJECT_TYPE_UNSPECIFIED = 0;
+    OBJECT_TYPE_NPC = 1;
+    OBJECT_TYPE_ENEMY = 2;
+    OBJECT_TYPE_AREA = 3;
+    OBJECT_TYPE_PICKUPABLE = 4;
+}
+
+message ObjectAsset {
+    string object_uuid = 1;
+    EntityAssets assets = 2;
+    string name = 3;
+    ObjectType type = 4;
+    bool interactable = 5;
+    double interact_distance = 6;
+}
+
+enum InteractStatus {
+    INTERACT_STATUS_UNSPECIFIED = 0;
+    INTERACT_STATUS_START = 1;
+    INTERACT_STATUS_UPDATE = 2;
+    INTERACT_STATUS_STOP = 3;
+}
+
+enum InteractType {
+    INTERACT_TYPE_UNSPECIFIED = 0;
+    INTERACT_TYPE_TEXT = 1;
+    INTERACT_TYPE_SHOP = 2;
+    INTERACT_TYPE_DIG = 3;
+    INTERACT_TYPE_RUNNER = 4;
+    INTERACT_TYPE_CUT_OUT = 5;
+    INTERACT_TYPE_LICENSE = 6;
+}
+
+message Interact {
+    string uuid = 1;
+    string text = 2;
+    InteractStatus status = 3;
+    InteractType type = 4;
+    repeated ShopInteract shop = 5;
+    double progress = 6;
+    Runner runner = 7;
+}
+
+enum ShopInteractType {
+    SHOP_INTERACT_TYPE_UNSPECIFIED = 0;
+    SHOP_INTERACT_TYPE_BUY = 1;
+    SHOP_INTERACT_TYPE_SELL = 2;
+    SHOP_INTERACT_TYPE_TRADE = 3;
+}
+
+message ShopInteract {
+    Item item = 1;
+    int32 cost = 2;
+    ShopInteractType type = 3;
+    Item trade_in = 4;
+}
+
+message Item {
+    string name = 1;
+    string description = 2;
+    int32 icon = 3;
+    int32 quantity = 4;
+}
+
+enum RunnerAction {
+    RUNNER_ACTION_UNSPECIFIED = 0;
+    RUNNER_ACTION_JUMP = 1;
+    RUNNER_ACTION_MAYBE_ADD_OBSTACLE = 2;
+    RUNNER_ACTION_DIE = 3;
+}
+
+message RunnerEvent {
+    double time = 1;
+    RunnerAction action = 2;
+}
+
+message Runner {
+    repeated RunnerEvent events = 1;
+    repeated double dts = 2;
+}
+
+message Coords {
+    double x = 1;
+    double y = 2;
+    double rotation = 3;
+}
+
+message User {
+    string uuid = 1;
+    string username = 2;
+    Coords coords = 3;
+    int32 money = 4;
+    repeated Item inventory = 5; 
+    int32 health = 6;
+    float last_death = 7;
+}
+
+message Users {
+    repeated User users = 1;
+}

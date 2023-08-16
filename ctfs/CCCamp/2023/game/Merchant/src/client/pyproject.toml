@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "client"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.12"
+shared = { path = "../shared/", develop = true }
+pyglet = "^2.0.7"
+pillow = "^9.5.0"
+betterproto = { git = "https://github.com/kilimnik/python-betterproto.git", rev="pickle", extras = ["compiler"] }
+collision = "^1.2.2"
+pyperclip = "^1.8.2"
+viztracer = "^0.15.6"
+aioprocessing = "^2.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+client = "client.main:run"

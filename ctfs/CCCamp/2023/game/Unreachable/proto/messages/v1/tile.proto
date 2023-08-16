@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package messages.v1;
+
+message Point {
+    double x = 1;
+    double y = 2;
+}
+
+message Polygon {
+    repeated Point points = 1;
+}
+
+message TileCollision {
+    repeated Polygon polygons = 1;
+}
+
+message AnimationStep {
+    int32 id = 1;
+    int32 duration = 2; 
+}
+
+message Animation {
+    int32 id = 1;
+    repeated AnimationStep animation_setps = 2;
+}
+
+message Tileset {
+    bytes tileset = 1;
+    int32 width = 2;
+    int32 height = 3;
+    repeated Animation animations = 4; 
+}

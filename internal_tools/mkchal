@@ -37,7 +37,19 @@ def is_valid(line):
   if re.fullmatch("category (forensics|reverse|web|crypto|pwn)", line.strip().lower()):
     return False
 
+  if re.fullmatch("category: (forensics|reverse|web|crypto|pwn|reverse engineering|game hacking|misc)", line.strip().lower()):
+    return False
+
   if re.fullmatch("level (easy|medium|hard)", line.strip().lower()):
+    return False
+
+  if re.fullmatch("difficulty: (easy|medium|hard|baby|guessy)", line.strip().lower()):
+    return False
+
+  if re.fullmatch(r"author: \w+", line.strip().lower()):
+    return False
+
+  if re.fullmatch(r"first blood: \w+", line.strip().lower()):
     return False
 
   return True

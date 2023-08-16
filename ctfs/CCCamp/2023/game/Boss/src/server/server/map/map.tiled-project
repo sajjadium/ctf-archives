@@ -1,0 +1,397 @@
+{
+    "automappingRulesFile": "",
+    "commands": [],
+    "compatibilityVersion": 1100,
+    "extensionsPath": "extensions",
+    "folders": [
+        "."
+    ],
+    "propertyTypes": [
+        {
+            "id": 262218706217206529429112759761318596946,
+            "name": "Tile",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ],
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "members": [
+                {
+                    "name": "activity",
+                    "type": "string",
+                    "value": "IDLE",
+                    "propertyType": "Activity"
+                },
+                {
+                    "name": "direction",
+                    "type": "string",
+                    "value": "NORTH",
+                    "propertyType": "Direction"
+                }
+            ]
+        },
+        {
+            "id": 140411836123706514675830152726397178711,
+            "name": "Activity",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "IDLE",
+                "WALKING",
+                "ATTACKING",
+                "DEATH"
+            ]
+        },
+        {
+            "id": 318281377721768115985685945233860496062,
+            "name": "Direction",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "NORTH",
+                "EAST",
+                "SOUTH",
+                "WEST"
+            ]
+        },
+        {
+            "id": 58291834832767352694584694248755998406,
+            "name": "Npc",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ],
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "members": [
+                {
+                    "name": "interact_distance",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "interactable",
+                    "type": "bool",
+                    "value": false
+                }
+            ]
+        },
+        {
+            "id": 186658551027985409746164590413305262910,
+            "name": "Enemy",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ],
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "members": [
+                {
+                    "name": "speed",
+                    "type": "float",
+                    "value": 0.0
+                },
+                {
+                    "name": "health",
+                    "type": "int",
+                    "value": 100
+                },
+                {
+                    "name": "max_health",
+                    "type": "int",
+                    "value": 100
+                }
+            ]
+        },
+        {
+            "id": 326999362725563479870283896974555366712,
+            "name": "Patrolenemy",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ],
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "members": [
+                {
+                    "name": "patrol_path",
+                    "type": "object",
+                    "value": -1
+                },
+                {
+                    "name": "speed",
+                    "type": "float",
+                    "value": 0.0
+                },
+                {
+                    "name": "health",
+                    "type": "int",
+                    "value": 100
+                },
+                {
+                    "name": "max_health",
+                    "type": "int",
+                    "value": 100
+                }
+            ]
+        },
+        {
+            "id": 130172710417649356573673325417069747828,
+            "name": "Interaction",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ],
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "members": [
+                {
+                    "name": "custom_attribute",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "custom_interaction",
+                    "type": "string",
+                    "value": "NONE",
+                    "propertyType": "Custom_Interaction"
+                },
+                {
+                    "name": "loop",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "next_interaction",
+                    "type": "int",
+                    "value": -1
+                },
+                {
+                    "name": "path",
+                    "type": "object",
+                    "value": -1
+                },
+                {
+                    "name": "speed",
+                    "type": "float",
+                    "value": 0.0
+                },
+                {
+                    "name": "text",
+                    "type": "string",
+                    "value": ""
+                }
+            ]
+        },
+        {
+            "id": 95084103982009582598517741812210467062,
+            "name": "Custom_Interaction",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "NONE",
+                "TALKY",
+                "SHOP",
+                "RACE_START",
+                "SCOREBOARD",
+                "RACE_STOP",
+                "GIVE_ITEM",
+                "DIG",
+                "REQUIRE_ITEMS",
+                "RUNNER",
+                "CUT_OUT",
+                "LICENSE"
+            ]
+        },
+        {
+            "id": 134794499167290272660755000240155569012,
+            "name": "Areaobject",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ],
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "members": [
+                {
+                    "name": "area",
+                    "type": "object",
+                    "value": -1
+                },
+                {
+                    "name": "interaction_on",
+                    "type": "string",
+                    "value": "NONE",
+                    "propertyType": "Interaction_On"
+                },
+                {
+                    "name": "interaction",
+                    "type": "class",
+                    "value": {
+                        "custom_attribute": "",
+                        "custom_interaction": "NONE",
+                        "loop": false,
+                        "next_interaction": -1,
+                        "path": -1,
+                        "speed": 0.0,
+                        "text": ""
+                    },
+                    "propertyType": "Interaction"
+                }
+            ]
+        },
+        {
+            "id": 228900473852670267341094151462085077218,
+            "name": "Interaction_On",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "NONE",
+                "INTERACT",
+                "COLLIDE"
+            ]
+        },
+        {
+            "id": 241738638566948825871168361934220737812,
+            "name": "Pickupable",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ],
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "members": [
+                {
+                    "name": "description",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "quantity",
+                    "type": "int",
+                    "value": 1
+                },
+                {
+                    "name": "icon",
+                    "type": "int",
+                    "value": -1
+                }
+            ]
+        },
+        {
+            "id": 71256200127226095295125487418742550575,
+            "name": "Layer",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ],
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "members": [
+                {
+                    "name": "type",
+                    "type": "string",
+                    "value": "NONE",
+                    "propertyType": "Type"
+                }
+            ]
+        },
+        {
+            "id": 119120637796289898543021045477267655434,
+            "name": "Type",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "NONE",
+                "START_END",
+                "CORNER_NE",
+                "CORNER_SE",
+                "CORNER_SW",
+                "CORNER_NW",
+                "MISSING"
+            ]
+        },
+        {
+            "id": 318250128830835030727904927512751401957,
+            "name": "Maze",
+            "type": "class",
+            "useAs": [
+                "property",
+                "map",
+                "layer",
+                "object",
+                "tile",
+                "tileset",
+                "wangcolor",
+                "wangset"
+            ],
+            "color": "#ffa0a0a4",
+            "drawFill": true,
+            "members": [
+                {
+                    "name": "type",
+                    "type": "string",
+                    "value": "NONE",
+                    "propertyType": "Type"
+                }
+            ]
+        }
+    ]
+}

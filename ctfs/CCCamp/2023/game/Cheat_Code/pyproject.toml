@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "gameChallenge"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+packages = [
+    { include = "shared", from = "src" },
+    { include = "server", from = "src" },
+    { include = "client", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.12"
+shared = { path = "src/shared/", develop = true }
+server = { path = "src/server/", develop = true }
+client = { path = "src/client/", develop = true }
+rpyc = "^5.3.1"
+ipython = "^8.14.0"
+aiochclient = {extras = ["aiohttp"], version = "^2.4.0"}
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

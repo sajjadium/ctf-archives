@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  wordpress:
+    build:
+      context: ./wordpress
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 1024:1024
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: wpdb
+      ADMINPW: adminpw
+      WORDPRESS_PORT: 1024
+      SESSIONID: 1337
+      CHALLENGE_DOMAIN: dummy.local
+    extra_hosts:
+      - "localhost:127.0.0.1"
+
+  db:
+    build:
+      context: ./mysql
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      MYSQL_DATABASE: wpdb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'

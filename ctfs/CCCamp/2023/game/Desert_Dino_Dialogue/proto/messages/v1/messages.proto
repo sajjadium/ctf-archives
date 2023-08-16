@@ -1,0 +1,114 @@
+syntax = "proto3";
+
+package messages.v1;
+
+import "google/protobuf/timestamp.proto";
+import "messages/v1/tile.proto";
+import "messages/v1/entity.proto";
+
+message Login {
+    string username = 1;
+    string password = 2;
+}
+
+enum SessionType {
+    SESSION_TYPE_UNSPECIFIED = 0;
+    SESSION_TYPE_NORMAL = 1;
+    SESSION_TYPE_FREE_CAM = 2;
+}
+
+message LoggedIn {
+    bool success = 1;
+    User self = 2;
+    EntityAssets assets = 3;
+    double interact_distance = 4;
+    SessionType type = 5;
+    ErrorType error = 6;
+}
+
+message Ping {
+    google.protobuf.Timestamp time = 1;
+}
+
+message MapChunk {
+    int32 x = 1;
+    int32 y = 2;
+    int32 height = 3;
+    int32 width = 4;
+    repeated int32 tiles = 5;
+    Tileset tileset = 6;
+    repeated TileCollision collisions = 7;
+}
+
+message MapChunkRequest {
+    int32 x = 1;
+    int32 y = 2;
+}
+
+enum ErrorType {
+    ERROR_TYPE_UNSPECIFIED = 0;
+    ERROR_TYPE_UNAUTHORIZED = 1;
+    ERROR_TYPE_INVALID_CHUNK = 2;
+    ERROR_TYPE_INVALID_OBJECT = 3;
+    ERROR_TYPE_TIMEOUT = 4;
+    ERROR_TYPE_ALREADY_LOGGED_IN = 5;
+}
+
+message Error {
+    ErrorType type = 1;
+    string message = 2;
+}
+
+message Logout {
+    User user = 1;
+}
+
+// Message related to fighting
+message GiveDamage {
+    int32 damage = 1;
+}
+
+message AcknowledgeDamage {
+    int32 damage = 1;
+}
+
+message AttackEnemy {
+    google.protobuf.Timestamp time = 1;
+    string uuid = 2;
+    int32 damage = 3;
+}
+
+message ClientMessage {
+    oneof message {
+        Ping ping = 1;
+        Login login = 2;
+        Coords coords = 3;
+        MapChunkRequest chunk_request = 4;
+        ObjectAssetRequest object_asset_request = 5;
+        Interact interact = 6;
+        AcknowledgeDamage acknowledge_damage = 7;
+        AttackEnemy attack_enemy = 8;
+        Logout logout = 9;
+    }
+    string uuid = 100;
+}
+
+message MapChunkResponse {
+    repeated MapChunk chunks = 1;
+}
+
+message ServerMessage {
+    oneof message {
+        Ping ping = 1;
+        LoggedIn logged_in = 2;
+        Users users = 3;
+        MapChunkResponse chunk = 4;
+        Error error = 5;
+        Logout logout = 6;
+        Objects objects = 7;
+        ObjectAsset object_asset = 8;
+        Interact interact = 9;
+        GiveDamage give_damage = 10;
+    }
+    string uuid = 100;
+}

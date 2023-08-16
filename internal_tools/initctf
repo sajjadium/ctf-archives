@@ -32,7 +32,7 @@ if __name__ == '__main__':
       ctf_name = ''.join([t for t in link.text.strip().split() if t.lower() != 'ctf'])
       break
 
-  ctf_name = ctf_name.replace('Preliminary', '').strip()
+  ctf_name = re.sub('[^0-9a-zA-Z_\-]+', '', ctf_name.replace('Preliminary', '').strip())
   full_name = '%s/%d' % (ctf_name, datetime.date.today().year)
   title = soup.find_all('title')[0].text.lower()
   if 'teaser' in title or 'qualifier' in title or 'quals' in title or 'preliminary' in title or 'prequal' in title or 'qualification' in title:

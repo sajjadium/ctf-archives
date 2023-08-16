@@ -1,0 +1,26 @@
+{
+  "python.languageServer": "Pylance",
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true,
+      "source.fixAll": true,
+      "source.fixAll.unusedImports": false
+    }
+  },
+  "python.analysis.typeCheckingMode": "strict",
+  "python.analysis.fixAll": [
+    "source.unusedImports"
+  ],
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.autoFormatStrings": true,
+  "python.analysis.inlayHints.callArgumentNames": true,
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportUnknownMemberType": "information",
+    "reportUnknownArgumentType": "information",
+    "reportMissingTypeStubs": "information",
+    "reportPrivateUsage": "information"
+  },
+}

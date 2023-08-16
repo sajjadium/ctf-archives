@@ -1,0 +1,131 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: game
+  labels:
+    name: game
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: game
+  name: click
+spec:
+  ports:
+  - port: 8123
+  selector:
+    app: click
+  clusterIP: None
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: game
+  name: click-pv-claim
+spec:
+  storageClassName: default
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: game
+  name: click-initdb-config
+data:
+  initdb.sql: |
+    CREATE DATABASE IF NOT EXISTS game;
+    
+    CREATE OR REPLACE TABLE game.users 
+    (
+        uuid UUID,
+        username String,
+        x Float64,
+        y Float64,
+        rotation Float64,
+        money UInt64,
+        inventory String,
+        health UInt64,
+        last_death Float64,
+        last_ping Float64
+    )
+    ENGINE = ReplacingMergeTree ORDER BY (username);
+
+    CREATE OR REPLACE TABLE game.users_history
+    (
+        date DateTime,
+        uuid UUID,
+        username String,
+        x Float64,
+        y Float64,
+        rotation Float64,
+        money UInt64,
+        inventory String,
+        health UInt64,
+        last_death Float64,
+        last_ping Float64
+    )
+    ENGINE = MergeTree ORDER BY (date, username);
+
+    CREATE MATERIALIZED VIEW IF NOT EXISTS game.users_history_mv TO game.users_history AS
+    SELECT now(), uuid, username, x, y, rotation, money, inventory, health, last_death, last_ping FROM game.users;
+
+    CREATE OR REPLACE TABLE game.scoreboard 
+    (
+        username String,
+        start Float64,
+        end Float64
+    )
+    ENGINE = ReplacingMergeTree ORDER BY (username);
+
+    CREATE OR REPLACE TABLE game.scoreboard_history
+    (
+        date DateTime,
+        username String,
+        start Float64,
+        end Float64
+    )
+    ENGINE = MergeTree ORDER BY (date, username);
+
+    CREATE MATERIALIZED VIEW IF NOT EXISTS game.scoreboard_history_mv TO game.scoreboard_history AS
+    SELECT now(), username, start, end FROM game.scoreboard;
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: game
+  name: click
+spec:
+  selector:
+    matchLabels:
+      app: click
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: click
+    spec:
+      containers:
+      - image: clickhouse/clickhouse-server:23.4
+        name: click
+        ports:
+        - containerPort: 8123
+          name: click-http
+        - containerPort: 9000
+          name: click-client
+        volumeMounts:
+        - name: click-persistent-storage
+          mountPath: /var/lib/clickhouse
+        - name: click-initdb
+          mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: click-persistent-storage
+        persistentVolumeClaim:
+          claimName: click-pv-claim
+      - name: click-initdb
+        configMap:
+          name: click-initdb-config
