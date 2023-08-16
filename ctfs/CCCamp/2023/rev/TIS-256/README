@@ -1,0 +1,32 @@
+README
+======
+
+*pff -- password managers, I verify secrets with a TPM! (tesselated platform module)*
+
+Challenge assembly: chall.asm
+
+Demo program: ports.asm
+
+tis256:
+- Usage: tis256 ASM [INPUT] [OUTPUT]
+
+tis256-curses:
+- Usage: tis256-curses ASM [INPUT] [OUTPUT]
+- use arrow keys / wasd to navigate
+- use key i / o to navigate to input / output tpu
+- use key shift+i to enter tpu navigation mode, ESC to exit
+- use key s to step all tpus
+- use key c (nav mode) to step all tpus until the selected
+  tpu executes a new instruction
+
+tis256-gui instructions:
+- Usage: tis256-gui ASM
+- use left mouse to drag and navigate
+- use scroll to zoom
+- use shift+scroll to scroll block asm
+- use key s (keycode, not keysym) to step all tpus
+
+Note:
+- Input password must be delimited by newline
+- May take up to 1 minute to run with flag-length input
+

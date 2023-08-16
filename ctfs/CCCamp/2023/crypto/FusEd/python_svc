@@ -1,0 +1,12 @@
+service fused
+{
+type         = UNLISTED
+protocol     = tcp
+socket_type  = stream
+port         = 1024
+server       = /usr/bin/env
+server_args  = --chdir=/home/ctf/ python3 /home/ctf/main.py
+user         = ctf
+wait         = no
+env          = HOME=/home/ctf
+}
