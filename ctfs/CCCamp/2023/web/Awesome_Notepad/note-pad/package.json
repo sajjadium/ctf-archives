@@ -1,0 +1,48 @@
+{
+    "name": "note-app",
+    "version": "1.0.1",
+    "author": "Filip Stenbeck",
+    "license": "ISC",
+    "scripts": {
+        "start": "REACT_APP_API_ROOT=http://localhost:4000 REACT_APP_ROOT=http://localhost:3000 node server/server.js",
+        "dev": "chmod +x ./extract-env.sh && ./extract-env.sh && cp env-config.js ./public/ && react-scripts start",
+        "build": "react-scripts build",
+        "docker:build": "docker build . -t filipstenbeck/note-app:latest",
+        "test": "CI=true react-scripts test",
+        "test:watch": "react-scripts test",
+        "eject": "react-scripts eject"
+    },
+    "dependencies": {
+        "@material-ui/core": "latest",
+        "@material-ui/icons": "^4.5.1",
+        "apollo-boost": "^0.4.4",
+        "clsx": "latest",
+        "cors": "^2.8.5",
+        "ejs": "^2.7.1",
+        "express": "^4.17.1",
+        "graphql": "^14.5.8",
+        "react": "latest",
+        "react-apollo": "^3.1.3",
+        "react-dom": "latest",
+        "react-router-dom": "^5.1.2",
+        "react-scripts": "latest"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@apollo/react-testing": "^3.1.3",
+        "@testing-library/react": "^9.3.2",
+        "enzyme": "^3.10.0",
+        "enzyme-adapter-react-16": "^1.15.1"
+    }
+}

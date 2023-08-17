@@ -49,7 +49,7 @@ def is_valid(line):
   if re.fullmatch(r"author: \w+", line.strip().lower()):
     return False
 
-  if re.fullmatch(r"first blood: \w+", line.strip().lower()):
+  if re.fullmatch(r"first blood: (\w|\.)+", line.strip().lower()):
     return False
 
   return True

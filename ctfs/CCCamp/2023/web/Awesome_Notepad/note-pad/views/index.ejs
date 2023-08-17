@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- css -%>
+        <meta charset="utf-8" />
+        <%- favicon -%>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta
+            name="description"
+            content="Web site created using create-react-app"
+        />
+
+        <%- manifest -%>
+
+        <title>Taking Notes</title>
+
+        <script>
+            window.config = <%-JSON.stringify(config)%>
+        </script>
+    </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+
+        <div id="root"></div>
+
+        <%- scripts -%>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+    note-pad:
+        build:
+            context: ./note-pad
+            dockerfile: Dockerfile
+        restart: always
+        env_file:
+            - ./.env
+
+    note-pad-api:
+        build:
+            context: ./note-pad-api
+            dockerfile: Dockerfile
+        restart: always
+        container_name: note-pad-api
+
+    note-nginx:
+        build:
+            context: ./note-nginx
+            dockerfile: Dockerfile
+        restart: always
+
+        ports:
+            - 1024:1024
+    note-admin:
+        build:
+            context: ./note-admin
+            dockerfile: Dockerfile
+        restart: always
+        env_file:
+            - ./.env
+        container_name: note-admin
+
+    note-browser:
+        build:
+            context: ./note-browser
+            dockerfile: Dockerfile
+        restart: always
+        env_file:
+            - ./.env

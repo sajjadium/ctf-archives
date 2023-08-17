@@ -1,0 +1,26 @@
+{
+    "name": "note-app-api",
+    "version": "1.0.0",
+    "description": "Api for note app",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "dev": "nodemon --ignore notesDB.json index.js",
+        "docker:build": "docker build . -t filipstenbeck/note-app-api:latest",
+        "docker:run": "docker run -d -p 4000:4000 -t note-app-api:latest",
+        "test": "jest"
+    },
+    "author": "Filip Stenbeck",
+    "license": "ISC",
+    "dependencies": {
+        "apollo-server": "^2.9.7",
+        "crypto": "^1.0.1",
+        "graphql": "^14.5.8",
+        "node-json-db": "^1.0.2"
+    },
+    "devDependencies": {
+        "jest": "^24.9.0",
+        "jest-mock-console": "^1.0.0",
+        "nodemon": "^1.19.4"
+    }
+}
