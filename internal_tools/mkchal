@@ -61,7 +61,7 @@ def get_challenge_name(line):
   for a in args:
     tokens.extend(re.sub('[^0-9a-zA-Z_\-]+', ' ', a).strip().split())
 
-  return '_'.join(tokens).rstrip(string.digits)
+  return '_'.join(tokens)
 
 if __name__ == '__main__':
   # find all the files downloaded in the past 60 seconds

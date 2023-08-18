@@ -1,0 +1,1 @@
+The design creator who is a member of CyberGon Team tried to embed the secret data in an Image file. And then he sent this file to suspicious customer for one project. Can you find the secret data for us?
