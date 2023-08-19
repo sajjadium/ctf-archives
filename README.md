@@ -318,6 +318,11 @@
             <td><a href="https://ctftime.org/event/1234/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Bauhinia">Bauhinia</a></td>
+            <td><a href="ctfs/Bauhinia/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1960/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/BSidesAhmedabad">BSides Ahmedabad</a></td>
             <td><a href="ctfs/BSidesAhmedabad/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1466/tasks/" target="_blank">CTFtime</a></td>

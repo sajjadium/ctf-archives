@@ -10,7 +10,7 @@ import shutil
 import string
 
 def is_valid(line):
-  if line.strip().lower().startswith('download link'):
+  if line.strip().lower().startswith('download link') or  line.strip().lower().startswith('challenge author'):
     return False
 
   if line.strip().lower().startswith('fastest solvers'):

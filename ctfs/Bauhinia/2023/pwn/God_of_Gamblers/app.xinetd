@@ -1,0 +1,24 @@
+service app
+{
+    disable = no
+    socket_type = stream
+    protocol = tcp
+    wait = no
+    type = UNLISTED
+    bind = 0.0.0.0
+    port = 9999
+    log_type = FILE /proc/1/fd/1
+    log_on_success = HOST PID DURATION EXIT
+    log_on_failure = HOST ATTEMPT
+    user = ctf
+
+    # The binary and args to use
+    server = /home/ctf/chall
+
+    # the maximum instances of this service per source IP address
+    per_source = 20
+    # the maximum number of CPU seconds that the service may use
+    # rlimit_cpu = 20 
+    # the Address Space resource limit for the service
+    # rlimit_as  = 512M 
+}

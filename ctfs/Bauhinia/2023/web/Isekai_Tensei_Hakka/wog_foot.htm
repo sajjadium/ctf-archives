@@ -1,0 +1,116 @@
+<!--
+/*===================================================== 
+ Copyright (C) ETERNAL<iqstar.tw@gmail.com>
+ Modify : 2005/06/11
+ URL : http://esm.acer.net/2233
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+===================================================== */
+-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=utf-8">
+	<title>FFA線上遊戲-Online FF Battle-WOG</title>
+</head>
+<style>
+td{
+	font-size : 10pt;
+}
+</style>
+<body bgcolor="#000000" text="#EFEFEF" link="#EFEFEF" vlink="#EFEFEF" alink="#EFEFEF" style=" background-repeat: no-repeat; background-position: left;" oncontextmenu="return false">
+<form action="wog_act.php" method="post" name="f1"  target="mission" >
+<table cellspacing="0" cellpadding="0" >
+	<tr>
+		<td valign="top">
+			<table >
+				<tr><td align="center" bgcolor="#CFD2DC"><font color="#000000">冒險旅程</font></td></tr>
+				<tr><td>
+					<input type="button" value="冒險開始" name="ats1" onClick="parent.ad_view()" accesskey="a">
+				</td></tr>
+				<tr><td>
+					<input type="button" value="組隊探險" name="" onClick="parent.team_view()" accesskey="t">
+				</td></tr>
+				<tr><td>
+					<input type="button" value="公會中心" name="" onClick="parent.group_view()" accesskey="g">
+				</td></tr>
+			</table>
+		</td>
+		<td valign="top">
+			<table>
+				<tr><td align="center" bgcolor="#CFD2DC"><font color="#000000">貿易交流</font></td></tr>
+				<tr><td>
+					<input type="button" value="商店街" onClick="parent.select_store()" accesskey="c">
+				</td></tr>
+				<tr><td>
+					<input type="button" value="裝備欄" onClick="parent.arm_select()" accesskey="e">
+				</td></tr>
+				<tr><td>
+					<input type="button" value="住　宿" onClick="parent.act_click('store','hotel')" accesskey="h">
+				</td></tr>
+			</table>		
+		</td>
+		<td valign="top">
+			<table>
+				<tr><td align="center" bgcolor="#CFD2DC"><font color="#000000">能力狀態</font></td></tr>
+				<tr><td>
+					<input type="button" value="角色狀態" onClick="parent.act_click('chara','status_view')" accesskey="s">
+				</td></tr>
+				<tr><td>
+					<input type="button" value="冠軍狀態" onClick="parent.act_click('chara','cp')" accesskey="o">
+				</td></tr>
+				<tr><td>
+					<input type="button" value="任務手冊" onClick="parent.mission_ed()" accesskey="b">
+				</td></tr>
+			</table>		
+		</td>
+		<td valign="top">
+			<table>
+				<tr><td align="center" bgcolor="#CFD2DC"><font color="#000000">對象</font></td></tr>
+				<tr><td>
+					<select name="towho" > <option selected value=''>全部</select> 
+				</td></tr>
+				<tr><td>
+					<input type="button" value="取消對象" onClick="parent.noname()" accesskey="n"> 
+				</td></tr>
+				<tr><td>
+					<input type="button" value=" PK設定 " onClick="parent.act_click('pk','view')" accesskey="p">
+				</td></tr>
+			</table>		
+		</td>
+		<td valign="top">
+			<table>
+
+				<tr><td align="center" bgcolor="#CFD2DC"><font color="#000000">訊息</font></td></tr>
+				<tr><td>
+					<input type="button" value="秘密傳訊" onClick="parent.message()" accesskey="m">
+				</td></tr>
+				<tr><td>
+					<input type="button" value="情報中心" onClick="parent.act_click('system','view1')" accesskey="q">
+				</td></tr>
+				<tr><td>
+					<input type="button" value="偵查對手" onClick="parent.act_click('chara','view2')" accesskey="v">
+				</td></tr>
+			</table>		
+		</td>
+	</tr>	
+	<tr><td colspan="5" align="center"><b>Online FF Battle - <a href="http://bbs.2233.idv.tw/viewforum.php?f=36" target="_blank">WOG</a> V3 Copyright (C) <a href="http://www.2233.idv.tw" target="_blank">ETERNAL</a></b></td></tr>
+</table>
+<input type="hidden" name="f" value="">
+<input type="hidden" name="act" value="">
+<input type="hidden" name="pay_id" value="">
+<input type="hidden" name="temp_id" value="">
+<input type="hidden" name="temp_id2" value="">
+<input type="hidden" name="temp_id3" value="">
+<input type="hidden" name="temp_id4" value="">
+<input type="hidden" name="at_type" value="">
+<input type="hidden" name="sat_name" value="">
+</form>
+<script language="JavaScript">
+	parent.foot_disabled();
+</script>
+</body>
+</html>

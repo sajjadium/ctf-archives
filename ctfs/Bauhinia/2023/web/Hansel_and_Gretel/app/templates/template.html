@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hansel & Gretel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="container box-border flex flex-col items-center justify-center h-screen px-4 mx-auto text-center text-white bg-zinc-800">
+    <h1 class="inline-block text-left w-fit{{ ' text-red-300' if status >= 400 else '' }}">
+        <span class="my-4 text-xl font-semibold">HTTP {{status}}</span><br>
+        <span class="my-4 text-4xl font-bold">{{message}}</span><br>
+    </h1>
+</body>
+</html>

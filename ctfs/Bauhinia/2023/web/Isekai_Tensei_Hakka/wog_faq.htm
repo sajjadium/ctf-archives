@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv=content-type>
+	<title>FFA線上遊戲-Online FF Battle-WOG</title>
+<STYLE type="text/css">
+<!--
+body,tr,td,th { font-size: 12pt; font-family: verdana }
+.show{border:1px solid #9F0000;background:#222222;color:#FFFFFF;width:100%;}
+.field{border:1px dotted #005F9F;background:#000000}
+.button{border:2px solid #9F0000;background:999999}
+-->
+</STYLE>
+</head>
+<body bgcolor="#000000" text="#EFEFEF" link="#EFEFEF" vlink="#EFEFEF" alink="#EFEFEF">
+<table width=80% border="1" cellspacing="0" cellpadding="2" align="center">
+<tr><td bgcolor="#003F7F" align="center" width=81%>問題FAQ for Online FF Battle - WOG3.0</td><td align="center" width=19%>
+<input class="button" type="button" value="展開全部" onclick="p01.style.display=p02.style.display=p03.style.display=p04.style.display=p05.style.display=p06.style.display=p07.style.display=p08.style.display=p09.style.display=p10.style.display=p11.style.display=p12.style.display=p13.style.display=p14.style.display=p15.style.display=''">
+<input class="button" type="button" value="縮合全部" onclick="p01.style.display=p02.style.display=p03.style.display=p04.style.display=p05.style.display=p06.style.display=p07.style.display=p08.style.display=p09.style.display=p10.style.display=p11.style.display=p12.style.display=p13.style.display=p14.style.display=p15.style.display='none'"></td><tr>
+<tr><td colspan=2>
+<ol type="disc">
+	<li><input class="show" type="button" onclick="p01.style.display=p01.style.display=='none'?'':'none';" value="屬性">
+		<span id="p01" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>遊戲中有六種屬性，分別為<font color=orange>地</font>-<font color=blue>水</font>-<font color=red>火</font>-<font color=green>木</font>-<font color="#00FFFF">風</font>-<font color=purple>毒</font></li>
+		<li><font color=orange>地</font> > <font color=blue>水</font> > <font color=red>火</font> > <font color=green>木</font> > <font color="#00FFFF">風</font> > <font color=purple>毒</font> > <font color=orange>地</font></li>
+		<li><font color=orange>地</font>屬性攻擊<font color=blue>水</font>,攻擊力增加1.3倍，以下類推 (<font color=purple>毒</font>屬性攻擊<font color=orange>地</font>,攻擊力增加1.3倍)</li>
+		<li>遇上對手克你的屬性時攻擊力減少0.3倍</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p02.style.display=p02.style.display=='none'?'':'none'" value="職業">
+		<span id="p02" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>能選擇的職業是根據等級,能力等等狀態來決定`,不同的職業其成長度也會有所不同</li>
+		<li>1-2 表示該能力每次升級會上升1點或2點,3-4 表示該能力每次升級會上3升點或4點</li>
+		<li>當裝備職業後每戰勝一場戰鬥，職業的熟練度會增加少許</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p03.style.display=p03.style.display=='none'?'':'none'" value="購物">
+		<span id="p03" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>購買裝備時請依據自己的能力來選購適合自己能力的物品</li>
+		<li>賣東西給商店一率為原價的5折</li>
+		<li>取得物品後可以將符合自己需求的裝備透過[裝備]指令來裝上</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p04.style.display=p04.style.display=='none'?'':'none'" value="銀行">
+		<span id="p04" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>銀行最多可以只能存入4294967295元</li>
+		<li>身上現金最多可以只能放入4294967295元</li>
+		<li>目前銀行不提供利息</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p05.style.display=p05.style.display=='none'?'':'none'" value="戰鬥">
+		<span id="p05" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>這是提升等級的唯一方法</li>
+		<li>每一場戰鬥須間隔15秒</li>
+		<li>戰鬥方法：點選[開始冒險]->選擇冒險場地->選擇戰鬥顯示模式->輸入最大回合數->選擇攻擊模式並點選</li>
+		<li>戰鬥超過限定回合則算挑戰者輸,取得的經驗值會根據給予對手的傷害來計算</li>
+		<li>命中率根據對手跟自己的速度來計算,速度越高命中率越高,最低有50%的命中率</li>
+		<li>速度超越對手越多使用連續攻擊的機率越高</li>
+		<li>魔法攻擊時命中率為100%但無法使用必殺技,物理攻擊最低有20%的機率使用必殺技攻擊力提高2倍</li>
+		<li>物理攻擊與魔法攻擊皆有可能出現連擊</li>
+		<li>敵人有使用物理攻擊,魔法攻擊,必殺技,連續攻擊的可能</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p06.style.display=p06.style.display=='none'?'':'none'" value="玩家對決(PK)"a>
+		<span id="p06" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>欲跟對方舉行PK賽時請先從線上名單中選擇欲PK的對象</li>
+		<li>PK結束後有PK賞金，戰敗方必須支付PK賞金給戰勝方</li>
+		<li>無法與等級和自己差距10級以上的玩家PK</li>
+		<li>Y表示開放PK , N表示不開放PK</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p07.style.display=p07.style.display=='none'?'':'none'" value="奧義">
+		<span id="p07" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>當職業熟練度到達100%時可以習得奧義 -><a href=wog_s_kill.htm target="_blank"><font color="#FF0000">奧義說明</font></a></li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p08.style.display=p08.style.display=='none'?'':'none'" value="訊息中心">
+		<span id="p08" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>有人轉帳給你,或者拍賣的商品賣出可以在訊息中心裡得知</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p09.style.display=p09.style.display=='none'?'':'none'" value="拍賣">
+		<span id="p09" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>欲拍賣商品時必須設定拍賣時間,超過所設定的時間商品尚未賣出時,商品會結束拍賣並回到裝備欄上</li>
+		<li>假如裝備欄上已經超過10樣商品,拍賣的東西將會遺失,請注意</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p10.style.display=p10.style.display=='none'?'':'none'" value="工會">
+		<span id="p10" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>工會人數上限20人</li>
+		<li>領地最多3人駐守</li>
+		<li>提升士氣跟補充兵力必須在領地內</li>
+		<li>只有會長才能改變會員駐守地點</li>
+		<li>所有領地防禦度為0時,工會會被瓦解</li>
+		<li>提升防禦度需花費公款</li>
+		<li>人物屬性會影響領地攻防</li>
+		<li>魅力會影響士氣恢復值</li>
+		<li>智力會影響攻城能力,以及城堡攻擊力</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p11.style.display=p11.style.display=='none'?'':'none'" value="寵物牧場">
+		<span id="p11" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>一個角色只能在牧場培養一隻寵物</li>
+		<li>戰鬥勝利時,身上有裝備捕捉器會有一定的機率抓到寵物,捕捉器也有一定的機率毀壞</li>
+		<li>親密度越低時,寵物訓練時逃跑機率越高</li>
+		<li>疲勞度大於80以上,寵物會有1/20機率死亡,疲勞越高死亡機率越高</li>
+		<li>AT:寵物物理攻擊力,MT:寵物魔力攻擊力,DEF:寵物防禦力,出擊值:影響寵物協助玩家機率</li>
+		<li>超過10天沒拍賣出去的寵物,會自動放生</li>
+		<li>5-7歲1/95機率死亡,7-12歲1/80機率死亡,12-18歲以上1/70機率死亡,18歲以上1/30機率死亡</li>
+		<li>寵物的攻擊屬於無屬性</li>
+		<li>親密度,飢餓度,出擊值,玩家魅力 這四個能力值會影響寵物出現機率</li>
+		<li>DEF是寵物的防禦值,當怪打玩家時,寵物會隨機出現替玩家防禦,玩家受到的傷害為0,但是寵物的DEF為0時,寵物會戰敗該場戰鬥不會繼續出現協助玩家 </li>
+		<li>如果玩家在戰鬥中戰敗,寵物的親密度會減1-2不等</li>
+		<li>寵物的個性會影響寵物在戰鬥中的能力</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p15.style.display=p15.style.display=='none'?'':'none'" value="組隊探險">
+		<span id="p15" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>等級限制50級以內，隊伍人數上限 5 人</li>
+		<li>同一區打怪才能支援隊友及平分經驗值</li>
+		<li>隊友有 15% 的機率出來幫忙打怪 (類似寵物幫打模式)</li>
+		<li>支援隊友 或 被支援 都必須3分鐘內有冒險，其中一方停頓超過3分鐘則支援功能會消失,經驗值也不會平分</li>
+		<li>隊伍創立超過三天會自動解散，屆時請重新組隊一次</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p13.style.display=p13.style.display=='none'?'':'none'" value="合成功能">
+		<span id="p13" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>"合成大師" 位於 商店街裡 ，點選您要合成的裝備看所需物品，備齊後即可合成</li>
+		<li>裝備欄裡增加了各類裝備合成欄，在自己的裝備欄裡準備兩種以上的物品，複選進行合成</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p14.style.display=p14.style.display=='none'?'':'none'" value="站長問題">
+		<span id="p14" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>站長問題：遊戲進行中，站長會出現問問題，答對問題才能繼續遊戲</li>
+		<li>賽鳥最低金額及出場數量請點入上方的 賽鳥場</li>
+		<li>ＰＫ獎金最大金額請點入左下方 ＰＫ設定</li>
+		<li>計算問題請自己手算、心算、小算盤、計算機、神算均可，請不要問線上玩家</li>
+		<li>職業總共有３３種，看ＦＡＱ的奧義說明也可以看得到</li>
+		<li>拍賣區第一個武器請點入上方 拍賣區</li>
+		<li>好野人第一名請點入上方英雄風雲榜 好野人的第一位即是</li>
+		<li>今日日期問題的回答格式為 西元年/月/日。例：2005/5/25 <font color=red>請轉換成"台灣香港"當地時間回答</font></li>
+		<li>認證碼是站長問題答案欄下方 黃色格子內的5個英文字母，不分大小寫</li>
+		</ol>
+		</fieldset>
+		</span>
+		<br>
+	<li><input class="show" type="button" onclick="p12.style.display=p12.style.display=='none'?'':'none'" value="其他">
+		<span id="p12" style="display:none">
+		<fieldset class="field">
+		<ol>
+		<li>挑戰冠軍需3000元費用,挑戰失敗,冠軍可拿70%</li>
+		<li>刪除角色、補發密碼請利用上方 帳號中心</li>
+		<li>偵查對手需要1500元</li>
+		<li>戰鬥中HP剩下15%自動使用回復劑</li>
+		<li>復活房是被打掛，沒錢回血時使用的。完全免費，使用一次會扣當時的 1/5 EXP</li>
+		<li>50級以內請直接按住宿，別使用復活房 白白多扣了1/5 EXP</li>
+		<li>15級才能使用存款功能</li>
+		<li>51級開始扣住宿費</li>
+		</ol>
+		</fieldset>
+		</span>
+</ol>
+<tr><td align="center" bgcolor="#2B4686" colspan=2><font color="#EFEFEF"><b>Online FF Battle - WOG 【Copyright (C) <a href="http://www.2233.idv.tw" target="_blank">ETERNAL</a>】</b></font></td></tr>
+</table>
+
+
+</body>
+</html>
