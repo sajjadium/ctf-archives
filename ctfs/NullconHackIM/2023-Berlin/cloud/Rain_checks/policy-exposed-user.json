@@ -1,0 +1,34 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "lambda:GetLayerVersion",
+                "lambda:GetFunction",
+                "lambda:GetLayerVersionPolicy"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "Bool": {
+                    "aws:MultiFactorAuthPresent": "true"
+                }
+            }
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "lambda:UpdateFunctionCode",
+                "lambda:InvokeFunction"
+            ],
+            "Resource": "arn:aws:lambda:eu-central-1:743296330440:function:lambda-confirm-secret",
+            "Condition": {
+                "Bool": {
+                    "aws:MultiFactorAuthPresent": "true"
+                }
+            }
+        }
+    ]
+}
