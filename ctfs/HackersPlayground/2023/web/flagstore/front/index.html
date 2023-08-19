@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flag Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+      integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE="
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="common.css">
+    <style>
+
+      .card-footer-item {
+        font-family: 'Noto Color Emoji', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="layout-documentation page-components">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          FLAG STORE
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start"></div>
+
+        <div class="navbar-end">
+          <div id="navbar-nologin" class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary" href="/signup.html">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light" href="/login.html">
+                Log in
+              </a>
+            </div>
+          </div>
+          <div id="navbar-loggedin" class="navbar-item is-hidden">
+            <div class="buttons">
+              <a class="button is-primary" href="/orders.html">
+                🏳️ <span id="username"></span>
+              </a>
+              <a class="button is-light" href="javascript:logout()">
+                Log out
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content">
+      <section class="hero is-primary">
+        <div class="hero-body">
+          <p class="title">
+            FLAG STORE <span style="font-size: 4rem;">🏴‍☠️</span>
+          </p>
+          <p class="subtitle">
+            Admin Flag is on sale
+          </p>
+        </div>
+      </section>
+      <section id="flags" class="section">
+        <div id="flag-items" class="columns is-multiline"></div>
+
+        <template id="flag-item-template">
+          <div class="column is-2">
+            <div class="card">
+              <div class="flag-figure card-image">
+                🇦🇫
+              </div>
+              <header class="card-header">
+                <div class="card-header-title">
+                  <div class="flag-title"></div>
+                </div>
+              </header>
+              <div class="card-content">
+                <div class="flag-content content"></div>
+              </div>
+              <div class="card-footer">
+                <a class="card-footer-item button buy-button">Buy 🛒</a>
+              </div>
+            </div>
+          </div>
+        </template>
+      </section>
+
+    </div>
+
+
+    <script src="common.js"></script>
+    <script>
+      $(document).ready(() => {
+        // get flags
+
+        function renderFlags(flag){
+          const t = document.getElementById('flag-item-template')
+          const clone = document.importNode(t.content, true);
+          clone.querySelector('.flag-figure').textContent = flag.flag
+          clone.querySelector('.flag-title').textContent = flag.name
+          clone.querySelector('.buy-button').href = `/proceed.html?flag=${encodeURIComponent(flag.name)}`
+          // clone.querySelector('.flag-content').textContent = flag.content
+          return clone
+        }
+
+        fetch('/flags.json?a')
+          .then(r=>r.json())
+          .then(flags => $('#flag-items').append(flags.map(renderFlags)))
+
+      })
+
+    </script>
+  </body>
+</html>

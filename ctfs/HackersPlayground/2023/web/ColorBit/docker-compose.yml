@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  chal:
+    image: httpd:latest
+    restart: always
+    ports:
+      - 80:80
+    volumes: 
+      - ./index.html:/usr/local/apache2/htdocs/index.html
+

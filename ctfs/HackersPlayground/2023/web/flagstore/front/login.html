@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flag Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="common.css">
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+      integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE="
+      crossorigin="anonymous"></script>
+  </head>
+  <body class="layout-documentation page-components">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          FLAG STORE
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <!-- <a class="navbar-item">
+            Home
+          </a>
+
+          <a class="navbar-item">
+            Documentation
+          </a> -->
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary" href="/signup.html">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light" href="/login.html">
+                Log in
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content">
+      <section id="signup">
+        <div class="columns">
+          <div class="column is-half is-offset-one-quarter">
+            <h1>Login</h1>
+            <form id="form" action="#">
+              <div class="field">
+                <label class="label">Id</label>
+                <div class="control">
+                  <input class="input" type="text" name="id" required placeholder="e.g guest">
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input class="input" type="password" name="passwd" required>
+                </div>
+              </div>
+
+              <div class="field is-grouped is-grouped-right">
+                <p class="control">
+                  <input type="submit" class="button is-primary" value="Submit">
+                </p>
+                <p class="control">
+                  <a class="button is-light" href="javascript:history.back()">
+                    Cancel
+                  </a>
+                </p>
+              </div>
+              <div id="error" class="notification is-danger is-hidden">
+                <button class="delete"></button>
+                <div id="error-msg"></div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        $(".navbar-burger").click(function() {
+            $(".navbar-burger").toggleClass("is-active");
+            $(".navbar-menu").toggleClass("is-active")
+        })
+
+        $('#error .delete').click((e) => {
+          e.preventDefault()
+          $('#error').addClass('is-hidden')
+        })
+
+        $('#form').submit((e) => {
+          e.preventDefault()
+          const formData = new FormData($('#form')[0])
+          const payload = JSON.stringify(Object.fromEntries(formData.entries()))
+
+          fetch('/api/user/signin', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: payload,
+          })
+          .then(async res => {
+            if(res.status == 200)
+              location.href = '/'
+            else
+              throw await res.json()
+          })
+          .catch(e => {
+            $('#error-msg').text(e.error || e)
+            $('#error').removeClass('is-hidden')
+          })
+        })
+
+
+      })
+    </script>
+  </body>
+</html>

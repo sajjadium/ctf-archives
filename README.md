@@ -1036,7 +1036,11 @@
             <td><a href="https://ctftime.org/event/1815/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/HackersPlayground">Hacker's Playground</a></td>
+            <td rowspan=3><a href="ctfs/HackersPlayground">Hacker's Playground</a></td>
+            <td><a href="ctfs/HackersPlayground/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2047/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/HackersPlayground/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1396/tasks/" target="_blank">CTFtime</a></td>
         </tr>
@@ -2185,7 +2189,11 @@
             <td><a href="https://ctftime.org/event/539/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/WMCTF">WMCTF</a></td>
+            <td rowspan=2><a href="ctfs/WMCTF">WMCTF</a></td>
+            <td><a href="ctfs/WMCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2061/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/WMCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1094/tasks/" target="_blank">CTFtime</a></td>
         </tr>

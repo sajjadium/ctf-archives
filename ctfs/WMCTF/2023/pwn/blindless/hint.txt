@@ -1,0 +1,23 @@
+    0x5625ff3e2000     0x5625ff3e3000 r--p     1000 0      /home/ctf/pwn
+    0x5625ff3e3000     0x5625ff3e4000 r-xp     1000 1000   /home/ctf/pwn
+    0x5625ff3e4000     0x5625ff3e5000 r--p     1000 2000   /home/ctf/pwn
+    0x5625ff3e5000     0x5625ff3e6000 r--p     1000 2000   /home/ctf/pwn
+    0x5625ff3e6000     0x5625ff3e7000 rw-p     1000 3000   /home/ctf/pwn
+    0x5625ff6b3000     0x5625ff6d4000 rw-p    21000 0      [heap]
+    0x7f2a72e98000     0x7f2a72f99000 rw-p   101000 0      [anon_7f2a72e98]
+    0x7f2a72f99000     0x7f2a72fbb000 r--p    22000 0      /home/ctf/lib/x86_64-linux-gnu/libc-2.31.so
+    0x7f2a72fbb000     0x7f2a73133000 r-xp   178000 22000  /home/ctf/lib/x86_64-linux-gnu/libc-2.31.so
+    0x7f2a73133000     0x7f2a73181000 r--p    4e000 19a000 /home/ctf/lib/x86_64-linux-gnu/libc-2.31.so
+    0x7f2a73181000     0x7f2a73185000 r--p     4000 1e7000 /home/ctf/lib/x86_64-linux-gnu/libc-2.31.so
+    0x7f2a73185000     0x7f2a73187000 rw-p     2000 1eb000 /home/ctf/lib/x86_64-linux-gnu/libc-2.31.so
+    0x7f2a73187000     0x7f2a7318d000 rw-p     6000 0      [anon_7f2a73187]
+    0x7f2a7318d000     0x7f2a7318e000 r--p     1000 0      /home/ctf/lib/x86_64-linux-gnu/ld-2.31.so
+    0x7f2a7318e000     0x7f2a731b1000 r-xp    23000 1000   /home/ctf/lib/x86_64-linux-gnu/ld-2.31.so
+    0x7f2a731b1000     0x7f2a731b9000 r--p     8000 24000  /home/ctf/lib/x86_64-linux-gnu/ld-2.31.so
+    0x7f2a731ba000     0x7f2a731bb000 r--p     1000 2c000  /home/ctf/lib/x86_64-linux-gnu/ld-2.31.so
+    0x7f2a731bb000     0x7f2a731bc000 rw-p     1000 2d000  /home/ctf/lib/x86_64-linux-gnu/ld-2.31.so
+    0x7f2a731bc000     0x7f2a731bd000 rw-p     1000 0      [anon_7f2a731bc]
+    0x7ffed494a000     0x7ffed496b000 rw-p    21000 0      [stack]
+    0x7ffed49f3000     0x7ffed49f7000 r--p     4000 0      [vvar]
+    0x7ffed49f7000     0x7ffed49f9000 r-xp     2000 0      [vdso]
+0xffffffffff600000 0xffffffffff601000 --xp     1000 0      [vsyscall]

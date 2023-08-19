@@ -1,0 +1,67 @@
+diff --git a/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h b/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h
+index 38adeac306d4..d3dd18d8edce 100644
+--- a/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h
++++ b/Source/JavaScriptCore/dfg/DFGAbstractInterpreterInlines.h
+@@ -803,7 +803,7 @@ bool AbstractInterpreter<AbstractStateType>::executeEffects(unsigned clobberLimi
+             setTypeForNode(node, SpecBigInt32);
+         else {
+             DFG_ASSERT(m_graph, node, node->binaryUseKind() == UntypedUse);
+-            clobberWorld();
++            // clobberWorld();
+             // FIXME: do we really need SpecString here for ValueSub? It seems like we only need it for ValueAdd.
+             setTypeForNode(node, SpecString | SpecBytecodeNumber | SpecBigInt);
+         }
+diff --git a/Source/JavaScriptCore/dfg/DFGClobberize.h b/Source/JavaScriptCore/dfg/DFGClobberize.h
+index 71522d3ff733..8fd70561aa02 100644
+--- a/Source/JavaScriptCore/dfg/DFGClobberize.h
++++ b/Source/JavaScriptCore/dfg/DFGClobberize.h
+@@ -841,10 +841,13 @@ void clobberize(Graph& graph, Node* node, const ReadFunctor& read, const WriteFu
+             DFG_CRASH(graph, node, "Bad use kind");
+         }
+ 
++    case ValueAdd:
++        return;
++
+     case ValueBitAnd:
+     case ValueBitXor:
+     case ValueBitOr:
+-    case ValueAdd:
++    //case ValueAdd:
+     case ValueSub:
+     case ValueMul:
+     case ValueDiv:
+diff --git a/Source/JavaScriptCore/runtime/JSCast.h b/Source/JavaScriptCore/runtime/JSCast.h
+index a44b6e38a782..91193c9be416 100644
+--- a/Source/JavaScriptCore/runtime/JSCast.h
++++ b/Source/JavaScriptCore/runtime/JSCast.h
+@@ -33,12 +33,14 @@ template<typename To, typename From>
+ inline To jsCast(From* from)
+ {
+     static_assert(std::is_base_of<JSCell, typename std::remove_pointer<To>::type>::value && std::is_base_of<JSCell, typename std::remove_pointer<From>::type>::value, "JS casting expects that the types you are casting to/from are subclasses of JSCell");
++/*
+ #if (ASSERT_ENABLED || ENABLE(SECURITY_ASSERTIONS)) && CPU(X86_64)
+     if (from && !from->JSCell::inherits(std::remove_pointer<To>::type::info()))
+         reportZappedCellAndCrash(*from->JSCell::heap(), from);
+ #else
+     ASSERT_WITH_SECURITY_IMPLICATION(!from || from->JSCell::inherits(std::remove_pointer<To>::type::info()));
+ #endif
++*/
+     return static_cast<To>(from);
+ }
+ 
+@@ -46,6 +48,7 @@ template<typename To>
+ inline To jsCast(JSValue from)
+ {
+     static_assert(std::is_base_of<JSCell, typename std::remove_pointer<To>::type>::value, "JS casting expects that the types you are casting to is a subclass of JSCell");
++/*
+ #if (ASSERT_ENABLED || ENABLE(SECURITY_ASSERTIONS)) && CPU(X86_64)
+     ASSERT_WITH_SECURITY_IMPLICATION(from.isCell());
+     JSCell* cell = from.asCell();
+@@ -54,6 +57,7 @@ inline To jsCast(JSValue from)
+ #else
+     ASSERT_WITH_SECURITY_IMPLICATION(from.isCell() && from.asCell()->JSCell::inherits(std::remove_pointer<To>::type::info()));
+ #endif
++*/
+     return static_cast<To>(from.asCell());
+ }
+ 

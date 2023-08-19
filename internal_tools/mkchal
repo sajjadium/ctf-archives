@@ -13,10 +13,16 @@ def is_valid(line):
   if line.strip().lower().startswith('download link'):
     return False
 
-  if re.search('\d+[ \t]+points', line) or re.search('\d+[ \t]+solves', line) or re.search('\d+[ \t]+solve', line):
+  if line.strip().lower().startswith('fastest solvers'):
+    return False
+
+  if re.search('\d+[ \t]+points', line) or re.search('\d+[ \t]*solves', line) or re.search('\d+[ \t]+solve', line):
     return False
 
   if re.search('\d+pt', line):
+    return False
+
+  if re.search(r'\d{2}/\d{2}, \d{2}:\d{2}:\d{2}', line):
     return False
 
   if line.lower().startswith('points:') or line.lower().startswith('solves:'):
@@ -59,7 +65,7 @@ def get_challenge_name(line):
 
   tokens = []
   for a in args:
-    tokens.extend(re.sub('[^0-9a-zA-Z_\-]+', ' ', a.replace("'", "")).strip().split())
+    tokens.extend(re.sub('[^0-9a-zA-Z_]+', ' ', a.replace("'", "")).strip().split())
 
   return '_'.join(tokens)
 

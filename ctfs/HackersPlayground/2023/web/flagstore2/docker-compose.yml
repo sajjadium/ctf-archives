@@ -1,0 +1,43 @@
+version: "3.7"
+services:
+    gateway:
+        container_name: gateway
+        build:
+            context: gateway/
+        ports:
+            - "13337:80"
+        networks:
+            - default
+            - flagstore2
+            
+        depends_on:
+            - flagstore2
+            - sso
+    sso:
+        container_name: sso
+        build:
+            context: sso/
+        networks:
+            - flagstore2
+        command: "start"
+        environment:
+            - KEYCLOAK_ADMIN=admin
+            - KEYCLOAK_ADMIN_PASSWORD=admin
+            - KC_HTTP_ENABLED=true
+            - KC_HOSTNAME_STRICT=false
+            - KC_HOSTNAME_STRICT_HTTPS=false
+            - KC_HOSTNAME_URL=http://localhost:13337/sso
+            - KC_HOSTNAME_ADMIN_URL=http://localhost:13337/sso
+            
+    flagstore2:
+        container_name: flagstore2
+        build:
+            context: flagstore2/
+        volumes:
+            - ./flag:/flag
+        networks:
+            - flagstore2
+
+networks:
+    flagstore2:
+        driver: bridge

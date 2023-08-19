@@ -1,0 +1,24 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        access_log  /dev/null;
+        error_log /dev/null;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        server_name _;
+
+        location / {
+                proxy_pass http://flagstore2;
+        }
+
+        location /sso {
+                proxy_pass http://sso:8080;
+                proxy_buffers 8 32K;
+                proxy_buffer_size 32k;
+                rewrite /sso/(.*) /$1  break;
+        }
+
+        location ~ /\.ht {
+              deny all;
+        }
+}

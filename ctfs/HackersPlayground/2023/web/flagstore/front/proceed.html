@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flag Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+      integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE="
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="common.css">
+    <style>
+      #flag-hero-background {
+        font-family: 'Noto Color Emoji', sans-serif;
+        font-size: 56rem;
+        line-height: 0;
+        opacity: 0.3;
+        margin: 0;
+        position: absolute;
+        white-space: pre;
+        display: inline;
+        left: 50%;
+        transform: translate(-50%, 14rem);
+        z-index: -1;
+      }
+      #flag-detail {
+        background-color: #fff;
+        min-height: 30rem;
+      }
+      #flag-hero-title {
+        text-shadow: 4px 3px 7px white;
+      }
+    </style>
+  </head>
+  <body class="layout-documentation page-components">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          FLAG STORE
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start"></div>
+
+        <div class="navbar-end">
+          <div id="navbar-nologin" class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary" href="/signup.html">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light" href="/login.html">
+                Log in
+              </a>
+            </div>
+          </div>
+          <div id="navbar-loggedin" class="navbar-item is-hidden">
+            <div class="buttons">
+              <a class="button is-primary" href="/orders.html">
+                🏳️ <span id="username"></span>
+              </a>
+              <a class="button is-light" href="javascript:logout()">
+                Log out
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content">
+
+      <section class="hero is-large">
+        <div id="flag-hero-background"></div>
+        <div class="hero-body">
+
+          <p id="flag-hero-title" class="title"></p>
+          <p class="subtitle">
+
+          </p>
+        </div>
+      </section>
+
+      <section id="flag-detail" class="section">
+        <iframe src="about:blank" style="width: 100%; height: 50rem;"></iframe>
+        <div class="navbar is-fixed-bottom">
+          <button id="flag-buy-button" class="button is-large is-fullwidth is-primary">BUY</button>
+        </div>
+      </section>
+
+      <template id="adminflagtemplate">
+        <h1>Admin Flag</h1>
+        <div>
+          <p class="block">Only admin can buy</p>
+        </div>
+      </template>
+    </div>
+
+
+
+
+    <script src="common.js"></script>
+    <script>
+      $(document).ready(() => {
+        if(!document.cookie) {
+          alert('Plz login')
+          location.href = '/login.html'
+          return
+        }
+
+        var flagObj = {}
+
+        const urlParams = new URLSearchParams(location.search);
+        const flagName = urlParams.get('flag')
+        $('#flag-hero-title').text(flagName)
+
+        $('#flag-buy-button').click(() => {
+          fetch('/api/order/orders', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({flag:flagObj})
+          })
+          .then(async r => {
+            const o = await r.json()
+            if(r.status == 200){
+              location.href = '/orders.html'
+            } else if(r.status == 401){
+              alert(o.error)
+              location.href = '/login.html'
+            } else {
+              alert(o.error)
+            }
+          })
+        })
+
+
+        fetch('/flags.json')
+          .then(r=>r.json())
+          .then(flags => {
+            for(const flag of flags){
+              if(flag.name == flagName){
+                $('#flag-hero-background').text(flag.flag)
+                if(flagName == 'Admin Flag'){
+                  $('#flag-detail iframe').attr('srcdoc', $('#adminflagtemplate').html())
+                  if(window.user.id != 'admin'){
+                    $('#flag-buy-button').attr('disabled', '').text('Sold out')
+                  }
+                }else{
+                  $('#flag-detail iframe').attr('src', 'https://www.wikipedia.org/wiki/'+flagName)
+                }
+                flagObj = { ...flag }
+              }
+            }
+          })
+      })
+
+    </script>
+  </body>
+</html>

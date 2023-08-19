@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>meaas?</title>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <script src="/js/jquery-3.6.0.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  <style>
+    .tbl-contents {padding: 0 1vw 0 1vw; max-width: 640px; overflow-wrap: break-word; word-wrap: break-word;}
+    .btn-submit {
+      margin-left: 70%;
+      margin-bottom: 3vh;
+      width:28%;
+      height:50px
+    }
+    .tbl-tr-spacing {border-collapse: separate;border-spacing: 0 15px;}
+    .tbl-invisible {display: none;}
+    .tbl-result {margin-bottom: 100px;}
+    p {margin: 5px 0 30px 10px}
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="col-md-9 col-md-offset-1">
+      <h1 style="margin-bottom: 0">Modular Exponentiation as-a-service?</h1>
+      <p>- currently under development<br></p>
+      <form>
+        <table border="1" width="100%">
+          <tr>
+            <td width="25%" class="tbl-contents">
+              Server Parameter
+            </td>
+            <td width="75%" class="tbl-contents">
+              n={{ rsa.n }}<br>
+              e={{ rsa.e }}<br>
+              treasure={{ rsa.treasure }}<br>
+              hint={{ hint }}
+            </td>
+          </tr>
+        </table>
+        <br>
+        <table border="0" width="100%" class="tbl-tr-spacing">
+          <tr>
+            <td width="25%" class="tbl-contents">
+              <label for="base">Base</label>
+            </td>
+            <td width="75%">
+              <input type="text" class="form-control" style="width:100%" id="base" name="base" placeholder="Put your base here(in decimal)">
+            </td>
+          </tr>
+          <tr>
+            <td width="25%" class="tbl-contents">
+              <label for="exp">Exponent</label>
+            </td>
+            <td width="75%">
+              <input type="text" class="form-control" style="width:100%" id="exp" name="exp" placeholder="Put your exponent here(in decimal)">
+              <input class="form-check-input" type="checkbox" value="" id="use_d" name="use_d" onchange="handleUseDEvent()">
+              <label class="form-check-label" for="use_d">Use server private exponent(d)</label>
+            </td>
+          </tr>
+          <tr>
+            <td width="25%" class="tbl-contents">
+              <label for="exp">Modulus</label>
+            </td>
+            <td width="75%">
+              <input type="text" class="form-control" style="width:100%" id="mod" name="mod" placeholder="Put your modulus here(in decimal)">
+              <input class="form-check-input" type="checkbox" value="" id="use_n" name="use_n" onchange="handleUseNEvent()">
+              <label class="form-check-label" for="use_n">Use server modulus(n)</label>
+            </td>
+          </tr>
+          <tr>
+            <td width="25%" class="tbl-contents">
+              <label for="exp">Log level</label>
+            </td>
+            <td width="75%">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" checked="checked" name="loglevel" id="log4" value="4">
+                <label class="form-check-input" for="log4">None</label>
+                <input class="form-check-input" type="radio" name="loglevel" id="log3" value="3">
+                <label class="form-check-label" for="log3">Error</label>
+                <input class="form-check-input" type="radio" name="loglevel" id="log2" value="2">
+                <label class="form-check-label" for="log2">Warning</label>
+                <input class="form-check-input" type="radio" name="loglevel" id="log1" value="1">
+                <label class="form-check-label" for="log1">Info</label>
+                <input class="form-check-input" type="radio" name="loglevel" id="log0" value="0">
+                <label class="form-check-label" for="log0">Verbose</label>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <input type="button" class="btn-submit" value="GO!" onclick="proceed();">
+      </form>
+      <table border="1" width="100%" class="tbl-invisible tbl-result" id="result">
+        <tr>
+          <td width="25%" class="tbl-contents">
+            Modular Exponentiation<br>Result
+          </td>
+          <td width="75%" class="tbl-contents" id="res"></td>
+        </tr>
+        <tr>
+          <td width="25%" class="tbl-contents">
+            Log
+          </td>
+          <td width="75%" class="tbl-contents" id="log"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+<script>
+  function isInt(i) {
+    re = /^-?[0-9]+$/;
+    return re.test(i);
+  }
+  
+  function proceed() {
+    base = $("#base").val();
+    exp = $("#exp").val();
+    use_d = $("#use_d").prop('checked');
+    mod = $("#mod").val();
+    use_n = $("#use_n").prop('checked');
+    loglevel = $('input[name="loglevel"]:checked').val();
+
+    if (!isInt(base)) {
+      alert("Base should be a decimal number.");
+      return;
+    } else if (!use_d && !isInt(exp)) {
+      alert("Exponent should be a decimal number, or use server private exponent.");
+      return;
+    } else if (!use_n && !isInt(mod)) {
+      alert("Modulus should be a decimal number, or use server modulus.(" + mod + ")");
+      return;
+    }
+
+    reqdata = {'base': base, 'exp': exp, 'mod': mod, 'use_d': use_d, 'use_n': use_n, 'loglevel': loglevel};
+
+    $.ajax({
+      url: "/modexp",
+      type: "post",
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      data: JSON.stringify(reqdata)
+      })
+      .done(function(data, status, xhr) {
+          if (data.status == "success") {
+              $("#res").text(data.res);
+              $("#log").html(data.log.replace(/(\n)+/g, '<br>'));
+              $("#result").removeClass("tbl-invisible");          //show result table
+          } else {
+              $("#res").text(data.res);
+              $("#log").html(data.log);
+              $("#result").removeClass("tbl-invisible");          //show result table
+          }
+      })
+      .fail(function(data, status, xhr) {
+        alert("Query Failed. Ask admin.");
+        $("#result").prop("display", "none");
+      });
+  }
+
+  var prev_exp = "";
+  var prev_mod = "";
+
+  function handleUseDEvent() {
+    use_d = $("#use_d").prop('checked');
+
+    if (use_d) {
+      prev_exp = $("#exp").val();
+      $("#exp").prop('disabled', true);
+      $("#exp").val(" - Server private exponent will be used -");
+    } else {
+      $("#exp").prop('disabled', false);
+      $("#exp").val(prev_exp);
+    }
+  }
+
+  function handleUseNEvent() {
+    use_n = $("#use_n").prop('checked');
+
+    if (use_n) {
+      prev_mod = $("#mod").val();
+      $("#mod").prop('disabled', true);
+      $("#mod").val("{{ rsa.n }}");
+    } else {
+      $("#mod").prop('disabled', false);
+      $("#mod").val(prev_exp);
+    }
+  }
+</script>
+</html>

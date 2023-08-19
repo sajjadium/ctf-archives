@@ -1,0 +1,22 @@
+.flag-figure {
+  font-family: 'Noto Color Emoji', sans-serif;
+  text-align: center;
+
+}
+#flags .flag-figure {
+  font-size: 8rem;
+}
+#order-list .flag-figure {
+  font-size: 1rem;
+  padding-top: 0.4rem;
+}
+#order-list tr {
+  height: 3rem;
+  line-height: 3rem;
+}
+.flag-title {
+  text-align: center;
+}
+.card-header{
+  height: 4rem;
+}

@@ -1,0 +1,8 @@
+```bash
+git clone https://github.com/WebKit/WebKit.git
+cd WebKit
+git checkout 1989bf2ed192e15e310b21cb907eb2f74b9f5faf
+git apply < ./patch-deubg.diff
+# Tools/Scripts/build-jsc --jsc-only --release
+Tools/Scripts/build-jsc --jsc-only --debug
+```

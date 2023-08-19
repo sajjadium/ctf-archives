@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flag Store</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <script
+      src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+      integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE="
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="common.css">
+    <style>
+      .empty-order {
+        text-align: center;
+        height: 8rem;
+        line-height: 8rem;
+      }
+    </style>
+  </head>
+  <body class="layout-documentation page-components">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/">
+          FLAG STORE
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start"></div>
+
+        <div class="navbar-end">
+          <div id="navbar-nologin" class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary" href="/signup.html">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light" href="/login.html">
+                Log in
+              </a>
+            </div>
+          </div>
+          <div id="navbar-loggedin" class="navbar-item is-hidden">
+            <div class="buttons">
+              <a class="button is-primary" href="/orders.html">
+                🏳️ <span id="username"></span>
+              </a>
+              <a class="button is-light" href="javascript:logout()">
+                Log out
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="content">
+
+      <section class="hero is-info">
+        <div class="hero-body">
+          <p id="flag-hero-title" class="title">Orders</p>
+        </div>
+      </section>
+
+      <section id="order-table" class="section">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Name</th>
+              <th>Flag</th>
+              <th>Info</th>
+            </tr>
+          </thead>
+          <tbody id="order-list"></tbody>
+        </table>
+      </section>
+
+      <template id="order-item-template">
+        <tr>
+          <td class="order-date"></td>
+          <td class="flag-title"></td>
+          <td class="flag-figure"></td>
+          <td class="flag-content"></td>
+        </tr>
+      </template>
+    </div>
+
+
+
+
+    <script src="common.js"></script>
+    <script>
+      $(document).ready(() => {
+        if(!document.cookie) {
+          alert('Plz login')
+          location.href = '/login'
+          return
+        }
+
+        const urlParams = new URLSearchParams(location.search);
+        const orderid = urlParams.get('orderid')
+
+        fetch('/api/order/orders')
+          .then(r=>r.json())
+          .then(orders => {
+            if (orders.length == 0) {
+              $('#order-list').html('<tr><td colspan=3><div class="empty-order">Empty</div></td></tr>')
+            } else {
+              $('#order-list').append(orders.map(renderOrder))
+            }
+
+          })
+        function renderOrder(order){
+          const t = document.getElementById('order-item-template')
+          const clone = document.importNode(t.content, true);
+          console.log(order)
+          clone.querySelector('.order-date').textContent = new Date(order.created)
+          clone.querySelector('.flag-figure').textContent = order.flag
+          clone.querySelector('.flag-title').textContent = order.name
+          clone.querySelector('.flag-content').textContent = order.content
+          return clone
+        }
+      })
+
+    </script>
+  </body>
+</html>
