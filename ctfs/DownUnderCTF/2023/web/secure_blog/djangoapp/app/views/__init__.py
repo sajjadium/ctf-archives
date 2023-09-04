@@ -1,0 +1,1 @@
+from app.views.article import ArticleView

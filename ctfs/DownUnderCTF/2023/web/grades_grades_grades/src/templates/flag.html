@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <style>
+        .top {
+            top: 0;
+            text-align: center;
+            padding-left:  30px;
+            padding-top: 40px;
+            padding-bottom: 30px;
+            padding-right:  30px;
+        }
+
+        .h1 {
+            font-size: 60px;
+            margin-bottom: 60px;
+        }
+
+        .user_info {
+            font-size:18px;
+            padding-left: 17px;
+            color: black;
+        }
+
+        .table {
+            color: black;
+        }
+
+    </style>
+
+    <div class="top">
+        <h4 style="margin-bottom:20px">Assignment marks for ;):</h4>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Flag</td>
+                    <td>{{ flag }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

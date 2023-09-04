@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <style>
+        .top {
+            top: 0;
+            padding-left:  30px;
+            padding-top: 40px;
+            padding-bottom: 30px
+        }
+
+        .bottom {
+            top: 0;
+            text-align: center;
+            padding-left:  30px;
+            padding-top: 40px;
+            padding-bottom: 30px;
+            padding-right:  30px;
+        }
+
+        .h1 {
+            font-size: 60px;
+            margin-bottom: 60px;
+        }
+
+        .user_info {
+            font-size:18px;
+            padding-left: 17px;
+            color: black;
+        }
+
+        .table {
+            color: black;
+        }
+
+    </style>
+
+    <div class="top">
+        <h4 style="margin-bottom:20px">Logged in user info:</h4>
+        <p class="user_info"><strong style="font-weight: bold;">Student Number:</strong> {{ number }}<p>
+        <p class="user_info"><strong style="font-weight: bold;">Student Email:</strong> {{ email }}</p>
+        <p class="user_info"><strong style="font-weight: bold;">Student Role:</strong> {{ role }}</p>
+    </div>
+
+    <div class="bottom">
+        <h4 style="margin-bottom:20px">Assignment marks for {{ number }}:</h4>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Maths</td>
+                    <td>{{ mg }}</td>
+                </tr>
+                <tr>
+                    <td>English</td>
+                    <td>{{ eg }}</td>
+                </tr>
+                <tr>
+                    <td>Science</td>
+                    <td>{{ sg }}</td>
+                </tr>
+                <tr>
+                    <td>Geography</td>
+                    <td>{{ gg }}</td>
+                </tr>
+                <tr>
+                    <td>Art</td>
+                    <td>{{ ag }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,7 @@
+version: '3.0'
+services:
+  strapi-in:
+    container_name: strapi-in
+    build: strapi-in/.
+    ports:
+    - "1337:1337"

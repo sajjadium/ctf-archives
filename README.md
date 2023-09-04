@@ -745,7 +745,11 @@
             <td><a href="https://ctftime.org/event/1459/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/DownUnderCTF">DownUnder</a></td>
+            <td rowspan=4><a href="ctfs/DownUnderCTF">DownUnder</a></td>
+            <td><a href="ctfs/DownUnderCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1954/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/DownUnderCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1625/tasks/" target="_blank">CTFtime</a></td>
         </tr>

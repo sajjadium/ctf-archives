@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="grid-item">
+        <h1 style="color: rgb(255, 255, 255);">Impossible Challenge</h1>
+    </div>
+
+    <div id="grid-item">
+        <h3 style="color: rgb(170, 172, 172);">Feel free to waste several hours trying to solve this challenge!</h3>
+    </div>
+
+    <div id="grid-item">
+        <h4 style="color: rgb(255, 255, 255);">There is no solution! The <b>published</b> files won't help you at all!</h4>
+    </div>
+    
+    <div id="grid-item">
+        <h4 style="color: rgb(170, 172, 172);">You can see for yourself! Try submitting a key to decrypt the flag!</h4>
+    </div>
+
+    <form action="/" method="GET">
+        <div id="grid-item">
+            <input type="text" name="key" class="hollow" placeholder="Key">
+        </div>
+        <div id="grid-item">
+            <input type="submit" id="submit" class="filled" value="Submit">
+        </div>
+    </form>
+
+    {% if msg is defined %}
+        <hr>
+        <div id="grid-item">
+            <h4 style="color: rgb(255, 255, 255);">Result: </h4>
+            <h4 style="color: rgb(170, 172, 172);">{{ msg }}</h4>
+        </div>
+        <hr>
+    {% endif %}
+{% endblock %}

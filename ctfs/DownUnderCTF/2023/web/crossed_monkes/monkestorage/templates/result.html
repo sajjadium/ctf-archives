@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="grid-item">
+    <h2 style="color: rgb(207, 206, 206);">Succesfully Uploaded!</h2>
+</div>
+
+<div id="grid-item">
+    <h3 style="color: rgb(176, 176, 176);">Here is your uploaded image!</h3>
+</div>
+
+<div id="grid-item">
+    <img src="{{ link }}">
+</div>
+
+<div id="grid-item">
+    <h3 style="color: rgb(176, 176, 176);">You can view your file <a href="{{ link }}">here</a>!</h3>
+</div>
+{% endblock %}

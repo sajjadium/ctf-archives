@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+    web:
+        build: .
+        container_name: web
+        restart: always
+        networks:
+            - nw
+        env_file:
+            - .env
+        ports:
+            - "5000:80"
+        depends_on:
+            - db
+
+    db:
+        image: mysql:8
+        container_name: db
+        restart: always
+        env_file:
+            - .env
+        volumes:
+            - ./mysql-init:/docker-entrypoint-initdb.d
+        networks:
+            - nw
+
+networks:
+    nw:
+        driver: bridge

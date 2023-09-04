@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="grid-item">
+    <h2 style="color: rgb(207, 206, 206);">Files</h2>
+</div>
+
+{% for file_entry in files %}
+    <hr>
+    <div id="grid-item">
+        <img src="/view/{{ file_entry['share_key'] }}/{{ file_entry['_id'] }}">
+    </div>
+    <div id="grid-item">
+        <h3 style="color: rgb(127, 126, 126);"><a href="/view/{{ file_entry['share_key'] }}/{{ file_entry['_id'] }}">{{ file_entry['filename'] }}</a></h3>
+    </div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,26 @@
+version: '3.0'
+services:
+  monkestorage:
+    build: monkestorage/.
+    ports:
+      - "3000:3000"
+    environment:
+      ADMIN_USERNAME: monkeadmin
+      ADMIN_PASSWORD: password1234
+    container_name: monkestorage
+
+  monkebot:
+    build: monkebot/.
+    ports:
+      - "1337:1337"
+    environment:
+      ADMIN_USERNAME: monkeadmin
+      ADMIN_PASSWORD: password1234
+    container_name: monkebot
+
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: monkeuser
+      MONGO_INITDB_ROOT_PASSWORD: gonnawhackmykeyboardasi)!@sdjSJED121
+    container_name: mongodb

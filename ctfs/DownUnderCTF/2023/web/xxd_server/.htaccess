@@ -1,0 +1,4 @@
+# Everything not a PHP file, should be served as text/plain
+<FilesMatch "\.(?!(php)$)([^.]*)$">
+    ForceType text/plain
+</FilesMatch>

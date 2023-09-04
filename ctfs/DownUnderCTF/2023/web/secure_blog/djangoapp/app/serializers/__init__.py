@@ -1,0 +1,1 @@
+from app.serializers.article import ArticleSerializer

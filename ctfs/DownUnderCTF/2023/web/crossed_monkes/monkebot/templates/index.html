@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="grid-item">
+    <h3 style="color: rgb(207, 206, 206);">Send the admin monke to whack a website!</h3>
+</div>
+
+<div id="grid-item">
+    <img src="/images/monke-whack.gif" style="max-width: 80%;">
+</div>
+
+{% if msg is defined %}
+    <div id="grid-item">
+        <h3 style="color: rgb(244, 244, 244);">{{ msg }}</h3>
+    </div>
+{% endif %}
+{% if error is defined %}
+    <div id="grid-item">
+        <h3 style="color: rgb(255, 0, 0);">{{ error }}</h3>
+    </div>
+{% endif %}
+<form action="/sendmonkebot" method="POST">
+    <div id="grid-item">
+        <input type="text" id="url" name="url" placeholder="Send Monke to URL">
+    </div>
+    <div id="grid-item">
+        <input type="submit" value="Submit">
+    </div>
+</form>
+{% endblock %}

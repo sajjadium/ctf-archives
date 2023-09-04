@@ -1,0 +1,17 @@
+version: '3.0'
+services:
+  blog:
+    container_name: blog
+    build: 0dayblog/.
+    ports:
+    - "3000:80"
+
+  adminbot:
+    container_name: adminbot
+    build: adminbot/.
+    environment:
+      # Need to change for each challenge instance
+      # Domain must be the same the competitors use
+      - "DRUPAL_HOST=http://172.17.0.1:3000"
+    ports:
+      - "1337:1337"

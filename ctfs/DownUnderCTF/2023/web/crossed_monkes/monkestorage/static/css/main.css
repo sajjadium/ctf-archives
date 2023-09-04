@@ -1,0 +1,99 @@
+h1, h2, h3, h4, h5, h6, p, input {
+    font-family: 'Press Start 2P', regular;
+}
+
+h1 {
+    font-size:42px;
+}
+
+input {
+    width: 60%;
+    border-radius: 2px;
+    text-align: center;
+    margin: 2px;
+}
+
+body {
+    background-color: rgb(6, 135, 248);
+}
+
+.filled {
+    background-color: rgb(0, 0, 0);
+} 
+
+.button {
+    width: 15%;
+}
+
+input[type="text"] {
+    border-color: rgba(128, 0, 128, 0);
+    background-color: rgba(124, 124, 124, 0.37);
+    color: rgb(251, 251, 251);
+    font-size: medium;
+}
+
+input[type="password"] {
+    border-color: rgba(128, 0, 128, 0);
+    background-color: rgba(230, 230, 230, 0.37);
+    color: rgb(80, 80, 80);
+    font-size: medium;
+}
+
+input[type="submit"] {
+    margin-top: 5px;
+    font-size: medium;
+}
+
+#file {
+    display: inline-block;
+    background-color: rgba(88, 88, 88, 0.37);
+    color: rgb(255, 255, 255);
+    font-family: 'Press Start 2P', regular;
+    font-size: medium;
+    border-radius: 2px;
+    width: 40%;
+    cursor: pointer;
+    padding: 2px;
+    margin: 4px;
+    justify-content: center;
+    text-align: center;
+}
+
+#monke-bg {
+    position: absolute;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    z-index: -100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+}
+
+#monke-img {
+    max-width: 100px;
+    max-height: 100px;
+    opacity: 0;
+}
+
+#submit {
+    padding: 5px;
+}
+
+#grid-item {
+    text-align: center;
+}
+
+section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+    display: none;
+}

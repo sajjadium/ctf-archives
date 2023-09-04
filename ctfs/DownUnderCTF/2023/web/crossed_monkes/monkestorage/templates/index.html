@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="grid-item">
+    <h2 style="color: rgb(207, 206, 206);">Upload File</h2>
+</div>
+
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    <div id="grid-item">
+        <input type="file" id="file" name="file" value="Upload Image">
+    </div>
+    <div id="grid-item">
+        <input type="text" id="share_key" name="share_key" value="{{ share_key }}" placeholder="Key for sharing with others">
+    </div>
+    <div id="grid-item">
+        <input type="submit" value="Submit">
+    </div>
+</form>
+{% endblock %}

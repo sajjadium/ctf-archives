@@ -1,0 +1,7 @@
+flag.content:
+  path: '/flag'
+  defaults:
+    _controller: '\Drupal\flag\Controller\FlagController::index'
+    _title: 'Get a flag!'
+  requirements:
+    _role: 'administrator'

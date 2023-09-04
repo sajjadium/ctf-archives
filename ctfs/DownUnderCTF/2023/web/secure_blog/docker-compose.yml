@@ -1,0 +1,26 @@
+version: '3.0'
+services:
+  web:
+    build: ./
+    ports:
+      - "80:80"
+    networks:
+      - nw
+    container_name: secureblog
+    environment:
+      - DB_HOST=mysql
+
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: wouldBefUnnYt0pUtiNt0oR!!1
+      MYSQL_DATABASE: secureblogdb
+    networks:
+      - nw
+
+networks:
+    nw:

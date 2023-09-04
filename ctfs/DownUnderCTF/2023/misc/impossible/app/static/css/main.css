@@ -1,0 +1,58 @@
+h1, h2, h3, h4, h5, h6, p, input {
+    font-family: 'Press Start 2P', regular;
+}
+
+h1 {
+    font-size:42px;
+}
+
+input {
+    width: 40%;
+    border-radius: 2px;
+    text-align: center;
+    margin: 2px;
+}
+
+body {
+    background-color: rgb(8, 112, 138);
+}
+
+.filled {
+    background-color: rgb(0, 255, 200);
+} 
+
+.button {
+    width: 15%;
+}
+
+input[type="text"] {
+    border-color: rgba(128, 0, 128, 0);
+    background-color: rgba(71, 4, 255, 0.37);
+    color: rgb(255, 255, 255);
+    font-size: medium;
+}
+
+input[type="submit"] {
+    margin-top: 5px;
+    font-size: medium;
+}
+
+#submit {
+    padding: 5px;
+}
+
+#grid-item {
+    text-align: center;
+}
+
+section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+    display: none;
+}

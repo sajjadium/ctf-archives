@@ -1,0 +1,38 @@
+diff --git a/ref/params.h b/ref/params.h
+index 63b02e2..f8cc0bb 100644
+--- a/ref/params.h
++++ b/ref/params.h
+@@ -12,7 +12,7 @@
+ 
+ #if DILITHIUM_MODE == 2
+ #define K 4
+-#define L 4
++#define L 2
+ #define ETA 2
+ #define TAU 39
+ #define BETA 78
+diff --git a/ref/sign.c b/ref/sign.c
+index 5d0455c..08a5906 100644
+--- a/ref/sign.c
++++ b/ref/sign.c
+@@ -147,7 +147,10 @@ rej:
+   polyvecl_invntt_tomont(&z);
+   polyvecl_add(&z, &z, &y);
+   polyvecl_reduce(&z);
+-  if(polyvecl_chknorm(&z, GAMMA1 - BETA))
++  if(!polyvecl_chknorm(&z, GAMMA1 - L))
++    goto rej;
++
++  if(polyvecl_chknorm(&z, GAMMA1 + 1))
+     goto rej;
+ 
+   /* Check that subtracting cs2 does not change high bits of w and low bits
+@@ -244,7 +247,7 @@ int crypto_sign_verify(const uint8_t *sig,
+   unpack_pk(rho, &t1, pk);
+   if(unpack_sig(c, &z, &h, sig))
+     return -1;
+-  if(polyvecl_chknorm(&z, GAMMA1 - BETA))
++  if(polyvecl_chknorm(&z, GAMMA1 + 1))
+     return -1;
+ 
+   /* Compute CRH(H(rho, t1), msg) */

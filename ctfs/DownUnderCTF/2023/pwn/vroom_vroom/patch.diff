@@ -1,0 +1,59 @@
+diff --git a/src/compiler/js-call-reducer.cc b/src/compiler/js-call-reducer.cc
+index b0c7907c26a..0eb62e0332f 100644
+--- a/src/compiler/js-call-reducer.cc
++++ b/src/compiler/js-call-reducer.cc
+@@ -1263,10 +1263,6 @@ TNode<Object> IteratingArrayBuiltinReducerAssembler::ReduceArrayPrototypeAt(
+            UndefinedConstant());
+     GotoIfNot(NumberLessThan(real_index_num, length), &out,
+               UndefinedConstant());
+-    if (v8_flags.turbo_typer_hardening) {
+-      real_index_num = CheckBounds(real_index_num, length,
+-                                   CheckBoundsFlag::kAbortOnOutOfBounds);
+-    }
+ 
+     // Retrieving element at index.
+     TNode<Object> element = LoadElement<Object>(
+diff --git a/src/compiler/js-operator.cc b/src/compiler/js-operator.cc
+index a91242f456c..e6fb72609ea 100644
+--- a/src/compiler/js-operator.cc
++++ b/src/compiler/js-operator.cc
+@@ -729,7 +729,7 @@ Type JSWasmCallNode::TypeForWasmReturnType(const wasm::ValueType& type) {
+       return Type::SignedBigInt64();
+     case wasm::kF32:
+     case wasm::kF64:
+-      return Type::Number();
++      return Type::PlainNumber();
+     case wasm::kRef:
+     case wasm::kRefNull:
+       CHECK_EQ(type.heap_type(), wasm::HeapType::kExtern);
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index 9c31cf6dffa..ee5aa77a6a6 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -3346,6 +3346,7 @@ static void AccessIndexedEnumerator(const PropertyCallbackInfo<Array>& info) {}
+ 
+ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+   Local<ObjectTemplate> global_template = ObjectTemplate::New(isolate);
++  /*
+   global_template->Set(Symbol::GetToStringTag(isolate),
+                        String::NewFromUtf8Literal(isolate, "global"));
+   global_template->Set(isolate, "version",
+@@ -3368,8 +3369,10 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+                        FunctionTemplate::New(isolate, ReadLine));
+   global_template->Set(isolate, "load",
+                        FunctionTemplate::New(isolate, ExecuteFile));
++  */
+   global_template->Set(isolate, "setTimeout",
+                        FunctionTemplate::New(isolate, SetTimeout));
++  /*
+   // Some Emscripten-generated code tries to call 'quit', which in turn would
+   // call C's exit(). This would lead to memory leaks, because there is no way
+   // we can terminate cleanly then, so we need a way to hide 'quit'.
+@@ -3400,6 +3403,7 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+     global_template->Set(isolate, "async_hooks",
+                          Shell::CreateAsyncHookTemplate(isolate));
+   }
++  */
+ 
+   if (options.throw_on_failed_access_check ||
+       options.noop_on_failed_access_check) {

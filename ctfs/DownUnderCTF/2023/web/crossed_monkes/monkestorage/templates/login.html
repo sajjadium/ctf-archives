@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="grid-item">
+    <h2 style="color: rgb(207, 206, 206);">Login</h2>
+</div>
+
+<form action="/login" method="POST">
+    <div id="grid-item">
+        <input type="text" id="username" name="username" placeholder="Username">
+    </div>
+    <div id="grid-item">
+        <input type="password" id="password" name="password" placeholder="Password">
+        <input type="text" id="cleanup_id" name="cleanup_id" value="" hidden>
+    </div>
+    <div id="grid-item">
+        <input type="submit" id="submit-login" value="Submit">
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,89 @@
+h1, h2, h3, h4, h5, h6, p {
+    font-family: 'Press Start 2P', regular;
+    color:rgb(43, 255, 0);
+}
+
+input {
+    font-family: 'Press Start 2P', regular;
+}
+
+h1 {
+    font-size:42px;
+}
+
+input {
+    width: 40%;
+    border-radius: 2px;
+    text-align: center;
+    margin: 2px;
+}
+
+body {
+    background-color: black;
+}
+
+.filled {
+    background-color: chartreuse;
+} 
+
+.button {
+    width: 15%;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+input[type="text"] {
+    border-color: rgba(128, 0, 128, 0);
+    background-color: rgba(43, 255, 0, 0.37);
+    color: aqua;
+    font-size: medium;
+}
+
+input[type="password"] {
+    border-color: rgba(128, 0, 128, 0);
+    background-color: rgba(4, 255, 255, 0.37);
+    color: rgb(43, 255, 0);
+    font-size: medium;
+}
+
+input[type="submit"] {
+    margin-top: 5px;
+    font-size: medium;
+}
+
+#file {
+    display: inline-block;
+    background-color: rgba(183, 0, 255, 0.37);
+    color: fuchsia;
+    font-family: 'Press Start 2P', regular;
+    font-size: medium;
+    border-radius: 2px;
+    width: 40%;
+    cursor: pointer;
+    padding: 2px;
+    margin: 4px;
+    justify-content: center;
+    text-align: center;
+}
+
+#submit {
+    padding: 5px;
+}
+
+#grid-item {
+    text-align: center;
+}
+
+section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    padding: 20px;
+    text-align: center;
+    display: none;
+}

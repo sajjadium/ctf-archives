@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <style>
+        .text-center {
+            width: 30%;
+            text-align: center;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .text-center a {
+            font-family: Trebuchet MS Serif;
+            font-color: blue;
+            margin-top: 10px;
+        }
+
+        .top {
+            top: 0;
+            text-align: center;
+            background-color: #DDDDDD;
+            padding-top: 50px;
+            padding-bottom: 40px;
+        }
+
+        .hl {
+            font-size: 50px;
+        }
+
+        .bottom {
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+    <div class="top">
+        <h1 class="hl">Sign up</h1>
+    </div>
+
+    <div class="text-center">
+        <form class="form-login" method="post">
+            <fieldset>
+                <legend style="margin-bottom: 20px">Create a new account to view grades:</legend>
+
+                <div class="form-group">
+                    <label for="Username" class="spacing">Enter your student number:</label>
+                    <input type="text" class="form-control" id="stu_num" name="stu_num" placeHolder="Username"
+
+                           required autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="Email" class="spacing">Confirm your student email:</label>
+                    <input type="email" class="form-control" id="stu_email" name="stu_email" placeHolder="Email" required
+
+                           autofocus>
+                </div>
+
+                <div class="form-group">
+                    <label for="Password" class="spacing">Enter a password:</label>
+                    <input type="password" class="form-control" id="password" name="password" placeHolder="Password"
+
+                           required autofocus>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 20px">Submit</button>
+
+            </fieldset>
+        </form>
+    </div>
+
+{% endblock %}

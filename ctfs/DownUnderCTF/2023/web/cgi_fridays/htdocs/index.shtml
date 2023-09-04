@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Server Monitor</title>
+  <style>
+    body {
+      background-color: #000000;
+      color: #00FF00;
+      font-family: monospace;
+      font-size: 14px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      background-color: #000080;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    .navbar a {
+      color: #FFFFFF;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .content {
+      padding: 20px;
+    }
+
+    .status {
+      background-color: #FF0000;
+      color: #FFFFFF;
+      padding: 5px 10px;
+    }
+
+    .status.ok {
+      background-color: #00FF00;
+      color: #000000;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="/?page=home">Home</a>
+    <a href="/?page=about">About</a>
+    <a href="/?page=version">Version</a>
+    <a href="/?page=cpuinfo">Cpuinfo</a>
+    <a href="/?page=stat">Stat</a>
+    <a href="/?page=io">IO</a>
+    <a href="/?page=maps">Maps</a>
+  </div>
+  <div class="content">
+    <div class="status ok">
+      <pre><!--#include virtual="/cgi-bin/route.pl?$QUERY_STRING" --></pre>
+    </div>
+  </div>
+</body>
+</html>
