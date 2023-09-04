@@ -1,0 +1,13 @@
+<h1>
+    Mosaic!!
+</h1>
+<br>
+{% if mosaic_path %}
+<h3>Result!</h3><br>
+<img src="{{mosaic_path}}">
+{% else %}
+<form action="/mosaic" method="POST">
+    <input type="text" name="image_url" placeholder="image_url">
+    <input type="submit" value="submit">
+</form>
+{% endif %}

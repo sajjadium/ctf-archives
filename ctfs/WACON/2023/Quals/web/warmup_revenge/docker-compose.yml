@@ -1,0 +1,28 @@
+version: '3.0'
+services:
+  webserver:
+    build: .
+    ports:
+      - "80:80"
+    links:
+      - db
+      - bot
+  bot:
+    build: ./bot
+    volumes:
+      - ./bot:/usr/src/app
+    restart: always
+    environment: 
+      - TZ=Asia/Seoul 
+  db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: wacon
+      MYSQL_USER: wacon
+      MYSQL_PASSWORD: wacon
+      MYSQL_ROOT_PASSWORD: rootroot(_)!@
+    volumes:
+      - ./mysql-init-files:/docker-entrypoint-initdb.d
+    networks:
+      - default

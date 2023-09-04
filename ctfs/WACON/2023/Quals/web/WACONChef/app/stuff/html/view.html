@@ -1,0 +1,106 @@
+<html>
+	<head>
+		<title>WACONChef</title>
+		<style>
+			body {
+				background: #1e2739;
+			}
+
+			.main-container {
+				text-align: center;
+				background-color: #3489fd;
+				border-radius: 6px;
+				padding: 30px 30px;
+				height: fit-content;
+				width: fit-content;
+				margin: 0px auto;
+				margin-top: 200px;
+				color: white;
+				font-family: 'Consular', sans-serif;
+				min-width: 300px;
+			}
+
+			textarea {
+				width: 300px;
+				border-radius: 5px;
+				height: 150px;
+				background-color: #fff;
+				border: 0px;
+				padding: 5px;
+			    outline: none;
+			    color: #1e2739;
+			    width: 100%;
+			}
+
+			textarea:active {
+				outline: 0px;
+			}
+
+			.text {
+				margin-bottom: 20px;
+				font-size: 20px;
+			}
+
+			button {
+				margin-top: 20px;
+				font-size: 18px;
+				background-color: white;
+				border: 0px;
+				padding: 10px 20px;
+				border-radius: 5px;
+				background-color: #023415;
+				color: white;
+				cursor: pointer;
+			}
+
+			iframe {
+				width: 100%;
+				height: 200px;
+				border: 0px;
+			}
+
+			select {
+				font-size: 18px;
+				padding: 10px 10px;
+				width: 250px;
+				border: 0px;
+				border-radius: 5px;
+				outline: none;
+				background-color: white;
+				color: #1e2739;
+				text-align: left;
+				border-right: 15px solid transparent;
+				display: inline-block;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main-container">
+			<div class="text">
+				Select your algorithm to encode your input
+			</div>
+			<div>
+				<iframe name="resultsWindow" id="results-frame" ></iframe>
+			</div>
+			<div>
+				<select id="todo-select">
+					<option>sha1</option>
+					<option>sha256</option>
+					<option>sha512</option>
+					<option>md5</option>
+					<option>base64_encode</option>
+					<option>base64_decode</option>
+					<option>base32_encode</option>
+					<option>base32_decode</option>
+					<option>hex_encode</option>
+					<option>hex_decode</option>
+					<option>html_encode</option>
+					<option>html_decode</option>
+					<option>bcrypt</option>
+				</select>
+				<button id="submit-button">Submit</button>
+			</div>
+		</div>
+		<script src="/js/view.js"></script>
+	</body>
+</html>

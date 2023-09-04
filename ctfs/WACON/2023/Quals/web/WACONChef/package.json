@@ -1,0 +1,16 @@
+{
+  "name": "bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express-rate-limit": "^6.10.0",
+    "isomorphic-fetch": "^3.0.0",
+    "puppeteer": "^21.1.1"
+  }
+}

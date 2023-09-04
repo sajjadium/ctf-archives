@@ -1,0 +1,20 @@
+version: '3.2'
+
+services:
+  web:
+    build: ./app
+    restart: always
+    environment:
+      - "ADMIN_SECRET=lmao1337"
+      - "FLAG=WACON{test-flag}"
+    ports:
+      - "8004:8004"
+  bot:
+    build: ./bot
+    restart: always
+    ports:
+      - "8002:8002"
+    environment:
+      - "ADMIN_SECRET=lmao1337"
+      - "CHALL_URL=http://web:8000"
+      - "CHALL_DOMAIN=web"

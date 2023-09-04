@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  chall:
+    build: .
+    ports:
+      - "10001:1234"
