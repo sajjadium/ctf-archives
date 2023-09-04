@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact List</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-4">Contact List</h1>
+
+    <!-- Display existing contacts -->
+    <div class="mb-8">
+        <h2 class="text-xl font-semibold mb-2">Existing Contacts</h2>
+        <ul class="space-y-4">
+            <li th:each="contact : ${contacts}" class="bg-white p-4 rounded shadow">
+                <p><strong th:text="${contact.firstName} + ' ' + ${contact.lastName}"></strong></p>
+                <p th:text="${contact.description}"></p>
+                <p th:text="${contact.country}"></p>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Add new contact form -->
+    <div class="bg-white p-4 rounded shadow">
+        <h2 class="text-xl font-semibold mb-2">Add New Contact</h2>
+        <form th:action="@{/addContact}" method="post" id="addContactForm">
+            <div class="mb-4">
+                <label for="firstName" class="block font-medium">First Name:</label>
+                <input type="text" id="firstName" name="firstName" class="w-full p-2 border rounded">
+            </div>
+            <div class="mb-4">
+                <label for="lastName" class="block font-medium">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" class="w-full p-2 border rounded">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block font-medium">Description:</label>
+                <textarea id="description" name="description" class="w-full p-2 border rounded"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="country" class="block font-medium">Country:</label>
+                <input type="text" id="country" name="country" class="w-full p-2 border rounded">
+            </div>
+            <button type="submit" class="bg-blue-500 text-white p-2 rounded">Add Contact</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById("addContactForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const form = event.target;
+        const formData = new FormData(form);
+        const contactData = {};
+
+        // Convert FormData to JSON
+        formData.forEach((value, key) => {
+            contactData[key] = value;
+        });
+        fetch("/addContact", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(contactData)
+        }).then(response => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert("Failed to add contact.");
+            }
+        }).catch(error => {
+            alert("An error occurred:", error);
+        });
+    });
+</script>
+</body>
+</html>

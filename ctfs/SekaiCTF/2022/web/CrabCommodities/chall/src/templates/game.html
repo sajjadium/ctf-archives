@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>crabcommodities</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.2.0/dist/litera/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-dark navbar-expand-md bg-danger">
+        <div class="container">
+            <a class="navbar-brand" href="/">🦀 crabcommodities 🦀</span></a>
+        </div>
+    </nav>
+    <section class="py-4 py-xl-5">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col">
+                    <div>
+                        <h2 class="fw-bold">🦀 crabcommodities 🦀</h2>
+                        <button class="btn btn-danger mb-5" type="button" id="reset">Reset</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-lg-5">
+                    <h4>Day: {{ day }} / {{ total_days }}</h4>
+                    <h4 class="text-success">Money: {{ money | to_money }}</h4>
+                    <h4 class="text-danger">Debt: {{ debt | to_money }}</h4>
+                    {% if flag %}
+                    <h4 class="text-primary">Flag: {{ flag }}</h4>
+                    {% endif %}
+                </div>
+                <div class="col d-flex">
+                    <div class="d-flex justify-content-evenly flex-wrap align-items-center" id="upgrades">
+                        {% for upgrade in upgrades %}
+                        <button class="btn btn-{{upgrade.color}}" type="button" data-name="{{upgrade.name}}">
+                            {{upgrade.name}}{% if upgrade.price != 0 %} ({{upgrade.price | to_money_negative}}){% endif %}
+                        </button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <h4>Inventory ({{storage}})</h4>
+                    <ul class="list-group" id="inventory">
+                        {% for item in inventory %}
+                        <li class="list-group-item d-flex align-items-center justify-content-between" data-quantity="{{item.quantity}}" data-name="{{item.name}}">
+                            <span>{{item.name}} ({{item.quantity}}x)</span>
+                            {% if item.quantity != 0 and day < total_days %}
+                            <button class="btn btn-danger btn-sm" type="button">Sell</button>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col">
+                    <h4>Market</h4>
+                    <ul class="list-group" id="market">
+                        {% for item in market %}
+                        <li class="list-group-item d-flex align-items-center justify-content-between" data-price="{{item.price}}" data-name="{{item.name}}">
+                            <span>{{item.name}} ({{item.price | to_money}})</span>
+                            {% if day < total_days %}
+                            <button class="btn btn-success btn-sm" type="button">Buy</button>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.4.33/sweetalert2.all.min.js"></script>
+    <script>
+        const $ = document.querySelector.bind(document); // imagine using jQuery...
+
+        const [storage, maxStorage] = "{{storage}}".split("&#x2F;").map(n => Number(n));
+        const money = {{money}};
+        const debt = {{debt}};
+        const donated = {{donated}};
+        const gameOver = {{game_over}};
+
+        const buy = async (ele) => {
+            const price = Number(ele.getAttribute("data-price"));
+            const name = ele.getAttribute("data-name");
+            const max = Math.min(maxStorage - storage, Math.floor(money / price));
+            const prompt = await Swal.fire({
+                icon: "question",
+                title: "Purchase",
+                text: `How many ${name} (${"$" + price.toLocaleString()}) do you want to purchase? (max ${max}x)`,
+                input: "number",
+                showCancelButton: true,
+                inputAttributes: {
+                    placeholder: 1,
+                    min: 1,
+                    max
+                },
+                validationMessage: "You must enter a valid quantity"
+            });
+
+            if (!prompt.isConfirmed || prompt.isDismissed) {
+                return;
+            }
+
+            const data = new URLSearchParams();
+            data.set("name", name);
+            data.set("quantity", prompt.value);
+            const result = await (await fetch("/api/buy", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: data.toString()
+            })).json();
+
+            if (!result.success) {
+                await Swal.fire({ icon: 'error', text: result.message });
+            }
+            else {
+                await Swal.fire({ icon: 'success', text: result.message });
+            }
+            location.reload();
+        };
+
+        const sell = async (ele) => {
+            const quantity = ele.getAttribute("data-quantity");
+            const name = ele.getAttribute("data-name");
+            const prompt = await Swal.fire({
+                icon: "question",
+                title: "Sell",
+                text: `How many ${name} (${quantity}x) do you want to sell?`,
+                input: "number",
+                showCancelButton: true,
+                inputAttributes: {
+                    placeholder: 1,
+                    min: 1,
+                    max: Number(quantity)
+                },
+                validationMessage: "You must enter a valid quantity"
+            });
+            
+            if (!prompt.isConfirmed || prompt.isDismissed) {
+                return;
+            }
+
+            if (isNaN(parseInt(prompt.value))) {
+                return;
+            }
+
+            const data = new URLSearchParams();
+            data.set("name", name);
+            data.set("quantity", prompt.value);
+            const result = await (await fetch("/api/sell", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: data.toString()
+            })).json();
+
+            if (!result.success) {
+                await Swal.fire({ icon: 'error', text: result.message });
+            }
+            else {
+                await Swal.fire({ icon: 'success', text: result.message });
+            }
+            location.reload();
+        };
+
+        const upgrade = async (ele) => {
+            const name = ele.getAttribute("data-name");
+            const hasQuantity = ["Donate to charity", "Storage Upgrade"].includes(name);
+
+            const options = hasQuantity ? ({
+                icon: "question",
+                title: "Upgrade",
+                showCancelButton: true,
+                input: "number",
+                inputAttributes: {
+                    placeholder: 1,
+                },
+                validationMessage: "You must enter a valid quantity",
+                text: `Enter the quantity you want to buy of "${name}":`
+            }): ({
+                icon: "question",
+                title: "Upgrade",
+                showCancelButton: true,
+                text: `Are you sure you want to purchase ${name}?`
+            });
+
+            if (name === "Sleep") {
+                options.text = "Are you sure you want to skip the day?";
+            }
+            if (name === "Donate to charity") {
+                options.text = "How much do you want to donate to charity?";
+            }
+
+            const prompt = await Swal.fire(options);
+
+            if (!prompt.isConfirmed || prompt.isDismissed) {
+                return;
+            }
+
+            if (hasQuantity && isNaN(parseInt(prompt.value))) {
+                return;
+            }
+
+            const data = new URLSearchParams();
+            data.set("name", name);
+            data.set("quantity", hasQuantity ? prompt.value : 1);
+            const result = await (await fetch("/api/upgrade", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: data.toString()
+            })).json();
+
+            if (!result.success) {
+                await Swal.fire({ icon: 'error', text: result.message });
+            }
+            else {
+                await Swal.fire({ icon: 'success', text: result.message });
+            }
+            location.reload();
+        };
+
+        const reset = async () => {
+            const prompt = await Swal.fire({
+                icon: "question",
+                title: "Reset",
+                text: `Are you sure you want to reset and wipe all progress?`,
+            });
+
+            if (!prompt.isConfirmed || prompt.isDismissed) {
+                return;
+            }
+
+            const result = await (await fetch("/api/reset", {
+                method: "POST",
+            })).json();
+
+            if (!result.success) {
+                await Swal.fire({ icon: 'error', text: result.message });
+            }
+            else {
+                await Swal.fire({ icon: 'success', text: result.message });
+            }
+            location.reload();
+        };
+
+        window.onload = async () => {
+            [...$("#market").children]
+                .forEach(ele => ele.children[1] && (ele.children[1].onclick = () => buy(ele)));
+            [...$("#inventory").children]
+                .forEach(ele => ele.children[1] && (ele.children[1].onclick = () => sell(ele)));
+            [...$("#upgrades").children]
+                .forEach(ele => ele && (ele.onclick = () => upgrade(ele)));
+            $("#reset").onclick = reset;
+
+            if (gameOver) {
+                await Swal.fire({
+                    icon: 'info',
+                    title: 'Game over!',
+                    text: `You finished with $${money} and with $${debt} in debt. You donated $${donated} to charity!`
+                });
+            }
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+As you all know, DEF CON CTF Qualifier 2023 was really competitive and we didn't make it. Surprisingly, 2 months before the finals in Las Vegas, we received an official invitation from Nautilus Institute to attend the event. Should we accept the invitation and schedule the trip?

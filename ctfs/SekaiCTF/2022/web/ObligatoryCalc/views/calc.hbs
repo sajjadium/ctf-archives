@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.1.0/math.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+    <script>
+      let token;
+      const sanitize = (data) => {
+        if (window.Sanitizer) { // let's use the new Sanitizer API!
+          let li = document.createElement("li");
+          li.setHTML(data);
+          return li.innerHTML;  
+        }
+        // fallback to DOMPurify
+        return DOMPurify.sanitize(data);
+      };
+      window.onmessage = (e) => {
+        if (e.origin !== location.origin) {
+          return;
+        }
+
+        if (e.data) {
+          if (e.data.token) {
+            token = e.data.token;
+            return;
+          }
+          else if (e.data.expr) {
+            try {
+              let result = `${math.evaluate(e.data.expr)}`;
+              e.source.postMessage({ token, result: sanitize(result) }, "*");
+            }
+            catch(err) {
+              e.source.postMessage({ token, result: sanitize(err.message) }, "*");
+            }
+          }
+        }
+      };
+    </script>
+    why are you here?
+  </body>
+</html>

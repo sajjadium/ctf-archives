@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Frog-WAF</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('./msfrog.png');
+            background-repeat: repeat;
+            background-size: 30px;
+            background-color: black;
+        }
+
+        .content {
+            text-align: center;
+            padding: 100px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+<div class="content">
+    <h1 style="color:red; font-weight: bolder; font-size: 80px" th:text="${error}"></h1>
+</div>
+</body>
+</html>

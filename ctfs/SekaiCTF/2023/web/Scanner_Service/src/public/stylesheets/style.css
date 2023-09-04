@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+::placeholder {
+    text-align: center;
+}
+
+/* or, for legacy browsers */
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    text-align: center;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+    text-align: center;
+}
+
+:-ms-input-placeholder {
+    text-align: center;
+}
+
+body {
+    background-color: black;
+    color: rgb(105, 219, 105);
+    padding: 20px;
+    background-position: top left, top right, bottom left, bottom right;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.center-text {
+    text-align: center;
+}
+
+
+.wrapper {
+    width: 50%;
+    height: 100%;
+    margin-top: 10%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.wrapper input[type=submit] {
+    background-color: red;
+    border: none;
+    color: white;
+    height: 40px;
+    width: 130px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.wrapper input[type=text] {
+    border: none;
+    height: 35px;
+    width: 454px;
+    color: rgb(105, 219, 105);
+    background-color: black;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 18px;
+    border: 1px solid rgb(105, 219, 105);
+}
+
+.title {
+    color: white;
+    font-size: 30px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0%;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.result {
+    text-align: left !important;
+    font-size: 20px;
+    padding: 20px;
+    border: 2px dotted rgb(105, 219, 105);
+}

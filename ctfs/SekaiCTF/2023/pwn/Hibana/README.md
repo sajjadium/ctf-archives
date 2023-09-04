@@ -1,0 +1,8 @@
+Game
+Just text chatting is boring, so we made a plugin to introduce sticker communication to GoldSrc. Server owners can put their .bmp files in svencoop/headicons directory, and the plugin will automatically convert it to in-game format. When the game detects a chat message that corresponds to a sticker, it will be visible above that player's head. Our test server has a yay.bmp file, which will show up when a player types yay in chat.
+This plugin can also run on Counter-Strike 1.6 and Half-Life, but to avoid copyright issues, we decided to use a free-to-play game. You can download the game client here. Please make sure that your exploit works locally with the provided setup, as remote server access may be slow for distant users. If you cannot move your character around when connecting to remote, try lowering your fps_max value to 100.
+Note: If you are running the challenge using WSL, make sure that the files are in your WSL disk, not under mounted Windows folders. The server is using Intel CPU, so some of you who use AMD CPU would run another executable in the container, which will prevent you from solving the challenge. To overcome this, you can try replacing svends_amd binary with svends_i686 binary in the game folder. If this doesn't work, you should try build a VM or use an Intel CPU machine.
+Why is engine_i686.so provided seperately?
+The server turned off anti-cheat, so I think maybe can remove some client-side obstacles. Maybe can even call something normally not accessible from console?
+The file transfer code of client and server are the same.
+Try to understand GoldSrc filesystem a bit. Observe where the downloaded files are stored to. Also it doesn't use any pack file like .vpk, every file is stored directly on disk.

@@ -1,0 +1,1 @@
+Here is the hardest part: Can you directly recover the shortest path query if you are the server, having access to the original graph and all queries? (On a side note, this setting is somewhat realistic in scenarios such as Google Maps, where the whole routing map is available to the adversary.)

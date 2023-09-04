@@ -1,0 +1,8 @@
+# solang version v0.3.1
+
+[package]
+input_files = ["Arcade.sol"]
+contracts = ["Arcade"]
+
+[target]
+name = "solana"

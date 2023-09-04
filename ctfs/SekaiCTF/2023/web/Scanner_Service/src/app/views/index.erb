@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scanner Service</title>
+  <link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="center-text">
+    <h1 class="title">Vulnerability Scanner</h1>
+    <form action="/" method="post">
+      <p>Enter your Target</p><br>
+      <input type="text" name="service" value="" placeholder="IP-Address:Port">
+      <input type="submit" value="Scan">
+    </form>
+  </div>
+
+  <% if @scan_result %>
+    <pre class="result"> <code><%= @scan_result %></code></pre>
+  <% end %>
+</div>
+</body>
+</html>

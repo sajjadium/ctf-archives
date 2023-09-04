@@ -1,0 +1,13 @@
+[package]
+name = "arcade-server"
+version = "1.0.0"
+edition = "2021"
+
+[dependencies]
+solana-program-test = "1.10.41"
+solana-program = "1.10.41"
+solana-sdk = "1.10.41"
+sol-ctf-framework = { git = "https://github.com/otter-sec/sol-ctf-framework", branch="rewrite-v2" }
+threadpool = "1.8.1"
+rand = "0.8.5"
+borsh = "0.10.3"

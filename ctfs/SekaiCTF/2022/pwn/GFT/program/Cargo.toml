@@ -1,0 +1,19 @@
+[package]
+name = "gft"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+# copied from https://github.com/otter-sec/sol-ctf-framework/blob/main/examples/moar-horse-5/program/Cargo.toml
+
+[features]
+no-entrypoint = []
+
+[dependencies]
+solana-program = "1.8.14"
+borsh = "0.9.3"
+borsh-derive = "0.9.3"
+
+[lib]
+crate-type = ["cdylib", "lib"]

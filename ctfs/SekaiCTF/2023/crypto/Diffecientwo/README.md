@@ -1,0 +1,2 @@
+Welcome to the Diffecientwo Caching Database API for tracking and storing content across social media. We have repurposed our security product, as saving the admin key was probably not the best idea.
+We have decided to change our policies and to achieve better marketing, we are offering free API KEY to customers sharing #SEKAICTF #DEUTERIUM #DIFFECIENTWO #CRYPTO on LonelyFans (our premium business partner).

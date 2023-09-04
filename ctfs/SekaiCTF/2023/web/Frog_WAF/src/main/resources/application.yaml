@@ -1,0 +1,10 @@
+server:
+  port: 1337
+
+spring:
+  banner:
+    location: static/banner.txt
+  security:
+    filter:
+      dispatcher-types: request
+

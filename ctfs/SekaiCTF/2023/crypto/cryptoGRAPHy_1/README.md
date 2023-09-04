@@ -1,0 +1,2 @@
+Graphs have gained an increasing amount of attention in the world of Cryptography. They are used to model many real-world problems ranging from social media to traffic routing networks. Designing a secure Graph Encryption Scheme (GES) is important as querying plaintext graph database can leak sensitive information about the users.
+In this challenge I have implemented a novel GES. Please help me verify if the cryptosystem works.
