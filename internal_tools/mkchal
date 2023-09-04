@@ -34,9 +34,6 @@ def is_valid(line):
   if line.strip().isnumeric():
     return False
 
-  if all(not l.isalnum() for l in line.strip()):
-    return False
-
   if line.strip().lower() in ['web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography']:
     return False
 
@@ -78,7 +75,7 @@ if __name__ == '__main__':
       files.add(os.path.join(download_dir, f))
 
   # create challenge directory
-  lines = '\n'.join([re.sub(r'(\d+[ \t]+points)', r'\n\1', l.strip()) for l in sys.stdin.readlines()]).strip().split('\n')
+  lines = '\n'.join([re.sub(r'(\d+[ \t]+points)', r'\n\1', l.strip('\n')) for l in sys.stdin.readlines()]).strip().split('\n')
   chal_name = get_challenge_name(lines[0])
 
   lines = '\n'.join(lines[1:]).strip().split('\n')

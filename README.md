@@ -2166,6 +2166,11 @@
             <td><a href="https://ctftime.org/event/1246/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Urmia">Urmia</a></td>
+            <td><a href="ctfs/Urmia/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2067/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/VULNCON">VULNCON</a></td>
             <td><a href="ctfs/VULNCON/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1469/tasks/" target="_blank">CTFtime</a></td>
