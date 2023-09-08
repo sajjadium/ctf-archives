@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  chall:
+    build: .
+    image: login_system
+    init: true
+    environment:
+      # this is not a part of the challenge, just for isolating the challenge instance
+      # setting this will require http basic auth to access the challenge
+      # - HTTP_USERNAME=admin
+      # - HTTP_PASSWORD=admin
+      # container timeout
+      - TIMEOUT=6000
+    ports:
+      - "3000:3000"

@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  spawner:
+    build: spawner
+    environment:
+      - TITLE=Harmony Bot Spawner
+      - IMAGE_NAME=harmony_bot
+      - PORT=3001
+      - TIMEOUT=60
+      # default APP_SERVER is http://localhost:3000 (for testing)
+      - APP_SERVER=${APP_SERVER}
+      - TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}
+      - TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    init: true
+    ports:
+      - "3001:3001"
+  server:
+    build: server
+    environment:
+      - PORT=3000
+    init: true
+    ports:
+      - "3000:3000"

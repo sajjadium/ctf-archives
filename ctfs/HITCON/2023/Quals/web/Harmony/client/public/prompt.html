@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Prompt</title>
+		<link rel="stylesheet" href="bootstrap.min.css">
+	</head>
+	<body>
+		<form class="container" id="frm">
+			<h1 id="msg">MSG</h1>
+			<input class="form-control" type="text" id="text" />
+			<div class="actions">
+				<button class="btn btn-primary" type="submit">OK</button>
+				<button class="btn btn-secondary" id="cancelBtn">Cancel</button>
+			</div>
+		</form>
+		<style>
+			html,
+			body {
+				height: 100vh;
+				margin: 0;
+				padding: 0;
+			}
+			.container {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				box-sizing: border-box;
+				margin: 0px;
+				padding: 12px;
+			}
+			.actions {
+				display: flex;
+				justify-content: flex-end;
+			}
+			.actions > button {
+				margin-left: 12px;
+
+			}
+		</style>
+		<script>
+			api.registerPromptMessage(message => {
+				text.focus()
+				msg.setHTML(message)
+			})
+			frm.onsubmit = () => {
+				api.promptResponse(text.value)
+			}
+			cancelBtn.onclick = () => {
+				api.promptResponse(null)
+			}
+		</script>
+	</body>
+</html>

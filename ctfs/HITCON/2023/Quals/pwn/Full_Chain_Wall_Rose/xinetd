@@ -1,0 +1,11 @@
+service rose
+{
+    disable = no
+    type = UNLISTED
+    socket_type = stream
+    protocol = tcp
+    port = 30001
+    wait = no
+    user = user
+    server = /home/user/run.sh
+}

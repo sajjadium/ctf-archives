@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Profile</title>
+		<link rel="stylesheet" href="/simple.css" />
+		<script src="/json-form.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Profile</h1>
+			<%- include('nav') %>
+		</header>
+		<main>
+			<section>
+				<h2>User Info</h2>
+				<ul>
+					<li>Username: <%= username %></li>
+					<li>Privilege Level: <%= privilegeLevel %></li>
+					<% if (access.flag) { %>
+					<li>Flag: <a href="/flag">click me</a></li>
+					<% } %>
+				</ul>
+			</section>
+			<% if (access.change_password) { %>
+			<section>
+				<h2>Change Password</h2>
+				<form is="json-form" action="/change_password" method="POST" data-success="/profile">
+					<input name="username" value="<%= username %>" type="hidden" />
+					<p>
+						<label for="old_password">Old Password</label>
+						<input name="old_password" type="password" />
+					</p>
+					<p>
+						<label for="new_password">New Password</label>
+						<input name="new_password" type="password" />
+					</p>
+					<p>
+						<button>Change Password</button>
+					</p>
+				</form>
+			</section>
+			<% } %>
+		</main>
+	</body>
+</html>

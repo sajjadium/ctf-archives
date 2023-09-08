@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Register</title>
+		<link rel="stylesheet" href="/simple.css" />
+		<script src="/json-form.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Register</h1>
+			<%- include('nav') %>
+		</header>
+		<main>
+			<form is="json-form" method="POST" data-success="/login">
+				<input name="privilegeLevel" value="user" type="hidden" />
+				<p>
+					<label for="username">Username</label>
+					<input name="username" />
+				</p>
+				<p>
+					<label for="password">Password</label>
+					<input name="password" type="password" />
+				</p>
+				<p>
+					<button>Register</button>
+				</p>
+			</form>
+		</main>
+	</body>
+</html>

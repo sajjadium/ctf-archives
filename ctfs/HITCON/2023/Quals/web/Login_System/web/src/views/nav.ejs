@@ -1,0 +1,15 @@
+<nav>
+	<ul>
+		<% if (access.index) { %>
+		<li><a href="/">Home</a></li>
+		<% } %> <% if (access.login) { %>
+		<li><a href="/login">Login</a></li>
+		<% } %> <% if (access.register) { %>
+		<li><a href="/register">Register</a></li>
+		<% } %> <% if (access.profile) { %>
+		<li><a href="/profile">Profile</a></li>
+		<% } %> <% if (access.logout) { %>
+		<li><a href="/logout">Logout</a></li>
+		<% } %>
+	</ul>
+</nav>

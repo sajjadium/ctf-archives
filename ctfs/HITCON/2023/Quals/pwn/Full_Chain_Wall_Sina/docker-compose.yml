@@ -1,0 +1,8 @@
+version: "3"
+services:
+  sina:
+    build: .
+    ports:
+      - "30000:30000"
+    expose:
+      - "30000"

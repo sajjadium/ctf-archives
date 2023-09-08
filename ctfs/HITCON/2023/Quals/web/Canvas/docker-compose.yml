@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  bot:
+    build:
+      context: ./bot
+    environment:
+      - TITLE=Admin Bot for Canvas
+      - PORT=8000
+      - URL_CHECK_REGEX=^https?://.{1,256}$
+      - TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}
+      - TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}
+      # default `SITE` would be `http://web`
+      # please note that `SITE` will be set to the actual, publicly accessible domain
+      - SITE=${SITE}
+      - FLAG=${FLAG}
+    init: true
+    security_opt: 
+      - seccomp=chrome.json
+    ports:
+      - "8000:8000"
+  web:
+    image: nginx
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "8763:80"

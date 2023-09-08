@@ -1,0 +1,6 @@
+services:
+  chall:
+    build: .
+    privileged: true
+    ports:
+      - "22222:5000"

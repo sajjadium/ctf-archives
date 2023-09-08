@@ -1,0 +1,6 @@
+services:
+  chall:
+    build: .
+    privileged: true
+    ports:
+      - "11111:5000"

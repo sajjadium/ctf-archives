@@ -905,12 +905,16 @@
             <td><a href="https://ctftime.org/event/1353/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/HCMUS">HITCON</a></td>
+            <td rowspan=1><a href="ctfs/HCMUS">HCMUS</a></td>
             <td><a href="ctfs/HCMUS/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1944/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=6><a href="ctfs/HITCON">HITCON</a></td>
+            <td rowspan=7><a href="ctfs/HITCON">HITCON</a></td>
+            <td><a href="ctfs/HITCON/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2019/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/HITCON/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1772/tasks/" target="_blank">CTFtime</a></td>
         </tr>

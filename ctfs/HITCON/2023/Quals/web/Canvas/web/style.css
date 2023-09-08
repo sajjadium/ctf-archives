@@ -1,0 +1,26 @@
+body {
+    background: #383838;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    padding: 50px 0 1em;
+    margin: 0 auto;
+    border: 0px;
+}
+
+.centered {
+    max-width: 1000px;
+    margin: 15px auto;
+    padding: 15px;
+}
+
+#canvas {
+    width: 100%;
+    background: #ffffff;
+}
+
+#code-form textarea {
+    width: 100%;
+}

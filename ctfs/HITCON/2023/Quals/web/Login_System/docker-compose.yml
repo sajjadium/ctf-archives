@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  spawner:
+    build: spawner
+    environment:
+      - TITLE=Login System Spawner
+      - IMAGE_NAME=login_system
+      - PORT=3001
+      - TIMEOUT=60
+      - PORT_RANGE=10000-11000
+      - TURNSTILE_SITE_KEY=${TURNSTILE_SITE_KEY}
+      - TURNSTILE_SECRET_KEY=${TURNSTILE_SECRET_KEY}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    init: true
+    ports:
+      - "3001:3001"

@@ -1,0 +1,7 @@
+version: "3"
+services:
+  classicalpadding:
+    build: .
+    privileged: true
+    ports:
+      - "11111:5000"
