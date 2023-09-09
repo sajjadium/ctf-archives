@@ -1,0 +1,52 @@
+body {
+    background-color: hotpink;
+    color: white;
+     display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+      font-family: "Roboto Mono", monospace;}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: black;
+    width: 75%;
+    border: 2px solid black;
+    box-sizing: border-box;
+    position: relative; /* Added */
+}
+
+.logo {
+    width: 25%;
+    border-radius: 10px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+}
+
+select {
+    font-family: "Roboto Mono", monospace;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: purple;
+    color: white;
+    border: none;
+    outline: none;
+}
+
+button {
+    font-family: "Roboto Mono", monospace;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: purple;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #560BAD; /* Darker shade of purple on hover */
+}

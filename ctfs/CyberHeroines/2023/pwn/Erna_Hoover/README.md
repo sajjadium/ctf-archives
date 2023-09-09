@@ -1,0 +1,3 @@
+Erna Schneider Hoover (born June 19, 1926) is an American mathematician notable for inventing a computerized telephone switching method which "revolutionized modern communication". It prevented system overloads by monitoring call center traffic and prioritizing tasks on phone switching systems to enable more robust service during peak calling times. At Bell Laboratories where she worked for over 32 years, Hoover was described as an important pioneer for women in the field of computer technology. - Wikipedia Entry
+
+Chal: Get your best shellcode going at 0.cloud.chals.io 28184 for this inventor who developed the system for handling telephone traffic overload.

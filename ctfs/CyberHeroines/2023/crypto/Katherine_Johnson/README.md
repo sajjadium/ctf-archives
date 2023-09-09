@@ -1,0 +1,3 @@
+Creola Katherine Johnson (née Coleman; August 26, 1918 – February 24, 2020) was an American mathematician whose calculations of orbital mechanics as a NASA employee were critical to the success of the first and subsequent U.S. crewed spaceflights. During her 33-year career at NASA and its predecessor, she earned a reputation for mastering complex manual calculations and helped pioneer the use of computers to perform the tasks. The space agency noted her "historical role as one of the first African-American women to work as a NASA scientist" - Wikipedia Entry
+
+Chal: This challenge is designed to test hill climbing. Inspire this NASA Trailblazer by climbing like a rocket!

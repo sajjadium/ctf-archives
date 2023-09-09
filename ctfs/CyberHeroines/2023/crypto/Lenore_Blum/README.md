@@ -1,0 +1,3 @@
+Lenore Carol Blum (née Epstein born December 18, 1942) is an American computer scientist and mathematician who has made contributions to the theories of real number computation, cryptography, and pseudorandom number generation. She was a distinguished career professor of computer science at Carnegie Mellon University until 2019 and is currently a professor in residence at the University of California, Berkeley. She is also known for her efforts to increase diversity in mathematics and computer science. - Wikipedia Entry
+
+Chal: Connect to 0.cloud.chals.io 28827 and return the flag to the computational mathematics professor from this random talk

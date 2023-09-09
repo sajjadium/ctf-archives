@@ -1,0 +1,3 @@
+Dorothy Jean Johnson Vaughan (September 20, 1910 – November 10, 2008) was an American mathematician and human computer who worked for the National Advisory Committee for Aeronautics (NACA), and NASA, at Langley Research Center in Hampton, Virginia. In 1949, she became acting supervisor of the West Area Computers, the first African-American woman to receive a promotion and supervise a group of staff at the center. - Wikipedia Entry
+
+Chal: We ran this Fortran Software and received the output Final Array:bcboe{g4cy:ixa8b|m:8}. We have no idea what this means but return the flag to the Human Computer

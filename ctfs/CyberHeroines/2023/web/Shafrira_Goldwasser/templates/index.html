@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>CyberHeroines</title>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ url_for('static', filename='logo.png') }}" class="logo">
+
+        <h1>Cyber Heroines Records Database</h1>
+        <form method="POST">
+            <label for="heroine_name">Select your favorite Cyber Heroine:</label>
+            <br>
+            <select name="heroine_name">
+                <option value="AdaLovelace">Ada LoveLace</option>
+                 <option value="GraceHopper">Grace Hopper</option>
+                 <option value="BarbaraLiskov">Barbara Liskov</option>
+                 <option value="MargaretHamilton">Margaret Hamilton</option>
+                 <option value="StephanieDorothea">Stephanie Dorothea</option>
+                 <option value="LenoreBlum">Lenore Blum</option>
+                 <option value="DorothyVaughan">Dorothy Vaughan</option>
+                 <option value="SusanLandau">Susan Landau</option>
+                 <option value="RadiaPerlman">Radia Perlman</option>
+                 <option value="ErnaHoover">Erna Hoover</option>
+                <!-- Add more options here -->
+            </select>
+            <br>
+            <button type="submit">Get Biography</button>
+        </form>
+        <div class="biography">
+            <h2>Biography:</h2>
+            <p>{{ biography }}</p>
+        </div>
+    </div>
+</body>
+</html>
+
