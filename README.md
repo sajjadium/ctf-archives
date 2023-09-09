@@ -1496,8 +1496,12 @@
             <td><a href="https://ctftime.org/event/1719/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/Patriot">Patriot</a></td>
-            <td><a href="ctfs/Patriot/2022">2022</a></td>
+            <td rowspan=2><a href="ctfs/PatriotCTF">PatriotCTF</a></td>
+            <td><a href="ctfs/PatriotCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2030/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/PatriotCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1616/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

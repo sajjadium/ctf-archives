@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  pyjail:
+    build:
+      context: .
+    volumes:
+      - .:/home/pctf/
+    restart: always
+    ports:
+      - "4444:4444"
+    # stop_grace_period: 5s

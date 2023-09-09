@@ -1,0 +1,238 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("../images/flower-background.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    min-height: 100vh;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    flex-grow: 1;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container h3 {
+    text-align: center;
+    font-family: "Brush Script MT", cursive;
+    font-size: xx-large;
+}  
+
+.container form {
+    align-items: center;
+}
+
+.banner h1 {
+    margin: 0;
+}
+
+.header-banner {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.banner-left {
+    flex: 1;
+}
+
+.banner-right {
+    flex: 0;
+    display: flex;
+    align-items: center;
+}
+
+.banner-right .welcome-message {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.logout-button {
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.logout-button:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+
+.footer-banner {
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    text-align: center;
+    flex-shrink: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+h1 {
+    font-family: "Brush Script MT", cursive;
+}
+
+h4 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: "Brush Script MT", cursive;
+}
+
+p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.index-login hr {
+    width: 100%;
+    border: none;
+    border-top: 2px solid #363333;
+    margin: 20px 0;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 50%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+}
+
+button:hover {
+    background-color: #555;
+}
+
+.flower-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    transform: scale(0.85);
+    margin-top: -60px;
+    margin-bottom: -50px;
+    margin-right: -70px;
+}
+
+.flower-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 200px;
+    position: relative;
+}
+
+
+.flower-image {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%; 
+}
+
+.flower-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.flower-image:hover .flower-name {
+    opacity: 1;
+}
+
+.flower-name {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    width: 75%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.flower-name h3 {
+    font-size: 18px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.flower-item h3 {
+    margin: 2px 0;
+}
+
+.flower-item p {
+    margin: 2px 0;
+    /* padding: 5px; */
+}
+
+.flower-item img {
+    border: 1px solid #000;
+    /* display: block; */
+    box-shadow: 0 0 0 1px #000;
+}
+
+.flower-item button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.flower-item button:hover {
+    background-color: #555;
+}
+
+.error-alert {
+    background-color: #ffdddd;
+    color: #ff0000;
+    padding: 10px;
+    margin-bottom: 10px;
+}
