@@ -1,0 +1,8 @@
+services:
+  chall:
+    build: .
+    privileged: true
+    ports:
+      - "44444:5000"
+    environment:
+      - JAIL_ENV_FLAG=${FLAG}

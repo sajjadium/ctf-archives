@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  chall:
+    image: hash
+    build: .
+    ports:
+      - 33333:5000
+    environment:
+      - FLAG=${FLAG}
+    restart: always
