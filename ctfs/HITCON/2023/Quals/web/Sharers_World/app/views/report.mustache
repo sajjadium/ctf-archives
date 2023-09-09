@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/simple.css" />
+    <title>Report</title>
+</head>
+
+<body>
+    <main>
+        <h1>Report</h1>
+        {{#message}}
+        <p class="notice">{{message}}</p>
+        {{/message}}
+        <form action="/report" method="POST">
+            <label for="file-id">File ID</label>
+            <input type="text" name="file_id" id="file-id" value="{{file_id}}" />
+            <label for="token">Team Token</label>
+            <input type="text" name="token" id="token" value="{{token}}" />
+
+            <p><input type="submit" value="Submit" /></p>
+        </form>
+    </main>
+</body>
+
+</html>

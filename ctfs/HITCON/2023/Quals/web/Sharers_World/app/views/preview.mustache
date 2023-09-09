@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/static/simple.css" />
+  <title>{{ name }} - Sharer</title>
+</head>
+
+<body>
+  <main>
+    <h1>Preview - {{ name }}</h1>
+    <p><a href="/file/{{ file_id }}?download=1">Download</a></p>
+    <iframe src="/file/{{ file_id }}" width="100%" height="500px" sandbox></iframe>
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  admin-bot.sharer.world:
+    build: ./bot
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - PORT=443
+      - BOT_HOST=admin-bot.sharer.world
+      - APP_HOST=sharer.world
+      - SCOREBOARD_URL=http://censored
+      - FLAG=hitcon{fake}
+
+    volumes:
+      - /etc/letsencrypt/live/sharer.world/fullchain.pem:/opt/certificates/fullchain.pem
+      - /etc/letsencrypt/live/sharer.world/privkey.pem:/opt/certificates/privkey.pem # not provided
+
+  sharer.world:
+    build: ./app
+    restart: always
+    ports:
+      - "443:443"
+    environment:
+      - NODE_ENV=production
+      - PORT=443
+      - BOT_HOST=admin-bot.sharer.world
+
+    volumes:
+      - /etc/letsencrypt/live/sharer.world/fullchain.pem:/opt/certificates/fullchain.pem
+      - /etc/letsencrypt/live/sharer.world/privkey.pem:/opt/certificates/privkey.pem # not provided
+
+    depends_on:
+      - admin-bot.sharer.world
