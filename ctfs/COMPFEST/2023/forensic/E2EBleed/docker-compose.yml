@@ -1,0 +1,17 @@
+version: "3"
+services:
+  backend:
+    build: backend
+    ports:
+      - "555:8080"
+
+  frontend:
+    build: frontend
+    image: joseluisq/static-web-server:2
+    environment:
+      - SERVER_PORT=80
+      - SERVER_ROOT=/public/dist
+    ports:
+      - "444:80"
+    volumes:
+      - ./frontend:/public

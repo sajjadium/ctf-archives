@@ -1,0 +1,19 @@
+{
+  "name": "noobgramer",
+  "version": "1.0.0",
+  "description": "API for noobgramer",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production nodemon index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mmone",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jws": "^4.0.0",
+    "nodemon": "^2.0.2"
+  }
+}

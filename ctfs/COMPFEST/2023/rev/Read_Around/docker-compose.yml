@@ -1,0 +1,9 @@
+version: '3'
+services:
+  read-around:
+    build: .
+    restart: on-failure
+    container_name: read-around
+    read_only: true
+    ports:
+      - 10013:3000

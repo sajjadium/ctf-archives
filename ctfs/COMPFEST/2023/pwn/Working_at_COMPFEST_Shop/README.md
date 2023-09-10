@@ -1,0 +1,1 @@
+You are a new and aspiring shop worker at COMPFEST Shop, a shop owned by COMPFEST Company. Upon arriving at the shop to begin your first day working, you met a mysterious figure. Looks like they want to say something to you, go on and listen to them!

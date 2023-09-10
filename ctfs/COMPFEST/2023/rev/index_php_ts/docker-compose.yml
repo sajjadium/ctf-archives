@@ -1,0 +1,10 @@
+version: '3'
+services:
+  frontend:
+    build: .
+    image: "indexphpts:1.0.0"
+    environment:
+      - DB_PATH=/tmp/data.db
+      - FLAG=COMPFEST15{REDACTED}
+    ports:
+      - "10011:3000"

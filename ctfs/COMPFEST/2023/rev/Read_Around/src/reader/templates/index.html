@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello, world!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link rel="icon" href="favicon.png">
+  
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.51.6/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+    <div class="w-full">
+        <div class="min-h-screen flex flex-col gap-4 items-center justify-center container mx-auto">
+            <div class="flex flex-col gap-4 p-4 bg-black rounded-lg">
+                <p class="text-center">Only txt files allowed!</p>
+                <form action="/" method="post" class="flex flex-row gap-2">
+                    <input type="text" name="fname" placeholder="Give file to read" class="input w-full" />
+                    <button class="btn btn-primary" type="submit">Check</button>
+                </form>
+            </div>
+
+            <p>Files:</p>
+            <pre>{{ files }}</pre>
+
+            {% if content %}
+            <p>Content:</p>
+            {{ content | replace("\n","<br />") | safe }}
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
