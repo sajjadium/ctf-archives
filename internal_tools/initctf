@@ -29,7 +29,12 @@ if __name__ == '__main__':
     m = re.fullmatch('/ctf/(\d+)', link.get('href'))
     if m:
       ctf_id = m.group(1)
-      ctf_name = ''.join([t for t in link.text.strip().split() if t.lower() != 'ctf'])
+      ctf_name = ''
+      for t in link.text.strip().split():
+        if t.lower() == 'ctf':
+          break
+        ctf_name += t
+
       break
 
   ctf_name = re.sub('[^0-9a-zA-Z_\-]+', '', ctf_name.replace('Preliminary', '').strip())

@@ -1,0 +1,72 @@
+# k3ma5
+# CSAW '23 Vault Cryptographic Forensics Challenge
+# Br3akTh3V@u1t
+#
+
+- hosts: localhost
+  vars_files:
+    - vars/main.yml
+
+  vars_prompt:
+    - name: csaw_vault_secret
+      prompt: Enter the Vault password
+      private: true
+  
+  tasks:
+
+    - name: Create dirs
+      file:
+        path: "/opt/{{ item }}"
+        state: directory
+        mode : 755
+        owner: root
+        group: root
+      loop: 
+        - tmp1
+        - tmp2
+        - tmp3
+        - tmp4
+        - tmp5
+        - tmp6
+        - tmp7
+        - tmp8
+        - tmp9
+        - tmp10
+        - tmp2.71828
+        - tmp1337
+        - tmp2013-12-19
+        - tmp02-06-2020
+        - tmp11-11-2011
+        - tmp02-02-1902
+    
+    - name: Create CSAW Vault
+      file:
+        path: "{{ vault_file_path }}"
+        state: touch
+        mode : 755
+        owner: root
+        group: root
+
+    - name: Add Vault Secret
+      lineinfile: 
+        state: present
+        insertafter: EOF
+        dest: "{{ vault_file_path }}"
+        line: "{{ sus1337 }}"
+      no_log: true
+
+    - name: Encrypt file "{{ vault_file }}"
+      expect:
+        command: ansible-vault encrypt "{{ vault_file_path }}"
+        responses:
+          New Vault password: "{{ vault_secret }}"
+          Confirm New Vault password: "{{ vault_secret }}"
+      no_log: true
+  
+    - name: Insert Vault Secret into Ansible Config
+      lineinfile: 
+        state: present
+        insertafter: "#vault_password_file = /path/to/vault_password_file"
+        dest: "{{ ansibleConfig_path }}"
+        line: "vault_password_file = {{ vault_file }}"
+      no_log: true
