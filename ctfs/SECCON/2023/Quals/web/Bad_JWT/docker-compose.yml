@@ -1,0 +1,11 @@
+version: '3'
+ 
+services:
+  challenge:
+    container_name: 'bad-jwt'
+    build: './challenge'
+    ports:
+      - '3000:3000'
+    environment:
+      - FLAG=SECCON{dummy}
+    restart: always

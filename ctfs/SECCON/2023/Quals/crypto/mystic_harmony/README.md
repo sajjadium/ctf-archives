@@ -1,0 +1,1 @@
+The spirit world and the human world are two sides of the same coin. A misalignment in the two worlds would be apocalypse. You have been assigned by a witch to investigate the misalignment of the worlds. Report its location and quantity to the witch and bring the world into harmony!

@@ -19,7 +19,10 @@ def is_valid(line):
   if re.search('\d+[ \t]+points', line) or re.search('\d+[ \t]*solves', line) or re.search('\d+[ \t]+solve', line):
     return False
 
-  if re.search('\d+pt', line):
+  if re.search('\d+[ \t]*pt', line):
+    return False
+
+  if line.strip().lower().startswith('author:'):
     return False
 
   if re.search(r'\d{2}/\d{2}, \d{2}:\d{2}:\d{2}', line):

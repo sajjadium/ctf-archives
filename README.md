@@ -1705,8 +1705,12 @@
             <td><a href="https://ctftime.org/event/1761/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/SECCON">SECCON</a></td>
-            <td><a href="ctfs/SECCON/2022/Quals">2022</a></td>
+            <td rowspan=6><a href="ctfs/SECCON">SECCON</a></td>
+            <td><a href="ctfs/SECCON/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2003/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/SECCON/2022/Quals">2022 Quals</a></td>
             <td><a href="https://ctftime.org/event/1764/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

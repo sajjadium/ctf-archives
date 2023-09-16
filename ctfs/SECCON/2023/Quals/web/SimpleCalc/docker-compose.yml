@@ -1,0 +1,11 @@
+version: '3'
+ 
+services:
+  challenge:
+    build: ./challenge
+    restart: always
+    environment:
+      - FLAG=SECCON{dummy}
+      - ADMIN_TOKEN=dummy
+    ports:
+      - '3000:3000'

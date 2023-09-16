@@ -1,0 +1,17 @@
+{
+  "name": "chall",
+  "version": "1.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "bundle": "esbuild src/render.js --bundle --platform=node --outfile=src/render.dist.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-xss-sanitizer": "^1.1.6"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.2"
+  }
+}

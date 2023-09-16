@@ -1,0 +1,11 @@
+version: '3'
+services:
+  dist_readme:
+    build: .
+    working_dir: /home/ctf
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "2023:9999"
+    restart: unless-stopped

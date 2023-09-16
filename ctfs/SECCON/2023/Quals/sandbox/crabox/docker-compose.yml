@@ -1,0 +1,9 @@
+version: "3"
+services:
+  sandbox:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "1337:1337"
+    environment:
+      - FLAG=SECCON{dummy}

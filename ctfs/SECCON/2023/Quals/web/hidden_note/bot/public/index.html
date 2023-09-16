@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <title>Admin Bot</title>
+</head>
+<body>
+  <main class="container">
+    <article>
+      <hgroup>
+        <h2>Admin Bot</h2>
+        <h3>{ Challenge: "hidden-note", APP_URL: "<span id="appUrl"></span>" }</h3>
+      </hgroup>
+      <label for="url">URL:</label>
+      <input type="text" id="url" name="url" placeholder="https://example.com" required>
+      <button id="report" aria-busy="false">Report</button>
+    </article>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

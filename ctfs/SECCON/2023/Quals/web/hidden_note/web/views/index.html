@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="script-src 'none'; style-src https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <title>hidden-note</title>
+</head>
+<body>
+  <div class="container is-max-desktop p-4">
+    <article class="message is-link">
+      <div class="message-header">
+        <p class="title has-text-white">{{ slice $.user.ID 0 6 }}'s notes</p>
+      </div>
+      <div class="message-body">
+        <p>Search Query:
+          {{ if $.user.Query }}
+            <strong>{{ $.user.Query }}</strong>
+          {{ else }}
+            &lt;empty&gt;
+          {{ end }}
+        </p>
+        <table class="table is-fullwidth">
+          <tbody>
+            {{ range $note := $.notes }}
+              <form action="/notes/delete/{{ $note.ID }}" method="post">
+                <tr>
+                  <td>{{ $note.Content }}</td>
+                  {{ if not $.shared }}
+                    <td class="has-text-right"><button type="submit" class="delete note-delete"></button></td>
+                  {{ end }}
+                </tr>
+              </form>
+            {{ end }}
+          </tbody>
+        </table>
+        {{ if not $.shared }}
+          <div class="buttons is-right">
+            <a href="/share" class="button is-link is-small is-rounded">Share</a>
+          </div>
+        {{ end }}
+      </div>
+    </article>
+    {{ if not $.shared }}
+      <div class="container px-6">
+        <form action="/notes/new" method="post" class="field">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input type="text" class="input" id="content" name="content" required>
+            </div>
+            <div class="control">
+              <button id="create" type="submit" class="button is-link">Create</button>
+            </div>
+          </div>
+        </form>
+        <form action="/" method="get" class="field">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input type="text" class="input" name="query" value="{{ .user.Query }}">
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-link">Search</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    {{ end }}
+  </div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+version: "3"
+services:
+  web:
+    build: ./web
+    restart: unless-stopped
+    ports:
+      - 3000:3000
+  bot:
+    build: ./bot
+    restart: unless-stopped
+    ports:
+      - 1337:1337
+    environment:
+      - FLAG=SECCON{dummy}
