@@ -1,0 +1,3 @@
+Years ago there was this neat little bug discovered in OpenSSL, which became known as "Heartbleed". The world's first bug with a name. Heck, it even had a logo! I have attempted to recreate something thematically similar to Heartbleed here for you.
+
+There are plenty of ROP gadgets here, but not a single "/bin/sh" string. Darn it! Maybe you could put "/bin/sh" somewhere in memory yourself, as you send the payload? If so it sure would be convenient if one of the registers was already pointing to it. If you could only find some ROP gadgets to shuffle that register's value into RDI...

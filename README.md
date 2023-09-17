@@ -1543,6 +1543,11 @@
             <td><a href="https://ctftime.org/event/617/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/PlaidCTF/2018">PersianCats</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/PointerOverflow">PointerOverflow</a></td>
+            <td><a href="ctfs/PointerOverflow/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2026/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/PoseidonCTF">Poseidon</a></td>
             <td><a href="ctfs/PoseidonCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1049/tasks/" target="_blank">CTFtime</a></td>
