@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  bot:
+    build:
+      context: ./bot
+    environment:
+      - TITLE=Admin Bot for Rainbow Notes
+      - PORT=8000
+      - URL_CHECK_REGEX=^https?://.{1,256}$
+      # default `SITE` would be `http://web`
+      # please note that `SITE` will be set to the actual, publicly accessible domain
+      - SITE=${SITE}
+      # format: ^csawctf{[a-f0-9]{10}}$
+      - FLAG=${FLAG}
+    init: true
+    security_opt: 
+      - seccomp=chrome.json
+    ports:
+      - "8000:8000"
+  web:
+    image: nginx
+    volumes:
+      - ./web:/usr/share/nginx/html:ro
+    ports:
+      - "8763:80"
