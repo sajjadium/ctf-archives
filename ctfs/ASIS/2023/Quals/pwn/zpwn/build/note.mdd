@@ -1,0 +1,6 @@
+name=zsh/note
+load=no
+
+autofeatures="b:note-add b:note-view b:note-edit"
+
+objects="note.o"

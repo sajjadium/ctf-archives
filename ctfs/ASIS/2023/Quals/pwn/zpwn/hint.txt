@@ -1,0 +1,6 @@
+You have to get access to the chroot function in the zsh binary (because zsh doesn't have a chroot function you have to pwn it).
+After that you know what to do ( google `chroot escape` ).
+
+hint:
+https://github.com/zsh-users/zsh/commit/a88415cbf71a02cfe26647d1775b00044df262d1
+
