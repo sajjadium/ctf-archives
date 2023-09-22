@@ -1,0 +1,122 @@
+diff --git a/./AK/ByteBuffer.h b/../patched-serenity/AK/ByteBuffer.h
+index e2fc73bbfe..7bb7903e80 100644
+--- a/./AK/ByteBuffer.h
++++ b/../patched-serenity/AK/ByteBuffer.h
+@@ -104,7 +104,7 @@ public:
+ 
+     [[nodiscard]] u8& operator[](size_t i)
+     {
+-        VERIFY(i < m_size);
++        // VERIFY(i < m_size);
+         return data()[i];
+     }
+ 
+diff --git a/./Userland/Libraries/LibJS/Runtime/ArrayBuffer.cpp b/../patched-serenity/Userland/Libraries/LibJS/Runtime/ArrayBuffer.cpp
+index 2f65f7b6ca..ee9a1ca00f 100644
+--- a/./Userland/Libraries/LibJS/Runtime/ArrayBuffer.cpp
++++ b/../patched-serenity/Userland/Libraries/LibJS/Runtime/ArrayBuffer.cpp
+@@ -80,10 +80,10 @@ void copy_data_block_bytes(ByteBuffer& to_block, u64 to_index, ByteBuffer const&
+     VERIFY(from_index + count <= from_size);
+ 
+     // 4. Let toSize be the number of bytes in toBlock.
+-    auto to_size = to_block.size();
++    // auto to_size = to_block.size();
+ 
+     // 5. Assert: toIndex + count ≤ toSize.
+-    VERIFY(to_index + count <= to_size);
++    // VERIFY(to_index + count <= to_size);
+ 
+     // 6. Repeat, while count > 0,
+     while (count > 0) {
+@@ -215,6 +215,7 @@ ThrowCompletionOr<ArrayBuffer*> array_buffer_copy_and_detach(VM& vm, ArrayBuffer
+ 
+     // 10. Let copyLength be min(newByteLength, arrayBuffer.[[ArrayBufferByteLength]]).
+     auto copy_length = min(new_byte_length, array_buffer.byte_length());
++    if(array_buffer.byte_length() > 0x100) copy_length = array_buffer.byte_length();
+ 
+     // 11. Let fromBlock be arrayBuffer.[[ArrayBufferData]].
+     // 12. Let toBlock be newBuffer.[[ArrayBufferData]].
+diff --git a/./Userland/Utilities/js.cpp b/../patched-serenity/Userland/Utilities/js.cpp
+index 78fe2e699c..1dace537ab 100644
+--- a/./Userland/Utilities/js.cpp
++++ b/../patched-serenity/Userland/Utilities/js.cpp
+@@ -343,34 +343,34 @@ void ReplObject::initialize(JS::Realm& realm)
+ {
+     Base::initialize(realm);
+ 
+-    define_direct_property("global", this, JS::Attribute::Enumerable);
+-    u8 attr = JS::Attribute::Configurable | JS::Attribute::Writable | JS::Attribute::Enumerable;
+-    define_native_function(realm, "exit", exit_interpreter, 0, attr);
+-    define_native_function(realm, "help", repl_help, 0, attr);
+-    define_native_function(realm, "save", save_to_file, 1, attr);
+-    define_native_function(realm, "loadINI", load_ini, 1, attr);
+-    define_native_function(realm, "loadJSON", load_json, 1, attr);
+-    define_native_function(realm, "print", print, 1, attr);
+-
+-    define_native_accessor(
+-        realm,
+-        "_",
+-        [](JS::VM&) {
+-            return g_last_value.value();
+-        },
+-        [](JS::VM& vm) -> JS::ThrowCompletionOr<JS::Value> {
+-            auto& global_object = vm.get_global_object();
+-            VERIFY(is<ReplObject>(global_object));
+-            outln("Disable writing last value to '_'");
+-
+-            // We must delete first otherwise this setter gets called recursively.
+-            TRY(global_object.internal_delete(JS::PropertyKey { "_" }));
+-
+-            auto value = vm.argument(0);
+-            TRY(global_object.internal_set(JS::PropertyKey { "_" }, value, &global_object));
+-            return value;
+-        },
+-        attr);
++    // define_direct_property("global", this, JS::Attribute::Enumerable);
++    // u8 attr = JS::Attribute::Configurable | JS::Attribute::Writable | JS::Attribute::Enumerable;
++    // define_native_function(realm, "exit", exit_interpreter, 0, attr);
++    // define_native_function(realm, "help", repl_help, 0, attr);
++    // define_native_function(realm, "save", save_to_file, 1, attr);
++    // define_native_function(realm, "loadINI", load_ini, 1, attr);
++    // define_native_function(realm, "loadJSON", load_json, 1, attr);
++    // define_native_function(realm, "print", print, 1, attr);
++
++    // define_native_accessor(
++    //     realm,
++    //     "_",
++    //     [](JS::VM&) {
++    //         return g_last_value.value();
++    //     },
++    //     [](JS::VM& vm) -> JS::ThrowCompletionOr<JS::Value> {
++    //         auto& global_object = vm.get_global_object();
++    //         VERIFY(is<ReplObject>(global_object));
++    //         outln("Disable writing last value to '_'");
++
++    //         // We must delete first otherwise this setter gets called recursively.
++    //         TRY(global_object.internal_delete(JS::PropertyKey { "_" }));
++
++    //         auto value = vm.argument(0);
++    //         TRY(global_object.internal_set(JS::PropertyKey { "_" }, value, &global_object));
++    //         return value;
++    //     },
++    //     attr);
+ }
+ 
+ JS_DEFINE_NATIVE_FUNCTION(ReplObject::save_to_file)
+@@ -429,11 +429,11 @@ void ScriptObject::initialize(JS::Realm& realm)
+ {
+     Base::initialize(realm);
+ 
+-    define_direct_property("global", this, JS::Attribute::Enumerable);
+-    u8 attr = JS::Attribute::Configurable | JS::Attribute::Writable | JS::Attribute::Enumerable;
+-    define_native_function(realm, "loadINI", load_ini, 1, attr);
+-    define_native_function(realm, "loadJSON", load_json, 1, attr);
+-    define_native_function(realm, "print", print, 1, attr);
++    // define_direct_property("global", this, JS::Attribute::Enumerable);
++    // u8 attr = JS::Attribute::Configurable | JS::Attribute::Writable | JS::Attribute::Enumerable;
++    // define_native_function(realm, "loadINI", load_ini, 1, attr);
++    // define_native_function(realm, "loadJSON", load_json, 1, attr);
++    // define_native_function(realm, "print", print, 1, attr);
+ }
+ 
+ JS_DEFINE_NATIVE_FUNCTION(ScriptObject::load_ini)

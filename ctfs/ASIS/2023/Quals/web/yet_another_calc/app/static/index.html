@@ -1,0 +1,122 @@
+<html>
+	<head>
+		<script src="./acron.min.js"></script>
+		<style>
+			body{
+				background-color: #252B48;
+				font-family: sans-serif;
+				font-size: 18px;
+				color: #EEEEEE;
+			}
+
+			#main-container {
+				background-color: #445069;
+				height: fit-content;
+				width: fit-content;
+				padding: 20px;
+				border-radius: 10px;
+				margin: auto;
+				margin-top: 20px;
+			}
+
+			#h-container {
+				margin-bottom: 20px;
+				text-align: center;
+			}
+
+			textarea {
+				width: 300px;
+				height: 200px;
+				padding: 5px;
+				border-radius: 5px;
+				outline: none;
+				box-shadow: none;
+			}
+
+			button {
+				width: 100%;
+				margin-top: 20px;
+				font-size: 16px;
+				padding: 8px 0px;
+				cursor: pointer;
+				background-color: #5B9A8B;
+				color: white;
+				border: 0px;
+				border-radius: 2px;
+			}
+
+			#share-btn {
+				background-color: #0e2a47;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='main-container'>
+			<div id='h-container'>Enter Your Expressions</div>
+			<textarea id="input-textarea" placeholder="a=Math.tan(Math.PI)&#x0a;a*=2&#x0a;a"></textarea><br>
+			<button onclick="execute(document.querySelector('#input-textarea').value)">Calculate</button>
+			<button id="share-btn" onclick="report()">Share with admin</button>
+		</div>
+		<script>
+			function report(){
+				document.location = `http://${document.location.hostname}:8001/report.html?e=`+btoa(document.querySelector('#input-textarea').value)
+			}
+
+			function check(t){
+				switch(t.type){
+				case 'MemberExpression':
+					if( 
+						t.object.type != 'Identifier' ||
+						t.property.type != 'Identifier'
+					) throw 'Bad code';
+					return
+				case 'CallExpression':
+					t.arguments.forEach(e=>check(e));
+					if( 
+						t.callee.type != 'MemberExpression' ||
+						t.callee.object.type != 'Identifier' ||
+						t.callee.object.name != 'Math' ||
+						t.callee.property.type != 'Identifier'
+					) throw 'Bad code';
+					return;
+				case 'AssignmentExpression':
+					if(t.left.type != 'Identifier' || t.left.name.length > 1) throw 'Bad code';
+					check(t.right);
+					return;
+				case 'BinaryExpression':
+					check(t.left);
+					check(t.right);
+					return;
+				case 'Identifier':
+					if(t.name.length > 1) throw 'Bad code';
+					return;
+				case "UnaryExpression":
+					check(t.argument);
+					return;
+				case 'Literal':
+					if(typeof t.value != 'number') throw 'Bad code';
+					return;
+				}
+				throw 'Bad code';
+			}
+
+			function execute(payload){
+				try{
+					let parsed = acorn.parse(payload, { ecmaVersion: 'latest' }).body;
+					parsed.forEach(p=>{
+						if(p.type != 'ExpressionStatement') throw 'Bad code';
+						check(p.expression);
+					})
+					alert(eval(payload));
+				} catch(e){ 
+					alert('Error: '+e);
+				}
+			}
+
+			window.onload = _=>{
+				let p = (new URLSearchParams(document.location.search)).get('e');
+				if(p) execute(atob(p));
+			}
+		</script>
+	</body>
+</html>

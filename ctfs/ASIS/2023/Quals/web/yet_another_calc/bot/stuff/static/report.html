@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+		<style>
+			body{
+				background-color: #252B48;
+				font-family: sans-serif;
+				font-size: 18px;
+				color: #EEEEEE;
+			}
+
+			#main-container {
+				background-color: #445069;
+				height: fit-content;
+				width: fit-content;
+				padding: 20px;
+				border-radius: 10px;
+				margin: auto;
+				margin-top: 20px;
+				min-width: 304px;
+			}
+
+			#h-container {
+				margin-bottom: 20px;
+				text-align: center;
+			}
+
+			textarea {
+				width: 300px;
+				height: 200px;
+				padding: 5px;
+				border-radius: 5px;
+				outline: none;
+				box-shadow: none;
+			}
+
+			button {
+				width: 100%;
+				margin-top: 20px;
+				font-size: 16px;
+				padding: 8px 0px;
+				cursor: pointer;
+				background-color: #5B9A8B;
+				color: white;
+				border: 0px;
+				border-radius: 2px;
+			}
+
+			#share-btn {
+				background-color: #0e2a47;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id='main-container'>
+			<form action="/report" method="POST">
+				<div class="g-recaptcha" data-sitekey="6LcYLR4oAAAAAJGPmbrFVzv8w55lV3qJXiIlA5GT"></div>
+				<input name="url" id="url-field" hidden>
+				<button id="share-btn">Share</button>
+		    </form>
+		</div>
+		<script>
+			document.querySelector('#url-field').value = 'http://web/?e='+(new URLSearchParams(document.location.search)).get('e') ?? ''
+		</script>
+	</body>
+</html> 
