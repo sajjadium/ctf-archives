@@ -1,0 +1,72 @@
+body {
+    margin: 0px;
+    font-family: "Raleway", sans-serif;
+}
+.editor {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.editor .js-code {
+    width: 100%;
+    height: 65%;
+    border-bottom: 1px solid #000;
+    font-size: larger;
+}
+.editor .js-code > div {
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #000;
+}
+
+.editor .preview {
+    width: 100%;
+    height: 35%;
+}
+
+.editor .preview iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+}
+
+.button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#run-btn {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #8367d8;
+    color: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 10px #adadad;
+}
+
+#triangle {
+    position: absolute;
+    top: 50%;
+    left: calc(50% + 1px);
+    transform: translate(-50%, -50%) scale(0.5);
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-left: 30px solid #2bf4a1;
+    border-bottom: 15px solid transparent;
+}
+#run-btn:hover {
+    background-color: #7b60cb;
+}
+
+.CodeMirror {
+    height: auto;
+}

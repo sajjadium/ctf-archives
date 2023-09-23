@@ -1,0 +1,1 @@
+Discover the cutting-edge world of AI through our challenge centered around an AI building its own AI through a binary program. Your mission is to unravel the program's inner workings, grasp its underlying logic, and unveil the concealed output it produces. Are you up for the task of decoding the workflow within the AI Build Chain?
