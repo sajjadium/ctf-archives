@@ -1,0 +1,8 @@
+version: "3"
+services:
+  anns:
+    build: .
+    ports:
+      - "3088:3088"
+    expose:
+      - "3088"

@@ -1,0 +1,11 @@
+service anns
+{
+    disable = no
+    type = UNLISTED
+    socket_type = stream
+    protocol = tcp
+    port = 3088
+    wait = no
+    user = user
+    server = /home/user/run.sh
+}

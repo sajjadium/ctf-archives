@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flarenotes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+
+<body>
+    <header class="container">
+        <h1>Flarenotes</h1>
+        <p>Your share url: <a href="/view/?user=<%= user %>">
+                <%= user %>
+            </a></p>
+        <p>Share this url with others to let them see your notes.</p>
+        <form action="/add_note" method="post">
+            <div class="grid">
+                <input type="text" name="note" placeholder="Enter a note">
+                <input type="submit" value="Add Note">
+            </div>
+        </form>
+        <ul>
+            <% notes.forEach((note, idx)=> { %>
+                <li>
+                    <%= note %> <a href="/delete_note/<%= idx %>">Delete</a>
+                </li>
+                <% }) %>
+        </ul>
+    </header>
+</body>
+
+</html>

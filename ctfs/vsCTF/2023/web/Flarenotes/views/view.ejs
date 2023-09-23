@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Notes for <%= user %>
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+
+<body>
+    <header class="container">
+        <h1>
+            Notes for <%= user %>
+        </h1>
+        <ul id="list">
+        </ul>
+    </header>
+    <main class="container">
+        <a href="/report?url=https://flarenotes.vsc.tf/view?user=<%= user %>">report</a>
+    </main>
+    <script>
+        function decodeHTMLEntities(text) {
+            var entities = [
+                ['amp', '&'],
+                ['apos', '\''],
+                ['#x27', '\''],
+                ['#x2F', '/'],
+                ['#39', '\''],
+                ['#47', '/'],
+                ['lt', '<'],
+                ['gt', '>'],
+                ['nbsp', ' '],
+                ['quot', '"']
+            ];
+
+            for (var i = 0, max = entities.length; i < max; ++i)
+                text = text.replace(new RegExp('&' + entities[i][0] + ';', 'g'), entities[i][1]);
+
+            return text;
+        }
+
+        async function main() {
+            const params = new URLSearchParams(window.location.search);
+
+            const list = document.getElementById("list");
+
+            const url = new URL(`${window.location.origin}/raw/${params.get("user")}`);
+
+            if (url.hostname === window.location.hostname) {
+                const data = (await fetch(`${window.location.origin}/raw/${params.get("user")}`, {
+                    headers: new Headers(JSON.parse(params.get("headers") || "{}"))
+                }).then(res => res.text())).split("\n");
+
+                data.forEach((note) => {
+                    const li = document.createElement("li");
+                    li.innerHTML = decodeHTMLEntities(note);
+                    list.appendChild(li);
+                });
+            } else {
+                alert("no hacking smh!!11")
+            }
+        }
+
+        main();
+    </script>
+</body>
+
+</html>
