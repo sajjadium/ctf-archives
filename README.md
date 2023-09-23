@@ -1281,6 +1281,11 @@
             <td><a href="https://ctftime.org/event/945/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/KubanCTF">KubanCTF</a></td>
+            <td><a href="ctfs/KubanCTF/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2092/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/L3HCTF">L3HCTF</a></td>
             <td><a href="ctfs/L3HCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1510/tasks/" target="_blank">CTFtime</a></td>
