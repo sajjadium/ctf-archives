@@ -1,0 +1,3 @@
+I trust ctypes...
+
+Please run the challenge locally and add the origin to --unsafely-treat-insecure-origin-as-secure=http://localhost:8000 only the admin bot of the target is usable since it's missing HTTPS.

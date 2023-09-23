@@ -1,0 +1,12 @@
+version: '3.2'
+
+services:
+  web:
+    build: ./
+    restart: always
+    environment:
+      - "FLAG=ASIS{test-flag}"
+      - "CAPTCHA_SECRET="
+    ports:
+      - "8000:8000"
+

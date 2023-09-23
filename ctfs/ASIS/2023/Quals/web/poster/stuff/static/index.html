@@ -1,0 +1,109 @@
+<html>
+	<head>
+		<style>
+			body{
+				background-color: #FAF1E4;
+				font-family: sans-serif;
+				font-size: 18px;
+				color: #435334;
+			}
+
+			#main-container {
+				background-color: transparent;
+				height: fit-content;
+				width: fit-content;
+				padding: 10px;
+				border-radius: 10px;
+				margin-top: 20px;
+			}
+
+			#h-container {
+				margin-bottom: 20px;
+				text-align: left;
+			}
+
+			textarea {
+				width: 300px;
+				height: 200px;
+				padding: 5px;
+				border-radius: 5px;
+				outline: none;
+				box-shadow: none;
+			}
+
+			button {
+				padding: 10px 20px;
+				margin-top: 20px;
+				font-size: 16px;
+				cursor: pointer;
+				background-color: #5B9A8B;
+				color: white;
+				border: 0px;
+				border-radius: 2px;
+			}
+
+
+			#copy-csrftoken {
+				background-color: #435334;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div id='main-container'>
+			<div id='h-container'>Let us save your secrets. You ask why?</div>
+			<ul>
+				<li>Our product is free ( only for a limited time ).</li>
+				<li>We have the best anti-csrf technology.</li>
+				<li>We are going to propose our implementation to google!!!</li>
+				<li>We are safe against csrf...</li>
+				<li>Do you know what that means? That means no body can csrf you.</li>
+				<li>Like why would you even care about other stuff while you are safe against csrf.</li>
+				<!-- <li>haha just kidding. our implementation sucks.</li> -->
+				<!-- <li>like who the hell would do it this way.</li> -->
+				<!-- <li>That's why I also implemented a sane protection.</li> -->
+				<!-- <li>And also a button (??). I wonder why it exists.</li> -->
+			</ul>
+			<div id='current-secret'>Your current secret: </div><br>
+			<textarea id="secret-holder" placeholder="new secret.."></textarea><br>
+			<button onclick="submitSecret()">Save</button><br>
+			<button onclick="sendCSRFToken()" id="copy-csrftoken">Send the CSRF token to top</button>
+		</div>
+		<script>
+			function sendCSRFToken(){
+				top.postMessage({
+					token: top.document.location.origin == document.location.origin ? window.csrfToken : 'haha'
+				},'*');
+			}
+			function submitSecret(){
+				let secret = document.getElementById('secret-holder').value;
+				fetch('/secret',{
+					method:'POST',
+					body: `secret=${secret}&csrf_token=${window.csrfToken}`,
+					headers: {
+						'Content-Type': 'text/secret'
+					}
+				}).then(r=>r.json()).then(r=>{
+					if(r){
+						document.getElementById('secret-holder').value = '';
+						refreshSecret();
+					} else {
+						alert('failed to submit your note');
+					}
+				})
+			}
+			
+			fetch('/csrf-token').then(r=>r.json()).then(r=>{
+				window.csrfToken = r;
+				refreshSecret();
+			})
+
+			function refreshSecret(){
+				fetch('/secret').then(r=>r.json()).then(r=>{
+					document.getElementById('current-secret').innerHTML = `Your current secret: ${r}`;
+				})
+			}
+
+		</script>
+	</body>
+</html>
