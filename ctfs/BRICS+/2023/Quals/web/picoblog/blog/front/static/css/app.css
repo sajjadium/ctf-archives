@@ -1,0 +1,25 @@
+.serif-title {
+  font-family: 'Barlow Condensed',
+    -apple-system, BlinkMacSystemFont,
+    'avenir next', avenir,
+    'helvetica neue', helvetica,
+    ubuntu,
+    roboto, noto,
+    'segoe ui', arial,
+    sans-serif;
+}
+
+.serif-text {
+  font-family: 'Barlow',
+    -apple-system, BlinkMacSystemFont,
+    'avenir next', avenir,
+    'helvetica neue', helvetica,
+    ubuntu,
+    roboto, noto,
+    'segoe ui', arial,
+    sans-serif; 
+}
+
+pre {
+  display: inline;
+}

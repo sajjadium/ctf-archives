@@ -1,0 +1,45 @@
+<!-- views/addPost.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Post</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <header>
+        <h1>My Secrets</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/posts">Posts</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Add New Post</h2>
+
+        <form action="/posts/add" method="post">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br>
+
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" required></textarea><br>
+
+            <input type="submit" value="Submit">
+        </form>
+    </main>
+
+    <footer>
+        &copy; 2023 My Secrets
+        <div class="language-selector">
+            <a href="/setLanguage?lang=russian"><img src="/images/russian-flag.png" alt="Russian" width="24px"></a>
+            <a href="/setLanguage?lang=english"><img src="/images/english-flag.png" alt="English" width="24px"></a>
+            <a href="/setLanguage?lang=chinese"><img src="/images/chinese-flag.png" alt="Chinese" width="24px"></a>
+        </div>        
+    </footer>
+</body>
+</html>

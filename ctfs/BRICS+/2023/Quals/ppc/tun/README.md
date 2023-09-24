@@ -1,0 +1,1 @@
+A few of my buddies at the Sus Security department told me they'd been able to sniff up some traffic from a member of a local APT group at some cafe or something, but aren't able to connect to it in order to investigate further - they say that those APT guys use some crazy layered tunnel for comms. Mind checking it out?

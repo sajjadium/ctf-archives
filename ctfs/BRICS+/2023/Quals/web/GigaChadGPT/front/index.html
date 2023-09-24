@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GigaChadGPT</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      GigaChadGPT
+    </h1>
+    <div class="block">
+      <div class="box" id="gptReply">
+
+      </div>
+      <img height="200" width="160" src="https://en.meming.world/images/en/thumb/e/e9/Giga_Chad_%28alt%29.jpg/600px-Giga_Chad_%28alt%29.jpg">
+    </div>
+    <div class="columns">
+      <div class="column is-half">
+        <div class="block">
+
+          <label class="label">Ask me anything!</label>
+          <div class="field has-addons">
+            <div class="control">
+              <input id="idPrompt" class="input" type="text" placeholder="What is your name?">
+            </div>
+            <div class="control">
+              <a class="button is-info" onclick="prompt()">
+                Prompt
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+  function prompt() {
+    let prompt = document.getElementById('idPrompt').value;
+    fetch(`/api/predict`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({q: prompt})
+    }).then(
+            res => {
+              if (res.ok) {
+                res.json().then(data =>
+                        document.getElementById('gptReply').innerText = data
+                );
+              } else {
+                res.text().then(error =>
+                        document.getElementById('gptReply').innerText = error.toString()
+                );
+              }
+            }
+    )
+  }
+</script>
+</body>
+</html>

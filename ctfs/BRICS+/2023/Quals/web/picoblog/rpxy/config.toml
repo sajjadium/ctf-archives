@@ -1,0 +1,81 @@
+########################################
+#                                      #
+#       rust-rxpy configuration        #
+#                                      #
+########################################
+###################################
+#         Global settings         #
+###################################
+# Both or either one of http/https ports must be specified
+listen_port = 8080
+listen_port_tls = 8443
+
+# Optional for h2 and http1.1
+tcp_listen_backlog = 1024
+
+# Optional for h2 and http1.1
+max_concurrent_streams = 100
+
+# Optional. Counted in total for http1.1, 2, 3
+max_clients = 512
+
+# Optional: Listen [::]
+listen_ipv6 = false
+
+# Optional: App that serves all plaintext http request by referring to HOSTS or request header
+# execpt for configured application.
+# Note that this is only for http.
+# Note that nothing is served for requests via https since secure channel cannot be
+# established for unconfigured server_name, and they are always rejected by checking SNI.
+default_app = 'static'
+
+###################################
+#         Backend settings        #
+###################################
+[apps]
+
+######################################################################
+[apps.static]
+server_name = 'picoblog-static-ae182846340bc2df.brics-ctf.ru' # Domain name
+
+# Optional: TLS setting. if https_port is specified and tls is true above, this must be given.
+tls = { https_redirection = true, tls_cert_path = './certs/server.crt', tls_cert_key_path = './certs/server.key' } # for docker volume mounted certs
+
+## TODO
+# allowhosts = ['127.0.0.1', '::1', '192.168.10.0/24'] # TODO
+# denyhosts = ['*'] # TODO
+
+# default destination if "path" is not specified
+[[apps.static.reverse_proxy]]
+# List of destinations to send data to. At this point, round-robin is used for load-balancing if multiple URLs are specified.
+upstream = [
+  { location = 'website.yandexcloud.net' },
+]
+load_balance = "round_robin" # or "random" or "sticky" (sticky session) or "none" (fix to the first one, default)
+######################################################################
+
+###################################
+#      Experimantal settings      #
+###################################
+[experimental]
+# Higly recommend not to be true. If true, you ignore RFC. if not specified, it is always false.
+# This might be required to be true when a certificate is used by multiple backend hosts, especially in case where a TLS connection is re-used.
+# We should note that this strongly depends on the client implementation.
+ignore_sni_consistency = false
+
+# If this specified, h3 is enabled
+[experimental.h3]
+alt_svc_max_age = 3600             # sec
+request_max_body_size = 65536      # bytes
+max_concurrent_connections = 10000
+max_concurrent_bidistream = 100
+max_concurrent_unistream = 100
+max_idle_timeout = 10              # secs. 0 represents an infinite timeout.
+# WARNING: If a peer or its network path malfunctions or acts maliciously, an infinite idle timeout can result in permanently hung futures!
+
+# If this specified, file cache feature is enabled
+[experimental.cache]
+cache_dir = './cache'                # optional. default is "./cache" relative to the current working directory
+max_cache_entry = 10000              # optional. default is 1k
+max_cache_each_size = 65535          # optional. default is 64k
+max_cache_each_size_on_memory = 4096 # optional. default is 4k if 0, it is always file cache.

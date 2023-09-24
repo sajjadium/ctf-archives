@@ -1,0 +1,18 @@
+---
+ rpxy-lib/src/handler/cache.rs | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/rpxy-lib/src/handler/cache.rs b/rpxy-lib/src/handler/cache.rs
+index 44cdc11..8e2e208 100644
+--- a/rpxy-lib/src/handler/cache.rs
++++ b/rpxy-lib/src/handler/cache.rs
+@@ -335,7 +335,7 @@ impl RpxyCache {
+       let cache_object = if bytes_clone.len() > max_each_size_on_memory {
+         let cache_filename = derive_filename_from_uri(&uri);
+         let target = mgr.create(&cache_filename, &bytes_clone).await?;
+-        debug!("Cached a new cache file: {} - {}", cache_key, cache_filename);
++        debug!("Cached a new cache file #{}: {} - {}", mgr.count().await, cache_key, cache_filename);
+         CacheObject {
+           policy: policy_clone,
+           target,
+-- 

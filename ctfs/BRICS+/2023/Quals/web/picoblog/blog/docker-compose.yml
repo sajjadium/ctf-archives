@@ -1,0 +1,40 @@
+version: "2.4"
+services:
+  web:
+    build: .
+    ports:
+      - "80:8000"
+    volumes:
+      - secret:/secret
+    env_file: .env
+    environment:
+      SECRET_PATH: "/secret/key"
+      LISTEN_ADDR: ":8000"
+      S3_ENDPOINT: "storage.yandexcloud.net"
+      # from .env file
+      # S3_KEY_ID: ""
+      # S3_SECRET_KEY: ""
+      S3_BUCKET: "picoblog-static-ae182846340bc2df.brics-ctf.ru"
+      REDIS_ADDR: "redis:6379"
+    restart: unless-stopped
+    cpus: 2
+    pids_limit: 64
+    mem_limit: 512m
+  bot:
+    build: ./bot
+    environment:
+      TASK_URL: "https://picoblog-1ea47ec5f44a1743.brics-ctf.ru"
+      REDIS_URL: "redis://redis:6379"
+      FLAG: "brics+{fake_flag}"
+    restart: unless-stopped
+    cpus: 2
+    pids_limit: 1024
+    mem_limit: 3G
+  redis:
+    image: redis:7.2-alpine3.18
+    restart: unless-stopped
+    cpus: 2
+    pids_limit: 64
+    mem_limit: 512m
+volumes:
+  secret:

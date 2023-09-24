@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to My Secrets</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <script src="/scripts/script.js"></script>
+    <%= language %>
+    <% if (language == "russian") { %>
+        <link rel="stylesheet" href="/styles/russian.css">
+    <% } else if(language == "english") { %>
+        <link rel="stylesheet" href="/styles/english.css">
+    <% } else if(language == "chinese") { %>
+        <link rel="stylesheet" href="/styles/chinese.css">
+    <% } %>    
+</head> 
+<body>
+    <div class="loading-container">
+        <img class="loading-logo" src="/images/logo.jpg" alt="Logo">
+    </div>
+    <header>
+        <h1>My Secrets</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/posts">Posts</a></li>
+                <li><a href="/users/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="nav-links">
+            <% if (user) { %>
+                <div>
+                    <p>Hello, <%= user.username %>!</p></br>
+                    <a href="/posts">View Your Notes</a></br>
+                    <a href="/posts/add">Add a New Note</a></br>
+                </div>
+            <% } else { %>
+                <div>
+                    <a href="/users/login">Login</a>
+                    <a href="/users/register">Register</a>
+                </div>
+            <% } %>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2023 My Secrets
+        <div class="language-selector">
+            <a href="/setLanguage?lang=russian"><img src="/images/russian-flag.png" alt="Russian" width="24px"></a>
+            <a href="/setLanguage?lang=english"><img src="/images/english-flag.png" alt="English" width="24px"></a>
+            <a href="/setLanguage?lang=chinese"><img src="/images/chinese-flag.png" alt="Chinese" width="24px"></a>
+        </div>
+        
+    </footer>
+</body>
+</html>

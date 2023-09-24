@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <% if (language == "russian") { %>
+        <link rel="stylesheet" href="/styles/russian.css">
+    <% } else if(language == "english") { %>
+        <link rel="stylesheet" href="/styles/english.css">
+    <% } else if(language == "chinese") { %>
+        <link rel="stylesheet" href="/styles/chinese.css">
+    <% } %>
+</head>
+<body>
+    <h1>Search Results</h1>
+
+    <% if (posts.length > 0) { %>
+        <ul>
+            <% posts.forEach(post => { %>
+                <li class="post">
+                    <h2><%= post.title %></h2>
+                    <p><%= post.content %></p>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No results found</p>
+    <% } %>
+
+    <a href="/posts">Back to Notes</a>
+    <footer>
+        &copy; 2023 My Secrets
+        <div class="language-selector">
+            <a href="/setLanguage?lang=russian"><img src="/images/russian-flag.png" alt="Russian" width="24px"></a>
+            <a href="/setLanguage?lang=english"><img src="/images/english-flag.png" alt="English" width="24px"></a>
+            <a href="/setLanguage?lang=chinese"><img src="/images/chinese-flag.png" alt="Chinese" width="24px"></a>
+        </div>        
+    </footer>
+</body>
+</html>

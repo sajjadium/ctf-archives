@@ -1,0 +1,52 @@
+version: '3.1'
+
+services:
+  nginx:
+    image: nginx:1.25.2-alpine
+    restart: unless-stopped
+    volumes:
+      - ./front:/front
+      - ./conf/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    mem_limit: 256m
+    pids_limit: 1024
+    cpus: 1
+    ports:
+      - "8000:80"
+  waf:
+    build:
+      dockerfile: waf.Dockerfile
+      context: .
+    mem_limit: 256m
+    pids_limit: 1024
+    cpus: 1
+    environment:
+      - PROXY_HOST=http://api:5000
+    depends_on:
+      - api
+    restart: unless-stopped
+  api:
+    build:
+      dockerfile: app.Dockerfile
+      context: .
+    depends_on:
+      - db
+    restart: unless-stopped
+    environment:
+      MYSQL_PASSWORD: password
+    mem_limit: 256m
+    pids_limit: 1024
+    cpus: 1
+
+  db:
+    image: mariadb:latest
+    restart: unless-stopped
+    volumes:
+      - ./conf/db_init:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_USER: app
+      MYSQL_DATABASE: app
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: root_password
+    cpus: 1
+    pids_limit: 256
+    mem_limit: 512m

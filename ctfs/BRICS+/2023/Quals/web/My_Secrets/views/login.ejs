@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <% if (language == "russian") { %>
+        <link rel="stylesheet" href="/styles/russian.css">
+    <% } else if(language == "english") { %>
+        <link rel="stylesheet" href="/styles/english.css">
+    <% } else if(language == "chinese") { %>
+        <link rel="stylesheet" href="/styles/chinese.css">
+    <% } %>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="/users/login" method="POST">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="/users/register">Register</a></p>
+    <footer>
+        &copy; 2023 My Secrets
+        <div class="language-selector">
+            <a href="/setLanguage?lang=russian"><img src="/images/russian-flag.png" alt="Russian" width="24px"></a>
+            <a href="/setLanguage?lang=english"><img src="/images/english-flag.png" alt="English" width="24px"></a>
+            <a href="/setLanguage?lang=chinese"><img src="/images/chinese-flag.png" alt="Chinese" width="24px"></a>
+        </div>
+        
+    </footer>
+</body>
+</html>

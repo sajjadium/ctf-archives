@@ -1,0 +1,16 @@
+version: "2.4"
+services:
+  web:
+    build: .
+    ports:
+      - "2229:8000"
+    volumes:
+      - genjidb:/genjidb
+    environment:
+      FLAG: "brics+{fake_flag}"
+    restart: unless-stopped
+    cpus: 2
+    pids_limit: 64
+    mem_limit: 512m
+volumes:
+  genjidb:

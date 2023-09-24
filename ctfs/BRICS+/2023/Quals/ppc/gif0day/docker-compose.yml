@@ -1,0 +1,15 @@
+version: '3.1'
+
+services:
+  server:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./fonts:/fonts
+    mem_limit: 1024m
+    pids_limit: 1024
+    cpus: 2
+    env_file:
+      - server.env
+    ports:
+      - "50051:50051"

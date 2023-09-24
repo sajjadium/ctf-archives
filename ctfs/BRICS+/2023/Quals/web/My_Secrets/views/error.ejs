@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="/style.css">
+    <% if (language == "russian") { %>
+        <link rel="stylesheet" href="/styles/russian.css">
+    <% } else if(language == "english") { %>
+        <link rel="stylesheet" href="/styles/english.css">
+    <% } else if(language == "chinese") { %>
+        <link rel="stylesheet" href="/styles/chinese.css">
+    <% } %>
+</head>
+<body>
+    <h1>Error</h1>
+    <p><%= message %></p>
+    <a href="/">Go back to Home</a>
+</body>
+</html>

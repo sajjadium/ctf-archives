@@ -1,0 +1,39 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='https://unpkg.com/tachyons/css/tachyons.min.css')
+  title FlagCMP
+header.bg-light-blue.sans-serif
+  .mw9.center.pa4.pt5-ns.ph7-l
+    h3.f2.f1-m.f-headline-l.measure-narrow.lh-title.mv0
+      span.bg-near-black.lh-copy.white.pa1.tracked-tight
+        | FlagCMP
+main.pa4.ph7-l.georgia.mw9-l.center
+  form.pa4.black-80(method='post')
+    label.f3.b.db.mb2(for='guess')
+      | Your Guess
+      span.normal.black-60
+    input#guess.input-reset.ba.b--black-20.pa2.mb2.db.w-100(type='text', name='guess')
+  if result !== undefined
+    unless result == 1
+      .flex.items-center.justify-center.pa4.bg-washed-red.dark-red
+        svg.w1(xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewbox='3 3 16 16')
+          defs
+            lineargradient(gradientunits='userSpaceOnUse' y2='-2.623' x2='0' y1='986.67')
+              stop(stop-color='#ffce3b')
+              stop(offset='1' stop-color='#ffd762')
+            lineargradient#0(gradientunits='userSpaceOnUse' y1='986.67' x2='0' y2='-2.623')
+              stop(stop-color='#ffce3b')
+              stop(offset='1' stop-color='#fef4ab')
+            lineargradient(gradientunits='userSpaceOnUse' x2='1' x1='0' xlink:href='#0')
+          g(transform='matrix(2 0 0 2-11-2071.72)')
+            path(transform='translate(7 1037.36)' d='m4 0c-2.216 0-4 1.784-4 4 0 2.216 1.784 4 4 4 2.216 0 4-1.784 4-4 0-2.216-1.784-4-4-4' fill='#e7040f')
+            path(d='m11.906 1041.46l.99-.99c.063-.062.094-.139.094-.229 0-.09-.031-.166-.094-.229l-.458-.458c-.063-.062-.139-.094-.229-.094-.09 0-.166.031-.229.094l-.99.99-.99-.99c-.063-.062-.139-.094-.229-.094-.09 0-.166.031-.229.094l-.458.458c-.063.063-.094.139-.094.229 0 .09.031.166.094.229l.99.99-.99.99c-.063.062-.094.139-.094.229 0 .09.031.166.094.229l.458.458c.063.063.139.094.229.094.09 0 .166-.031.229-.094l.99-.99.99.99c.063.063.139.094.229.094.09 0 .166-.031.229-.094l.458-.458c.063-.062.094-.139.094-.229 0-.09-.031-.166-.094-.229l-.99-.99' fill='#fff')
+        span.lh-title.ml3 Comparison result: #{result}
+    else
+      .flex.items-center.justify-center.pa4.bg-washed-green.dark-green
+        svg.w1(xmlns='http://www.w3.org/2000/svg' viewbox='0 0 64 64' enable-background='new 0 0 64 64')
+          path(d='M32,2C15.431,2,2,15.432,2,32c0,16.568,13.432,30,30,30c16.568,0,30-13.432,30-30C62,15.432,48.568,2,32,2z M25.025,50\
+          l-0.02-0.02L24.988,50L11,35.6l7.029-7.164l6.977,7.184l21-21.619L53,21.199L25.025,50z' fill='#137752')
+        span.lh-title.ml3 Comparison result: #{result}

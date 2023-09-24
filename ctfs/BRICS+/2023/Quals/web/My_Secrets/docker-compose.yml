@@ -1,0 +1,36 @@
+version: '3.8'
+
+networks:
+  custom_network:
+    driver: bridge
+
+services:
+  # Express.js application
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=mongodb://mongo:27017/blogdb
+      - SECRET=CHANG_M3_TO_SUP3R_S3CRET_STR1ING
+    networks:
+      - custom_network
+
+  # MongoDB
+  mongo:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_DATABASE=blogdb
+    networks:
+      - custom_network
+
+  restore-service:
+    image: mongo
+    command: mongorestore --host mongo --port 27017 --drop /dump
+    volumes:
+      - ./dump:/dump
+    depends_on:
+      - mongo
+    networks:
+      - custom_network

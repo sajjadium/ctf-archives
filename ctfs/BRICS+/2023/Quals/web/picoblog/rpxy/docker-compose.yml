@@ -1,0 +1,20 @@
+version: "2.4"
+services:
+  rpxy:
+    build:
+      context: ./rust-rpxy
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - "80:8080"
+      - "443:8443"
+    volumes:
+      - ./config.toml:/etc/rpxy.toml:ro
+      - ./certs:/rpxy/certs
+      - cache:/rpxy/cache
+    init: true
+    restart: unless-stopped
+    cpus: 2
+    pids_limit: 512
+    mem_limit: 1g
+volumes:
+  cache:

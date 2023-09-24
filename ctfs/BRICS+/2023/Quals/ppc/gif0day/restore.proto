@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package restore;
+
+message Answer {
+  string answer = 1;
+}
+
+message RestoreRequest {
+  // MD5 hash of ($content$salt).
+  string hash = 1;
+  // Random salt.
+  string salt = 2;
+  // Gif content.
+  bytes gif = 3;
+}
+
+service RestoreService {
+  rpc Restore(stream Answer) returns (stream RestoreRequest) {}
+}
