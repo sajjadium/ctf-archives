@@ -1,0 +1,82 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}
+
+#app {
+    padding: 2em;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+#jumbotron {
+    font-size: 2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1em;
+}
+
+#heading {
+    margin: 0;
+    font-size: 1.25em;
+    font-weight: normal;
+}
+
+#winning-numbers {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 16px;
+    justify-content: space-evenly;
+}
+
+.ball {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 25%);
+    box-shadow: inset 0 -2px 3px rgba(0, 0, 0, 70%);
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 64px;
+    background: -webkit-linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, 100%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#ticket-form {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 16px;
+    justify-content: space-evenly;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.input-ball {
+    width: 64px;
+    height: 64px;
+    font-size: 1em;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 25%);
+    line-height: 64px;
+    color: rgba(0, 0, 0, 75%);
+    font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+}

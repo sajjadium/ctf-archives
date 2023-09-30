@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <title>Jupyter Notebook Upload</title>
+        <link rel="stylesheet" href="style.css" type="text/css" media="all">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <div id="app">
+            <p class="header">Jupyter Notebook Upload</p>
+
+            <form action="/api/upload_ipynb/" method="post" enctype="multipart/form-data" id="form">
+                <input type="file" id="file" name="file" accept=".ipynb" hidden>
+                <label for="file" class="button" id="file-button">
+                    <span class="material-icons">upload</span>
+                    <span>Choose File</span>
+                </label>
+            </form>
+        </div>
+
+        <script src="main.js" charset="utf-8"></script>
+    </body>
+</html>

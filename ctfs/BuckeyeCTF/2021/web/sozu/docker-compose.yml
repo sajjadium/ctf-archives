@@ -1,0 +1,17 @@
+version: '3'
+services:
+  sozu:
+    build:
+      context: ./sozu
+    ports: 
+      - "3000:3000"
+    environment:
+      - "HOSTNAME=localhost"
+  app:
+    build:
+      context: ./app
+    environment:
+      - "FLAG=buckeye{fake_flag}"
+    expose:
+      - 8000
+

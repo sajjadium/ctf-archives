@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Powerball!</title>
+    <link rel="stylesheet" href="style.css" type="text/css" media="all">
+  </head>
+  <body>
+    <div id="app">
+      <div id="jumbotron">
+        <p id="heading">Let's play <strong>Powerball!</strong></p>
+        <div id="winning-numbers">
+          <div class="ball" id="ball0"></div>
+          <div class="ball" id="ball1"></div>
+          <div class="ball" id="ball2"></div>
+          <div class="ball" id="ball3"></div>
+          <div class="ball" id="ball4"></div>
+          <div class="ball" id="ball5"></div>
+          <div class="ball" id="ball6"></div>
+          <div class="ball" id="ball7"></div>
+          <div class="ball" id="ball8"></div>
+          <div class="ball" id="ball9"></div>
+        </div>
+
+        <form id="ticket-form">
+          <input type="number" class="input-ball" id="input-ball0">
+          <input type="number" class="input-ball" id="input-ball1">
+          <input type="number" class="input-ball" id="input-ball2">
+          <input type="number" class="input-ball" id="input-ball3">
+          <input type="number" class="input-ball" id="input-ball4">
+          <input type="number" class="input-ball" id="input-ball5">
+          <input type="number" class="input-ball" id="input-ball6">
+          <input type="number" class="input-ball" id="input-ball7">
+          <input type="number" class="input-ball" id="input-ball8">
+          <input type="number" class="input-ball" id="input-ball9">
+        </form>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+[package]
+name = "chat_common"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1.32.0", features = ["io-util", "net", "rt", "sync"] }
+chrono = { verstion = "0.4.31" }

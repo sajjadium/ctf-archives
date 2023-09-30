@@ -1,0 +1,7 @@
+version: "3"
+services:
+  textual:
+    build: .
+    ports:
+      - 8080:8000
+    privileged: true

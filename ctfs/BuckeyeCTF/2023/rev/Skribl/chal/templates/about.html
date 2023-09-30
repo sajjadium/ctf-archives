@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+About Us
+{% endblock %}
+
+
+{% block content %}
+
+
+<p><strong>Skibl</strong> solves the problems other paste services are afraid to solve.</p>
+
+<p>Some services may tell you that you "only need one note" or "notes shouldn't be sharable".
+Here at Skribl, we believe that notes are wonderful things.
+Why limit something wonderful? Would you like a world with only one flavor of ice cream?</p>
+
+<p>Anyway, notes are a beautiful, and they should be able to be shared.</p>
+
+<p>Skribl offers the best of both worlds. If you don't share your note we <strong>guarantee</strong> that
+it will not fall into the wrong hands.</p>
+
+{% if error_msg %}
+<div class="alert alert-danger m-5" role="alert">
+  {{ error_msg }}
+</div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{
+  "name": "nada",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "bun run --watch app.ts"
+  },
+  "module": "app.js",
+  "dependencies": {
+    "elysia": "^0.6.16"
+  },
+  "devDependencies": {
+    "bun-types": "^0.8.1"
+  }
+}

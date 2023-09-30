@@ -1,0 +1,7 @@
+services:
+  text-adventure-api:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_SECRET_KEY=9bE8hzA5gBUjgmcWdz45K7bya4Pi7GUo

@@ -1,0 +1,21 @@
+{
+  "name": "font-review",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "bun run --watch server.tsx",
+    "start": "bun run server.tsx"
+  },
+  "dependencies": {
+    "@elysiajs/html": "^0.7.0",
+    "css-tree": "^2.3.1",
+    "elysia": "^0.7.12",
+    "puppeteer": "^21.3.4"
+  },
+  "devDependencies": {
+    "@kitajs/html": "^2.2.2",
+    "@kitajs/ts-html-plugin": "^1.0.2",
+    "@types/css-tree": "^2.3.2",
+    "bun-types": "latest"
+  },
+  "module": "server.js"
+}

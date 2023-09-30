@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
+
+</head>
+<body>
+    <section class="section">
+        <h1 class="title">TeXtual - LaTeX to HTML Compiler</h1>
+    </section>
+    <section class="section">
+        <div class="tile is-ancestor">
+            <div class="tile is-vertical is-6 p-3">
+                <div class="content">
+                    <p class="title">LaTeX</p>
+                    <textarea name = "editor" placeholder="Type LaTeX here" class="subtitle" rows="20" cols="0" id="editor"></textarea>
+                </div>
+            </div>
+            <div class="tile is-6 p-3">
+                <div class="content">
+                    <p class="title">Compiled HTML Result</p>
+                    <pre name="result" id="result" class="subtitle">
+                    </pre>
+                    <iframe src="" name="frame" id="frame" style="width:100%"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="p-6">
+        <div>
+            <p class="title">Help / FAQ </p>
+        </div>
+        <div class="tile is-ancestor m-3">
+            <div class="tile is-3 is-vertical is-parent">
+                <div class="tile is-child box">
+                    <p class="title">What is LaTeX</p>
+                    <p>"LaTeX is a high-quality typesetting system; it includes features designed for the production of technical and scientific documentation." - <a href="https://www.latex-project.org/">LaTeX Project</a></p>
+                </div>
+            </div>
+            <div class="tile is-3 is-vertical is-parent">
+                <div class="tile is-child box">
+                    <p class="title">How do I compile the LaTeX Document to HTML</p>
+                    <p>You can compile the document, generating the HTML from LaTeX via pressing 'ctrl'+'s'.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function submit(event){
+            result.textContent = "Loading ..."
+            result.removeAttribute("hidden");
+
+            fetch("/compile?code=" + encodeURIComponent(editor.value), {
+                method: "POST"
+            })
+                .then(response => response.text())
+                .then(function(data) {
+                    result.setAttribute('hidden', 'true')
+                    document.getElementById('frame').setAttribute('srcdoc', data)
+            })
+        }
+        
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey && e.key === 's') {
+                e.preventDefault();
+                submit()
+              }
+        })
+    </script>
+</body>

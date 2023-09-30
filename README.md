@@ -378,12 +378,16 @@
             <td><a href="https://ctftime.org/event/1892/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/Buckeye">Buckeye</a></td>
-            <td><a href="ctfs/Buckeye/2022">2022</a></td>
+            <td rowspan=3><a href="ctfs/BuckeyeCTF">BuckeyeCTF</a></td>
+            <td><a href="ctfs/BuckeyeCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2074/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/BuckeyeCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1740/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Buckeye/2021">2021</a></td>
+            <td><a href="ctfs/BuckeyeCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1434/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

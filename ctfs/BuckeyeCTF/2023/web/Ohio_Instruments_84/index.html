@@ -1,0 +1,116 @@
+<html>
+<style>
+    body {
+        font-family: sans-serif;
+    }
+
+    #expression {
+        border: 2px solid #222222;
+        padding: 1em;
+    }
+
+    #submitbutton {
+        background-color: #167ab5;
+        border: none;
+        color: white;
+        padding: 1em;
+    }
+
+    #submitbutton:hover {
+        background-color: #219ce4;
+        cursor: pointer;
+    }
+
+    #image {
+        display: flex;
+        flex-direction: row;
+        justify-content: stretch;
+        align-items: stretch;
+        margin: 0 auto;
+        object-fit: contain;
+        width: 80%;
+        border: 1px solid black;
+        aspect-ratio: 871 / 654;
+    }
+
+    #image img {
+        width: 100%;
+        height: 100%;
+        background-color: #eeeeee;
+    }
+
+    #form {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        max-width: 50em;
+        gap: 1em;
+    }
+
+    .error {
+        background-color: rgb(226, 227, 229);
+        color: rgb(56, 61, 65);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .examples {
+        display: flex;
+        flex-direction: row;
+        gap: 1em;
+    }
+</style>
+
+<body>
+    <form id="form">
+        <input tabindex="0" id="expression">
+        <input type="submit" value="Graph!" id="submitbutton">
+
+        <div id="image">
+
+        </div>
+
+        <div class="examples">
+            <b>Examples</b>
+            <a href="#" class="example">cos(x)</a>
+            <a href="#" class="example">x.^3</a>
+            <a href="#" class="example">exp(-x)</a>
+            <a href="#" class="example">log(x)</a>
+        </div>
+    </form>
+
+    <script>
+        const form = document.getElementById("form");
+        const image = document.getElementById("image");
+        const expression = document.getElementById("expression");
+
+        const submit = () => {
+            image.innerHTML = '';
+            const img = document.createElement("img");
+            img.src = `${window.location.origin}/${expression.value}`;
+            image.appendChild(img);
+            img.addEventListener('error', (e) => {
+                console.log(e);
+                image.innerHTML = `<div class="error"><span>Error!</span></div>`;
+            });
+        }
+
+        form.addEventListener("submit", (e) => {
+            submit();
+            e.preventDefault();
+        })
+
+        document.querySelectorAll(".example").forEach(example => {
+            example.addEventListener("click", (e) => {
+                expression.value = example.textContent;
+                submit();
+                e.preventDefault();
+            })
+        })
+    </script>
+</body>
+
+</html>

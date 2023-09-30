@@ -1,0 +1,10 @@
+version: "3"
+services:
+    guess_god:
+        build: .
+        ports:
+            - 9000:9000
+            - 7002-7003:7002-7003
+        privileged: true
+        environment:
+            - "DEBUG=1"

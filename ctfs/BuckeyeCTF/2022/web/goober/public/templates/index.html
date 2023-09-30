@@ -1,0 +1,88 @@
+{{define "title"}}Svg2Png{{end}}
+
+{{define "body"}}
+<div class=".container-fluid mx-5">
+    <div class="row">
+        <div class="col-xs-12 pt-5">
+            <h2>
+                Welcome to <b><i>Goober</i></b>, the Go-based SVG to PNG converter
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h6 class="subheading">
+                <i>It's lightning quick!</i>
+            </h6>
+        </div>
+    </div>
+    <div class="bg-light rounded">
+        <div class="row m-3">
+            <div class="col-xs-12 p-3 pt-5">
+                <h4>
+                    Upload the SVG file that you want to convert
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 m-3">
+                <form id="form" method="POST" class="p-3" enctype="multipart/form-data">
+                    <div class="form-group py-2">
+                        <label for="svgfile"> Upload file: </label>
+                        <input type="file" class="form-control-file form-control-sm cust-border" id="svgfile" required name="svgfile">
+                    </div>
+                    <button type="submit" class="btn btn-outline-dark"  value="submit" name="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 p-3 pt-5" id = "result" style="visibility:hidden;">
+            </div>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById('form');
+        const result = document.getElementById('result')
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            
+            fetch("/upload", {
+                body: new FormData(e.target),
+                credentials: 'same-origin',
+                method: "post"
+            })
+            .then(res => {    
+                var child = result.lastElementChild; 
+                while (child) {
+                    result.removeChild(child);
+                    child = result.lastElementChild;
+                }
+
+                result.style.visibility = "visible"
+
+                if (res.status > 300) {
+                    const text = document.createElement("p")
+                    text.innerText = "There was an error processing the input"
+                    result.append(text)
+                    return Promise.reject('There was an error processing the input')
+                }
+
+                return res.blob()
+            })
+            .then(blob => {
+                const imageUrl = URL.createObjectURL(blob);
+                
+                const image = document.createElement('img')
+                image.style.maxHeight = "480px"
+                image.src = imageUrl
+
+                result.append(image)
+            })       
+            .catch(err => {
+                console.log(err)
+            })
+        })
+    </script>
+</div>
+{{end}}

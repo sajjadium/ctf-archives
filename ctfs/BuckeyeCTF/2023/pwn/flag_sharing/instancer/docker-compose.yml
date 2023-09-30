@@ -1,0 +1,14 @@
+version: "3"
+services:
+    not_side_channel_resistant_jail:
+        build: .
+        ports:
+            - 9000:9000
+            - 7002-7006:7002-7006
+        privileged: true
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        environment:
+            - "DEBUG=1"
+            - "CHAL_IMAGE_NAME=flag-sharing-chal"
+            - "CHAL_NUM_SERVERS=4"

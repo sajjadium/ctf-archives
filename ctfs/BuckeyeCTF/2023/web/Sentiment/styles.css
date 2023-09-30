@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  font-family: "Inter";
+}
+
+.header {
+  background-color: var(--nav-bg);
+  display: flex;
+  justify-content: center;
+}
+
+.nav {
+  padding: 10px;
+  display: flex;
+  gap: 5px;
+}
+
+.nav-item {
+  color: var(--text-color);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.nav-item-inner {
+  border-radius: 3px;
+  padding: 10px;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.nav-item-inner:hover {
+  background-color: rgb(231, 228, 227);
+}
+
+.nav-item::after {
+  content: "";
+  visibility: hidden;
+  height: 0.125rem;
+  width: 90%;
+  align-self: center;
+}
+
+.nav-item-selected .nav-item-inner {
+  color: rgb(41, 74, 164);
+}
+
+.nav-item-selected::after {
+  background-color: rgb(41, 74, 164);
+  visibility: visible;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 2rem;
+}
+
+#note {
+  margin-top: 1rem;
+  border: none;
+  font-family: "Roboto Mono";
+  white-space: pre-wrap;
+  background-color: transparent;
+}
+
+#note:focus {
+  border: none;
+  outline: 0px solid transparent;
+}
+
+input {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid rgb(218, 214, 213);
+  font-weight: 500;
+  background-color: white;
+  font-family: inherit;
+  width: 50%;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid rgb(218, 214, 213);
+  font-weight: 500;
+  background-color: var(--nav-bg);
+  font-family: inherit;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgb(231, 228, 227);
+}
+
+code,
+pre {
+  background-color: rgb(231, 228, 227);
+  padding: 1px 2px;
+  border-radius: 2px;
+  white-space: pre-wrap;
+}
+
+*:not(li) > ul,
+*:not(li) > ol {
+  padding: 0;
+}
+
+ul,
+ol {
+  padding-left: 2rem;
+}
+
+:root {
+  --nav-bg: rgb(247, 245, 244);
+  --text-color: rgb(35, 34, 34);
+  --bg: white;
+}
+
+.container {
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+./igpay-atinlay-natoriay-3000 \
+    || printf "You crashed my program :(\n$FLAG"

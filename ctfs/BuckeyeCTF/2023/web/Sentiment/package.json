@@ -1,0 +1,20 @@
+{
+  "name": "sentiment",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "bun run --watch server.tsx",
+    "start": "bun run server.tsx"
+  },
+  "dependencies": {
+    "@elysiajs/cookie": "^0.6.1",
+    "@elysiajs/html": "^0.6.0",
+    "elysia": "latest",
+    "marked": "^8.0.1",
+    "puppeteer": "^21.1.1"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "typed-html": "^3.0.1"
+  },
+  "module": "server.js"
+}

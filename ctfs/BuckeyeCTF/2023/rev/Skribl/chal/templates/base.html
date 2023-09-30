@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block styles %}
+        {{ bootstrap.load_css() }}
+    {% endblock %}
+
+
+    <title>{% block title %}{% endblock %} - Skribl</title>
+    <!-- note the special href for files in the Flask "static" folder -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<header>
+</header>
+<body>
+    <div class="container fill">
+        <div class="row fill">
+            <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto text-center fill">
+                
+                <div class="p-5">
+                    <h1>Skribl <small class="text-body-secondary">Your most private thoughts</small></h1>
+                </div>
+
+                {% block content %}
+                {% endblock %}
+
+                <footer class="footer fixed-bottom border-top pt-4">
+
+                    <p>Made with ❤️ by the Skribl team.</p>
+                    <p>Skribl has be up for <span id="stime"></div></p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    {% block scripts %}
+        {{ bootstrap.load_js() }}
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script>
+        stime = moment.duration({{ stime }}, 'seconds');
+        stime_text = document.getElementById("stime");
+
+        stime_text.outerHTML = stime.humanize()
+    </script>
+</body>

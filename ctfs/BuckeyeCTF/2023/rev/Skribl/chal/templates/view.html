@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+View {{ key }}
+{% endblock %}
+
+
+{% block content %}
+
+<p>Here is the message for <strong>{{ key }}</strong></p>
+
+<div class="card">
+  <div class="card-body">
+    <figure>
+      <blockquote class="blockquote">
+        <p>{{ message }}</p>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        Written by <cite>{{ author if author else "Anonymous" }}</cite>
+      </figcaption>
+    </figure>
+  </div>
+</div>
+
+
+
+{% endblock %}

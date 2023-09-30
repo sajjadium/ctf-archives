@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block title %}
+Welcome
+{% endblock %}
+
+
+{% block content %}
+
+
+<p class="lead">Welcome to <strong>Skribl</strong>, a modern paste service for the <a href="{{ url_for('about') }}">New World</a>.</p>
+
+{{ render_form(form) }}
+
+{% if error_msg %}
+<div class="alert alert-danger m-5" role="alert">
+  {{ error_msg }}
+</div>
+{% endif %}
+
+
+{% endblock %}

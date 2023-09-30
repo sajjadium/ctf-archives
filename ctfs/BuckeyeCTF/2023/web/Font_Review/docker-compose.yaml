@@ -1,0 +1,7 @@
+services:
+  font-review:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - FLAG=bctf{placeholder_flag}
