@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login example</title>
+</head>
+<body>
+    <form method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="username">
+        <br>
+
+        <label for="password">Password</label>
+        <input type="text" name="password" type="password">
+        <br>
+
+        <button type="submit">Log in</button>
+        <p>{{status}}</p>
+    </form>
+    <br>
+    <p>Code Example:</p>
+    <pre>
+def login_handle(ctx):
+    data = ctx.request.post_data
+
+    username = data.get("username")
+    password = data.get("password")
+    
+    if username == "admin" and password == "admin":
+        return render_template("login.html", status="Hi admin! Sorry, no flag for you!")
+    
+    set_status_code(ctx, 401)
+    return render_template("login.html", status="Login failed")
+    </pre>
+    <a href="/">Go back</a>
+</body>
+</html>

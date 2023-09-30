@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="author" content="Loldemort" />
+    <meta name="description" content="The best way to talk with sicilians." />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="/static/style/assets/spaces.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/static/style/assets/spaces.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/style/spaces.css" />
+    {% block header %}{% endblock %}
+</head>
+<body>
+
+<div class="main">
+    <nav>
+        <div id="nav-bg">
+            <div id="nav-content">
+                <div id="logo">
+                    <img src="/static/style/assets/flag.gif" /> <span>MSN <small>Spaces</small></span>
+                </div>
+                <ul id="shortcuts">
+                    <li class="btn"><a href="/">Home</a></li>
+                    <li class="btn"><a href="/articles/{{ session['id'] if 'id' in session else '' }}">Articles</a></li>
+                </ul>
+                <div id="account">
+                    {% if 'id' not in session %}
+                        <div><a href="/login?spaces" id="signin">Sign in</a> <img src="/static/style/assets/signin.gif" style="margin: 2px;" /></div>
+                    {% else %}
+                        <div>
+                            <span>
+                                Hi, {{ session['username'] }}
+                                <img src="/static/style/assets/small_arrow_black.svg" class="arrowdown" style="height: 9px; margin: 0;">
+                                <div id="logout-menu">
+                                    <div class="btn"><a href="/logout" id="signout">Sign out</a></div>
+                                </div>
+                            </span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="content">
+{% block content %}{% endblock %}
+    </main>
+</div>
+
+</body>
+</html>

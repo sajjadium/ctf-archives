@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register example</title>
+</head>
+<body>
+    <form method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="username">
+        <br>
+
+        <label for="password">Password</label>
+        <input type="text" name="password" type="password">
+        <br>
+
+        <button type="submit">Sign up</button>
+    </form>
+    <br>
+    <p>Code Example:</p>
+    <pre>
+def register_handle(ctx):
+    data = ctx.request.post_data
+
+    username = data.get("username")
+    password = data.get("password")
+    
+    assert username and password
+    
+    return "Registered!"
+    </pre>
+    <a href="/">Go back</a>
+</body>
+</html>

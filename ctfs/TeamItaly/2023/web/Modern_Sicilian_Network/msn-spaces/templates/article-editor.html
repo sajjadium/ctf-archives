@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Editor - MSN Spaces{% endblock %}
+{% block content %}
+<div style="font-size: 14pt; margin-bottom: 8px"><b>Write an article</b></div>
+<div>
+    <form action="/articles/{{ session['id'] }}/" method="POST" class="article-form" onsubmit="convertNewlines()">
+        <input type="text" name="title" placeholder="What's the title?" maxlength="128" />
+        <input type="hidden" name="content" maxlength="2048" />
+        <textarea placeholder="Write your article here..."></textarea>
+        <button class="win7-btn" type="submit">Publish</button>
+    </form>
+</div>
+<script type="text/javascript">
+    const textarea = document.querySelector("textarea");
+    const content = document.querySelector("input[name=content]");
+    function convertNewlines() {
+        content.value = textarea.value.replace("\n", "<br />");
+    }
+</script>
+{% endblock %}

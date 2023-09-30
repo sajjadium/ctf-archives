@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    tmpfs:
+      - /app/files
+    environment:
+      - KEY=NOT_THE_REAL_KEY
+      - FLAG=flag{NOT_THE_REAL_FLAG}
+      - PYTHONUNBUFFERED=TRUE

@@ -1,0 +1,18 @@
+commit 6225cbf12697ca2b801413bd2c1a4cb44d79802c
+Author: MarcoMeinardi <marcomeinardi01@gmail.com>
+Date:   Tue Sep 19 21:38:11 2023 +0200
+
+    Accidentally pressing `dd` on a very specific line
+
+diff --git a/src/vim9class.c b/src/vim9class.c
+index f122f90c1..4cc82f9ee 100644
+--- a/src/vim9class.c
++++ b/src/vim9class.c
+@@ -2528,7 +2528,6 @@ copy_object(typval_T *from, typval_T *to)
+     else
+     {
+ 	to->vval.v_object = from->vval.v_object;
+-	++to->vval.v_object->obj_refcount;
+     }
+ }
+ 

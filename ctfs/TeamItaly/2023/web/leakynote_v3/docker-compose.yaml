@@ -1,0 +1,48 @@
+services:
+    challenge:
+        build: .
+        ports:
+            - "1337:1337"
+        environment:
+            - FLAG=flag{REDACTED}
+            - ADMIN_PASSWORD=REDACTED
+            - HEADLESS_HOST=http://headless:5000/
+            - HEADLESS_AUTH=REDACTED
+            - URL=http://leakynote.challs.todo.it:1337/
+        networks:
+            - challenge
+    headless:
+        image: cybersecnatlab/challenge-headless:latest-manager
+        restart: unless-stopped
+        environment:
+            AUTH_TOKEN: REDACTED
+            RABBITMQ_HOST: headless-rabbitmq
+            RABBITMQ_QUEUE: headless-jobs
+        depends_on:
+            - headless-rabbitmq
+        networks:
+            - challenge
+
+    headless-rabbitmq:
+        image: rabbitmq:3.11
+        restart: unless-stopped
+        networks:
+            - challenge
+
+    headless-worker:
+        image: cybersecnatlab/challenge-headless:latest-worker
+        restart: unless-stopped
+        environment:
+            RABBITMQ_HOST: headless-rabbitmq
+            RABBITMQ_QUEUE: headless-jobs
+        deploy:
+            replicas: 4
+        depends_on:
+            - headless-rabbitmq
+        networks:
+            - challenge
+
+
+networks:
+    challenge:
+        driver: bridge

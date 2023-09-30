@@ -1,0 +1,66 @@
+diff --git a/SQISign.py b/SQISign.py
+index f7b2b7b..2dc9f77 100644
+--- a/SQISign.py
++++ b/SQISign.py
+@@ -392,7 +392,8 @@ class SQISign:
+ 
+         return (E1, S)
+ 
+-    def verify_response(self, EA, E1, S, ϕ_ker):
++    # Allowing isogenies of degree higher then 2^1000, but should be doable also with the original verification
++    def verify_response(self, EA, E1, S, ϕ_ker, deg_sigma=e):
+         """
+         Verify that the compressed bitstring S corresponds to
+         an isogeny σ EA → E2 of degree l^e such that ϕ_dual ∘ σ
+@@ -411,7 +412,7 @@ class SQISign:
+ 
+         # Decompress σ
+         print(f"INFO [SQISign Verify]: Decompressing the isogeny σ from a bitstring")
+-        σ = decompression(EA, E2, S, l, f_step_max, e)
++        σ = decompression(EA, E2, S, l, f_step_max, deg_sigma)
+ 
+         print(f"INFO [SQISign Verify]: Verifying the degree and (co)domains of σ")
+         # Ensure that the domain of σ is EA
+@@ -424,10 +425,10 @@ class SQISign:
+             return False
+ 
+         # Check the degree of σ is as expected
+-        if ZZ(σ.degree()) != l**e:
++        if l**3000 % ZZ(σ.degree()) != 0:
+             print(
+                 f"DEBUG [SQISign Verify]:"
+-                f"The degree σ is {factor(σ.degree())}, expected {l}^{e}"
++                f"The degree σ is {factor(σ.degree())}, expected maximum {l}^3000"
+             )
+             return False
+ 
+diff --git a/isogenies.py b/isogenies.py
+index 31adeb0..8dbd314 100644
+--- a/isogenies.py
++++ b/isogenies.py
+@@ -105,8 +105,8 @@ def generate_linearly_independent_point(E, P, D, canonical=False):
+ 
+     raise ValueError(f"Never found a linearly independent point...")
+ 
+-
+-@cached_function
++# We don't like optimization
++# @cached_function
+ def torsion_basis(E, D, canonical=False):
+     """
+     Generate basis of E(Fp^4)[D] of supersingular curve
+diff --git a/utilities.py b/utilities.py
+index b78addd..d1ce044 100644
+--- a/utilities.py
++++ b/utilities.py
+@@ -263,8 +263,8 @@ def batch_cofactor_mul_generic(G_list, pis, group_action, lower, upper):
+     batch_cofactor_mul_generic(G_list, pis, group_action, lower, mid)
+     batch_cofactor_mul_generic(G_list, pis, group_action, mid, upper)
+ 
+-
+-@cached_function
++# We don't like optimization
++# @cached_function
+ def has_order_constants(D):
+     """
+     Helper function, finds constants to

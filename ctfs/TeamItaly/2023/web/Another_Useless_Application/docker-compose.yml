@@ -1,0 +1,48 @@
+services:
+  app:
+    build: ./app
+    environment:
+      - FLAG=flag{test}
+      - SSO_URL=http://sso.localtest.me:3001
+      - CHALL_URL=http://aua.localtest.me:3000
+    #network_mode: host
+    ports:
+      - 3000:3000
+  sso:
+    build: ./sso
+    environment:
+      - ADMIN_PASSWORD=password
+      - SSO_URL=http://sso.localtest.me:3001
+      - CHALL_URL=http://aua.localtest.me:3000
+      - REPORT_URL=http://headless:5000/
+      - AUTH_TOKEN_REPORT=supersecret
+    #network_mode: host
+    ports:
+      - 3001:3001
+
+  # headless:
+  #   image: cybersecnatlab/challenge-headless:latest-manager
+  #   restart: unless-stopped
+  #   ports:
+  #     - 5000:5000
+  #   environment:
+  #     AUTH_TOKEN: supersecret
+  #     RABBITMQ_HOST: headless-rabbitmq
+  #     RABBITMQ_QUEUE: headless-jobs
+  #   depends_on:
+  #     - headless-rabbitmq
+
+  # headless-rabbitmq:
+  #   image: rabbitmq:3.11
+  #   restart: unless-stopped
+
+  # headless-worker:
+  #   image: cybersecnatlab/challenge-headless:latest-worker
+  #   restart: unless-stopped
+  #   environment:
+  #     RABBITMQ_HOST: headless-rabbitmq
+  #     RABBITMQ_QUEUE: headless-jobs
+  #   deploy:
+  #     replicas: 1
+  #   depends_on:
+  #     - headless-rabbitmq

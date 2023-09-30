@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block title %}Sign in{% endblock %}
+{% block header %}
+    <style type="text/css">
+        .logon a { text-decoration: none; }
+        .logon {
+            position: initial;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: url('/static/style/assets/wave.jpg'), linear-gradient(#FCFCFC 0%, #FCFCFC 80%, rgb(220, 238, 246) 100%);
+            background-repeat: repeat-x;
+            background-position: center 0px;
+            /* background: linear-gradient(rgb(130, 197, 234), #FFFFFF 15%, #FFFFFF 75%, rgb(220, 238, 246) 100%) */
+            padding-top: 60px;
+            font-family: 'Segoe UI';
+            text-align: center;
+        }
+        #logon-screen {
+            min-width: 240px;
+            max-width: 320px;
+        }
+        .logon-header h1 {
+            font-weight: 450;
+            margin: 6px;
+            color: rgb(77, 95, 171);
+        }
+        fieldset {
+            border: 1px solid lightgray;
+            border-radius: 2px;
+        }
+        .logon-fieldset {
+            margin: 24px 0;
+            text-align: left;
+        }
+        .logon-fieldset input {
+            display: block;
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 11px;
+            padding: 3px;
+            font-family: 'Segoe UI';
+            font-size: 10px;
+        }
+        .propic-selector {
+            margin: 2px auto;
+            border: 1px solid lightgray;
+            text-align: center;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 5px;
+        }
+        .propic-selector img {
+            margin: auto;
+            max-width: 64px;
+            max-height: 64px;
+        }
+        /* https://stackoverflow.com/questions/17541614/use-images-instead-of-radio-buttons */
+        [type=radio] { 
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        [type=radio] + img {
+            cursor: pointer;
+        }
+        [type=radio]:checked + img {
+            outline: 2px solid #f00;
+        }
+
+        /* copied from chat.css */
+        #topavatar {
+            position: relative;
+        }
+            .avatar {
+                margin: 9px;
+                width: 96px;
+                height: 96px;
+                border-radius: 2px;
+            }
+            .frame {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        
+        #error-message {
+            margin: 8px 0;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+<div class="main logon">
+    <div id="topavatar" style="margin-bottom: 16px;">
+        <img class="avatar" src="/static/style/assets/chat-window/1531.png" alt="">
+        <img class="frame" src="/static/style/assets/background/frame_96.png" alt="">
+    </div>
+
+    <div id="logon-screen">
+        <div class="logon-header" id="signin-header">
+            <h1>Sign in</h1>
+            Sign in with your Sicily Passport.
+            <br />
+            Don't have one? <a href="#" id="signup">Sign up</a>.
+        </div>
+        <div class="logon-header" id="signup-header" style="display: none">
+            <h1>Sign up</h1>
+            A Sicily Passport lets you connect with sicilians from all over the world, and it's free!
+            <br />
+            Already have one? <a href="#" id="signin">Sign in</a>.
+        </div>
+        <form class="logon-form">
+            <fieldset class="logon-fieldset">
+                <input type="text" name="username" placeholder="Username" required="required" maxlength="32" />
+                <input type="password" name="password" placeholder="Password" required="required" maxlength="128" />
+                <div id="propic-form" style="display: none">
+                    <p>Choose your profile picture:</p>
+                    <fieldset class="propic-selector">
+                        {% for pic in propics %}
+                            <label>
+                                <input type="radio" name="propic" value="{{ pic }}" {% if propics.index(pic) == 0 %}checked="checked" {% endif %}/>
+                                <img src="/static/propic/{{ pic }}" />
+                            </label>
+                        {% endfor %}
+                    </fieldset>
+                </div>
+                <a href="#" id="forgot-password">Forgot your password?</a>
+            </fieldset>
+            <div>
+                <button class="win7-btn" type="submit" id="TheButton">Sign in</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="loading-screen" style="display: none">
+        <img src="/static/style/assets/login.gif" />
+        <p id="loading-message">Please wait...</p>
+    </div>
+
+    <div id="error-message" style="color: red"></div>
+</div>
+<script type="text/javascript" src="/static/js/login.js"></script>
+{% endblock %}

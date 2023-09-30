@@ -1,0 +1,124 @@
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 7px;
+  background: rgba(130, 130, 130, 0.4);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 12px;
+  background: #888;
+}
+
+:root,
+html,
+body {
+  padding: 0;
+  border: 0;
+  margin: 0;
+
+  font-family: sans-serif;
+
+  --accent-color: 125, 202, 247;
+  --accent: rgb(var(--accent-color));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+body {
+  background: url("/overlay.webp"), linear-gradient(300deg, #521b4f, #101113);
+  background-size: 256px 256px, 120% 120%;
+  animation: gradient-animation 12s ease infinite;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 1.25rem 0;
+}
+
+nav,
+section {
+  width: 90%;
+  max-width: 1700px;
+  margin: 0 auto;
+}
+
+nav > * {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav > div {
+  gap: 2.5rem;
+}
+
+nav a:first-of-type {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: bold;
+  gap: 1rem;
+}
+
+nav svg {
+  width: 3rem;
+  height: 3rem;
+}
+
+#main {
+  flex-grow: 1;
+  flex-shrink: 1;
+  height: 100%;
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+h2 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: normal;
+}
+
+.accent {
+  color: var(--accent);
+}

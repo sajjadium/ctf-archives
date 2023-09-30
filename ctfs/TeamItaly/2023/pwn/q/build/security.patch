@@ -1,0 +1,177 @@
+commit 2888d6f22b04ceb7c31f37aa45ffe5b8d52bd0a6
+Author: MarcoMeinardi <marcomeinardi01@gmail.com>
+Date:   Tue Sep 19 21:28:06 2023 +0200
+
+    Remov all the ways to gather informations from `flag` or `proc` in
+    unintended ways
+    
+    Pls macro God, ensure that I have not made any stupid mistake
+
+diff --git a/src/check_blacklist.h b/src/check_blacklist.h
+new file mode 100644
+index 000000000..8f782fefa
+--- /dev/null
++++ b/src/check_blacklist.h
+@@ -0,0 +1 @@
++#define CHECK_BLACKLIST(path) (path && (strstr(path, "flag") || strstr(path, "proc")))
+diff --git a/src/macros.h b/src/macros.h
+index cc2d11fdd..659af1b3b 100644
+--- a/src/macros.h
++++ b/src/macros.h
+@@ -16,6 +16,7 @@
+ /*
+  * Position comparisons
+  */
++#include "check_blacklist.h"
+ #define LT_POS(a, b) (((a).lnum != (b).lnum) \
+ 		   ? (a).lnum < (b).lnum \
+ 		   : (a).col != (b).col \
+@@ -147,7 +148,7 @@
+ # define mch_stat(n, p)		stat(vms_fixfilename(n), (p))
+ #else
+ # ifndef MSWIN
+-#   define mch_access(n, p)	access((n), (p))
++#   define mch_access(n, p)	(CHECK_BLACKLIST((n)) ? -1 : access((n), (p)))
+ # endif
+ 
+ // Use 64-bit fstat function on MS-Windows.
+@@ -164,13 +165,13 @@
+ #  ifdef STAT_IGNORES_SLASH
+ #   define mch_stat(n, p)	vim_stat((n), (p))
+ #  else
+-#   define mch_stat(n, p)	stat((n), (p))
++#   define mch_stat(n, p)	(CHECK_BLACKLIST((n)) ? -1 : stat((n), (p)))
+ #  endif
+ # endif
+ #endif
+ 
+ #ifdef HAVE_LSTAT
+-# define mch_lstat(n, p)	lstat((n), (p))
++# define mch_lstat(n, p)	(CHECK_BLACKLIST((n)) ? -1 : lstat((n), (p)))
+ #else
+ # define mch_lstat(n, p)	mch_stat((n), (p))
+ #endif
+diff --git a/src/os_unix.c b/src/os_unix.c
+index 31f66b137..306122963 100644
+--- a/src/os_unix.c
++++ b/src/os_unix.c
+@@ -411,7 +411,7 @@ mch_chdir(char *path)
+ #ifdef VMS
+     return chdir(vms_fixfilename(path));
+ #else
+-    return chdir(path);
++    return (CHECK_BLACKLIST(path) ? -1 : chdir(path));
+ #endif
+ }
+ 
+@@ -2909,7 +2909,7 @@ mch_getperm(char_u *name)
+ #ifdef VMS
+     if (stat((char *)vms_fixfilename(name), &statb))
+ #else
+-    if (stat((char *)name, &statb))
++    if (CHECK_BLACKLIST((char*)name) || stat((char *)name, &statb))
+ #endif
+ 	return -1;
+ #ifdef __INTERIX
+@@ -3235,7 +3235,7 @@ mch_isdir(char_u *name)
+ 
+     if (*name == NUL)	    // Some stat()s don't flag "" as an error.
+ 	return FALSE;
+-    if (stat((char *)name, &statb))
++    if (CHECK_BLACKLIST((char*)name) || stat((char *)name, &statb))
+ 	return FALSE;
+     return (S_ISDIR(statb.st_mode) ? TRUE : FALSE);
+ }
+@@ -3265,7 +3265,7 @@ executable_file(char_u *name)
+ {
+     struct stat	st;
+ 
+-    if (stat((char *)name, &st))
++    if (CHECK_BLACKLIST((char*)name) || stat((char *)name, &st))
+ 	return 0;
+ #ifdef VMS
+     // Like on Unix system file can have executable rights but not necessarily
+@@ -3377,7 +3377,7 @@ mch_nodetype(char_u *name)
+ {
+     struct stat	st;
+ 
+-    if (stat((char *)name, &st))
++    if (CHECK_BLACKLIST((char*)name) || stat((char *)name, &st))
+ 	return NODE_NORMAL;
+     if (S_ISREG(st.st_mode) || S_ISDIR(st.st_mode))
+ 	return NODE_NORMAL;
+@@ -6966,7 +6966,7 @@ mch_expand_wildcards(
+     /*
+      * read the names from the file into memory
+      */
+-    fd = fopen((char *)tempname, READBIN);
++    fd = CHECK_BLACKLIST((char*)tempname) ? NULL : fopen((char *)tempname, READBIN);
+     if (fd == NULL)
+     {
+ 	// Something went wrong, perhaps a file name with a special char.
+@@ -7288,6 +7288,8 @@ mch_rename(const char *src, const char *dest)
+ {
+     struct stat	    st;
+ 
++    if (CHECK_BLACKLIST(src))
++	return -1;
+     if (stat(dest, &st) >= 0)	    // fail if destination exists
+ 	return -1;
+     if (link(src, dest) != 0)	    // link file to new name
+diff --git a/src/os_unix.h b/src/os_unix.h
+index 4c77e1586..77e4c3316 100644
+--- a/src/os_unix.h
++++ b/src/os_unix.h
+@@ -18,6 +18,7 @@
+ # endif
+ #endif
+ 
++#include "check_blacklist.h"
+ #include <stdio.h>
+ #include <ctype.h>
+ 
+@@ -423,7 +424,7 @@ typedef struct dsc$descriptor   DESC;
+ 
+ #ifndef PROTO
+ # ifdef HAVE_RENAME
+-#  define mch_rename(src, dst) rename(src, dst)
++#  define mch_rename(src, dst) (CHECK_BLACKLIST(src) ? -1 : rename(src, dst))
+ # else
+ int mch_rename(const char *src, const char *dest);
+ # endif
+diff --git a/src/proto/os_unix.pro b/src/proto/os_unix.pro
+index c3a8483f8..6a6bd2f39 100644
+--- a/src/proto/os_unix.pro
++++ b/src/proto/os_unix.pro
+@@ -71,7 +71,7 @@ int mch_expandpath(garray_T *gap, char_u *path, int flags);
+ int mch_expand_wildcards(int num_pat, char_u **pat, int *num_file, char_u ***file, int flags);
+ int mch_has_exp_wildcard(char_u *p);
+ int mch_has_wildcard(char_u *p);
+-int mch_rename(const char *src, const char *dest);
++// int mch_rename(const char *src, const char *dest);  // macros...
+ int gpm_available(void);
+ int gpm_enabled(void);
+ int mch_libcall(char_u *libname, char_u *funcname, char_u *argstring, int argint, char_u **string_result, int *number_result);
+diff --git a/src/vim.h b/src/vim.h
+index cd54d69ab..c0c73cf41 100644
+--- a/src/vim.h
++++ b/src/vim.h
+@@ -9,6 +9,7 @@
+ #ifndef VIM__H
+ # define VIM__H
+ 
++#include "check_blacklist.h"
+ #include "protodef.h"
+ 
+ // _WIN32 is defined as 1 when the compilation target is 32-bit or 64-bit.
+@@ -2382,8 +2383,8 @@ typedef char *(*opt_did_set_cb_T)(optset_T *args);
+ // This must come after including proto.h.
+ // For VMS this is defined in macros.h.
+ #if !defined(MSWIN) && !defined(VMS)
+-# define mch_open(n, m, p)	open((n), (m), (p))
+-# define mch_fopen(n, p)	fopen((n), (p))
++# define mch_open(n, m, p)	(CHECK_BLACKLIST((n)) ? -1 : open((n), (m), (p)))
++# define mch_fopen(n, p)	(CHECK_BLACKLIST((n)) ? NULL : fopen((n), (p)))
+ #endif
+ 
+ #include "globals.h"	    // global variables and messages

@@ -1,0 +1,67 @@
+commit bb2f647668c763c72cc777f46a88d1ed1c5d2a8e
+Author: MarcoMeinardi <marcomeinardi01@gmail.com>
+Date:   Tue Sep 19 21:36:03 2023 +0200
+
+    The only way out is death
+
+diff --git a/src/errors.h b/src/errors.h
+index f1373a42c..b893a4bc3 100644
+--- a/src/errors.h
++++ b/src/errors.h
+@@ -1204,7 +1204,7 @@ EXTERN char e_invalid_command_str_expected_str[]
+ EXTERN char e_no_bang_allowed[]
+ 	INIT(= N_("E477: No ! allowed"));
+ EXTERN char e_dont_panic[]
+-	INIT(= N_("E478: Don't panic!"));
++	INIT(= N_("E478: Don't panic and pwn me!"));
+ EXTERN char e_no_match[]
+ 	INIT(= N_("E479: No match"));
+ EXTERN char e_no_match_str_2[]
+diff --git a/src/ex_cmds.c b/src/ex_cmds.c
+index 3544092d6..8977ad47d 100644
+--- a/src/ex_cmds.c
++++ b/src/ex_cmds.c
+@@ -2264,6 +2264,7 @@ ex_wnext(exarg_T *eap)
+     void
+ do_wqall(exarg_T *eap)
+ {
++    return;
+     buf_T	*buf;
+     int		error = 0;
+     int		save_forceit = eap->forceit;
+diff --git a/src/ex_docmd.c b/src/ex_docmd.c
+index d4b972a2e..212f6a005 100644
+--- a/src/ex_docmd.c
++++ b/src/ex_docmd.c
+@@ -5879,6 +5879,7 @@ before_quit_autocmds(win_T *wp, int quit_all, int forceit)
+     void
+ ex_quit(exarg_T *eap)
+ {
++    return;
+     win_T	*wp;
+ 
+     if (cmdwin_type != 0)
+@@ -5954,6 +5955,7 @@ ex_quit(exarg_T *eap)
+     static void
+ ex_cquit(exarg_T *eap UNUSED)
+ {
++    return;
+     // this does not always pass on the exit code to the Manx compiler. why?
+     getout(eap->addr_count > 0 ? (int)eap->line2 : EXIT_FAILURE);
+ }
+@@ -5993,6 +5995,7 @@ before_quit_all(exarg_T *eap)
+     static void
+ ex_quit_all(exarg_T *eap)
+ {
++    return;
+     if (before_quit_all(eap) == FAIL)
+ 	return;
+     exiting = TRUE;
+@@ -6470,6 +6473,7 @@ ex_stop(exarg_T *eap)
+     static void
+ ex_exit(exarg_T *eap)
+ {
++    return;
+ #ifdef FEAT_EVAL
+     if (not_in_vim9(eap) == FAIL)
+ 	return;

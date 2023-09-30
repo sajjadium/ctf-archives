@@ -1,0 +1,323 @@
+{% extends 'base.html' %}
+{% block title %}MSN Messenger{% endblock %}
+{% block header %}
+    <link rel="stylesheet" type="text/css" href="/static/style/contacts.css" />
+    <link rel="stylesheet" type="text/css" href="/static/style/chat.css" />
+    <script src="/static/js/socket.io.min.js"></script>
+    <style>
+        body { background: url(/static/style/assets/vista.jpg) center / cover no-repeat fixed; }
+    </style>
+{% endblock %}
+{% block content %}
+<!--
+    this is an heavily modified version of:
+        https://github.com/AndroidWG/WLMOnline
+    sending much love to the original author <3
+-->
+<div class="main">
+    <div class="mainwindow" id="contacts">
+        <div class="header">
+            <div class="titlebar">
+                <img src="/static/style/assets/general/live_logo.png" alt="MSN">
+                <span id="challenge">Modern Sicilian Network</span>
+            </div>
+            <div class="user-info">
+                <img id="avatar" src="/static/style/assets/chat-window/1531.png" alt="Profile Picture">
+                <img id="frame"  src="/static/style/assets/background/frame_48.png">
+                <div class="profile">
+                    <button class="aerobutton" id="user">
+                        <h3 id="username"></h3>
+                        <p id="status">(online)</p>
+                        <img class="arrowdown arrowcontacts" src="/static/style/assets/general/small_arrow_lightblue.svg">
+                    </button>
+                    <button class="aerobutton" id="bio">
+                        <p style="margin: 0;">Having fun with Team Italy!</p>
+                        <img class="arrowdown arrowcontacts" src="/static/style/assets/general/small_arrow_lightblue.svg">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="contactsnav">
+            <ul class="iconbar" id="left">
+                <button class="aerobutton contactaction" id="action-mail"></button>
+                <button class="aerobutton contactaction" id="action-share1"></button>
+                <button class="aerobutton contactaction" id="action-news"></button>
+            </ul>
+            <ul class="iconbar" id="right">
+                <button class="aerobutton contactaction smallarrowbtn" id="moreoptions">
+                    <img src="/static/style/assets/contacts-window/1489.png" style="height: 16px;">
+                    <img class="arrowdown" src="/static/style/assets/general/small_arrow.svg">
+                </button>
+                <button class="aerobutton contactaction" id="action-customize1"></button>
+            </ul>
+        </div>
+        <div class="search">
+            <input id="contact-search" type="text" placeholder="These are not actual contacts...">
+            <button class="searchbar-btn" id="action-friend-add"></button>
+            <button class="searchbar-btn" id="action-sort"></button>
+        </div>
+        <!-- Please note that these contacts are fake :) -->
+        <ul class="contact-list">
+
+            <button class="listitem headerlist">
+                <img class="arrow" src="/static/style/assets/general/arrow_placeholder.png">
+                <b>Online (11)</b>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">Chino</span>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">daisydaisy</span>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">Dandelion Sam</span>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">Devrar</span>
+                <p class="contact-text message">&nbsp;-&nbsp;searching for the One Piece</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">dp_1</span>
+                <p class="contact-text message">&nbsp;-&nbsp;probably eating carbonara</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">Escrimamenchi</span>
+                <p class="contact-text message">&nbsp;-&nbsp;playing Scopone Scientifico</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">JinBlack</span>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">mattia</span>
+                <p class="contact-text message">&nbsp;-&nbsp;being pwned by discord nitro</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">pianka</span>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">Poli</span>
+                <p class="contact-text message">&nbsp;-&nbsp;playing League of Legends</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/online.png" alt="Online">
+                <span class="contact-text name">Ricchy24</span>
+            </button>
+
+            <button class="listitem headerlist">
+                <img class="arrow" src="/static/style/assets/general/arrow_placeholder.png">
+                <b>Busy (6)</b>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/busy.png" alt="Busy">
+                <span class="contact-text name">devgianlu</span>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/busy.png" alt="Busy">
+                <span class="contact-text name">Gaspare</span>
+                <p class="contact-text message">&nbsp;-&nbsp;Writing emails...</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/busy.png" alt="Busy">
+                <span class="contact-text name">Genni</span>
+                <p class="contact-text message">&nbsp;-&nbsp;getting skill issued</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/busy.png" alt="Busy">
+                <span class="contact-text name">Loldemort</span>
+                <p class="contact-text message">&nbsp;-&nbsp;probably eating an arancina</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/busy.png" alt="Busy">
+                <span class="contact-text name">mr96</span>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/busy.png" alt="Busy">
+                <span class="contact-text name">timetravel3</span>
+            </button>
+            
+            <button class="listitem headerlist">
+                <img class="arrow" src="/static/style/assets/general/arrow_placeholder.png">
+                <b>Away (8)</b>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/away.png" alt="Away">
+                <span class="contact-text name">Alemmi</span>
+                <p class="contact-text message">&nbsp;-&nbsp;trying to calculate 15+18</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/away.png" alt="Away">
+                <span class="contact-text name">Bonaff</span>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/away.png" alt="Away">
+                <span class="contact-text name">Bonfee</span>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/away.png" alt="Away">
+                <span class="contact-text name">Giotino</span>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/away.png" alt="Away">
+                <span class="contact-text name">Giulia</span>
+                <p class="contact-text message">&nbsp;-&nbsp;probably eating</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/away.png" alt="Away">
+                <span class="contact-text name">salvatore.abello</span>
+                <p class="contact-text message">&nbsp;-&nbsp;stuck inside a pyjail</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/away.png" alt="Away">
+                <span class="contact-text name">shishcat 🐈</span>
+                <p class="contact-text message">&nbsp;-&nbsp;currently at: Burger King</p>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/away.png" alt="Away">
+                <span class="contact-text name">Xato</span>
+            </button>
+
+            <button class="listitem headerlist">
+                <img class="arrow" src="/static/style/assets/general/arrow_placeholder.png">
+                <b>Offline (1)</b>
+            </button>
+            <button class="listitem contact">
+                <img class="aerobutton status-icon" src="/static/style/assets/status/invisible.png" alt="Invisible">
+                <span class="contact-text name">android.WG</span>
+                <p class="contact-text message">&nbsp;-&nbsp;author of this template ❤️</p>
+            </button>
+            
+            
+        </ul>
+        <div id="footer">
+            <span style="color: #9bb3d4;">Advertisement</span>
+            <img id="ad" src="/static/style/assets/teamitaly-cyberdefender.svg" alt="">
+        </div>
+    </div>
+    
+    <div class="mainwindow" id="chat">
+        <div class="header">
+            <div id="info">
+                <img id="chaticon" src="/static/style/assets/chat-window/61.ico">
+                <div id="recipient-info">
+                    <span id="recipient-name"></span>
+                    <span id="recipient-message">probably eating an arancina</span>
+                </div>
+            </div>
+            <div id="navbars">
+                <ul class="chatnav" id="left">
+                    <button class="aerobutton chataction" id="action-chat-add"></button>
+                    <button class="aerobutton chataction" id="action-share2"></button>
+                    <button class="aerobutton chataction" id="action-call"></button>
+                    <button class="aerobutton chataction" id="action-multimedia"></button>
+                    <button class="aerobutton chataction" id="action-games"></button>
+                    <button class="aerobutton chataction" id="action-block"></button>
+                </ul>
+                <ul class="chatnav" id="right">
+                    <button class="aerobutton chataction smallarrowbtn" id="moreoptions">
+                        <img src="/static/style/assets/chat-window/1489.png" style="height: 16px;">
+                        <img class="arrowdown" src="/static/style/assets/general/small_arrow_black.svg">
+                    </button>
+                    <button class="aerobutton chataction" id="action-customize2"></button>
+                </ul>
+            </div>
+        </div>
+        <div class="conversation">
+            <div id="messages">
+                <div id="receive">
+                    <div class="alerts" id="busy-alert">
+                        <img src="/static/style/assets/chat-window/1539.png" alt="" class="alert-icon">
+                        <p class="alert-text">Loldemort is busy and may not answer quickly. Try sending a nudge!</p>
+                    </div>
+                    <div class="chattext" id="display">
+                        <span class="sender">Loading...</span>
+                    </div>
+                </div>
+                <div id="handle"></div>
+                <div id="send">
+                    <ul id="options">
+                        <button class="aerobutton textoption smallarrowbtn dropdown-button" id="emoticons-button">
+                            <img src="/static/style/assets/chat-window/412.png">
+                            <img class="arrowdown" src="/static/style/assets/general/small_arrow_black.svg">
+                            <div id="emoticons-menu">
+                                <div id="emoticons-panel">
+                                    <img src="/static/style/assets/chat-window/412.png" id="emoticon-smile" data-emoticon=":)">
+                                    <img src="/static/style/assets/chat-window/1487.png" id="emoticon-wink" data-emoticon=";)">
+                                    <img src="/static/propic/tofu.png" id="emoticon-tofu" data-emoticon=":tofu:">
+                                </div>
+                            </div>
+                        </button>
+                        <button class="aerobutton textoption smallarrowbtn">
+                            <img src="/static/style/assets/chat-window/1487.png">
+                            <img class="arrowdown" src="/static/style/assets/general/small_arrow_black.svg">
+                        </button>
+                        <button class="aerobutton textoption noarrow" id="nudge-button"></button>
+                        <button class="aerobutton textoption noarrow" id="audio-button"></button>
+                        <button class="textoption separator"></button>
+                        <button class="aerobutton textoption smallarrowbtn dropdown-button" id="spaces-button">
+                            <img src="/static/style/assets/spaces.ico">
+                            <img class="arrowdown" src="/static/style/assets/general/small_arrow_black.svg">
+                            <div id="spaces-menu">
+                                <ul id="spaces-articles">Loading your articles...</ul>
+                                <a href="//spaces.{{DOMAIN}}:{{SPACES_PORT}}/articles" target="_blank">Write an article!</a>
+                            </div>
+                        </button>
+                        <button class="textoption separator"></button>
+                        <button class="aerobutton textoption noarrow" id="font-button"></button>
+                    </ul>
+                    <textarea class="chattext" id="write" placeholder="Type your message here..." maxlength="512"></textarea>
+                    <div id="bottomtabs">
+                        <button class="editortab selected" id="mode-type">
+                            <img src="/static/style/assets/chat-window/963.png">
+                        </button>
+                        <button class="editortab unselected" id="mode-draw">
+                            <img src="/static/style/assets/chat-window/961.png">
+                        </button>
+                        <div>
+                            <button id="send-button" disabled>Send</button>
+                            <button id="search"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="avatars">
+                <div id="topavatar">
+                    <img class="avatar" src="/static/style/assets/chat-window/1531.png" alt="">
+                    <img class="frame" src="/static/style/assets/background/frame_96.png" alt="">
+                    <div class="avatarnav">
+                        <button class="aerobutton avataraction" id="action-webcam"></button>
+                        <button class="aerobutton avataraction action-avatarmenu"></button>
+                    </div>
+                </div>
+                <div id="bottomavatar">
+                    <img class="avatar" src="/static/style/assets/chat-window/1531.png" alt="">
+                    <img class="frame" src="/static/style/assets/background/frame_96.png" alt="">
+                    <div class="avatarnav">
+                        <button class="aerobutton avataraction action-avatarmenu"></button>
+                    </div>
+                </div>
+            </div>
+            <div id="expand">
+                <button class="expandbutton"></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="display: none">
+    <audio preload="auto" id="sound-nudge"><source src="/static/sound/nudge.mp3" type="audio/mpeg" /></audio>
+    <audio preload="auto" id="sound-type"><source src="/static/sound/type.mp3" type="audio/mpeg" /></audio>
+</div>
+
+<script type="text/javascript" src="/static/js/pow/PoW.js"></script>
+<script type="text/javascript" src="/static/js/chat.js"></script>
+{% endblock %}

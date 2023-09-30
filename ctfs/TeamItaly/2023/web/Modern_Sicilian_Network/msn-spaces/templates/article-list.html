@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}{{ user.username }}'s articles - MSN Spaces{% endblock %}
+{% block content %}
+<div style="font-size: 14pt"><strong>{{ user.username }}'s articles</strong></div>
+<div>
+    {% if articles %}
+        <ul>{% for article in articles %}
+            <li><a href="/articles/{{ user.id }}/{{ article['id'] }}">{{ article['title'] }}</a></li>
+        {% endfor %}</ul>
+    {% else %}
+        <p>You haven't written anything so far.</p>
+    {% endif %}
+    {% if 'id' in session and session.id == user.id %}
+        <a href="/articles">Write an article</a>
+    {% endif %}
+</div>
+{% endblock %}

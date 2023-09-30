@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }} - {{ user.username }}'s space{% endblock %}
+{% block content %}
+<div id="author">
+    <div id="topavatar">
+        <img class="avatar" id="author-propic" src="//chat.{{DOMAIN}}:{{CHAT_PORT}}/static/propic/{{ user.propic }}" alt="">
+        <img class="frame" src="//chat.{{DOMAIN}}:{{CHAT_PORT}}/static/style/assets/background/frame_96.png" alt="">
+    </div>
+    <div id="article-info"><strong>{{ title }}</strong><br /><small>{{ user.username }}</small></div>
+</div>
+<div id="article">
+    <div id="article-content">{{ text | safe }}</div>
+    <small id="article-timestamp">{{ timestamp }}</small>
+</div>
+{% endblock %}

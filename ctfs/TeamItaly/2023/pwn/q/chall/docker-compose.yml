@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  vim9:
+    build: .
+    restart: unless-stopped
+    ports:
+      - '12321:12321/tcp'

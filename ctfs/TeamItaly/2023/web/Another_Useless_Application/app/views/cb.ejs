@@ -1,0 +1,27 @@
+<%- include('header') %>
+
+
+<script>
+
+    const token = location.hash.slice(1)
+
+    const regex = /^[a-zA-Z0-9-_]+$/;
+
+    if (regex.test(token)){
+        fetch('/cb', {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            },
+            body: 'token=' + encodeURIComponent(token)
+        }).then(r=>{
+            location.href = '/'
+        })
+
+    } else {
+        console.error('Wrong data')
+        location.href = '/error?msg=Bad+token'
+    }
+
+</script>

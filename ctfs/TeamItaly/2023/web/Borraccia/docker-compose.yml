@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  borraccia:
+    build: .
+    container_name: 'borraccia'
+    restart: unless-stopped
+    ports:
+      - '1337:1337/tcp'
+
+    environment:
+      - RATELIMIT=60
+      - WORKERS=50
+      - MAX_REQ_SIZE=16384
+      - SOCK_TIMEOUT=5
+      - SHORT_SOCK_TIMEOUT=.15

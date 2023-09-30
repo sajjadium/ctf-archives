@@ -1,0 +1,23 @@
+" This file has nothing to do with the vuln,
+" it's just a super minimal config to make vim usable
+
+" The only acceptable tab style
+set noexpandtab
+set tabstop=4
+set shiftwidth=4
+" set smartindent  " this breaks copy paste through socat
+
+" Does anyone have it unset?
+set number
+
+" If you want to master VIM
+set relativenumber
+
+" Annoying af
+set backspace=indent,eol,start
+
+" pls don't fill the container with garbage
+set noswapfile
+set nobackup
+set viminfo="NONE"
+set viminfofile=NONE

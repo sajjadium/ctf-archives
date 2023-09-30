@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  trashbin:
+    build: .
+    ports:
+      - 127.0.0.1:8000:80

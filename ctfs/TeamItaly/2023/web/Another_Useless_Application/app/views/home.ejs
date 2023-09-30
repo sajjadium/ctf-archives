@@ -1,0 +1,20 @@
+<%- include('header') %>
+
+
+<h2 class="mt-4">
+    Welcome to ᴬᵤᴬ
+</h2>
+
+<h4 class="my-3"><span class="fs-1">ᴬ</span>nother <span class="fs-1">ᵤ</span>seless <span class="fs-1">ᴬ</span>pplication</h4>
+
+<br>
+<br>
+<h4>Here's a list of public users:</h4>
+
+<lu>
+<% for (const u of users) { %>
+    <li>
+        <a href="/profile?user=<%= encodeURIComponent(u.username) %>"><%= u.username %></a>
+    </li>   
+<% } %>
+</lu>

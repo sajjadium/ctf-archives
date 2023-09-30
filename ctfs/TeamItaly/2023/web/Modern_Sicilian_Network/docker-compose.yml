@@ -1,0 +1,77 @@
+version: "3.5"
+
+services:
+  db:
+    image: mariadb
+    environment:
+      MARIADB_RANDOM_ROOT_PASSWORD: yes
+      # if you change credentials, change DATABASE_URI in other containers too
+      MARIADB_USER: Redacted123
+      MARIADB_PASSWORD: Redacted456
+      MARIADB_DATABASE: msn
+      MARIADB_SKIP_TEST_DB: yes
+      MARIADB_INITDB_SKIP_TZINFO: yes
+      MARIADB_EXTRA_FLAGS: --skip-log-bin
+    healthcheck:
+      test: mariadb-admin ping -h localhost -u $$MARIADB_USER --password=$$MARIADB_PASSWORD
+      interval: 9s
+      timeout: 9s
+      retries: 10
+
+  msn-chat:
+    build: ./msn-chat/
+    ports:
+      - "6900:6900"
+    environment:
+      DATABASE_URI: mysql+pymysql://Redacted123:Redacted456@db:3306/msn
+      SECRET_KEY: REDACTED
+      CHECKER_TOKEN: REDACTED
+      ADMIN_PASSWORD: REDACTED
+      HEADLESS_HOST: headless
+      HEADLESS_PORT: 5000
+      HEADLESS_AUTH: TofuTofu
+      CHAT_PORT: 6900
+      SPACES_PORT: 6969
+      DOMAIN: msn.localhost
+      FLAG: flag{TEST}
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  msn-spaces:
+    build: ./msn-spaces/
+    ports:
+      - "6969:6969"
+    environment:
+      DOMAIN: msn.localhost
+      DATABASE_URI: mysql+pymysql://Redacted123:Redacted456@db:3306/msn
+      SECRET_KEY: REDACTED
+      CHAT_PORT: 6900
+    depends_on:
+      db:
+        condition: service_healthy
+  
+  headless:
+    image: cybersecnatlab/challenge-headless:latest-manager
+    restart: unless-stopped
+    environment:
+      AUTH_TOKEN: TofuTofu
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    depends_on:
+      - headless-rabbitmq
+
+  headless-rabbitmq:
+    image: rabbitmq:3.11
+    restart: unless-stopped
+
+  headless-worker:
+    image: cybersecnatlab/challenge-headless:latest-worker
+    restart: unless-stopped
+    environment:
+      RABBITMQ_HOST: headless-rabbitmq
+      RABBITMQ_QUEUE: headless-jobs
+    deploy:
+      replicas: 1
+    depends_on:
+      - headless-rabbitmq

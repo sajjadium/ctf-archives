@@ -2053,6 +2053,11 @@
             <td><a href="https://ctftime.org/event/1124/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/TeamItaly">TeamItaly</a></td>
+            <td><a href="ctfs/TeamItaly/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2088/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/Tenable">Tenable</a></td>
             <td><a href="ctfs/Tenable/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1668/tasks/" target="_blank">CTFtime</a></td>
