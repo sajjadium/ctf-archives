@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Maple Vehicular Institute Online Services</title>
+    <link rel="stylesheet" href="/css/index.css" type="text/css" />
+</head>
+<body>
+    <h1>Maple Vehicular Institute Online Services</h1>
+    <div id="articles" name="articles">
+        <% articles.forEach(article => { %>
+            <div class="article">
+                <h2><%= article.title %></h2>
+                <p><%= article.date %></p>
+                <div class="content"><%- article.html %></div>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>

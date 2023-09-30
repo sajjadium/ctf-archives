@@ -1,0 +1,31 @@
+{
+     if (!mem[20]) {
+        call(rot_l);
+        mem[20] = 1;
+    } else if (!mem[10]) {
+        mem[10] = call(left);
+    } else if (!mem[11]) {
+        if (ghost_y > mem[16]) {
+            mem[16] = ghost_y;
+            mem[17] = mem[12];
+        }
+        mem[12] = mem[12] + 1;
+        mem[11] = call(right);
+    } else if (!mem[13]) {
+        mem[10] = 0;
+        mem[13] = 1;
+    } else if (mem[17]) {
+        mem[17] = mem[17] - 1;
+        call(right);
+    } else {
+        call(drop);
+        mem[10] = 0;
+        mem[11] = 0;
+        mem[12] = 0;
+        mem[13] = 0;
+        mem[14] = 0;
+        mem[16] = 0;
+        mem[17] = 0;
+        mem[20] = 0;
+    }
+}

@@ -1,0 +1,70 @@
+/* formal stylesheet for all elememnts */
+
+html * {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: #000000;
+}
+
+
+#page {
+    position: absolute;
+    background-color: #d9d2f4;
+    border: 1px solid #000000;
+    text-align: center;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+}
+
+#header {
+    background-color: #ec4242fa;
+    border: 1px solid #000000;
+    text-align: center;
+    margin-top: 10px;
+    width: 80%;
+}
+
+#content {
+    align-self: center;
+    width: 80%;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    text-align: left;
+    border: 1px solid #000000;
+    background-color: #b3a2f7ad;
+}
+
+td:first-child {
+    font-weight: 700;
+    width: 30%;
+}
+
+td:last-child {
+    width: 70%;
+}
+
+.section {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#logo {
+    position: absolute;
+    right: 10%;
+    color: #390000;
+    background-color: #42e6ecfa;
+    width: 30%;
+    margin-top: 10px;
+    font-size: 4px;
+    border-radius: 100%
+}
+

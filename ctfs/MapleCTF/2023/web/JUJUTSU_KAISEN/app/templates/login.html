@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="grid-item">
+    <h2 style="color: rgb(35, 34, 34);">Sign In</h2>
+</div>
+
+<form action="/login" method="POST" enctype="multipart/form-data">
+    <div id="grid-item">
+        <input type="text" id="username" name="username" placeholder="Username">
+    </div>
+    <div id="grid-item">
+        <input type="password" id="password" name="password" placeholder="Password">
+    </div>
+    <div id="grid-item">
+        <input type="submit" id="submit-login" value="Submit">
+    </div>
+</form>
+{% endblock %}

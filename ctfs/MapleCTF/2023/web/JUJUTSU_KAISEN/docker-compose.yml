@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  jjk_app:
+    restart: on-failure
+    build: ./app
+    # ports:
+    #   - '9080:9080'
+    depends_on:
+      - "jjk_db"
+    environment:
+      - ADMIN_NAME=placeholder
+      - ADMIN_PASSWORD=placeholder
+  jjk_db:
+    restart: on-failure
+    build: ./db
+    # ports:
+    #   - '9090:9090'
+  varnish:
+    image: varnish:stable
+    container_name: varnish
+    volumes:
+      - "./cache_money/default.vcl:/etc/varnish/default.vcl"
+    ports:
+      - '80:80'
+    tmpfs:
+      - /var/lib/varnish:exec
+    environment:
+      - VARNISH_SIZE=2G  
+    command: "-p feature=+esi_disable_xml_check"
+    depends_on:
+      - "jjk_app"
+  bot:
+    build: ./bot/
+    init: true
+    environment:
+      - CHALL_DOMAIN=https://nginx:443 # replaced with real domain on remote
+      - ADMIN_USERNAME=placeholder
+      - ADMIN_PASSWORD=placeholder
+    depends_on:
+      - redis
+  redis:
+    image: redis:6.0-alpine
+  # CTF NOTE: This mimics the load balancer we have for all hosted challs. enable it on local for testing. don't attack plz
+  nginx:
+    build: ./nginx/
+    container_name: nginx
+    ports:
+      - '443:443'
+    depends_on:
+      - "jjk_app"
+

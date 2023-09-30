@@ -1373,7 +1373,11 @@
             <td><a href="https://ctftime.org/event/625/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/MeePwn/2018/Quals">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/MapleCTF">MapleCTF</a></td>
+            <td rowspan=2><a href="ctfs/MapleCTF">MapleCTF</a></td>
+            <td><a href="ctfs/MapleCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2038/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/MapleCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1676/tasks/" target="_blank">CTFtime</a></td>
         </tr>

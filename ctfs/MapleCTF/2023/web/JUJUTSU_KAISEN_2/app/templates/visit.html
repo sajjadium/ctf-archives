@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="grid-item">
+    <h2 style="color: rgb(35, 34, 34);"> Report Issues</h2>
+    <h3> Please notify of any errors or issues on my site. </h3>
+</div>
+
+<form action="/visit" method="POST" enctype="multipart/form-data">
+    <div id="grid-item">
+        <input type="text" id="url" name="url" placeholder="URL">
+    </div>
+    
+    <div id="grid-item">
+        <input type="submit" id="submit-login" value="Submit">
+    </div>
+</form>
+{% endblock %}

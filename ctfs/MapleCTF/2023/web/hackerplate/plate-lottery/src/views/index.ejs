@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        Plate Selection
+    </title>
+    <link href="static/rpgui.css" rel="stylesheet" type="text/css">
+    <script src="static/rpgui.js"></script>
+</head>
+
+<body>
+
+    <div class="rpgui-content">
+        <div class="inner rpgui-container framed" style="position: relative">
+            <h1 style="font-size: 250%">
+                Plate Distribution Portal
+            </h1>
+            <h2>
+                After stopping the randomization process, you will have 240 ticks to decide the plate that you want
+                among the
+                50 available plates.
+            </h2>
+            <h2>Please proceed to finalize your vehicle registration at any of the clerk booths after you are done.</h2>
+            <h3 id="timer">Time remaining: 600</h3>
+            <div style="justify-content: center" class="rpgui-center">
+                <button id="randomize-button" class="rpgui-button" type="submit">
+                    Waiting on server...
+                </button>
+            </div>
+
+            <div id="table">
+                <% for (var i=0; i<6; i++) { %>
+                    <div id="row-<%= i %>">
+                        <div id="col" style="display: flex; white-space: nowrap; justify-content: center;">
+                            <% for (var j=0; j<8; j++) { %>
+                                <button id=<%="plate-" .concat((i * 8 + j).toString()) %> class="rpgui-button"
+                                    style="font-size: 80%">
+                                    <%= plates[i * 8 + j] %>
+                                </button>
+                                <% } %>
+                        </div>
+                    </div>
+                    <% } %>
+                        <div id="row-6">
+                            <div id="col" style="display: flex; white-space: nowrap; justify-content: center;">
+                                <% for (var j=0; j<2; j++) { %>
+                                    <button id=<%="plate-" .concat((6 * 8 + j).toString()) %> class="rpgui-button"
+                                        style="font-size: 80%">
+                                        <%= plates[6 * 8 + j] %>
+                                    </button>
+                                    <% } %>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const randomizeButton = document.getElementById('randomize-button')
+        const timer = document.getElementById('timer')
+        let plateChoiceEnabled = false
+        const ids = []
+        let availablePlates = JSON.parse('<%-JSON.stringify(plates)%>')
+        let platesToIgnore = [];
+        for (let i = 0; i < 50; i++) {
+            ids.push('plate-' + i.toString())
+        }
+
+        function setPlateContents(contents) {
+            ids.forEach((id, i) => {
+                const plate = document.getElementById(id)
+                plate.innerText = findPlateFromIndex(Math.floor(contents[i]), platesToIgnore);
+            })
+        }
+
+        function makePlatesClickeable(ws) {
+            ids.forEach((id, i) => {
+                const plate = document.getElementById(id)
+                plate.addEventListener('click', () => {
+                    if (plateChoiceEnabled) {
+                        ws.send(JSON.stringify({
+                            action: 'choose',
+                            plate: i
+                        }))
+                        randomizeButton.innerText = plate.innerText
+                    }
+                })
+            })
+        }
+
+        function initVin(ws, vin) {
+            const initMessage = {
+                action: 'init',
+                vin
+            }
+            ws.send(JSON.stringify(initMessage))
+        }
+
+        function startRandomizing(ws) {
+            const startMessage = {
+                action: 'randomize'
+            }
+            ws.send(JSON.stringify(startMessage))
+        }
+
+        function stopRandomizing(ws, tickNum) {
+            const stopMessage = {
+                action: 'stop',
+                tickToStop: tickNum
+            }
+            ws.send(JSON.stringify(stopMessage))
+        }
+
+        async function generatePlatePossibilitySpace(platesToIgnore) {
+            const worker = new Worker('static/js/worker.js')
+            worker.postMessage({
+                platesToIgnore
+            })
+            return new Promise((resolve, reject) => {
+                worker.onmessage = (event) => {
+                    resolve(event.data)
+                }
+            })
+        }
+        
+        function findPlateFromIndex(index, platesToIgnore) {
+            // we know the plates to ignore are sorted... find how many of the elements are less than index
+            let numLessThanIndex = 0;
+            for (let i = 0; i < platesToIgnore.length; i++) {
+                if (platesToIgnore[i] < index) {
+                    numLessThanIndex++;
+                }
+            }
+            let tempIndex = index + numLessThanIndex;
+            const ords = [];
+            for (let i = 0; i < 2; i++) {
+                ords.push(tempIndex % 26);
+                tempIndex = Math.floor(tempIndex / 26);
+            }
+            for (let i = 0; i < 3; i++) {
+                ords.push(tempIndex % 10);
+                tempIndex = Math.floor(tempIndex / 10);
+            }
+            return "L" + "-" + ords[4] + ords[3] + ords[2] + "-" + String.fromCharCode(ords[1] + 65) + String.fromCharCode(ords[0] + 65);
+        }
+
+        const wss = new WebSocket('ws://localhost:<%-port%>')
+        wss.onopen = function () {
+            initVin(wss, "<%=vin%>")
+        }
+        wss.onmessage = async function (event) {
+            try {
+                const parsed = JSON.parse(event.data.toString())
+                switch (parsed.action) {
+                    case 'error':
+                        if (parsed.message === "no registration found for this vehicle") {
+                            randomizeButton.innerText = 'No registration found'
+                        } else {
+                            randomizeButton.innerText = 'Error'
+                        }
+                        break;
+                    case 'ready':
+                        const takenPlates = parsed.state;
+                        availablePlates = await generatePlatePossibilitySpace(takenPlates);
+                        randomizeButton.innerText = 'Start'
+                        randomizeButton.addEventListener('click', function () {
+                            startRandomizing(wss)
+                            randomizeButton.addEventListener('click', function () {
+                                stopRandomizing(wss, 600)
+                                randomizeButton.innerText = 'Finishing...'
+                            }, {
+                                once: true
+                            })
+                            randomizeButton.innerText = 'Stop'
+                        }, {
+                            once: true
+                        })
+                        break
+                    case 'randomizing':
+                        timer.innerText = 'Time remaining: ' + parsed.time
+                    case 'stopping':
+                        setPlateContents(parsed.state)
+                        break
+                    case 'choosing':
+                        if (!plateChoiceEnabled) {
+                            setPlateContents(parsed.state)
+                            randomizeButton.innerText = 'None'
+                            plateChoiceEnabled = true
+                            makePlatesClickeable(wss)
+                            randomizeButton.addEventListener('click', function completeHandler() {
+                                if (randomizeButton.innerText !== 'None') {
+                                    randomizeButton.innerText = 'Complete'
+                                    wss.send(JSON.stringify({
+                                        action: 'confirm'
+                                    }))
+                                    randomizeButton.removeEventListener('click', completeHandler)
+                                }
+                            })
+                        }
+                        timer.innerText = 'Time remaining: ' + parsed.time
+                        break
+                    default:
+                        break
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="grid-item">
+    <h2 style="color: rgb(35, 34, 34);">New Character</h2>
+    <h3> Did Gege Akutami release a new character? Alright, put them in the db.</h3>
+</div>
+
+<form action="/newchar" method="POST" enctype="multipart/form-data">
+    <div id="grid-item">
+        <input type="text" id="name" name="name" placeholder="Name">
+    </div>
+    <div id="grid-item">
+        <input type="text" id="occupation" name="occupation" placeholder="Occupation">
+    </div>
+    <div id="grid-item">
+        <input type="text" id="cursed_technique" name="cursed_technique" placeholder="cursed_technique">
+    </div>
+    <div id="grid-item">
+        <input type="text" id="notes" name="notes" placeholder="Notes">
+    </div>
+    <div id="grid-item">
+        <input type="file" id="file" name="file" value="Upload Image">
+    </div>
+    
+    <div id="grid-item">
+        <input type="submit" id="submit-login" value="Submit">
+    </div>
+</form>
+{% endblock %}

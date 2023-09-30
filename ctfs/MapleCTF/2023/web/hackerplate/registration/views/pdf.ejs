@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vehicle Registration Report</title>
+    <link rel="stylesheet" href="/css/<%-style%>.css" />
+    <base href="<%-base%>" target="_blank"/>
+</head>
+
+<body>
+    <div id="page">
+        <div id="header">
+            <h1>Vehicle Registration Report</h1>
+        </div>
+        <div id="date">
+            <p><%-date%></p>
+        </div>
+        <div id="content">
+            <table>
+                <div name="user-data" class="section">
+                    <% userData.forEach(data => { %>
+                    <tr>
+                        <td><%-data[0]%></td>
+                        <td><%-data[1]%></td>
+                    </tr>
+                    <% }) %>
+                </div>
+            </table>
+            <table>
+                <div name="vehicle-params" class="section">
+                    <% vehicleParams.forEach(data => { %>
+                    <tr>
+                        <td><%-data[0]%></td>
+                        <td><%-data[1]%></td>
+                    </tr>
+                    <% }) %>
+                </div>
+            </table>
+            <div id="logo">
+                <p>~certified uwu~</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

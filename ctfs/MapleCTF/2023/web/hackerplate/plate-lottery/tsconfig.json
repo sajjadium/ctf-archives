@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "allowJs": true,
+        "target": "es6",
+        "module": "es6",
+        "moduleResolution": "node",
+        "esModuleInterop": true
+    },
+    "include": [
+        "./src/**/*",
+        "./src/*"
+    ],
+    "exclude": [
+        "./tests/",
+        "./node_modules/",
+        "./dist/"
+    ]
+}

@@ -1,0 +1,23 @@
+% rebase('base.html')
+<h2>{{title}}</h2>
+<table>
+  <tr>
+    <th>Year</td>
+    <td>{{year}}</td>
+  </tr>
+</table>
+<h3>People</h3>
+<table>
+  <thead>
+    <th>Role</th>
+    <th>Name</th>
+  </thead>
+  <tbody>
+    % for id, name, category in names:
+    <tr>
+      <td>{{category}}</td>
+      <td><a href="/person/{{id}}">{{name}}</a></td>
+    </tr>
+    % end
+  </tbody>
+</table>

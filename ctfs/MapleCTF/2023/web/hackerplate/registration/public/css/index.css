@@ -1,0 +1,32 @@
+body {
+    font-family:'monospace', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 18px;
+    margin: 5%;
+    background-color: #f2f2f2;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.input-field {
+    display: flex;
+    flex: 0 1 150px;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px;
+}
+
+.input-field > label {
+    margin-top: 5px;
+}
+
+.input-field > input {
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px;
+}

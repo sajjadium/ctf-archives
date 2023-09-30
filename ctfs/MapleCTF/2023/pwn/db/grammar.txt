@@ -1,0 +1,45 @@
+<stmt> ::= <select> ";"
+         | "explain" <select> ";"
+         | <create-table> ";"
+         | <insert> ";"
+         | "explain" "schema" ";"
+
+<select> ::= "select" <exprs> <from-clause> <where-clause> <limit-clause> <offset-clause>
+<from-clause> ::= | "from" <join-clause>
+<where-clause> ::= | "where" <expr>
+<limit-clause> ::= | "limit" <num>
+<offset-clause> ::= | "offset" <num>
+<join-clause> ::= <id>
+                | <join-clause> "join" <id>
+                | <join-clause> "join" <id> "on" <expr>
+
+<exprs> ::= <expr> | <expr> "," <exprs>
+<expr> ::= <literal> | <binop>
+<binop> ::= <id>
+          | <id> "." <id>
+          | "(" <expr> ")"
+          | <expr> "or" <expr>
+          | <expr> "and" <expr>
+          | <expr> "+" <expr>
+          | <expr> "-" <expr>
+          | <expr> "*" <expr>
+          | <expr> "/" <expr>
+          | <expr> "%" <expr>
+          | <expr> "=" <expr>
+          | <expr> "<" <expr>
+          | <expr> ">" <expr>
+          | <expr> "<>" <expr>
+          | <expr> "<=" <expr>
+          | <expr> ">=" <expr>
+          | <expr> "like" <expr>
+<literal> ::= <num> | <string>
+
+<create-table> ::= "create" "table" <id> "(" <col-defs> "," <primary-key> ")"
+<primary-key> ::= "primary" "key" "(" <id-list> ")"
+<id-list> ::= <id> | <id> "," <id-list>
+<col-defs> ::= <col-def> | <col-def> "," <col-defs>
+<col-def> ::= <id> <type>
+<type> ::= "integer" | "blob"
+
+<insert> ::= "insert" "into" <id> "values" "(" <literals> ")"
+<literals> ::= <literal> | <literal> "," <literals>

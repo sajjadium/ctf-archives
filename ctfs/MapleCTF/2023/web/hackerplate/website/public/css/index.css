@@ -1,0 +1,25 @@
+body {
+    margin: 5%;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+#articles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
+}
+
+.article {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 5px solid #ccc;
+    border-radius: 5px;
+    margin: 1rem;
+    background-color: #fff;
+}
+
+.content {
+    text-align: left;
+}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Table View</title>
+    <style>
+    table, th, td {
+        border-collapse: collapse;
+    }
+    table, td {
+        border: 1px solid black;
+    }
+    th {
+        border: 2px solid black;
+    }
+    </style>
+    <script>
+    function add_filter() {
+        var node = document.getElementById("filter-template").cloneNode(true);
+        node.removeAttribute("id");
+        node.style.display = "";
+        document.getElementById("filters").appendChild(node);
+    }
+    function add_order() {
+        var node = document.getElementById("order-template").cloneNode(true);
+        node.removeAttribute("id");
+        node.style.display = "";
+        document.getElementById("orders").appendChild(node);
+    }
+    </script>
+</head>
+<body>
+{% for message in get_flashed_messages() %}
+    <div style="color: red">{{ message }}</div>
+{% endfor %}
+    <h2>Data Explorer: Demo Version</h2>
+    <div>You have {{ table.queries_left }} free {{ "queries" if table.queries_left != 1 else "query" }} left. Talk to your sales rep to upgrade to the full version and get unlimited queries!</div>
+    <form method="post" action="{{ url_for('upgrade', table_id=table_id) }}">
+        <label for="key">License Key:</label>
+        <input type="text" id="key" name="key">
+        <input type="submit" value="Upgrade">
+    </form>
+    <hr>
+
+    <table>
+        <tr>
+        {% for column in table.col_names %}
+            <th>{{ column }}</th>
+        {% endfor %}
+        </tr>
+    {% for row in data %}
+        <tr>
+        {% for column in row %}
+            <td>{{ column }}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+
+    <div id="filter-template" style="display: none">
+        <select name="filter-col" required>
+            <option value="" disabled selected hidden>Column</option>
+        {% for column in table.col_names %}
+            <option value="{{ column }}">{{ column }}</option>
+        {% endfor %}
+        </select>
+        <select name="filter-op" required>
+        {% for op in operations %}
+            <option value="{{ op }}">{{ operations[op][0] }}</option>
+        {% endfor %}
+        </select>
+        <input type="text" name="filter-val" placeholder="Value">
+        <input type="button" onclick="this.parentNode.remove()" value="-">
+    </div>
+
+    <div id="order-template" style="display: none">
+        <select name="order-col" required>
+            <option value="" disabled selected hidden>Column</option>
+        {% for column in table.col_names %}
+            <option value="{{ column }}">{{ column }}</option>
+        {% endfor %}
+        </select>
+        <select name="order-od">
+            <option value="asc" selected>ascending</option>
+            <option value="desc">descending</option>
+        </select>
+        <input type="button" onclick="this.parentNode.remove()" value="-">
+    </div>
+
+    <form method="post" action="{{ url_for('view', table_id=table_id) }}">
+    <div id="filters">
+    <h3>Filters <input type="button" onclick="add_filter()" value="+"></h3>
+    {% for col_name, opname, value in filters %}
+        <div>
+            <select name="filter-col">
+            {% for column in table.col_names %}
+                <option value="{{ column }}"{% if column == col_name %} selected{% endif %}>{{ column }}</option>
+            {% endfor %}
+            </select>
+            <select name="filter-op">
+            {% for op in operations %}
+                <option value="{{ op }}"{% if op == opname %} selected{% endif %}>{{ operations[op][0] }}</option>
+            {% endfor %}
+            </select>
+            <input type="text" name="filter-val" value="{{ value }}">
+            <input type="button" onclick="this.parentNode.remove()" value="-">
+        </div>
+    {% endfor %}
+    </div>
+
+    <div id="orders">
+    <h3>Orders <input type="button" onclick="add_order()" value="+"></h3>
+    {% for col_name, order in orders %}
+        <div>
+            <select name="order-col">
+            {% for column in table.col_names %}
+                <option value="{{ column }}"{% if column == col_name %} selected{% endif %}>{{ column }}</option>
+            {% endfor %}
+            </select>
+            <select name="order-od">
+                <option value="asc"{% if order == "asc" %} selected{% endif %}>ascending</option>
+                <option value="desc"{% if order == "desc" %} selected{% endif %}>descending</option>
+            </select>
+            <input type="button" onclick="this.parentNode.remove()" value="-">
+        </div>
+    {% endfor %}
+    </div>
+    <br><br>
+    <input type="submit" value="Perform query">
+    </form>
+</body>
+</html>

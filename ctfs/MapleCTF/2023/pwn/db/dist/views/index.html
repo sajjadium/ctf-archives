@@ -1,0 +1,20 @@
+% rebase('base.html')
+<h2>Browse films</h2>
+<form>
+  <input type="text" name="term" id ="term" value="{{term}}" />
+  <input type="submit" value="Search"/>
+</form>
+<table>
+  <thead>
+    <th>Title</th>
+    <th>Year</th>
+  </thead>
+  <tbody>
+    % for tconst, title, year in films:
+    <tr>
+      <td><a href="/film/{{tconst}}">{{title}}</a></td>
+      <td>{{year}}</td>
+    </tr>
+    % end
+  </tbody>
+</table>

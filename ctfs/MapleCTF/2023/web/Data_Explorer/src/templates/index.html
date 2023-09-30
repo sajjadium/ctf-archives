@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Data Explorer!</title>
+</head>
+<body>
+{% for message in get_flashed_messages() %}
+    <div style="color: red">{{ message }}</div>
+{% endfor %}
+    <h2>Create a new table</h2>
+    <form method="post" action="{{ url_for('create') }}" enctype="multipart/form-data">
+        <label for="file">Upload a CSV:</label>
+        <input type="file" id="file" name="file">
+        <br>
+        <input type="submit" value="Create!">
+    </form>
+</body>
+</html>

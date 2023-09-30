@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Portal</title>
+    <link rel="stylesheet" href="/css/index.css" />
+</head>
+<body>
+    <h1>Registration Portal</h1>
+    <form action="/register-vehicle" method="post">
+        <div class="input-field">
+            <input type="text" name="vin" id="vin" style="width: calc(18 * 17px);" />
+            <label for="vin">VIN</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="name" id="name" style="width: calc(18 * 30px);" />
+            <label for="name">Name</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="pid" id="pid" style="width: calc(18 * 20px);" />
+            <label for="passport">Passport ID</label>
+        </div>
+        <div class="input-field">
+            <input type="date" name="birthdate" id="birthdate" style="width: calc(18 * 15px);" />
+            <label for="birthDate">Birth Date</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="make" id="make" style="width: calc(18 * 40px);" />
+            <label for="make">Make</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="model" id="model" style="width: calc(18 * 40px);" />
+            <label for="model">Model</label>
+        </div>
+        <div class="input-field">
+            <input type="text" name="year" id="year" style="width: calc(18 * 6px);" />
+            <label for="year">Year</label>
+        </div>
+        <input type="submit" value="Register" />
+    </form>
+</body>
+</html>

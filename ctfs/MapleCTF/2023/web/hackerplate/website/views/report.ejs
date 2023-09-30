@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MapleIT</title>
+</head>
+<body>
+    <p>A problem? On my site? Not on <em>my</em> watch</p>
+    <p>imma fix your issue, real quick</p>
+    <form action="/report" method="POST">
+        <input type="text" name="userUrl" id="userUrl">
+        <input type="submit" placeholder="paste HERE" onsubmit="window.location.hash='#thx+we+will+check+it+out'" value="Submit">
+    </form>
+    <p id="msg"></p>
+    <script>
+        onhashchange = function() {
+            document.getElementById("msg").innerHTML = window.location.hash.substring(1);
+        }
+    </script>
+</body>
+</html>

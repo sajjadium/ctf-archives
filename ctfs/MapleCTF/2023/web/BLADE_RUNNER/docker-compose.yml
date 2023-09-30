@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  bladerunner:
+    build: .
+    restart: on-failure
+    ports:
+      - "6969:6969"
+    depends_on:
+      - redis
+    environment:
+      - "DEBUG=express-session"
+      - "flag=maple{fake}"
+      - "port=6969"
+  redis:
+    image: "redis:alpine"

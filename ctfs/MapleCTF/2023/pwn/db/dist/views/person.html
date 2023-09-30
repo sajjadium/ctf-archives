@@ -1,0 +1,23 @@
+% rebase('base.html')
+<h2>{{name}}</h2>
+<table>
+  <tr>
+    <th>Birth year</td>
+    <td>{{birth_year}}</td>
+  </tr>
+</table>
+<h3>Films</h3>
+<table>
+  <thead>
+    <th>Title</th>
+    <th>Year</th>
+  </thead>
+  <tbody>
+    % for id, title, year in films:
+    <tr>
+      <td><a href="/film/{{id}}">{{title}}</a></td>
+      <td>{{year}}</td>
+    </tr>
+    % end
+  </tbody>
+</table>

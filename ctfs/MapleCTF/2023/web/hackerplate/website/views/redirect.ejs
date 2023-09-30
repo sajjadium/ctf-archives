@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirect confirmation</title>
+    <link rel="stylesheet" href="/css/redirect.css">
+</head>
+<body>
+    <h3><%= url %> is not affiliated with Maple Vehicular Institute. Are you sure you want to continue?</h3>
+    <h2>Preview:</h2>
+    <iframe src="<%= url %>"></iframe>
+    <div id="choices">
+        <button id="yes">Yes</button>
+        <button id="no">No</button>
+    </div>
+
+    <script nonce="<%= nonce %>">
+        document.getElementById("yes").addEventListener('click', () => {
+            window.location.href = "<%= url %>"
+        })
+        document.getElementById("no").addEventListener('click', () => {
+            window.location.href = "/"
+        })
+    </script>
+</body>
+</html>

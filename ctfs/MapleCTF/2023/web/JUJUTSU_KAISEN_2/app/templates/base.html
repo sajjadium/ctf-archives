@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+<body>
+
+
+<!-- Sticky header -->
+<header class="header-outer">
+	<div class="header-inner responsive-wrapper">
+		<div class="header-logo">
+			<img src="https://assets.codepen.io/285131/acme-2.svg" />
+		</div>
+		<nav class="header-navigation">
+			<a href="/">Home</a>
+			<a href="/login">Login</a>
+			<a href="/visit">Report</a>
+			<button>Menu</button>
+		</nav>
+	</div>
+</header>
+<!-- Content -->
+<main class="main">
+	<div class="main-content responsive-wrapper">
+		<article class="widget">
+            {% block content %}
+            {% endblock %}
+		</article>
+	</div>
+</main>
+
+</body>
+</html>
