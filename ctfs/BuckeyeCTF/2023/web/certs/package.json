@@ -1,0 +1,21 @@
+{
+  "name": "app",
+  "version": "1.0.50",
+  "scripts": {
+    "dev": "bun run --watch server.tsx",
+    "start": "bun run server.tsx"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^3.1.12",
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.23",
+    "elysia": "latest",
+    "jose": "^4.14.6",
+    "pdfjs-dist": "^3.11.174",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "module": "src/index.js"
+}

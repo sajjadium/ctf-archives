@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BuckeyeCTF 2023 Certificates</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+      body {
+        background-color: black;
+        color: white;
+        font-family: "Roboto Mono", monospace;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        gap: 1rem;
+      }
+
+      input {
+        border-radius: 0;
+        border: 1px solid white;
+        background-color: #222;
+        color: white;
+        padding: 5px 7px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="file"] {
+        width: 100%;
+      }
+
+      form {
+        display: flex;
+        gap: 1rem;
+      }
+
+      code {
+        padding: 0.2em 0.4em;
+        background-color: #333;
+        border: 1px solid #444;
+      }
+
+      .card {
+        width: 500px;
+        background-color: #222;
+        padding: 2rem;
+        border-left: 4px solid rgb(140, 0, 26);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h2>BuckeyeCTF 2023 Certificates</h2>
+      <div class="card">
+        <div style="margin-bottom: 1rem">certificate / create</div>
+        <form id="certifyForm" method="post">
+          <input required type="text" name="team" placeholder="Team Name" />
+          <input
+            required
+            type="number"
+            min="2"
+            name="place"
+            placeholder="Place"
+          />
+          <input type="submit" value="Generate" />
+        </form>
+      </div>
+      <div class="card">
+        <div style="margin-bottom: 1rem">certificate / verify</div>
+        <form style="margin-bottom: 1rem" id="verifyForm" method="post">
+          <input required id="file-input" type="file" name="verify" />
+          <input type="submit" value="Verify" />
+        </form>
+        <div id="upload-status"></div>
+      </div>
+    </div>
+    <script>
+      document
+        .getElementById("certifyForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const response = await fetch("/api/certify", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              team: e.target.team.value,
+              place: parseInt(e.target.place.value),
+            }),
+          });
+
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "certificate.pdf";
+          a.click();
+          window.URL.revokeObjectURL(url);
+        });
+
+      document
+        .getElementById("verifyForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const fileInput = document.getElementById("file-input");
+          const uploadStatus = document.getElementById("upload-status");
+          const formData = new FormData();
+
+          formData.append("file", fileInput.files[0]);
+
+          const response = await fetch("/api/verify", {
+            method: "POST",
+            body: formData,
+          });
+
+          // uploadStatus.textContent = await response.text();
+          uploadStatus.innerHTML = (await response.text())
+            .replace("`", "<code>")
+            .replace("`", "</code>");
+        });
+    </script>
+  </body>
+</html>
