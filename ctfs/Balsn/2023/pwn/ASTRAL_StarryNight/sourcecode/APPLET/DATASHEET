@@ -1,0 +1,73 @@
+REGISTER
+    =========================================================================================
+     register number    | alias        | usage
+    ====================|==============|=====================================================
+     r0                 |              | general purpose / invoke aid      / return res addr
+     r1                 |              | general purpose / invoke arg len  / return res len
+     r2                 |              | general purpose / invoke arg addr
+     r3                 |              | general purpose / invoke ret addr
+     r4                 | pc           | program counter
+     r5                 | lr           | link register
+     r6                 |              | general purpose
+     r7                 |              | general purpose
+     r8                 |              | general purpose
+     r9                 |              | general purpose
+     r10                |              | general purpose
+     r11                | inplen       | input length
+     r12                | caller       | caller aid
+     r13                | flag         | cmp result
+     r14                | sp           | stack pointer
+     r15                | bp           | base pointer
+    =================================================-=======================================
+
+MEMORY
+    ======================================================================
+     start               | end                 | size           | usage   
+    =====================|=====================|================|=========
+     0x000000000         | 0x000001000         | 0x1000         | input
+     0x100000000         | 0x100001000         | 0x1000         | storage
+     0x200000000         | 0x200001000         | 0x1000         | code
+     0x300000000         | 0x300001000         | 0x1000         | stack
+     0x400000000         | 0x400001000         | 0x1000         | scratch
+    ======================================================================
+
+INSTRUCTION
+    ================================================================================================================================
+     opcode  | mnemonic                                    | instruction layout                                | instruction size
+    =========|=============================================|===================================================|====================
+     08 ~ 0f | push  <size> imm                            | [0x08 | (size + 1)] [imm #1~8]                    | #2 ~ #9
+             |                                             |                                                   |
+     10 ~ 17 | pop   <size> reg                            | [0x10 | (size + 1)] [reg]                         | #2
+     18 ~ 1f | push  <size> reg                            | [0x18 | (size + 1)] [reg]                         | #2
+             |                                             |                                                   |
+     20 ~ 27 | load  <size> reg1,   [reg2]                 | [0x20 | (size + 1)] [reg1 | (reg2 << 8)]          | #2
+     28 ~ 2f | store <size> [reg1], reg2                   | [0x28 | (size + 1)] [reg1 | (reg2 << 8)]          | #2
+             |                                             |                                                   |
+     30 ~ 37 | load  <size> reg,    imm                    | [0x30 | (size + 1)] [reg] [imm #1~8]              | #3 ~ #10
+     38 ~ 3f | store <size> [reg],  imm                    | [0x38 | (size + 1)] [reg] [imm #1~8]              | #3 ~ #10
+             |                                             |                                                   |
+     40      | call         off                            | [0x40] [off #2]                                   | #3
+     41      | jmp          off                            | [0x41] [off #2]                                   | #3
+     42      | jb           off                            | [0x42] [off #2]                                   | #3
+     43      | jae          off                            | [0x43] [off #2]                                   | #3
+     44      | je           off                            | [0x44] [off #2]                                   | #3
+     45      | jne          off                            | [0x40] [off #2]                                   | #3
+     46      | jbe          off                            | [0x46] [off #2]                                   | #3
+     47      | ja           off                            | [0x47] [off #2]                                   | #3
+             |                                             |                                                   |
+     50      | add          reg1,   reg2                   | [0x50] [reg1 | (reg2 << 8)]                       | #2
+     51      | sub          reg1,   reg2                   | [0x51] [reg1 | (reg2 << 8)]                       | #2
+     52      | mul          reg1,   reg2                   | [0x52] [reg1 | (reg2 << 8)]                       | #2
+     53      | div          reg1,   reg2                   | [0x53] [reg1 | (reg2 << 8)]                       | #2
+     54      | and          reg1,   reg2                   | [0x54] [reg1 | (reg2 << 8)]                       | #2
+     55      | or           reg1,   reg2                   | [0x55] [reg1 | (reg2 << 8)]                       | #2
+     56      | xor          reg1,   reg2                   | [0x56] [reg1 | (reg2 << 8)]                       | #2
+     57      | shr          reg1,   reg2                   | [0x57] [reg1 | (reg2 << 8)]                       | #2
+     58      | shl          reg1,   reg2                   | [0x58] [reg1 | (reg2 << 8)]                       | #2
+     59      | mov          reg1,   reg2                   | [0x59] [reg1 | (reg2 << 8)]                       | #2
+     5a      | cmp          reg1,   reg2                   | [0x5a] [reg1 | (reg2 << 8)]                       | #2
+             |                                             |                                                   |
+     fd      | return                                      | [0xfd]                                            | #1
+     fe      | invoke                                      | [0xfe]                                            | #1
+     ff      | exit                                        | [0xff]                                            | #1
+    ================================================================================================================================

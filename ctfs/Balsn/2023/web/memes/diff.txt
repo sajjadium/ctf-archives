@@ -1,0 +1,4 @@
+diff ImageController.php  ImageController_fix.php
+58,59d57
+<         $serialized = base64_decode($request->input('s'));
+<         unserialize($serialized);

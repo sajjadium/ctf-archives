@@ -1,0 +1,1 @@
+After a long and tiring ctf challenge, you decided to play a phone game to relax yourself. Note: Flag is hidden somewhere in memory, and this challenge is safe to run directly on your device. If you manage to run it on emulators, you shall fix it on your own.

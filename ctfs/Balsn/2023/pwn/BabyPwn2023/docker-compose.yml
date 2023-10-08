@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  httpd:
+    build: ./
+    volumes:
+      - ./share:/home/chall:ro
+      - ./xinetd:/etc/xinetd.d/chall:ro
+    ports:
+      - "10105:10105"
+    expose:
+      - "10105"

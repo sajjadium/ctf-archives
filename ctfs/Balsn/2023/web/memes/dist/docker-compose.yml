@@ -1,0 +1,20 @@
+version: '3.5'
+
+services:
+  web:
+    build: ./
+    ports:
+      - "5000:80"
+    depends_on:
+      - memcached
+
+  memcached:
+    image: memcached:alpine
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.87.0.1/16

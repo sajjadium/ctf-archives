@@ -1,0 +1,9 @@
+#!/bin/bash
+
+dockerd &
+sleep 5 #ad-hoc wait for dockerd to initialize
+
+cd /home/guardian/challenge
+docker compose build
+
+/usr/sbin/xinetd -dontfork

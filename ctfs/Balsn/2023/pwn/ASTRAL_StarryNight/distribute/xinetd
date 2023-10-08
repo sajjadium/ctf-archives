@@ -1,0 +1,14 @@
+service astral
+{
+	disable = no
+	type = UNLISTED
+	wait = no
+	server = /home/Astral/run.sh
+	socket_type = stream
+	protocol = tcp
+	user = Astral
+	groups = yes
+	bind = 0.0.0.0
+	port = 10101
+	flags = REUSE
+}

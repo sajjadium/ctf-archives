@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  flagslotmachine:
+    build: .
+    ports:
+      - "8787:8787"
+    expose:
+      - "8787"

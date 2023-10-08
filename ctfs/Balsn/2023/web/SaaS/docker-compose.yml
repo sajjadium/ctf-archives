@@ -1,0 +1,13 @@
+version: '3'
+services:
+  nginx:
+    image: docker.io/library/nginx:1.16
+    ports:
+      - 8787:80
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+  backend:
+    build:
+      context: .
+    volumes:
+      - ./flag:/flag

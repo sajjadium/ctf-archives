@@ -1,0 +1,186 @@
+// STORAGE SCHEMA
+// 0x000 :: initialized : u8
+// 0x001 :: owner : u64
+// 0x009 :: setupTimestamp : u64
+// 0x011 :: activeTimespan : u64
+// 0x019 :: maxUser : u64
+// 0x021 :: winnerIdx : u64
+// 0x029 :: whiteListedUser : [userId, bitmap] 
+
+ENTRY:
+  call PREDICATE                // call MAIN
+  jmp EXIT                      // goto EXIT
+
+PREDICATE:
+   // check storage initialization
+  load r0, 0x100000000          // r0 = 0x100000000
+  load <1> r2, [r0]             // r2 = <1> [r0]
+  load r1, 1                    // r1 = 1
+  cmp r1, r2                    // if r1 == 1:
+  je INITIALIZED                //   goto INITIALIZED
+  call INITIALIZE_STORAGE       // else: call INITIALIZE_STORAGE
+  return                        // return
+  INITIALIZED:
+  call MAIN                     // call MAIN
+  return                        // return
+
+EXIT:
+  xor r0, r0                    // r0 = 0 (res)
+  xor r1, r1                    // r1 = 0 (resLen)
+  exit                          // exit
+
+INITIALIZE_STORAGE:
+  // <activeTimespan : u64, maxUser : u64>
+  load r3, 0x10                 // r3 = 16
+  cmp inplen, r3                // if inplen < 16
+  jb EXIT                       //   goto EXIT
+  store <1> [r0], r1            // <1> [r0] = r1 (initialized)
+  add r0, r1                    // r0 = 0x100000001
+  load r7, 0x78c3e49978a70e7c   // r7 = <preset_owner>
+  store <8> [r0], r7            // <8> [r0] = r7 (owner)
+  load r2, 8                    // r2 = 8
+  load <8> r7, [r6]             // r7 = <8> [r6] (inp[activeTimespan])
+  add r0, r3                    // r0 = 0x100000011
+  store <8> [r0], r7            // <8> [r0] = r7 (activeTimespan)
+  add r6, r2                    // r6 = 8
+  load <8> r7, [r6]             // r7 = <8> [r6] (inp[maxUser])
+  cmp r7, r8                    // if inp[maxUser] != 0:
+  jne VALID_MAX_USER            //   goto VALID_MAX_USER
+  load r0, 0x100000000          // r0 = 0x100000000
+  store <1> [r0], r8            // <1> [r0] = r8 (initialized)
+  jmp EXIT                      // goto EXIT
+  VALID_MAX_USER:
+  add r0, r2                    // r0 = 0x100000019
+  store <8> [r0], r7            // <8> [r0] = r7 (maxUser)
+  sub r0, r3                    // r0 = 0x100000009
+  mov r3, r0                    // r3 = 0x100000009 (resAddr) (setupTimestamp)
+  load r0, 0xf0d7bb3281a0863d   // r0 = <timestamp appletid>
+  xor r1, r1                    // r1 = 0 (dataLen)
+  xor r2, r2                    // r2 = 0 (dataAddr)
+  invoke                        // invoke
+  return                        // return
+
+MAIN:
+  call ACTIONS                  // call ACTIONS
+  return                        // return
+
+ACTIONS:
+  add r0, r1                    // r0 = 0x100000001
+  call CHECK_ENDED
+  cmp caller, r8                // if caller == 0:
+  je EXIT                       //   goto EXIT (not invoked through escrow applet)
+  load r2, 8                    // r2 = 8
+  load r3, 0x10                 // r3 = 0x10
+  sub r0, r3                    // r0 = 0x100000001
+  load <8> r6, [r0]             // r6 = <8> [r0] (owner)
+  cmp r6, caller                // if r6 != caller: 
+  jne NOT_OWNER                 //   goto NOT_OWNER
+  call OWNER_WHITELIST_USER     // else: call OWNER_WHITELIST_USER
+  return                        // return
+  NOT_OWNER:
+  call UPDATE_LOTTERY_STATE     // call UPDATE_LOTTERY_STATE
+  return                        // return
+
+CHECK_ENDED:
+  load r2, 8                    // r2 = 8
+  add r0, r2                    // r0 = 0x100000009
+  load <8> r6, [r0]             // r6 = <8> [r0] (setupTimestamp)
+  add r0, r2                    // r0 = 0x100000011
+  load <8> r7, [r0]             // r7 = <8> [r0] (activeTimespan)
+  add r6, r7                    // r6 += r7 (endTimestamp)
+  mov r10, r0                   // r10 = 0x100000011
+  sub sp, r2                    // sp -= 8
+  mov r3, sp                    // r3 = sp (resAddr)
+  load r0, 0xf0d7bb3281a0863d   // r0 = <timestamp appletid>
+  xor r1, r1                    // r1 = 0 (dataLen)
+  xor r2, r2                    // r2 = 0 (dataAddr)
+  invoke                        // invoke
+  load <8> r3, [r3]             // r3 = <8> [r3] (nowTimestamp)
+  mov r0, r10                   // r0 = 0x100000011
+  cmp r6, r3                    // if r6 < r3:
+  jb ENDED                      //   goto ENDED
+    return                      // return
+  ENDED:
+  load r3, 0x10                 // r3 = 0x10
+  add r0, r3                    // r0 = 0x100000021
+  load <8> r6, [r0]             // r6 = <8> [r0] (winnerIdx)
+  cmp r6, r8                    // if winnerIdx != 0:
+  jne EXIT                      //   goto EXIT
+  mov r3, r0                    // r3 = 0x100000021 (resAddr) (winnerIdx)
+  load r0, 0x094dcc8cd59a55e3   // r0 = <rand appletid>
+  xor r1, r1                    // r1 = 0 (dataLen)
+  xor r2, r2                    // r2 = 0 (dataAddr)
+  invoke                        // invoke
+  load <8> r7, [r3]             // r7 = <8> [r3] (winnerIdx)
+  mov r6, r3                    // r6 = 0x100000021
+  load r2, 8                    // r2 = 8
+  sub r6, r2                    // r6 = 0x100000019
+  load <8> r8, [r6]             // r8 = <8> [r6] (maxUser)
+  mov r9, r7                    // r9 = r7
+  div r7, r8                    // r7 /= r8
+  mul r7, r8                    // r7 *= r8
+  sub r9, r7                    // r9 -= r7
+  load r1, 1                    // r1 = 1
+  add r9, r1                    // r9 += r1
+  store <8> [r3], r9            // <8> [r3] = r9 (winnerIdx)
+  jmp EXIT                      // goto EXIT
+ 
+OWNER_WHITELIST_USER:
+  // <newWhiteListedUser : u64>
+  cmp inplen, r2                // if inplen < 8
+  jb EXIT                       //   goto EXIT
+  load <8> r9, [r9]             // r9 = <8> [r9] (newWhiteListedUser)
+  cmp r9, r8                    // if r9 == 0:
+  je EXIT                       //   goto EXIT
+  add r0, r2                    // r0 = 0x100000009
+  add r0, r3                    // r0 = 0x100000019
+  load <8> r6, [r0]             // r6 = <8> [r0] (maxUser)
+  add r0, r3                    // r0 = 0x100000029
+  load <8> r7, [r0]             // r7 = <8> [r0] (currentUserCnt)
+  cmp r6, r7                    // if r6 <= r7:
+  jbe EXIT                      //   goto EXIT
+  add r0, r2                    // r0 = 0x100000031
+  load r1, 1                    // r1 = 1
+  LOOPOWU:
+    cmp r7, r8                  // if r7 == 0:
+    je LOOPOWUEND               //   goto LOOPOWUEND
+    load <8> r10, [r0]          // r10 = <8> [r0] (whiteListedUser[i].userid)
+    cmp r9, r10                 // if r9 == r10:
+    je EXIT                     //   goto EXIT
+    add r0, r3                  // r0 += r3
+    sub r7, r1                  // r7 -= r1
+    jmp LOOPOWU                 // goto LOOPOWU
+  LOOPOWUEND:
+  store <8> [r0], r9            // <8> [r0] = r9 (whiteListedUser[currentUserCnt].userid = newWhitelistUser)
+  load r0, 0x100000029          // r0 = 0x100000029
+  load <8> r2, [r0]             // r2 = <8> [r0] (currentUserCnt)
+  add r2, r1                    // r2 += r1
+  store <8> [r0], r2            // <8> [r0] = r2 (currentUserCnt)
+  return                        // return
+
+UPDATE_LOTTERY_STATE:
+  // <bitmap : u64>
+  cmp inplen, r2                // if inplen < 8
+  jb EXIT                       //   goto EXIT
+  load <8> r9, [r9]             // r9 = <8> [r9] (bitmap)
+  add r0, r2                    // r0 = 0x100000019
+  add r0, r3                    // r0 = 0x100000029
+  add r0, r3                    // r0 = 0x100000029
+  load <8> r6, [r0]             // r6 = <8> [r0] (currentUserCnt)
+  add r0, r2                    // r0 = 0x100000031
+  load r1, 1                    // r1 = 1
+  LOOPULS:
+    cmp r6, r8                  // if r6 == 0:
+    je LOOPULSEND               //   goto LOOPULSEND
+    load <8> r7, [r0]           // r7 = <8> [r0] (whiteListedUser[i].userid)
+    cmp caller, r7              // if caller == r7:
+    je FOUND                    //   goto FOUND
+    add r0, r3                  // r0 += r3
+    sub r6, r1                  // r6 -= r1
+    jmp LOOPULS                 // goto LOOPULS
+  LOOPULSEND:
+  return                        // return
+  FOUND:
+  add r0, r2                    // r0 += r2 (whiteListerUser[found].bitmap)
+  store <8> [r0], r9            // <8> [r0] = r9 (whiteListedUser[found].bitmap = bitmap)
+  return                        // return

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  guardian:
+    build: .
+    volumes:
+      - ./share/libguardian.so:/lib/x86_64-linux-gnu/x86_64/libguardian.so:ro
+      - ./share/ld.so.preload:/etc/ld.so.preload:ro
+      - ./share/flag:/root/flag:ro
+    stdin_open: true

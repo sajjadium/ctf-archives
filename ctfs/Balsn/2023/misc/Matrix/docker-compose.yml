@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  matrix:
+    build: .
+    volumes:
+      - ./share:/home/Matrix:ro
+      - ./xinetd:/etc/xinetd.d/matrix:ro
+    ports:
+      - "10101:10101"
+    expose:
+      - "10101"
+    restart: always

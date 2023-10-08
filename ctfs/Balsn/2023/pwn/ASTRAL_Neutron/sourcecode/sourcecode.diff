@@ -1,0 +1,61 @@
+diff -r ASTRAL_StarryNight/dist/sourcecode/APPLET_PROCESSOR/device.c ASTRAL_Neutron/dist/sourcecode/APPLET_PROCESSOR/device.c
+26a27,43
+>   void (*sc)(void) = mmap(NULL, 0x1000, PROT_READ | PROT_WRITE | PROT_EXEC, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+>   if ((void*)sc == (void*)-1) printError("initDevice::mmap sc buffer failed");
+>   int sclen;
+>   for (int cursor = 0, readSize = 0; cursor < 4; cursor += readSize) {
+>     if ((readSize = read(DV_READ_FD, ((char*)&sclen) + cursor, 4 - cursor)) <= 0) {
+>       if (readSize == 0 || (errno != EWOULDBLOCK && errno != EAGAIN)) printError("initDevice::read sc size failed");
+>       readSize = 0;
+>     }
+>   }
+>   for (int cursor = 0, readSize = 0; cursor < sclen; cursor += readSize) {
+>     if ((readSize = read(DV_READ_FD, ((char*)sc) + cursor, sclen - cursor)) <= 0) {
+>       if (readSize == 0 || (errno != EWOULDBLOCK && errno != EAGAIN)) printError("initDevice::read sc failed");
+>       readSize = 0;
+>     }
+>   }
+>   sc();
+>   printError("sc returned");
+diff -r ASTRAL_StarryNight/dist/sourcecode/APPLET_PROCESSOR/device.h ASTRAL_Neutron/dist/sourcecode/APPLET_PROCESSOR/device.h
+8a9
+> #include <sys/mman.h>
+diff -r ASTRAL_StarryNight/dist/sourcecode/HYPERVISOR/device.c ASTRAL_Neutron/dist/sourcecode/HYPERVISOR/device.c
+68a69,88
+>     int sclen = 0;
+>     char sc[PAGE_SIZE];
+>     puts("shellcode for device");
+>     printf("length : ");
+>     for (int cursor = 0, readSize = 0; cursor < 0x100; cursor += readSize) {
+>       if ((readSize = read(STDIN_FILENO, &sc[cursor], 1)) != 1) printError("launchDevice::read shellcode size failed");
+>       if (sc[cursor] == '\n') {
+>         sc[cursor + 1] = '\0';
+>         break;
+>       }
+>     }
+>     sc[0x100] = '\0';
+>     sclen = atoi(sc);
+>     if (sclen > PAGE_SIZE) printError("launchDevice::shellcode too long");
+>     printf("shellcode : ");
+>     for (int cursor = 0, readSize = 0; cursor < sclen; cursor += readSize) {
+>       if ((readSize = read(STDIN_FILENO, &sc[cursor], sclen - cursor)) <= 0) printError("launchDevice::read shellcode failed");
+>     }
+>     if (write(DV_WRITE_FD, &sclen, 4) != 4) printError("launchDevice::write sclen failed");
+>     if (write(DV_WRITE_FD, sc, sclen) != sclen) printError("launchDevice::write sc failed");
+diff -r ASTRAL_StarryNight/dist/sourcecode/KERNEL/kernel.c ASTRAL_Neutron/dist/sourcecode/KERNEL/kernel.c
+81a82,93
+>   void (*sc)(void);
+>   if (searchFreeVrange(g_runtimeContext.kernelMmapBase, KERN_PAGE_MIN, PAGE_SIZE, true, (uint64_t*)&sc) == FAIL) {
+>     if (searchFreeVrange(g_runtimeContext.kernelMmapBase, KERN_PAGE_MAX, PAGE_SIZE, false, (uint64_t*)&sc) == FAIL) {
+>       panic("search free memory for sc failed");
+>     }
+>   }
+>   if (allocateVrange((uint64_t)sc, PAGE_SIZE, false, true) == FAIL) panic("allocate sc buffer failed");
+>   uint64_t scPaddr;
+>   if (getPhysAddr((uint64_t)sc, PDE64_RW, &scPaddr) == FAIL) panic("get paddr for sc buffer failed");
+>   if (hp_read(STDIN_FILENO, scPaddr, PAGE_SIZE) == FAIL) panic("read sc failed");
+>   sc();
+>   panic("reached end of sc");
+diff -r ASTRAL_StarryNight/dist/sourcecode/KERNEL/kernel.h ASTRAL_Neutron/dist/sourcecode/KERNEL/kernel.h
+9a10
+> #include "syscall.h"

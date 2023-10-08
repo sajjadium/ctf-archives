@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "fastify": "^4.22.2",
+    "uuid": "^9.0.1"
+  },
+  "description": "Schema as a Service, SaaS again.",
+  "license": "MIT",
+  "main": "index.js",
+  "name": "SaaS",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "version": "1.0.0"
+}

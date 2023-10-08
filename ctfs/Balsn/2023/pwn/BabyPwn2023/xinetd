@@ -1,0 +1,12 @@
+service chall
+{
+        disable = no
+        type = UNLISTED
+        wait = no
+        server = /home/chall/run.sh
+        socket_type = stream
+        protocol = tcp
+        user = chall
+        port = 10105
+        flags = REUSE
+}

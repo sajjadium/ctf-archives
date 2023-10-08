@@ -1,0 +1,104 @@
+html {
+    width: 100%;
+    height: 100%;
+  }
+  
+  body {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .tbg {
+      height: 720px;
+      width: 400px;
+      position: absolute;
+      left: 36%;
+      top: 20px;
+  
+  }
+  .theader { height: 65px; }
+  .theader i.fa-comments {
+      font-size: 40px;
+  }
+  .theader i.fa-cog {
+      font-size: 40px;
+  }
+  
+  .tlogo { width: 100px; }
+  .tlogo img { width: 100px; }
+  
+  .tphoto {
+      width: 350px;
+      height: 450px;
+  }
+  .tphoto img.user-image {
+      height: 80%;
+    }
+  
+  .tno {
+      height: 120px;
+      width: 120px;
+      top: -15px;
+      left: 0px;
+      border: 10px solid #f0f0f0;
+  }
+  .tno i {
+      color: #ff695b;
+      padding: 17px 26px;
+  }
+  .ti {
+      background-color: #fff;
+      height: 50px;
+      width: 50px;
+      left: 0px;
+      top: -15px;
+      border: 10px solid #f0f0f0;
+  }
+  .ti .fa-info {
+      font-size: 23px;
+      padding: 5px 11px;
+      color: #398beb;
+  }
+  .tyes {
+      height: 120px;
+      width: 120px;
+      top: -15px;
+      left: 0px;
+      border: 10px solid #f0f0f0;
+  }
+  .tyes i {
+      color: #5de19c;
+      padding: 20px;
+  }
+  .credit {
+      width: 400px;
+      height: auto;
+      position: relative;
+      top: 60px;
+      text-align: center;
+      background-color: #f0f0f0;
+      padding: 2px 0px;
+  }
+  .credit a {
+      font-size: 7px;
+      letter-spacing: 3px;
+      color: #c0c0c0;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-family: 'Helvetica', sans-serif;
+      font-style: italic;
+  }
+  
+  h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 28px;
+      color: #d74747;
+  }

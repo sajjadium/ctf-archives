@@ -1,0 +1,16 @@
+#ifndef __APPLET_HEADER__
+#define __APPLET_HEADER__
+
+#define APPLET_ID uint64_t
+#define APPLET_TASK_ID uint64_t
+
+#define APPLET_SIZE_MAX 0x1000
+#define APPLET_ARG_SIZE_MAX 0x1000
+#define APPLET_RES_SIZE_MAX 0x1000
+#define APPLET_STORAGE_SIZE 0x1000
+
+#define APPLET_REG_CNT 0x10
+#define APPLET_CONTEXT_MEMORY_SIZE 0x5000
+
+
+#endif

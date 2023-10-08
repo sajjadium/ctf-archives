@@ -1,0 +1,76 @@
+// STORAGE SCHEMA
+// 0x000 :: initialized : u8
+// 0x001 :: nonce : u64
+// 0x009 :: preimage : u64
+
+ENTRY:
+  call PREDICATE                // call PREDICATE
+  jmp EXIT                      // goto EXIT
+
+PREDICATE:
+  // check storage initialization
+  load r0, 0x100000000          // r0 = 0x100000000
+  load <1> r2, [r0]             // r2 = <1> [r0]
+  load r1, 1                    // r1 = 1
+  cmp r1, r2                    // if r1 == 1:
+  je INITIALIZED                //   goto INITIALIZED
+  call INITIALIZE_STORAGE       // else: call INITIALIZE_STORAGE
+  return                        // return
+  INITIALIZED:
+  call MAIN                     // call MAIN
+  return
+
+EXIT:
+  xor r0, r0                    // r0 = 0 (res)
+  xor r1, r1                    // r1 = 0 (resLen)
+  exit                          // exit
+
+INITIALIZE_STORAGE:
+  // <nonce: u64>
+  load r2, 8                    // r2 = 8
+  cmp inplen, r2                // if inplen < 8:
+  jb EXIT                       //   goto EXIT
+  load <8> r9, [r9]             // r9 = <8> [r9] (inp[nonce])
+  cmp r9, r8                    // if r9 == 0:
+  je EXIT                       //   goto EXIT
+  store <1> [r0], r1            // <1> [r0] = r1 (initialized)
+  add r0, r1                    // r0 = 0x100000001
+  store <8> [r0], r9            // <8> [r0] = r9 (nonce)
+  return                        // return
+
+MAIN:
+  call INVOKE                   // call INVOKE
+  return                        // return
+
+INVOKE:
+  // <preimage: u64, target: u64, calldata: [u8]>
+  load r9, 0x10                 // r9 = 16
+  cmp inplen, r9                // if inplen < 16:
+  jb EXIT                       //   goto EXIT
+  add r0, r1                    // r0 = 0x100000001
+  mov r10, r0                   // r10 = 0x100000001
+  load r2, 8                    // r2 = 8
+  load <8> r9, [r8]             // r9 = <8> [r8] (inp[preimage])
+  add r0, r2                    // r0 = 0x100000009
+  store <8> [r0], r9            // <8> [r0] = r9 (preimage)
+  load r3, 2                    // r3 = 2
+  sub sp, r3                    // sp -= r3
+  mov r3, sp                    // r3 = sp (resAddr)
+  load r0, 0xa55e8fd1a9933163   // r0 = <verify preimage appletid>
+  load r1, 0x10                 // r1 = 16 (dataLen)
+  mov r2, r10                   // r2 = 0x100000001 (dataAddr)
+  invoke                        // invoke
+  load <1> r1, [r3]             // r1 = <1> [r3]
+  load r0, 8                    // r0 = 8
+  add r2, r0                    // r2 = 0x100000009
+  store <8> [r2], r8            // <8> [r2] = r8 (preimage)
+  cmp r1, r8                    // if r1 == 0:
+  je EXIT                       //   goto EXIT
+  sub r2, r0                    // r2 = 0x100000001
+  store <8> [r2], r9            // <8> [r2] = r9 (nonce)
+  load <8> r0, [r0]             // r0 = <8> [r0] (inp[target])
+  load r2, 0x10                 // r2 = 0x10 (dataAddr)
+  mov r1, inplen                // r1 = inplen
+  sub r1, r2                    // r1 -= r2 (dataLen)
+  invoke                        // invoke
+  return                        // return

@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  astral:
+    build: .
+    volumes:
+      - ./share:/home/Astral:ro
+      - ./xinetd:/etc/xinetd.d/astral:ro
+      - ./init:/init:ro
+    ports:
+      - "10101:10101"
+    expose:
+      - "10101"
+    devices:
+      - "/dev/kvm:/dev/kvm"
+    restart: always

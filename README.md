@@ -305,7 +305,11 @@
             <td><a href="https://ctftime.org/event/1100/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/Balsn">Balsn</a></td>
+            <td rowspan=5><a href="ctfs/Balsn">Balsn</a></td>
+            <td><a href="ctfs/Balsn/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2056/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Balsn/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1697/tasks/" target="_blank">CTFtime</a></td>
         </tr>

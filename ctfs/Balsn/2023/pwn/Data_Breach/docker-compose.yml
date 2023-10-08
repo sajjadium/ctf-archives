@@ -1,0 +1,12 @@
+data_breach:
+    build: ./
+    volumes:
+        - ./share:/home/data_breach:ro
+        - ./xinetd:/etc/xinetd.d/data_breach:ro
+        - ./tmp:/tmp:ro
+    ports:
+        - "80:80"
+    expose:
+        - "80"
+    tty: true
+    stdin_open: true 
