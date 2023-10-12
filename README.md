@@ -359,6 +359,11 @@
             <td><a href="https://ctftime.org/event/591/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/BlockHarborAutomotive">BlockHarborAutomotive</a></td>
+            <td><a href="ctfs/BlockHarborAutomotive/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2063/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/BlueHens">BlueHens</a></td>
             <td><a href="ctfs/BlueHens/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1298/tasks/" target="_blank">CTFtime</a></td>
