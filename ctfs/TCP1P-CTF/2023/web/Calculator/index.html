@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    body {
+      background-color: #DFDBE5;
+    }
+
+    main {
+      max-width: 450px;
+      margin: 64px auto;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 8px 16px;
+      border-radius: 16px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .wrapper {
+      width: 400px;
+      padding: 10px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #DDDDDD;
+      margin-right: 12px;
+    }
+
+    .result {
+      box-sizing: border-box;
+      width: 400px;
+      padding: 12px;
+      min-height: 150px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #CCCCCC;
+      text-align: right;
+      font-family: sans-serif;
+      font-size: 24px;
+      color: #3c3c3c;
+      word-break: break-word;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .row>button {
+      width: 94px;
+      height: 36px;
+      display: inline-block;
+      margin-top: 6px;
+      border-width: 1px;
+      border-style: solid;
+      border-color: #CCCCCC;
+      font-size: 16px;
+      color: #3c3c3c;
+    }
+
+    .row>button:hover {
+      cursor: pointer;
+      border-color: #AAAAAA;
+    }
+
+    .btn-fn {
+      background: #FFFFFF;
+    }
+
+    .btn-equal {
+      background: #ff8d00;
+      border-style: none;
+    }
+
+    .btn-equal:hover {
+      background: #ea8200;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <div class="wrapper">
+        <div class="result"></div>
+
+        <div class="pad">
+          <div class="row">
+            <button class="btn-ac">AC</button>
+          </div>
+
+          <div class="row">
+            <button class="btn-fn">sin</button>
+            <button class="btn-fn">cos</button>
+            <button class="btn-fn">tan</button>
+            <button class="btn-fn">floor</button>
+          </div>
+
+          <div class="row">
+            <button class="btn-fn">acos</button>
+            <button class="btn-fn">asin</button>
+            <button class="btn-fn">atan</button>
+            <button class="btn-fn">ceil</button>
+          </div>
+
+          <div class="row">
+            <button class="btn-fn">cosh</button>
+            <button class="btn-fn">sinh</button>
+            <button class="btn-fn">tanh</button>
+            <button class="btn-fn">round</button>
+          </div>
+
+          <div class="row">
+            <button class="btn-equal">=</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    (function () {
+      const result = document.querySelector('.result')
+      let operators = []
+
+      document.querySelector('.pad').addEventListener('click', handleClick)
+
+      init()
+
+      function init() {
+        addOperator('Math.random')
+      }
+
+      function addOperator(name) {
+        result.innerText = `${name}(${result.innerText})`
+        operators.push(name)
+      }
+
+      function calculateResult() {
+        fetch("/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(operators),
+        }).then(async res => {
+          result.innerText = await res.text()
+        })
+      }
+
+      function handleClick(e) {
+        let className = e.target.className
+        let text = e.target.innerText
+        if (Number(result.innerText) || result.innerText === "NaN") {
+          result.innerText = 'Math.random()';
+          operators = ['Math.random']
+        }
+        if (className === 'btn-fn') {
+          addOperator(`Math.${text}`)
+        } else if (className === 'btn-ac') {
+          result.innerText = 'Math.random()';
+          operators = ['Math.random']
+        } else if (className === 'btn-equal') {
+          calculateResult()
+        }
+      }
+    })()
+
+  </script>
+</body>
+
+</html>

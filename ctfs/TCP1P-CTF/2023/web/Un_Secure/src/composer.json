@@ -1,0 +1,20 @@
+{
+    "name": "dimas/src",
+    "autoload": {
+        "psr-4": {
+            "Dimas\\Src\\": "src/"
+        },
+        "psr-0": {
+            "GadgetOne": "src/",
+            "GadgetTwo": "src/",
+            "GadgetThree": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dimasma0305",
+            "email": "dimasmaulana0305@gmail.com"
+        }
+    ],
+    "require": {}
+}

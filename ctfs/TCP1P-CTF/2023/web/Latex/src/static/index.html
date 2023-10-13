@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <title></title>
+</head>
+
+<body>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-10">
+                <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">Latex to PDF</h2>
+                <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Render Your Latex</h1>
+            </div>
+            <form action="/" method="post">
+                <div class="flex flex-wrap justify-center">
+                    <div class="relative mb-4">
+                        <label for="latex" class="leading-7 text-sm text-gray-600">Latex</label>
+                        <textarea id="latex" name="latex"
+                            class="w-full h-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+\documentclass[12pt]{article}
+\begin{document}
+This is a LaTeX document.
+\end{document}
+                        </textarea>
+                    </div>
+                </div>
+                <button
+                    class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Render</button>
+            </form>
+        </div>
+    </section>
+
+</body>
+
+</html>

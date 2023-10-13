@@ -1,0 +1,7 @@
+version: '3'
+services:
+  nuxt:
+    build:
+      context: ./src
+    ports:
+      - "45681:3000"
