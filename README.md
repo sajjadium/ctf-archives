@@ -1012,7 +1012,11 @@
             <td><a href="https://ctftime.org/event/647/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/Hack.lu">Hack.lu</a></td>
+            <td rowspan=6><a href="ctfs/Hack.lu">Hack.lu</a></td>
+            <td><a href="ctfs/Hack.lu/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1921/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Hack.lu/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1727/tasks/" target="_blank">CTFtime</a></td>
         </tr>

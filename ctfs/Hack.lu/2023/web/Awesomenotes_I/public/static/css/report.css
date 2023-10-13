@@ -1,0 +1,115 @@
+.box-vertical {
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.smaller-title-box {
+    background: linear-gradient(180deg, white 45%, red 80%);
+}
+
+.report-submit-button {
+    box-shadow: 0px 0px 3px rgb(255, 38, 0);
+    background-color: rgb(255, 59, 59);
+    border: 2px solid rgba(255, 255, 255, 0.293);
+    color: rgb(255, 255, 255);
+    margin-right: 40px;
+}
+
+.report-submit-button:hover {
+    background-color: rgb(255, 72, 72);
+    box-shadow: 0px 0px 10px rgb(117, 91, 91);
+    color: white;
+}
+
+.report-submit-button:active {
+    background-color: rgb(132, 0, 0);
+}
+
+textarea {
+    caret-color: rgb(255, 0, 0);
+}
+
+textarea:focus {
+    border: 2px solid rgb(255, 50, 50);
+    box-shadow: 0px 0px 40px rgb(195, 33, 33);
+}
+
+#link {
+    caret-color: rgb(255, 0, 0);
+}
+
+#link:focus {
+    border: 2px solid rgb(255, 50, 50);
+    box-shadow: 0px 0px 40px rgb(195, 33, 33);
+}
+
+.input-descriptor {
+    color: rgb(180, 180, 180);
+    font-size: 10px;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 900;
+    margin-bottom: -10px;
+    margin-top: 20px;
+}
+
+p {
+    color: rgb(180, 180, 180);
+    font-size: 15px;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+}
+
+p > a{
+    text-decoration: none;
+    color: rgb(222, 86, 86)
+}
+
+p > a:hover{
+    text-decoration: underline;
+}
+
+h2 {
+    color: rgb(180, 180, 180);
+    font-size: 30px;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.button-row {
+    margin-top: 20px;
+}
+
+.grecaptcha-badge {
+    opacity: 0;
+}
+
+.success-row {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.report-success {
+    color: rgb(180, 180, 180);  
+    font-family: 'Heebo', sans-serif;
+}
+
+.return-button {
+    box-shadow: 0px 0px 3px rgb(255, 114, 114);
+    background-color: rgb(42, 42, 42);
+    border: 2px solid rgba(255, 255, 255, 0.293);
+    color: rgb(255, 255, 255);
+}
+
+.return-button:hover {
+    background-color: rgb(255, 167, 167);
+    box-shadow: 0px 0px 10px rgb(117, 91, 91);
+    color: white;
+}
+
+.return-button:active {
+    background-color: rgb(109, 77, 77);
+}

@@ -1,0 +1,39 @@
+<div class="row justify-content-start">
+    <div class="col-md-12">
+        <h3 class="text-center mb-2"><%= pad.title %></h3> 
+        <%- include('partials/messages') %>
+        <div id="padcontent" data-content="<%= pad.content %>"></div>
+        <hr>
+        <small> 
+            Created by: <%= pad.username %>, 
+            Public: <a href="?edit=isPublic" title="Toggle pad visibility."><%= pad.isPublic ? 'YES' : 'NO' %></a>, 
+            Temporary: <a href="?edit=isTemp" title="Toggle if pad expires."><%= pad.createdAt ? 'YES' : 'NO' %></a>
+        </small>
+    </div>
+</div>
+<script>
+    const markdown = (md) => {
+        return md.replace(/__(.*?)__/gs, '<strong>$1</strong>')
+            .replace(/_(.*?)_/gs, '<em>$1</em>')
+            .replace(/## (.*?)\n/gs, '<h2>$1</h2>')
+            .replace(/# (.*?)\n/gs, '<h1>$1</h1>')
+            .replace(/!\[(.*?)\]\((.*?)\)/gs, '<img alt="$1" src="$2" />')
+            .replace(/\[(.*?)\]\((.*?)\)/gs, '<a href="$2">$1</a>')
+            .replace(/`(.*?)`/gs, '<code>$1</code>')
+            .replace(/\n/gs, '<br>')
+    }
+    let md = markdown(padcontent.dataset.content)
+    const sanitizer = new Sanitizer()
+
+    padcontent.setHTML(md, { sanitizer })
+</script>
+<%- contentFor('navitems') %>
+<li class="nav-item">
+    <a class="nav-link" href="https://report.<%= domain %>/?id=<%= pad.uniqueId %>">Report</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="https://<%= domain %>">My Pads</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="https://<%= domain %>/user/logout">Logout</a>
+</li>

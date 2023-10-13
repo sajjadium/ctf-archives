@@ -64,7 +64,7 @@ def is_valid(line):
   return True
 
 def replace_unicode_with_ascii(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a')
 
 def get_challenge_name(line):
   for original_name in reversed(line.strip().split('/')):

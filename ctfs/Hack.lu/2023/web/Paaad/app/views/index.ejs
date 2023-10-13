@@ -1,0 +1,20 @@
+<div class="row justify-content-start">
+    <div class="col-md-12">
+        <h3 class="text-center mb-2">Hi <%= username %>!</h3>
+        <hr>
+        <%- include('partials/messages') %>
+        <h5>Your pads:</h5>
+        <% for (pad of pads) { %>
+            <a class="btn btn-info m-1" role="button" href="https://<%= pad.uniqueId %>.<%= domain %>/"><%= pad.title %></a>
+        <% } %>
+        <a class="btn btn-secondary" role="button" href="/p/new"><i class="bi bi-plus-lg"></i></a>
+        <% if (typeof latest != 'undefined') { %>
+        <h5>Latest Pad:</h5>
+            <a class="btn btn-warning m-1" role="button" href="/p/latest"><%= latest.title %> </a>
+        <% } %>
+    </div>
+</div>
+<%- contentFor('navitems') %>
+<li class="nav-item">
+    <a class="nav-link" href="/user/logout">Logout</a>
+</li>

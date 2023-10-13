@@ -1,0 +1,67 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: nginx:mainline-alpine
+    volumes:
+      - /etc/letsencrypt/:/etc/letsencrypt/:ro
+      - ./nginx:/etc/nginx/templates
+    ports:
+      - 0.0.0.0:80:80
+      - 0.0.0.0:443:443
+    networks:
+      - net
+
+
+  app:
+    build: ./app/
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - NPM_RUN_SCRIPT=$NPM_RUN_SCRIPT
+    depends_on: 
+      - db
+      - nginx
+    volumes:
+      - ./app/:/app/:ro
+    networks:
+      - net
+
+  db:
+    image: mongo
+    restart: unless-stopped
+    env_file: .env
+    volumes:     
+      - ./dbdata:/data/db
+      - ./db/:/docker-entrypoint-initdb.d
+    networks:
+      - net
+      
+  bot-runner:
+    build: ./browser-bot/bot-runner/
+    restart: unless-stopped
+    tty: true
+    environment:
+      - PORT=8081
+    depends_on:
+      - app
+    networks:
+      - net
+      - bot-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./bot-runner-config.json:/app/config.json:ro
+
+  bot-instance:
+    build: ./browser-bot/bot-instance/
+    restart: no
+    networks:
+      - bot-net
+    entrypoint: ["sleep", "1"]
+
+networks:
+  net:
+    name: net
+  bot-net:
+    name: bot-net
+

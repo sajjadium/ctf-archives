@@ -1,0 +1,11 @@
+version: '3'
+services:
+  based:
+    # image: based-sharing:latest
+    build: .
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
+    environment:
+      - FLAG=${FLAG-testflag}
+      - BASE_URL=${BASE_URL-http://localhost:5000}

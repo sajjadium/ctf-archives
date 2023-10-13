@@ -1,0 +1,38 @@
+services:
+  app:
+    image: stylepen-app
+    build: ./app
+    ports:
+      - "80:80"
+    networks:
+      stylepen:
+        aliases:
+          - stylepen
+    restart: unless-stopped
+    env_file: 
+      # - .secret_env
+      - .public_env
+  bot-master:
+    image: stylepen-bot-master
+    build: ./bot/bot-master
+    networks:
+      stylepen:
+        aliases:
+          - bot
+    restart: unless-stopped
+    env_file: 
+      # - .secret_env
+      - .public_env
+    volumes:
+      - ./bot/bot-master-config.json:/app/config.json:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # for rootless docker, use
+      # - $XDG_RUNTIME_DIR/docker.sock:/var/run/docker.sock:ro
+  bot-worker:
+    image: stylepen-bot-worker
+    build: ./bot/bot-worker
+    entrypoint: "false" # build but don't run with docker compose up
+
+networks:
+  stylepen:
+    name: stylepen

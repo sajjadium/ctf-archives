@@ -1,0 +1,6 @@
+{
+    "docker_image": "stylepen-bot-worker",
+    "docker_network": "stylepen",
+    "worker_count": 5,
+    "timeout_secs": 30
+}

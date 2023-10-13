@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+  countdown-manager:
+    ports:
+      - 3000:3000

@@ -1,0 +1,10 @@
+version: "3"
+services:
+  badluck:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "1024:1024"
+    container_name: badluck
+    environment:
+      - FLAG=${FLAG}

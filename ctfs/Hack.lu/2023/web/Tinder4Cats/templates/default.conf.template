@@ -1,0 +1,53 @@
+server {
+    
+    server_name         ${APP_DOMAIN};
+
+
+    index index.php index.html;
+    error_log /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+    root /var/www/html/app;
+
+    location /bot {
+        resolver 127.0.0.11;
+        set $bot_url http://bot-runner:8081/;
+        proxy_pass $bot_url;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_pass php-fpm:9000;
+    }
+}
+
+
+server {
+
+    server_name         ${IDENTITY_DOMAIN};
+
+    index index.php index.html;
+    error_log /var/log/nginx/error.log;
+    access_log /var/log/nginx/access.log;
+    root /var/www/html/identity;
+
+
+
+    location = /.well-known/web-identity {
+        rewrite ^/\.well-known/web-identity$ /.well-known/web-identity.php last;
+    }
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+        fastcgi_pass php-fpm:9000;
+    }
+}
+
+

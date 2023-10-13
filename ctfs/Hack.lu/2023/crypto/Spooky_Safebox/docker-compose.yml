@@ -1,0 +1,8 @@
+services:
+  satoshi:
+    build: .
+    restart: always
+    ports:
+      - 127.0.0.1:5566:5566
+    environment:
+      - FLAG=${FLAG}

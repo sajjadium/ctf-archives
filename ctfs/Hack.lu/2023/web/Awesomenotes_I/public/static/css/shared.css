@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;600;800&display=swap');
+
+.box-vertical {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    user-select: none;
+    min-height: 100vh;
+}
+
+html, body {
+    /* cursor: none; */
+    margin: 0;
+    overflow-x: hidden;
+}
+
+
+body {
+    background-color: #101010;
+}
+
+.smaller-title-box {
+    width: 100%;
+    margin-top: 30px;
+    font-size: 25px;
+    font-family: 'Heebo', sans-serif;
+    position: relative;
+    mix-blend-mode: screen;
+}
+
+.smaller-title-box-bg-mask {
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    flex-direction: row;
+    justify-content: center;
+    background-color: black;
+    mix-blend-mode: multiply;
+}
+
+.smaller-title-box-bg-mask > div {
+    color: white;
+    text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.321);
+    margin-left: 8px;
+    margin-right: 8px;
+    transition: text-shadow 0.5s, transform 0.5s;
+}
+
+.smaller-title-box-bg-mask > div:hover {
+    text-shadow: 0px 0px 20px rgba(255, 255, 255, 0.283);
+    animation: forwards scale 0.2s ;
+    transform: scale(1.1);
+    text-shadow: 0px 0px 40px white;
+}
+
+form {
+    width: 99%;
+    height: 99%;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.button-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.submit-button {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    height: 55px;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.4s;
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    width: auto;
+}
+
+
+.submit-button:hover {
+    transform: scale(1.05);
+}
+
+.submit-button:active {
+    transform: scale(1.02);
+}
+
+textarea {
+    flex-grow: 1;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    resize: none;
+    background-color: #202020;
+    border-radius: 10px;
+    border: 2px solid #404040a0;
+    transition: border 0.8s, box-shadow 0.8s;
+    outline: none;
+    color: #909090;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: 'Heebo', sans-serif;
+    padding: 20px;
+    height: 100%;
+}
+
+input {
+    margin-top: 20px;
+    margin-bottom: 0px;
+    resize: none;
+    background-color: #202020;
+    border-radius: 10px;
+    border: 2px solid #404040a0;
+    transition: border 0.8s, box-shadow 0.8s;
+    outline: none;
+    color: #909090;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: 'Heebo', sans-serif;
+    padding: 20px;
+    height: 100%;
+}

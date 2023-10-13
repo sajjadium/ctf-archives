@@ -1,0 +1,64 @@
+upstream backend {
+    server app:8080 max_fails=3 fail_timeout=5s;
+}
+upstream bot {
+    server bot-runner:8081 max_fails=3 fail_timeout=5s;
+}
+
+
+
+
+server {
+    listen 443 ssl;
+    
+    server_name         report.xn--pd-viaaa.space;
+    ssl_certificate	 	/etc/letsencrypt/live/xn--pd-viaaa.space/fullchain.pem;
+    ssl_certificate_key	/etc/letsencrypt/live/xn--pd-viaaa.space/privkey.pem;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+
+
+    location / {
+        proxy_read_timeout 300;
+        proxy_connect_timeout 300;
+
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwaded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Url-Scheme $scheme;
+        proxy_set_header Host $host;
+        proxy_pass  http://bot;
+    }
+}
+
+
+
+
+server {
+    listen 443 ssl;
+    
+    server_name         xn--pd-viaaa.space *.xn--pd-viaaa.space;
+    ssl_certificate	 	/etc/letsencrypt/live/xn--pd-viaaa.space/fullchain.pem;
+    ssl_certificate_key	/etc/letsencrypt/live/xn--pd-viaaa.space/privkey.pem;
+    ssl_protocols       TLSv1.2 TLSv1.3;
+
+
+    location / {
+        proxy_read_timeout 300;
+        proxy_connect_timeout 300;
+
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwaded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Url-Scheme $scheme;
+        proxy_set_header Host $host;
+        proxy_pass  http://backend;
+    }
+}
+
+
+
+server {
+    listen 80;
+    server_name xn--pd-viaaa.space *.xn--pd-viaaa.space;
+    return 301 https://$host$request_uri;
+}

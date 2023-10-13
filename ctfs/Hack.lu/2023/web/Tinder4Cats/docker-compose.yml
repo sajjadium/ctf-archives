@@ -1,0 +1,42 @@
+version: '3.7'
+
+services:
+  web:
+      image: nginx:latest
+      restart: unless-stopped
+      env_file: .env
+      ports:
+          - 0.0.0.0:80:80
+      volumes:
+          - ./web:/var/www/html
+          - ./templates:/etc/nginx/templates
+      depends_on: 
+        - db
+        - php-fpm
+      networks:
+        - phpnet
+
+
+  php-fpm:
+      build: ./fpm
+      restart: unless-stopped
+      env_file: .env
+      volumes:
+          - ./fpm/log.conf:/usr/local/etc/php-fpm.d/zz-log.conf
+          - ./web:/var/www/html
+      depends_on: 
+        - db
+      networks:
+        - phpnet
+
+
+  db:
+    image: mysql
+    env_file: .env
+    restart: unless-stopped
+    networks:
+        - phpnet
+
+networks:
+  phpnet:
+    name: phpnet

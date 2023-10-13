@@ -1,0 +1,1 @@
+Your employer restructured the dev teams to finance the CEO's yearly pay rise. Unfortunately you got fired in the process, so you need a job now! Even if that means having to solve some leet code challs.

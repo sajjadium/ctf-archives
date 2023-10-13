@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <title>EvaluateSecurity Systems</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/holiday.css@0.11.2" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"
+    integrity="sha512-8RnEqURPUc5aqFEN04aQEiPlSAdE0jlFS/9iGgUyNtwFnSKCXhmB6ZTNl7LnDtDWKabJIASzXrzD0K+LYexU9g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"
+    integrity="sha512-uf06llspW44/LZpHzHT6qBOIVODjWtv4MxCricRxkzvopAlSWnTf6hpZTFxuuZcuNE9CBQhqE0Seu1CoRk84nQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/dracula.min.css"
+    integrity="sha512-gFMl3u9d0xt3WR8ZeW05MWm3yZ+ZfgsBVXLSOiFz2xeVrZ8Neg0+V1kkRIo9LikyA/T9HuS91kDfc2XWse0K0A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/python/python.min.js"
+    integrity="sha512-2M0GdbU5OxkGYMhakED69bw0c1pW3Nb0PeF3+9d+SnwN1ryPx3wiDdNqK3gSM7KAU/pEV+2tFJFbMKjKAahOkQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    #editor {
+      width: inherit;
+    }
+
+    #editor pre {
+      margin-top: auto !important;
+      margin-bottom: auto !important;
+    }
+
+    .icon {
+      display: inline;
+      height: 2rem;
+      top: .1em;
+      position: relative;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1><svg class="icon" viewBox="0 0 90.06 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M90.06 16.05 66.75 39.37 74.01 0l16.05 16.05z" fill="#2244bf" />
+        <path d="M73.76 7.04v22.79H11.02l4.15-22.79h58.59zm5.35 69.64L55.79 100l7.26-39.37 16.06 16.05z"
+          fill="#2244bf" />
+        <path d="M62.8 67.67v22.8H0l4.14-22.8H62.8z" fill="#2244bf" />
+        <path d="m49.18 38.59-3.66 20.06H5.79l.1-.58 3.54-19.48h39.75z" fill="#00a4ff" />
+      </svg>valuateSecurity Systems</h1>
+  </header>
+  <main>
+    <section>
+      <h2>About Us</h2>
+      <p>
+        At EvaluateSecurity Systems, we're on a mission to fortify the digital world, one system at a time. As an
+        up-and-coming company in its early stages, we are dedicated to evaluating and enhancing the security of our
+        customers' most critical systems.
+      </p>
+      <h2>Our Expertise</h2>
+      <p>
+        At EvaluateSecurity Systems, we specialize in providing high-level security evaluations and solutions. Our team
+        of
+        cybersecurity experts is passionate about dissecting and safeguarding digital infrastructures, ensuring your
+        systems remain resilient against evolving threats.
+      </p>
+    </section>
+    <section>
+      <h2>Join Our Team</h2>
+      <p>
+        Are you passionate about cybersecurity and excited to be part of an emerging company at the forefront of system
+        security evaluation? We're actively seeking talented individuals to join our team.
+      </p>
+      <p>
+        We search for the best: That's why you have to complete this coding task in Python to get an interview!
+      </p>
+      <h3>Python coding task: Check if a string is a palindrome</h3>
+      <form onsubmit="check(event)">
+        <label>
+
+          <div id="editor"></div>
+        </label>
+        <label>
+          Your email
+          <input id="email" type="email" required>
+        </label>
+        <footer>
+          <input type="submit" value="Submit interview request">
+        </footer>
+      </form>
+      <blockquote id="message" style="display: none;">
+      </blockquote>
+    </section>
+    <section></section>
+  </main>
+  <footer>
+    Secure your systems with EvaluateSecurity Systems - Your trusted partner in security evaluation.
+  </footer>
+  <script>
+    const codeEditor = CodeMirror(editor, {
+      value: "# candidate is a string\n# return true, if candidate is a palindrome, false otherwise\ndef is_palindrome(candidate):\n    ...\n",
+      lineNumbers: true,
+      indentUnit: 4,
+      theme: "dracula"
+    });
+
+    async function check(e) {
+      e.preventDefault();
+      message.style.display = "none";
+      let resp = await fetch("/challenge", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ code: codeEditor.doc.getValue(), email: email.value }),
+      });
+      resp = await resp.json();
+      message.style.display = "block";
+      switch (resp.result) {
+        case "Solved":
+          message.textContent = "You solved the challenge! You will hear from our recruiting team soon™!";
+          break;
+        case "Not solved":
+          message.textContent = "That's not quite it. Try again!";
+          break;
+        default:
+          message.textContent = resp.result;
+          break;
+      }
+    }
+  </script>
+</body>

@@ -1,0 +1,18 @@
+
+<% if(typeof errors != 'undefined'){ %>
+    <% errors.forEach(function(err){ %>
+        <div class="alert alert-danger my-2" role="alert">
+            <%= err.msg %>
+        </div>
+    <% }) %>
+<% } %>
+<% if(message.success){ %>
+    <div class="alert alert-success my-2" role="alert">
+        <%= message.success %>
+    </div>
+<%} %>
+<% if(message.danger){ %>
+    <div class="alert alert-danger my-2" role="alert">
+        <%= message.danger %>
+    </div>
+<%} %>

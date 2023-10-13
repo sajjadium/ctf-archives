@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Awesome Study Notes</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <link rel="stylesheet" href="/static/css/report.css">
+    <link rel="stylesheet" href="/static/css/shared.css">
+    <link rel="icon" type="image/png" href="/static/img/favicon.ong">
+  </head>
+  <body>
+    <div class="box-vertical">
+      <div class="smaller-title-box">
+        <div class="smaller-title-box-bg-mask">
+          <div><h1>Report</h1></div>
+          <div><h1>Abuse</h1></div>
+        </div>
+      </div>
+      <h2>Oh, nyo!</h2>
+      <p>A note is violating the ToS? Don't worry, you're in the right place. 
+        Just report the note using the form below and we'll take a look at it!</p>
+      <form hx-post="/api/report" id="main-form" hx-swap="outerHTML" hx-trigger="recaptcha-verified" hx-target="this">
+        <span class="input-descriptor">Link the abusive note here</span>
+        <input type="text" name="link" id="link">
+        <span class="input-descriptor">How is this note abusive?</span>
+        <textarea id="reason" name="reason" placeholder="I'm in this picture and I don't like it">
+This note is...</textarea>
+        <script>
+          let note = window.location.search.match(/note=([0-9A-Fa-f]{64})/)[1]
+          link = document.getElementById("link");
+          if(note){
+            link.value = `${window.origin}/note/${note}`
+          }
+          link.setAttribute("placeholder", `${window.origin}/note/A5C11000` + '68747470733a2f2f692e6962622e636f2f4773665a746b6a2f494d472d303835362e6a70670a')
+        </script>
+        <div class="button-row">
+          <button 
+          class="g-recaptcha report-submit-button submit-button" 
+          data-sitekey="6LdoUDooAAAAADDivFZgvenNXM-P7L355-3t9fEk" 
+          data-callback='onSubmit' 
+          data-action='submit'>Report to moderation</button>
+        </div>
+      </form>
+    </div>
+    <script>
+function onSubmit(token) {
+  document.getElementById("main-form").dispatchEvent(new Event("recaptcha-verified"));
+}
+function home(){
+  window.location.href="/"
+}
+    </script>
+  </body>
+</html>

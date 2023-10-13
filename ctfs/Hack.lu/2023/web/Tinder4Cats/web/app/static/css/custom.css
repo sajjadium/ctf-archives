@@ -1,0 +1,37 @@
+
+:root {
+    --text-selection-color: rgba(212, 125, 228, 0.1875);
+    --primary: #d47de4;
+    --primary-background: #9236a4;
+    --primary-underline: rgba(212, 125, 228, 0.5);
+    --primary-hover: #e2a3eb;
+    --primary-hover-background: #aa40bf;
+    --primary-focus: rgba(212, 125, 228, 0.25);
+    --primary-inverse: #fff;
+    --spacing: 0.75rem;
+}
+
+
+.welcome {
+    margin-bottom: 0px;
+}
+
+.catimg {
+    max-height: 20rem;
+    border-radius: 0.5rem;
+    height: 20rem;
+}
+
+.catholder {
+    justify-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+article {
+    margin-top: 0px;
+}
+
+article>header {
+    margin-bottom: 0rem;
+}

@@ -1,0 +1,1 @@
+Someone encrypted important documents for you. However, a scary spider ate into your secret key. You used a post-quantum algorithm, which is sadly not spider-safe. At least you have a small part of the secret key, now you try to recover the full secret key to then decrypt the message. Good luck!

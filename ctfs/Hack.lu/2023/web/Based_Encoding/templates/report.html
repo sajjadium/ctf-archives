@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Report Abuse{% endblock %}
+{% block body %}
+<center>
+	<section class="section">
+		<div class="container">
+			<h1 class="title">Report Abuse</h1>
+			<p>Send a encoding id containing suspicious content for the admin to check.</p>
+			{%if message %}
+			<ul class=flashes>
+				<label>{{message}}</label>
+			</ul></br>
+			{% endif %}
+
+
+			<form action="/report" method="POST" align="center">
+				<div class="field">
+					<label class="label">ID</label>
+					<div class="control">
+						<input class="input" name="id" style="text-align: center; max-width: 20rem;" type="text"
+							placeholder="id to report" />
+					</div>
+				</div>
+
+
+				<div class="field">
+					<div class="control">
+					  <button class="button is-primary">Submit</button>
+					</div>
+
+				  </div>
+			</form>
+		</div>
+	</section>
+	</br>
+	{% endblock %}

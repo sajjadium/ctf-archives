@@ -1,0 +1,137 @@
+.smaller-title-box {
+    background: linear-gradient(70deg, rgb(255, 3, 3) 45%, rgb(255, 247, 0) 55%);
+}
+
+.note-body {
+    flex-grow: 1;
+    margin: 20px 100px 20px 100px;
+    /* background-color: #202020; */
+    background-origin: border-box;
+    background-size: 200%;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    border: 2px solid #404040a0;
+    transition: border 0.8s, box-shadow 0.8s, background-color 0.8s;
+    outline: none;
+    color: #909090;
+    font-weight: 600;
+    font-size: 20px;
+    font-family: 'Heebo', sans-serif;
+    position: relative;
+    padding: 20px;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 30vw;
+}
+
+.note-body:hover {
+    background-color: #252525;
+}
+
+.note-body-done {
+    background-image:linear-gradient(90deg, #20202000 0%, #59ff0672 50%, #20202000 100%);
+    animation: leave 1.5s forwards ease-out;
+}
+
+.note-body-loading {
+    background-image:linear-gradient(90deg, #20202000 0%, #ff060652 50%, #20202000 100%);
+    animation: sweep 1.5s forwards;
+}
+
+.glow-red {
+    border: 2px solid rgb(250, 124, 115);
+    box-shadow: 0px 0px 40px rgba(214, 14, 14, 0.54);
+}
+
+.glow-red:hover {
+    border: 2px solid rgb(255, 168, 161);
+    box-shadow: 0px 0px 50px rgba(214, 14, 14, 0.54);
+}
+
+.glow-green {
+    border: 2px solid rgb(250, 218, 115);
+    box-shadow: 0px 0px 40px rgba(91, 214, 14, 0.54);
+
+}
+
+.glow-green:hover {
+    border: 2px solid rgb(255, 233, 160);
+    box-shadow: 0px 0px 60px rgba(91, 214, 14, 0.54);
+}
+
+.note-body-done::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    border-radius: 10px;
+    animation: bg-leave 1.5s forwards;
+}
+
+.note-body #content {
+    position: relative;
+    z-index: 2;
+    border-radius: 10px;
+    padding: 20px;
+    flex-grow: 1;
+    /* animation: content-fade 1.5s forwards; */
+}
+
+#report {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 9px;
+    font-family: 'Heebo', sans-serif;
+    text-decoration: none;
+    color: rgb(117, 117, 117);
+}
+
+#report:hover {
+    text-decoration: underline;
+}
+
+/* 
+.note-body #content:hover {
+    background-color: #252525;
+} */
+
+@keyframes sweep {
+    from {
+        background-position-x: 100%;
+    }
+    to {
+        background-position-x: 0%;
+    }
+}
+
+@keyframes leave {
+    from {
+        background-size: 200%;
+    }
+    to {
+        background-size: 1000%;
+        background-position-x: 33%;
+    }
+}
+
+@keyframes bg-leave {
+    0% {
+        background-color: #20202000;
+    }
+    100% {
+        background-color: #151515ff;
+    }
+}
+
+/* @keyframes content-fade {
+    from {
+        background-color: #15151500;
+    }
+    to {
+        background-color: #151515ff;
+    }
+} */

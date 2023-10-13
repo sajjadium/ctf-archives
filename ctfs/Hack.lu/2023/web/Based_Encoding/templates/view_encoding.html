@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}
+{% endblock %}
+{% block body %}
+<section class="section is-medium is-centered">
+	<center>
+	<div class="container is-primary is-centered">
+		{% if encoding %}
+		<h2 class="subtitle">{{encoding["text"]|safe}}</h2>
+		{% else %}
+		<h1 class="title">Encoding not found!</h1>
+		<h2 class="subtitle">The encoding was not found.</h2>
+		{% endif %}
+	</div>
+	</center>
+</section>
+{% endblock %}

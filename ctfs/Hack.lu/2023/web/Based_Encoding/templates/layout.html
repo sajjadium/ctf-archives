@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css" media="screen">
+    html,body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body>footer {
+      margin-top: auto;
+    }
+  </style>
+</head>
+<header>
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbar" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">
+          Base
+        </a>
+        <a class="navbar-item" href="/create">
+          Create
+        </a>
+        <hr class="navbar-divider">
+        <a class="navbar-item" href="/report">
+          Report
+        </a>
+      </div>
+    </div>
+    {%if logged_out %}
+    <div class="navbar-end" >
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-light" href="/signup">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light" href="/login">
+            Login
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+  </nav>
+</header>
+
+<body>
+  <div id="content">
+    <center>
+      {% for message in get_flashed_messages() %}
+      <ul class="flashes">
+        <label>{{message}}</label>
+      </ul></br>
+    </center>
+    {% endfor %}
+    {% block body %}
+    {% endblock %}
+  </div>
+</body>

@@ -1,0 +1,159 @@
+
+.title-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+}
+.title-box > h1 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size: 120px;
+    font-family: 'Heebo', sans-serif;
+    background: linear-gradient(70deg, rgb(175, 3, 255) 5%, rgb(0, 0, 255) 20%, rgb(0, 213, 255) 44%, rgba(255,255,255,1) 45%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subheader-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+.subheader-box > h3 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 40px;
+    font-family: 'Heebo', sans-serif;
+    background: linear-gradient(0deg,rgb(0, 213, 255) 0%, white 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.button-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.button-box > button {
+    width: 250px;
+    height: 75px;
+    border-radius: 10px;
+    background-image: linear-gradient(70deg, rgb(175, 3, 255) 0%, rgb(0, 0, 255) 40%, rgb(0, 213, 255) 100%);
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.7s;
+    color: white;
+    font-family: 'Heebo', sans-serif;
+    font-size: 20px;
+    box-shadow: 0px 0px 25px #3c4a80;
+    cursor: pointer;
+    background-position: -5px;
+    background-size: 210%;
+}
+
+.button-box > button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 50px rgb(0, 76, 240);
+    background-position-x: -250px;
+}
+
+.features-box {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+.card {
+    width: 400px;
+    height: 170px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px rgba(40, 40, 40, 0.709);
+    transition: all 0.3s;
+    background-color: #151515;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: rgb(207, 207, 207);
+    border: 2px solid rgb(128, 128, 128, 0.1);
+    margin: 30px;
+}
+
+.card:hover {
+    box-shadow: 0px 0px 40px rgba(46, 52, 131, 0.709);
+    background-color: #202020;
+    transform: scale(1.05);
+    border: 2px solid rgb(0, 98, 255);
+}
+
+.card-title {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 30px;
+    text-shadow: 0px 0px 3px rgba(255, 255, 255, 0.422);
+}
+
+.card-body {
+    font-family: 'Heebo', sans-serif;
+    font-weight: 600;
+    padding-left: 40px;
+    padding-right: 40px;
+    color: rgb(138, 138, 138);
+    text-align: center;
+}
+
+.rust {
+    transition: all 1s;
+}
+
+.card:hover .rust {
+    color: rgb(255, 100, 43);
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.424);
+}
+
+.safe {
+    transition: all 1s;
+}
+
+.card:hover .safe {
+    color: rgb(85, 255, 43);
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.424);
+}
+
+.tracker-box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.cursor-tracker {
+    width: 70px;
+    height:70px;
+    left: 43vw;
+    top: 70px;
+    background-color: white;
+    mix-blend-mode: difference;
+    position: fixed;
+    z-index: 1000;
+    pointer-events: none;
+    clip-path: rect(0% 0% 100% 100%);
+    /* transition: left 0.2s, top 0.2s; */
+    animation: rotate 60s infinite;
+    border-radius: 10px;
+
+}
+
+@keyframes rotate {
+    from { rotate: 0deg;}
+    to {rotate: 360deg;}
+}

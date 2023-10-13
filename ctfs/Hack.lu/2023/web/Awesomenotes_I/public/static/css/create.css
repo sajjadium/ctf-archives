@@ -1,0 +1,35 @@
+.smaller-title-box {
+    background: linear-gradient(70deg, rgb(175, 3, 255) 40%, rgb(255, 255, 255) 50%, rgb(0, 213, 255) 60%);
+}
+
+textarea {
+    caret-color: rgb(0, 98, 255);
+}
+
+textarea:focus {
+    border: 2px solid rgb(0, 157, 255);
+    box-shadow: 0px 0px 40px rgb(16, 137, 211);
+}
+
+.submit-button {
+    box-shadow: 0px 0px 3px rgb(0, 157, 255);
+    background-color: rgba(20, 165, 255, 0);
+    border: 2px solid rgb(20, 165, 255);
+    color: rgb(20, 165, 255);
+}
+
+.submit-button:hover {
+    background-color: rgb(63, 181, 255);
+    box-shadow: 0px 0px 10px rgb(0, 157, 255);
+    color: white;
+}
+
+.submit-button:active {
+    background-color: rgb(95, 182, 209);
+}
+
+
+.box-vertical {
+    padding-left: 100px;
+    padding-right: 100px;
+}

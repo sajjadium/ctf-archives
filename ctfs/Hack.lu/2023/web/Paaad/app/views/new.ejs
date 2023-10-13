@@ -1,0 +1,31 @@
+<div class="row justify-content-start">
+    <div class="col-md-12">
+        <h3 class="text-center mb-2">New Pad</h3>
+        <%- include('partials/messages') %>
+        <form action="/p/new" method="POST">
+            <div class="mb-2">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" id="title" name="title" required class="form-control" placeholder="Enter Title" />
+            </div>
+            <div class="mb-2">
+                <label for="content" class="form-label">Content</label>
+                <textarea id="content" name="content" required class="form-control" placeholder="Enter Content"
+                    rows="10"></textarea>
+            </div>
+            <div class="mb-2">
+                <label for="isPublic" class="form-label">Public</label>
+                <input type="checkbox" id="isPublic" name="isPublic" class="form-check-input" value="false" />
+                <label for="isTemp" class="form-label">Temporary</label>
+                <input type="checkbox" id="isTemp" name="isTemp" class="form-check-input" checked value="true" />
+            </div>
+            <button id="submit" type="submit" class="btn btn-secondary">Save</button>
+        </form>
+    </div>
+</div>
+<%- contentFor('navitems') %>
+<li class="nav-item">
+    <a class="nav-link" href="https://<%= domain %>">Back</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="/user/login">Logout</a>
+</li>

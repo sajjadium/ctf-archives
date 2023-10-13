@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    build: ./celestial-db/
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: celestialadmin
+      POSTGRES_PASSWORD: celestialadmin # TODO: change to something secure
+      POSTGRES_DB: celestial
+      TENANTS: "chal:chal"
+
+  countdown-manager:
+    build: ./countdown-manager/
+    restart: unless-stopped
+    environment:
+      DB_URL: "postgres://chal:chal@db:5432/tenant_chal"

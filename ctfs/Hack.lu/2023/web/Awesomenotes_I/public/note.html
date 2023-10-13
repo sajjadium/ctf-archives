@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Awesome Study Notes</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/note.css">
+    <link rel="stylesheet" href="/static/css/shared.css">
+    <link rel="icon" type="image/png" href="/static/img/favicon.ong">
+  </head>
+  <body>
+    <div class="box-vertical">
+        <div class="smaller-title-box">
+          <div class="smaller-title-box-bg-mask">
+            <div><h1>Your</h1></div>
+            <div><h1>Note:</h1></div>
+          </div>
+        </div>
+        <div 
+          class="note-body glow-red note-body-loading" 
+          hx-get="/api/note/" 
+          hx-on::config-request="event.detail.path += window.location.pathname.split('/').pop()"
+          hx-on::after-swap="let l = event.detail.target;
+          l.parentNode.classList.add('note-body-done', 'glow-green');
+          l.parentNode.classList.remove('note-body-loading', 'glow-red'); 
+          "
+          hx-trigger="load delay:0.001s"
+          hx-target="find #content"
+        >
+        <div id="content"></div>
+        </div>
+        <a href="" id="report">Report Terms of Service violation</a>
+        <script>
+          document.getElementById("report").setAttribute("href", '/report?note=' + window.location.pathname.split('/').pop())
+        </script>
+    </div>
+  </body>
+</html>

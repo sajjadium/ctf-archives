@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Awesome Study Notes</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/create.css">
+    <link rel="stylesheet" href="/static/css/shared.css">
+    <link rel="icon" type="image/png" href="/static/img/favicon.ong">
+  </head>
+  <body>
+    <div class="box-vertical">
+        <div class="smaller-title-box">
+          <div class="smaller-title-box-bg-mask">
+            <div><h1>Put</h1></div>
+            <div><h1>your</h1></div>
+            <div><h1>notes</h1></div>
+            <div><h1>here:</h1></div>
+          </div>
+        </div>
+        <form method="post" action="/api/note" enctype="multipart/form-data">
+          <textarea name="note" class="create-textarea" placeholder="Me when the im writing notes be like 😂😂😂😳😳🤭🤭🤭">
+<h1>Example note</h1>
+<p>Don't forget about that exam next monday!</p>
+<math xmlns='http://www.w3.org/1998/Math/MathML'>
+<mrow>
+  <mi>E</mi>
+  <mo>=</mo>
+  <msup>
+    <mi>mc</mi>
+    <mn>2</mn>
+  </msup>
+</mrow>
+</math>
+<br>
+<br>
+<img class="note-img" src="https://i.ibb.co/VxZVxyw/tweet-1688724457035075584-20230917-130820-via-10015-io.png">
+
+<style>
+    .note-body img {
+        border-radius: 20px;
+        box-shadow: 0 0 40px #000000a0;
+        object-fit: contain;
+        width: 500px;
+    }
+</style>
+          </textarea>
+          <div class="button-row">
+            <button class="submit-button" type="submit">Upload</button>
+          </div>
+        </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Create{% endblock %}
+{% block body %}
+<center>
+        <section class="section">
+                <div class="container">
+                        <h1 class="title">Encode something</h1>
+
+                        <form action="/create" method="POST" align="center">
+                                <div class="field">
+                                        <label class="label">Content</label>
+                                        <div class="control">
+                                                <textarea class="input" name="text" class="text" rows="10" cols="30"
+                                                        style="width: 700px; height: 500px;"></textarea>
+
+                                        </div>
+                                </div>
+
+                                <div class="field">
+                                        <div class="control">
+                                                <button class="button is-primary">Create</button>
+                                        </div>
+
+                                </div>
+                        </form>
+
+                </div>
+                {% endblock %}

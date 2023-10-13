@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  dobbertin:
+    build: .
+    restart: always
+    ports:
+      - 127.0.0.1:5555:5555
+    environment:
+      - FLAG=${FLAG}

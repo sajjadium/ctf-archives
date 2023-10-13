@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+<%-  include('partials/headers') %>
+</head>
+<body>
+    <div class="container vh-100">
+        <div class="row toppadding">
+            <div class="col-md-10 mx-auto">
+                <div class="card border-primary mb-4">
+                    <div class="card-header">
+                        <ul class="nav d-flex">
+                            <a class="navbar-brand me-auto" href="/">
+                                <h3>
+                                    <i class="bi bi-stars" class="d-inline-block align-text-top"></i> <%= title %>
+                                </h3>
+                              </a>
+                            <%- navitems %>
+                        </ul>
+                    </div>
+                    <div class="card-body" >
+<%- body %>
+                    </div>
+                </div>
+            </div>          
+        </div>
+    </div>
+</body>
+</html>

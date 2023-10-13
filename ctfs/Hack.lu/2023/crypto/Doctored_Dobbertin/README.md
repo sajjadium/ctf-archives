@@ -1,0 +1,1 @@
+Prof. Hans Dobbertin achieved world fame as a cryptographer in the 1990s with his work on attacks on hash functions. He was one of the best cryptologists in the world, and was called "Germany's best codebreaker". Based on the regular Dobbertin Challenge, here is a modified cipher to crack.

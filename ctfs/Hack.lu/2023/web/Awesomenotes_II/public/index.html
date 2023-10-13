@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Awesome Study Notes</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5" integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/shared.css">
+    <link rel="icon" type="image/png" href="/static/img/favicon.ong">
+  </head>
+  <body>
+    <div class="box-vertical">
+      <div class="title-box">
+        <div class="tracker-box">
+          <div class="cursor-tracker"></div>
+        </div>
+        <h1>Awesome Study Notes</h1>
+      </div>
+      <div class="features-box">
+        <div class="card">
+          <h3 class="card-title">Blazingly fast</h1>
+          <p class="card-body">Did you know that <span class="rust">Rust®©™</span> programs are 40% faster on average?</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Rich in features</h1>
+          <p class="card-body">This tool allows you to use write mathematical expressions, style your content and even embed images.</p>
+        </div>
+      </div>
+      <div class="features-box">
+        <div class="card">
+          <h3 class="card-title">Secure</h1>
+          <p class="card-body">Your data is <span class="safe">safe</span> with me.</p>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Comfortable</h1>
+          <p class="card-body">No account, no setup. It's all study notes.</p>
+        </div>
+      </div>      
+      <div class="subheader-box">
+        <h3>Convinced?</h3>
+      </div>
+      <div class="button-box">
+        <button onclick="window.location.href='/create'">Check it out!</button>
+      </div>
+    </div>
+    <script>
+      var tracker = document.getElementsByClassName("cursor-tracker")[0];
+      document.addEventListener("mousemove", (e) => {
+        tracker.style.left = `${e.clientX-35}px`;
+        tracker.style.top = `${e.clientY-35}px`;;
+      });
+    </script>
+  </body>
+</html>
