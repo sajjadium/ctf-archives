@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+        body {
+            font-family: 'Orbitron', Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 200px;
+            color: #333;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .result p {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .check {
+            color: green;
+        }
+        .incheck {
+            color: red;
+        }
+    </style>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Qui Buu?</title>
+</head>
+<body>
+    <div class="container">
+        <h1>U Are Qui Buu?</h1>
+        <form action="/" method="GET">
+            <p hidden>Id: <input name="id" value="{{id}}"></p>
+            <img src="{{ img }}" alt="onsra" width="500" height="500" style="display: block; margin: 0 auto;">
+            <label for="ans">What name? :</label>
+            <input type="text" name="ans" id="ans" value="{{ ans }}" required>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="result">
+            {% if check == 1 %}
+                <p class="check">Haha QuiBuu!</p>
+            {% elif check == 2 %}
+                <p class="incheck">U ARE NOT QuiBuu !!!!</p>
+            {% else %}
+                <p class="incheck">Prove that you are a QuiBuu kekeke</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

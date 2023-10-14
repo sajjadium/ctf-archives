@@ -1166,7 +1166,11 @@
             <td><a href="https://ctftime.org/event/763/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/ISITDTU">ISITDTU</a></td>
+            <td rowspan=5><a href="ctfs/ISITDTU">ISITDTU</a></td>
+            <td><a href="ctfs/ISITDTU/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2080/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/ISITDTU/2022/Quals">2022 Quals</a></td>
             <td><a href="https://ctftime.org/event/1757/tasks/" target="_blank">CTFtime</a></td>
         </tr>

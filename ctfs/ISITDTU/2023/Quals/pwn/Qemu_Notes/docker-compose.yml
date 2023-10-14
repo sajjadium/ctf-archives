@@ -1,0 +1,16 @@
+version: '3'
+services:
+  challenge:
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    working_dir: /home/pwn
+    container_name: qemu_notes
+    ulimits:
+      nproc: 65535
+      core: 0
+    ports:
+      - "12346:9999"
+    entrypoint: /etc/init.sh
+    init: true
+    restart: always

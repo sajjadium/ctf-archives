@@ -1,0 +1,38 @@
+version: '3'
+services:
+  pivot:
+    image: ubuntu:latest
+    container_name: pivot
+    build:
+      context: .
+    networks:
+      pwnnetwork:
+        ipv4_address: 10.10.10.2
+    ports:
+      - "9999:9999"
+    command: /init.sh
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: db
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ...CENSORED...
+      MYSQL_DATABASE: fl4g
+      MYSQL_USER: isitdtu
+      MYSQL_PASSWORD: qp37RWf@@Ygvd@
+    networks:
+      pwnnetwork:
+        ipv4_address: 10.10.10.3
+    volumes:
+      - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+
+networks:
+  pwnnetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.10.10.0/24
+  

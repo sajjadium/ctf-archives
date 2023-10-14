@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  naruchu:
+    build: .
+    ports:
+      - "11111:11111"
+    environment:
+      - FLASK_SECRET_KEY=Make_ISITDTU_great_again
+    restart: always

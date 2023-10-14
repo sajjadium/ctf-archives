@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+    social_page:
+        restart: always
+        build: .
+        image: social_page
+        ports:
+            - "3000:3000"
+        user: "1000:1000"

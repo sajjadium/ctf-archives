@@ -1,0 +1,18 @@
+service ctf
+{
+    disable = no
+    socket_type = stream
+    protocol    = tcp
+    wait        = no
+    user        = root
+    type        = UNLISTED
+    port        = 2000
+    bind        = 0.0.0.0
+    server      = /usr/sbin/chroot
+    server_args = --userspec=1000:1000 /home/ctf ./challenge
+    banner_fail = /etc/banner_fail
+    # safety options
+    per_source  = 10 # the maximum instances of this service per source IP address
+    rlimit_cpu  = 1 # the maximum number of CPU seconds that the service may use
+    #rlimit_as  = 1024M # the Address Space resource limit for the service
+}
