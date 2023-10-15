@@ -1,0 +1,6 @@
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex' }/
+
+  = render 'accounts/og', account: @account, url: account_followers_url(@account, only_path: false)
+
+= render 'shared/web_app'

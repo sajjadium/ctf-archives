@@ -1,0 +1,80 @@
+---
+te:
+  about:
+    about_mastodon_html: మాస్టొడాన్ అనేది ఒక సామాజిక మాధ్యమం. ఇది పూర్తిగా ఉచితం మరియు స్వేచ్ఛా సాఫ్టువేరు. ఈమెయిల్ లాగానే ఇది వికేంద్రీకరించబడినది.
+    contact_missing: ఇంకా సెట్ చేయలేదు
+    contact_unavailable: వర్తించదు
+    hosted_on: మాస్టొడాన్ %{domain} లో హోస్టు చేయబడింది
+  accounts:
+    follow: అనుసరించు
+    followers:
+      one: అనుచరి
+      other: అనుచరులు
+    following: అనుసరిస్తున్నారు
+    last_active: చివరిగా క్రియాశీలకంగా వుంది
+    link_verified_on: ఈ లంకె యొక్క యాజమాన్యాన్ని చివరిగా పరిశీలించింది %{date}న
+    nothing_here: ఇక్కడ ఏమీ లేదు!
+    pin_errors:
+      following: మీరు ధృవీకరించాలనుకుంటున్న వ్యక్తిని మీరిప్పటికే అనుసరిస్తూ వుండాలి
+    posts:
+      one: టూటు
+      other: టూట్లు
+    posts_tab_heading: టూట్లు
+  admin:
+    account_actions:
+      action: చర్య తీసుకో
+      title: "%{acct}పై మోడరేషన్ చర్యను తీసుకో"
+    account_moderation_notes:
+      create: ఏదైనా గమనికను వదులు
+      created_msg: మోడరేషన్ గమనిక విజయవంతంగా సృష్టించబడింది!
+      destroyed_msg: మోడరేషన్ గమనిక విజయవంతంగా తొలగించబడింది!
+    accounts:
+      are_you_sure: ఖచ్ఛితమేగా?
+      avatar: అవతారం
+      by_domain: డొమైను
+      change_email:
+        current_email: ప్రస్తుత ఈమెయిల్
+        label: ఈమెయిల్ ను మార్చు
+        new_email: కొత్త ఈమెయిల్
+        submit: ఈమెయిల్ ను మార్చు
+        title: "%{username} యొక్క ఈమెయిల్ ను మార్చు"
+      confirm: ధృవీకరించు
+      confirmed: ధృవీకరించబడింది
+      confirming: ధృవీకరిస్తుంది
+      demote: స్థానం తగ్గించు
+      disable: అచేతనం చేయి
+      disable_two_factor_authentication: 2FAను అచేతనం చేయి
+      disabled: అచేతనం చేయబడింది
+      display_name: పేరును చూపు
+      domain: డొమైను
+      edit: మార్చు
+      email: ఈమెయిల్
+      email_status: ఈమెయిల్ స్థితి
+      enable: చేతనం
+      enabled: చేతనం చేయబడింది
+      followers: అనుచరులు
+      follows: అనుసరిస్తున్నారు
+      inbox_url: ఇన్ బాక్స్ URL
+      location:
+        all: అన్నీ
+        local: లోకల్
+        remote: రిమోట్
+        title: లొకేషన్
+      login_status: లాగిన్ స్థితి
+      media_attachments: మీడియా అటాచ్మెంట్లు
+      moderation:
+        active: యాక్టివ్
+        all: అన్నీ
+        suspended: నిషేధించబడింది
+        title: మోడరేషన్
+      moderation_notes: మోడరేషన్ నోట్స్
+      most_recent_activity: ఇటీవల యాక్టివిటీ
+      most_recent_ip: ఇటీవలి IP
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '429': Too many requests
+    '503': The page could not be served due to a temporary server failure.

@@ -1,0 +1,505 @@
+---
+ka:
+  about:
+    about_mastodon_html: მასტოდონი ღია ვებ პროტოკოლებზე და უფასო, ღია პროგრამებზე დაფუძნებული სოციალური ქსელია. ის ისეთი დეცენტრალიზებულია როგორც ელ-ფოსტა.
+    contact_missing: არაა დაყენებული
+    contact_unavailable: მიუწ.
+    hosted_on: მასტოდონს მასპინძლობს %{domain}
+  accounts:
+    follow: გაყევი
+    following: მიჰყვება
+    nothing_here: აქ არაფერია!
+    pin_errors:
+      following: იმ ადამიანს, ვინც მოგწონთ, უკვე უნდა მიჰყვებოდეთ
+  admin:
+    account_moderation_notes:
+      create: დატოვეთ ჩანაწერი
+      created_msg: მოდერაციის ჩანაწერი წარმატებით შეიქმნა!
+      destroyed_msg: მოდერაციის ჩანაწერი წარმატებით გაუქმდა!
+    accounts:
+      are_you_sure: დარწმუნებული ხარ?
+      avatar: ავატარი
+      by_domain: დომენი
+      change_email:
+        current_email: მიმდინარე ელ-ფოსტა
+        label: ელ-ფოსტის შეცვლა
+        new_email: ახალი ელ-ფოსტა
+        submit: ელ-ფოსტის შეცვლა
+        title: შეცვალეთ ელ-ფოსტა მომხმარებლისთვის %{username}
+      confirm: დადასტურება
+      confirmed: დადასტურებულია
+      confirming: დასტურდება
+      demote: დაქვეითება
+      disable: გამორთვა
+      disable_two_factor_authentication: გამორთე 2FA
+      disabled: გამორთულია
+      display_name: დისპლეი სახელი
+      domain: დომენი
+      edit: შეცვლა
+      email: ელ-ფოსტა
+      email_status: ელ-ფოსტის სტატუსი
+      enable: ჩართვა
+      enabled: ჩართულია
+      followers: მიმდევრები
+      follows: დადევნებები
+      inbox_url: ინბოქსის ურლ
+      ip: აი-პი
+      location:
+        all: ყველა
+        local: ლოკალური
+        remote: დისტანციური
+        title: ადგილმდებარეობა
+      login_status: ლოგინის სტატუსი
+      media_attachments: თან-დართული მედია
+      memorialize: აქციე მემორანდუმად
+      moderation:
+        all: ყველა
+        suspended: შეჩერებული
+        title: მოდერაცია
+      moderation_notes: მოდერაციის ჩანაწერები
+      most_recent_activity: უახლესი აქტივობა
+      most_recent_ip: უახლესი აი-პი
+      not_subscribed: გამოუწერელი
+      perform_full_suspension: მოახდინეთ სრული შეჩერება
+      promote: დაწინაურება
+      protocol: პროტოკოლი
+      public: საჯარო
+      push_subscription_expires: ფუშ გამოწერა უქმდება
+      redownload: განაახლე ავატარი
+      remove_avatar: გააუქმე ავატარი
+      resend_confirmation:
+        already_confirmed: ეს მომხმარებელი უკვე დამოწმებულია
+        send: დამოწმების ინსტრუქციების გადაგზავნა
+        success: დამოწმების ინსტრუქციები წარმატებით გაიგზავნა!
+      reset: გადატვირთვა
+      reset_password: პაროლის გადატვირთვა
+      resubscribe: ხელახალი გამოწერა
+      search: ძებნა
+      shared_inbox_url: გაზიარებული ინბოქსის ურლ
+      show:
+        created_reports: ამ ანგარიშის მიერ შექმნილი რეპორტები
+        targeted_reports: ამ ანგარიშზე მიღებული რეპორტები
+      silence: სიჩუმე
+      statuses: სტატუსები
+      subscribe: გამოწერა
+      title: ანგარიშები
+      unconfirmed_email: დაუმოწმებელი ელ-ფოსტა
+      undo_silenced: გაჩუმების მოშორება
+      undo_suspension: შეჩერების მოშორება
+      unsubscribe: გამოწერის შეწყვეტა
+      username: მომხმარებლის სახელი
+      web: ვები
+    action_logs:
+      title: აუდიტის ლოგი
+    custom_emojis:
+      by_domain: დომენი
+      copied_msg: ემოჯის ლოკალური ასლი წარმატებით შეიქმნა
+      copy: კოპირება
+      copy_failed_msg: ამ ემოჯის ლოკალური ასლი ვერ შეიქმნა
+      created_msg: ემოჯი წარმატებით შეიქმნა!
+      delete: გაუქმება
+      destroyed_msg: ემოჯი წარმატებით გაუქმდა!
+      disable: გათიშვა
+      disabled_msg: ეს ემოჯი წარმატებით გაითიშა
+      emoji: ემოჯი
+      enable: ჩართვა
+      enabled_msg: წარმატებით ჩაირთო ეს ემოჯი
+      listed: ჩამოთვლილი
+      new:
+        title: ახალი პერსონალიზირებული ემოჯის დამატება
+      overwrite: გადაწერა
+      shortcode: მოკლე-კოდი
+      shortcode_hint: მინ. 2 ნიშანი, მხოლოდ ალფანუმერიკული ნიშნები და "ქვედა-ტირეები"
+      title: პერსონალიზირებული ემოჯიები
+      unlisted: ჩამოუთვლელი
+      update_failed_msg: ემოჯის განახლება ვერ მოხერხდა
+      updated_msg: ემოჯი წარმატებით განახლდა!
+      upload: ატვირთვა
+    dashboard:
+      software: პროგრამა
+      space: მოცულობის მოხმარება
+      title: დაფა
+    domain_blocks:
+      add_new: ახლის დამატება
+      created_msg: დომენის ბლოკი ახლა პროცესირების ქვეშაა
+      destroyed_msg: დომენის ბლოკი გაუქმდა
+      domain: დომენი
+      new:
+        create: ბლოკის შექმნა
+        hint: დომენის ბლოკი არ შეაჩერებს ანგარიშების ჩაწერას მონაცემთა ბაზაში, მაგრამ ეს ამ ანგარიშებზე რეტროაქტიულად და ავტომატურად გაატარებს სპეციფიურ მოდერაციის მეთოდებს.
+        severity:
+          noop: არც ერთი
+          suspend: შეჩერება
+        title: ახალი დომენის ბლოკი
+      reject_media: მედია ფაილების უარყოფა
+      reject_media_hint: შლის ლოკალურად შენახულ მედია ფაილებს და უარყოფს სამომავლო გადმოტვირთებს. შეუსაბამო შეჩერებებისთვის
+      undo: უკუქცევა
+    email_domain_blocks:
+      add_new: ახლის დამატება
+      created_msg: ელ-ფოსტის დომენი წარმატებით დაემატა შავ სიას
+      delete: გაუქმება
+      domain: დომენი
+      new:
+        create: დომენის დამატება
+        title: ელ-ფოსტის ახალი შენატანი შავ სიაში
+      title: ელ-ფოსტის შავი სია
+    instances:
+      title: ცნობილი ინსტანციები
+    invites:
+      deactivate_all: ყველას დეაქტივაცია
+      filter:
+        all: ყველა
+        available: ხელმისაწვდომი
+        expired: ვადაგასული
+        title: ფილტრი
+      title: მოწვევები
+    relays:
+      add_new: ახელი რილეი
+      description_html: "<strong>ფედერაციის რილეი</strong> შუამავალი სერვერია, რომელიც ცვლის საჯარო ტუტების დიდ ოდენობას იმ სერვერებს შორის, რომლებიც გამოიწერენ და მასზე გამოაქვეყნებენ. <strong>ეს მცირე და საშუალო სერვერებს ეხმარება აღმოაჩინონ კონტენტი ფედივერსისგან</strong>, რომელიც სხვა შემთხვევაში მომხარებლებს აიძულებდა მექნიკურ რეჟიმში გაჰყოლოდნენ ხალხს სხვა დისტანციურ სერვერებზე."
+      enable_hint: ამოქმდების შემდეგ, თქვენი სერვერი გამოიწერს ყველა საჯარო ტუტს ამ რილეიდან და დაიწყებს სერვერის ღია ტუტების იქ გაგზავნას.
+      inbox_url: რილეი ურლ
+      setup: რილეი კავშირის დამყარება
+      status: სტატუსი
+      title: რილეი სია
+    report_notes:
+      created_msg: რეპორტის ჩანაწერი წარმატებით შეიქმნა!
+      destroyed_msg: რეპორტის ჩანაწერი წარმატებით გაუქმდა!
+    reports:
+      action_taken_by: მოქმედება შეასრულა
+      are_you_sure: დარწმუნებული ხარ?
+      assign_to_self: დანიშნე ჩემზე
+      assigned: დაინიშნა მოდერატორი
+      comment:
+        none: არაფერი
+      created_at: რეპორტის დრო
+      mark_as_resolved: მონიშნე გადაწყვეტილად
+      mark_as_unresolved: მონიშნე გადაუწყვეტლად
+      notes:
+        create: ჩანაწერის დამატება
+        create_and_resolve: გადაწყვეტა ჩანაწერით
+        create_and_unresolve: ხელახალი გახსნა ჩანაწერით
+        delete: გაუქმება
+        placeholder: აღწერეთ თუ რა ნაბიჯები უნდა გადაიდგას, ან სხვა დაკავშირებული განახლებები...
+      reopen: რეპორტის ხელახალი გახსნა
+      report: 'რეპორტი #%{id}'
+      reported_account: დარეპორტებული ანგარიში
+      reported_by: დაარეპორტა
+      resolved: გადაწყვეტილი
+      resolved_msg: რეპორტი წარმატებით გადაწყდა!
+      status: სტატუსი
+      title: რეპორტები
+      unassign: გადაყენება
+      unresolved: გადაუწყვეტელი
+      updated_at: განახების დრო
+    statuses:
+      back_to_account: უკან ანგარიშის გვერდისკენ
+      media:
+        title: მედია
+      no_status_selected: სატუსები არ შეცვლილა, რადგან არცერთი არ მონიშნულა
+      title: ანგარიშის სტატუსები
+      with_media: მედიით
+    title: ადმინისტრაცია
+  admin_mailer:
+    new_report:
+      body: "%{reporter}-მა დაარეპორტა %{target}"
+      body_remote: ვიღაცამ %{domain}-იდან დაარეპორტა %{target}
+      subject: ახალი რეპორტი %{instance} (#%{id})-ზე
+  application_mailer:
+    notification_preferences: შეცვალეთ ელ-ფოსტის პრეფერნსიები
+    settings: 'შეცვალეთ ელ-ფოსტის პრეფერენსიები: %{link}'
+    view: 'ჩვენება:'
+    view_profile: პროფილის ჩვენება
+    view_status: სტატუსის ჩვენება
+  applications:
+    created: აპლიკაცია წარმატებით შეიქმნა
+    destroyed: აპლიკაცია წარმატებით გაუქმდა
+    regenerate_token: წვდომის ტოკენის რეგენერაცია
+    token_regenerated: წვდომის ტოკენის რეგენერაცია მოხერხდა
+    warning: იყავით ძალიან ფრთხილად ამ მონაცემთან. არასდროს გააზიაროთ ეს!
+    your_token: თქვენი წვდომის ტოკენი
+  auth:
+    change_password: პაროლი
+    delete_account: ანგარიშის გაუქმება
+    delete_account_html: თუ გსურთ გააუქმოთ თქვენი ანგარიში, შეგიძლიათ <a href="%{path}">გააგრძელოთ აქ</a>. საჭირო იქნება დამოწმება.
+    didnt_get_confirmation: არ მოგსვლიათ დამოწმების ინსტრუქციები?
+    forgot_password: დაგავიწყდათ პაროლი?
+    invalid_reset_password_token: პაროლის გადატვირთვის ტოკენი არასწორია ან ვადაგასული. გთხოვთ მოითხოვეთ ახალი.
+    login: შესვლა
+    logout: გასვლა
+    migrate_account: სხვა ანგარიშზე გადასვლა
+    migrate_account_html: თუ გსურთ ამ ანგარიშის რედირექტის ხვაზე, შეგიძლიათ <a href="%{path}">გაუწიოთ კონფიგურაცია აქ</a>.
+    or_log_in_with: ან გამოიყენეთ
+    providers:
+      cas: ქეს
+      saml: სამლ
+    register: რეგისტრაცია
+    resend_confirmation: დამოწმების ინსტრუქციების ხელახალი გამოგზავნა
+    reset_password: პაროლის გადატვირთვა
+    security: უსაფრთხოება
+    set_new_password: ახალი პაროლის დაყენება
+  authorize_follow:
+    already_following: უკვე მიჰყვებით ამ ანგარიშს
+    error: სამწუხაროთ, დისტანციური სერვერის წაკითხვამ გამოიწვია შეცდომა
+    follow: გაყევი
+    follow_request: 'დადევნების მოთხონვა გაეგზავნა:'
+    following: 'წარმატება! ახლა მიჰყვებით:'
+    post_follow:
+      close: ან შეგიძლიათ დახუროთ ეს ფანჯარა.
+      return: მომხმარებლის პროფილის ჩვენება
+      web: ვებზე გადასვლა
+    title: გაყევი %{acct}-ს
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}სთ"
+      about_x_months: "%{count}თვე"
+      about_x_years: "%{count}წელი"
+      almost_x_years: "%{count}წელი"
+      half_a_minute: ამ წამს
+      less_than_x_minutes: "%{count}წთ"
+      less_than_x_seconds: ამ წამს
+      over_x_years: "%{count}წელი"
+      x_days: "%{count}დღე"
+      x_minutes: "%{count}წთ"
+      x_months: "%{count}თვე"
+      x_seconds: "%{count}წმ"
+  deletes:
+    confirm_password: იდენტობის დასამოწმებლად შეიყვანეთ მიმდინარე პაროლი
+    proceed: ანგარიშის გაუქმება
+    success_msg: თქვენი ანგარიში წარმატებით გაუქმდა
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': ამ გვერდის ხილვის უფლება არ გაქვთ.
+    '404': გვერდი რომელსაც ეძებთ არ არსებობს.
+    '406': This page is not available in the requested format.
+    '410': გვერდი რომელსაც ეძებდით აღარ არსებობს.
+    '422':
+      content: უსაფრთხოების ვერიფიკაცია ვერ მოხერხდა. ბლოკავთ ქუქის?
+      title: უსაფრთხოების ვერიფიკაცია არ შედგა
+    '429': დარტყმა
+    '500':
+      content: ბოდიში, ჩვენ მხარეს რაღაც არია.
+      title: გვერდი არაა სწორი
+    '503': The page could not be served due to a temporary server failure.
+    noscript_html: მასტოდონ ვებ-აპლიკაციის გამოყენებისთვის, გთხოვთ ჩართოთ ჯავასკრიპტი. სხვა შემთხვევაში, მასტოდონის თქვენი პატფორმისთვის სცადეთ გამოიყენოთ ერთ-ერთი <a href="%{apps_path}">მშობლიური აპლიკაცია</a>.
+  exports:
+    archive_takeout:
+      date: თარიღი
+      download: ჩამოტვირთეთ თქვენი არქივი
+      hint_html: შეგიძლიათ მოითხოვოთ თქვენი აქივი <strong>ტუტებისა და ატვირთული მედიისა</strong>. ექსპორტირებული მონაცემები იქნება ექთივითი-ფაბ ფორმატში, წაკითხვადი ნებისმიერი თავსებადი პროგრამით. არქივის მოთხოვნა შეგიძლიათ 7 დღეში ერთხელ.
+      in_progress: მიმდინარეობს თქვენი არქივის შედგენა...
+      request: თქვენი არქივის მოთხოვნა
+      size: ზომა
+    blocks: თქვენ ბლოკავთ
+    csv: ცსვ
+    mutes: თქვენ აჩუმებთ
+    storage: მედია საცავი
+  filters:
+    contexts:
+      home: სახლის თაიმლაინი
+      notifications: შეტყობინებები
+      public: საჯარო თაიმლაინი
+      thread: საუბრები
+    edit:
+      title: ფილტრის ცვლილება
+    errors:
+      invalid_context: მოწოდებულია არასწორი ან ცარიელი კონტექსტი
+    index:
+      delete: გაუქმება
+      title: ფილტრები
+    new:
+      title: ახალი ფილტრის დამატება
+  generic:
+    changes_saved_msg: ცვლილებები წარმატებით დამახსოვრდა!
+    save_changes: ცვლილებების შენახვა
+    validation_errors:
+      one: რაღაც ჯერ არაა მთლად კარგად! გთხოვთ განიხილოთ ქვემოთ მოცემული შეცდომები
+      other: რაღაც ჯერ არაა მთლად კარგად! გთხოვთ განიხილოთ ქვემოთ მოცემული %{count} შეცდომა
+  imports:
+    preface: შეგიძლიათ დააიმპორტოთ მონაცემები, რომლებიც დააექსპორტეთ სხვა სერვერიდან, მაგალითად ადამიანების სია, რომლებსაც მიჰყვებით ან ბლოკავთ.
+    success: თქვენი მონაცემები წარმატებით აიტვირთა და მათი პროცესირება მოხდება გარკვეულ დროში
+    types:
+      blocking: ბლოკირების სია
+      following: დადევნების სია
+      muting: გაჩუმების სია
+    upload: ატვირთვა
+  invites:
+    delete: დეაქტივაცია
+    expired: ვადა გაუვიდა
+    expires_in:
+      '1800': 30 წუთში
+      '21600': 6 საათში
+      '3600': 1 საათში
+      '43200': 12 საათში
+      '604800': 1 კვირაში
+      '86400': 1 დღეში
+    expires_in_prompt: არასდროს
+    generate: გენერირება
+    invited_by: 'თქვენ მოგიწვიათ:'
+    max_uses:
+      one: 1 მოხმარება
+      other: "%{count} მოხმარება"
+    max_uses_prompt: ლიმიტის გარეშე
+    prompt: ამ ინსტანციაზე წვდომის მისაცემად, დააგენერირეთ და გააზიარეთ ბმულები სხვებთან
+    table:
+      expires_at: ვადა გასდის
+      uses: მოხმარება
+    title: მოიწვიეთ ხალხი
+  media_attachments:
+    validations:
+      images_and_video: ვიდეოს დართვა სტატუსზე, რომელიც უკვე მოიცავს სურათებს, ვერ მოხერხდება
+      too_many: თან ვერ დაურთავთ 4 ფაილზე მეტს
+  migrations:
+    acct: username@domain ახალი ანგარიშის
+  moderation:
+    title: მოდერაცია
+  notification_mailer:
+    favourite:
+      body: 'თქვენი სტატუსი ფავორიტი გახადა %{name}-მა:'
+      subject: "%{name}-მა თქვენი სტატუსი გახადა ფავორიტი"
+      title: ახალი ფავორიტი
+    follow:
+      body: "%{name} ახლა მოგყვებათ!"
+      subject: "%{name} ახლა მოგყვებათ"
+      title: ახალი მიმდევარი
+    follow_request:
+      action: დადევნების მოთხოვნების მენეჯმენტი
+      body: "%{name}-მა მოითხოვა გამოგყვეთ"
+      subject: 'მიმდევარი მოლოდინში: %{name}'
+      title: ახალი დადევნების მოთხოვნა
+    mention:
+      action: პასუხი
+      body: 'თქვენ %{name}-მა გასახელათ:'
+      subject: თქვენ გასახელათ %{name}-მა
+      title: ახალი სახელობა
+    reblog:
+      body: 'თქვენი სტატუსი გაზარდა %{name}-მა:'
+      subject: "%{name}-მა გაზარდა თქვენი სტატუსი"
+      title: ახალი ბუსტი
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: ბილ.
+          million: მილ.
+          quadrillion: კუად.
+          thousand: ათას.
+          trillion: ტრილ.
+  pagination:
+    newer: უფრო ახალი
+    next: შემდეგი
+    older: ძველი
+    prev: წინა
+  remote_follow:
+    missing_resource: საჭირო გადამისამართების ურლ თქვენი ანგარიშისთვის ვერ მოიძებნა
+  sessions:
+    activity: ბოლო აქტივობა
+    browser: ბრაუზერი
+    browsers:
+      alipay: ალიფეი
+      chrome: ქრომი
+      edge: მაიკროსოფთ ედჯი
+      electron: ელექტრონი
+      firefox: ფაირფოქსი
+      generic: ამოუცნობი ბრაუზერი
+      ie: ინტერნეტ ექფლორერი
+      micro_messenger: მიკრო-მესინჯერი
+      nokia: ნოკია ს40 ოვი ბრაუზერი
+      opera: ოპერა
+      otter: ოტერი
+      phantom_js: ფანტომჯეიესი
+      qq: ქქ ბრაუზერი
+      safari: საფარი
+      weibo: ვეიბო
+    current_session: მიმდინარე სესია
+    description: "%{browser} %{platform}-ზე"
+    explanation: ეს ვებ-ბრაუზერებია, რომლებიც ამჟამად აუტენტიფიცირებულ არიან თქვენს მასტოდონ ანგარიშთან.
+    ip: აი-პი
+    platforms:
+      adobe_air: ედობ ეარი
+      android: ანდროიდი
+      firefox_os: ფაირფოქს-ოსი
+      ios: აი-ოსი
+      linux: ლინუქსი
+      mac: მაკი
+      windows: ვინდოუსი
+      windows_mobile: ვინდოუს მობაილი
+      windows_phone: ვინდოუს ფოუნი
+    revoke: გაუქმება
+    revoke_success: სესია წარმატებით გაუქმდა
+    title: სესიები
+  settings:
+    authorized_apps: ავტორიზირებული აპლიკაციები
+    back: უკან მასტოდონისკენ
+    delete: ანგარიშის გაუქმება
+    development: დეველოპმენტი
+    edit_profile: პროფილის ცვლილება
+    export: მონაცემის ექსპორტი
+    import: იმპორტი
+    migrate: ანგარიშის მიგრაცია
+    notifications: შეტყობინებები
+    preferences: პრეფერენციები
+    two_factor_authentication: მეორე-ფაქტორის აუტენტიფიკაცია
+  statuses:
+    attached:
+      description: 'თან დართული: %{attached}'
+      image:
+        one: "%{count} სურათი"
+        other: "%{count} სურათები"
+      video:
+        one: "%{count} ვიდეო"
+        other: "%{count} ვიდეოები"
+    boosted_from_html: გაიზარდა %{acct_link}-იდან
+    content_warning: 'გაფრთხილება კონტენტზე: %{warning}'
+    disallowed_hashtags:
+      one: 'მოიცავდა აკრძალულ ჰეშტეგს: %{tags}'
+      other: 'მოიცავს აკრძალულ ჰეშტეგს: %{tags}'
+    open_in_web: ვებში გახნსა
+    over_character_limit: ნიშნების ლიმიტი გადასცდა %{max}-ს
+    pin_errors:
+      limit: ტუტების მაქსიმალური რაოდენობა უკვე აპინეთ
+      ownership: სხვისი ტუტი ვერ აიპინება
+      reblog: ბუსტი ვერ აიპინება
+    show_more: მეტის ჩვენება
+    sign_in_to_participate: საუბარში მონაწილეობისთვის გაიარეთ ავტორიზაცია
+    visibilities:
+      private: მხოლოდ-მიმდევრები
+      private_long: აჩვენე მხოლოდ მიმდევრებს
+      public: საჯარო
+      public_long: ხედავს ყველა
+      unlisted: ჩამოუთვლელი
+      unlisted_long: ხედავს ყველა, მაგრამ არ ჩანს საჯარო თაიმლაინებში
+  stream_entries:
+    pinned: აპინული ტუტი
+    reblogged: გაზრდილი
+    sensitive_content: მგრძნობიარე კონტენტი
+  themes:
+    contrast: მაღალი კონტრასტი
+    default: მასტოდონი
+    mastodon-light: მასტოდონი (ღია)
+  two_factor_authentication:
+    disable: გათიშვა
+    enabled: მეორე-ფაქტორის აუტენტიფიკაცია ჩართულია
+    enabled_success: მეორე-ფაქტორის აუტენტიფიკაცია წარმატებით ჩაირთო
+    generate_recovery_codes: აღდგენის კოდების გენერაცია
+    lost_recovery_codes: აღდგენის კოდები უფლებას გაძლევთ მიიღოთ ხელმეორე წვდომა თქვენი ანგარიშისადმი თუ დაკარგავთ ტელეფონს. თუ დაკარგეთ აღდგენის კოდები, მათ რეგენერაცია შეგიძლიათ აქ. ძველი აღდგენის კოდები აღარ იქნება ვალიდური.
+    recovery_codes: გაუწიეთ აღდგენის კოდებს რეზერვაცია
+    recovery_codes_regenerated: აღგენის კოდების რეგენერაცია წარმატებით შესრულდა
+    recovery_instructions_html: თუ როდესმე დაკარგავთ წვდომას თქვენს ტელეფონთან, შეგიძლიათ ქვემოთ მოცემული აღდგენის კოდები გამოიყენოთ, რათა მოიპოვოთ ხელმეორე წვდომა თქვენი ანგარიშისადმი. <strong>იქონიეთ აღდგენის კოდები დაცულად</strong>. მაგალითისთვის, შეგიძლიათ ამობეჭდოთ და შეინახოთ სხვა საბუთებთან ერთად.
+  user_mailer:
+    backup_ready:
+      explanation: თქვენ მოითხოვეთ თქვენი მასტოდონის ანგარიშის სრული რეზერვაცია. ის ახლა უკვე მზადაა გადმოსაწერად!
+      subject: თქვენი არქივი გადმოსაწერად მზადაა
+      title: არქივის მიღება
+    welcome:
+      edit_profile_action: პროფილის მოწყობა
+      explanation: აქ რამდენიმე რჩევაა დასაწყისისთვის
+      final_action: დაიწყე პოსტვა
+      full_handle: თქვენი სრული სახელური
+      full_handle_hint: ეს არის ის რასაც ეტყვით თქვენს მეგობრებს, რათა მოგწერონ ან გამოგყვნენ სხვა ინსტანციიდან.
+      subject: კეთილი იყოს თქვენი მობრძანება მასტოდონში
+      title: კეთილი იყოს თქვენი მობრძანება, %{name}!
+  users:
+    invalid_otp_token: არასწორი მეორე ფაქტორის კოდი
+    otp_lost_help_html: თუ დაკარგეთ წვდომა ორივეზე, შესაძლოა დაუკავშირდეთ %{email}-ს
+    seamless_external_login: შესული ხართ გარე სერვისით, აქედან გამომდინარე პაროლი და ელ-ფოსტის მისამართი არაა ხელმისაწვდომი.
+    signed_in_as: 'შესული ხართ როგორც:'

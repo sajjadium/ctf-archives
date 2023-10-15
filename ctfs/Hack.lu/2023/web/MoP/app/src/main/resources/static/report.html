@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        const report = () => {
+            const urls = document.getElementById("urls");
+            const status = document.getElementById("status")
+            status.textContent = "Admin is checking...";
+            fetch("/report", {
+                method: "post", headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(urls.value.split("\n"))
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    const responses = document.getElementById("responses")
+                    responses.innerHTML = ""
+
+                    data.ret.forEach(response => {
+                        let elem = document.createElement("div")
+                        elem.attachShadow({mode: "open"})
+                        elem.shadowRoot.innerHTML = response
+                        const ghost = elem.shadowRoot.querySelector(".ghost > img");
+                        if (ghost != null) {
+                            elem.shadowRoot.innerHTML = ""
+                            elem.shadowRoot.appendChild(ghost);
+                            responses.appendChild(elem)
+                        }
+                    })
+                    if(data.hints != ""){
+                        const audio = new Audio("tada.mp3");
+                        audio.play();
+                        status.innerText = `Admin found these ghosts...\r\nHere is a hint for your efforts: \r\n${data.hints.join("\r\n")}`;
+                    }  else {
+                        status.textContent = "Admins says there is no evidence for ghosts!"
+                    }
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+        };
+    </script>
+    <style>
+        @font-face {
+            font-family: 'Crooked';
+            src: url('Crooked.ttf') format('truetype');
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        h1 {
+            font-family: 'Crooked', serif;
+        }
+
+        body > div {
+            width: 500px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        #responses, #status {
+            color: red;
+        }
+
+        textarea {
+            width: 100%;
+            height: 5em;
+        }
+        textarea, label {
+            display: block;
+        }
+    </style>
+    <title>Report Ghosts</title>
+</head>
+
+<body>
+<div>
+    <h1>Report Ghosts</h1>
+    <label for="urls">Enter urls containing ghost to report</label>
+    <textarea id="urls"></textarea>
+    <button type="button" onclick="report()">Report to admin</button>
+    <div id="status"></div>
+    <div id="responses"></div>
+</div>
+
+</body>
+</html>

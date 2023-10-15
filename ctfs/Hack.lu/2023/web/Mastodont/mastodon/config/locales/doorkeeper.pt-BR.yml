@@ -1,0 +1,195 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nome do aplicativo
+        redirect_uri: Link de redirecionamento
+        scopes: Autorizações
+        website: Site do aplicativo
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: não pode conter um fragmento.
+              invalid_uri: precisa ser um link válido.
+              relative_uri: precisa ser um link absoluto.
+              secured_uri: precisa ser um link HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizar
+        cancel: Cancelar
+        destroy: Destruir
+        edit: Editar
+        submit: Enviar
+      confirmations:
+        destroy: Você tem certeza?
+      edit:
+        title: Editar aplicativo
+      form:
+        error: Eita! Verifique o seu formulário e procure possíveis erros
+      help:
+        native_redirect_uri: Use %{native_redirect_uri} para testes locais
+        redirect_uri: Use uma linha por link
+        scopes: Separe autorizações com espaços. Deixe em branco para usar autorizações padrões.
+      index:
+        application: Aplicativos
+        callback_url: Link de retorno
+        delete: Excluir
+        empty: Você não tem aplicativos.
+        name: Nome
+        new: Novo aplicativo
+        scopes: Autorizações
+        show: Mostrar
+        title: Seus aplicativos
+      new:
+        title: Novo aplicativo
+      show:
+        actions: Ações
+        application_id: Chave do cliente
+        callback_urls: Links de retorno
+        scopes: Autorizações
+        secret: Segredo do cliente
+        title: 'Aplicativo: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizar
+        deny: Recusar
+      error:
+        title: Ocorreu um erro
+      new:
+        prompt_html: O %{client_name} gostaria de ter permissão para acessar sua conta. É uma aplicação de terceiros. <strong>Se você não confia, então você não deve autorizá-lo.</strong>
+        review_permissions: Revisar permissões
+        title: Autorização necessária
+      show:
+        title: Copie este código de autorização e cole no aplicativo.
+    authorized_applications:
+      buttons:
+        revoke: Revogar
+      confirmations:
+        revoke: Você tem certeza?
+      index:
+        authorized_at: Autorizado em %{date}
+        description_html: Estas são as aplicações que podem acessar sua conta usando a API. Se houver aplicativos que você não reconhece ou com mau funcionamento, você pode revogar seu acesso.
+        last_used_at: Última vez usado em %{date}
+        never_used: Nunca usado
+        scopes: Permissões
+        superapp: Interno
+        title: Aplicativos autorizados
+    errors:
+      messages:
+        access_denied: O proprietário do recurso ou servidor de autorização recusou a solicitação.
+        credential_flow_not_configured: Fluxo das Credenciais de Senha do Proprietário do Recurso falhou porque Doorkeeper.configure.resource_owner_from_credentials não foi configurado.
+        invalid_client: Autenticação do cliente falhou por causa de um cliente desconhecido, nenhum cliente de autenticação foi incluído ou o método de autenticação não é suportado.
+        invalid_grant: A garantia de autorização está inválida, expirou ou foi revogada, não é equivalente ao link de redirecionamento usado na solicitação de autorização ou foi emitido por outro cliente.
+        invalid_redirect_uri: O link de redirecionamento é inválido.
+        invalid_request:
+          missing_param: 'Parâmetro obrigatório faltando: %{value}.'
+          request_not_authorized: A solicitação precisa ser autorizada. O parâmetro obrigatório para autorização da solicitação está ausente ou inválido.
+          unknown: A solicitação não possui um parâmetro obrigatório, inclui um valor não suportado ou está malformado.
+        invalid_resource_owner: As credenciais do proprietário informadas são inválidas ou o proprietário não pôde ser encontrado
+        invalid_scope: A autorização necessária é inválida, desconhecida ou está malformada.
+        invalid_token:
+          expired: O código de acesso expirou
+          revoked: O código de acesso foi revogado
+          unknown: O código de acesso é inválido
+        resource_owner_authenticator_not_configured: A procura pelo Proprietário do Recurso falhou porque Doorkeeper.configure.resource_owner_authenticator não foi configurado.
+        server_error: O servidor de autorização encontrou uma condição inesperada que impediu a solicitação de ser respondida.
+        temporarily_unavailable: O servidor de autorização não consegue lidar com a solicitação no momento devido à múltiplas solicitações ou manutenção programada.
+        unauthorized_client: O cliente não possui autorização para executar esta solicitação usando este método.
+        unsupported_grant_type: O tipo de garantia de autorização não é suportado pelo servidor de autorização.
+        unsupported_response_type: O servidor de autorização não suporta este tipo de resposta.
+    flash:
+      applications:
+        create:
+          notice: Aplicativo criado.
+        destroy:
+          notice: Aplicativo excluído.
+        update:
+          notice: Aplicativo atualizado.
+      authorized_applications:
+        destroy:
+          notice: Aplicativo revogado.
+    grouped_scopes:
+      access:
+        read: Acesso somente para leitura
+        read/write: Acesso de leitura e escrita
+        write: Acesso somente para escrita
+      title:
+        accounts: Contas
+        admin/accounts: Administração de contas
+        admin/all: Todas as funções administrativas
+        admin/reports: Controle de denúncias
+        all: Acesso total à sua conta Mastodon
+        blocks: Bloqueios
+        bookmarks: Salvos
+        conversations: Conversas
+        crypto: Criptografia de ponta a ponta
+        favourites: Favoritos
+        filters: Filtros
+        follow: Seguidores, Silenciados e Bloqueados
+        follows: Seguidores
+        lists: Listas
+        media: Mídias anexadas
+        mutes: Silenciados
+        notifications: Notificações
+        push: Notificações push
+        reports: Denúncias
+        search: Buscar
+        statuses: Publicações
+    layouts:
+      admin:
+        nav:
+          applications: Aplicativos
+          oauth2_provider: Provedor de OAuth2
+      application:
+        title: Autorização OAuth obrigatória
+    scopes:
+      admin:read: ler todos os dados no servidor
+      admin:read:accounts: ler informações sensíveis de todas as contas
+      admin:read:canonical_email_blocks: ler informações sensíveis de todos os blocos de e-mail canônicos
+      admin:read:domain_allows: ler informações sensíveis de todos os domínios (URL) permitidos
+      admin:read:domain_blocks: ler informações sensíveis de todos os domínios (URL) bloqueados
+      admin:read:email_domain_blocks: ler informações sensíveis de todos os e-mails de domínios bloqueados
+      admin:read:ip_blocks: ler informações sensíveis de todos os endereços de IP bloqueados
+      admin:read:reports: ler informações sensíveis de todas as denúncias e contas denunciadas
+      admin:write: alterar todos os dados no servidor
+      admin:write:accounts: executar ações de moderação em contas
+      admin:write:canonical_email_blocks: executar ações de moderação em blocos canônicos de e-mail
+      admin:write:domain_allows: executar ações de moderação em domínios (URL) permitidos
+      admin:write:domain_blocks: executar ações de moderação em domínios (URL) bloqueados
+      admin:write:email_domain_blocks: executar ações de moderação em blocos de e-mail bloqueados
+      admin:write:ip_blocks: executar ações de moderação em IPs bloqueados
+      admin:write:reports: executar ações de moderação em denúncias
+      crypto: usar criptografia de ponta-a-ponta
+      follow: alterar o relacionamento das contas
+      push: receber notificações push
+      read: ler todos os dados da sua conta
+      read:accounts: ver informações das contas
+      read:blocks: ver seus bloqueados
+      read:bookmarks: ver seus salvos
+      read:favourites: ver seus favoritos
+      read:filters: ver seus filtros
+      read:follows: ver quem você segue
+      read:lists: ver suas listas
+      read:mutes: ver seus silenciados
+      read:notifications: ver suas notificações
+      read:reports: ver suas denúncias
+      read:search: pesquisar em seu nome
+      read:statuses: ver todos os toots
+      write: alterar todos os dados da sua conta
+      write:accounts: alterar seu perfil
+      write:blocks: bloquear contas e domínios
+      write:bookmarks: salvar toots
+      write:conversations: silenciar e excluir conversas
+      write:favourites: favoritar toots
+      write:filters: criar filtros
+      write:follows: seguir pessoas
+      write:lists: criar listas
+      write:media: enviar arquivos de mídia
+      write:mutes: silenciar pessoas e conversas
+      write:notifications: limpar notificações
+      write:reports: denunciar outras pessoas
+      write:statuses: postar toots

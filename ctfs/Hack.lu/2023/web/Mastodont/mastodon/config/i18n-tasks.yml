@@ -1,0 +1,69 @@
+# i18n-tasks finds and manages missing and unused translations: https://github.com/glebm/i18n-tasks
+
+# The "main" locale.
+base_locale: en
+data:
+  read:
+    - config/locales/%{locale}.yml
+    - config/locales/**/*.%{locale}.yml
+
+  write:
+    - ['{devise, simple_form, doorkeeper}.*', 'config/locales/\1.%{locale}.yml']
+    - config/locales/%{locale}.yml
+
+  yaml:
+    write:
+      line_width: -1
+
+search:
+  paths:
+    - app/
+    - config/navigation.rb
+
+  relative_roots:
+    - app/controllers
+    - app/helpers
+    - app/mailers
+    - app/views
+
+  exclude:
+    - app/assets/images
+    - app/assets/fonts
+    - app/assets/videos
+
+ignore_missing:
+  - 'activemodel.errors.*'
+  - 'activerecord.attributes.*'
+  - 'activerecord.errors.*'
+  - '{pagination,doorkeeper}.*'
+  - '{date,datetime,time,number}.*'
+  - 'errors.messages.*'
+  - 'activerecord.errors.models.doorkeeper/*'
+  - 'sessions.{browsers,platforms}.*'
+  - 'application_mailer.salutation'
+  - 'errors.500'
+  - 'auth.providers.*'
+
+ignore_unused:
+  - 'activemodel.errors.*'
+  - 'activerecord.attributes.*'
+  - 'activerecord.errors.*'
+  - '{devise,pagination,doorkeeper}.*'
+  - '{date,datetime,time,number}.*'
+  - 'simple_form.{yes,no,recommended,not_recommended}'
+  - 'simple_form.{placeholders,hints,labels}.*'
+  - 'simple_form.{error_notification,required}.:'
+  - 'errors.messages.*'
+  - 'activerecord.errors.models.doorkeeper/*'
+  - 'errors.429'
+  - 'admin.accounts.roles.*'
+  - 'admin.action_logs.actions.*'
+  - 'admin.reports.summary.action_preambles.*'
+  - 'admin.reports.summary.actions.*'
+  - 'admin_mailer.new_appeal.actions.*'
+  - 'statuses.attached.*'
+  - 'move_handler.carry_{mutes,blocks}_over_text'
+  - 'notification_mailer.*'
+
+ignore_inconsistent_interpolations:
+  - '*.one'

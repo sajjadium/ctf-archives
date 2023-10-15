@@ -1,0 +1,55 @@
+---
+id:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Tenggat waktu
+        options: Pilihan
+      user:
+        agreement: Persetujuan layanan
+        email: Alamat email
+        locale: Locale
+        password: Kata sandi
+      user/account:
+        username: Nama pengguna
+      user/invite_request:
+        text: Alasan
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: hanya boleh berisi huruf, angka, dan garis bawah
+              reserved: sudah dipesan
+        admin/webhook:
+          attributes:
+            url:
+              invalid: bukan URL valid
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: bukan URL valid
+        import:
+          attributes:
+            data:
+              malformed: dalam bentuk yang salah
+        status:
+          attributes:
+            reblog:
+              taken: status sudah ada
+        user:
+          attributes:
+            email:
+              blocked: menggunakan layanan email yang tidak diizinkan
+              unreachable: sepertinya tidak ada
+            role_id:
+              elevated: tidak dapat lebih tinggi dari peran Anda saat ini
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: berisi izin yang tidak aman untuk peran dasaran
+              elevated: tidak dapat berisi izin yang peran Anda tidak miliki
+              own_role: tidak dapat diubah dengan peran Anda saat ini
+            position:
+              elevated: tidak bisa lebih tinggi dari peran Anda saat ini
+              own_role: tidak dapat diubah dengan peran Anda saat ini

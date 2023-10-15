@@ -1,0 +1,7 @@
+.form-container
+  .flash-message.simple_form
+    %p= t('doorkeeper.authorizations.show.title')
+    .input-copy
+      .input-copy__wrapper
+        %input.oauth-code{ type: 'text', spellcheck: 'false', readonly: true, value: params[:code] }
+      %button{ type: :button }= t('generic.copy')

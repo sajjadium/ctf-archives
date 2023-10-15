@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      const report = () => {
+        const url = document.getElementById("url");
+        const response = document.getElementById("response");
+        if (!response.shadowRoot) {
+            response.attachShadow({ mode: "open" });
+        }
+        document.querySelector("#response").shadowRoot.innerHTML = "Admin is checking...";
+        fetch("/report", { method: "post", body: url.value })
+          .then((response) => response.text())
+          .then((text) => {
+            let customElem = document.querySelector("#response");
+            let shadow = customElem.shadowRoot;
+            shadow.innerHTML = text;
+            var ghost = shadow.querySelector(".ghost")
+            if(ghost != null){
+                ghost.setAttribute("style", "");
+                shadow.innerHTML = "Admin can confirm this ghost:"
+                shadow.appendChild(ghost);
+            } else {
+                shadow.innerHTML = "Admins says there are no ghosts!"
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      };
+    </script>
+    <style>
+        @font-face {
+            font-family: 'Crooked';
+            src: url('Crooked.ttf') format('truetype');
+        }
+        body {
+            background-color: black;
+            color: white;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+        h1 {
+            font-family: 'Crooked';
+        }
+        a:link, a:visited {
+            color: red;
+        }
+        body > div {
+            width: 500px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+    <title>Ghost Buster</title>
+  </head>
+
+  <body>
+    <div>
+        <h1>Ghost Buster</h1>
+        <p>There are rumors that ghosts haunt this site! If you see one, make sure to <a href="/report.html">report</a> it to the admin!</p>
+        <a href="/graveyard.html">Visit the graveyard!</a>
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,201 @@
+---
+uk:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Назва застосунку
+        redirect_uri: URI перенаправлення
+        scopes: Рамки
+        website: Вебсайт застосунку
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: не може містити фрагмент.
+              invalid_uri: має бути дійсним URI.
+              relative_uri: має бути абсолютним URI.
+              secured_uri: має бути URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Авторизувати
+        cancel: Відмінити
+        destroy: Видалити
+        edit: Редагувати
+        submit: Прийняти
+      confirmations:
+        destroy: Ви впевнені?
+      edit:
+        title: Редагувати застосунок
+      form:
+        error: Отакої! Перевірте свою форму на помилки
+      help:
+        native_redirect_uri: Використовуйте %{native_redirect_uri} для локальних тестувань
+        redirect_uri: Використовуйте одну стрічку на URI
+        scopes: Відділяйте області видимості пробілами. Залишайте порожніми, щоб використовувати області видимості за промовчуванням.
+      index:
+        application: Застосунок
+        callback_url: URL зворотнього виклику
+        delete: Видалити
+        empty: У вас немає створених додатків.
+        name: Назва
+        new: Новий застосунок
+        scopes: Області видимості
+        show: Показати
+        title: Ваші додатки
+      new:
+        title: Новий застосунок
+      show:
+        actions: Дії
+        application_id: Ключ застосунку
+        callback_urls: URL зворотніх викликів
+        scopes: Дозволи
+        secret: Таємниця
+        title: 'Застосунок: %{name}'
+    authorizations:
+      buttons:
+        authorize: Авторизувати
+        deny: Відмовити
+      error:
+        title: Сталася помилка
+      new:
+        prompt_html: "%{client_name} хоче отримати доступ до вашого облікового запису. Це сторонній застосунок. <strong>Якщо ви йому не довіряєте, не варто авторизувати його.</strong>"
+        review_permissions: Переглянути дозволи
+        title: Необхідна авторизація
+      show:
+        title: Скопіюйте цей код авторизації та вставте його у застосунок.
+    authorized_applications:
+      buttons:
+        revoke: Відкликати авторизацію
+      confirmations:
+        revoke: Ви впевнені?
+      index:
+        authorized_at: Авторизовано %{date}
+        description_html: Це застосунки, які мають доступ до вашого облікового запису через API. Якщо тут є застосунки, які ви не розпізнаєте, або застосунок працює неправильно, ви можете відкликати їхній доступ.
+        last_used_at: Востаннє використано %{date}
+        never_used: Ніколи не використовувалися
+        scopes: Дозволи
+        superapp: Внутрішній
+        title: Ваші авторизовані додатки
+    errors:
+      messages:
+        access_denied: Власник ресурсу або сервер авторизації відхилив Ваш запит.
+        credential_flow_not_configured: Не вдалося перевірити парольні дані клієнту через неналаштований параметр Doorkeeper.configure.resource_owner_from_credentials.
+        invalid_client: Не вдалося аутентифікувати клієнта (клієнт невідомий, аутентифікацію клієнта не увімкнено, або непідтримуваний метод аутентифікації).
+        invalid_grant: Наданий санкціонований дозвіл недійсний, прострочений, анульований, не відповідає URI перенаправлення, що використовується в запиті авторизації, або був виданий іншому клієнту.
+        invalid_redirect_uri: Включений uri перенаправлення не є дійсним.
+        invalid_request:
+          missing_param: 'Відсутній обов''язковий параметр: %{value}.'
+          request_not_authorized: Запит повинен бути авторизований. Необхідний параметр запиту авторизації відсутній або хибний.
+          unknown: У запиті відсутній необхідний параметр, він містить непідтримуваний параметр або його сформовано не правильно.
+        invalid_resource_owner: Надані дані власника ресурсу не є дійсними, або власника ресурсу неможливо знайти
+        invalid_scope: Запитуваний дозвіл недійсний, невідомий, або неправильно сформований.
+        invalid_token:
+          expired: Токен доступу прострочено
+          revoked: Токен доступу було відкликано
+          unknown: Токен доступу недійсний
+        resource_owner_authenticator_not_configured: Не вдалося знайти власника ресурсу через неналаштований Doorkeeper.configure.resource_owner_authenticator.
+        server_error: Сервер авторизації зіткнувся з непередбачуваною умовою, яка не дозволяє йому виконати запит.
+        temporarily_unavailable: Сервер авторизації в даний момент не може обробити запит через тимчасове перевантаження або профілактику.
+        unauthorized_client: Клієнт не має права виконувати цей запит, використовуючи цей метод.
+        unsupported_grant_type: Тип авторизації не підтримується сервером авторизації.
+        unsupported_response_type: Сервер авторизації не підтримує цей тип відповіді.
+    flash:
+      applications:
+        create:
+          notice: Застосунок створено.
+        destroy:
+          notice: Застосунок видалено.
+        update:
+          notice: Застосунок оновлено.
+      authorized_applications:
+        destroy:
+          notice: Авторизацію додатка відкликано.
+    grouped_scopes:
+      access:
+        read: Доступ без права внесення змін
+        read/write: Доступ до читання і запису
+        write: Доступ лише для запису
+      title:
+        accounts: Облікові записи
+        admin/accounts: Адміністрація облікових записів
+        admin/all: Усі адміністративні функції
+        admin/reports: Адміністрація звітів
+        all: Повний доступ до вашого облікового запису Mastodon
+        blocks: Блокування
+        bookmarks: Закладки
+        conversations: Бесіди
+        crypto: Наскрізне шифрування
+        favourites: Вподобане
+        filters: Фільтри
+        follow: Підписки, ігнорування і блокування
+        follows: Підписки
+        lists: Списки
+        media: Мультимедійні вкладення
+        mutes: Нехтувані
+        notifications: Сповіщення
+        push: Push-сповіщення
+        reports: Скарги
+        search: Пошук
+        statuses: Дописи
+    layouts:
+      admin:
+        nav:
+          applications: Заявки
+          oauth2_provider: Постачальник OAuth2
+      application:
+        title: Необхідна авторизація OAuth
+    scopes:
+      admin:read: читати всі дані на сервері
+      admin:read:accounts: читати конфіденційну інформацію усіх акаунтів
+      admin:read:canonical_email_blocks: читати конфіденційну інформацію всіх канонічних блоків електронної пошти
+      admin:read:domain_allows: читати конфіденційну інформацію всіх доменів дозволено
+      admin:read:domain_blocks: читати конфіденційну інформацію всіх доменних блоків
+      admin:read:email_domain_blocks: читати конфіденційну інформацію всіх блоків доменів електронної пошти
+      admin:read:ip_blocks: читати конфіденційну інформацію всіх IP блоків
+      admin:read:reports: читати дражливу інформацію усіх скарг та облікових записів зі скаргами
+      admin:write: модифікувати всі дані на сервері
+      admin:write:accounts: модерувати облікові записи
+      admin:write:canonical_email_blocks: 'здійснювати модераторські дії щодо канонічних поштових блоків
+
+        '
+      admin:write:domain_allows: модерувати домени дозволено
+      admin:write:domain_blocks: 'здійснювати модераторські дії щодо доменних блоків
+
+        '
+      admin:write:email_domain_blocks: здійснювати модераторські дії щодо блокування поштових доменів
+      admin:write:ip_blocks: 'здійснювати дії з модерації IP-блоків
+
+        '
+      admin:write:reports: модерувати скарги
+      crypto: використовувати наскрізне шифрування
+      follow: змінювати стосунки облікового запису
+      push: отримувати Ваші Push-повідомлення
+      read: читати усі дані вашого облікового запису
+      read:accounts: бачити інформацію про облікові записи
+      read:blocks: бачити Ваші блокування
+      read:bookmarks: бачити ваші закладки
+      read:favourites: бачити вподобані дописи
+      read:filters: бачити Ваші фільтри
+      read:follows: бачити Ваші підписки
+      read:lists: бачити Ваші списки
+      read:mutes: бачити ваші нехтування
+      read:notifications: бачити Ваші сповіщення
+      read:reports: бачити Ваші скарги
+      read:search: шукати від вашого імені
+      read:statuses: бачити всі дописи
+      write: змінювати усі дані вашого облікового запису
+      write:accounts: змінювати ваш профіль
+      write:blocks: блокувати облікові записи і домени
+      write:bookmarks: додавати дописи до закладок
+      write:conversations: приховати й видалити бесіди
+      write:favourites: вподобані дописи
+      write:filters: створювати фільтри
+      write:follows: підписуйтесь на людей
+      write:lists: створювайте списки
+      write:media: завантажити медіафайли
+      write:mutes: приховувати людей або бесіди
+      write:notifications: очищувати Ваші сповіщення
+      write:reports: надіслати скаргу про людей
+      write:statuses: публікувати дописи

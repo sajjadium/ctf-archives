@@ -1,0 +1,238 @@
+---
+bn:
+  about:
+    about_mastodon_html: মাস্টাডন উন্মুক্ত ইন্টারনেটজালের নিয়ম এবং স্বাধীন ও মুক্ত উৎসের সফটওয়্যারের ভিত্তিতে তৈরী একটি সামাজিক যোগাযোগ মাধ্যম। এটি ইমেইলের মত বিকেন্দ্রীভূত।
+    contact_missing: নেই
+    contact_unavailable: প্রযোজ্য নয়
+    hosted_on: এই মাস্টাডনটি আছে %{domain} এ
+  accounts:
+    follow: যুক্ত
+    followers:
+      one: যুক্ত আছে
+      other: যারা যুক্ত হয়েছে
+    following: যুক্ত করা
+    last_active: শেষ সক্রিয় ছিল
+    link_verified_on: এই লিংকের মালিকানা শেষ চেক করা হয়  %{date} তারিখে
+    nothing_here: এখানে কিছুই নেই!
+    pin_errors:
+      following: সমর্থন করতে অনুসরণ থাকা লাগবে
+    posts:
+      one: লেখা
+      other: লেখাগুলো
+    posts_tab_heading: লেখাগুলো
+  admin:
+    account_actions:
+      action: করা
+      title: 'প্রশাসনা করুন এর উপর : %{acct}'
+    account_moderation_notes:
+      create: কিছু লিখুন
+      created_msg: প্রশাসনবস্তুত লেখাটি সঠিকভাবে তৈরী হয়েছে!
+      destroyed_msg: প্রশাসনবস্তুত লেখাটি সঠিকভাবে মুছে ফেলা হয়েছে!
+    accounts:
+      add_email_domain_block: নিষিদ্ধ করা ই-মেইল ডোমেইন
+      approve: অনুমোদন দিন
+      are_you_sure: আপনি কি নিশ্চিত ?
+      avatar: অবতার
+      by_domain: ওয়েবসাইট/কার্যক্ষেত্র
+      change_email:
+        current_email: এখনকার ইমেইল
+        label: ইমেইল পরিবর্তন
+        new_email: নতুন ইমেইল
+        submit: ইমেইল পরিবর্তন
+        title: "%{username} এর ইমেইল পরিবর্তন"
+      confirm: নিশ্চিত করুন
+      confirmed: নিশ্চিত হয়েছে
+      confirming: নিশ্চিত করা হচ্ছে
+      deleted: মুছে ফেলা হয়েছে
+      demote: নিচের পদে দিন
+      disable: বন্ধ করুন
+      disable_two_factor_authentication: দুই পদ্ধতির প্রমাণীকরণ(2FA) বন্ধ করুন
+      disabled: বন্ধ করা হয়েছে
+      display_name: দেখানোর জন্য নাম
+      domain: ওয়েবসাইট/কার্যক্ষেত্র
+      edit: বদলান
+      email: ইমেইল
+      email_status: ইমেইলের অবস্থা
+      enable: চালু করুন
+      enabled: চালু করুন
+      followers: অনুসরকারীরা
+      follows: অনুসরণ করে
+      header: শিরোলেখা
+      inbox_url: চিঠি পাওয়ার বক্স লিংক
+      invited_by: আমন্ত্রণ করেছে
+      ip: আইপি(IP)
+      joined: যোগ দিয়েছে
+      location:
+        all: সব
+        local: স্থানীয়
+        remote: দূরবর্তী
+        title: জায়গা
+      login_status: নিবন্ধনধারীভাবে প্রবেশের অবস্থা
+      media_attachments: ছবি/ভিডিও যুক্ত
+      memorialize: স্মরণিকা বানান
+      moderation:
+        active: চালু
+        all: সব
+        pending: অপেক্ষিত আছে
+        suspended: স্থগিত করা হয়েছে
+        title: প্রশাসনা
+      moderation_notes: প্রশাসনের কিছু লেখা
+      most_recent_activity: সর্বশেষ কার্যক্রম
+      most_recent_ip: সর্বশেষ আইপি(IP)
+      no_account_selected: কোনও অ্যাকাউন্টই নির্বাচন করা হয়নি বলে কোনও অ্যাকাউন্ট পরিবর্তন করা হয়নি
+      no_limits_imposed: কোন সীমা আরোপ করা নেই
+      not_subscribed: সাবস্ক্রাইব নেই
+      pending: পয্র্যবেক্ষণের অপেক্ষায় আছে
+      perform_full_suspension: বাতিল করা
+      promote: প্রচার
+      protocol: প্রোটোকল
+      public: সর্বজনীন
+      push_subscription_expires: PuSH সাবস্ক্রিপশনের মেয়াদ শেষ হয়ে গেছে
+      redownload: প্রোফাইল সতেজ করুন
+      reject: প্রত্যাখ্যান করুন
+      remove_avatar: অবতার অপসারণ করুন
+      remove_header: হেডার এর ছবি অপসারণ করুন
+      resend_confirmation:
+        already_confirmed: এই ব্যবহারকারী ইতিমধ্যে নিশ্চিত করা আছে
+        send: নিশ্চিতকরণ ইমেল পুনরায় পাঠান
+        success: নিশ্চিতকরণের ইমেল সফলভাবে পাঠানো হয়েছে!
+      reset: পুনরায় সেট করুন
+      reset_password: পাসওয়ার্ড পুনঃস্থাপন করুন
+      resubscribe: পুনরায় সদস্যতা নিন
+      search: অনুসন্ধান
+      search_same_email_domain: একই ইমেল ডোমেন সহ অন্যান্য ব্যবহারকারীরা
+      search_same_ip: একই IP সহ অন্যান্য ব্যবহারকারীরা
+      shared_inbox_url: ভাগ করা ইনবক্স URL
+      show:
+        created_reports: তৈরি করা রিপোর্টগুলি
+        targeted_reports: অন্যদের দ্বারা প্রতিবেদনগুলি
+      silence: নীরব
+      silenced: নীরব করা হয়েছে
+      statuses: স্থিতিগুলি
+      subscribe: সদস্যতা
+      suspended: স্থগিত করা হয়েছে
+      title: একাউন্ট সমূহ
+      unconfirmed_email: অনিশ্চিত ইমেল
+      undo_silenced: নীরবতা পূর্বাবস্থা
+      undo_suspension: স্থগিতকরণ পূর্বাবস্থায় ফেরাও
+      unsubscribe: সদস্যতা ত্যাগ করুন
+      username: ব্যবহারকারীর নাম
+      warn: সতর্ক
+      web: ওয়েব
+      whitelisted: সাদাতালিকাযুক্ত
+    action_logs:
+      action_types:
+        assigned_to_self_report: রিপোর্ট বরাদ্দ করুন
+        change_email_user: ব্যবহারকারী জন্য ইমেইল পরিবর্তন করুন
+        confirm_user: ব্যবহারকারী নিশ্চিত করুন
+        create_account_warning: সতর্কতা তৈরি করুন
+        create_announcement: ঘোষণা তৈরি করুন
+        create_custom_emoji: স্বনির্ধারিত ইমোজি তৈরি করুন
+        create_domain_allow: ডোমেন অনুমোদন তৈরি করুন
+        create_domain_block: ডোমেন ব্লক তৈরি করুন
+        create_email_domain_block: ইমেইল ডোমেন ব্লক তৈরি করুন
+        demote_user: ব্যবহারকারী কে হীনপদস্থ করুন
+        destroy_announcement: ঘোষণা মুছুন
+        destroy_custom_emoji: স্বনির্ধারিত ইমোজি মুছুন
+        destroy_domain_allow: ডোমেন অনুমোদন মুছুন
+        destroy_domain_block: ডোমেন ব্লক মুছুন
+        destroy_email_domain_block: ইমেইল ডোমেন ব্লক মুছুন
+        destroy_status: স্ট্যাটাস মুছুন
+        disable_2fa_user: 2FA নিষ্ক্রিয় করুন
+        disable_custom_emoji: স্বনির্ধারিত ইমোজি নিষ্ক্রিয় করুন
+        disable_user: ব্যবহারকারী কে নিষ্ক্রিয় করুন
+        enable_custom_emoji: স্বনির্ধারিত ইমোজি সক্রিয় করুন
+        enable_user: ব্যবহারকারী কে সক্রিয় করুন
+        memorialize_account: মেমোরিয়ালাইজ অ্যাকাউন্ট
+        promote_user: ব্যবহারকারী কে পদোন্নতি করুন
+        remove_avatar_user: অবতার অপসারণ করুন
+        reopen_report: প্রতিবেদনটি পুনরায় খুলুন
+        reset_password_user: পাসওয়ার্ড পুনঃস্থাপন করুন
+        resolve_report: প্রতিবেদনটি সমাধান করুন
+        silence_account: অ্যাকাউন্ট নীরব করুন
+        suspend_account: অ্যাকাউন্ট স্থগিত করুন
+        unassigned_report: রিপোর্ট বরাদ্দ মুক্ত করুন
+        unsilence_account: অ্যাকাউন্ট নীরব মুক্ত করুন
+        unsuspend_account: অ্যাকাউন্ট স্থগিতমুক্ত করুন
+        update_announcement: ঘোষণা আপডেট করুন
+        update_custom_emoji: স্বনির্ধারিত ইমোজি আপডেট করুন
+        update_status: স্থিতি আপডেট করুন
+    custom_emojis:
+      destroyed_msg: ইমোজো সফলভাবে ধ্বংস হয়েছে!
+      disable: অক্ষম
+      disabled: অক্ষমিত
+      disabled_msg: সফলভাবে সেই ইমোজি অক্ষম করা হয়েছে
+      emoji: ইমোজি
+      enable: সক্রিয়
+      enabled: সক্রিয়
+      enabled_msg: সফলভাবে সেই ইমোজি সক্ষম করা হয়েছে
+      list: তালিকা
+      listed: তালিকাভুক্ত
+      new:
+        title: নতুন স্বনির্ধারিত ইমোজি যোগ করুন
+      not_permitted: আপনার এই ক্রিয়া সম্পাদন করার অনুমতি নেই
+      overwrite: পুনর্লিখন
+      shortcode: শর্টকোড
+      shortcode_hint: কমপক্ষে ২ টি অক্ষর, কেবলমাত্র বর্ণানুক্রমিক অক্ষর এবং আন্ডারস্কোর
+      title: স্বনির্ধারিত ইমোজিগুলি
+      uncategorized: শ্রেণীবিহীন
+      unlist: তালিকামুক্ত
+      unlisted: তালিকামুক্ত
+      update_failed_msg: সেই ইমোজি আপডেট করতে পারেনি
+      updated_msg: ইমোজি সফলভাবে আপডেট হয়েছে!
+      upload: আপলোড
+    dashboard:
+      software: সফটওয়্যার
+      space: স্থান ব্যবহার
+      title: ড্যাশবোর্ড
+    instances:
+      moderation:
+        limited: সীমিত
+        title: প্রশাসনা
+      private_comment: ব্যক্তিগত মন্তব্য
+      public_comment: জনমত
+      title: ফেডারেশন
+      total_blocked_by_us: আমাদের দ্বারা অবরুদ্ধ
+      total_followed_by_them: তাদের দ্বারা অনুসরণ
+      total_followed_by_us: আমাদের দ্বারা অনুসরণ
+      total_reported: তাদের সম্পর্কে রিপোর্ট
+      total_storage: মিডিয়া সংযুক্তিগুলি
+    invites:
+      deactivate_all: সব নিষ্ক্রিয় করুন
+      filter:
+        all: সব
+        available: সহজলভ্য
+        expired: মেয়াদোত্তীর্ণ
+        title: ফিল্টার
+      title: আমন্ত্রণগুলি
+    relationships:
+      title: "%{acct} এর সম্পর্কগুলি"
+    relays:
+      add_new: নতুন রিলে যোগ করুন
+      delete: মুছুন
+      description_html: একটি <strong>ফেডারেশন রিলে</strong> একটি মধ্যস্থতাকারী সার্ভার যা সাবস্ক্রাইব করে এটিতে প্রকাশ করে এমন সার্ভারের মধ্যে প্রচুর পরিমাণে সর্বজনীন টটস বিনিময় করে। <strong>এটি ক্ষুদ্র ও মাঝারি সার্ভারগুলিকে ফেডাইভার্স থেকে সামগ্রী আবিষ্কার করতে সহায়তা করতে পারে</strong>, অন্যথায় স্থানীয় ব্যবহারকারীদের ম্যানুয়ালি অন্য লোককে দূরবর্তী সার্ভারে অনুসরণ করতে হবে।
+      disable: অক্ষম
+      disabled: অক্ষমিত
+      enable: সক্রিয়
+      enable_hint: একবার সক্ষম হয়ে গেলে, আপনার সার্ভার এই রিলে থেকে সমস্ত পাবলিক টুটগুলিতে সাবস্ক্রাইব করবে এবং এতে এই সার্ভারের সর্বজনীন টটগুলি প্রেরণ শুরু করবে।
+      enabled: সক্রিয়কৃত
+      inbox_url: রিলে ইউআরএল
+      pending: রিলের অনুমোদনের অপেক্ষায়
+      save_and_enable: সংরক্ষণ করুন এবং সক্ষম করুন
+      setup: রিলে সংযোগ সেটআপ করুন
+      signatures_not_enabled: সুরক্ষিত মোড বা সীমিত ফেডারেশন মোড সক্ষম থাকা অবস্থায় রিলেগুলি সঠিকভাবে কাজ করবে না
+      status: অবস্থা
+      title: রিলেগুলি
+    report_notes:
+      created_msg: রিপোর্ট নোট সফলভাবে তৈরি করা হয়েছে!
+      destroyed_msg: রিপোর্ট নোট সফলভাবে মোছা হয়েছে!
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '429': Too many requests
+    '503': The page could not be served due to a temporary server failure.
+  verification:
+    verification: সত্যতা নির্ধারণ

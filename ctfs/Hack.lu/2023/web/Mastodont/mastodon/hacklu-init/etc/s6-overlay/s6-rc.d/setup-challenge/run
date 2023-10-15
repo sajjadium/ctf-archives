@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+export RAILS_ENV=production
+export PATH="${PATH}:/opt/mastodon/bin"
+
+# trying to execute once all the other stuff is running, i.e db
+sleep 5;    
+
+# Prepare the DB
+cd ~;
+bundle exec rails db:setup
+bundle exec rails db:prepare
+ 
+# Create new user for you, password will be: hacklu23
+tootctl accounts create --force --confirmed pwn --email=pwn@mastodont.flu.xxx
+exit 0;

@@ -1,0 +1,1 @@
+I recently started to learn assembly, and tried to write a simple binary which writes your input back to stdout, but for some reason it only returns random bytes and crashes. Can you help me figure out what's happening?

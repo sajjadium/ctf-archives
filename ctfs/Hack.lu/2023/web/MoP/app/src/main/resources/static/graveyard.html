@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ghost Fingers</title>
+    <link rel="preload" as="image" href="0.png">
+    <link rel="preload" as="image" href="1.png">
+    <link rel="preload" as="image" href="2.png">
+    <link rel="preload" as="image" href="3.png">
+
+    <link rel="prefetch" href="ghosts/0.png">
+    <link rel="prefetch" href="ghosts/1.png">
+    <link rel="prefetch" href="ghosts/2.png">
+    <link rel="prefetch" href="ghosts/3.png">
+
+    <link rel="prefetch" href="ghosts/0.mp3">
+    <link rel="prefetch" href="ghosts/1.mp3">
+    <link rel="prefetch" href="ghosts/2.mp3">
+    <link rel="prefetch" href="ghosts/3.mp3">
+
+    <link rel="prefetch" href="steps.mp3">
+    <link rel="prefetch" href="vacuum.wav">
+
+    <style>
+      :root {
+        --bg: url(0.png);
+        --x: 50%;
+        --y: 50%;
+      }
+      * {
+        user-select: none;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background: black var(--bg) no-repeat center center fixed;
+        background-size: cover;
+        overflow: hidden;
+      }
+      #left {
+        position: absolute;
+        height: 100%;
+        width: 10%;
+        left: 0;
+        margin: auto;
+        z-index: 200;
+      }
+      #right {
+        position: absolute;
+        right: 0;
+        margin: auto;
+        height: 100%;
+        width: 10%;
+        z-index: 200;
+      }
+      #left:hover {
+        cursor: url(left.png) 64 64, pointer;
+      }
+      #right:hover {
+        cursor: url(right.png) 64 64, pointer;
+      }
+
+      #window {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+
+      #flashlight {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          var(--bg) no-repeat center center fixed;
+        background-size: cover;
+        cursor: url(flashlight.png) 100 24, pointer;
+
+        -webkit-mask-image: radial-gradient(
+          circle at var(--x) var(--y),
+          transparent 0px,
+          transparent 200px,
+          rgba(0, 0, 0, 1) 250px
+        );
+
+        mask-image: radial-gradient(
+          circle at var(--x) var(--y),
+          transparent 0px,
+          transparent 200px,
+          rgba(0, 0, 0, 1) 250px
+        );
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+
+      #ghosts {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .ghost {
+        position: relative;
+        width: fit-content;
+        height: fit-content;
+      }
+
+      .ghost > div {
+        position: absolute;
+        z-index: 500;
+        width: 100%;
+        height: 100%;
+        cursor: url(vacuum.png) 64 64, pointer;
+
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="left"></div>
+
+    <div id="right"></div>
+    <div id="window">
+      <div id="flashlight"></div>
+      <div id="ghosts"></div>
+    </div>
+    <audio
+      id="sound"
+      src="sound.wav"
+      loop
+      autoplay="true"
+    ></audio>
+
+    <script>
+      let dir = 2;
+
+      const root = document.documentElement;
+      var sighted = 0;
+
+      document.addEventListener("mousemove", (evt) => {
+        let x = evt.clientX;
+        let y = evt.clientY;
+
+        root.style.setProperty("--x", `${x}px`);
+        root.style.setProperty("--y", `${y}px`);
+
+        var ghost = document.querySelector(".ghost > img");
+        if (ghost != null) {
+          var rect = ghost.getBoundingClientRect()
+          gx = rect.x + rect.width / 2;
+          gy = rect.y + rect.height / 2;
+          dx = x - gx;
+          dy = y - gy;
+          if (dx * dx + dy * dy < 200 * 200) {
+            if (sighted == 0) {
+              var audio = new Audio(ghost.src.replace(".png", ".mp3"));
+              audio.play();
+              sighted = 20;
+              sightedInterval = setInterval(() => {
+                sighted -= 1;
+                if (sighted == 1) {
+                  clearInterval(sightedInterval);
+                }
+              }, 100);
+            }
+          } else {
+            if (sighted <= 1) {
+              sighted = 0;
+            }
+          }
+        }
+      });
+
+      const update = () => {
+        document.getElementById("sound").volume = 0.1
+        var seed = Math.round(Math.random() * 100000);
+        if (window.location.hash.indexOf(":") != -1) {
+          const params = window.location.hash.substring(1).split(":", 2);
+          dir = Number.parseInt(params[0]);
+          seed = Number.parseInt(params[1]);
+        }
+        window.location.hash = `${dir}:${seed}`;
+        dir = (4 + (dir % 4)) % 4;
+        root.style.setProperty("--bg", `url(${dir}.png)`);
+
+        let ghosts = document.getElementById("ghosts");
+
+        ghosts.innerHTML = "";
+
+        if ((seed * 23) % 100 < 13) {
+          let ghost = document.createElement("div");
+          ghost.className = "ghost";
+          let ghostPic = document.createElement("img");
+          ghostPic.src = `ghosts/${(seed * 17) % 4}.png`;
+
+          ghostPic.width = 100;
+          ghostPic.height = 180;
+          let x = ((seed * 13) % 100001) / 100000;
+          let y = ((seed * 11) % 100001) / 100000;
+
+          ghost.style.setProperty(
+            "left",
+            `${x * (ghosts.clientWidth - 100)}px`
+          );
+          ghost.style.setProperty(
+            "top",
+            `${y * (ghosts.clientHeight - 180)}px`
+          );
+
+          ghost.appendChild(ghostPic);
+          let ghostBust = document.createElement("div");
+          ghostBust.onclick = () => bust(ghostBust);
+
+          ghost.appendChild(ghostPic);
+          ghost.appendChild(ghostBust);
+
+          ghosts.appendChild(ghost);
+        }
+      };
+
+      window.onclick = () => {
+        document.getElementById("sound").play();
+      };
+
+      document.getElementById("left").onclick = () => {
+        dir += 1;
+        window.location.hash = "";
+        var audio = new Audio("steps.mp3");
+        audio.play();
+        setTimeout(update, 200)
+      };
+
+      document.getElementById("right").onclick = () => {
+        dir -= 1;
+        window.location.hash = "";
+        var audio = new Audio("steps.mp3");
+        audio.play();
+        setTimeout(update, 200)
+      };
+
+      const bust = (elem) => {
+        elem.parentElement.remove();
+        window.location.hash = "";
+        var audio = new Audio("vacuum.wav");
+        audio.play();
+        update();
+      };
+
+      update();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,55 @@
+---
+eo:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Limdato
+        options: Elektebloj
+      user:
+        agreement: Interkonsento pri servoj
+        email: Retpoŝtadreso
+        locale: Lokaĵaro
+        password: Pasvorto
+      user/account:
+        username: Uzantnomo
+      user/invite_request:
+        text: Kialo
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: nur literoj, ciferoj kaj substrekoj
+              reserved: rezervita
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ne estas valida URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ne estas valida URL
+        import:
+          attributes:
+            data:
+              malformed: estas misformita
+        status:
+          attributes:
+            reblog:
+              taken: de afiŝo jam ekzistas
+        user:
+          attributes:
+            email:
+              blocked: uzas nepermesitan retpoŝtan provizanton
+              unreachable: ŝajne ne ekzistas
+            role_id:
+              elevated: ne povas esti pli altranga ol via aktuala rolo
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inkluzivi permesojn kiuj ne estas sekuraj por la baza rolo
+              elevated: ne povas inkluzivi permesojn kiujn via aktuala rolo ne rajtas
+              own_role: ne eblas esti ŝanĝita per via aktuala rolo
+            position:
+              elevated: ne povas esti pli altranga ol via aktuala rolo
+              own_role: ne eblas esti ŝanĝita per via aktuala rolo

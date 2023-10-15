@@ -1,0 +1,195 @@
+---
+nl:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Naam toepassing
+        redirect_uri: Redirect-URI
+        scopes: Toestemmingen
+        website: Website toepassing
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: kan geen fragment bevatten.
+              invalid_uri: moet een geldige URI zijn.
+              relative_uri: moet een absolute URI zijn.
+              secured_uri: moet een HTTPS/SSL URI zijn.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autoriseren
+        cancel: Annuleren
+        destroy: Verwijderen
+        edit: Bewerken
+        submit: Opslaan
+      confirmations:
+        destroy: Weet je het zeker?
+      edit:
+        title: Toepassing bewerken
+      form:
+        error: Oops! Controleer het formulier op fouten
+      help:
+        native_redirect_uri: Gebruik %{native_redirect_uri} voor lokale tests
+        redirect_uri: Gebruik één regel per URI
+        scopes: Toestemmingen met spaties van elkaar scheiden. Laat leeg om de standaardtoestemmingen te gebruiken.
+      index:
+        application: Toepassing
+        callback_url: Callback-URL
+        delete: Verwijderen
+        empty: Je hebt geen toepassingen geconfigureerd.
+        name: Naam
+        new: Nieuwe toepassing
+        scopes: Toestemmingen
+        show: Tonen
+        title: Jouw toepassingen
+      new:
+        title: Nieuwe toepassing
+      show:
+        actions: Acties
+        application_id: Client-key
+        callback_urls: Callback-URL's
+        scopes: Toestemmingen
+        secret: Client-secret
+        title: 'Toepassing: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autoriseren
+        deny: Weigeren
+      error:
+        title: Er is een fout opgetreden
+      new:
+        prompt_html: "%{client_name} heeft toestemming nodig om toegang te krijgen tot jouw account. Het betreft een third-party-toepassing.<strong>Als je dit niet vertrouwt, moet je geen toestemming verlenen.</strong>"
+        review_permissions: Toestemmingen beoordelen
+        title: Autorisatie vereist
+      show:
+        title: Kopieer deze autorisatiecode en plak het in de toepassing.
+    authorized_applications:
+      buttons:
+        revoke: Intrekken
+      confirmations:
+        revoke: Weet je het zeker?
+      index:
+        authorized_at: Toestemming verleend op %{date}
+        description_html: Dit zijn toepassingen die toegang hebben tot jouw account via de API. Als er toepassingen tussen staan die je niet herkent of een toepassing zich misdraagt, kun je de toegangsrechten van de toepassing intrekken.
+        last_used_at: Voor het laatst gebruikt op %{date}
+        never_used: Nooit gebruikt
+        scopes: Toestemmingen
+        superapp: Intern
+        title: Jouw geautoriseerde toepassingen
+    errors:
+      messages:
+        access_denied: De resource-eigenaar of autorisatie-server weigerde het verzoek.
+        credential_flow_not_configured: De wachtwoordgegevens-flow van de resource-eigenaar is mislukt omdat Doorkeeper.configure.resource_owner_from_credentials niet is ingesteld.
+        invalid_client: Clientverificatie is mislukt door een onbekende client, ontbrekende client-authenticatie of een niet ondersteunde authenticatie-methode.
+        invalid_grant: De verstrekte autorisatie is ongeldig, verlopen, ingetrokken, komt niet overeen met de redirect-URI die is opgegeven of werd uitgegeven aan een andere client.
+        invalid_redirect_uri: De opgegeven redirect-URI is ongeldig.
+        invalid_request:
+          missing_param: 'Ontbrekende vereiste parameter: %{value}.'
+          request_not_authorized: Het verzoek moet worden geautoriseerd. De vereiste parameter voor het autorisatieverzoek ontbreekt of is ongeldig.
+          unknown: Het verzoek mist een vereiste parameter, bevat een niet ondersteunde parameterwaarde of is op een andere manier onjuist.
+        invalid_resource_owner: De verstrekte resource-eigenaargegevens zijn ongeldig of de resource-eigenaar kan niet worden gevonden
+        invalid_scope: De opgevraagde toestemming is ongeldig, onbekend of onjuist.
+        invalid_token:
+          expired: Toegangscode verlopen
+          revoked: Toegangscode ingetrokken
+          unknown: Toegangscode ongeldig
+        resource_owner_authenticator_not_configured: Het opzoeken van de resource-eigenaar is mislukt omdat Doorkeeper.configure.resource_owner_authenticator niet is ingesteld.
+        server_error: De autorisatieserver is is een onverwachte situatie tegengekomen die het verzoek verhinderde.
+        temporarily_unavailable: De autorisatieserver is momenteel niet in staat het verzoek te behandelen als gevolg van een tijdelijke overbelasting of onderhoud aan de server.
+        unauthorized_client: De client is niet bevoegd om dit verzoek op deze manier uit te voeren.
+        unsupported_grant_type: Het type autorisatie wordt niet door de autorisatieserver ondersteund.
+        unsupported_response_type: De autorisatieserver ondersteund dit antwoordtype niet.
+    flash:
+      applications:
+        create:
+          notice: Toepassing aangemaakt.
+        destroy:
+          notice: Toepassing verwijderd.
+        update:
+          notice: Toepassing bewerkt.
+      authorized_applications:
+        destroy:
+          notice: Toepassing ingetrokken.
+    grouped_scopes:
+      access:
+        read: Alleen leestoegang
+        read/write: Lees- en schrijftoegang
+        write: Alleen schrijftoegang
+      title:
+        accounts: Accounts
+        admin/accounts: Accountbeheer
+        admin/all: Alle beheerfuncties
+        admin/reports: Rapportagebeheer
+        all: Volledige toegang tot je Mastodon-account
+        blocks: Blokkeren
+        bookmarks: Bladwijzers
+        conversations: Gesprekken
+        crypto: End-to-end-encryptie
+        favourites: Favorieten
+        filters: Filters
+        follow: Volgers, genegeerde en geblokkeerde gebruikers
+        follows: Volgend
+        lists: Lijsten
+        media: Mediabijlagen
+        mutes: Negeren
+        notifications: Meldingen
+        push: Pushmeldingen
+        reports: Rapportages
+        search: Zoeken
+        statuses: Berichten
+    layouts:
+      admin:
+        nav:
+          applications: Toepassingen
+          oauth2_provider: OAuth2-provider
+      application:
+        title: OAuth-autorisatie vereist
+    scopes:
+      admin:read: alle gegevens op de server lezen
+      admin:read:accounts: gevoelige informatie van alle accounts lezen
+      admin:read:canonical_email_blocks: gevoelige informatie van alle canoniek geblokkeerde e-mailadressen lezen
+      admin:read:domain_allows: gevoelige informatie van alle toegestane domeinen lezen
+      admin:read:domain_blocks: gevoelige informatie van alle geblokkeerde domeinen lezen
+      admin:read:email_domain_blocks: gevoelige informatie van alle geblokkeerde e-maildomeinen lezen
+      admin:read:ip_blocks: gevoelige informatie van alle geblokkeerde IP-adressen lezen
+      admin:read:reports: gevoelige informatie van alle rapportages en gerapporteerde accounts lezen
+      admin:write: wijzig alle gegevens op de server
+      admin:write:accounts: moderatieacties op accounts uitvoeren
+      admin:write:canonical_email_blocks: moderatieacties op canoniek geblokkeerde e-mailadressen uitvoeren
+      admin:write:domain_allows: moderatieacties op toegestane domeinen uitvoeren
+      admin:write:domain_blocks: moderatieacties op geblokkeerde domeinen uitvoeren
+      admin:write:email_domain_blocks: moderatieacties op geblokkeerde e-maildomeinen uitvoeren
+      admin:write:ip_blocks: moderatieacties op geblokkeerde IP-adressen uitvoeren
+      admin:write:reports: moderatieacties op rapportages uitvoeren
+      crypto: end-to-end-encryptie gebruiken
+      follow: relaties tussen accounts bewerken
+      push: jouw pushmeldingen ontvangen
+      read: alle gegevens van jouw account lezen
+      read:accounts: informatie accounts bekijken
+      read:blocks: jouw geblokkeerde gebruikers bekijken
+      read:bookmarks: jouw bladwijzers bekijken
+      read:favourites: jouw favorieten bekijken
+      read:filters: jouw filters bekijken
+      read:follows: de accounts die jij volgt bekijken
+      read:lists: jouw lijsten bekijken
+      read:mutes: jouw genegeerde gebruikers bekijken
+      read:notifications: jouw meldingen bekijken
+      read:reports: jouw gerapporteerde berichten bekijken
+      read:search: namens jou zoeken
+      read:statuses: alle berichten bekijken
+      write: alle gegevens van jouw account bewerken
+      write:accounts: jouw profiel bewerken
+      write:blocks: accounts en domeinen blokkeren
+      write:bookmarks: berichten aan bladwijzers toevoegen
+      write:conversations: gespreken negeren en verwijderen
+      write:favourites: berichten als favoriet markeren
+      write:filters: filters aanmaken
+      write:follows: mensen volgen
+      write:lists: lijsten aanmaken
+      write:media: mediabestanden uploaden
+      write:mutes: mensen en gesprekken negeren
+      write:notifications: meldingen verwijderen
+      write:reports: andere mensen rapporteren
+      write:statuses: berichten plaatsen

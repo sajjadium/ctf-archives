@@ -1,0 +1,55 @@
+---
+sv:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Tidsgräns
+        options: Val
+      user:
+        agreement: Serviceavtal
+        email: E-postadress
+        locale: Lokal
+        password: Lösenord
+      user/account:
+        username: Användarnamn
+      user/invite_request:
+        text: Anledning
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: endast bokstäver, siffror och understrykning
+              reserved: är reserverat
+        admin/webhook:
+          attributes:
+            url:
+              invalid: är inte en giltig URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: är inte en giltig URL
+        import:
+          attributes:
+            data:
+              malformed: är felformad
+        status:
+          attributes:
+            reblog:
+              taken: av status finns redan
+        user:
+          attributes:
+            email:
+              blocked: använder en icke tillåten e-postleverantör
+              unreachable: verkar inte existera
+            role_id:
+              elevated: kan inte vara högre än din nuvarande roll
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inkludera behörigheter som inte är säkra för grundrollen
+              elevated: kan inte inkludera behörigheter som din nuvarande roll inte innehar
+              own_role: kan inte ändras med din nuvarande roll
+            position:
+              elevated: kan inte vara högre än din nuvarande roll
+              own_role: kan inte ändras med din nuvarande roll

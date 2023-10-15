@@ -1,0 +1,1781 @@
+---
+uk:
+  about:
+    about_mastodon_html: 'Соціальна мережа майбутнього: жодної реклами, жодного корпоративного нагляду, етичний дизайн та децентралізація! З Mastodon ваші дані під вашим контролем!'
+    contact_missing: Не зазначено
+    contact_unavailable: Недоступно
+    hosted_on: Mastodon розміщено на %{domain}
+    title: Про програму
+  accounts:
+    follow: Підписатися
+    followers:
+      few: Підписники
+      many: Підписників
+      one: Підписник
+      other: Підписники
+    following: Підписок
+    instance_actor_flash: Цей обліковий запис є віртуальним персонажем, який використовується для показу самого сервера, а не будь-якого окремого користувача. Він використовується з метою федералізації і не повинен бути зупинений.
+    last_active: остання активність
+    link_verified_on: Права власності на це посилання були перевірені %{date}
+    nothing_here: Тут нічого немає!
+    pin_errors:
+      following: Ви повинні бути підписаним на людину, яку бажаєте схвалити
+    posts:
+      few: Дописи
+      many: Дописів
+      one: Допис
+      other: Дописів
+    posts_tab_heading: Дописів
+  admin:
+    account_actions:
+      action: Виконати дію
+      title: Здійснити модераційну дію над %{acct}
+    account_moderation_notes:
+      create: Залишити нотатку
+      created_msg: Нотатку модератора успішно створено!
+      destroyed_msg: Нотатку модератора успішно видалено!
+    accounts:
+      add_email_domain_block: Додати поштовий домен до чорного списку
+      approve: Схвалити
+      approved_msg: Заявку на реєстрацію %{username} затверджено
+      are_you_sure: Ви впевнені?
+      avatar: Аватар
+      by_domain: Домен
+      change_email:
+        changed_msg: Адресу електронної пошти успішно змінено!
+        current_email: Поточна адреса електронної пошти
+        label: Змінити адресу електронної пошти
+        new_email: Нова адреса електронної пошти
+        submit: Змінити адресу електронної пошти
+        title: Змінити адресу електронної пошти для %{username}
+      change_role:
+        changed_msg: Роль успішно змінено!
+        label: Змінити роль
+        no_role: Немає ролі
+        title: Змінити роль для %{username}
+      confirm: Зберегти
+      confirmed: Збережено
+      confirming: Зберігається
+      custom: Власне
+      delete: Видалити дані
+      deleted: Видалено
+      demote: Усунути
+      destroyed_msg: Дані %{username} тепер в черзі на негайне видалення
+      disable: Вимкнути
+      disable_sign_in_token_auth: Вимкнути автентифікацію за допомогою е-пошти
+      disable_two_factor_authentication: Вимкнути двофакторну авторизацію
+      disabled: Вимкнено
+      display_name: Відображуване ім'я
+      domain: Домен
+      edit: Змінити
+      email: Електронна пошта
+      email_status: Стан електронної пошти
+      enable: Увімкнути
+      enable_sign_in_token_auth: Увімкнути автентифікацію за допомогою е-пошти
+      enabled: Увімкнено
+      enabled_msg: Обліковий запис %{username} успішно розморожено
+      followers: Підписники
+      follows: Підписки
+      header: Заголовок
+      inbox_url: URL вхідних повідомлень
+      invite_request_text: Причини приєднатися
+      invited_by: Запросив
+      ip: IP
+      joined: Дата приєднання
+      location:
+        all: Усі
+        local: Локальні
+        remote: Віддалені
+        title: Розміщення
+      login_status: Стан входу
+      media_attachments: Мультимедійні вкладення
+      memorialize: Зробити пам'ятником
+      memorialized: Перетворено на пам'ятник
+      memorialized_msg: "%{username} успішно перетворено на пам'ятний обліковий запис"
+      moderation:
+        active: Активний
+        all: Усі
+        disabled: Вимкнено
+        pending: Очікують
+        silenced: Обмежені
+        suspended: Призупинені
+        title: Модерація
+      moderation_notes: Нотатки модераторів
+      most_recent_activity: Остання активність
+      most_recent_ip: Останній IP
+      no_account_selected: Жоден обліковий запис не було змінено, оскільки жоден не було вибрано
+      no_limits_imposed: Жодних обмежень не накладено
+      no_role_assigned: Роль не призначено
+      not_subscribed: Не підписані
+      pending: Відгук в очікуванні
+      perform_full_suspension: Призупинити
+      previous_strikes: Попередні попередження
+      previous_strikes_description_html:
+        few: У цього облікового запису є <strong>%{count}</strong> попередження.
+        many: У цього облікового запису є <strong>%{count}</strong> попереджень.
+        one: У цього облікового запису є <strong>одне</strong> попередження.
+        other: У цього облікового запису є <strong>%{count}</strong> попереджень.
+      promote: Просунути
+      protocol: Протокол
+      public: Публічний
+      push_subscription_expires: Підписка PuSH спливає
+      redownload: Оновити аватар
+      redownloaded_msg: Профіль %{username} оновлено з джерела походження
+      reject: Відхилити
+      rejected_msg: Заявку на реєстрацію %{username} відхилено
+      remote_suspension_irreversible: Дані цього облікового запису безповоротно видалені.
+      remote_suspension_reversible_hint_html: Обліковий запис було призупинено на їхньому сервері, а дані будуть повністю вилучені на %{date}. До цього часу віддалений сервер може відновити цей обліковий запис без будь-яких наслідків. Якщо ви бажаєте вилучити всі дані облікового запису негайно, ви можете зробити це нижче.
+      remove_avatar: Видалити аватар
+      remove_header: Видалити заголовок
+      removed_avatar_msg: Зображення користувача %{username} вилучено
+      removed_header_msg: Зображення обкладинки %{username} вилучено
+      resend_confirmation:
+        already_confirmed: Цей користувач уже підтверджений
+        send: Надіслати електронний лист-підтвердження ще раз
+        success: Електронний лист-підтвердження успішно надіслано!
+      reset: Скинути
+      reset_password: Скинути пароль
+      resubscribe: Перепідписатися
+      role: Роль
+      search: Пошук
+      search_same_email_domain: Інші користувачі з тим самим поштовим доменом
+      search_same_ip: Інші користувачі з тим самим IP
+      security: Безпека
+      security_measures:
+        only_password: Лише пароль
+        password_and_2fa: Пароль та 2FA
+      sensitive: Делікатне
+      sensitized: Позначено делікатним
+      shared_inbox_url: URL спільного вхідного кошика
+      show:
+        created_reports: Скарги, створені цим обліковим записом
+        targeted_reports: Скарги на цей обліковий запис
+      silence: Глушення
+      silenced: Заглушені
+      statuses: Дописи
+      strikes: Попередні попередження
+      subscribe: Підписатися
+      suspend: Призупинити
+      suspended: Призупинені
+      suspension_irreversible: Дані цього облікового запису безповоротно видалено. Ви можете розблокувати обліковий запис, щоб могти ним користуватися, але будь-які його дані не відновляться.
+      suspension_reversible_hint_html: Обліковий запис заблоковано, а дані буде повністю вилучено %{date}. До цього часу обліковий запис можна відновити без будь-яких негативних наслідків. Якщо ви бажаєте вилучити всі дані облікового запису негайно, ви можете зробити це внизу.
+      title: Облікові записи
+      unblock_email: Розблокувати адресу е-пошти
+      unblocked_email_msg: Адреса електронної пошти %{username} успішно розблокована
+      unconfirmed_email: Непідтверджена адреса електронної пошти
+      undo_sensitized: Скасувати позначення делікатним
+      undo_silenced: Зняти глушення
+      undo_suspension: Зняти призупинення
+      unsilenced_msg: Успішно знято обмеження з облікового запису %{username}
+      unsubscribe: Відписатися
+      unsuspended_msg: Обліковий запис %{username} успішно розблоковано
+      username: Ім'я користувача
+      view_domain: Переглянути резюме для домену
+      warn: Попередження
+      web: Веб
+      whitelisted: У білому списку
+    action_logs:
+      action_types:
+        approve_appeal: Затвердити апеляцію
+        approve_user: Затвердити користувачів
+        assigned_to_self_report: Призначити звіт
+        change_email_user: Змінити електронну пошту для користувача
+        change_role_user: Змінити роль користувача
+        confirm_user: Підтвердити користувача
+        create_account_warning: Створити попередження
+        create_announcement: Створити оголошення
+        create_canonical_email_block: Створити блок електронної пошти
+        create_custom_emoji: Створити користувацьке емодзі
+        create_domain_allow: Створити дозвіл на домен
+        create_domain_block: Створити блокування домену
+        create_email_domain_block: Створити блокування поштового домену
+        create_ip_block: Створити правило IP
+        create_unavailable_domain: Створити недоступний домен
+        create_user_role: Створити роль
+        demote_user: Понизити користувача
+        destroy_announcement: Видалити оголошення
+        destroy_canonical_email_block: Видалити блок електронної пошти
+        destroy_custom_emoji: Видалити користувацьке емодзі
+        destroy_domain_allow: Видалити дозвіл на домен
+        destroy_domain_block: Видалити блокування домену
+        destroy_email_domain_block: Видалити блокування поштового домену
+        destroy_instance: Очистити домен
+        destroy_ip_block: Видалити правило IP
+        destroy_status: Видалити допис
+        destroy_unavailable_domain: Видалити недоступний домен
+        destroy_user_role: Знищити роль
+        disable_2fa_user: Вимкнути 2FA
+        disable_custom_emoji: Вимкнути користувацькі емодзі
+        disable_sign_in_token_auth_user: Вимкнути автентифікацію за допомогою е-пошти для користувача
+        disable_user: Відключити користувача
+        enable_custom_emoji: Увімкнути користувацькі емодзі
+        enable_sign_in_token_auth_user: Увімкнути автентифікацію за допомогою е-пошти для користувача
+        enable_user: Активувати користувача
+        memorialize_account: Зробити обліковий запис меморіалом
+        promote_user: Підвищити користувача
+        reject_appeal: Відхилити апеляцію
+        reject_user: Відхилити користувача
+        remove_avatar_user: Видалити аватар
+        reopen_report: Поновити скаргу
+        resend_user: Повторне підтвердження пошти
+        reset_password_user: Скинути пароль
+        resolve_report: Розв'язати скаргу
+        sensitive_account: Позначити делікатним медіа вашого облікового запису
+        silence_account: Заглушити обліковий запис
+        suspend_account: Призупинити обліковий запис
+        unassigned_report: Зняти скаргу
+        unblock_email_account: Розблокувати адресу е-пошти
+        unsensitive_account: Прибрати позначку "делікатне" з медіа вашого облікового запису
+        unsilence_account: Розглушити обліковий запис
+        unsuspend_account: Розморозити обліковий запис
+        update_announcement: Оновити оголошення
+        update_custom_emoji: Оновити користувацькі емодзі
+        update_domain_block: Оновити блокування домену
+        update_ip_block: Оновити правило IP
+        update_status: Оновити допис
+        update_user_role: Оновити роль
+      actions:
+        approve_appeal_html: "%{name} затвердили звернення на оскарження рішення від %{target}"
+        approve_user_html: "%{name} схвалює реєстрацію від %{target}"
+        assigned_to_self_report_html: "%{name} створює скаргу %{target} на себе"
+        change_email_user_html: "%{name} змінює поштову адресу користувача %{target}"
+        change_role_user_html: "%{name} змінює роль %{target}"
+        confirm_user_html: "%{name} підтверджує стан поштової адреси користувача %{target}"
+        create_account_warning_html: "%{name} надсилає попередження до %{target}"
+        create_announcement_html: "%{name} створює нове оголошення %{target}"
+        create_canonical_email_block_html: "%{name} блокує електронну пошту з хешем %{target}"
+        create_custom_emoji_html: "%{name} завантажує нові емодзі %{target}"
+        create_domain_allow_html: "%{name} дозволяє федерацію з доменом %{target}"
+        create_domain_block_html: "%{name} блокує домен %{target}"
+        create_email_domain_block_html: "%{name} блокує домен електронної пошти %{target}"
+        create_ip_block_html: "%{name} створює правило для IP %{target}"
+        create_unavailable_domain_html: "%{name} зупиняє доставляння на домен %{target}"
+        create_user_role_html: "%{name} створює роль %{target}"
+        demote_user_html: "%{name} понижує користувача %{target}"
+        destroy_announcement_html: "%{name} видаляє оголошення %{target}"
+        destroy_canonical_email_block_html: "%{name} розблоковує електронну пошту з хешем %{target}"
+        destroy_custom_emoji_html: "%{name} видаляє емоджі %{target}"
+        destroy_domain_allow_html: "%{name} скасовує федерацію з доменом %{target}"
+        destroy_domain_block_html: "%{name} розблокує домен %{target}"
+        destroy_email_domain_block_html: "%{name} розблоковує домен електронної пошти %{target}"
+        destroy_instance_html: "%{name} очищує домен %{target}"
+        destroy_ip_block_html: "%{name} видаляє правило для IP %{target}"
+        destroy_status_html: "%{name} вилучає допис %{target}"
+        destroy_unavailable_domain_html: "%{name} відновлює доставляння на домен %{target}"
+        destroy_user_role_html: "%{name} видаляє роль %{target}"
+        disable_2fa_user_html: "%{name} вимикає двоетапну перевірку для користувача %{target}"
+        disable_custom_emoji_html: "%{name} вимикає емодзі %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} вимикає автентифікацію через е-пошту для %{target}"
+        disable_user_html: "%{name} вимикає вхід для користувача %{target}"
+        enable_custom_emoji_html: "%{name} вмикає емодзі %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} вмикає автентифікацію через е-пошту для %{target}"
+        enable_user_html: "%{name} вмикає вхід для користувача %{target}"
+        memorialize_account_html: "%{name} перетворює обліковий запис %{target} на сторінку пам'яті"
+        promote_user_html: "%{name} підвищує користувача %{target}"
+        reject_appeal_html: "%{name} відхилили звернення на оскарження рішення від %{target}"
+        reject_user_html: "%{name} відхиляє реєстрацію від %{target}"
+        remove_avatar_user_html: "%{name} прибирає аватар %{target}"
+        reopen_report_html: "%{name} знову відкриває звіт %{target}"
+        resend_user_html: "%{name} було надіслано листа з підтвердженням для %{target}"
+        reset_password_user_html: "%{name} скидає пароль користувача %{target}"
+        resolve_report_html: "%{name} розв'язує скаргу %{target}"
+        sensitive_account_html: "%{name} позначає медіа від %{target} делікатним"
+        silence_account_html: "%{name} приглушує обліковий запис %{target}"
+        suspend_account_html: "%{name} заморожує обліковий запис %{target}"
+        unassigned_report_html: "%{name} прибирає призначення скарги %{target}"
+        unblock_email_account_html: "%{name} розблоковує електронну пошту %{target}"
+        unsensitive_account_html: '%{name} прибирає позначку "делікатне" з медіа від %{target}'
+        unsilence_account_html: "%{name} розглушує обліковий запис %{target}"
+        unsuspend_account_html: "%{name} розморожує обліковий запис %{target}"
+        update_announcement_html: "%{name} оновлює оголошення %{target}"
+        update_custom_emoji_html: "%{name} оновлює емодзі %{target}"
+        update_domain_block_html: "%{name} оновлює блокування домену для %{target}"
+        update_ip_block_html: "%{name} змінює правило для IP %{target}"
+        update_status_html: "%{name} оновлює допис %{target}"
+        update_user_role_html: "%{name} змінює роль %{target}"
+      deleted_account: видалений обліковий запис
+      empty: Не знайдено жодного журналу.
+      filter_by_action: Фільтрувати за дією
+      filter_by_user: Фільтрувати за користувачем
+      title: Журнал подій
+    announcements:
+      destroyed_msg: Оголошення успішно видалено!
+      edit:
+        title: Редагувати оголошення
+      empty: Оголошення не знайдені.
+      live: Наживо
+      new:
+        create: Створити оголошення
+        title: Нове оголошення
+      publish: Опублікувати
+      published_msg: Оголошення успішно опубліковано!
+      scheduled_for: Заплановано на %{time}
+      scheduled_msg: Оголошення додано в чергу публікації!
+      title: Оголошення
+      unpublish: Скасувати публікацію
+      unpublished_msg: Оголошення успішно приховано!
+      updated_msg: Оголошення успішно оновлено!
+    custom_emojis:
+      assign_category: Призначити категорію
+      by_domain: Домен
+      copied_msg: Локальна копія емодзі успішно створена
+      copy: Копіювати
+      copy_failed_msg: Не вийшло створити локальну копію емодзі
+      create_new_category: Створити нову категорію
+      created_msg: Емодзі успішно створене!
+      delete: Видалити
+      destroyed_msg: Емодзі усіпішно видалене!
+      disable: Вимкнути
+      disabled: Вимкнено
+      disabled_msg: Емодзі успішно вимкнено
+      emoji: Емодзі
+      enable: Увімкнути
+      enabled: Увімкнено
+      enabled_msg: Емодзі успішно увімкнене
+      image_hint: PNG або GIF до %{size}
+      list: Список
+      listed: У списку
+      new:
+        title: Додати новий емодзі
+      no_emoji_selected: Жоден емоджі не було змінено, оскільки жоден не було вибрано
+      not_permitted: Вам не дозволено виконувати цю дію
+      overwrite: Переписати
+      shortcode: Шорткод
+      shortcode_hint: Мінімум два символи, тільки цифрові й латинські символи або підкреслення
+      title: Особливі емодзі
+      uncategorized: Без категорії
+      unlist: Прибрати
+      unlisted: Не у списку
+      update_failed_msg: Не вийшло оновити емозді
+      updated_msg: Емодзі успішно оновлене!
+      upload: Вивантажити
+    dashboard:
+      active_users: активні користувачі
+      interactions: взаємодії
+      media_storage: Медіасховище
+      new_users: нові користувачі
+      opened_reports: звітів відкрито
+      pending_appeals_html:
+        few: "<strong>%{count}</strong> апеляції в черзі"
+        many: "<strong>%{count}</strong> апеляцій в черзі"
+        one: "<strong>%{count}</strong> апеляція в черзі"
+        other: "<strong>%{count}</strong> апеляції в черзі"
+      pending_reports_html:
+        few: "<strong>%{count}</strong> звіти у черзі"
+        many: "<strong>%{count}</strong> звітів у черзі"
+        one: "<strong>%{count}</strong> звіт у черзі"
+        other: "<strong>%{count}</strong> звіти у черзі"
+      pending_tags_html:
+        few: "<strong>%{count}</strong> хештеґи у черзі"
+        many: "<strong>%{count}</strong> хештеґів у черзі"
+        one: "<strong>%{count}</strong> хештеґ у черзі"
+        other: "<strong>%{count}</strong> хештеґа у черзі"
+      pending_users_html:
+        few: "<strong>%{count}</strong> користувачі у черзі"
+        many: "<strong>%{count}</strong> користувачів у черзі"
+        one: "<strong>%{count}</strong> користувач у черзі"
+        other: "<strong>%{count}</strong> користувача у черзі"
+      resolved_reports: розв'язані звіти
+      software: Програмне забезпечення
+      sources: Джерела реєстрації
+      space: Використання дискового простору
+      title: Приборна панель
+      top_languages: Найактивніші мови
+      top_servers: Найактивніші сервери
+      website: Вебсайт
+    disputes:
+      appeals:
+        empty: Апеляцій не знайдено.
+        title: Апеляції
+    domain_allows:
+      add_new: Додати домен до білого списку
+      created_msg: Домен було успішно додано до білого списку
+      destroyed_msg: Домен було видалено з білого списку
+      export: Експорт
+      import: Імпорт
+      undo: Видалити з білого списку
+    domain_blocks:
+      add_new: Додати нове
+      created_msg: Блокування домену обробляється
+      destroyed_msg: Блокування домену знято
+      domain: Домен
+      edit: Редагувати блокування доменів
+      existing_domain_block: Ви вже наклали суворіші обмеження на %{name}.
+      existing_domain_block_html: Ви вже наклали більш суворі обмеження на %{name}, вам треба спочатку <a href="%{unblock_url}">розблокувати його</a>.
+      export: Експорт
+      import: Імпорт
+      new:
+        create: Створити блокування
+        hint: Блокування домену не завадить створенню нових облікових записів у базі даних, але ретроактивно та автоматично застосує до них конкретні методи модерації.
+        severity:
+          desc_html: "<strong>Обмеження</strong> зробить дописи облікових записів цього домену невидимими для всіх, окрім його підписників. <strong>Заморожування</strong> видалить усі матеріали облікових записів, медіа та дані профілів для облікових записів цього домену з вашого сервера. Якщо ви хочете лише заборонити медіафайли, оберіть <strong>Нічого</strong>."
+          noop: Нічого
+          silence: Обмежити
+          suspend: Блокування
+        title: Нове блокування домену
+      no_domain_block_selected: Жодні налаштування блокування доменів не змінено, оскільки жоден з них не було вибрано
+      not_permitted: Вам не дозволено виконувати цю дію
+      obfuscate: Сховати назву домена
+      obfuscate_hint: Частково приховувати доменне ім'я в списку, якщо ввімкнено показ списку обмежень домену
+      private_comment: Приватний коментар
+      private_comment_hint: Прокоментуйте обмеження для цього домену, а модератори прочитають.
+      public_comment: Публічний коментар
+      public_comment_hint: Прокоментуйте обмеження для цього домену, це зможуть прочитати всі, якщо така опція ввімкнена.
+      reject_media: Заборонити медіаконтент
+      reject_media_hint: Видаляє медіаконтент, збережений локально, і забороняє його завантаження у майбутньому. Не має значення у випадку блокування
+      reject_reports: Відхилити скарги
+      reject_reports_hint: Ігнорувати всі скарги з цього домену. Не має значення у випадку блокування
+      undo: Відмінити
+      view: Переглянути заблоковані домени
+    email_domain_blocks:
+      add_new: Додати
+      attempts_over_week:
+        few: "%{count} спроби входу за останній тиждень"
+        many: "%{count} спроб входу за останній тиждень"
+        one: "%{count} спроба за останній тиждень"
+        other: "%{count} спроби входу за останній тиждень"
+      created_msg: Успішно додано поштовий домен до чорного списку
+      delete: Видалити
+      dns:
+        types:
+          mx: MX-запис
+      domain: Домен
+      new:
+        create: Додати домен
+        resolve: Розв'язати домен
+        title: Нове блокування поштового домену
+      no_email_domain_block_selected: Жодні налаштування блокування доменів електронної пошти не було змінено, оскільки жоден з них не було обрано
+      not_permitted: Не дозволено
+      resolved_dns_records_hint_html: Ім'я домену резолвиться в наступні домени MX, які в кінцевому рахунку відповідають за прийняття електронної пошти. Блокування домену MX заблокує реєстрацію з будь-якої e-mail адреси, яка використовує однаковий домен MX, навіть якщо доменне ім'я буде інакше. <strong>Будьте обережні, щоб не блокувати великих поштових провайдерів.</strong>
+      resolved_through_html: Розв'язано через %{domain}
+      title: Чорний список поштових доменів
+    export_domain_allows:
+      new:
+        title: Імпорт дозволів домену
+      no_file: Файл не вибрано
+    export_domain_blocks:
+      import:
+        description_html: Ви збираєтеся імпортувати список блокування доменів. Уважно перегляньте цей список, особливо якщо ви не авторизували цей список.
+        existing_relationships_warning: Наявні відносини стеження
+        private_comment_description_html: 'Щоб допомогти вам відстежувати, звідки беруться імпортовані блокування, вони створюються за допомогою наступного приватного коментаря: <q>%{comment}</q>'
+        private_comment_template: Імпортовано з %{source} %{date}
+        title: Імпорт блокувань домену
+      invalid_domain_block: 'Один або кілька доменних блоків пропущено через такі помилки: %{error}'
+      new:
+        title: Імпорт блокувань домену
+      no_file: Файл не вибрано
+    follow_recommendations:
+      description_html: "<strong>Слідувати рекомендаціям та допомогти новим користувачам швидко знайти цікавий вміст</strong>. Коли користувачі не взаємодіяли з іншими людьми достатньо, щоб сформувати персоналізовані рекомендації, радимо замість цього вказувати ці облікові записи. Вони щоденно переобчислюються з масиву облікових записів з найбільшою кількістю недавніх взаємодій і найбільшою кількістю місцевих підписників розраховується для цієї мови."
+      language: Для мови
+      status: Стан
+      suppress: Приховати поради щодо підписок
+      suppressed: Приховати
+      title: Поради щодо підписок
+      unsuppress: Відновити поради щодо підписок
+    instances:
+      availability:
+        description_html:
+          few: Якщо доставлення до домену не вдалася за <strong>%{count} інших дні</strong>, жодних спроб доставлення не здійснюється, доки доставлення <em>від домену</em> не отримуватиметься.
+          many: Якщо доставлення до домену не вдалася за <strong>%{count} інших днів</strong>, жодних спроб доставлення не здійснюється, доки доставлення <em>від домену</em> не отримуватиметься.
+          one: Якщо доставлення до домену не вдалася <strong>%{count} день</strong>, жодних спроб доставлення не здійснюється, доки доставлення <em>від домену</em> не отримуватиметься.
+          other: Якщо доставлення до домену не вдалася за <strong>%{count} інших днів</strong>, жодних спроб доставлення не здійснюється, доки доставлення <em>від домену</em> не отримуватиметься.
+        failure_threshold_reached: Досягнуто поріг допустимих помилок станом на %{date}.
+        failures_recorded:
+          few: Невдалих спроб за %{count} різні дні.
+          many: Невдалих спроб за %{count} різних днів.
+          one: Невдалих спроб за %{count} день.
+          other: Невдалих спроб за %{count} різних днів.
+        no_failures_recorded: Проблем щодо запису немає.
+        title: Доступність
+        warning: Остання спроба підключення до цього сервера була невдала
+      back_to_all: Усі
+      back_to_limited: Обмежені
+      back_to_warning: Попередження
+      by_domain: Домен
+      confirm_purge: Ви впевнені, що хочете видалити ці дані з цього домену?
+      content_policies:
+        comment: Внутрішня примітка
+        description_html: Ви можете визначити правила вмісту що буде застосовано до всіх облікових записів із цього домену та будь-якого з його піддоменів.
+        limited_federation_mode_description_html: Ви можете вибрати, чи дозволити федерацію з цим доменом.
+        policies:
+          reject_media: Відхилити медіа
+          reject_reports: Відхилити скарги
+          silence: Обмеження
+          suspend: Призупинити
+        policy: Правила
+        reason: Суспільна причина
+        title: Політика вмісту
+      dashboard:
+        instance_accounts_dimension: Найвідстежуваніші облікові записи
+        instance_accounts_measure: розміщені облікові записи
+        instance_followers_measure: наші підписники там
+        instance_follows_measure: їхні підписники тут
+        instance_languages_dimension: Найуживаніші мови
+        instance_media_attachments_measure: розміщені медіавкладення
+        instance_reports_measure: звітів про них
+        instance_statuses_measure: розміщені дописи
+      delivery:
+        all: Усі
+        clear: Очистити помилки доставляння
+        failing: Невдалі
+        restart: Перезапустити доставляння
+        stop: Припинити доставляння
+        unavailable: Недоступно
+      delivery_available: Доставлення доступне
+      delivery_error_days: Днів помилок доставляння
+      delivery_error_hint: Якщо доставляння неможливе впродовж %{count} днів, воно автоматично позначиться недоставленим.
+      destroyed_msg: Дані з %{domain} тепер у черзі на видалення.
+      empty: Доменів не знайдено.
+      known_accounts:
+        few: "%{count} відомі облікові записи"
+        many: "%{count} відомих облікових записів"
+        one: "%{count} відомий обліковий запис"
+        other: "%{count} відомих облікових записів"
+      moderation:
+        all: Усі
+        limited: Обмежені
+        title: Модерація
+      private_comment: Приватний коментар
+      public_comment: Публічний коментар
+      purge: Очисти
+      purge_description_html: Якщо ви вважаєте, що цей домен більше ніколи не працюватиме, ви можете видалити всі дані облікових записів та пов'язані з ним дані з цього домену зі свого сховища. Це може зайняти деякий час.
+      title: Федерація
+      total_blocked_by_us: Заблокованих нами
+      total_followed_by_them: Вони стежать за
+      total_followed_by_us: Ми стежимо за
+      total_reported: Звітів про них
+      total_storage: Мультимедійні вкладення
+      totals_time_period_hint_html: Нижче зображена статистика за все існування сервера.
+    invites:
+      deactivate_all: Деактивувати всі
+      filter:
+        all: Все
+        available: Доступно
+        expired: Просрочено
+        title: Фільтр
+      title: Запрошення
+    ip_blocks:
+      add_new: Створити правило
+      created_msg: Нове правило IP успішно додано
+      delete: Видалити
+      expires_in:
+        '1209600': 2 тижні
+        '15778476': 6 місяців
+        '2629746': 1 місяць
+        '31556952': 1 рік
+        '86400': 1 день
+        '94670856': 3 роки
+      new:
+        title: Створити нове правило IP
+      no_ip_block_selected: Жодних правил IP не було змінено, оскільки жодного не було вибрано
+      title: Правила IP
+    relationships:
+      title: "%{acct} відносини"
+    relays:
+      add_new: Додати новий ретранслятор
+      delete: Видалити
+      description_html: "<strong>Ретранслятор дописів</strong> (federation relay) — це проміжний сервер, що обмінюється великими обсягами публічних дописів між серверами, які цього хочуть. Він може допомогти маленьким та середнім серверам отримувати вміст з усього <strong>федесвіту</strong> (fediverse). Без нього локальним користувачам довелося б вручну підписуватися на людей з віддалених серверів."
+      disable: Вимкнути
+      disabled: Вимкнено
+      enable: Увімкнути
+      enable_hint: Коли ретрансляцію увімкнено, ваш сервер буде підписаний на усі публічні дописи з цього ретранслятора, та почне посилати до нього свої публічні дописи.
+      enabled: Увімкнено
+      inbox_url: URL ретранслятора
+      pending: Очікуємо на підтвердження ретранслятором
+      save_and_enable: Зберегти та увімкнути
+      setup: Налаштування з'єднання з ретранслятором
+      signatures_not_enabled: Ретранслятори не будуть працювати коректно поки ввімкнений безпечний режим або режим обмеженої федерації
+      status: Стан
+      title: Ретранслятори
+    report_notes:
+      created_msg: Скарга успішно створена!
+      destroyed_msg: Скарга успішно видалена!
+    reports:
+      account:
+        notes:
+          few: "%{count} приміток"
+          many: "%{count} приміток"
+          one: "%{count} примітка"
+          other: "%{count} приміток"
+      action_log: Журнал подій
+      action_taken_by: Дія виконана
+      actions:
+        delete_description_html: Дописи, на які скаржилися будуть видалені, а попередження буде записано, щоб допомогти вам підвищити рівень майбутніх порушень того самого облікового запису.
+        mark_as_sensitive_description_html: Медіа у дописах, на які скаржилися будуть позначені делікатними, а попередження буде записано, щоб допомогти вам підвищити рівень майбутніх порушень того самого облікового запису.
+        other_description_html: Більше опцій керування поведінкою облікового запису і налаштування комунікації з обліковим записом, на який поскаржилися.
+        resolve_description_html: Не буде застосовано жодних дій проти облікового запису, на який скаржилися, не буде записано попередження, а скаргу буде закрито.
+        silence_description_html: Обліковий запис буде видно лише тим, хто вже за ним слідкує, або знайде його вручну, що значно обмежує його охоплення. Може завжди бути повернуто. Закриває всі скарги на цей обліковий запис.
+        suspend_description_html: Обліковий запис і весь його вміст будуть недоступними й врешті-решт видалені, і взаємодіяти з ним буде неможливо. Відновлення можливе протягом 30 днів. Закриває всі скарги на цей обліковий запис.
+      actions_description_html: Визначте, які дії слід вжити для розв'язання цієї скарги. Якщо ви оберете каральні дії проти зареєстрованого облікового запису, про них буде надіслано сповіщення електронним листом, крім випадків, коли вибрано категорію <strong>Спам</strong>.
+      actions_description_remote_html: Визначте, які дії слід вжити для розв'язання цього звіту. Це вплине тільки на те, як <strong>ваш</strong> сервер з'єднується з цим віддаленим обліковим записом і обробляє його вміст.
+      add_to_report: Додати ще подробиць до скарги
+      are_you_sure: Ви впевнені?
+      assign_to_self: Призначити мені
+      assigned: Призначений модератор
+      by_target_domain: Домен облікового запису, на який скаржаться
+      cancel: Скасувати
+      category: Категорія
+      category_description_html: Причина скарги на цей обліковий запис та/або вміст, яку буде вказано у звіті
+      comment:
+        none: Немає
+      comment_description_html: 'Щоб надати більше відомостей, %{name} пише:'
+      confirm: Підтвердити
+      confirm_action: Підтвердьте модераційну дію щодо @%{acct}
+      created_at: Створено
+      delete_and_resolve: Видалити дописи
+      forwarded: Переслано
+      forwarded_to: Переслано до %{domain}
+      mark_as_resolved: Позначити вирішеним
+      mark_as_sensitive: Позначити делікатним
+      mark_as_unresolved: Позначити невирішеним
+      no_one_assigned: Ніхто
+      notes:
+        create: Додати примітку
+        create_and_resolve: Розв'язати з приміткою
+        create_and_unresolve: Перевідкрити з приміткою
+        delete: Видалити
+        placeholder: Опишіть, які дії були виконані, або інші зміни, що стосуються справи...
+        title: Примітки
+      notes_description_html: Переглядайте та залишайте примітки для інших модераторів та для себе на майбутнє
+      processed_msg: 'Звіт #%{id} успішно оброблено'
+      quick_actions_description_html: 'Виберіть швидку дію або гортайте вниз, щоб побачити матеріал, на який надійшла скарга:'
+      remote_user_placeholder: віддалений користувач із %{instance}
+      reopen: Перевідкрити скаргу
+      report: 'Скарга #%{id}'
+      reported_account: Обліковий запис порушника
+      reported_by: Відправник скарги
+      resolved: Вирішено
+      resolved_msg: Скаргу успішно вирішено!
+      skip_to_actions: Перейти до дій
+      status: Стан
+      statuses: Вміст, на який поскаржилися
+      statuses_description_html: Замінений вміст буде цитований у спілкуванні з обліковим записом, на який поскаржилися
+      summary:
+        action_preambles:
+          delete_html: 'Ви збираєтеся <strong>вилучити</strong> деякі з дописів <strong>@%{acct}</strong>. Це буде:'
+          mark_as_sensitive_html: 'Ви збираєтеся <strong>позначити</strong> деякі з дописів <strong>@%{acct}</strong> <strong>делікатними</strong>. Це буде:'
+          silence_html: 'Ви збираєтеся <strong>обмежити</strong> обліковий запис <strong>@%{acct}</strong>. Це буде:'
+          suspend_html: 'Ви збираєтесь <strong>призупинити</strong> обліковий запис <strong>@%%{acct}</strong>. Це буде:'
+        actions:
+          delete_html: Вилучити образливі дописи
+          mark_as_sensitive_html: Позначити медіа образливих дописів делікатними
+          silence_html: Досягнуто жорсткого обмеження <strong>@%{acct}</strong>, зробивши їхній профіль і вміст видимим тільки людям, які вже слідують за ними або вручну шукають його профіль
+          suspend_html: Призупинити <strong>@%{acct}</strong>, зробити їх профіль і вміст недоступним та унеможливити взаємодію
+        close_report: 'Позначити звіт #%{id} розв''язаним'
+        close_reports_html: Позначити <strong>всі</strong> звіти проти <strong>@%{acct}</strong> розв'язаними
+        delete_data_html: Видаліть профіль <strong>@%{acct}</strong> і вміст за останні 30 днів, якщо вони не дія не скасується тим часом
+        preview_preamble_html: "<strong>@%{acct}</strong> отримає попередження з таким вмістом:"
+        record_strike_html: Запис попередження проти <strong>@%{acct}</strong>, що допоможе вам посилити ваші майбутні санкції проти цього облікового запису
+        send_email_html: Надіслати <strong>@%{acct}</strong> попереджувального електронного листа
+        warning_placeholder: Додаткові причини дії модерації.
+      target_origin: Походження облікового запису, на який скаржаться
+      title: Скарги
+      unassign: Зняти призначення
+      unknown_action_msg: 'Невідома дія: %{action}'
+      unresolved: Невирішені
+      updated_at: Оновлені
+      view_profile: Переглянути профіль
+    roles:
+      add_new: Додати роль
+      assigned_users:
+        few: "%{count} користувачі"
+        many: "%{count} користувачів"
+        one: "%{count} користувач"
+        other: "%{count} користувача"
+      categories:
+        administration: Адміністрування
+        devops: DevOps
+        invites: Запрошення
+        moderation: Модерація
+        special: Спеціальні
+      delete: Видалити
+      description_html: За допомогою <strong>ролі користувача</strong>, ви можете налаштувати, до яких функцій і місць можуть доступатися ваші користувачі Mastodon.
+      edit: Змінити роль «%{name}»
+      everyone: Типові дозволи
+      everyone_full_description_html: Це <strong>базова роль</strong>, яка впливає на <strong>всіх користувачів</strong>, навіть ті, яким не призначені ролі. Усі інші ролі успадковують її дозволи.
+      permissions_count:
+        few: "%{count} дозволи"
+        many: "%{count} дозволів"
+        one: "%{count} дозвіл"
+        other: "%{count} дозволи"
+      privileges:
+        administrator: Адміністратор
+        administrator_description: Користувачі з цим дозволом обходять усі дозволи
+        delete_user_data: Видаляти дані користувача
+        delete_user_data_description: Дозволяє користувачам видаляти дані інших користувачів без затримок
+        invite_users: Запрошувати користувачів
+        invite_users_description: Дозволяє користувачам запрошувати нових людей на сервер
+        manage_announcements: Керувати оголошеннями
+        manage_announcements_description: Дозволяє користувачам керувати оголошеннями на сервері
+        manage_appeals: Керувати оскарженнями
+        manage_appeals_description: Дозволяє користувачам розглядати оскарження дій модерації
+        manage_blocks: Керувати блокуваннями
+        manage_blocks_description: Дозволяє користувачам блокувати постачальників е-пошти та IP-адреси
+        manage_custom_emojis: Керувати користувацькими емоджі
+        manage_custom_emojis_description: Дозволяє користувачам керувати користувацькими емоджі на сервері
+        manage_federation: Керувати федерацією
+        manage_federation_description: Дозволяє користувачам блокувати або дозволяти федерацію з іншими доменами й керувати можливостями доставлення
+        manage_invites: Керувати запрошеннями
+        manage_invites_description: Дозволяє користувачам переглядати й деактивувати запрошувальні посилання
+        manage_reports: Керувати скаргами
+        manage_reports_description: Дозволяє користувачам переглядати скарги та виконувати відповідні дії модерації
+        manage_roles: Керувати ролями
+        manage_roles_description: Дозволяє користувачам керувати та призначати ролі, нижчі за свій рівень
+        manage_rules: Керувати правилами
+        manage_rules_description: Дозволяє користувачам змінювати правила сервера
+        manage_settings: Керування налаштуваннями
+        manage_settings_description: Дозволяє користувачам змінювати налаштування сайту
+        manage_taxonomies: Керувати таксономіями
+        manage_taxonomies_description: Дозволяє користувачам переглядати актуальні налаштування вмісту й оновити хештеґ
+        manage_user_access: Керувати доступом користувачів
+        manage_user_access_description: Дозволяє користувачам вимкнути двоетапну перевірку інших користувачів, змінити їхню адресу електронної пошти та відновити пароль
+        manage_users: Керувати користувачами
+        manage_users_description: Дозволяє користувачам переглядати подробиці інших користувачів і виконувати їхню модерацію
+        manage_webhooks: Керувати Webhooks
+        manage_webhooks_description: Дозволяє користувачам налаштовувати вебхуки для адміністративних подій
+        view_audit_log: Переглядати журнал перевірки
+        view_audit_log_description: Дозволяє користувачам бачити історію адміністративних дій на сервері
+        view_dashboard: Переглядати панель керування
+        view_dashboard_description: Дозволяє користувачам доступ до панелі керування та різних метрик
+        view_devops: DevOps
+        view_devops_description: Дозволяє користувачам доступ до Sidekiq і панелі pgHero
+      title: Ролі
+    rules:
+      add_new: Додати правило
+      delete: Видалити
+      description_html: Хоча більшість заявляє про прочитання та погодження з умовами обслуговування, як правило, люди не читають їх до появи проблеми. <strong>Спростіть перегляд правил вашого сервера, зробивши їх у вигляді маркованого списку.</strong> Спробуйте створити короткі та просі правила, але не розділяйте їх на багато окремих частин.
+      edit: Змінити правило
+      empty: Жодних правил сервера ще не визначено.
+      title: Правила сервера
+    settings:
+      about:
+        manage_rules: Керувати правилами сервера
+        preamble: Надати детальну інформацію про те, як працює сервер, модерується та фінансується.
+        rules_hint: Виділена ділянка для правил, яких повинні дотримуватись ваші користувачі.
+        title: Про застосунок
+      appearance:
+        preamble: Налаштування вебінтерфейсу Mastodon.
+        title: Вигляд
+      branding:
+        preamble: Брендинг вашого сервера відрізняє його від інших серверів в мережі. Ця інформація може показуватися в різних середовищах, таких як вебінтерфейс Mastodon, застосунки, у попередньому перегляді посилань на інші вебсайти та в застосунках обміну повідомленнями. Тому краще, щоб ця інформація була чіткою, короткою та лаконічною.
+        title: Брендинг
+      content_retention:
+        preamble: Контролюйте, як зберігаються користувацькі матеріали в Mastodon.
+        title: Зберігання вмісту
+      default_noindex:
+        desc_html: Впливає на всіх користувачів, які не змінили це налаштування самостійно
+        title: Усталено відмовитись від індексації користувачів пошуковими системами
+      discovery:
+        follow_recommendations: Поради щодо підписок
+        preamble: Показ цікавих матеріалів відіграє важливу роль у залученні нових користувачів, які, можливо, не знають нікого з Mastodon. Контролюйте роботу різних функцій виявлення на вашому сервері.
+        profile_directory: Каталог профілів
+        public_timelines: Публічна стрічка
+        publish_discovered_servers: Опублікувати знайдені сервери
+        publish_statistics: Публікувати статистику
+        title: Виявлення
+        trends: Популярні
+      domain_blocks:
+        all: Всi
+        disabled: Нікого
+        users: Для авторизованих локальних користувачів
+      registrations:
+        preamble: Контролюйте, хто може створити обліковий запис на вашому сервері.
+        title: Реєстрації
+      registrations_mode:
+        modes:
+          approved: Для входу потрібне схвалення
+          none: Ніхто не може увійти
+          open: Будь-хто може увійти
+      title: Налаштування сервера
+    site_uploads:
+      delete: Видалити завантажений файл
+      destroyed_msg: Завантаження сайту успішно видалено!
+    statuses:
+      account: Автор
+      application: Застосунок
+      back_to_account: Назад до сторінки облікового запису
+      back_to_report: Повернутися до сторінки скарги
+      batch:
+        remove_from_report: Вилучити зі скарги
+        report: Скарга
+      deleted: Видалено
+      favourites: Вподобане
+      history: Історія версій
+      in_reply_to: У відповідь
+      language: Мова
+      media:
+        title: Медіа
+      metadata: Метадані
+      no_status_selected: Жодного допису не було змінено, оскільки жодного з них не було вибрано
+      open: Відкрити допис
+      original_status: Оригінальний допис
+      reblogs: Поширення
+      status_changed: Допис змінено
+      title: Дописи облікових записів
+      trending: Популярне
+      visibility: Видимість
+      with_media: З медіа
+    strikes:
+      actions:
+        delete_statuses: "%{name} видаляє допис від %{target}"
+        disable: "%{name} заморожує обліковий запис %{target}"
+        mark_statuses_as_sensitive: "%{name} позначає допис від %{target} делікатним"
+        none: "%{name} надсилає попередження до %{target}"
+        sensitive: "%{name} позначає обліковий запис %{target} делікатним"
+        silence: "%{name} обмежує обліковий запис %{target}"
+        suspend: "%{name} заморожує обліковий запис %{target}"
+      appeal_approved: Оскаржено
+      appeal_pending: Оскарження в очікуванні
+      appeal_rejected: Апеляцію відхилено
+    system_checks:
+      database_schema_check:
+        message_html: Існують відкладені перенесення бази даних. Запустіть їх, щоб забезпечити очікувану роботу програми
+      elasticsearch_running_check:
+        message_html: Не вдалося під'єднатися до Elasticsearch. Перевірте, чи він запущений або вимкніть повнотекстовий пошук
+      elasticsearch_version_check:
+        message_html: 'Несумісна версія Elasticsear: %{value}'
+        version_comparison: Запущено Elasticsearch %{running_version}, але вимагається %{required_version}
+      rules_check:
+        action: Керування правилами сервера
+        message_html: Ви не визначили будь-які правила сервера.
+      sidekiq_process_check:
+        message_html: Не працює процес Sidekiq для %{value} черги. Перегляньте конфігурації вашого Sidekiq
+      upload_check_privacy_error:
+        action: Перегляньте подробиці тут
+        message_html: "<strong>Ваш вебсервер неправильно налаштований. Приватність ваших користувачів піддається ризику</strong>"
+      upload_check_privacy_error_object_storage:
+        action: Перегляньте подробиці тут
+        message_html: "<strong>Ваше сховище об'єктів неправильно налаштоване. Приватність ваших користувачів піддається ризику</strong>"
+    tags:
+      review: Переглянути допис
+      updated_msg: Параметри хештеґів успішно оновлені
+    title: Адміністрування
+    trends:
+      allow: Дозволити
+      approved: Схвалено
+      disallow: Заборонити
+      links:
+        allow: Дозволити посилання
+        allow_provider: Дозволити публікатора
+        description_html: Це посилання, з яких наразі багаторазово поширюються записи, з яких ваш сервер бачить дописи. Це може допомогти вашим користувачам дізнатися, що відбувається у світі. Посилання не показується публічно, поки ви не затверджуєте його публікацію. Ви також можете дозволити або відхилити окремі посилання.
+        disallow: Заборонити посилання
+        disallow_provider: Заборонити публікатора
+        no_link_selected: Жодне посилання не було змінено, оскільки жодне не було вибрано
+        publishers:
+          no_publisher_selected: Жодного видавця не було змінено, оскільки жодного не було вибрано
+        shared_by_over_week:
+          few: Поширили %{count} людини за останній тиждень
+          many: Поширили %{count} людей за останній тиждень
+          one: Поширила одна людина за останній тиждень
+          other: Поширили %{count} людей за останній тиждень
+        title: Популярні посилання
+        usage_comparison: Сьогодні поширено %{today} разів, у порівнянні з %{yesterday} вчора
+      not_allowed_to_trend: Не допускається тенденція
+      only_allowed: Тільки дозволене
+      pending_review: Очікує перевірки
+      preview_card_providers:
+        allowed: Посилання цього публікатора можуть бути популярними
+        description_html: Це домени, з яких часто передаються посилання на вашому сервері. Посилання не будуть публічно приходити, якщо домен посилання не буде затверджено. Ваше затвердження (або відхилення) поширюється на піддомени.
+        rejected: Посилання цього публікатора можуть не будуть популярними
+        title: Публікатори
+      rejected: Відхилено
+      statuses:
+        allow: Дозволити оприлюднення
+        allow_account: Дозволити автора
+        description_html: Це дописи, про які ваш сервер знає як такі, що в даний час є спільні і навіть ті, які зараз є дуже популярними. Це може допомогти вашим новим та старим користувачам, щоб знайти більше людей для слідування. Жоден запис не відображається публічно, поки ви не затверджуєте автора, і автор дозволяє іншим користувачам підписатися на це. Ви також можете дозволити або відхилити окремі повідомлення.
+        disallow: Заборонити допис
+        disallow_account: Заборонити автора
+        no_status_selected: Жодного популярного допису не було змінено, оскільки жодного не було вибрано
+        not_discoverable: Автор не вирішив бути видимим
+        shared_by:
+          few: Поділитись або додати в улюблені %{friendly_count} рази
+          many: Поділитись або додати в улюблені %{friendly_count} разів
+          one: Поділитись або додати в улюблені один раз
+          other: Поділитись або додати в улюблені %{friendly_count} рази
+        title: Популярні дописи
+      tags:
+        current_score: Поточний результат %{score}
+        dashboard:
+          tag_accounts_measure: унікальних використань
+          tag_languages_dimension: Найуживаніші мови
+          tag_servers_dimension: Найуживаніші сервери
+          tag_servers_measure: різні сервери
+          tag_uses_measure: всього використань
+        description_html: Ці хештеґи, які бачить ваш сервер, в цей час з’являються у багатьох дописах. Це може допомогти вашим користувачам дізнатися про що люди наразі найбільше говорять. Жодні хештеґи публічно не показуються, доки ви їх не затвердите.
+        listable: Може бути запропоновано
+        no_tag_selected: Жоден теґ не було змінено, оскільки жоден не було вибрано
+        not_listable: Не буде запропоновано
+        not_trendable: Не показуватиметься серед популярних
+        not_usable: Неможливо використати
+        peaked_on_and_decaying: Найвище %{date}, на разі спадає
+        title: Популярні хештеги
+        trendable: Може зʼявитися серед популярних
+        trending_rank: 'Популярність #%{rank}'
+        usable: Може бути використано
+        usage_comparison: Сьогодні використано %{today} разів, у порівнянні з %{yesterday} вчора
+        used_by_over_week:
+          few: Використали %{count} людини за минулий тиждень
+          many: Використали %{count} людей за минулий тиждень
+          one: Використала одна людина за минулий тиждень
+          other: Використали %{count} людей за минулий тиждень
+      title: Популярні
+      trending: Популярне
+    warning_presets:
+      add_new: Додати новий
+      delete: Видалити
+      edit_preset: Редагувати шаблон попередження
+      empty: Ви ще не визначили жодних попереджень.
+      title: Керування шаблонами попереджень
+    webhooks:
+      add_new: Додати кінцеву точку
+      delete: Видалити
+      description_html: "<strong>Вебхук</strong> дає змогу Mastodon надсилати повідомлення про обрані події до вашого застосунку <strong>в реальному часі</strong>, щоб застосунок міг <strong>автоматично реагувати на реакції</strong>."
+      disable: Вимкнути
+      disabled: Вимкнено
+      edit: Редагувати кінцеву точку
+      empty: Ще не налаштовано жодних кінцевих точок вебхука.
+      enable: Увімкнути
+      enabled: Активні
+      enabled_events:
+        few: "%{count} увімкнені події"
+        many: "%{count} увімкнених подій"
+        one: 1 увімкнена подія
+        other: "%{count} увімкнені події"
+      events: Події
+      new: Новий вебхук
+      rotate_secret: Обернути секрет
+      secret: Секрет підписування
+      status: Стан
+      title: Вебхуки
+      webhook: Вебхук
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: щоб видалити їхні дописи
+        disable: щоб заморозити їхній обліковий запис
+        mark_statuses_as_sensitive: позначати їхні повідомлення делікатними
+        none: попередження
+        sensitive: щоб позначати їхній обліковий запис делікатним
+        silence: щоб обмежити їхній обліковий запис
+        suspend: щоб призупинити їхній обліковий запис
+      body: "%{target} оскаржує модерацію %{action_taken_by} від %{date}, яка була %{type}. Вони написали:"
+      next_steps: Ви можете схвалити апеляцію, щоб скасувати рішення про модерацію або проігнорувати її.
+      subject: "%{username} апелює до рішення про модерацію на %{instance}"
+    new_pending_account:
+      body: Деталі нового облікового запису наведено нижче. Ви можете схвалити або відхилити цю заяву.
+      subject: Новий обліковий запис надіслано на розгляд на %{instance} (%{username})
+    new_report:
+      body: "%{reporter} поскаржився на %{target}"
+      body_remote: Хтось з домену %{domain} поскаржився на %{target}
+      subject: Нова скарга до %{instance} (#%{id})
+    new_trends:
+      body: 'Ці елементи потребують розгляду перед оприлюдненням:'
+      new_trending_links:
+        title: Популярні посилання
+      new_trending_statuses:
+        title: Популярні дописи
+      new_trending_tags:
+        no_approved_tags: На цей час немає схвалених популярних хештегів.
+        requirements: 'Кожен з цих кандидатів може перевершити #%{rank} затвердженого популярного хештеґу, який зараз на #%{lowest_tag_name} з рейтингом %{lowest_tag_score}.'
+        title: Популярні хештеги
+      subject: Нове популярне до розгляду на %{instance}
+  aliases:
+    add_new: Створити псевдонім
+    created_msg: Новий псевдонім успішно створено. Тепер ви можете починати переміщення зі старого облікового запису.
+    deleted_msg: Псевдонім успішно видалено. Переміщення з того облікового запису до цього більше не можливе.
+    empty: У вас немає псевдонімів.
+    hint_html: Якщо ви збираєтеся мігрувати з іншого облікового запису на цей, ви можете налаштувати псевдонім, який потрібен для перенесення підписок зі старою облікового запису. Ця дія сама по собі <strong>нешкідлива і її можна скасувати</strong>. <strong>Міграція облікового запису починається зі старого облікового запису</strong>.
+    remove: Від'єднати псевдонім
+  appearance:
+    advanced_web_interface: Розширений вебінтерфейс
+    advanced_web_interface_hint: 'Якщо ви бажаєте використовувати всю ширину вашого екрана, розширений вебінтерфейс дає змогу налаштовувати одночасний показ багатьох стовпчиків: головна, сповіщення, федеративна стрічка, будь-яка кількість списків і хештеґів.'
+    animations_and_accessibility: Анімація та доступність
+    confirmation_dialogs: Діалоги підтвердження
+    discovery: Виявлення
+    localization:
+      body: Mastodon перекладено волонтерами.
+      guide_link: https://uk.crowdin.com/project/mastodon
+      guide_link_text: Кожен може взяти участь.
+    sensitive_content: Дражливий зміст
+    toot_layout: Зовнішній вигляд дописів
+  application_mailer:
+    notification_preferences: Змінити налаштування електронної пошти
+    salutation: "%{name},"
+    settings: 'Змінити налаштування електронної пошти: %{link}'
+    view: 'Перегляд:'
+    view_profile: Показати профіль
+    view_status: Показати допис
+  applications:
+    created: Застосунок успішно створений
+    destroyed: Застосунок успішно видалений
+    logout: Вийти
+    regenerate_token: Перегенерувати токен доступу
+    token_regenerated: Токен доступу успішне перегенеровано
+    warning: Будьте дуже обережні з цими даними. Ніколи не діліться ними ні з ким!
+    your_token: Ваш токен доступу
+  auth:
+    apply_for_account: Запит облікового запису
+    change_password: Пароль
+    confirmations:
+      wrong_email_hint: Якщо ця адреса електронної пошти неправильна, можна змінити її в налаштуваннях облікового запису.
+    delete_account: Видалити обліковий запис
+    delete_account_html: Якщо ви хочете видалити свій обліковий запис, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
+    description:
+      prefix_invited_by_user: "@%{name} запрошує вас приєднатися до цього сервера Mastodon!"
+      prefix_sign_up: Зареєструйтеся на Mastodon сьогодні!
+      suffix: Маючи обліковий запис, ви зможете підписуватися на людей, публікувати дописи та листуватися з користувачами будь-якого сервера Mastodon!
+    didnt_get_confirmation: Не отримали інструкції з підтвердження?
+    dont_have_your_security_key: Не маєте ключа безпеки?
+    forgot_password: Забули пароль?
+    invalid_reset_password_token: Токен скидання паролю неправильний або просрочений. Спробуйте попросити новий.
+    link_to_otp: Введіть двофакторний код з вашого телефону або код відновлення
+    link_to_webauth: Використовувати пристрій ключа безпеки
+    log_in_with: Увійти через
+    login: Увійти
+    logout: Вийти
+    migrate_account: Переїхати на інший обліковий запис
+    migrate_account_html: Якщо ви бажаєте переспрямувати цей обліковий запис на інший, ви можете <a href="%{path}">налаштувати це тут</a>.
+    or_log_in_with: Або увійдіть з
+    privacy_policy_agreement_html: Мною прочитано і я погоджуюся з <a href="%{privacy_policy_path}" target="_blank">політикою приватності</a>
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Зареєструватися
+    registration_closed: "%{instance} не приймає нових членів"
+    resend_confirmation: Повторно відправити інструкції з підтвердження
+    reset_password: Скинути пароль
+    rules:
+      accept: Прийняти
+      back: Назад
+      preamble: Вони налаштовані та закріплені модераторами %{domain}.
+      title: Деякі основні правила.
+    security: Зміна паролю
+    set_new_password: Встановити новий пароль
+    setup:
+      email_below_hint_html: Якщо ця електронна адреса не є вірною, ви можете змінити її тут та отримати новий лист для підтвердження.
+      email_settings_hint_html: Електронний лист-підтвердження було вислано на %{email}. Якщо ця адреса електронної пошти не правильна, ви можете змінити її в налаштуваннях облікового запису.
+      title: Налаштування
+    sign_in:
+      preamble_html: Увійдіть за допомогою облікових даних <strong>%{domain}</strong>. Якщо ваш обліковий запис розміщений на іншому сервері, ви не зможете увійти тут.
+      title: Увійти до %{domain}
+    sign_up:
+      preamble: За допомогою облікового запису на цьому сервері Mastodon, ви зможете слідкувати за будь-якою іншою людиною в мережі, не зважаючи на те, де розміщений обліковий запис.
+      title: Налаштуймо вас на %{domain}.
+    status:
+      account_status: Стан облікового запису
+      confirming: Очікуємо на завершення підтвердження за допомогою електронної пошти.
+      functional: Ваш обліковий запис повністю робочий.
+      pending: Ваша заява очікує на розгляд нашим персоналом. Це може зайняти деякий час. Ви отримаєте електронний лист, якщо ваша заява буде схвалена.
+      redirecting_to: Ваш обліковий запис наразі неактивний, тому що він перенаправлений до %{acct}.
+      view_strikes: Переглянути попередні попередження вашому обліковому запису
+    too_fast: Форму подано занадто швидко, спробуйте ще раз.
+    use_security_key: Використовувати ключ безпеки
+  authorize_follow:
+    already_following: Ви вже слідкуєте за цим обліковим записом
+    already_requested: Ви вже надіслали запит на підписку до цього облікового запису
+    error: На жаль, під час пошуку віддаленого облікового запису сталася помилка
+    follow: Підписатися
+    follow_request: 'Вам надіслали запит на підписку:'
+    following: 'Ура! Ви тепер підписані на:'
+    post_follow:
+      close: Або, ви можете просто закрити вікно.
+      return: Перейти до профілю користувача
+      web: Перейти до вебу
+    title: Підписатися на %{acct}
+  challenge:
+    confirm: Далі
+    hint_html: "<strong>Підказка:</strong> ми не будемо запитувати ваш пароль впродовж наступної години."
+    invalid_password: Невірний пароль
+    prompt: Підтвердіть пароль для продовження
+  crypto:
+    errors:
+      invalid_key: не є припустимим ключем Ed25519 або Curve25519
+      invalid_signature: не є дійсним підписом Ed25519
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}г"
+      about_x_months: "%{count}міс"
+      about_x_years: "%{count}р"
+      almost_x_years: "%{count}р"
+      half_a_minute: Щойно
+      less_than_x_minutes: "%{count}хв"
+      less_than_x_seconds: Щойно
+      over_x_years: "%{count}р"
+      x_days: "%{count}д"
+      x_minutes: "%{count}хв"
+      x_months: "%{count}міс"
+      x_seconds: "%{count}сек"
+  deletes:
+    challenge_not_passed: Невірна інформація
+    confirm_password: Введіть актуальний пароль, щоб перевірити що ви це ви
+    confirm_username: Введіть ваше ім'я користувача, щоб підтвердити процедуру
+    proceed: Видалити обліковий запис
+    success_msg: Ваш обліковий запис було успішно видалено
+    warning:
+      before: 'До того як продовжити, будь ласка уважно прочитайте це:'
+      caches: Інформація, кешована іншими серверами, може залишитися
+      data_removal: Ваші дописи й інші дані будуть вилучені назавжди
+      email_change_html: Ви можете <a href="%{path}">змінити вашу електронну адресу</a>, не видаляючи ваш обліковий запис
+      email_contact_html: Якщо його все ще немає, ви можете написали до <a href="mailto:%{email}">%{email}</a> для допомоги
+      email_reconfirmation_html: Якщо ви не отримали електронного листа з підтвердженням, ви можете <a href="%{path}">запросити його знову</a>
+      irreversible: Буде неможливо відновити ваш обліковий запис
+      more_details_html: Подробиці за посиланням <a href="%{terms_path}">політика конфіденційності</a>.
+      username_available: Ваше ім'я користувача стане доступним для використання
+      username_unavailable: Ваше ім'я користувача залишиться недоступним для використання
+  disputes:
+    strikes:
+      action_taken: Дію виконано
+      appeal: Апеляція
+      appeal_approved: Це попередження було успішно оскаржене і більше не дійсне
+      appeal_rejected: Апеляцію було відхилено
+      appeal_submitted_at: Апеляцію надіслано
+      appealed_msg: Вашу апеляцію було надіслано. Якщо її погодять, вам буде повідомлено про це.
+      appeals:
+        submit: Подати апеляцію
+      approve_appeal: Схвалити апеляцію
+      associated_report: Пов'язана скарга
+      created_at: Застарілі
+      description_html: Це дії, виконані проти вашого облікового запису та попереджень, які були відправлені вам персоналом %{instance}.
+      recipient: Адресант
+      reject_appeal: Відхилити апеляцію
+      status: 'Допис #%{id}'
+      status_removed: Допис уже вилучено з системи
+      title: "%{action} від %{date}"
+      title_actions:
+        delete_statuses: Вилучення допису
+        disable: Заморожування облікового запису
+        mark_statuses_as_sensitive: Позначати дописи делікатними
+        none: Попередження
+        sensitive: Позначення облікового запису делікатним
+        silence: Обмеження облікового запису
+        suspend: Призупинення облікового запису
+      your_appeal_approved: Вашу апеляцію було схвалено
+      your_appeal_pending: Ви не подавали апеляцій
+      your_appeal_rejected: Вашу апеляцію було відхилено
+  domain_validator:
+    invalid_domain: не є допустимим ім'ям домену
+  errors:
+    '400': Ваш запит був недійсним або неправильним.
+    '403': У Вас немає доступу до перегляду даної сторінки.
+    '404': Сторінки, яку Ви шукали, не існує.
+    '406': Ця сторінка недоступна у запрошеному форматі.
+    '410': Сторінки, яку Ви шукали, більше не існує.
+    '422':
+      content: Перевірка безпеки не вдалася. Можливо, Ви блокуєте cookies?
+      title: Перевірка безпеки не вдалася
+    '429': Забагато запитів
+    '500':
+      content: Пробачте, та щось пішло не так з нашого боку.
+      title: Ця сторінка неправильна
+    '503': Ця сторінка не може бути оброблена через тимчасову відмову сервера.
+    noscript_html: Для використання веб-застосунку Mastodon, будь-ласка увімкніть JavaScript. Якщо у вас немає такої можливості, скористайтесь одним із <a href="%{apps_path}">нативних застосунків</a> для Mastodon для вашої платформи.
+  existing_username_validator:
+    not_found: не вдалося знайти локального користувача з таким ім'ям
+    not_found_multiple: не вдалося знайти %{usernames}
+  exports:
+    archive_takeout:
+      date: Дата
+      download: Завантажити ваш архів
+      hint_html: Ви можете зробити запит на архів ваших <strong>дописів та вивантаженого медіавмісту</strong>. Експортовані дані будуть у форматі ActivityPub, доступні для читання будь-яким сумісним програмним забезпеченням. Ви можете робити запит на архів що 7 днів.
+      in_progress: Збираємо ваш архів...
+      request: Зробити запит на архів
+      size: Розмір
+    blocks: Список блокувань
+    bookmarks: Закладки
+    csv: CSV
+    domain_blocks: Блокування доменів
+    lists: Списки
+    mutes: Список нехтуваних
+    storage: Ваш медіавміст
+  featured_tags:
+    add_new: Додати новий
+    errors:
+      limit: Ви досягли максимальної кількості хештеґів
+    hint_html: "<strong>Що таке виділені хештеґи?</strong> Це ті, що показуються на видному місці у вашому загальнодоступному профілі. Вони дають змогу людям фільтрувати ваші загальнодоступні дописи за цими хештеґами. Це дуже корисно для стеження з мистецькими творами та довготривалими проєктами."
+  filters:
+    contexts:
+      account: Профілі
+      home: Ваша стрічка
+      notifications: Сповіщення
+      public: Глобальні стрічки
+      thread: Повідомлення
+    edit:
+      add_keyword: Додати ключове слово
+      keywords: Ключові слова
+      statuses: Окремі дописи
+      statuses_hint_html: Цей фільтр застосовується для вибору окремих дописів, незалежно від того, чи збігаються вони з ключовими словами нижче. <a href="%{path}">Перегляд чи вилучення дописів з фільтра</a>.
+      title: Редагувати фільтр
+    errors:
+      deprecated_api_multiple_keywords: Ці параметри не можна змінити з цього застосунку, тому що вони застосовуються до більш ніж одного ключового слова. Використовуйте новішу версію застосунку або вебінтерфейс.
+      invalid_context: Контекст неправильний або не був наданий
+    index:
+      contexts: Фільтри в %{contexts}
+      delete: Видалити
+      empty: У вас немає фільтрів.
+      expires_in: Закінчується %{distance}
+      expires_on: Закінчується %{date}
+      keywords:
+        few: "%{count} ключові слова"
+        many: "%{count} ключових слів"
+        one: "%{count} ключове слово"
+        other: "%{count} ключових слів"
+      statuses:
+        few: "%{count} дописи"
+        many: "%{count} дописів"
+        one: "%{count} допис"
+        other: "%{count} дописа"
+      statuses_long:
+        few: Сховано %{count} окремі дописи
+        many: Сховано %{count} окремих дописів
+        one: Сховано %{count} окремий допис
+        other: Сховано %{count} окремі дописи
+      title: Фільтри
+    new:
+      save: Зберегти новий фільтр
+      title: Додати фільтр
+    statuses:
+      back_to_filter: Назад до фільтру
+      batch:
+        remove: Вилучити з фільтра
+      index:
+        hint: Цей фільтр застосовується для вибору окремих дописів, незалежно від інших критеріїв. Ви можете додавати більше дописів до цього фільтра з вебінтерфейсу.
+        title: Відфільтровані дописи
+  generic:
+    all: Усі
+    all_items_on_page_selected_html:
+      few: Усі <strong>%{count}</strong> елементи на цій сторінці вибрано.
+      many: Усі <strong>%{count}</strong> елементів на цій сторінці вибрано.
+      one: "<strong>%{count}</strong> елемент на цій сторінці вибрано."
+      other: "<strong>%{count}</strong> елементи на цій сторінці вибрано."
+    all_matching_items_selected_html:
+      few: Усі <strong>%{count}</strong> елементи, що збігаються з вашим пошуком вибрано.
+      many: Усі <strong>%{count}</strong> елементів, що збігаються з вашим пошуком вибрано.
+      one: "<strong>%{count}</strong> елемент, що збігається з вашим пошуком вибрано."
+      other: Усі <strong>%{count}</strong> елементи, що збігаються з вашим пошуком вибрано.
+    changes_saved_msg: Зміни успішно збережені!
+    copy: Копіювати
+    delete: Видалити
+    deselect: Скасувати вибір
+    none: Немає
+    order_by: Сортувати за
+    save_changes: Зберегти зміни
+    select_all_matching_items:
+      few: Вибрати всі %{count} елементи, що збігаються з вашим пошуком.
+      many: Вибрати всі %{count} елементів, що збігаються з вашим пошуком.
+      one: Вибрати %{count} елемент, що збігається з вашим пошуком.
+      other: Вибрати всі %{count} елементи, що збігаються з вашим пошуком.
+    today: сьогодні
+    validation_errors:
+      few: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
+      many: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
+      one: Щось досі не гаразд! Перегляньте повідомлення про помилку
+      other: Щось досі не гаразд! Перегляньте %{count} повідомлень про помилки
+  imports:
+    errors:
+      invalid_csv_file: 'Хибний файл CSV. Помилка: %{error}'
+      over_rows_processing_limit: містить більше ніж %{count} рядків
+    modes:
+      merge: Злиття
+      merge_long: Зберегти наявні записи та додати нові
+      overwrite: Перезаписувати
+      overwrite_long: Замінити наявні записи новими
+    preface: Ви можете імпортувати дані, які ви експортували з іншого сервера, наприклад, список людей, яких ви відстежуєте або блокуєте.
+    success: Ваші дані завантажено та буде оброблено найближчим часом
+    types:
+      blocking: Список блокувань
+      bookmarks: Закладки
+      domain_blocking: Список заблокованих сайтів
+      following: Підписки
+      muting: Список глушення
+    upload: Завантажити
+  invites:
+    delete: Деактивувати
+    expired: Вийшов
+    expires_in:
+      '1800': 30 хвилин
+      '21600': 6 годин
+      '3600': 1 година
+      '43200': 12 годин
+      '604800': 1 тиждень
+      '86400': 1 день
+    expires_in_prompt: Ніколи
+    generate: Згенерувати
+    invited_by: 'Вас запросив:'
+    max_uses:
+      few: "%{count} використання"
+      many: "%{count} використань"
+      one: 1 використання
+      other: "%{count} використань"
+    max_uses_prompt: Без обмеження
+    prompt: Генеруйте та діліться посиланням з іншими для надання доступу до сайту
+    table:
+      expires_at: Час роботи
+      uses: Використання
+    title: Запросити людей
+  lists:
+    errors:
+      limit: Ви досягли максимальної кількості списків
+  login_activities:
+    authentication_methods:
+      otp: застосунок двофакторної автентифікації
+      password: пароль
+      sign_in_token: код безпеки е-поштою
+      webauthn: ключі безпеки
+    description_html: Якщо ви помітили невідомі вам дії, тоді подумайте про зміну свого пароля та можливість увімкнення двофакторної автентифікації.
+    empty: Немає історії входів
+    failed_sign_in_html: Не вдалося увійти з %{method} з %{ip} (%{browser})
+    successful_sign_in_html: Успішний вхід з %{method} з %{ip} (%{browser})
+    title: Історія входів
+  media_attachments:
+    validations:
+      images_and_video: Не можна додати відео до допису з зображеннями
+      not_ready: Не можна прикріпити файли, оброблення яких ще не закінчилося. Спробуйте ще раз через хвилину!
+      too_many: Не можна додати більше 4 файлів
+  migrations:
+    acct: Перенесено до
+    cancel: Скасувати перенаправлення
+    cancel_explanation: Скасування перенаправлення реактивує ваш поточний обліковий запис, але не поверне підписників, які були переміщені в інший обліковий запис.
+    cancelled_msg: Перенаправлення успішно скасовано.
+    errors:
+      already_moved: той самий обліковий запис, до якого ви вже переміщені
+      missing_also_known_as: не є зворотнім посиланням на цей обліковий запис
+      move_to_self: неможливо перемістити обліковий запис до самого себе
+      not_found: не знайдено
+      on_cooldown: Ви у витверезнику
+    followers_count: Підписників на час міграції
+    incoming_migrations: Переїзд з іншого облікового запису
+    incoming_migrations_html: Щоб переїхати з іншого облікового запису на цей, ви маєте <a href="%{path}">створити псевдонім облікового запису</a>.
+    moved_msg: Ваш обліковий запис зараз перенаправляється до %{acct}. Ваші підписники також будуть переміщені.
+    not_redirecting: Наразі ваш обліковий запис не перенаправлений до іншого облікового запису.
+    on_cooldown: Нещодавно ви вже перенесли ваш обліковий запис. Функція переносу стане доступною знову через %{count} днів.
+    past_migrations: Попередні міграції
+    proceed_with_move: Перемістити підписників
+    redirected_msg: Ваш обліковий запис зараз перенаправляється до %{acct}.
+    redirecting_to: Ваш обліковий запис перенаправляється до %{acct}.
+    set_redirect: Встановити перенаправлення
+    warning:
+      backreference_required: Спочатку має бути налаштовано зворотне посилання поточного облікового запису на новий обліковий запис
+      before: 'Перш ніж продовжити, уважно прочитайте ці нотатки:'
+      cooldown: Після переїзду ви деякий час не можете переїжджати знову
+      disabled_account: Поточний обліковий запис не буде повністю придатний до використання. Проте ви матимете доступ до експорту даних та повторної активації.
+      followers: Ця дія призведе до переміщення всіх підписників з поточного облікового запису до нового облікового запису
+      only_redirect_html: Або ж ви можете <a href="%{path}"> просто налаштувати перенаправлення у ваш профіль</a>.
+      other_data: Ніякі інші дані не будуть переміщені автоматично
+      redirect: Профіль цього облікового запису буде оновлено з заміткою про перенаправлення, а також виключений з пошуку
+  moderation:
+    title: Модерація
+  move_handler:
+    carry_blocks_over_text: Цей користувач переїхав з %{acct}, який ви заблокували.
+    carry_mutes_over_text: Цей користувач переїхав з %{acct}, який ви нехтуєте.
+    copy_account_note_text: 'Цей користувач був переміщений з %{acct}, ось ваші попередні нотатки:'
+  navigation:
+    toggle_menu: Відкрити меню
+  notification_mailer:
+    admin:
+      report:
+        subject: "%{name} подає скаргу"
+      sign_up:
+        subject: "%{name} приєднується"
+    favourite:
+      body: 'Ваш допис подобається %{name}:'
+      subject: Ваш допис сподобався %{name}
+      title: Нове вподобання
+    follow:
+      body: "%{name} тепер стежить за вами!"
+      subject: "%{name} тепер стежить за вами"
+      title: Новий підписник
+    follow_request:
+      action: Керувати запитами на підписку
+      body: "%{name} надіслав запит на підписку"
+      subject: "%{name} хоче підписатися на Вас"
+      title: Новий запит на підписку
+    mention:
+      action: Відповісти
+      body: 'Вас згадав(-ла) %{name} в:'
+      subject: Вас згадав %{name}
+      title: Нова згадка
+    poll:
+      subject: Опитування від %{name} завершено
+    reblog:
+      body: "%{name} поширює ваш допис:"
+      subject: "%{name} поширив ваш статус"
+      title: Нове поширення
+    status:
+      subject: "%{name} щойно опубліковано"
+    update:
+      subject: "%{name} змінює допис"
+  notifications:
+    email_events: Події, про які сповіщати електронною поштою
+    email_events_hint: 'Оберіть події, про які ви хочете отримувати сповіщення:'
+    other_settings: Інші налаштування сповіщень
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: млрд
+          million: млн
+          quadrillion: квдрл
+          thousand: тис
+          trillion: трлн
+  otp_authentication:
+    code_hint: Для підтверждення введіть код, згенерований додатком аутентифікатора
+    description_html: Якщо ви увімкнете <strong>двофакторну автентифікацію</strong> за допомогою застосунку автентифікації, для входу вам буде потрібен телефон, що генеруватиме токени для входу.
+    enable: Увімкнути
+    instructions_html: "<strong>Скануйте цей QR-код за допомогою Google Authenticator чи іншого TOTP-застосунку на своєму телефоні</strong>. Відтепер застосунок генеруватиме коди, які буде необхідно ввести для входу."
+    manual_instructions: 'Якщо ви не можете сканувати QR-код і потрібно ввести його вручну, ось він:'
+    setup: Налаштувати
+    wrong_code: Введений код неправильний! Чи правильно встановлений час на сервері та пристрої?
+  pagination:
+    newer: Новіше
+    next: Далі
+    older: Старіші
+    prev: Назад
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Ви вже голосували в цьому опитуванні
+      duplicate_options: містить повторювані варіанти
+      duration_too_long: надто далеко у майбутньому
+      duration_too_short: надто мала тривалість
+      expired: Це опитування вже завершено
+      invalid_choice: Обраного варіанту голосування не існує
+      over_character_limit: не може бути довше ніж %{max} символів кожен
+      too_few_options: має містити більше ніж один варіант
+      too_many_options: не може мати більше ніж %{max} варіантів
+  preferences:
+    other: Інше
+    posting_defaults: Усталені налаштування дописів
+    public_timelines: Глобальні стрічки
+  privacy_policy:
+    title: Політика конфіденційності
+  reactions:
+    errors:
+      limit_reached: Досягнуто обмеження різних реакцій
+      unrecognized_emoji: не є розпізнаним емоджі
+  relationships:
+    activity: Діяльність облікового запису
+    confirm_follow_selected_followers: Ви справді бажаєте підписатися на обраних підписників?
+    confirm_remove_selected_followers: Ви дійсно бажаєте видалити вибраних підписників?
+    confirm_remove_selected_follows: Ви дійсно хочете вилучити вибрані підписки?
+    dormant: Неактивні
+    follow_failure: Не вдалося підписатися на деякі вибрані облікові записи.
+    follow_selected_followers: Стежити за вибраними підписниками
+    followers: Підписники
+    following: Підписник
+    invited: Запрошені
+    last_active: Остання активність
+    most_recent: За часом створення
+    moved: Переміщено
+    mutual: Взаємні уподобання
+    primary: Первинні
+    relationship: Зв’язок
+    remove_selected_domains: Видалити усіх підписників з обраних доменів
+    remove_selected_followers: Видалити обраних підписників
+    remove_selected_follows: Не стежити за обраними користувачами
+    status: Стан облікового запису
+  remote_follow:
+    missing_resource: Не вдалося знайти необхідний URL переадресації для вашого облікового запису
+  reports:
+    errors:
+      invalid_rules: не посилається на чинні правила
+  rss:
+    content_warning: 'Попередження про матеріали:'
+    descriptions:
+      account: Загальнодоступні дописи від @%{acct}
+      tag: 'Загальнодоступні дописи позначені #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Ви перевищили ліміт в %{limit} запланованих дописів на сьогодні
+    over_total_limit: Ви перевищили ліміт в %{limit} запланованих дописів
+    too_soon: Запланована дата має бути в майбутньому
+  sessions:
+    activity: Остання активність
+    browser: Браузер
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Хром
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Невідомий браузер
+      huawei_browser: Huawei Браузер
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Опера
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Сафарі
+      uc_browser: UC Browser
+      unknown_browser: Невідомий браузер
+      weibo: Weibo
+    current_session: Поточний сеанс
+    description: "%{browser} на %{platform}"
+    explanation: Це веб-браузери, авторизовані у вашому обліковому записі Mastodon.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      kai_os: KaiOS
+      linux: Linux
+      mac: macOS
+      unknown_platform: Невідома Платформа
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Закінчити
+    revoke_success: Сесія успішно закінчена
+    title: Сеанси
+    view_authentication_history: Переглянути історію входів вашого облікового запису
+  settings:
+    account: Обліковий запис
+    account_settings: Налаштування облікового запису
+    aliases: Псевдоніми облікового запису
+    appearance: Вигляд
+    authorized_apps: Авторизовані застосунки
+    back: Назад до Mastodon
+    delete: Видалення облікового запису
+    development: Розробка
+    edit_profile: Редагувати профіль
+    export: Експорт даних
+    featured_tags: Рекомендовані хештеґи
+    import: Імпорт
+    import_and_export: Імпорт та експорт
+    migrate: Міграція облікового запису
+    notifications: Сповіщення
+    preferences: Налаштування
+    profile: Профіль
+    relationships: Підписки та підписники
+    statuses_cleanup: Автовидалення допису
+    strikes: Попередження модераторів
+    two_factor_authentication: Двофакторна автентифікація
+    webauthn_authentication: Ключі безпеки
+  statuses:
+    attached:
+      audio:
+        few: "%{count} аудіозаписи"
+        many: "%{count} аудіозаписів"
+        one: "%{count} аудіозапис"
+        other: "%{count} аудіозаписів"
+      description: 'Прикріплено: %{attached}'
+      image:
+        few: "%{count} зображень"
+        many: "%{count} зображень"
+        one: "%{count} зображення"
+        other: "%{count} зображення"
+      video:
+        few: "%{count} відео"
+        many: "%{count} відео"
+        one: "%{count} відео"
+        other: "%{count} відео"
+    boosted_from_html: Просунуто від %{acct_link}
+    content_warning: 'Попередження про контент: %{warning}'
+    default_language: Така ж як і мова інтерфейсу
+    disallowed_hashtags:
+      few: 'заборонених хештеґа: %{tags}'
+      many: 'заборонених хештеґів: %{tags}'
+      one: 'заборонений хештеґ: %{tags}'
+      other: 'заборонених хештеґів: %{tags}'
+    edited_at_html: Відредаговано %{date}
+    errors:
+      in_reply_not_found: Допису, на який ви намагаєтеся відповісти, не існує.
+    open_in_web: Відкрити у вебі
+    over_character_limit: перевищено ліміт символів %{max}
+    pin_errors:
+      direct: Не можливо прикріпити дописи, які видимі лише згаданим користувачам
+      limit: Ви вже закріпили максимальну кількість дописів
+      ownership: Не можна закріпити чужий допис
+      reblog: Не можна закріпити просунутий допис
+    poll:
+      total_people:
+        few: "%{count} людей"
+        many: "%{count} людей"
+        one: "%{count} людина"
+        other: "%{count} людей"
+      total_votes:
+        few: "%{count} голоса"
+        many: "%{count} голосів"
+        one: "%{count} голос"
+        other: "%{count} голоси"
+      vote: Проголосувати
+    show_more: Розгорнути
+    show_newer: Показати новіші
+    show_older: Показати давніші
+    show_thread: Відкрити обговорення
+    sign_in_to_participate: Увійдіть, щоб брати участь у бесіді
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      direct: Особисто
+      private: Для підписників
+      private_long: Показувати тільки підписникам
+      public: Для всіх
+      public_long: Показувати всім
+      unlisted: Приховувати зі стрічок
+      unlisted_long: Показувати всім, але не відображати в публічних стрічках
+  statuses_cleanup:
+    enabled: Автовидалення давніх дописів
+    enabled_hint: Автоматично видаляє ваші дописи після досягнення вказаного вікового порогу, якщо вони не є одним з наведених винятків
+    exceptions: Винятки
+    explanation: Оскільки видалення дописів є складною операцією, то це відбувається повільно, коли сервер не дуже завантажено. З цієї причини ваші дописи можуть бути видалені через деякий час після досягнення вікового порогу.
+    ignore_favs: Ігнорувати обране
+    ignore_reblogs: Ігнорувати поширення
+    interaction_exceptions: Винятки базуються на взаємодії
+    interaction_exceptions_explanation: Зверніть увагу, що немає гарантії, щоб дописи були видалені, якщо вони йдуть нижче улюблених або підсилювачів після того, як вони перейшли за них.
+    keep_direct: Зберігати приватні повідомлення
+    keep_direct_hint: Не видаляти ваших особистих повідомлень
+    keep_media: Зберігати повідомлення з вкладеними мультимедійними файлами
+    keep_media_hint: Не видаляти ваших дописів, у яких є вкладення медіа
+    keep_pinned: Зберігати закріплені дописи
+    keep_pinned_hint: Не вилучати прикріплені дописи
+    keep_polls: Залишити опитування
+    keep_polls_hint: Не видаляти опитувань
+    keep_self_bookmark: Не зберігати дописи, які ви додали до закладок
+    keep_self_bookmark_hint: Не видаляти ваші власні дописи, якщо ви їх додали до закладок
+    keep_self_fav: Залишати обрані дописи
+    keep_self_fav_hint: Не видаляти ваші власні дописи, якщо ви їх додали до обраних
+    min_age:
+      '1209600': 2 тижні
+      '15778476': 6 місяців
+      '2629746': 1 місяць
+      '31556952': 1 рік
+      '5259492': 2 місяці
+      '604800': 1 тиждень
+      '63113904': 2 роки
+      '7889238': 3 місяці
+    min_age_label: Поріг давності
+    min_favs: Залишати дописи в обраному більше ніж
+    min_favs_hint: Не видаляти ваших дописів, що були поширені більш ніж вказану кількість разів. Залиште порожнім, щоб видаляти дописи, попри кількість їхніх поширень
+    min_reblogs: Залишати дописи, поширені більше ніж
+    min_reblogs_hint: Не видаляти ваших дописів, що були поширені більш ніж вказану кількість разів. Залиште порожнім, щоб видаляти дописи, попри кількість їхніх поширень
+  stream_entries:
+    pinned: Закріплений допис
+    reblogged: поширив
+    sensitive_content: Дражливий зміст
+  strikes:
+    errors:
+      too_late: Запізно оскаржувати це попередження
+  tags:
+    does_not_match_previous_name: не збігається з попереднім ім'ям
+  themes:
+    contrast: Mastodon (Висока контрастність)
+    default: Mastodon (Темна)
+    mastodon-light: Mastodon (світла)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+  two_factor_authentication:
+    add: Додати
+    disable: Вимкнути
+    disabled_success: Двофакторна аутентифікація вимкнена
+    edit: Редагувати
+    enabled: Двофакторна аутентифікація увімкнена
+    enabled_success: Двофакторна аутентифікація успішно увімкнена
+    generate_recovery_codes: Згенерувати коди відновлення
+    lost_recovery_codes: Коди відновлення дозволяють повернути доступ до вашого облікового запису у випадку втрати телефону. Якщо ви втратили ваші коди відновлення, ви можете знову згенерувати їх тут. Ваші старі коди відновлення будуть анульовані.
+    methods: Методи двофакторної авторизації
+    otp: Програма авторизації
+    recovery_codes: Запасні коди відновлення
+    recovery_codes_regenerated: Коди відновлення успішно згенеровані
+    recovery_instructions_html: У випадку втрати доступу до вашого телефону ви можете використати один з нижчевказаних кодів відновлення, щоб повернути доступ до вашого облікового запису. <strong>Тримайте коди відновлення у безпеці</strong>, наприклад, роздрукуйте їх та зберігайте разом з іншими важливими документами.
+    webauthn: Ключі безпеки
+  user_mailer:
+    appeal_approved:
+      action: Перейти у ваш обліковий запис
+      explanation: Оскарження попередження вашому обліковому запису %{strike_date}, яке ви надіслали %{appeal_date} було схвалено. Ваш обліковий запис знову вважається добропорядним.
+      subject: Вашу апеляцію від %{date} було схвалено
+      title: Апеляцію схвалено
+    appeal_rejected:
+      explanation: Оскарження попередження вашому обліковому запису %{strike_date}, яке ви надіслали %{appeal_date} було відхилено.
+      subject: Вашу апеляцію від %{date} було відхилено
+      title: Апеляцію відхилено
+    backup_ready:
+      explanation: Ви робили запит повної резервної копії вашого облікового запису Mastodon. Вона вже готова для завантаження!
+      subject: Ваш архів готовий до завантаження
+      title: Винесення архіву
+    suspicious_sign_in:
+      change_password: змінити свій пароль
+      details: 'Відомості про вхід:'
+      explanation: Ми виявили вхід до вашого облікового запису з нової IP-адреси.
+      further_actions_html: Якщо це були не ви. Радимо вам негайно %{action} й увімкнути двоетапну перевірку, щоб уберегти свій обліковий запис.
+      subject: До вашого облікового запису отримано доступ з нової IP-адреси
+      title: Новий вхід
+    warning:
+      appeal: Подати апеляцію
+      appeal_description: Якщо ви вважаєте, що це помилка, ви можете надіслати оскаржити дії персоналу %{instance}.
+      categories:
+        spam: Спам
+        violation: Вміст порушує такі правила спільноти
+      explanation:
+        delete_statuses: Деякі з ваших дописів порушили одне або кілька правил спільноти, і модератори %{instance} видалили їх.
+        disable: Ви можете більше не використовувати свій обліковий запис, але ваш профіль та інші дані залишаються недоторканими. Ви можете надіслати запит на створення резервної копії ваших даних, змінити налаштування облікового запису або видалити свій обліковий запис.
+        mark_statuses_as_sensitive: Деякі з ваших дописів модератори %{instance} позначили делікатними. Це означає, що людям потрібно буде торкнутися медіа у дописах перед тим, як буде показано попередній перегляд. Ви можете самостійно позначити медіа делікатним, коли розміщуватимете його в майбутньому.
+        sensitive: Відтепер усі ваші завантажені медіафайли будуть позначені делікатними й приховані за попередженням.
+        silence: Ви й надалі можете користуватися своїм обліковим записом, але ваші дописи на цьому сервері бачитимуть лише ті люди, які вже стежать за вами, а вас може бути виключено з різних можливостей виявлення. Проте, інші можуть почати стежити за вами вручну.
+        suspend: Ви більше не можете користуватися своїм обліковим записом, а ваші інші дані більше недоступні. Ви досі можете увійти, щоб надіслати запит на отримання резервної копії своїх даних до повного видалення впродовж приблизно 30 днів, але ми збережемо деякі основні дані, щоб унеможливити ухилення вами від призупинення.
+      reason: 'Причина:'
+      statuses: 'Цитовані дописи:'
+      subject:
+        delete_statuses: Ваші дописи на %{acct} були вилучені
+        disable: Ваш обліковий запис %{acct} було заморожено
+        mark_statuses_as_sensitive: Ваші дописи на %{acct} позначені делікатними
+        none: Попередження для %{acct}
+        sensitive: Ваші дописи на %{acct} відтепер будуть позначені делікатними
+        silence: Ваш обліковий запис %{acct} було обмежено
+        suspend: Ваш обліковий запис %{acct} було призупинено
+      title:
+        delete_statuses: Дописи вилучено
+        disable: Обліковий запис заморожено
+        mark_statuses_as_sensitive: Дописи позначено делікатними
+        none: Попередження
+        sensitive: Обліковий запис позначено делікатним
+        silence: Ообліковий запис обмежено
+        suspend: Обліковий запис призупинено
+    welcome:
+      edit_profile_action: Налаштувати профіль
+      edit_profile_step: Ви можете налаштувати свій профіль, завантаживши зображення профілю, змінивши відображуване ім'я та інше. Ви можете включити для перегляду нових підписників до того, як вони матимуть змогу підписатися на вас.
+      explanation: Ось кілька порад для початку
+      final_action: Почати писати
+      final_step: 'Почніть дописувати! Навіть не підписавшись на вас, інші зможуть побачити ваші дописи, наприклад, у локальній стрічці та у хештеґах. Якщо ви хочете представитися, можете скористатися хештеґом #introductions.'
+      full_handle: Ваше звернення
+      full_handle_hint: Те, що ви хочете сказати друзям, щоб вони могли написати вам або підписатися з інших сайтів.
+      subject: Ласкаво просимо до Mastodon
+      title: Ласкаво просимо, %{name}!
+  users:
+    follow_limit_reached: Не можна слідкувати більш ніж за %{limit} людей
+    go_to_sso_account_settings: Перейдіть до налаштувань облікового запису постачальника ідентифікації
+    invalid_otp_token: Введено неправильний код
+    otp_lost_help_html: Якщо ви втратили доступ до обох, ви можете отримати доступ з %{email}
+    seamless_external_login: Ви увійшли за допомогою зовнішнього сервісу, тому налаштування паролю та електронної пошти недоступні.
+    signed_in_as: 'Ви увійшли як:'
+  verification:
+    explanation_html: 'Ви можете <strong>підтвердити володіння посиланнями в метаданих вашого профілю</strong>. Для цього на зазначеному сайті повинен міститися посилання на ваш профіль Mastodon. Посилання <strong>повинне</strong> мати атрибут <code>rel="me"</code>. Текстовий вміст посилання не має значення. Ось приклад:'
+    verification: Підтвердження
+  webauthn_credentials:
+    add: Додати новий ключ безпеки
+    create:
+      error: Сталася проблема при додаванні ключа безпеки. Спробуйте знову.
+      success: Ключ безпеки успішно доданий.
+    delete: Видалити
+    delete_confirmation: Ви впевнені, що хочете вилучити цей ключ безпеки?
+    description_html: Якщо ви увімкнете <strong>автентифікацію за допомогою ключа безпеки</strong>, вхід буде вимагати використання одного з ваших ключів безпеки.
+    destroy:
+      error: Сталася проблема при видаленні ключа безпеки. Спробуйте знову.
+      success: Ключ безпеки успішно видалено.
+    invalid_credential: Невірний ключ безпеки
+    nickname_hint: Введіть псевдонім нового ключа безпеки
+    not_enabled: Ви ще не активували WebAuthn
+    not_supported: Цей браузер не підтримує ключі безпеки
+    otp_required: Для використання ключів безпеки, спочатку увімкніть двофакторну аутентифікацію.
+    registered_on: Зареєстровано %{date}

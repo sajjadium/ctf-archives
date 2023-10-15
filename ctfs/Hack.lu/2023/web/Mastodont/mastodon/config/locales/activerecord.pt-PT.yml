@@ -1,0 +1,55 @@
+---
+pt-PT:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Prazo
+        options: Escolhas
+      user:
+        agreement: Acordo de serviço
+        email: Endereço de correio electrónico
+        locale: Região
+        password: Palavra-passe
+      user/account:
+        username: Nome de utilizador
+      user/invite_request:
+        text: Motivo
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: apenas letras, números e underscores
+              reserved: está reservado
+        admin/webhook:
+          attributes:
+            url:
+              invalid: não é um URL válido
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: não é um URL válido
+        import:
+          attributes:
+            data:
+              malformed: está malformado
+        status:
+          attributes:
+            reblog:
+              taken: da publicação já existe
+        user:
+          attributes:
+            email:
+              blocked: usa um fornecedor de e-mail que não é permitido
+              unreachable: não parece existir
+            role_id:
+              elevated: não pode ser maior que o da sua função atual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: incluir permissões que não são seguras para a função base
+              elevated: não pode incluir permissões que a sua função atual não possui
+              own_role: não pode ser alterado com a sua função atual
+            position:
+              elevated: não pode ser maior que o da sua função atual
+              own_role: não pode ser alterado com a sua função atual

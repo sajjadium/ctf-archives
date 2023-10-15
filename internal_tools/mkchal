@@ -10,6 +10,9 @@ import shutil
 import string
 
 def is_valid(line):
+  if len(line.strip()) == 0:
+    return True
+
   if line.strip().lower().startswith('download link') or  line.strip().lower().startswith('challenge author'):
     return False
 

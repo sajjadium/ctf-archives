@@ -1,0 +1,55 @@
+---
+hu:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Határidő
+        options: Lehetőségek
+      user:
+        agreement: Szolgáltatási megállapodás
+        email: E-mail-cím
+        locale: Régió
+        password: Jelszó
+      user/account:
+        username: Felhasználónév
+      user/invite_request:
+        text: Indoklás
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: csak betűket, számokat vagy alávonást tartalmazhat
+              reserved: fenntartott
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nem érvényes URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nem érvényes URL
+        import:
+          attributes:
+            data:
+              malformed: hibás
+        status:
+          attributes:
+            reblog:
+              taken: már létezik ehhez a bejegyzéshez
+        user:
+          attributes:
+            email:
+              blocked: egy letiltott email szolgáltatót használ
+              unreachable: úgy tűnik, hogy nem létezik
+            role_id:
+              elevated: nem lehet magasabb, mint a jelenlegi szereped
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: tartalmaz olyan engedélyeket is, melyek az alap szerephez nem biztonságosak
+              elevated: nem tartalmazhat olyan engedélyeket, melyek nincsenek benne a jelenlegi szerepedben
+              own_role: nem megváltoztatható a jelenlegi szerepköröddel
+            position:
+              elevated: nem lehet magasabb, mint a jelenlegi szereped
+              own_role: nem megváltoztatható a jelenlegi szerepköröddel

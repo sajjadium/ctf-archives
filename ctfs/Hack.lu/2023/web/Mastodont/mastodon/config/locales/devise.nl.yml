@@ -1,0 +1,115 @@
+---
+nl:
+  devise:
+    confirmations:
+      confirmed: Jouw account is bevestigd.
+      send_instructions: Je ontvangt via e-mail instructies hoe je jouw account kunt bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw account kunt bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
+    failure:
+      already_authenticated: Je bent al ingelogd.
+      inactive: Jouw account is nog niet geactiveerd.
+      invalid: "%{authentication_keys} of wachtwoord ongeldig."
+      last_attempt: Je hebt nog één poging over voordat jouw account wordt opgeschort.
+      locked: Jouw account is opgeschort.
+      not_found_in_database: "%{authentication_keys} of wachtwoord ongeldig."
+      pending: Jouw account moet nog steeds worden beoordeeld.
+      timeout: Jouw sessie is verlopen, log opnieuw in.
+      unauthenticated: Je dient in te loggen of te registreren.
+      unconfirmed: Je dient eerst jouw account te bevestigen.
+    mailer:
+      confirmation_instructions:
+        action: E-mailadres verifiëren
+        action_with_app: Bevestigen en naar %{app} teruggaan
+        explanation: Je hebt een account op %{host} aangemaakt en met één klik kun je deze activeren. Wanneer jij dit account niet hebt aangemaakt, mag je deze e-mail negeren.
+        explanation_when_pending: Je vroeg met dit e-mailadres een uitnodiging aan voor %{host}. Nadat je jouw e-mailadres hebt bevestigd, beoordelen we jouw aanvraag. Je kunt tot dan nog niet inloggen. Wanneer jouw aanvraag wordt afgewezen, worden jouw gegevens verwijderd en hoef je daarna verder niets meer te doen. Wanneer jij dit niet was, kun je deze e-mail negeren.
+        extra_html: Bekijk ook de <a href="%{terms_path}">regels van de Mastodonserver</a> en <a href="%{policy_path}">onze gebruiksvoorwaarden</a>.
+        subject: 'Mastodon: E-mail bevestigen voor %{instance}'
+        title: E-mailadres verifiëren
+      email_changed:
+        explanation: 'Het e-mailadres van jouw account is gewijzigd naar:'
+        extra: Wanneer jij jouw e-mailadres niet hebt gewijzigd, heeft iemand zich waarschijnlijk toegang tot jouw account verschaft. Verander onmiddellijk jouw wachtwoord of neem contact op met de beheerder van jouw Mastodonserver wanneer je niet meer kunt inloggen.
+        subject: 'Mastodon: E-mailadres is veranderd'
+        title: Nieuw e-mailadres
+      password_change:
+        explanation: Het wachtwoord van dit account is gewijzigd.
+        extra: Wanneer jij jouw wachtwoord niet hebt gewijzigd, heeft iemand zich waarschijnlijk toegang tot jouw account verschaft. Verander onmiddellijk jouw wachtwoord of neem contact op met de beheerder van jouw Mastodonserver wanneer je niet meer kunt inloggen.
+        subject: 'Mastodon: Wachtwoord veranderd'
+        title: Wachtwoord gewijzigd
+      reconfirmation_instructions:
+        explanation: Bevestig jouw nieuw e-mailadres om deze te wijzigen.
+        extra: Wanneer jij deze wijziging niet hebt uitgevoerd, mag je deze e-mail negeren. Het e-mailadres van jouw Mastodonaccount wordt pas daadwerkelijk gewijzigd totdat je de link hierboven aanklikt.
+        subject: 'Mastodon: Bevestig het e-mailadres voor %{instance}'
+        title: E-mailadres verifiëren
+      reset_password_instructions:
+        action: Wachtwoord wijzigen
+        explanation: Jij hebt een nieuw wachtwoord voor jouw account aangevraagd.
+        extra: Wanneer jij dit niet hebt aangevraagd, mag je deze e-mail negeren. Jouw wachtwoord wordt pas gewijzigd nadat je de link hierboven hebt aangeklikt en een nieuw wachtwoord aanmaakt.
+        subject: 'Mastodon: Wachtwoord opnieuw instellen'
+        title: Wachtwoord opnieuw instellen
+      two_factor_disabled:
+        explanation: Tweestapsverificatie voor jouw account is uitgeschakeld. Je kunt nu alleen inloggen met een e-mailadres en wachtwoord.
+        subject: 'Mastodon: Tweestapsverificatie uitgeschakeld'
+        title: Tweestapsverificatie uitgeschakeld
+      two_factor_enabled:
+        explanation: Tweestapsverificatie voor jouw account is ingeschakeld. Om te kunnen inloggen is een door een tweestapsverificatie-app genereerde toegangscode nodig.
+        subject: 'Mastodon: Tweestapsverificatie ingeschakeld'
+        title: Tweestapsverificatie ingeschakeld
+      two_factor_recovery_codes_changed:
+        explanation: De vorige herstelcodes zijn ongeldig gemaakt en nieuwe zijn aangemaakt.
+        subject: 'Mastodon: Tweestaps-herstelcodes zijn opnieuw aangemaakt'
+        title: Herstelcodes tweestapsverificatie veranderd
+      unlock_instructions:
+        subject: 'Mastodon: Instructies om opschorten account ongedaan te maken'
+      webauthn_credential:
+        added:
+          explanation: De volgende beveiligingssleutel is aan uw account toegevoegd
+          subject: 'Mastodon: Nieuwe beveiligingssleutel'
+          title: Een nieuwe beveiligingssleutel is toegevoegd
+        deleted:
+          explanation: De volgende beveiligingssleutel is uit jouw account verwijderd
+          subject: 'Mastodon: Beveiligingssleutel verwijderd'
+          title: Een van jouw beveiligingssleutels is verwijderd
+      webauthn_disabled:
+        explanation: Verificatie met beveiligingssleutels is uitgeschakeld voor jouw account. Inloggen is nu alleen mogelijk met het gebruik van een door een gepaarde TOTP-app genereerde sleutel.
+        subject: 'Mastodon: Verificatie met beveiligingssleutels is uitgeschakeld'
+        title: Beveiligingssleutels uitgeschakeld
+      webauthn_enabled:
+        explanation: Verificatie met beveiligingssleutels is ingeschakeld voor jouw account. Jouw beveiligingssleutel kan nu gebruikt worden om in te loggen.
+        subject: 'Mastodon: Verificatie met beveiligingssleutels is ingeschakeld'
+        title: Beveiligingssleutels ingeschakeld
+    omniauth_callbacks:
+      failure: Kon je niet inloggen met jouw %{kind} account, omdat “%{reason}”.
+      success: Succesvol met jouw %{kind} account ingelogd.
+    passwords:
+      no_token: Je kunt deze pagina niet benaderen zonder dat je een e-mail om je wachtwoord opnieuw in te stellen hebt ontvangen.
+      send_instructions: Je ontvangt via e-mail instructies hoe je jouw wachtwoord opnieuw moet instellen. Kijk tussen je spam wanneer niks werd ontvangen.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je jouw wachtwoord opnieuw kunt instellen. Kijk tussen je spam wanneer niks werd ontvangen.
+      updated: Jouw wachtwoord is gewijzigd. Je bent nu ingelogd.
+      updated_not_active: Jouw wachtwoord is gewijzigd.
+    registrations:
+      destroyed: Jouw account is succesvol verwijderd. Wellicht tot ziens.
+      signed_up: Je bent geregistreerd.
+      signed_up_but_inactive: Je bent geregistreerd. Je kon alleen niet automatisch ingelogd worden omdat jouw account nog niet geactiveerd is.
+      signed_up_but_locked: Je bent ingeschreven. Je kon alleen niet automatisch ingelogd worden omdat jouw account is opgeschort.
+      signed_up_but_pending: Er is een bericht met een bevestigingslink naar jouw e-mailadres verzonden. Nadat je op deze link hebt geklikt nemen we jouw aanvraag in behandeling. Je wordt op de hoogte gesteld wanneer deze wordt goedgekeurd.
+      signed_up_but_unconfirmed: Je ontvangt via e-mail instructies hoe je jouw account kunt activeren. Kijk tussen je spam wanneer niks werd ontvangen.
+      update_needs_confirmation: Je hebt je e-mailadres succesvol gewijzigd, maar we moeten je nieuwe mailadres nog bevestigen. Controleer jouw e-mail en klik op de link in de mail om jouw e-mailadres te bevestigen. Kijk tussen je spam wanneer niks werd ontvangen.
+      updated: Jouw accountgegevens zijn opgeslagen.
+    sessions:
+      already_signed_out: Succesvol uitgelogd.
+      signed_in: Je bent succesvol ingelogd.
+      signed_out: Je bent succesvol uitgelogd.
+    unlocks:
+      send_instructions: Je ontvangt via e-mail instructies hoe je het opschorten van jouw account ongedaan kunt maken. Kijk tussen je spam wanneer niks werd ontvangen.
+      send_paranoid_instructions: Als jouw e-mailadres in de database staat, ontvang je via e-mail instructies hoe je het opschorten van jouw account ongedaan kunt maken. Kijk tussen je spam wanneer niks werd ontvangen.
+      unlocked: Jouw account is niet meer opgeschort. Je kunt nu weer inloggen.
+  errors:
+    messages:
+      already_confirmed: is reeds bevestigd
+      confirmation_period_expired: moet worden bevestigd binnen %{period}, probeer het nog een keer
+      expired: is verlopen, vraag een nieuwe aan
+      not_found: niet gevonden
+      not_locked: is niet opgeschort
+      not_saved:
+        one: '1 fout verhinderde het opslaan van deze %{resource}:'
+        other: "%{count} fouten verhinderden het opslaan van deze %{resource}:"

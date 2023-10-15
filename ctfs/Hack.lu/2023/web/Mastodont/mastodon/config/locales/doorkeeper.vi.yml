@@ -1,0 +1,195 @@
+---
+vi:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Tên ứng dụng
+        redirect_uri: URL chuyển hướng
+        scopes: Quyền hạn
+        website: Trang web ứng dụng
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: không thể chứa một mảnh.
+              invalid_uri: phải là một URI hợp lệ.
+              relative_uri: phải là một URI tuyệt đối.
+              secured_uri: phải là giao thức HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Cho phép
+        cancel: Hủy bỏ
+        destroy: Xóa bỏ
+        edit: Sửa
+        submit: Gửi đi
+      confirmations:
+        destroy: Bạn có chắc không?
+      edit:
+        title: Chỉnh sửa ứng dụng
+      form:
+        error: Rất tiếc! Hãy kiểm tra thông tin của bạn bởi vì nó có lỗi
+      help:
+        native_redirect_uri: Dùng %{native_redirect_uri} khi kiểm tra nội bộ
+        redirect_uri: Mỗi dòng chỉ một URL
+        scopes: Tách phạm vi ra bằng dấu cách. Bỏ trống để dùng phạm vi mặc định.
+      index:
+        application: Ứng dụng
+        callback_url: Gọi lại URL
+        delete: Xóa bỏ
+        empty: Bạn không có ứng dụng nào.
+        name: Tên
+        new: Ứng dụng mới
+        scopes: Quyền hạn
+        show: Xem
+        title: Ứng dụng của bạn
+      new:
+        title: Ứng dụng mới
+      show:
+        actions: Hành động
+        application_id: Mã Client
+        callback_urls: Gọi lại URLs
+        scopes: Quyền hạn
+        secret: Bí ẩn của Client
+        title: 'Ứng dụng: %{name}'
+    authorizations:
+      buttons:
+        authorize: Cho phép
+        deny: Từ chối
+      error:
+        title: Một lỗi đã xảy ra
+      new:
+        prompt_html: "%{client_name} yêu cầu truy cập tài khoản của bạn. Đây là ứng dụng của bên thứ ba. <strong>Nếu không tin tưởng, đừng cho phép nó.</strong>"
+        review_permissions: Xem lại quyền cho phép
+        title: Yêu cầu truy cập
+      show:
+        title: Sao chép mã này và dán nó vào ứng dụng.
+    authorized_applications:
+      buttons:
+        revoke: Gỡ
+      confirmations:
+        revoke: Bạn có chắc không?
+      index:
+        authorized_at: Cho phép vào %{date}
+        description_html: Đây là những ứng dụng có thể truy cập tài khoản của bạn bằng API. Nếu có ứng dụng bạn không nhận ra ở đây hoặc ứng dụng hoạt động sai, bạn có thể thu hồi quyền truy cập của ứng dụng đó.
+        last_used_at: Dùng lần cuối %{date}
+        never_used: Chưa dùng
+        scopes: Quyền cho phép
+        superapp: Đang dùng
+        title: Các ứng dụng đã dùng
+    errors:
+      messages:
+        access_denied: Chủ sở hữu tài nguyên hoặc máy chủ đã từ chối yêu cầu.
+        credential_flow_not_configured: Resource Owner Password Credentials không thành công do Doorkeeper.configure.resource_owner_from_credentials không được định cấu hình.
+        invalid_client: Xác minh ứng dụng khách không thành công do máy khách mơ hồ, không bao gồm xác thực ứng dụng khách hoặc phương thức xác thực không được hỗ trợ.
+        invalid_grant: Yêu cầu không hợp lệ, hết hạn, bị gỡ hoặc không khớp với tài khoản đã cấp phép. Hoặc xung đột với ứng dụng khác.
+        invalid_redirect_uri: URL chuyển hướng không hợp lệ.
+        invalid_request:
+          missing_param: 'Thiếu tham số bắt buộc: %{value}.'
+          request_not_authorized: Yêu cầu cần được cho phép trước. Tham số bắt buộc bị thiếu hoặc vô giá trị.
+          unknown: Thiếu tham số bắt buộc. Có thể giá trị tham số không được hỗ trợ, hoặc không đúng định dạng.
+        invalid_resource_owner: Thông tin xác minh chủ sở hữu tài nguyên được cung cấp không hợp lệ hoặc không thể tìm thấy chủ sở hữu tài nguyên
+        invalid_scope: Quyền yêu cầu không hợp lệ, không có thật hoặc sai định dạng.
+        invalid_token:
+          expired: Mã thông báo truy cập đã hết hạn
+          revoked: Mã token đăng nhập đã bị hủy
+          unknown: Mã thông báo truy cập không hợp lệ
+        resource_owner_authenticator_not_configured: Chủ sở hữu tài nguyên tìm thấy thất bại do Doorkeeper.configure.resource_owner_authenticator không được định cấu hình.
+        server_error: Có một điều kiện không thể chấp nhận khiến máy chủ không thực hiện yêu cầu.
+        temporarily_unavailable: Máy chủ này hiện không thể xử lý yêu cầu do đang quá tải hoặc bảo trì.
+        unauthorized_client: Khách hàng không được phép thực hiện yêu cầu này bằng phương pháp này.
+        unsupported_grant_type: Máy chủ này không cho phép ứng dụng có quyền truy cập.
+        unsupported_response_type: Máy chủ không hỗ trợ kiểu giao thức truyền thông này.
+    flash:
+      applications:
+        create:
+          notice: Ứng dụng được tạo.
+        destroy:
+          notice: Ứng dụng đã bị xóa.
+        update:
+          notice: Ứng dụng cập nhật.
+      authorized_applications:
+        destroy:
+          notice: Đã gỡ bỏ ứng dụng.
+    grouped_scopes:
+      access:
+        read: Chỉ đọc
+        read/write: Đọc và ghi
+        write: Chỉ ghi
+      title:
+        accounts: Tài khoản
+        admin/accounts: Quản trị tài khoản
+        admin/all: Mọi chức năng quản trị
+        admin/reports: Quản trị báo cáo
+        all: Toàn quyền truy cập vào tài khoản Mastodon của bạn
+        blocks: Chặn
+        bookmarks: Tút đã lưu
+        conversations: Thảo luận
+        crypto: Mã hóa đầu cuối
+        favourites: Lượt thích
+        filters: Bộ lọc
+        follow: Theo dõi, Ẩn và Chặn
+        follows: Đang theo dõi
+        lists: Danh sách
+        media: Tập tin đính kèm
+        mutes: Đã ẩn
+        notifications: Thông báo
+        push: Thông báo đẩy
+        reports: Báo cáo
+        search: Tìm kiếm
+        statuses: Tút
+    layouts:
+      admin:
+        nav:
+          applications: Các ứng dụng
+          oauth2_provider: Nhà cung cấp OAuth2
+      application:
+        title: Đăng nhập bằng OAuth
+    scopes:
+      admin:read: đọc tất cả dữ liệu trên máy chủ
+      admin:read:accounts: đọc thông tin nhạy cảm của tất cả các tài khoản
+      admin:read:canonical_email_blocks: đọc thông tin nhạy cảm của tất cả các khối email chuẩn
+      admin:read:domain_allows: đọc thông tin nhạy cảm của tất cả các tên miền cho phép
+      admin:read:domain_blocks: đọc thông tin nhạy cảm của tất cả các tên miền chặn
+      admin:read:email_domain_blocks: đọc thông tin nhạy cảm của tất cả các miền email chặn
+      admin:read:ip_blocks: đọc thông tin nhạy cảm của tất cả các IP chặn
+      admin:read:reports: đọc thông tin của các báo cáo và các tài khoản bị báo cáo
+      admin:write: sửa đổi tất cả dữ liệu trên máy chủ
+      admin:write:accounts: áp đặt hành động kiểm duyệt trên tài khoản
+      admin:write:canonical_email_blocks: thực hiện các hành động kiểm duyệt đối với chặn email
+      admin:write:domain_allows: thực hiện các hành động kiểm duyệt đối với các email cho phép
+      admin:write:domain_blocks: thực hiện các hành động kiểm duyệt đối với các tên miền chặn
+      admin:write:email_domain_blocks: thực hiện các hành động kiểm duyệt đối với các tên miền email chặn
+      admin:write:ip_blocks: áp đặt kiểm duyệt với các IP chặn
+      admin:write:reports: áp đặt kiểm duyệt với các báo cáo
+      crypto: dùng mã hóa đầu cuối
+      follow: sửa đổi các mối quan hệ tài khoản
+      push: nhận thông báo đẩy của bạn
+      read: đọc tất cả dữ liệu tài khoản của bạn
+      read:accounts: xem thông tin tài khoản
+      read:blocks: xem những người bạn chặn
+      read:bookmarks: xem những thứ bạn đã lưu
+      read:favourites: xem lượt thích
+      read:filters: xem bộ lọc của bạn
+      read:follows: xem lượt theo dõi của bạn
+      read:lists: xem danh sách của bạn
+      read:mutes: xem những người bạn đã ẩn
+      read:notifications: xem thông báo của bạn
+      read:reports: xem báo cáo của bạn
+      read:search: thay mặt bạn tìm kiếm
+      read:statuses: xem toàn bộ tút
+      write: sửa đổi mọi dữ liệu tài khoản của bạn
+      write:accounts: sửa đổi trang hồ sơ của bạn
+      write:blocks: chặn người và máy chủ
+      write:bookmarks: sửa đổi những thứ bạn lưu
+      write:conversations: ẩn và xóa thảo luận
+      write:favourites: lượt thích
+      write:filters: tạo bộ lọc
+      write:follows: theo dõi ai đó
+      write:lists: tạo danh sách
+      write:media: tải lên tập tin
+      write:mutes: ẩn người và thảo luận
+      write:notifications: xóa thông báo của bạn
+      write:reports: báo cáo người khác
+      write:statuses: đăng tút

@@ -1,0 +1,55 @@
+---
+da:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: 截止时间
+        options: Valgmuligheder
+      user:
+        agreement: Tjenesteaftale
+        email: E-mailadresse
+        locale: Landestandard
+        password: Adgangskode
+      user/account:
+        username: Brugernavn
+      user/invite_request:
+        text: Årsag
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: må kun indeholde cifre, bogstaver og understreger
+              reserved: er reserveret
+        admin/webhook:
+          attributes:
+            url:
+              invalid: "'er ikke en gyldig URL"
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: "'er ikke en gyldig URL"
+        import:
+          attributes:
+            data:
+              malformed: er forkert udformet
+        status:
+          attributes:
+            reblog:
+              taken: af allerede eksisterende status
+        user:
+          attributes:
+            email:
+              blocked: bruger en ikke-tilladt e-mailudbyder
+              unreachable: ser ikke ud til at eksistere
+            role_id:
+              elevated: kan ikke være højere end din aktuelle rolle
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: omfat tilladelser, som ikke er sikre for basisrollen
+              elevated: kan ikke omfatte tilladelser, din aktuelle rolle ikke besidder
+              own_role: kan ikke ændres med din aktuelle rolle
+            position:
+              elevated: kan ikke være højere end din aktuelle rolle
+              own_role: kan ikke ændres med din aktuelle rolle

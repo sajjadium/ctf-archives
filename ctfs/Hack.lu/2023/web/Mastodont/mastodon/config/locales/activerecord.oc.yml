@@ -1,0 +1,55 @@
+---
+oc:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Data limita
+        options: Opcions
+      user:
+        agreement: Acòrd de servici
+        email: Corrièl
+        locale: Lenga
+        password: Senhal
+      user/account:
+        username: Nom d’utilizaire
+      user/invite_request:
+        text: Motiu
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: solament letras, nombres e tirets basses
+              reserved: es reservat
+        admin/webhook:
+          attributes:
+            url:
+              invalid: es pas una URL valida
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: es pas una URL valida
+        import:
+          attributes:
+            data:
+              malformed: es mal formatat
+        status:
+          attributes:
+            reblog:
+              taken: de l’estatut existís ja
+        user:
+          attributes:
+            email:
+              blocked: utilizar un provesidor d’email pas autorizat
+              unreachable: semblar pas existir
+            role_id:
+              elevated: pòt pas èsser superior a vòstre ròtle actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inclure d’autorizacions que son pas seguras pel ròtle de basa
+              elevated: pòt pas inclure d’autorizacions que vòstre ròtle possedís pas
+              own_role: se pòt pas modificar amb vòstre ròtle actual
+            position:
+              elevated: pòt pas èsser superior a vòstre ròtle actual
+              own_role: se pòt pas modificar amb vòstre ròtle actual

@@ -1,0 +1,195 @@
+---
+cs:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Název aplikace
+        redirect_uri: URI přesměrování
+        scopes: Rozsahy
+        website: Stránka aplikace
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: nesmí obsahovat fragment.
+              invalid_uri: musí být platné URI.
+              relative_uri: musí být absolutní URI.
+              secured_uri: musí být HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizovat
+        cancel: Zrušit
+        destroy: Zničit
+        edit: Upravit
+        submit: Odeslat
+      confirmations:
+        destroy: Opravdu?
+      edit:
+        title: Upravit aplikaci
+      form:
+        error: A jéje! Zkontrolujte ve formuláři případné chyby
+      help:
+        native_redirect_uri: Pro místní testy použijte %{native_redirect_uri}
+        redirect_uri: Jedno URI na každý řádek
+        scopes: Oddělujte rozsahy mezerami. Pro použití výchozích rozsahů ponechte prázdné.
+      index:
+        application: Aplikace
+        callback_url: Zpáteční URL
+        delete: Smazat
+        empty: Nemáte žádné aplikace.
+        name: Název
+        new: Nová aplikace
+        scopes: Rozsahy
+        show: Zobrazit
+        title: Vaše aplikace
+      new:
+        title: Nová aplikace
+      show:
+        actions: Akce
+        application_id: Klientský klíč
+        callback_urls: Zpáteční URL
+        scopes: Rozsahy
+        secret: Klientský secret
+        title: 'Aplikace: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizovat
+        deny: Zamítnout
+      error:
+        title: Vyskytla se chyba
+      new:
+        prompt_html: "%{client_name} si přeje oprávnění pro přístup k vašemu účtu. Je to aplikace třetí strany. <strong>Pokud jí nedůvěřujete, pak byste ji neměli autorizovat.</strong>"
+        review_permissions: Zkontrolujte oprávnění
+        title: Je vyžadována autorizace
+      show:
+        title: Zkopírujte tento autorizační kód a vložte ho do aplikace.
+    authorized_applications:
+      buttons:
+        revoke: Odvolat
+      confirmations:
+        revoke: Opravdu?
+      index:
+        authorized_at: Autorizována %{date}
+        description_html: Toto jsou aplikace, které mohou přistupovat k vašemu účtu s použitím API. Pokud jsou zde aplikace, které nepoznáváte, nebo se aplikace nechová správně, můžete odvolat její přístup.
+        last_used_at: Naposledy použito %{date}
+        never_used: Nikdy nepoužito
+        scopes: Oprávnění
+        superapp: Interní
+        title: Vaše autorizované aplikace
+    errors:
+      messages:
+        access_denied: Vlastník zdroje či autorizační server žádost zamítl.
+        credential_flow_not_configured: Proud Resource Owner Password Credentials selhal, protože Doorkeeper.configure.resource_owner_from_credentials nebylo nakonfigurováno.
+        invalid_client: Ověření klienta selhalo kvůli neznámému klientovi, chybějící klientské autentizaci či nepodporované autentizační metodě.
+        invalid_grant: Poskytnuté oprávnění je neplatné, vypršela jeho platnost, bylo odvoláno, neshoduje se s URI přesměrování použitým v požadavku o autorizaci, nebo bylo uděleno jinému klientu.
+        invalid_redirect_uri: URI pro přesměrování není platné.
+        invalid_request:
+          missing_param: 'Chybí potřebný parametr: %{value}.'
+          request_not_authorized: Požadavek musí být autorizován. Potřebný parametr pro autorizaci požadavku chybí nebo není platný.
+          unknown: Požadavku chybí potřebný parametr, obsahuje nepodporovanou hodnotu parametru nebo je jinak špatně formulován.
+        invalid_resource_owner: Poskytnuté přihlašovací údaje vlastníka zdroje nejsou platné, nebo vlastník zdroje nemůže být nalezen
+        invalid_scope: Požadovaný rozsah je neplatný, neznámý, nebo špatně formulovaný.
+        invalid_token:
+          expired: Přístupový token vypršel
+          revoked: Přístupový token byl odvolán
+          unknown: Přístupový token je neplatný
+        resource_owner_authenticator_not_configured: Nález Resource Owner selhal, protože Doorkeeper.configure.resource_owner_authenticator nebylo nakonfigurováno.
+        server_error: Autorizační server se setkal s neočekávanou chybou, která mu zabránila ve vykonání požadavku.
+        temporarily_unavailable: Autorizační server vás nyní nemůže obsloužit kvůli dočasnému přetížení či údržbě serveru.
+        unauthorized_client: Klient není autorizován k vykonání tohoto požadavku touto metodou.
+        unsupported_grant_type: Tento typ oprávnění není autorizačním serverem podporován.
+        unsupported_response_type: Autorizační server tento typ odpovědi nepodporuje.
+    flash:
+      applications:
+        create:
+          notice: Aplikace vytvořena.
+        destroy:
+          notice: Aplikace smazána.
+        update:
+          notice: Aplikace aktualizována.
+      authorized_applications:
+        destroy:
+          notice: Aplikace odvolána.
+    grouped_scopes:
+      access:
+        read: Přístup pouze pro čtení
+        read/write: Přístup ke čtení a zápisu
+        write: Přístup pouze pro zápis
+      title:
+        accounts: Účty
+        admin/accounts: Správa účtů
+        admin/all: Všechny správcovské funkce
+        admin/reports: Správa hlášení
+        all: Plný přístup k vašemu Mastodon účtu
+        blocks: Blokace
+        bookmarks: Záložky
+        conversations: Konverzace
+        crypto: End-to-end šifrování
+        favourites: Oblíbení
+        filters: Filtry
+        follow: Sledování, ztlumení a blokování
+        follows: Sledovaní
+        lists: Seznamy
+        media: Mediální přílohy
+        mutes: Skrytí
+        notifications: Oznámení
+        push: Push oznámení
+        reports: Hlášení
+        search: Hledání
+        statuses: Příspěvky
+    layouts:
+      admin:
+        nav:
+          applications: Aplikace
+          oauth2_provider: Poskytovatel OAuth2
+      application:
+        title: Je požadována autorizace OAuth
+    scopes:
+      admin:read: číst všechna data na serveru
+      admin:read:accounts: číst citlivé informace všech účtů
+      admin:read:canonical_email_blocks: číst citlivé informace všech kanonických e-mailových bloků
+      admin:read:domain_allows: číst citlivé informace ze všech povolených domén
+      admin:read:domain_blocks: číst citlivé informace ze všech bloků domén
+      admin:read:email_domain_blocks: číst citlivé informace ze všech bloků emailových domén
+      admin:read:ip_blocks: číst citlivé informace ze všech bloků IP
+      admin:read:reports: číst citlivé informace všech nahlášení a nahlášených účtů
+      admin:write: měnit všechna data na serveru
+      admin:write:accounts: provádět moderátorské akce s účty
+      admin:write:canonical_email_blocks: provést akce moderace na kanonických emailových blocích
+      admin:write:domain_allows: provést akce moderace na povolených doménách
+      admin:write:domain_blocks: provést akce moderace na doménových blocích
+      admin:write:email_domain_blocks: provést akce moderace na blocích emailových domén
+      admin:write:ip_blocks: provést akce moderace na blocích IP
+      admin:write:reports: provádět moderátorské akce s hlášeními
+      crypto: používat end-to-end šifrování
+      follow: upravovat vztahy mezi profily
+      push: přijímat vaše push oznámení
+      read: vidět všechna data vašeho účtu
+      read:accounts: vidět informace o účtech
+      read:blocks: vidět vaše blokace
+      read:bookmarks: vidět vaše záložky
+      read:favourites: vidět vaše oblíbené příspěvky
+      read:filters: vidět vaše filtry
+      read:follows: vidět vaše sledování
+      read:lists: vidět vaše seznamy
+      read:mutes: vidět vaše skrytí
+      read:notifications: vidět vaše oznámení
+      read:reports: vidět vaše hlášení
+      read:search: vyhledávat za vás
+      read:statuses: vidět všechny příspěvky
+      write: měnit všechna data vašeho účtu
+      write:accounts: měnit váš profil
+      write:blocks: blokovat účty a domény
+      write:bookmarks: přidávat příspěvky do záložek
+      write:conversations: skrývat a mazat konverzace
+      write:favourites: oblibovat si příspěvky
+      write:filters: vytvářet filtry
+      write:follows: sledovat lidi
+      write:lists: vytvářet seznamy
+      write:media: nahrávat mediální soubory
+      write:mutes: skrývat lidi a konverzace
+      write:notifications: mazat vaše oznámení
+      write:reports: nahlašovat jiné uživatele
+      write:statuses: zveřejňovat příspěvky

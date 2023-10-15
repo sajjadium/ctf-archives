@@ -1,0 +1,889 @@
+---
+hy:
+  about:
+    about_mastodon_html: Ապագայի սոցցանցը։ Ոչ մի գովազդ, ոչ մի կորպորատիվ վերահսկողութիւն, էթիկական դիզայն, եւ ապակենտրոնացում։ Մաստադոնում դու ես քո տուեալների տէրը։
+    contact_missing: Սահմանված չէ
+    contact_unavailable: Ոչինչ չկա
+    hosted_on: Մաստոդոնը տեղակայուած է %{domain}ում
+    title: Մասին
+  accounts:
+    follow: Հետևել
+    followers:
+      one: Հետեւորդ
+      other: Հետևորդներ
+    following: Հետեւած
+    instance_actor_flash: Այս հաշիւը վիրտուալ դերասան է, որը ներկայացնում է հանգոյցը, եւ ոչ որեւէ անհատ օգտատիրոջ։ Այն օգտագործուում է ֆեդերացիայի նպատակներով եւ չպէտք է կասեցուի։
+    last_active: վերջին այցը
+    link_verified_on: Սոյն յղման տիրապետումը ստուգուած է՝ %{date}֊ին
+    nothing_here: Այստեղ բան չկայ
+    pin_errors:
+      following: Դու պէտք է հետեւես մարդուն, որին ցանկանում ես խրախուսել
+    posts:
+      one: Գրառում
+      other: Գրառումներ
+    posts_tab_heading: Գրառումներ
+  admin:
+    account_actions:
+      action: Կատարել գործողութիւն
+      title: Իրականացնել մոդերատորական գործողութիւններ %{acct}-ի վրայ
+    account_moderation_notes:
+      create: Թողնել նշում
+      created_msg: Մոդերացիոն նոթը բարեյաջող ստեղծուեց
+      destroyed_msg: Մոդերացիոն նոթը բարեյաջող վերացուեց
+    accounts:
+      add_email_domain_block: Արգելափակել էլ․ փոստի տիրոյթը
+      approve: Ընդունել
+      approved_msg: Յաջողութեամբ հաստատուեց %{username}֊ի գրանցման յայտը
+      are_you_sure: Վստա՞հ ես
+      avatar: Աւատար
+      by_domain: Դոմէն
+      change_email:
+        current_email: Ներկայիս էլ․ հասցէ
+        label: Փոխել էլ. հասցէն
+        new_email: Նոր էլ․ փոստ
+        submit: Փոխել էլ. հասցէն
+        title: Փոխել էլ․ փոստը %{username}ի համար
+      confirm: Հաստատել
+      confirmed: Հաստատված է
+      confirming: Հաստատման սպասող
+      custom: Յատուկ
+      delete: Ջնջել տվյալները
+      deleted: Ջնջված է
+      demote: Աստիճանազրկել
+      destroyed_msg: "%{username}֊ի տուեալները հերթագրուել է անյապաղ ջնջուողների շարքում"
+      disable: Անջատել
+      disable_two_factor_authentication: Անջատել 2FA
+      disabled: Անջատված է
+      display_name: Ցուցադրվող անունը
+      domain: Դոմեն
+      edit: Խմբագրել
+      email: Էլ. փոստ
+      email_status: Էլ․ փոստի կարգավիճակ
+      enable: Միացնել
+      enabled: Միացված է
+      enabled_msg: "%{username}֊ի հաշիւը բարեյաջող ապասառեցուեց"
+      followers: Հետևորդներ
+      follows: Հետևողներ
+      header: Վերնագիր
+      inbox_url: Մուտքային URL
+      invite_request_text: Միանալու պատճառները
+      invited_by: Հրաւիրուել է
+      ip: IP
+      joined: Միացած է
+      location:
+        all: Բոլորը
+        local: Տեղային
+        remote: Հեռակա
+        title: Տեղադրությունը
+      login_status: Մուտքի կարգավիճակ
+      media_attachments: Մեդիա կցորդներ
+      memorialize: Դարձնել հիշատակարան
+      memorialized: Յիշեցուած
+      memorialized_msg: Բարեյաջող %{username}֊ը փոխուեց յիշատակի հաշուի
+      moderation:
+        active: Ակտիվ
+        all: Բոլորը
+        pending: Սպասում
+        suspended: Կասեցուած
+        title: Մոդերացիա
+      moderation_notes: Մոդերացիայի նշումներ
+      most_recent_activity: Վերջին ակտիւութիւնը
+      most_recent_ip: Վերջին IP
+      no_account_selected: Ոչ մի հաշիւ չի փոխուել, ինչպէս նաեւ, ոչ մեկը չի ընտրուել
+      no_limits_imposed: Սահմանափակումներ չկան
+      not_subscribed: Բաժանորդագրուած չէ
+      pending: Սպասում է վերանայման
+      perform_full_suspension: Կասեցում
+      promote: Աջակցել
+      protocol: Հաղորդակարգ
+      public: Հրապարակային
+      push_subscription_expires: PuSH բաժանորդագրութիւնը սպառուում է
+      redownload: Թարմացնել հաշիւը
+      redownloaded_msg: "%{username}֊ի հաշիւը սկզբնաղբիւրից բարեյաջող թարմացուեց"
+      reject: Մերժել
+      rejected_msg: Յաջողութեամբ մերժուեց %{username}֊ի գրանցման յայտը
+      remove_avatar: Հեռացնել աւատարը
+      remove_header: Հեռացնել գլխագիրը
+      removed_avatar_msg: Յաջողութեամբ հեռացուեց %{username}֊ի աւատարը
+      removed_header_msg: Յաջողութեամբ հեռացուեց %{username}֊ի գլխանկարը
+      resend_confirmation:
+        already_confirmed: Օգտատէրն արդէն հաստատուած է
+        send: Հաստատման իմակն ուղարկել կրկին
+        success: Հաստատման իմակը բարեյաջող ուղարկուեց
+      reset: Վերականգնել
+      reset_password: Վերականգնել գաղտանաբառը
+      resubscribe: Կրկին բաժանորդագրուել
+      search: Որոնել
+      search_same_email_domain: Այլ օգտատէրեր նոյն էլ․ փոստի դոմէյնով
+      search_same_ip: Այլ օգտատէրեր նոյն IP֊ով
+      security_measures:
+        only_password: Միայն ծածկագիր
+        password_and_2fa: Ծածկագիր եւ 2FA
+      sensitive: Զգայուն
+      sensitized: նշուեց որպէս դիւրազգաց
+      shared_inbox_url: Ընդհանուր մուտքային URL
+      show:
+        created_reports: Կազմել բողոքներ
+        targeted_reports: Այլոց կողմից բողոքարկուած
+      silence: Լռութիւն
+      silenced: Լռեցուած
+      statuses: Գրառումներ
+      subscribe: Բաժանորդագրուել
+      suspended: Կասեցուած
+      suspension_irreversible: Հաշուի տուեալները անդարձ ջնջուեցին։ Դու կարող ես ապակասեցնել հաշիւը՝ դարձնելով այն կիրառելի, բայց այն չի վերականգնի նախկին տուեալները։
+      suspension_reversible_hint_html: Հաշիւը կասեցուեց, եւ տուեալներն ամբողջապէս կը վերացուի %{date}ին։ Մինչեւ այդ, հաշիւը կարող է վերականգնուել՝ առանց կողմնակի ազդեցութիւնների։ Եթէ ցանկանում ես վերացնել հաշուի տուեալները միանգամից, կարող ես դա անել ներքեւում։
+      title: Հաշիւներ
+      unconfirmed_email: Չհաստատուած էլ․ հասցէ
+      undo_sensitized: Ետարկել դիւրազգացութիւնը
+      undo_silenced: Ետարկել լռեցումը
+      undo_suspension: Ետարկել կասեցումը
+      unsilenced_msg: "%{username}֊ի հաշիւը բարեյաջող դարձաւ անսահմանափակ"
+      unsubscribe: Ապաբաժանորդագրուել
+      unsuspended_msg: "%{username}֊ի հաշիւ բարեյաջող ապակասեցուեց։"
+      username: Մուտքանուն
+      view_domain: Տեսնել տիրոյթի ամփոփումը
+      warn: Նախազգուշացում
+      web: Վեբ
+      whitelisted: Թոյլատրել ֆեդերացիայի համար
+    action_logs:
+      action_types:
+        assigned_to_self_report: Բողոքել
+        change_email_user: Փոխել օգտատիրոջ էլ․ հասցէն
+        confirm_user: Հաստատել օգտատիրոջը
+        create_account_warning: Ստեղծել զգուշացում
+        create_announcement: Ստեղծել յայտարարութիւն
+        create_custom_emoji: Ստեղծել սեփական էմոջիները
+        create_domain_allow: Ստեղծել տիրոյթի թոյլտուութիւն
+        create_domain_block: Ստեղծել տիրոյթի արգելափակում
+        create_email_domain_block: Ստեղծել էլ․ հասցէի դոմէյնի արգելափակում
+        create_ip_block: Ստեղծել IP կանոն
+        demote_user: Աստիճանազրկել օգտատիրոջը
+        destroy_announcement: Ջնջել յայտարարութիւնը
+        destroy_custom_emoji: Ջնջել էմոջին
+        destroy_domain_allow: Ջնջել դոմէնի թոյլտուութիւնը
+        destroy_domain_block: Ապաարգելափակել դոմէնը
+        destroy_email_domain_block: Ապաարգելափակել էլ․ հասցէի դոմէնը
+        destroy_ip_block: Ջնջել IP կանոնը
+        destroy_status: Ջնջել գրառումը
+        disable_2fa_user: Անջատել 2FA
+        disable_custom_emoji: Անջատել սեփական էմոջիները
+        disable_user: Ապաակտիւացնել օգտատիրոջը
+        enable_custom_emoji: Միացնել սեփական էմոջիները
+        enable_user: Ակտիւացնել օգտատիրոջը
+        memorialize_account: Յիշել հաշիւը
+        promote_user: Աջակցել օգտատիրոջը
+        remove_avatar_user: Հեռացնել աւատարը
+        reopen_report: Վերաբացել բողոքը
+        reset_password_user: Վերականգնել գաղտանաբառը
+        resolve_report: Լուծարել զեկոյցը
+        sensitive_account: Հաշուի մեդիան նշել որպէս դիւրազգաց
+        silence_account: Լռեցնել հաշիւը
+        suspend_account: Կասեցնել հաշիւը
+        unassigned_report: Հանել բողոքը
+        unsensitive_account: Հաշուի մեդիան չնշել որպէս դիւրազգաց
+        unsilence_account: Լսել հաշուին
+        unsuspend_account: Ապակասեցնել հաշիւը
+        update_announcement: Թարմացնել յայտարարութիւնը
+        update_custom_emoji: Թարմացնել սեփական էմոջիները
+        update_domain_block: Թարմացնել տիրոյթի արգելափակումը
+        update_status: Թարմացնել գրառումը
+      empty: Ոչ մի գրառում չկայ։
+      filter_by_action: Զտել ըստ գործողութեան
+      filter_by_user: Զտել ըստ օգտատիրոջ
+      title: Ստուգման մատեան
+    announcements:
+      destroyed_msg: Յայտարարութիւնը բարեյաջող ջնջուեց
+      edit:
+        title: Խմբագրել յայտարարութիւնը
+      empty: Ոչ մի յայտարարութիւն չգտնուեց
+      live: Ուղիղ
+      new:
+        create: Ստեղծել յայտարարութիւն
+        title: Նոր յայտարարութիւն
+      publish: Հրապարակել
+      published_msg: Յայտարարութիւնը բարեյաջող հրապարակուեց
+      scheduled_for: Պլանաւորուած է %{time}ին
+      scheduled_msg: Յայտարարութիւնը նախապատրաստուեց հրապարակման
+      title: Յայտարարութիւններ
+      unpublish: Ապահրապարակել
+      unpublished_msg: Յայտարարութիւնը բարեյաջող ապահրապարակուեց
+      updated_msg: Յայտարարութիւնը բարեյաջող թարմացուեց
+    custom_emojis:
+      assign_category: Կցել կատեգորիա
+      by_domain: Տիրոյթ
+      copied_msg: Էմոջիի տեղական օրինակը հաջողութեամբ ստեղծուած է
+      copy: Պատճենել
+      copy_failed_msg: Չյաջողւեց ստեղծել էմոջիի տեղական օրինակ
+      create_new_category: Ստեղծել նոր կատեգորիա
+      created_msg: Էմոջին յաջողութեամբ ստեղծուեց
+      delete: Ջնջել
+      destroyed_msg: Էմոջին յաջողութեամբ ջնջուեց
+      disable: Անջատել
+      disabled: Անջատուած
+      disabled_msg: Յաջողութեամբ կասեցուեց էմոջին
+      emoji: Զմայլիկ
+      enable: Միացնել
+      enabled: Միացուած
+      enabled_msg: Յաջողութեամբ միացուեց էմոջին
+      list: Ցանկ
+      listed: Ցուցակագրուած
+      new:
+        title: Աւելացնել նոր էմոջի
+      not_permitted: Տուեալ գործողութիւնն անելու թոյլտուութիւն չունես
+      overwrite: Վերագրել
+      shortcode: Հապավում
+      shortcode_hint: Ամենաքիչը 2 նիշ, միայն այբբենական նիշեր, թուեր եւ ընդգծիկներ
+      title: Սեփական էմօջիներ
+      uncategorized: Չդասակարգուած
+      unlist: Ապացուցակագրում
+      unlisted: Ծածուկ
+      update_failed_msg: Էմոջին չի կարող թարմացուել
+      updated_msg: Էմոջին թարմացուեց
+      upload: Վերբեռնել
+    dashboard:
+      active_users: ակտիւ օգտատէրեր
+      new_users: նոր օգտուողներ
+      software: Ծրագրային ապահովում
+      space: Տարածքի օգտագործում
+      title: Գործիքների վահանակ
+      website: Կայք
+    domain_allows:
+      add_new: Թոյլատրել ֆեդերացիա տիրոյթի հետ
+      created_msg: Տիրոյթը յաջողութեամբ թոյլատրուեց ֆեդերացուելու
+      export: Արտահանել
+      import: Ներմուծել
+      undo: Չթոյլատրել ֆեդերացիան տիրոյթի հետ
+    domain_blocks:
+      add_new: Աւելացնել նոր տիրոյթի արգելափակում
+      created_msg: Տիրոյթի արգելափակումն ընթացաւ
+      destroyed_msg: Տիրոյթի արգելափակումը ետարկուեց
+      domain: Տիրոյթ
+      edit: Խմբագրել տիրոյթի արգելափակումը
+      export: Արտահանել
+      import: Ներմուծել
+      new:
+        create: Ստեղծել արգելափակում
+        severity:
+          noop: Ոչ մի
+          suspend: Կասեցում
+        title: Նոր տիրոյթի արգելափակում
+      private_comment: Փակ մեկնաբանութիւն
+      public_comment: Հրապարակային մեկնաբանութիւն
+      reject_media: Մերժել մեդիա ֆայլերը
+      reject_reports: Մերժել բողոքները
+      undo: Ետարկել տիրոյթի արգելափակումը
+      view: Տեսնել տիրոյթի արգելափակումը
+    email_domain_blocks:
+      add_new: Ավելացնել նորը
+      created_msg: Բարեյաջող արգելափակուեց էլ․ փոստի տիրոյթ
+      delete: Ջնջել
+      domain: Դոմեն
+      new:
+        create: Ավելացնել դոմեն
+        title: Արգելափակել էլ․ փոստի նոր տիրոյթ
+      title: էլ․ փոստի արգելափակուած տիրոյթներ
+    follow_recommendations:
+      language: Լեզուի համար
+      status: Կարգավիճակ
+      title: Խորհուրդ ենք տալիս հետեւել
+    instances:
+      availability:
+        title: Հասանելի
+      back_to_all: Բոլորը
+      back_to_limited: Սահամանփակ
+      back_to_warning: Զգուշացում
+      by_domain: Դոմեն
+      content_policies:
+        policies:
+          silence: Սահմանափակ
+      delivery:
+        all: Բոլորը
+        unavailable: Անհասանելի է
+      empty: Դոմեյնները չեն գտնուել
+      moderation:
+        all: Բոլորը
+        limited: Սահամանփակ
+        title: Մոդերացիա
+      private_comment: Փակ մեկնաբանութիւն
+      public_comment: Հրապարակային մեկնաբանութիւն
+      title: Դաշնություն
+      total_blocked_by_us: Մենք արգելափակել ենք
+      total_followed_by_them: Նրանք հետեւում են
+      total_followed_by_us: Մենք հետեւում ենք
+      total_reported: Բողոքներ նրանց մասին
+      total_storage: Մեդիա կցորդներ
+    invites:
+      deactivate_all: Ապաակտիւացնել բոլորին
+      filter:
+        all: Բոլորը
+        available: Հասանելի
+        expired: Սպառուած
+        title: Զտիչ
+      title: Հրաւէրներ
+    ip_blocks:
+      add_new: Ստեղծել կանոն
+      created_msg: Բարեյաջող աւելացուեց նոր IP կանոն
+      delete: Ջնջել
+      expires_in:
+        '1209600': 2 շաբաթ
+        '15778476': 6 ամիս
+        '2629746': 1 ամիս
+        '31556952': 1 տարի
+        '86400': 1 օր
+        '94670856': 3 տարի
+      new:
+        title: Ստեղծել նոր IP կանոն
+      title: IP կանոններ
+    relationships:
+      title: "%{acct}ի յարաբերութիւններ"
+    relays:
+      add_new: Աւելացնել նոր վերահեռարձակուիչ
+      delete: Ջնջել
+      disable: Անջատել
+      disabled: Անջատված է
+      enable: Միացնել
+      enabled: Միացված է
+      save_and_enable: Պահպանել եւ միացնել
+      status: Կարգավիճակ
+      title: Վերահեռարձակիչներ
+    reports:
+      account:
+        notes:
+          one: "%{count} նոթ"
+          other: "%{count} նոթեր"
+      action_taken_by: Գործողութիւնը կատարել է
+      are_you_sure: Վստա՞հ ես
+      assign_to_self: Ինձ յանձնարարուած
+      assigned: Նշանակել մոդերատոր
+      comment:
+        none: Ոչ մի
+      created_at: Բողոքարկուած
+      delete_and_resolve: Ջնջեք գրառումը
+      mark_as_resolved: Նշել որպէս լուծուած
+      mark_as_unresolved: Նշել որպէս չլուծուած
+      no_one_assigned: Ոչ ոք
+      notes:
+        create: Ավելացնել նշում
+        delete: Ջնջել
+        title: Նշում
+      reopen: Վերաբացել բողոքը
+      report: 'Բողոք #%{id}'
+      reported_account: Բողոքարկուած հաշիւ
+      reported_by: Բողոքարկուած է
+      resolved: Լուծուած
+      status: Կարգավիճակ
+      title: Բողոքներ
+      unassign: Չնշանակել
+      unresolved: Չլուծուած
+      updated_at: Թարմացուած
+      view_profile: Նայել անձնական էջը
+    roles:
+      categories:
+        invites: Հրաւէրներ
+        moderation: Մոդերացիա
+        special: Յատուկ
+      delete: Ջնջել
+      privileges:
+        administrator: Ադմինիստրատոր
+    rules:
+      add_new: Աւելացնել կանոն
+      delete: Ջնջել
+      edit: Խմբագրել կանոնը
+      empty: Սերուերի կանոնները դեռեւս սահմանուած չեն։
+      title: Սերուերի կանոնները
+    settings:
+      about:
+        title: Մասին
+      domain_blocks:
+        all: Բոլորին
+        disabled: Ոչ մէկին
+      registrations_mode:
+        modes:
+          approved: Գրանցման համար անհրաժեշտ է հաստատում
+          none: Ոչ ոք չի կարող գրանցուել
+          open: Բոլորը կարող են գրանցուել
+    site_uploads:
+      delete: Ջնջել վերբեռնուած ֆայլը
+      destroyed_msg: Կայքի վերբեռնումը բարեյաջող ջնջուեց
+    statuses:
+      back_to_account: Վերադառնալ անձնական էջ
+      batch:
+        report: Բողոքել
+      deleted: Ջնջված է
+      media:
+        title: Մեդիա
+      title: Օգտատիրոջ գրառումները
+      with_media: Մեդիայի հետ
+    tags:
+      review: Վերանայել գրառումը
+    title: Ադմինիստարցիա
+    trends:
+      allow: Թոյլատրել
+      approved: Հաստատուած
+      disallow: Արգելուած
+      preview_card_providers:
+        title: Հրապարակողներ
+      rejected: Մերժուած
+      statuses:
+        disallow: Արգելել գրառումը
+        disallow_account: Արգելել հեղինակին
+        title: Թրենդային գրառումներ
+      tags:
+        listable: Կարող է առաջարկուել
+        not_listable: Չի կարող առաջարկուել
+        not_usable: Չի կարող օգտագործուել
+        title: Թրենդային պիտակներ
+        usable: Կարող է օգտագործուել
+      title: Թրենդներ
+    warning_presets:
+      add_new: Ավելացնել նորը
+      delete: Ջնջել
+  admin_mailer:
+    new_report:
+      subject: Նոր բողոք %{instance}ի համար(#%{id})
+    new_trends:
+      new_trending_statuses:
+        title: Թրենդային գրառումներ
+  appearance:
+    advanced_web_interface: Սյունակավոր ինտերֆեյս
+    advanced_web_interface_hint: Եթէ ցանկանում ես օգտագործել էկրանիդ ամբողջ լայնքը, ապա ընդլայնուած վեբ ինտերֆեյսով հնարաւոր է էկրանը բաժանել սիւնակների՝ զուգահեռ տեսնելու տարբեր տիպի ինֆորմացիա՝ տեղական հոսքը, ծանուցումները, ֆեդերացված հոսքը, և ցանկացած թվի ցուցակ ու հեշթեգ։
+    animations_and_accessibility: Անիմացիաներ եւ հասանելիութիւն
+    confirmation_dialogs: Հաստատման պատուհաններ
+    discovery: Բացայայտում
+    localization:
+      body: Մաստոդոնը թարգմանուում է կամաւորների կողմից։
+      guide_link_text: Աջակցել կարող են բոլորը։
+    sensitive_content: Զգայուն բովանդակութիւն
+  application_mailer:
+    notification_preferences: Փոխել փոստային կարգաւորումները
+    salutation: "%{name}"
+    view: Նայել․
+    view_profile: Նայել անձնական էջը
+    view_status: Նայել գրառումը
+  applications:
+    regenerate_token: Ստեղծել նոր հասանելիութեան կտրոն
+    your_token: Քո մուտքի բանալին
+  auth:
+    change_password: Գաղտնաբառ
+    delete_account: Ջնջել հաշիվը
+    description:
+      prefix_sign_up: Գրանցուի՛ր Մաստոդոնում հենց այսօր
+    didnt_get_confirmation: Չե՞ս ստացել հաստատման ուղեցոյց։
+    dont_have_your_security_key: Չունե՞ս անվտանգութեան բանալի։
+    forgot_password: Մոռացե՞լ ես գաղտնաբառդ
+    login: Մտնել
+    logout: Դուրս գալ
+    migrate_account: Տեղափոխուել այլ հաշիւ
+    or_log_in_with: Կամ մուտք գործել օգտագործելով՝
+    register: Գրանցվել
+    registration_closed: "%{instance}ը չի ընդունում նոր անդամներ"
+    reset_password: Վերականգնել գաղտանաբառը
+    security: Անվտանգություն
+    set_new_password: Սահմանել նոր գաղտնաբառ
+    setup:
+      title: Կարգավորում
+    status:
+      account_status: Հաշուի կարգավիճակ
+      pending: Դիմումը պէտք է քննուի մեր անձնակազմի կողմից, ինչը կարող է մի փոքր ժամանակ խլել։ Դիմումի հաստատուելու դէպքում, կտեղեկացնենք նամակով։
+    use_security_key: Օգտագործել անվտանգութեան բանալի
+  authorize_follow:
+    already_following: Դու արդէն հետեւում ես այս հաշուին
+    already_requested: Դու արդէն ուղարկել ես հետեւմանն յայտ այս հաշուին
+    follow: Հետևել
+    follow_request: Դու ուղարկել ես հետեւելու հայց՝
+    following: Յաջողութի՜ւն։ Դու այժմ հետեւում ես․
+    post_follow:
+      close: Կամ, կարող ես պարզապէս փակել այս պատուհանը։
+      return: Ցուցադրել օգտատիրոջ էջը
+      web: Անցնել վէբին
+    title: Հետեւել %{acct}
+  challenge:
+    confirm: Շարունակել
+    invalid_password: Անվաւեր ծածկագիր
+    prompt: Շարունակելու համար մուտքագրիր ծածկագիրդ
+  crypto:
+    errors:
+      invalid_key: անվաւեր Ed25519 կամ Curve25519 բանալի
+      invalid_signature: անվաւեր Ed25519 բանալի
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%d %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}ժ"
+      about_x_months: "%{count}ամ"
+      about_x_years: "%{count}տ"
+      almost_x_years: "%{count}տ"
+      half_a_minute: Հէնց հիմա
+      less_than_x_minutes: "%{count}ա"
+      less_than_x_seconds: Հենց հիմա
+      over_x_years: "%{count}տ"
+      x_days: "%{count}օ"
+      x_minutes: "%{count}ր"
+      x_months: "%{count}ա"
+      x_seconds: "%{count}վրկ"
+  deletes:
+    challenge_not_passed: Մուտքագրուած տեղեկութիւնը ստոյգ չէ
+    confirm_password: Նոյնականացման համար մուտքագրիր ծածկագիրդ
+    confirm_username: Մուտքագրիր օգտանունդ գործողութիւնը հաստատելու համար
+    proceed: Ջնջել հաշիվը
+    success_msg: Հաշիւդ բարեյաջող ջնջուեց
+    warning:
+      username_available: Քո օգտանունը կրկին հասանելի կը դառնայ
+  domain_validator:
+    invalid_domain: անվաւէր տիրոյթի անուն
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': Էջը, որը փնտրում ես գոյութիւն չունի։
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '429': Չափազանց շատ հարցումներ
+    '500':
+      title: Էջը ճիշտ չէ
+    '503': The page could not be served due to a temporary server failure.
+  existing_username_validator:
+    not_found: չյաջողուեց գտնել այս ծածկագրով լոկալ օգտատիրոջ
+    not_found_multiple: չյաջողուեց գտնել %{usernames}
+  exports:
+    archive_takeout:
+      date: Ամսաթիվ
+      download: Ներբեռնեք Ձեր արխիվը
+      request: Պահանջել քո արքիւը
+      size: Չափը
+    blocks: Արգելափակել
+    bookmarks: Էջանիշեր
+    domain_blocks: Տիրոյթի արգելափակումներ
+    lists: Ցանկեր
+    mutes: Լռեցրել ես
+    storage: Մեդիա պահոց
+  featured_tags:
+    add_new: Աւելացնել նորը
+  filters:
+    contexts:
+      account: Պրոֆիլներ
+      home: Տեղական հոսք
+      notifications: Ծանուցումներ
+      public: Հանրային հոսքեր
+      thread: Զրոյցներ
+    edit:
+      title: Խմբագրել զտիչը
+    index:
+      delete: Ջնջել
+      empty: Դու ֆիլտրեր չունես։
+      title: Ֆիլտրեր
+    new:
+      title: Ավելացնել ֆիլտր
+  generic:
+    all: Բոլորը
+    changes_saved_msg: Փոփոխութիւնները յաջող պահուած են
+    copy: Պատճենել
+    delete: Ջնջել
+    none: Ոչ մի
+    order_by: Դասաւորել ըստ
+    save_changes: Պահպանել փոփոխութիւնները
+    today: այսօր
+  imports:
+    errors:
+      over_rows_processing_limit: տողերի քանակը աւելին է քան %{count}-ը
+    modes:
+      merge: Միաւորել
+      overwrite: Վերագրել
+    types:
+      blocking: Արգելափակումների ցուցակ
+      bookmarks: Էջանիշեր
+      domain_blocking: Տիրոյթի արգելափակումների ցուցակ
+      following: Հետեւումների ցանկ
+      muting: Լռեցման ցանկ
+    upload: Վերբեռնել
+  invites:
+    delete: Ապաակտիւացնել
+    expired: Ժամկետանց
+    expires_in:
+      '1800': 30 րոպե
+      '21600': 6 ժամ
+      '3600': 1 ժամ
+      '43200': 12 ժամ
+      '604800': 1 շաբաթ
+      '86400': 1 օր
+    expires_in_prompt: Երբեք
+    generate: Գեներացնել հրաւէրի յղում
+    invited_by: Ձեզ հրաւիրել է՝
+    max_uses:
+      one: "%{count} կիրառում"
+      other: "%{count} կիրառում"
+    max_uses_prompt: Սահմանափակում չկայ
+    table:
+      expires_at: Սպառւում է
+      uses: Կիրառում
+    title: Հրաւիրել մարդկանց
+  login_activities:
+    authentication_methods:
+      otp: երկքայլ նոյնականացման յաւելուած
+      password: գաղտնաբառ
+  media_attachments:
+    validations:
+      too_many: 4-ից աւել ֆայլ չի կարող կցուել
+  migrations:
+    acct: Տեղափոխել դեպի
+    cancel: Չեղարկել վերահասցեաորումը
+    errors:
+      move_to_self: չի կարող լինել ներկայիս հաշիւը
+      not_found: չգտնուեց
+    past_migrations: Նախոդ միգրացիաները
+    proceed_with_move: Տեղափոխել հետեւորդներին
+    redirecting_to: Քո հաշիւը վերահասցեաորում է %{acct}-ին
+    set_redirect: Կարգաւորել վերահասցէաւորումը
+    warning:
+      followers: Այս քայլով քո բոլոր հետեւորդներին այս հաշուից կը տեղափոխես դէպի նորը
+      only_redirect_html: Որպէս այլընտրանք, կարող ես ուղղակի <a href="%{path}">վերահասցէաւորել քո հաշիւը</a>
+      other_data: Մնացեալ տուեալները ինքնուրոյն չեն փոխադրուի
+  moderation:
+    title: Մոդերացիա
+  notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name}-ը գրանցուած է"
+    favourite:
+      body: Քո գրառումը հաւանել է %{name}-ը։
+      subject: "%{name} հաւանեց գրառումդ"
+      title: Նոր հաւանում
+    follow:
+      body: "%{name}ը հետեւում է քեզ!"
+      subject: "%{name}ը հետեւում է քեզ"
+      title: Նոր հետևորդներ
+    follow_request:
+      action: Կառավարել հետեւելու հայցերը
+      subject: "%{name} ցանկանում է հետեւել ձեզ"
+      title: Նոր հետեւելու հայցեր
+    mention:
+      action: Պատասխանել
+      body: "%{name} յիշատակել է ձեզ գրառման մէջ՝"
+      subject: Ձեզ յիշատակել է %{name}
+      title: Նոր յիշատակում
+    reblog:
+      body: Քո գրառումը տարածել է %{name}-ը։
+      subject: "%{name} տարածեց գրառումդ"
+      title: Նոր տարածում
+    status:
+      subject: "%{name}-ը հենց նոր գրառում արեց"
+    update:
+      subject: "%{name}-ը փոխել է գրառումը"
+  notifications:
+    email_events_hint: Ընտրիր իրադարձութիւնները, որոնց վերաբերեալ ցանկանում ես ստանալ ծանուցումներ․
+    other_settings: Ծանուցումների այլ կարգաւորումներ
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: Մլր
+          million: Մլն
+          quadrillion: Քլր
+          thousand: Հազ
+          trillion: Տրլ
+  otp_authentication:
+    code_hint: Մուտքագրիր քո նոյնականացման յաւելուածով գեներացուած կոդը՝ հաստատման համար
+    description_html: Եթէ միացնես <strong>2F նոյնականացումը</strong>՝ օգտագործելով նոյնականացնող յաւելուած, մուտք գործելիս կը պահանջուի հեռախօս, որով կը ստեղծես մուտքագրման կտրոններ։
+    enable: Միացնել
+    setup: Կարգաւորել
+  pagination:
+    newer: Ավելի նոր
+    next: Հաջորդ
+    older: Ավելի հին
+    prev: Նախորդ
+  polls:
+    errors:
+      already_voted: Դու արդէն մասնակցել ես այս հարցմանը
+      duplicate_options: պարունակում է կրկնուող ընտրանքներ
+      duration_too_short: շատ կարճ է
+      expired: Հարցումն արդէն աւարտուել է
+      too_few_options: ընտրանքները պէտք է լինեն մէկից աւել
+      too_many_options: չի կարող պարունակել աւելի քան %{max} ընտրանք
+  preferences:
+    other: Այլ
+    posting_defaults: Կանխադիր կարգաւորումներ
+    public_timelines: Հանրային հոսք
+  reactions:
+    errors:
+      unrecognized_emoji: ճանաչուած էմոջի չէ
+  relationships:
+    activity: Հաշուի ակտիւութիւնը
+    dormant: Չգօրծող
+    follow_selected_followers: Հետեւել նշուած հետեւորդներին
+    followers: Հետեւորդներ
+    following: Հետեւում ես
+    invited: Հրաւիրուած է
+    last_active: Վերջին ակտիւութիւնը
+    most_recent: Վերջին
+    moved: Տեղափոխուած
+    mutual: Փոխադարձ
+    primary: Հիմնական
+    relationship: Կապ
+    remove_selected_domains: Հեռացնել բոլոր հետեւորդներին նշուած դոմեյններից
+    remove_selected_followers: Հեռացնել նշուած հետեւորդներին
+    remove_selected_follows: Ապահետեւել նշուած օգտատէրերին
+    status: Հաշուի կարգավիճակ
+  scheduled_statuses:
+    too_soon: Նախադրուած ամսաթիւը պէտք է լինի ապագայում
+  sessions:
+    activity: Վերջին Ակտիւութիւնը
+    browser: Դիտարկիչ
+    browsers:
+      alipay: Alipay
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Անհայտ դիտարկիչ
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      weibo: Weibo
+    current_session: Ընթացիկ սեսսիա
+    description: "%{browser}, %{platform}"
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Անդրոիդ
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Լինուքս
+      mac: macOS
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Չեղարկել
+    title: Սեսսիա
+  settings:
+    account: Հաշիվ
+    account_settings: Հաշուի կարգաւորումներ
+    appearance: Տեսք
+    authorized_apps: Լիազօրուած յաւելուածներ
+    back: Ետ գնալ մաստադոն
+    delete: Հաշուի ջնջում
+    development: Ծրագրավորում
+    edit_profile: Խմբագրել պրոֆիլը
+    export: Տվյալների արտահանում
+    featured_tags: Ընտրուած հէշթեգեր
+    import: Ներմուծել
+    import_and_export: Ներմուծել և արտահանել
+    migrate: Հաշուի տեղափոխում
+    notifications: Ծանուցումներ
+    preferences: Կարգավորումներ
+    profile: Հաշիւ
+    relationships: Հետեւումներ և հետեւորդներ
+    two_factor_authentication: Երկքայլ նոյնականացում
+    webauthn_authentication: Անվտանգութեան բանալիներ
+  statuses:
+    attached:
+      audio:
+        one: "%{count} ձայնագրութիւն"
+        other: "%{count} ձայնագրութիւն"
+      image:
+        one: "%{count} նկար"
+        other: "%{count} նկար"
+      video:
+        one: "%{count} վիդեո"
+        other: "%{count} վիդեո"
+    content_warning: Նախազգուշացում։ %{warning}
+    edited_at_html: Խմբագրուած՝ %{date}
+    open_in_web: Բացել վէբում
+    over_character_limit: "%{max} նիշի սահմանը գերազանցուած է"
+    poll:
+      total_people:
+        one: "%{count} մարդ"
+        other: "%{count} մարդիկ"
+      total_votes:
+        one: "%{count} ձայն"
+        other: "%{count} ձայներ"
+      vote: Քուէարկել
+    show_more: Աւելին
+    show_newer: Ցուցադրել նորերը
+    show_older: Ցուցադրել հները
+    show_thread: Բացել շղթան
+    sign_in_to_participate: Մուտք գործէք՝ զրոյցին միանալու համար
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      direct: Հասցէագրուած
+      private: Միայն հետեւողներին
+      private_long: Հասանելի միայն հետեւորդներին
+      public: Հրապարակային
+      public_long: Տեսանելի բոլորին
+      unlisted: Ծածուկ
+      unlisted_long: Տեսանելի է բոլորին, բայց չի յայտնւում հանրային հոսքերում
+  statuses_cleanup:
+    exceptions: Բացառություններ
+    min_age:
+      '1209600': 2 շաբաթ
+      '15778476': 6 ամիս
+      '2629746': 1 ամիս
+      '31556952': 1 տարի
+      '5259492': 2 ամիս
+      '604800': 1 շաբաթ
+      '63113904': 2 տարի
+      '7889238': 3 ամիս
+  stream_entries:
+    pinned: Ամրացուած գրառում
+    reblogged: տարածուած
+    sensitive_content: Կասկածելի բովանդակութիւն
+  themes:
+    contrast: Mastodon (բարձր կոնտրաստով)
+    default: Mastodon (Մուգ)
+    mastodon-light: Mastodon (Լուսավոր)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+  two_factor_authentication:
+    add: Ավելացնել
+    disable: Անջատել
+    disabled_success: Երկքայլ նոյնականացումը հաջողութեամբ անջուած է
+    edit: Խմբագրել
+    enabled: Երկքայլ նոյնականացումը միացուած է
+    enabled_success: Երկքայլ նոյնականացումը հաջողութեամբ միացուած է
+    generate_recovery_codes: Ստեղծել վերականգնման կոդեր
+    lost_recovery_codes: Վերականգնման կոդերը հնարաւորութիւն են տալիս մուտք գործել հաշիւ՝ հեռախօսի կորստի դէպքում։ Եթէ կորցրել ես վերականգնման կոդերը, այստեղ կարող ես ստեղծել նորերը։ Նախկին վերականգման կոդերը կչեղարկվեն։
+    methods: Երկքայլ նոյնականացում տարբերակներ
+    otp: Նոյնականացման յաւելուած
+    recovery_codes: Վերականգնման կոդեր
+    recovery_codes_regenerated: Վերականգման կոդերը հաջողութեամբ ստեղծուել են
+    webauthn: Անվտանգութեան բանալիներ
+  user_mailer:
+    suspicious_sign_in:
+      title: Նոր մուտք
+    warning:
+      categories:
+        spam: Սպամ
+      reason: Պատճառ՝
+      subject:
+        disable: Քո %{acct} հաշիւը սառեցուել է
+        none: Նախազգուշացուեմ %{acct}-ին
+      title:
+        delete_statuses: Գրառումները ջնջուած են
+        disable: Հաշիւը սառեցուած է
+        none: Զգուշացում
+        silence: Հաշիւը սահմանափակուած է
+        suspend: Հաշիւը արգելափակուած է
+    welcome:
+      edit_profile_action: Կարգաւորել հաշիւը
+      final_action: Սկսել գրել
+      subject: Բարի գալուստ Մաստոդոն
+      title: Բարի գալուստ նաւամատոյց, %{name}
+  users:
+    invalid_otp_token: Անվաւեր 2F կոդ
+    signed_in_as: Մոտք գործել որպէս․
+  verification:
+    verification: Ստուգում
+  webauthn_credentials:
+    delete: Ջնջել
+    not_enabled: WebAuthn-ը դեռ միացուած չէ
+    not_supported: Այս դիտարկիչը չի աջակցում անվտանգութեան բանալիներ
+    registered_on: Գրանցուել է %{date}

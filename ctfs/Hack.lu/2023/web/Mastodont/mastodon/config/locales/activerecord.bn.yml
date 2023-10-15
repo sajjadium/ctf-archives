@@ -1,0 +1,17 @@
+---
+bn:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: নির্দিষ্ট সময়সীমা
+        options: বিকল্প
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: শুধুমাত্র অক্ষর, সংখ্যা এবং _ বেবহার করা যাবে
+        status:
+          attributes:
+            reblog:
+              taken: এর লেখাটি ইতিপূর্বে ছিল

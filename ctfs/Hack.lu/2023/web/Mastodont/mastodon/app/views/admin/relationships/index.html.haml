@@ -1,0 +1,40 @@
+- content_for :page_title do
+  = t('admin.relationships.title', acct: @account.pretty_acct)
+
+.filters
+  .filter-subset
+    %strong= t 'relationships.relationship'
+    %ul
+      %li= filter_link_to t('relationships.following'), relationship: nil
+      %li= filter_link_to t('relationships.followers'), relationship: 'followed_by'
+      %li= filter_link_to t('relationships.mutual'), relationship: 'mutual'
+      %li= filter_link_to t('relationships.invited'), relationship: 'invited'
+
+  .filter-subset
+    %strong= t('admin.accounts.location.title')
+    %ul
+      %li= filter_link_to t('admin.accounts.moderation.all'), location: nil
+      %li= filter_link_to t('admin.accounts.location.local'), location: 'local'
+      %li= filter_link_to t('admin.accounts.location.remote'), location: 'remote'
+
+  .back-link
+    = link_to admin_account_path(@account.id) do
+      = fa_icon 'chevron-left fw'
+      = t('admin.statuses.back_to_account')
+
+%hr.spacer/
+
+= form_for(@form, url: batch_admin_accounts_path) do |f|
+  .batch-table
+    .batch-table__toolbar
+      %label.batch-table__toolbar__select.batch-checkbox-all
+        = check_box_tag :batch_checkbox_all, nil, false
+      .batch-table__toolbar__actions
+        = f.button safe_join([fa_icon('lock'), t('admin.accounts.perform_full_suspension')]), name: :suspend, class: 'table-action-link', type: :submit, data: { confirm: t('admin.reports.are_you_sure') }
+    .batch-table__body
+      - if @accounts.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        = render partial: 'admin/accounts/account', collection: @accounts, locals: { f: f }
+
+= paginate @accounts

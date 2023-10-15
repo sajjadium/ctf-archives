@@ -1,0 +1,55 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Prazo
+        options: Opções
+      user:
+        agreement: Termos de serviço
+        email: E-mail
+        locale: Idioma
+        password: Senha
+      user/account:
+        username: Usuário
+      user/invite_request:
+        text: Razão
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: apenas letras, números e underlines ( "_" )
+              reserved: já existe
+        admin/webhook:
+          attributes:
+            url:
+              invalid: não é uma URL válida
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: não é uma URL válida
+        import:
+          attributes:
+            data:
+              malformed: está incorreto
+        status:
+          attributes:
+            reblog:
+              taken: do toot já existe
+        user:
+          attributes:
+            email:
+              blocked: usa provedor de e-mail não permitido
+              unreachable: parece não existir
+            role_id:
+              elevated: não pode ser maior que seu cargo atual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: incluir permissões que não são seguras para o cargo base
+              elevated: não pode incluir permissões que o seu cargo atual não possui
+              own_role: não pode ser alterado com seu cargo atual
+            position:
+              elevated: não pode ser maior do que seu cargo atual
+              own_role: não pode ser alterado com seu cargo atual

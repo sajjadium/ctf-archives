@@ -1,0 +1,520 @@
+---
+lt:
+  about:
+    about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu, ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota kaip jūsų elektroninis paštas.
+    contact_missing: Nenustatyta
+    hosted_on: Mastodon palaikomas naudojantis %{domain} talpinimu
+  accounts:
+    follow: Sekti
+    following: Sekami
+    last_active: paskutinį kartą aktyvus
+    link_verified_on: Nuorodos nuosavybė paskutinį kartą tikrinta %{date}
+    nothing_here: Čia nieko nėra!
+    pin_errors:
+      following: Privalai sekti žmogų kurį nori pagerbti
+    posts_tab_heading: Tootai
+  admin:
+    account_actions:
+      action: Veiksmas
+      title: Moderuoti %{acct}
+    account_moderation_notes:
+      create: Palikti žinutę
+      created_msg: Moderavimo žinutė sėkimngai sukurta!
+      destroyed_msg: Moderacijos žinutė sėkmingai ištrinta!
+    accounts:
+      are_you_sure: Ar esate įsitikinęs?
+      avatar: Profilio nuotrauka
+      by_domain: Domenas
+      change_email:
+        current_email: Dabartinis el paštas
+        label: Pakeisti el pašto adresą
+        new_email: Naujas el pašto adresas
+        submit: Pakeisti el pašto adresą
+        title: Pakeisti el pašto adresą vartotojui %{username}
+      confirm: Patvirtinti
+      confirmed: Patvirtinta
+      confirming: Tvirtinama
+      deleted: Ištrinti
+      demote: Pažeminti
+      disable: Išjungti
+      disable_two_factor_authentication: Išjungti 2 faktorių autentifikaciją
+      disabled: Išjungta
+      display_name: Matomas vardas
+      domain: Domenas
+      edit: Keisti
+      email: El paštas
+      email_status: El pašto statusas
+      enable: Įjungti
+      enabled: Įjungta
+      followers: Sekėjai
+      follows: Seka
+      header: Antraštė
+      inbox_url: Gautųjų URL
+      invited_by: Pakvietė
+      joined: Prisijungė
+      location:
+        all: Visi
+        local: Lokali
+        remote: Nuotolinis
+        title: Lokacija
+      login_status: Prisijungimo statusas
+      media_attachments: Prisegti medijos failai
+      memorialize: Paversti į memorija
+      moderation:
+        active: Aktyvus
+        all: Visi
+        suspended: Užrakintas
+        title: Moderacija
+      moderation_notes: Medaracijos žinutės
+      most_recent_activity: Paskutinioji veikla
+      most_recent_ip: Paskutinis IP
+      no_limits_imposed: Be limitu
+      not_subscribed: Ne prenumeruota
+      perform_full_suspension: Užrakinti
+      promote: Paaukštinti
+      protocol: Protokolas
+      public: Viešas
+      push_subscription_expires: PuSH prenumeramivas pasibaigė
+      redownload: Perkrauti profilį
+      remove_avatar: Panaikinti profilio nuotrauką
+      remove_header: Panaikinti antraštę
+      resend_confirmation:
+        already_confirmed: Šis vartotojas jau patvirtintas
+        send: Dar kartą išsiųsti patvirtinimo žinutę
+        success: Patvirtinimo laiškas sėkmingai išsiųstas!
+      reset: Iš naujo
+      reset_password: Atkurti slaptažodį
+      resubscribe: Per prenumeruoti
+      search: Ieškoti
+      shared_inbox_url: Bendroji gautųjų URL
+      show:
+        created_reports: Parašyti raportai
+        targeted_reports: Reportuotas kitų
+      silence: Tyla
+      silenced: Užtildytas
+      statuses: Statusai
+      subscribe: Prenumeruoti
+      suspended: Užrakintas
+      title: Vartotojai
+      unconfirmed_email: Nepatvirtintas el pašto adresas
+      undo_silenced: Atšaukti užtildymą
+      undo_suspension: Atšaukti užrakinimą
+      unsubscribe: Nebeprenumeruoti
+      username: Slapyvardis
+      warn: Įspėti
+    action_logs:
+      title: Audito žurnalas
+    custom_emojis:
+      by_domain: Domenas
+      copied_msg: Sėkmingai sukurta lokali jaustuko kopija
+      copy: Kopijuoti
+      copy_failed_msg: Lokali jaustuko kopija negalėjo būti sukurta
+      created_msg: Jaustukas sukurtas sėkmingai!
+      delete: Ištrinti
+      destroyed_msg: Jaustukas sėkmingai sunaikintas!
+      disable: Išjungti
+      disabled_msg: Šis jaustukas sėkmingai išjungtas
+      emoji: Jaustukas
+      enable: Įjungti
+      enabled_msg: Šis jaustukas sėkmingai įjungtas
+      listed: Įtrauktas į sąrašą
+      new:
+        title: Pridėti naują jaustuką
+      overwrite: Perrašyti
+      shortcode: Trumpas-kodas
+      shortcode_hint: Bent du ženklai, tik raidiniai skaitmeniniai ženklai bei akcentai(_)
+      title: Asmeniniai jaustukai
+      unlisted: Neįtrauktas į sąrašą
+      update_failed_msg: Jaustukas negalėjo būti pakeistas
+      updated_msg: Jaustukas sėkmingai pakeistas!
+      upload: Įkelti
+    dashboard:
+      software: Programinė įranga
+      space: Naudojama atmintis
+      title: Pagrindinis puslapis
+    domain_blocks:
+      add_new: Pridėti naują domeno bloką
+      created_msg: Domeno užblokavimas nagrinėjamas
+      destroyed_msg: Domeno blokas pašalintas
+      domain: Domenas
+      new:
+        create: Sukurti bloką
+        hint: Domeno blokavimas nesustabdys vartotojų paskyrų sukūrimo duomenų sistemoje, tačiau automatiškai pritaikys atitinkamus moderavimo metodus šioms paskyroms.
+        severity:
+          noop: Nieko
+          suspend: Draudimas
+        title: Naujos domeno blokas
+      reject_media: Atmesti medijos failai
+      reject_media_hint: Panaikina lokaliai saugomus medijos failus bei atsisako jų parsisiuntimo ateityje. Neliečia užblokavimu
+      reject_reports: Atmesti skundai
+      reject_reports_hint: Ignoruoti visus skundus, kurie siunčiami iš šio domeno. Neliečia užblokavimu
+      undo: Atkurti domeno bloką
+    email_domain_blocks:
+      add_new: Pridėti naują
+      created_msg: El pašto domenas sėkmingai pridėtas į juodąjį sąrašą
+      delete: Ištrinti
+      domain: Domenas
+      new:
+        create: Pridėto domeną
+        title: Naujas el pašto juodojo sąrašo įtraukimas
+      title: El pašto juodasis sąrašas
+    instances:
+      by_domain: Domenas
+      delivery_available: Pristatymas galimas
+      moderation:
+        all: Visi
+        limited: Limituotas
+        title: Moderacija
+      title: Federacija
+      total_blocked_by_us: Mes užblokavome
+      total_followed_by_them: Jų sekami
+      total_followed_by_us: Mūsų sekami
+      total_reported: Skundai apie juos
+      total_storage: Medijos prisegti failai
+    invites:
+      deactivate_all: Deaktyvuoti visus
+      filter:
+        all: Visi
+        available: Prieinamas
+        expired: Pasibaigęs
+        title: Filtras
+      title: Pakvietimai
+    relays:
+      add_new: Pridėti naują pamainą
+      delete: Ištrinti
+      description_html: "<strong>Federacijos perjungėjas</strong> tai tarpinis serveris, kuris apsikeičia didelios apimties informacija tarp kitų serverių. <strong> Tai gali padėti mažesniems serveriams atrasti turinį iš fedi-visatos</strong>, kuris kitaip reikalautų vartotojų lokaliai sekti kitus žmones naudojantis kitus tolimus serverius."
+      disable: Išjungti
+      disabled: Išjungtas
+      enable: Įjungti
+      enable_hint: Kai įjungta, Jūsų serveris prenumeruos visas viešas žinutes iš šio tinklo, ir pradės siųsti šio serverio viešas žinutes į tinklą.
+      enabled: Įjungtas
+      inbox_url: Perdavimo URL
+      pending: Laukiama perdavimo patvirtinimo
+      save_and_enable: Išsaugoti ir įjungti
+      setup: Sukurti perdavimo ryšį
+      status: Statusas
+      title: Perdavimai
+    report_notes:
+      created_msg: Skundo žinutė sekmingai sukurta!
+      destroyed_msg: Skundo žinutė sekmingai ištrinta!
+    reports:
+      action_taken_by: Veiksmo ėmėsi
+      are_you_sure: Ar tu įsitikinęs?
+      assign_to_self: Paskirti man
+      assigned: Paskirtas moderatorius
+      comment:
+        none: Nėra
+      created_at: Reportuotas
+      mark_as_resolved: Pažymėti kaip išsprestą
+      mark_as_unresolved: Pažymėti kaip neišsprestą
+      notes:
+        create: Pridėti raštelį
+        create_and_resolve: Išspręsti su rašteliu
+        create_and_unresolve: Atidaryti su rašteliu
+        delete: Ištrinti
+        placeholder: Apibūdink, kokių veiksmų imtasi arba kitokie atnaujinimai..
+      reopen: Atidaryti skundą
+      report: 'Skundas #%{id}'
+      reported_account: Reportuota paskyra
+      reported_by: Skundas sukurtas
+      resolved: Išspręsta
+      resolved_msg: Skundas sėkmingai įšspręstas!
+      status: Statusas
+      title: Skundai
+      unassign: Nepriskirti
+      unresolved: Neišspręsti
+      updated_at: Atnaujinti
+    statuses:
+      back_to_account: Atgal į paskyros puslapį
+      media:
+        title: Medija
+      no_status_selected: Jokie statusai nebuvo pakeisti, nes niekas nepasirinkta
+      title: Paskyros statusai
+      with_media: Su medija
+    title: Administracija
+    warning_presets:
+      add_new: Pridėti naują
+      delete: Ištrinti
+      edit_preset: Keisti įspėjimo nustatymus
+      title: Valdyti įspėjimo nustatymus
+  admin_mailer:
+    new_report:
+      body: "%{reporter} parašė skundą apie %{target}"
+      body_remote: Kažkas iš %{domain} parašė skundą apie %{target}
+      subject: Naujas skundas %{instance} (#%{id})
+  application_mailer:
+    notification_preferences: Keisti el pašto parinktis
+    settings: 'Keisti el pašto parinktis: %{link}'
+    view: 'Peržiūra:'
+    view_profile: Peržiurėti profilį
+    view_status: Peržiūrėti statusą
+  applications:
+    created: Aplikacija sėkmingai sukurta
+    destroyed: Aplikacija sėkmingai ištrinta
+    regenerate_token: Regeneruoti prieigos žetoną
+    token_regenerated: Prieigos žetonas sėkmingai sugeneruotas
+    warning: Būkite atsargūs su šia informacija. Niekada jos nesidalinkite!
+    your_token: Jūsų prieigos žetonas
+  auth:
+    change_password: Slaptažodis
+    delete_account: Ištrinti paskyrą
+    delete_account_html: Jeigu norite ištrinti savo paskyrą, galite eiti <a href="%{path}">čia</a>. Jūsų prašys patvirtinti pasirinkimą.
+    didnt_get_confirmation: Negavote patvirtinimo instrukcijų?
+    forgot_password: Pamiršote slaptažodį?
+    invalid_reset_password_token: Slaptažodžio atkūrimo žetonas netinkamas arba jo galiojimo laikas pasibaigęs. Prašykite naujo žetono.
+    login: Prisijungti
+    logout: Atsijungti
+    migrate_account: Prisijungti prie kitos paskyros
+    migrate_account_html: Jeigu norite nukreipti šią paskyrą į kita, galite tai <a href="%{path}">konfiguruoti čia</a>.
+    or_log_in_with: Arba prisijungti su
+    register: Užsiregistruoti
+    resend_confirmation: Išsiųsti dar kartą patvirtinimo instrukcijas
+    reset_password: Atstatyti slaptažodį
+    security: Apsauga
+    set_new_password: Nustatyti naują slaptažodį
+  authorize_follow:
+    already_following: Jūs jau sekate šią paskyrą
+    error: Dėja, aptikta klaida ieškant tolimosios paskyros
+    follow: Sekti
+    follow_request: 'Jūs išsiuntėte sekimo prašymą:'
+    following: 'Puiku! Jūs pradėjote sekti:'
+    post_follow:
+      close: Arba, Jūs galite uždaryti šį langą.
+      return: Rodyti vartotojo paskyrą
+      web: Eiti į
+    title: Sekti %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count} val"
+      about_x_months: "%{count}mėn"
+      about_x_years: "%{count}met"
+      almost_x_years: "%{count}met"
+      half_a_minute: Ką tik
+      less_than_x_minutes: "%{count}min"
+      less_than_x_seconds: Ką tik
+      over_x_years: "%{count}met"
+      x_days: "%{count}dien"
+      x_minutes: "%{count}min"
+      x_months: "%{count}mėn"
+      x_seconds: "%{count}sek"
+  deletes:
+    confirm_password: Kad patvirtintumėte savo tapatybę, įveskite dabartini slaptažodį
+    proceed: Ištrinti paskyrą
+    success_msg: Jūsų paskyra sėkmingai ištrinta
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': Jūs neturie prieigos matyti šiam puslapiui.
+    '404': Puslapis nerastas.
+    '406': This page is not available in the requested format.
+    '410': Puslapis neegzistuoja.
+    '422':
+      content: Apsaugos patvirtinmas klaidingas. Ar jūs blokuojate sausainius?
+      title: Apsaugos patvirtinimas nepavyko
+    '429': Stabdomas
+    '500':
+      content: Atsiprašome, tačiau mūsų pusėje įvyko klaida.
+      title: Netinkamas puslapis
+    '503': The page could not be served due to a temporary server failure.
+    noscript_html: Kad naudotumėtės Mastodon web aplikacija, prašome įsijungti JavaScript. Alternatyviai, pabandykite viena iš <a href="%{apps_path}">vietinių aplikacijų</a> Mastodon savo platformai.
+  exports:
+    archive_takeout:
+      date: Data
+      download: Parsisiųsti archyvą
+      hint_html: Jūs galite prašyti savo <strong>įrašų bei medijos</strong> archyvo. Eksportuota informacija bus ActivityPub formatu, skaitoma suderintų programų. Galite prašyti archyvo, kas 7 dienas.
+      in_progress: Sudaromas archyvas...
+      request: Prašyti savo archyvo
+      size: Dydis
+    blocks: Jūs blokuojate
+    domain_blocks: Domeno blokai
+    lists: Sąrašai
+    mutes: Jūs tildote
+    storage: Medijos sandėlis
+  featured_tags:
+    add_new: Pridėti naują
+  filters:
+    contexts:
+      home: Namų laiko juosta
+      notifications: Priminimai
+      public: Viešos laiko juostos
+      thread: Pokalbiai
+    edit:
+      title: Keisti filtrą
+    errors:
+      invalid_context: Jokio arba netinkamas pateiktas kontekstas
+    index:
+      delete: Ištrinti
+      title: Filtrai
+    new:
+      title: Pridėti naują filtrą
+  generic:
+    changes_saved_msg: Pakeitimai sėkmingai išsaugoti!
+    copy: Kopijuoti
+    save_changes: Išsaugoti pakeitimus
+  imports:
+    modes:
+      merge: Sulieti
+      merge_long: Išsaugoti esančius įrašus ir pridėti naujus
+      overwrite: Perrašyti
+      overwrite_long: Pakeisti senus įrašus naujais
+    preface: Jūs galite importuoti informaciją iš kito serverio, tokią kaip sąrašą žmonių kuriuos sekate.
+    success: Jūsų informacija sėkmingai įkelta ir bus apdorota kaip įmanoma greičiau
+    types:
+      blocking: Blokuojamų sąrašas
+      domain_blocking: Domeno blokavimo sąrašas
+      following: Sekėju sąrašas
+      muting: Tildomų sąrašas
+    upload: Įkelti
+  invites:
+    delete: Deaktyvuoti
+    expired: Pasibaigęs
+    expires_in:
+      '1800': 30 minučių
+      '21600': 6 valandų
+      '3600': 1 valandos
+      '43200': 12 valandų
+      '604800': 1 savaitės
+      '86400': 1 dienos
+    expires_in_prompt: Niekada
+    generate: Generuoti
+    invited_by: 'Jus pakvietė:'
+    max_uses_prompt: Be limito
+    prompt: Generuoti ir dalintis įrašais su kitais, kad sukurti prieigą prie serverio
+    table:
+      expires_at: Pasibaigia
+      uses: Naudojimai
+    title: Pakviesti žmones
+  media_attachments:
+    validations:
+      images_and_video: Negalima pridėti video prie statuso, kuris jau turi nuotrauką
+      too_many: Negalima pridėti daugiau nei 4 failų
+  migrations:
+    acct: slapyvardis@domenas naujam vartotojui
+  moderation:
+    title: Moderacija
+  notification_mailer:
+    favourite:
+      body: 'Jūsų statusą pamėgo %{name}:'
+      subject: "%{name} pamėgo Jūsų statusą"
+      title: Naujas mėgstamas
+    follow:
+      body: "%{name} pradėjo jus sekti!"
+      subject: "%{name} pradėjo jus sekti"
+      title: Naujas sekėjas
+    follow_request:
+      action: Tvarkyti prašymus sekti
+      body: "%{name} nori tapti Jūsų sekėju"
+      subject: 'Laukiantis sprendimo sekėjas:  %{name}'
+      title: Naujas prašymas sekti
+    mention:
+      action: Atsakyti
+      body: 'Jus paminėjo %{name} pranešime:'
+      subject: Jus paminėjo %{name}
+      title: Naujas paminėjimas
+    reblog:
+      body: 'Jūsų statusą pakėlė %{name}:'
+      subject: "%{name} pakėlė Jūsų statusą"
+      title: Naujas pakėlimas
+  pagination:
+    newer: Naujesnis
+    next: Kitas
+    older: Senesnis
+    prev: Ankstesnis
+  remote_follow:
+    missing_resource: Jūsų paskyros nukreipimo URL nerasta
+  scheduled_statuses:
+    over_daily_limit: Jūs pasieketė limitą (%{limit}) galimų toot'ų per dieną
+    over_total_limit: Jūs pasieketė %{limit} limitą galimų toot'ų
+    too_soon: Planuota data privalo būti ateityje
+  sessions:
+    activity: Paskutinė veikla
+    browser: Naršyklė
+    browsers:
+      generic: Nežinoma naršyklė
+    current_session: Dabartinė sesija
+    description: "%{browser} ant %{platform}"
+    explanation: Čia rodomos web naršyklės prijungtos prie Jūsų Mastodon paskyros.
+    revoke: Atšaukti
+    revoke_success: Sesija sėkmingai atšaukta
+    title: Sesijos
+  settings:
+    authorized_apps: Autorizuotos aplikacijos
+    back: Atgal į Mastodon
+    delete: Paskyros trynimas
+    development: Plėtojimas
+    edit_profile: Keisti profilį
+    export: Informacijos eksportas
+    featured_tags: Rodomi saitažodžiai(#)
+    import: Importuoti
+    migrate: Paskyros migracija
+    notifications: Pranešimai
+    preferences: Preferencijos
+    two_factor_authentication: Dviejų veiksnių autentikacija
+  statuses:
+    attached:
+      description: 'Pridėta: %{attached}'
+    boosted_from_html: Pakelta iš %{acct_link}
+    content_warning: 'Turinio įspėjimas: %{warning}'
+    open_in_web: Atidaryti naudojan Web
+    over_character_limit: pasiektas %{max} simbolių limitas
+    pin_errors:
+      limit: Jūs jau prisegėte maksimalų toot'ų skaičų
+      ownership: Kitų vartotojų toot'ai negali būti prisegti
+      reblog: Pakeltos žinutės negali būti prisegtos
+    show_more: Daugiau
+    sign_in_to_participate: Prisijunkite jeigu norite dalyvauti pokalbyje
+    visibilities:
+      private: Tik sekėjams
+      private_long: Rodyti tik sekėjams
+      public: Viešas
+      public_long: Matyti gali visi
+      unlisted: Neįtrauktas į sąrašus
+      unlisted_long: Matyti gali visi, tačiau nėra įtraukta į viešas laiko juostas
+  stream_entries:
+    pinned: Prisegtas toot'as
+    reblogged: pakeltas
+    sensitive_content: Jautrus turinys
+  themes:
+    contrast: Mastodon (Didelio Kontrasto)
+    default: Mastodon (Tamsus)
+    mastodon-light: Mastodon (Šviesus)
+  two_factor_authentication:
+    disable: Išjungti
+    enabled: Dviejų veiksnių autentikacija įjungta
+    enabled_success: Dviejų veiksnių autentikacija sėkmingai įjungta
+    generate_recovery_codes: Sugeneruoti atkūrimo kodus
+    lost_recovery_codes: Atkūrimo kodai jums leidžia atgauti prisijungimą prie Jūsų paskyros, jeigu prarandate telefoną. Jeigu praradote atkūrimo kodus, juos galite sugeneruoti čia. Jūsų senieji atkūrimo kodai nebeveiks.
+    recovery_codes: Atsarginio atkūrimo kodai
+    recovery_codes_regenerated: Atkūrimo kodai sėkmingai sugeneruoti
+    recovery_instructions_html: Jeigu prarandate prieiga prie telefono, jūs galite naudoti atkūrimo kodus esančius žemiau, kad atgautumėte priega prie savo paskyros.<strong>Laikykite atkūrimo kodus saugiai</strong> Pavyzdžiui, galite norėti juos išspausdinti, ir laikyti kartu su kitais svarbiais dokumentais.
+  user_mailer:
+    backup_ready:
+      explanation: Jūs prašėte pilnos Mastodon paskyros atsarginės kopijos. Ji paruošta parsisiuntimui!
+      subject: Jūsų archyvas paruoštas parsisiuntimui
+      title: Archyvas išimtas
+    warning:
+      subject:
+        disable: Jūsų paskyra %{acct} buvo užšaldyta
+        none: Įspėjmas vartotojui %{acct}
+        silence: Jūsų paskyra %{acct} buvo limituota
+        suspend: Jūsų paskyra %{acct} buvo užrakinta
+      title:
+        disable: Paskyra užšaldyta
+        none: Įspėjimas
+        silence: Paskyra limituota
+        suspend: Paskyra užrakinta
+    welcome:
+      edit_profile_action: Nustatyti profilį
+      explanation: Štai keletas patarimų Jums
+      final_action: Pradėti kelti įrašus
+      full_handle: Jūsų pilnas slapyvardis
+      full_handle_hint: Štai ką jūs sakytumėte savo draugams, kad jie galėtų jums siųsti žinutes arba just sekti iš kitų serverių.
+      subject: Sveiki atvykę į Mastodon
+      title: Sveiki atvykę, %{name}!
+  users:
+    follow_limit_reached: Negalite sekti daugiau nei %{limit} žmonių
+    invalid_otp_token: Netinkamas dviejų veiksnių kodas
+    otp_lost_help_html: Jeigu praradote prieiga prie abiejų, susisiekite su mumis per %{email}
+    seamless_external_login: Jūs esate prisijungę per išorini įrenginį, todėl slaptąžodis ir el pašto nustatymai neprieinami.
+    signed_in_as: 'Prisijungta kaip:'
+  verification:
+    verification: Patvirtinimas

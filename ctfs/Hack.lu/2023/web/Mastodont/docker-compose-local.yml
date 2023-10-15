@@ -1,0 +1,43 @@
+version: '3'
+services:
+  reverse-proxy:
+    # The official v2 Traefik docker image
+    image: traefik:v2.10
+    # Enables the web UI and tells Traefik to listen to docker
+    command: 
+      - "--log.level=DEBUG"
+      - "--api.dashboard=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+    # networks:
+    #   - internal_network
+    #   - external_network
+    ports:
+      - "80:80"
+      - "443:443"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8080:8080"
+    volumes:
+      # So that Traefik can listen to the Docker events
+      - /var/run/docker.sock:/var/run/docker.sock
+  db:
+    volumes:
+      - ./postgres14:/var/lib/postgresql/data
+  redis:
+    volumes:
+      - ./redis:/data
+  web:  
+    volumes:
+      - ./public/system:/mastodon/public/system
+    environment:
+      - LOCAL_DOMAIN=mastodon.local
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mastodon.entrypoints=websecure"
+      - "traefik.http.routers.mastodon.rule=(Host(`mastodon.local`))"
+      - "traefik.http.routers.mastodon.tls=true"
+      - "traefik.http.routers.mastodon.service=mastodon"
+      - "traefik.http.services.mastodon.loadbalancer.server.port=3000"
+      - "traefik.docker.network=mastodon_external_network"

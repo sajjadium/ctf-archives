@@ -1,0 +1,16 @@
+<%= t 'user_mailer.welcome.title', name: @resource.account.username %> <%= t 'user_mailer.welcome.explanation' %>
+
+===
+
+<%= t 'user_mailer.welcome.full_handle' %> (<%= "@#{@resource.account.local_username_and_domain}" %>)
+<%= t 'user_mailer.welcome.full_handle_hint', instance: @instance %>
+
+---
+
+<%= t 'user_mailer.welcome.edit_profile_step' %>
+
+=> <%= settings_profile_url %>
+
+<%= t 'user_mailer.welcome.final_step' %>
+
+=> <%= web_url %>

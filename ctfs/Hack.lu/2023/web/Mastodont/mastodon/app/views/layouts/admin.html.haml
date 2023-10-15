@@ -1,0 +1,43 @@
+- content_for :header_tags do
+  = render_initial_state
+  = javascript_pack_tag 'public', crossorigin: 'anonymous'
+
+- content_for :content do
+  .admin-wrapper
+    .sidebar-wrapper
+      .sidebar-wrapper__inner
+        .sidebar
+          = link_to root_path do
+            = render_logo
+
+          .sidebar__toggle
+            .sidebar__toggle__logo
+              = link_to root_path do
+                = logo_as_symbol(:wordmark)
+
+            = link_to '#', class: 'sidebar__toggle__icon', 'aria-label': t('navigation.toggle_menu'), 'aria-expanded': 'false' do
+              = fa_icon 'bars'
+              = fa_icon 'times'
+
+          = render_navigation
+
+    .content-wrapper
+      .content
+        .content__heading
+          - if content_for?(:heading)
+            = yield :heading
+          - else
+            .content__heading__row
+              %h2= yield :page_title
+
+              - if content_for?(:heading_actions)
+                .content__heading__actions
+                  = yield :heading_actions
+
+        = render 'application/flashes'
+
+        = yield
+
+    .sidebar-wrapper.sidebar-wrapper--empty
+
+= render template: 'layouts/application'

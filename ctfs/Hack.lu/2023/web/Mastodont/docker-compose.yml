@@ -1,0 +1,43 @@
+version: '3'
+services:
+  db:
+    restart: unless-stopped
+    image: postgres:14-alpine
+    shm_size: 256mb
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', 'postgres']
+    environment:
+      - 'POSTGRES_HOST_AUTH_METHOD=trust'
+
+  redis:
+    restart: unless-stopped
+    image: redis:7-alpine
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+
+  web:
+    build: ./mastodon/
+    restart: unless-stopped
+    env_file: .env.production
+    healthcheck:
+      test: ['CMD-SHELL', 'wget -q --spider --proxy=off localhost:3000/health || exit 1']
+    depends_on:
+      - db
+      - redis
+
+# This chall is not about https://scumjr.github.io/2023/10/12/from-ssrf-to-rce-on-mastodon-cve-2023-42450/
+# Thats stuff from literally yesterday ;)
+#  sidekiq:
+#    image: tootsuite/mastodon:latest
+#   restart: unless-stopped
+#    env_file: .env.production
+#    command: bundle exec sidekiq
+#    depends_on:
+#      - db
+#      - redis
+#    networks:
+#      - internal_network
+#    volumes:
+#      - ./public/system:/mastodon/public/system
+#    healthcheck:
+#      test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]

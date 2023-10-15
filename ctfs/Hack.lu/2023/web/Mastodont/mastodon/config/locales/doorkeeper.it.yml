@@ -1,0 +1,195 @@
+---
+it:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nome dell'applicazione
+        redirect_uri: URI di reindirizzamento
+        scopes: Ambiti
+        website: Sito web dell'applicazione
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: non può contenere un frammento.
+              invalid_uri: dev'essere un URI valido.
+              relative_uri: dev'essere un URI assoluto.
+              secured_uri: dev'essere un URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizza
+        cancel: Annulla
+        destroy: Distruggi
+        edit: Modifica
+        submit: Invia
+      confirmations:
+        destroy: Sei sicuro?
+      edit:
+        title: Modifica la richiesta
+      form:
+        error: Oops! Controlla il tuo modulo per la presenza di errori
+      help:
+        native_redirect_uri: Usa %{native_redirect_uri} per i test locali
+        redirect_uri: Usa una riga per URI
+        scopes: Separa gli ambiti con gli spazi. Lascia vuoto per usare quelli predefiniti.
+      index:
+        application: Applicazione
+        callback_url: URL di richiamata
+        delete: Elimina
+        empty: Non hai applicazioni.
+        name: Nome
+        new: Nuova applicazione
+        scopes: Ambiti
+        show: Mostra
+        title: Le tue applicazioni
+      new:
+        title: Nuova applicazione
+      show:
+        actions: Azioni
+        application_id: Chiave del client
+        callback_urls: URL di richiamata
+        scopes: Ambiti
+        secret: Codice segreto del client
+        title: 'Applicazione: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizza
+        deny: Nega
+      error:
+        title: Si è verificato un errore
+      new:
+        prompt_html: "%{client_name} vorrebbe l'autorizzazione ad accedere al tuo profilo. È un'applicazione di terze parti. <strong>Se non ti fidi, non dovresti autorizzarla.</strong>"
+        review_permissions: Revisiona le autorizzazioni
+        title: Autorizzazione necessaria
+      show:
+        title: Copia questo codice d'autorizzazione e incollalo all'applicazione.
+    authorized_applications:
+      buttons:
+        revoke: Revoca
+      confirmations:
+        revoke: Sei sicuro?
+      index:
+        authorized_at: Autorizzato il %{date}
+        description_html: Queste sono le applicazioni che possono accedere al tuo profilo utilizzando l'API. Se qui ci sono delle applicazioni che non riconosci o se un'applicazione si sta comportando in modo errato, puoi revocarne l'accesso.
+        last_used_at: Ultimo utilizzo il %{date}
+        never_used: Mai usata
+        scopes: Autorizzazioni
+        superapp: Interna
+        title: Le tue applicazioni autorizzate
+    errors:
+      messages:
+        access_denied: Il proprietario della risorsa o il server d'autorizzazione ha negato la richiesta.
+        credential_flow_not_configured: Il processo delle Credenziali Password del Proprietario della Risorsa è fallito a causa della mancata configurazione di Doorkeeper.configure.resource_owner_from_credentials.
+        invalid_client: Autenticazione del client fallita a causa di un client sconosciuto, di nessun'autenticazione del client inclusa o di un metodo d'autenticazione non supportato.
+        invalid_grant: L'autorizzazione fornita non è valida, è scaduta, è stata revocata, non corrisponde all'URI di reindirizzamento utilizzato nella richiesta d'autorizzazione o è stata emessa a un altro client.
+        invalid_redirect_uri: L'uri di reindirizzamento incluso non è valido.
+        invalid_request:
+          missing_param: 'Parametro necessario mancante: %{value}.'
+          request_not_authorized: La richiesta dev'essere autorizzata. Il parametro necessario per autorizzare la richiesta è mancante o non valido.
+          unknown: La richiesta manca di un parametro necessario, include un valore del parametro non supportato o è altrimenti mal strutturata.
+        invalid_resource_owner: Le credenziali del proprietario della risorsa fornite non sono valide, o il proprietario della risorsa non è stato trovato
+        invalid_scope: L'ambito necessario non è valido, è sconosciuto o mal strutturato.
+        invalid_token:
+          expired: Il token d'accesso è scaduto
+          revoked: Il token d'accesso è stato revocato
+          unknown: Il token d'accesso non è valido
+        resource_owner_authenticator_not_configured: Impossibile trovare il Proprietario della Risorsa a causa della mancata configurazione di Doorkeeper.configure.resource_owner_authenticator.
+        server_error: Il server d'autorizzazione ha riscontrato una condizione imprevista, che gli ha impedito di soddisfare la tua richiesta.
+        temporarily_unavailable: Il server d'autorizzazione non è correntemente capace di gestire la richiesta a causa di un sovraccarico temporaneo o di una manutenzione del server.
+        unauthorized_client: Il client non è autorizzato a eseguire questa richiesta utilizzando questo metodo.
+        unsupported_grant_type: Il tipo di autorizzazione concessa non è supportato dal server d'autorizzazione.
+        unsupported_response_type: Il server d'autorizzazione non supporta questo tipo di risposta.
+    flash:
+      applications:
+        create:
+          notice: Applicazione creata.
+        destroy:
+          notice: Applicazione eliminata.
+        update:
+          notice: Applicazione aggiornata.
+      authorized_applications:
+        destroy:
+          notice: Applicazione revocata.
+    grouped_scopes:
+      access:
+        read: Accesso di sola lettura
+        read/write: Accesso di lettura e scrittura
+        write: Accesso di sola scrittura
+      title:
+        accounts: Profili
+        admin/accounts: Amministrazione dei profili
+        admin/all: Tutte le funzioni amministrative
+        admin/reports: Amministrazione dei rapporti
+        all: Accesso completo al tuo account Mastodon
+        blocks: Blocchi
+        bookmarks: Segnalibri
+        conversations: Conversazioni
+        crypto: Crittografia end-to-end
+        favourites: Preferiti
+        filters: Filtri
+        follow: Seguiti, silenziati e bloccati
+        follows: Seguiti
+        lists: Elenchi
+        media: Allegati multimediali
+        mutes: Silenziati
+        notifications: Notifiche
+        push: Notifiche push
+        reports: Segnalazioni
+        search: Cerca
+        statuses: Post
+    layouts:
+      admin:
+        nav:
+          applications: Applicazioni
+          oauth2_provider: Fornitore OAuth2
+      application:
+        title: Autorizzazione OAuth necessaria
+    scopes:
+      admin:read: leggere tutti i dati sul server
+      admin:read:accounts: leggere le informazioni sensibili su tutti i profili
+      admin:read:canonical_email_blocks: leggere le informazioni sensibili di tutti i blocchi canonici di posta elettronica
+      admin:read:domain_allows: leggere le informazioni sensibili di tutti i domini consentiti
+      admin:read:domain_blocks: leggere le informazioni sensibili di tutti i blocchi di dominio
+      admin:read:email_domain_blocks: leggi le informazioni sensibili di tutti i blocchi di dominio email
+      admin:read:ip_blocks: leggere le informazioni sensibili di tutti i blocchi IP
+      admin:read:reports: leggere le informazioni sensibili di tutte le segnalazioni e tutti i profili segnalati
+      admin:write: modificare tutti i dati sul server
+      admin:write:accounts: eseguire azioni di moderazione sui profili
+      admin:write:canonical_email_blocks: eseguire azioni di moderazione sui blocchi canonici di posta elettronica
+      admin:write:domain_allows: consente di eseguire azioni di moderazione sul dominio
+      admin:write:domain_blocks: eseguire azioni di moderazione sui blocchi di dominio
+      admin:write:email_domain_blocks: eseguire azioni di moderazione sui blocchi di dominio email
+      admin:write:ip_blocks: eseguire azioni di moderazione sui blocchi IP
+      admin:write:reports: eseguire azioni di moderazione sulle segnalazioni
+      crypto: utilizzare la crittografia end-to-end
+      follow: modifica le relazioni tra profili
+      push: ricevere le tue notifiche push
+      read: leggere tutti i dati del tuo profilo
+      read:accounts: visualizzare le informazioni sui profili
+      read:blocks: visualizzare i tuoi blocchi
+      read:bookmarks: visualizzare i tuoi segnalibri
+      read:favourites: visualizzare i tuoi preferiti
+      read:filters: visualizzare i tuoi filtri
+      read:follows: visualizzare i tuoi seguiti
+      read:lists: visualizzare i tuoi elenchi
+      read:mutes: visualizzare i tuoi silenziamenti
+      read:notifications: visualizzare le tue notifiche
+      read:reports: visualizzare le tue segnalazioni
+      read:search: fare ricerche per conto tuo
+      read:statuses: visualizzare tutti i post
+      write: modificare tutti i dati del tuo profilo
+      write:accounts: modificare il tuo profilo
+      write:blocks: bloccare profili e domini
+      write:bookmarks: aggiungere post tra i segnalibri
+      write:conversations: silenziare ed eliminare conversazioni
+      write:favourites: salvare post tra i preferiti
+      write:filters: creare filtri
+      write:follows: seguire persone
+      write:lists: creare elenchi
+      write:media: caricare file multimediali
+      write:mutes: silenziare persone e conversazioni
+      write:notifications: cancellare le tue notifiche
+      write:reports: segnalare altre persone
+      write:statuses: pubblicare post

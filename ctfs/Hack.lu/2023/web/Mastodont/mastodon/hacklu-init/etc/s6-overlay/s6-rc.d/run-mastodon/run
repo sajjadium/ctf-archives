@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
+
+export RAILS_ENV=production
+export PATH="${PATH}:/opt/mastodon/bin"
+export RAILS_SERVE_STATIC_FILES=true
+
+cd ~;
+RAILS_ENV=production bundle exec rails s -p 3000

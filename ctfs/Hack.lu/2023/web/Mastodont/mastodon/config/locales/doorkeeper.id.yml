@@ -1,0 +1,190 @@
+---
+id:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nama aplikasi
+        redirect_uri: URI Pengalihan
+        scopes: Cakupan
+        website: Website aplikasi
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: tidak dapat mengandung sebuah pecahan.
+              invalid_uri: harus URI yang valid.
+              relative_uri: harus URI yang absolut.
+              secured_uri: harus berupa URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Otorisasi
+        cancel: Batal
+        destroy: Hapus
+        edit: Ubah
+        submit: Kirim
+      confirmations:
+        destroy: Apakah anda yakin?
+      edit:
+        title: Ubah aplikasi
+      form:
+        error: Oops! Cek kembali kemungkinan kesalahan pada formulir anda
+      help:
+        native_redirect_uri: Gunakan %{native_redirect_uri} sebagai tes lokal
+        redirect_uri: Gunakan satu baris per URI
+        scopes: Pisahkan scope dengan spasi. Biarkan kosong jika ingin menggunakan scope default.
+      index:
+        application: Aplikasi
+        callback_url: URL Callback
+        delete: Hapus
+        empty: Anda tidak memiliki aplikasi.
+        name: Nama
+        new: Aplikasi baru
+        scopes: Cakupan
+        show: Tampilkan
+        title: Aplikasi anda
+      new:
+        title: Aplikasi Baru
+      show:
+        actions: Aksi
+        application_id: Id Aplikasi
+        callback_urls: Url callback
+        scopes: Scope
+        secret: Rahasia
+        title: 'Aplikasi: %{name}'
+    authorizations:
+      buttons:
+        authorize: Izinkan
+        deny: Tolak
+      error:
+        title: Ada yang error
+      new:
+        prompt_html: "%{client_name} meminta izin untuk mengakses akun Anda. Ini adalah aplikasi pihak ketiga. <strong>Jika Anda tidak mempercayainya, Anda boleh tidak mengizinkannya.</strong>"
+        review_permissions: Tinjau izin
+        title: Izin diperlukan
+      show:
+        title: Salin kode autorisasi dan tempelkan pada aplikasi.
+    authorized_applications:
+      buttons:
+        revoke: Cabut izin
+      confirmations:
+        revoke: Anda yakin?
+      index:
+        authorized_at: Diberi hak otorisasi pada %{date}
+        description_html: Ini adalah aplikasi yang dapat mengakses akun Anda menggunakan API. Jika ada aplikasi yang tidak Anda kenal di sini, atau aplikasi yang berperilaku aneh, Anda dapat mencabut hak aksesnya.
+        last_used_at: Terakhir dipakai pada %{date}
+        never_used: Tidak pernah dipakai
+        scopes: Hak akses
+        superapp: Internal
+        title: Aplikasi yang anda izinkan
+    errors:
+      messages:
+        access_denied: Pemilik akun atau server otorisasi menolak permintaan.
+        credential_flow_not_configured: Aliran Resource Owner Password Credentials gagal dikarenakan Doorkeeper.configure.resource_owner_from_credentials tidak terkonfigurasi dengan benar.
+        invalid_client: Perizinan klien gagal karena klien tidak diketahui, tidak ada klien yang diizinkan, atau metode perizinan tidak didukung.
+        invalid_grant: Pemberian izin yang diberikan tidak valid, kadaluarsa, telah dicabut, atau tidak cocok dengan URI pengalihan yang digunakan pada permintaan izin, atau telah diberikan pada klien lain.
+        invalid_redirect_uri: Uri pengalihan tidak valid.
+        invalid_request:
+          missing_param: 'Kehilangan parameter yang diperlukan: %{value}.'
+          request_not_authorized: Permintaan perlu diotorisasi. Parameter yang diperlukan untuk otorisasi hilang atau tidak valid.
+          unknown: Permintaan ini kehilangan parameter yang dibutuhkan, termasuk parameter yang tidak didukung, atau mungkin format tidak benar.
+        invalid_resource_owner: Identitas pemilik data yang diberikan tidak valid, atau pemilik data tidak ditemukan
+        invalid_scope: Scope yang diminta tidak valid, tidak diketahui, atau struktur tidak benar.
+        invalid_token:
+          expired: Token akses telah kadaluarsa
+          revoked: Token akses telah dicabut
+          unknown: Token akses tidak valid
+        resource_owner_authenticator_not_configured: Pencarian pemilik data gagal karena Doorkeeper.configure.resource_owner_authenticator tidak dikonfigurasi dengan benar.
+        server_error: Server otorisasi tidak bisa memenuhi permintaan karena terjadi sesuatu.
+        temporarily_unavailable: Server otorisasi saat ini tidak bisa menangani permintaan karena server sibuk atau sedang ada maintenance/perawatan.
+        unauthorized_client: Klien tidak memiliki izin untuk melakukan permintaan dengan metode ini.
+        unsupported_grant_type: Tipe izin tidak didukung oleh server otorisasi.
+        unsupported_response_type: Server otorisasi tidak mendukung tipe tanggapan/response seperti ini.
+    flash:
+      applications:
+        create:
+          notice: Aplikasi dibuat.
+        destroy:
+          notice: Aplikasi dihapus.
+        update:
+          notice: Aplikasi diubah.
+      authorized_applications:
+        destroy:
+          notice: Aplikasi dicabut.
+    grouped_scopes:
+      access:
+        read: Akses baca-saja
+        read/write: Akses baca dan tulis
+        write: Akses tulis-saja
+      title:
+        accounts: Akun
+        admin/accounts: Administrasi akun
+        admin/all: Semua fungsi administratif
+        admin/reports: Administrasi laporan
+        blocks: Blokir
+        bookmarks: Markah
+        conversations: Percakapan
+        crypto: Enkripsi end-to-end
+        favourites: Favorit
+        filters: Saringan
+        follows: Mengikuti
+        lists: Daftar
+        media: Lampiran media
+        mutes: Bisukan
+        notifications: Notifikasi
+        push: Notifikasi dorong
+        reports: Laporan
+        search: Pencarian
+        statuses: Kiriman
+    layouts:
+      admin:
+        nav:
+          applications: Aplikasi
+          oauth2_provider: Penyedia OAuth2
+      application:
+        title: Otorisasi OAuth diperlukan
+    scopes:
+      admin:read: baca semua data di server
+      admin:read:accounts: baca informasi sensitif semua akun
+      admin:read:canonical_email_blocks: baca informasi sensitif dari semua domain surat elektronik kanonikal yang diblokir
+      admin:read:domain_allows: baca informasi sensitif dari semua domain yang diperbolehkan
+      admin:read:domain_blocks: baca informasi sensitif dari semua domain yang diblokir
+      admin:read:email_domain_blocks: baca informasi sensitif dari semua domain surat elektronik yang diblokir
+      admin:read:ip_blocks: baca informasi sensitif dari semua alamat IP yang diblokir
+      admin:read:reports: baca informasi sensitif semua laporan dan akun terlapor
+      admin:write: ubah semua data di server
+      admin:write:accounts: lakukan aksi moderasi akun
+      admin:write:canonical_email_blocks: melakukan aksi moderasi pada email kanonikal yang diblokir
+      admin:write:ip_blocks: lakukan moderasi tindakan pada blokir IP
+      admin:write:reports: lakukan aksi moderasi laporan
+      crypto: menggunakan enkripsi end-to-end
+      follow: mengikuti, blokir, menghapus blokir, dan berhenti mengikuti akun
+      push: terima notifikasi dorong
+      read: membaca data pada akun anda
+      read:accounts: lihat informasi akun
+      read:blocks: lihat blokiran Anda
+      read:bookmarks: lihat markah Anda
+      read:favourites: lihat favorit Anda
+      read:filters: lihat saringan Anda
+      read:follows: lihat yang Anda ikuti
+      read:lists: lihat daftar Anda
+      read:mutes: lihat daftar bisu Anda
+      read:notifications: lihat notifikasi Anda
+      read:reports: lihat laporan Anda
+      read:search: cari atas nama Anda
+      read:statuses: lihat semua status
+      write: memposting sebagai anda
+      write:accounts: ubah profil Anda
+      write:blocks: blokir akun dan domain
+      write:bookmarks: status markah
+      write:conversations: bisukan dan hapus percakapan
+      write:favourites: status favorit
+      write:filters: buat saringan
+      write:follows: ikuti orang
+      write:lists: buat daftar
+      write:media: unggah berkas media
+      write:mutes: bisukan orang dan percakapan
+      write:notifications: hapus notifikasi Anda
+      write:reports: laporkan orang lain
+      write:statuses: terbitkan status

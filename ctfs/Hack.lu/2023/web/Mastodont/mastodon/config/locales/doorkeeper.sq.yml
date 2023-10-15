@@ -1,0 +1,195 @@
+---
+sq:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Emër aplikacioni
+        redirect_uri: URI Ridrejtimi
+        scopes: Fushëveprime
+        website: Sajt aplikacioni
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: s’mund të përmbajë një fragment.
+              invalid_uri: duhet të jetë një URI e vlefshme.
+              relative_uri: duhet të jetë një URI absolute.
+              secured_uri: duhet të jetë një URI HTTPS/SSL.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorizoje
+        cancel: Anuloje
+        destroy: Asgjësoje
+        edit: Përpunoni
+        submit: Parashtroje
+      confirmations:
+        destroy: Jeni i sigurt?
+      edit:
+        title: Përpunoni aplikacion
+      form:
+        error: Oh! Kontrolloni formularin tuaj për gabime të mundshme
+      help:
+        native_redirect_uri: Përdor %{native_redirect_uri} për teste vendore
+        redirect_uri: Përdorni një URI për rresht
+        scopes: Ndajini fushëveprimet me hapësira. Që të përdoren fushëveprimet parazgjedhje, lëreni të zbrazët.
+      index:
+        application: Aplikacion
+        callback_url: URL Callback-u
+        delete: Fshije
+        empty: S’keni aplikacione.
+        name: Emër
+        new: Aplikacion i ri
+        scopes: Fushëveprime
+        show: Shfaqe
+        title: Aplikacionet tuaja
+      new:
+        title: Aplikacion i ri
+      show:
+        actions: Veprime
+        application_id: Kyç klienti
+        callback_urls: URL-ra Callback-u
+        scopes: Fushëveprime
+        secret: E fshehtë klienti
+        title: 'Aplikacion: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorizoje
+        deny: Mohoje
+      error:
+        title: Ndodhi një gabim
+      new:
+        prompt_html: "%{client_name} do të donte leje të hyjë në llogarinë tuaj. Është një aplikacion palësh të treta. <strong>Nëse s’i zini besë, atëherë s’duhet ta autorizoni.</strong>"
+        review_permissions: Shqyrtoni leje
+        title: Lypset autorizim
+      show:
+        title: Kopjojeni këtë kod autorizimi dhe ngjiteni te aplikacioni.
+    authorized_applications:
+      buttons:
+        revoke: Shfuqizoje
+      confirmations:
+        revoke: A jeni i sigurt?
+      index:
+        authorized_at: Autorizuar më %{date}
+        description_html: Këto janë aplikacione që mund të hyjnë në llogarinë tuaj duke përdorur API-n. Nëse këtu ka aplikacione që nuk i njihni, ose një aplikacion po sillet ndryshe nga sa pritet, mund t’i shfuqizoni hyrjen.
+        last_used_at: Përdorur së fundi më %{date}
+        never_used: I papërdorur ndonjëherë
+        scopes: Leje
+        superapp: I brendshëm
+        title: Aplikacionet tuaja të autorizuar
+    errors:
+      messages:
+        access_denied: I zoti i burimit ose shërbyesi i autorizimit e hodhi poshtë kërkesën.
+        credential_flow_not_configured: Rrjedha për Kredenciale Fjalëkalimi të të Zotit të Burimit dështoi për shkak se Doorkeeper.configure.resource_owner_from_credentials është i paformësuar.
+        invalid_client: Mirëfilltësimi i klientit dështoi për shkak klienti të panjohur, mospërfshirjeje mirëfilltësimi klienti, ose metode të pambuluar mirëfilltësimi.
+        invalid_grant: Autorizimi i dhënë është i pavlefshëm, ka skaduar, është shfuqizuar, s’përputhet me URI-n e ridrejtimit të përdorur te kërkesa e autorizimit, ose është emetuar për klient tjetër.
+        invalid_redirect_uri: URI e ridrejtimit s’është e vlefshme.
+        invalid_request:
+          missing_param: 'Mungon parametër i domosdoshëm: %{value}.'
+          request_not_authorized: Kërkesa duhet autorizuar. Një parametër i domosdoshëm për autorizimin e kërkesës mungon ose është i pavlefshëm.
+          unknown: Kërkesës i mungon një parametër i domosdoshëm, përfshin një vlerë parametri që nuk mbulohet, ose përndryshe është formuar keq.
+        invalid_resource_owner: Kredencialet e dhëna për të zotin e burimit s’janë të vlefshme, ose s’gjendet i zoti i burimit
+        invalid_scope: Fushëveprimi i kërkuar është i pavlefshëm, i panjohur ose i keqformuar.
+        invalid_token:
+          expired: Token-i i hyrjeve skadoi
+          revoked: Token-i i hyrjeve u shfuqizua
+          unknown: Token-i i hyrjeve është i pavlefshëm
+        resource_owner_authenticator_not_configured: Gjetja e të Zotit të Burimit dështoi, ngaqë Doorkeeper.configure.resource_owner_authenticator s’është i formësuar.
+        server_error: Shërbyesi i autorizimit hasi një kusht të papritur, i cili e pengoi të plotësonte kërkesën.
+        temporarily_unavailable: Shërbyesi i mirëfilltësimeve hëpërhë s’është në gjendje të trajtojë kërkesën, për shkak të një mbingarkese të përkohshme ose ndonjë mirëmbajtjeje të shërbyesit.
+        unauthorized_client: Klienti s’është i autorizuar të kryejë këtë kërkesë duke përdorur këtë metodë.
+        unsupported_grant_type: Lloji i dhënë i autorizimeve nuk mbulohet nga shërbyesi i autorizimeve.
+        unsupported_response_type: Shërbyesi i autorizimeve nuk e mbulon këtë lloj përgjigjeje.
+    flash:
+      applications:
+        create:
+          notice: Aplikacioni u krijua.
+        destroy:
+          notice: Aplikacioni u fshi.
+        update:
+          notice: Aplikacioni u përditësua.
+      authorized_applications:
+        destroy:
+          notice: Aplikacioni u shfuqizua.
+    grouped_scopes:
+      access:
+        read: Hyrje vetëm për lexim
+        read/write: Hyrje për lexim dhe shkrim
+        write: Hyrje vetëm për shkrim
+      title:
+        accounts: Llogari
+        admin/accounts: Administrim llogarish
+        admin/all: Krejt funksionet administrative
+        admin/reports: Administrim i raporteve
+        all: Hyrje të plotë në llogarinë tuaj Mastodon
+        blocks: Blloqe
+        bookmarks: Faqerojtës
+        conversations: Biseda
+        crypto: Fshehtëzim skaj-më-skaj
+        favourites: Të parapëlqyer
+        filters: Filtra
+        follow: Ndjekje, Heshtime dhe Bllokime
+        follows: Ndjekje
+        lists: Lista
+        media: Bashkëngjitje media
+        mutes: Heshtime
+        notifications: Njoftime
+        push: Njoftime Push
+        reports: Raportime
+        search: Kërkim
+        statuses: Postime
+    layouts:
+      admin:
+        nav:
+          applications: Aplikacione
+          oauth2_provider: Furnizues OAuth2
+      application:
+        title: Lypset autorizim OAuth
+    scopes:
+      admin:read: të lexojë krejt të dhënat te shërbyesi
+      admin:read:accounts: të lexojë hollësi rezervat të krejt llogarive
+      admin:read:canonical_email_blocks: të lexojë hollësi rezervat të krejt bllokimeve të zakonshëm të email-eve
+      admin:read:domain_allows: të lexojë hollësi rezervat të krejt lejimeve të përkatësive
+      admin:read:domain_blocks: të lexojë hollësi rezervat të krejt bllokimeve të përkatësive
+      admin:read:email_domain_blocks: të lexojë hollësi rezervat të krejt bllokimeve të përkatësive të email-eve
+      admin:read:ip_blocks: të lexojë hollësi rezervat të krejt bllokimeve të IP-ve
+      admin:read:reports: të lexojë hollësi rezervat të krejt raportimeve dhe të llogarive të raportuara
+      admin:write: të përpunojë krejt të dhënat në shërbyes
+      admin:write:accounts: të kryejë veprime moderimi në llogaritë
+      admin:write:canonical_email_blocks: të kryejë veprime moderimi në bllokime të zakonshëm të email-eve
+      admin:write:domain_allows: të kryejë veprime moderimi mbi lejime përkatësish
+      admin:write:domain_blocks: të kryejë veprime moderimi mbi bllokime përkatësish
+      admin:write:email_domain_blocks: të kryejë veprime moderimi mbi lejime përkatësish email
+      admin:write:ip_blocks: të kryejë veprime moderimi mbi bllokime IP-sh
+      admin:write:reports: të kryejë veprime moderimi në raportime
+      crypto: përdor fshehtëzim skaj-më-skaj
+      follow: të ndryshojë marrëdhënie llogarish
+      push: të marrë njoftime push për ju
+      read: të lexojë krejt të dhënat e llogarisë tuaj
+      read:accounts: të shohë hollësi llogarish
+      read:blocks: të shohë blloqet tuaja
+      read:bookmarks: të shohë faqerojtësit tuaj
+      read:favourites: të shohë të parapëlqyerit tuaj
+      read:filters: të shohë filtrat tuaj
+      read:follows: të shohë ndjekësit tuaj
+      read:lists: të shohë listat tuaja
+      read:mutes: të shohë ç’keni heshtuar
+      read:notifications: të shohë njoftimet tuaja
+      read:reports: të shohë raportimet tuaja
+      read:search: të bëjë kërkime në emrin tuaj
+      read:statuses: të shohë krejt gjendjet
+      write: të ndryshojë krejt të dhënat e llogarisë tuaj
+      write:accounts: të ndryshojë profilin tuaj
+      write:blocks: të bllokojë llogari dhe përkatësi
+      write:bookmarks: të faqeruajë gjendje
+      write:conversations: heshtoni dhe fshini biseda
+      write:favourites: të parapëlqejë gjendje
+      write:filters: të krijojë filtra
+      write:follows: të ndjekë persona
+      write:lists: të krijojë lista
+      write:media: të ngarkojë kartela media
+      write:mutes: të heshtojë persona dhe biseda
+      write:notifications: të spastrojë njoftimet tuaja
+      write:reports: të raportojë persona të tjerë
+      write:statuses: të botojë gjendje
