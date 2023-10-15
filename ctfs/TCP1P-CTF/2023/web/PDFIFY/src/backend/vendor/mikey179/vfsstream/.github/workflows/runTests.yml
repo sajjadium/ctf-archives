@@ -1,0 +1,75 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - v1.6
+  pull_request:
+    branches:
+      - v1.6
+
+jobs:
+  tests:
+    name: PHP ${{ matrix.php-versions }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions:
+          - '5.3'
+          - '5.4'
+          - '5.5'
+          - '5.6'
+          - '7.0'
+          - '7.1'
+          - '7.2'
+          - '7.3'
+          - '7.4'
+          - '8.0'
+          - '8.1'
+          - '8.2'
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up PHP ${{ matrix.php-versions }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring
+          coverage: pcov
+
+      - name: Setup Problem Matchers for PHP
+        run: echo "::add-matcher::${{ runner.tool_cache }}/php.json"
+
+      - name: Setup Problem Matchers for PHPUnit
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Validate composer.json and composer.lock
+        run: composer validate
+
+      - name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies for PHP < 8.0
+        if: matrix.php-versions != '8.0' && matrix.php-versions != '8.1' && matrix.php-versions != '8.2'
+        run: composer install --prefer-dist --no-progress
+
+      - name: Install PHPUnit 8 for PHP 8
+        if: matrix.php-versions == '8.0' || matrix.php-versions == '8.1' || matrix.php-versions == '8.2'
+        run: |
+          composer require --dev phpunit/phpunit:8.5.17 --ignore-platform-reqs
+          git apply --reject --whitespace=fix src/test/patches/php8-return-types.diff
+
+      - name: Run test suite
+        run: composer run-script test -- --coverage-text

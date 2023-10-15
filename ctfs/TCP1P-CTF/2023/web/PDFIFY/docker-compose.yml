@@ -1,0 +1,46 @@
+version: "3"
+
+volumes:
+  db-store:
+  writable:
+  cache:
+networks:
+  infra:
+
+services:
+  apaci:
+    build:
+      context: ./src/
+      dockerfile: ./infra/docker/php/Dockerfile
+    ports:
+      - 29458:80
+    volumes:
+      # filename of flag in the server is different
+      - ./flag.txt:/flag_secret_path.txt:ro
+    restart: always
+    depends_on:
+      - db
+    environment:
+      - database_default_DBDriver=MySQLi
+      - database_default_hostname=db
+      - database_default_port=${DB_PORT:-3306}
+      - database_default_database=${DB_NAME:-ci4}
+      - database_default_username=${DB_USER:-ci4}
+      - database_default_password=${DB_PASS:-ci4}
+    networks:
+      - infra
+
+  db:
+    build:
+      context: ./src/
+      dockerfile: ./infra/docker/mysql/Dockerfile
+    restart: always
+    volumes:
+      - db-store:/var/lib/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_NAME:-ci4}
+      - MYSQL_USER=${DB_USER:-ci4}
+      - MYSQL_PASSWORD=${DB_PASS:-ci4}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS:-root}
+    networks:
+      - infra
