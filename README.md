@@ -740,16 +740,20 @@
             <td><a href="https://ctftime.org/event/1453/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/DefCamp">Defcamp</a></td>
-            <td><a href="ctfs/DefCamp/2022">2022</a></td>
+            <td rowspan=4><a href="ctfs/Defcamp">Defcamp</a></td>
+            <td><a href="ctfs/Defcamp/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2106/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/Defcamp/2022/Quals">2022 Quals</a></td>
             <td><a href="https://ctftime.org/event/1560/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/DefCamp/2020">2020</a></td>
+            <td><a href="ctfs/Defcamp/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1182/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/DefCamp/2018/Quals">2018 Quals</a></td>
+            <td><a href="ctfs/Defcamp/2018/Quals">2018 Quals</a></td>
             <td><a href="https://ctftime.org/event/654/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
