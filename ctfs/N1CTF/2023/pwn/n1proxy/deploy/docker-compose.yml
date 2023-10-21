@@ -1,0 +1,7 @@
+version: "3"
+services:
+  pwn:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "23333:23333"

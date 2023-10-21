@@ -1,0 +1,157 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.3.2/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <script>
+        var filedata = null;
+        async function handleFile() {
+            console.log("handle file");
+            filedata = null;
+            document.getElementById("fileName").text = "no file";
+            const f = document.getElementById("fileElem");
+            const file = f.files[0];
+            if (file.type != "image/jpeg") {
+                alert("invalid file");
+                return;
+            }
+            const data = await file.arrayBuffer()
+            filedata = data;
+            document.getElementById("fileName").innerHTML = file.name;
+        }
+
+        function generateRandomString(length) {
+            let result = '';
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            const charactersLength = characters.length;
+
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            }
+
+            return result;
+        }
+
+        async function share() {
+            var imgname = "404"
+            if (filedata != null) {
+                // upload image
+                imgname = generateRandomString(16)
+                await fetch("cgi/uploadimg.lua?" + imgname, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'image/jpeg'
+                    },
+                    body: filedata
+                })
+                    .then(response => response.json()).then(data => { console.log(data); })
+            }
+            // upload data
+            const data = { "img": imgname + ".jpg", "name": document.getElementById("name").value, "uploader": document.getElementById("uploader").value, "url": document.getElementById("url").value, "desc": document.getElementById("desc").value }
+            const jsondata=JSON.stringify(data);
+            console.log(jsondata);
+            await fetch("cgi/additem.lua",{
+                method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                body: jsondata
+            })
+            document.location.reload();
+        }
+
+        function createAnime(obj){
+            var html=`
+            <div class="card mb-5">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-4">
+                                <img decoding="async" src="data/%img%" class="img-thumbnail">
+                            </div>
+                            <div class="col-8">
+                                <h2 class="mb-3">Name: %name%</h2>
+                                <p class="mb-3">shared by <a href="%url%">%uname%</a></p>
+                                <h3 class="mb-3">Description:</h3>
+                                <pre style="font-size: 1.2em;">%desc%</pre>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            `;
+            html=html.replace("%img%",obj.img).replace("%name%",obj.name).replace("%url%",obj.url).replace("%uname%",obj.uploader).replace("%desc%",obj.desc);
+            document.getElementById("list_container").innerHTML+=html
+        }
+
+        async function load() {
+            var list=await fetch("cgi/getlist.lua").then(r=>r.text())
+            list=list.split('\n').filter((x)=>x.length).map((x)=>JSON.parse(x)).forEach(createAnime)
+        }
+        document.addEventListener("DOMContentLoaded",load)
+    </script>
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+        <h1>Anime list</h1>
+        <p>share your favorite animes with other CTFers</p>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-8" id="list_container">
+                
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_upload">
+                    share an anime
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal_upload">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">share an anime</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3 mt-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" maxlength="30">
+                    </div>
+                    <div class="mb-3">
+                        <label for="uploader" class="form-label">Uploader:</label>
+                        <input type="text" class="form-control" id="uploader" maxlength="15">
+                    </div>
+                    <div class="mb-3">
+                        <label for="url" class="form-label">Uploader URL:</label>
+                        <input type="text" class="form-control" id="url" maxlength="100">
+                    </div>
+                    <div class="mb-3">
+                        <label for="desc" class="form-label">Description:</label>
+                        <textarea rows="5" type="text" class="form-control" id="desc" maxlength="300"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary"
+                        onclick="document.getElementById('fileElem').click()">select a cover</button>
+                    <label id="fileName">no file</label>
+                    <input type="file" id="fileElem" accept="image/jpeg" style="display:none" onchange="handleFile()" />
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="share()">submit</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

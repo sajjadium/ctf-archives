@@ -1,0 +1,15 @@
+[package]
+name = "solve"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+solana-program = "1.16.9"
+borsh = "0.9.3"
+borsh-derive = "0.9.1"
+spl-token = { version = "4.0.0", features = [ "no-entrypoint" ]}
+spl-associated-token-account = { version="2.0.0", features = [ "no-entrypoint" ] }
+chall = { path = "../../framework/chall", features = [ "no-entrypoint" ] }
+
+[lib]
+crate-type = ["cdylib", "lib"]

@@ -1,0 +1,1 @@
+In 2023, people are obsessed with various mitigation measures such as ASLR, CET/CFI, and sanitizers. However, there is no such thing as a free lunch. For a simple echo program, the performance overhead of complex mitigation measures is unacceptable. Perhaps, a simple stack canary is exactly what you need.

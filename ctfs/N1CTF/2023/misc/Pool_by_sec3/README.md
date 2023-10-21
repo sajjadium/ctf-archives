@@ -1,0 +1,1 @@
+In the era of Anchor, I still prefer native Solana programming to reduce redundant checks and save every lamport for the users of my program. Yet, the risks are clear. My hastily written native Solana program might be swarming with bugs, but are there no vulnerabilities capable of emptying my pool?

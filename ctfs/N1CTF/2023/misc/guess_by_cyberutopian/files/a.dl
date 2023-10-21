@@ -1,0 +1,27 @@
+.functor hash1(x:symbol):number
+.functor hash2(x:symbol):number
+.functor GETFLAG():symbol
+
+.decl SALT(x:symbol)
+//SALTS
+.output SALT
+
+.decl FLAG(x:symbol)
+FLAG(@GETFLAG()).
+.decl HINT(x:symbol)
+HINT(substr(x,0,4)) :- FLAG(x).
+
+.decl HASH(x:number)
+HASH(@hash1(x)) :- FLAG(x).
+
+.decl SALT_HASH1(h:number,s:symbol)
+SALT_HASH1(h,s) :- h=@hash1(cat(flg,s)),FLAG(flg),SALT(s).
+
+
+.decl SALT_HASH2(h:number,s:symbol)
+SALT_HASH2(h,s) :- h=@hash2(cat(flg,s)),FLAG(flg),SALT(s).
+
+.decl GUESS(x:symbol)
+//GUESS
+.output GUESS(attributeNames="ans")
+.limitsize GUESS(n=1)

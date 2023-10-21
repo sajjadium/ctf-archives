@@ -1,0 +1,1 @@
+print(cgi.getdata())
