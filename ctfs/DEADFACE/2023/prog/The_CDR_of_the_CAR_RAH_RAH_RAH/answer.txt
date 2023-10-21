@@ -1,0 +1,21 @@
+# The following is the input list.  These words must appear in the same
+# order in your input
+
+('ascent','xray','yarbrough','jackal','minstrel','nevermore','outcast','kitten',
+'victor','pugnacious','wallaby','savant','zarf','tango','ultimatum','papyrus',
+'quill','renegade','llama','ghost','hellscape','industrious','zombification',
+'bestial','cadre','dark','efficacious','foundational')
+
+# You need to group the words into lists and sublists such that the specified
+# list of subsequent calls to "car" and "cdr" in the "cheer" specified in the
+# challenge produces the following list.
+#
+
+('pugnacious', 'wallaby', 'savant', 'zarf')
+
+# Post your answer to [IP] [PORT] as specified in the challenge as shown
+# below
+
+echo "car(cdr(car....(cdr(car(((('ascent', ('xray', ((yarbrough...." | \
+    nc [IP] [PORT]
+
