@@ -1,0 +1,10 @@
+version: "3"
+services:
+  challenge:
+    build: .
+    image: challenge_2023_n1ctf_misc_downloader
+    ports:
+    - 10000:10000
+    environment:
+    - FLAG=ctfhub{test_flag}
+    - DOMAIN=test.sandbox.ctfhub.com

@@ -1,0 +1,156 @@
+diff -ruN linux-6.1.58/include/net/netfilter/nf_tables.h linux-6.1.58-n1ctf/include/net/netfilter/nf_tables.h
+--- linux-6.1.58/include/net/netfilter/nf_tables.h	2023-10-16 00:32:41.000000000 +0800
++++ linux-6.1.58-n1ctf/include/net/netfilter/nf_tables.h	2023-10-17 15:23:26.752598103 +0800
+@@ -693,6 +693,7 @@
+  *	@data: beginning of extension data
+  */
+ struct nft_set_ext {
++	u64	magic;
+ 	u8	genmask;
+ 	u8	offset[NFT_SET_EXT_NUM];
+ 	char	data[];
+@@ -1506,17 +1507,15 @@
+ 
+ static inline void nft_set_elem_dead(struct nft_set_ext *ext)
+ {
+-	unsigned long *word = (unsigned long *)ext;
++	unsigned long *word = (unsigned long *)((unsigned long)ext + offsetof(struct nft_set_ext, genmask));
+ 
+-	BUILD_BUG_ON(offsetof(struct nft_set_ext, genmask) != 0);
+ 	set_bit(NFT_SET_ELEM_DEAD_BIT, word);
+ }
+ 
+ static inline int nft_set_elem_is_dead(const struct nft_set_ext *ext)
+ {
+-	unsigned long *word = (unsigned long *)ext;
++	unsigned long *word = (unsigned long *)((unsigned long)ext + offsetof(struct nft_set_ext, genmask));
+ 
+-	BUILD_BUG_ON(offsetof(struct nft_set_ext, genmask) != 0);
+ 	return test_bit(NFT_SET_ELEM_DEAD_BIT, word);
+ }
+ 
+diff -ruN linux-6.1.58/include/uapi/linux/netfilter/nf_tables.h linux-6.1.58-n1ctf/include/uapi/linux/netfilter/nf_tables.h
+--- linux-6.1.58/include/uapi/linux/netfilter/nf_tables.h	2023-10-16 00:32:41.000000000 +0800
++++ linux-6.1.58-n1ctf/include/uapi/linux/netfilter/nf_tables.h	2023-10-17 15:16:23.571590670 +0800
+@@ -432,6 +432,7 @@
+ 	NFTA_SET_ELEM_OBJREF,
+ 	NFTA_SET_ELEM_KEY_END,
+ 	NFTA_SET_ELEM_EXPRESSIONS,
++	NFTA_SET_ELEM_MAGIC,
+ 	__NFTA_SET_ELEM_MAX
+ };
+ #define NFTA_SET_ELEM_MAX	(__NFTA_SET_ELEM_MAX - 1)
+@@ -743,6 +744,7 @@
+ 	NFTA_DYNSET_PAD,
+ 	NFTA_DYNSET_FLAGS,
+ 	NFTA_DYNSET_EXPRESSIONS,
++	NFTA_DYNSET_MAGIC,
+ 	__NFTA_DYNSET_MAX,
+ };
+ #define NFTA_DYNSET_MAX		(__NFTA_DYNSET_MAX - 1)
+diff -ruN linux-6.1.58/net/netfilter/nf_tables_api.c linux-6.1.58-n1ctf/net/netfilter/nf_tables_api.c
+--- linux-6.1.58/net/netfilter/nf_tables_api.c	2023-10-16 00:32:41.000000000 +0800
++++ linux-6.1.58-n1ctf/net/netfilter/nf_tables_api.c	2023-10-17 15:19:38.788939510 +0800
+@@ -5267,6 +5267,7 @@
+ 					    .len = NFT_OBJ_MAXNAMELEN - 1 },
+ 	[NFTA_SET_ELEM_KEY_END]		= { .type = NLA_NESTED },
+ 	[NFTA_SET_ELEM_EXPRESSIONS]	= { .type = NLA_NESTED },
++	[NFTA_SET_ELEM_MAGIC]		= { .type = NLA_U64 },
+ };
+ 
+ static const struct nla_policy nft_set_elem_list_policy[NFTA_SET_ELEM_LIST_MAX + 1] = {
+@@ -6260,6 +6261,7 @@
+ 	struct nft_trans *trans;
+ 	u64 timeout;
+ 	u64 expiration;
++	u64 magic;
+ 	int err, i;
+ 	u8 ulen;
+ 
+@@ -6339,6 +6341,13 @@
+ 			return err;
+ 	}
+ 
++	magic = 0;
++	if (nla[NFTA_SET_ELEM_MAGIC] != NULL) {
++		magic = be64_to_cpu(nla_get_be64(nla[NFTA_SET_ELEM_MAGIC]));
++		if (!magic)
++			return -EINVAL;
++	}
++
+ 	if (nla[NFTA_SET_ELEM_EXPR]) {
+ 		struct nft_expr *expr;
+ 
+@@ -6531,6 +6540,9 @@
+ 	if (obj)
+ 		*nft_set_ext_obj(ext) = obj;
+ 
++	if (magic)
++		ext->magic = magic;
++
+ 	if (ulen > 0) {
+ 		if (nft_set_ext_check(&tmpl, NFT_SET_EXT_USERDATA, ulen) < 0) {
+ 			err = -EINVAL;
+diff -ruN linux-6.1.58/net/netfilter/nf_tables_core.c linux-6.1.58-n1ctf/net/netfilter/nf_tables_core.c
+--- linux-6.1.58/net/netfilter/nf_tables_core.c	2023-10-16 00:32:41.000000000 +0800
++++ linux-6.1.58-n1ctf/net/netfilter/nf_tables_core.c	2023-10-16 15:28:11.000000000 +0800
+@@ -231,7 +231,7 @@
+ 	const struct nft_rule_dp *rule, *last_rule;
+ 	const struct net *net = nft_net(pkt);
+ 	const struct nft_expr *expr, *last;
+-	struct nft_regs regs = {};
++	struct nft_regs regs;
+ 	unsigned int stackptr = 0;
+ 	struct nft_jumpstack jumpstack[NFT_JUMP_STACK_SIZE];
+ 	bool genbit = READ_ONCE(net->nft.gencursor);
+diff -ruN linux-6.1.58/net/netfilter/nft_dynset.c linux-6.1.58-n1ctf/net/netfilter/nft_dynset.c
+--- linux-6.1.58/net/netfilter/nft_dynset.c	2023-10-16 00:32:41.000000000 +0800
++++ linux-6.1.58-n1ctf/net/netfilter/nft_dynset.c	2023-10-17 15:23:59.174849053 +0800
+@@ -13,6 +13,7 @@
+ #include <net/netfilter/nf_tables_core.h>
+ 
+ struct nft_dynset {
++	u64				magic;
+ 	struct nft_set			*set;
+ 	struct nft_set_ext_tmpl		tmpl;
+ 	enum nft_dynset_ops		op:8;
+@@ -66,6 +67,9 @@
+ 	ext = nft_set_elem_ext(set, elem);
+ 	if (priv->num_exprs && nft_dynset_expr_setup(priv, ext) < 0)
+ 		goto err2;
++	
++	if (priv->magic)
++		ext->magic = priv->magic;
+ 
+ 	return elem;
+ 
+@@ -155,6 +159,7 @@
+ 	[NFTA_DYNSET_EXPR]	= { .type = NLA_NESTED },
+ 	[NFTA_DYNSET_FLAGS]	= { .type = NLA_U32 },
+ 	[NFTA_DYNSET_EXPRESSIONS] = { .type = NLA_NESTED },
++	[NFTA_DYNSET_MAGIC]	= { .type = NLA_U64 },
+ };
+ 
+ static int nft_dynset_init(const struct nft_ctx *ctx,
+@@ -185,14 +190,19 @@
+ 			priv->expr = true;
+ 	}
+ 
++	if (tb[NFTA_DYNSET_MAGIC]) {
++		u64 magic = be64_to_cpu(nla_get_be64(tb[NFTA_DYNSET_MAGIC]));
++		if (!magic)
++			return -EINVAL;
++		priv->magic = magic;
++	}
++
+ 	set = nft_set_lookup_global(ctx->net, ctx->table,
+ 				    tb[NFTA_DYNSET_SET_NAME],
+ 				    tb[NFTA_DYNSET_SET_ID], genmask);
+ 	if (IS_ERR(set))
+ 		return PTR_ERR(set);
+ 
+-	if (set->flags & NFT_SET_OBJECT)
+-		return -EOPNOTSUPP;
+ 
+ 	if (set->ops->update == NULL)
+ 		return -EOPNOTSUPP;

@@ -1,0 +1,12 @@
+qemu-system-x86_64  \
+	-m 256M  \
+	-smp 2 \
+	-kernel bzImage    \
+	-append "console=ttyS0 root=/dev/sda rw quiet oops=panic panic=-1 net.ifnames=0 kaslr"     \
+	-hda rootfs.qcow2 \
+	-no-reboot \
+	-nographic  \
+	-snapshot \
+	-cpu qemu64,+smep,+smap \
+	-nic user \
+	-monitor /dev/null
