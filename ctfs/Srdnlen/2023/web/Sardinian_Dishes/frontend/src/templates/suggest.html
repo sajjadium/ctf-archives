@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sardinian Dishes</title>
+    <link rel="stylesheet" href="static/css/bootstrap-dark.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Home</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/suggest">Suggest your dish</a></li>
+          <li class="nav-item"><a class="nav-link" href="/recipe?name=malloreddus">Malloreddus</a></li>
+          <li class="nav-item"><a class="nav-link" href="/recipe?name=seadas">Seadas</a></li>
+          <li class="nav-item"><a class="nav-link" href="/recipe?name=carasu+bread">Carasau bread</a></li>
+        </ul>
+      </nav>
+    </div>
+    <main class="container" id="main">
+      <center>
+      <h2>Show us your best local dish</h2>
+      <div>
+        
+        <form method="POST" action="/suggest">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name">
+          <label for="description">Description</label>
+          <input type="text" name="description" id="description">
+          </br>
+          <input type="submit" value="Submit">
+        </form>   
+      </div>
+    </center>
+    </main>
+  </body>
+</html>

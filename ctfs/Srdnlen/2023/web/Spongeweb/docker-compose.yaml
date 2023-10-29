@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  proxy:
+    image: nginx:latest
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./proxy.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - internal
+    depends_on:
+      - bot
+  bot:
+    build: ./bot
+    restart: always
+    environment:
+      APPNAME: Admin
+      APPURL: http://spongeweb.challs.srdnlen.it/
+      APPURLREGEX: ^http://spongeweb.challs.srdnlen.it/.*$
+      APPLIMIT: 2
+      APPLIMITTIME: 60
+      FLAG: srdnlen{REDACTED}
+      USERNAME: admin
+      APPLOGINURL: http://spongeweb.challs.srdnlen.it/login
+    networks:
+      - internal
+  app:
+    build: ./challenge
+    restart: always
+    depends_on:
+      - bot
+    networks:
+      - internal
+
+networks:
+  internal:
+    

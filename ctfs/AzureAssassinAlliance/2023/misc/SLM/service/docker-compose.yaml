@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+    slm-service:
+        build:
+          dockerfile: ./Dockerfile
+        restart: always
+        ports:
+            - '30009:9999'
+        environment:
+            - SERVER_SECRET=???

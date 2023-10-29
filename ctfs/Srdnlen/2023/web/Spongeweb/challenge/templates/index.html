@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Spongeweb</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+    <div class="main-container">
+        <div class="img-container">
+            <img src="{{ url_for('static', filename='/gifs/spongebob.gif') }}" alt="">
+        </div>
+        <h1>Spongebob Anonymous Sharing Platform</h1>
+        <!-- Form Container -->
+        <div class="form-container">
+            <form id="threads-form" method="POST" action="/thread">
+                <h2>Post a new thread</h2>
+                <input name="title" type="text" class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Title..." id="title" />
+                <textarea name="thread" class="validate[required,length[6,300]] feedback-input" id="thread" placeholder="Write thread"></textarea>
+                <input type="submit" value="POST" class="feedback-input"/>
+            </form>
+        </div>
+
+        {% if thread_uuid %}                 
+        <h2>You Thread Id: {{ thread_uuid }}</h2>
+        {% endif %}
+
+        <div class="form-container">
+            <h1>Approved Posts</h1>
+            {% for thread in threads %}
+            <div class="feedback-input" style="text-align: center;"><h2>{{ thread[0] }}</h2> {{ thread[1] | safe }} </div>
+            {% endfor %}
+          </div>
+        <!-- Form Container -->
+        <div class="form-container">
+                <h2>Report to Admin</h2>
+                <input type="submit" value="Click Here" class="feedback-input" onclick="window.location.href = '/report'"/>
+        </div>
+    </div> <!-- end main container -->
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        latex-js {
+            display: inline-block;
+            width: 40%;
+            border: 1px solid red;
+        }
+    </style>
+
+    <title>Easy Latex</title>
+
+    <script type="module" nonce="<%= nonce %>">
+        import { LaTeXJSComponent } from "https://cdn.jsdelivr.net/npm/latex.js/dist/latex.mjs"
+        customElements.define("latex-js", LaTeXJSComponent)
+    </script>
+
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Preview</h1>
+
+    <div class="mx-auto border-0 bd-example m-0 border-0" style="text-align: left; width: 40%;">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="theme1" id="theme1">
+            <label class="form-check-label" for="flexRadioDefault1">
+                Dark Theme
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="theme2" id="theme2" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+                Light Theme
+            </label>
+        </div>
+    </div>
+
+    <div class="mx-auto" style="width: 40%;">
+        <button id="btn" class="mx-auto btn btn-primary">submit</button>
+    </div>
+
+    <div class="mt-4">
+        <latex-js id="tex" baseURL="<%= base %>"><%= tex %></latex-js>
+    </div>
+
+
+    <script nonce="<%= nonce %>">
+        let theme = new URLSearchParams(location.search).get('theme')
+        if (theme == '1') {
+            document.getElementById('theme1').checked = true
+            document.getElementById('theme2').checked = false
+        } else if (theme == '2') {
+            document.getElementById('theme1').checked = false
+            document.getElementById('theme2').checked = true
+        }
+
+        document.getElementById('theme1').addEventListener('click', () => {
+            let query = new URLSearchParams(location.search)
+            query.set('theme', '1')
+            location.search = query.toString()
+        })
+        document.getElementById('theme2').addEventListener('click', () => {
+            let query = new URLSearchParams(location.search)
+            query.set('theme', '2')
+            location.search = query.toString()
+        })
+
+        document.getElementById('btn').addEventListener('click', () => {
+            let tex = document.getElementById('tex').textContent
+            let data = new URLSearchParams({ tex })
+            if (theme) {
+                data.set('theme', theme)
+            }
+            fetch('/note', {
+                method: 'POST',
+                body: data
+            })
+            .then(res => res.text())
+            .then(res => alert(res))
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spongeweb</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+    <div class="main-container" style="height: 100%;display: flex; align-items: center;justify-content: center;">  
+    {% if error == 404 %}             
+        <h1>404 - Not Even Close</h1>
+        <img src="{{ url_for('static', filename='/gifs/blabla.gif') }}" width="200px" style="margin-left: 50px;" alt="">
+    {% elif error == 500 %}
+        <h1>500 - Internal Server Fire</h1>
+        <img src="{{ url_for('static', filename='/gifs/fire.gif') }}" width="200px" style="margin-left: 50px;" alt="">
+    {% endif %}
+</div>
+</body>
+</html>

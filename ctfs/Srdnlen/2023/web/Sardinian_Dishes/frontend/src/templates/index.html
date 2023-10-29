@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sardinian Dishes</title>
+    <link rel="stylesheet" href="static/css/bootstrap-dark.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">Home</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/suggest">Suggest your dish</a></li>
+          <li class="nav-item"><a class="nav-link" href="/recipe?name=malloreddus">Malloreddus</a></li>
+          <li class="nav-item"><a class="nav-link" href="/recipe?name=seadas">Seadas</a></li>
+          <li class="nav-item"><a class="nav-link" href="/recipe?name=carasu+bread">Carasau bread</a></li>
+        </ul>
+      </nav>
+    </div>
+    <main class="container" id="main">
+      <div>
+        <h2>Dishes:</h2>
+        <ul>
+          <!--(for dish in dishes.keys())-->
+            <li>@! dish.capitalize() !@ - @! dishes[dish] !@</li>
+          <!--(end)-->
+          </ul>    
+      </div>
+    </main>
+  </body>
+</html>

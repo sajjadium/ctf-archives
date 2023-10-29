@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= name %>'s Report Page
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <style>
+
+        .loading {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+h1,h2{
+    text-align: center;
+    font-family: 'Pixelify Sans', cursive;
+    font-weight: 700;
+}
+
+@keyframes pul{
+    0%{opacity: 0}
+    25%{opacity: 1}
+    50%{opacity: 0}
+    100%{opacity: 1}
+    } 
+
+@keyframes move {
+    0%{left: 1%;}
+    25%{left: -1%;}
+    50%{left: 1%;}
+    100%{left: -1%;}
+}
+
+h1{
+    color: rgb(15, 186, 58);
+    font-size: 50px;
+    text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.779);
+    position: relative;
+    animation: pul 1s ease-out 300ms normal;
+    /* animation: move 1s ease 2s normal; */
+}
+
+h2{
+    color: #fcfcf5;
+    font-size: 32px;
+}
+
+/*------- Threads Form Container --------*/
+.form-container{
+    width: 70%;
+    height: auto;
+    background-color:rgba(9, 33, 78, 0.9);
+    box-shadow: 0px 0px 28px rgba(255, 255, 255, 0.781);
+    margin: 50px auto;
+    padding: 25px;
+    border: 5px solid #bdc3c7;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+
+}
+
+
+
+
+/*------ Input fields design -----*/
+.feedback-input {
+    width:100%;
+    background-color: rgb(7, 5, 32);
+    border: 3px solid #bdc3c7;
+    margin-top: 15px;
+    font-size: 18px;
+    font-family: 'Pixelify Sans', cursive;
+    font-weight: 400;
+    color: white;
+    padding: 6px 0px 6px 10px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+    
+.feedback-input:focus{
+    box-shadow: 0;
+    border: 3px solid rgb(15, 186, 58);
+    color: rgb(15, 186, 58);
+    outline: none;
+    padding: 5px 5px 5px 10px;
+}
+
+/*------- Text area Size -------*/
+#thread{
+    height: 180px;
+}
+
+.feedback-input+input[type=submit]{
+    font-size: 26px;
+}
+
+.focused{
+    color:#30aed6;
+    border:#30aed6 solid 3px;
+}
+    </style>
+</head>
+
+<body style="background: linear-gradient(rgb(7, 5, 32)0% 40%, rgb(15, 186, 58)130% 10%);">
+    <div class="vh-100 container d-flex flex-column justify-content-center align-items-center">
+        <h1>
+            <%= name %>'s Report Page
+        </h1>
+
+        <div class="form-container">
+            <form id="visit-form">
+                <input type="text" name="url" id="url" class="feedback-input" placeholder="URL..." required>
+                <input type="submit" value="SEND" class="feedback-input"/>
+                <div class="text-center alert-danger alert-dismissible fade show w-100" id="error-message" style="margin-top: 16px;"></div>
+                <div class="text-center alert-success alert-dismissible fade show w-100" id="success-message" style="margin-top: 16px;"></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function () {
+            const form = $('#visit-form');
+            const successMessage = $('#success-message');
+            const errorMessage = $('#error-message');
+            const loadingAnimation = $('<div class="loading"></div>');
+
+            form.submit(function (event) {
+                event.preventDefault();
+                const url = $('#url').val();
+                successMessage.slideUp()
+                errorMessage.slideUp()
+                form.append(loadingAnimation);
+                $.ajax({
+                    type: 'POST',
+                    url: '',
+                    data: { url: url },
+                    success: function (data) {
+                        form.find('.loading').remove();
+                        if (data.success) {
+                            successMessage.text(data.success).addClass("alert").slideDown();
+                        } else {
+                            errorMessage.text(data.error).addClass("alert").slideDown();
+                        }
+                    },
+                    error: (jq, status) => {
+                        form.find('.loading').remove();
+                        if (response = jq.responseJSON) {
+                            errorMessage.text(response.error).addClass("alert").slideDown();
+                        } else {
+                            errorMessage.text('An error occurred while processing the request.').addClass("alert").slideDown();
+                        }
+                    },
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

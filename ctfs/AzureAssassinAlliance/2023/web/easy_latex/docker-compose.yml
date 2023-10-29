@@ -1,0 +1,11 @@
+version: '3'
+services:
+  vip:
+    build: ./vip-service
+  web:
+    build: ./web
+    environment:
+      - VIP_URL=http://vip:5000/
+      - FLAG=ACTF{dummy}
+    ports:
+      - '3000:3000'

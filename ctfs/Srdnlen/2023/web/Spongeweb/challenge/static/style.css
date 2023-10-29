@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/*------- Background Container --------*/
+.main-container{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    background: linear-gradient(rgb(7, 5, 32)0% 40%, rgb(15, 186, 58)130% 10%);
+    background-repeat: no-repeat;
+    background-position: 50% 123%;
+    padding: 20px;
+}
+
+h1,h2{
+    text-align: center;
+    font-family: 'Pixelify Sans', cursive;
+    font-weight: 700;
+}
+
+@keyframes pul{
+    0%{opacity: 0}
+    25%{opacity: 1}
+    50%{opacity: 0}
+    100%{opacity: 1}
+    } 
+
+@keyframes move {
+    0%{left: 1%;}
+    25%{left: -1%;}
+    50%{left: 1%;}
+    100%{left: -1%;}
+}
+
+h1{
+    color: rgb(15, 186, 58);
+    font-size: 50px;
+    text-shadow: 0px 0px 30px rgba(255, 255, 255, 0.779);
+    position: relative;
+    animation: pul 1s ease-out 300ms normal;
+    /* animation: move 1s ease 2s normal; */
+}
+
+h2{
+    color: #fcfcf5;
+    font-size: 32px;
+}
+
+/*------- Hacker image Container --------*/
+.img-container{
+    width: 400px;
+    margin: 10px auto;
+}
+
+.img-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/*------- Threads Form Container --------*/
+.form-container{
+    width: 70%;
+    height: auto;
+    background-color:rgba(9, 33, 78, 0.9);
+    box-shadow: 0px 0px 28px rgba(255, 255, 255, 0.781);
+    margin: 50px auto;
+    padding: 25px;
+    border: 5px solid #bdc3c7;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+
+}
+
+
+
+
+/*------ Input fields design -----*/
+.feedback-input {
+    width:100%;
+    background-color: rgb(7, 5, 32);
+    border: 3px solid #bdc3c7;
+    margin-top: 15px;
+    font-size: 18px;
+    font-family: 'Pixelify Sans', cursive;
+    font-weight: 400;
+    color: white;
+    padding: 6px 0px 6px 10px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+}
+    
+.feedback-input:focus{
+    box-shadow: 0;
+    border: 3px solid rgb(15, 186, 58);
+    color: rgb(15, 186, 58);
+    outline: none;
+    padding: 5px 5px 5px 10px;
+}
+
+/*------- Text area Size -------*/
+#thread{
+    height: 180px;
+}
+
+.feedback-input+input[type=submit]{
+    font-size: 26px;
+}
+
+.focused{
+    color:#30aed6;
+    border:#30aed6 solid 3px;
+}

@@ -1,0 +1,1 @@
+Very easy latex.

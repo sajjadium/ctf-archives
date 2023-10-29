@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AAA Story Time</title>
+    <link rel="stylesheet" href="https://unpkg.com/mobi.css/dist/mobi.min.css">
+    <style>
+        /* body {
+            font-family: Arial, sans-serif;
+        } */
+
+        .editor-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        #story-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #story-content {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #save-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body >
+<div class="flex-center">
+    <div class="container">
+        <div>
+            <h1 class="logo"><a>AAA Story Time</a></h1>
+            <h3>Welcome!</h3>
+            <p>Legend has it that a long time ago, there were six warriors with different abilities. </p>
+            <p>Any three combinations could withstand all evil intentions.</p>
+            <p>Until one day... </p>
+            {% if session['vip']%}
+                <br>
+                <textarea id="story-content" placeholder="Now you can wirte whatever you want!"></textarea>
+                <button id="save-button" onclick="saveStory()">Save Story</button>
+            {% else %}
+                <!-- <p>PS: Please become a VIP first, and then continue the story.</p> -->
+            {% endif %}
+        </div>
+    </div>
+</div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+            function saveStory() {
+            var content = document.getElementById("story-content").value;
+
+            $.ajax({
+                url: '/write',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    story: content
+                }),
+                dataType: 'json',
+                success: function(response) {
+                    // alert(response.message);
+                    window.location.href="/story";
+                },
+                error: function(error) {
+                    alert(error.responseJSON.message);
+                }
+            });
+            console.log("Content: " + content);
+        }
+    </script>
+</body>
+</html>

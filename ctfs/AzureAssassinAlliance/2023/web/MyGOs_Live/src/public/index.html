@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我喜欢你</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('/bg.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background-color: rgba(255, 255, 255, 0.5); /* Adjust the transparency value (0.5 in this case) */
+        }
+        h1 {
+            margin: 0 auto;
+            font-style: italic;
+            padding: 50px;
+            text-align: center;
+            color: #3388BB;
+            z-index: 1;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .row .label {
+            flex: 1;
+            font-weight: bold;
+            text-decoration: underline;
+            color: #3388BB;
+        }
+
+        .row .status {
+            flex: 2;
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .row .status.up {
+            background-color: #2ecc71;
+        }
+
+        .row .status.down {
+            background-color: #e74c3c;
+        }
+
+        .row .status.pending {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <h1>「MyGO's Live!」 <br/> Status Checker</h1>
+    <div class="container">
+        <div class="card">
+            <div class="row" id="official">
+                <a class="label" href="http://anime.bang-dream.com/mygo">
+                    Official Site
+                </a>
+                <div class="status pending">...</div>
+            </div>
+            <div class="row" id="fandom">
+                <a class="label" href="https://bandori.fandom.com/wiki/MyGO!!!!!">Fandom Wiki</a>
+                <div class="status pending">...</div>
+            </div>
+            <div class="row" id="shancai">
+                <a class="label" href="https://space.bilibili.com/105568957">闪光丸山彩</a>
+                <div class="status pending">...</div>
+            </div>
+            <div class="row" id="esp">
+                <a class="label" href="https://espguitars.co.jp/collaborate/10486/">ESP x BanG Dream!</a>
+                <div class="status pending">...</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        id2host = {
+            "official": "anime.bang-dream.com",
+            "fandom":"bandori.fandom.com",
+            "shancai":"space.bilibili.com",
+            "esp":"espguitars.co.jp"
+        };
+        
+        function getStatus(id) {
+            host = id2host[id];
+            var xhr = new XMLHttpRequest();
+            var url = "/checker?url=" + encodeURIComponent(host + ":80");
+
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var response = xhr.responseText;
+                        console.log(response);
+                        // Process the response and determine the status
+                        var status = determineStatus(response);
+                        setStatus(id, status);
+                    } else {
+                        setStatus(id, "down");
+                    }
+                }
+            };
+
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+
+        function setStatus(elementId, status) {
+            var row = document.getElementById(elementId);
+            var statusElement = row.querySelector(".status");
+
+            statusElement.textContent = status;
+
+            // Remove the existing status class
+            statusElement.classList.remove("up", "down", "pending");
+
+            // Add the appropriate status class
+            if (status === "up") {
+                statusElement.classList.add("up");
+            } else if (status === "down") {
+                statusElement.classList.add("down");
+            } else {
+                statusElement.classList.add("pending");
+            }
+        }
+
+        function determineStatus(response) {
+            if (response.includes("Host is up")) {
+                return "up";
+            } else {
+                return "down";
+            }
+        }
+        window.addEventListener("load", function() {
+            // Get the status for each website
+            for (var id in id2host) {
+                getStatus(id);
+            }
+        });
+    </script>
+</body>
+</html>

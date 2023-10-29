@@ -1,0 +1,684 @@
+  0           0 RESUME                   0
+
+  1           2 LOAD_CONST               0 (0)
+              4 LOAD_CONST               1 (None)
+              6 IMPORT_NAME              0 (os)
+              8 STORE_NAME               0 (os)
+
+  2          10 LOAD_CONST               0 (0)
+             12 LOAD_CONST               1 (None)
+             14 IMPORT_NAME              1 (signal)
+             16 STORE_NAME               1 (signal)
+
+  3          18 LOAD_CONST               0 (0)
+             20 LOAD_CONST               2 (('time',))
+             22 IMPORT_NAME              2 (time)
+             24 IMPORT_FROM              2 (time)
+             26 STORE_NAME               2 (time)
+             28 POP_TOP
+
+  4          30 LOAD_CONST               0 (0)
+             32 LOAD_CONST               3 (('Random', 'SystemRandom'))
+             34 IMPORT_NAME              3 (random)
+             36 IMPORT_FROM              4 (Random)
+             38 STORE_NAME               5 (SystemRandom)
+             40 IMPORT_FROM              5 (SystemRandom)
+             42 STORE_NAME               4 (Random)
+             44 POP_TOP
+
+  5          46 LOAD_CONST               0 (0)
+             48 LOAD_CONST               4 (('bytes_to_long', 'isPrime', 'getPrime'))
+             50 IMPORT_NAME              6 (Crypto.Util.number)
+             52 IMPORT_FROM              7 (bytes_to_long)
+             54 STORE_NAME               7 (bytes_to_long)
+             56 IMPORT_FROM              8 (isPrime)
+             58 STORE_NAME               8 (isPrime)
+             60 IMPORT_FROM              9 (getPrime)
+             62 STORE_NAME               9 (getPrime)
+             64 POP_TOP
+
+  7          66 PUSH_NULL
+             68 LOAD_NAME                0 (os)
+             70 LOAD_ATTR               20 (getenv)
+             90 LOAD_CONST               5 ('FLAG')
+             92 LOAD_CONST               6 ('srdnlen{REDACTED}')
+             94 CALL                     2
+            102 LOAD_ATTR               23 (NULL|self + encode)
+            122 CALL                     0
+            130 STORE_NAME              12 (nmmnmmwmnnnwwn)
+
+  8         132 LOAD_CONST               7 (1337)
+            134 STORE_NAME              13 (wwwwmnmmwnnn)
+
+  9         136 PUSH_NULL
+            138 LOAD_NAME                5 (SystemRandom)
+            140 PUSH_NULL
+            142 LOAD_NAME               14 (int)
+            144 PUSH_NULL
+            146 LOAD_NAME                2 (time)
+            148 CALL                     0
+            156 CALL                     1
+            164 CALL                     1
+            172 STORE_NAME              15 (nwwmnmwwmmwnww)
+
+ 10         174 PUSH_NULL
+            176 LOAD_NAME               16 (range)
+            178 LOAD_NAME               13 (wwwwmnmmwnnn)
+            180 CALL                     1
+            188 GET_ITER
+            190 LOAD_FAST_AND_CLEAR      0 (_)
+            192 SWAP                     2
+            194 BUILD_LIST               0
+            196 SWAP                     2
+        >>  198 FOR_ITER                38 (to 278)
+            202 STORE_FAST               0 (_)
+            204 LOAD_NAME               15 (nwwmnmwwmmwnww)
+            206 LOAD_ATTR               35 (NULL|self + randint)
+            226 LOAD_CONST               8 (11)
+            228 LOAD_CONST               9 (19)
+            230 CALL                     2
+            238 LOAD_NAME               15 (nwwmnmwwmmwnww)
+            240 LOAD_ATTR               35 (NULL|self + randint)
+            260 LOAD_CONST              10 (1)
+            262 LOAD_CONST              11 (200)
+            264 CALL                     2
+            272 BUILD_TUPLE              2
+            274 LIST_APPEND              2
+            276 JUMP_BACKWARD           40 (to 198)
+        >>  278 END_FOR
+            280 SWAP                     2
+            282 STORE_FAST               0 (_)
+            284 STORE_NAME              18 (mwnwmwwmnmmn)
+
+ 12         286 PUSH_NULL
+            288 LOAD_BUILD_CLASS
+            290 LOAD_CONST              12 (<code object mnwwmwnwmww at 0x00000264A2282730, file "otpyrc.py", line 12>)
+            292 MAKE_FUNCTION            0
+            294 LOAD_CONST              13 ('mnwwmwnwmww')
+            296 CALL                     2
+            304 STORE_NAME              19 (mnwwmwnwmww)
+
+ 54         306 LOAD_CONST              14 (<code object nwwmmmmmwnww at 0x00000264A2702010, file "otpyrc.py", line 54>)
+            308 MAKE_FUNCTION            0
+            310 STORE_NAME              20 (nwwmmmmmwnww)
+
+106         312 LOAD_NAME               21 (__name__)
+            314 LOAD_CONST              15 ('__main__')
+            316 COMPARE_OP              40 (==)
+            320 POP_JUMP_IF_FALSE       34 (to 390)
+
+107         322 PUSH_NULL
+            324 LOAD_NAME                1 (signal)
+            326 LOAD_ATTR               44 (alarm)
+            346 LOAD_CONST              16 (300)
+            348 CALL                     1
+            356 POP_TOP
+
+108         358 PUSH_NULL
+            360 LOAD_NAME               23 (print)
+            362 LOAD_CONST              17 ('Welcome to RSB, a super secure RSA service!')
+            364 CALL                     1
+            372 POP_TOP
+
+109         374 PUSH_NULL
+            376 LOAD_NAME               20 (nwwmmmmmwnww)
+            378 CALL                     0
+            386 POP_TOP
+            388 RETURN_CONST             1 (None)
+
+106     >>  390 RETURN_CONST             1 (None)
+        >>  392 SWAP                     2
+            394 POP_TOP
+
+ 10         396 SWAP                     2
+            398 STORE_FAST               0 (_)
+            400 RERAISE                  0
+ExceptionTable:
+  194 to 278 -> 392 [2]
+
+Disassembly of <code object mnwwmwnwmww at 0x00000264A2282730, file "otpyrc.py", line 12>:
+ 12           0 RESUME                   0
+              2 LOAD_NAME                0 (__name__)
+              4 STORE_NAME               1 (__module__)
+              6 LOAD_CONST               0 ('mnwwmwnwmww')
+              8 STORE_NAME               2 (__qualname__)
+
+ 13          10 LOAD_CONST               8 ((None,))
+             12 LOAD_CONST               2 (<code object __init__ at 0x00000264A2297B40, file "otpyrc.py", line 13>)
+             14 MAKE_FUNCTION            1 (defaults)
+             16 STORE_NAME               3 (__init__)
+
+ 16          18 LOAD_CONST               3 (<code object mmnnnnnwwwnmw at 0x00000264A2281730, file "otpyrc.py", line 16>)
+             20 MAKE_FUNCTION            0
+             22 STORE_NAME               4 (mmnnnnnwwwnmw)
+
+ 20          24 LOAD_CONST               4 (<code object wmwnwnwm at 0x00000264A22C2780, file "otpyrc.py", line 20>)
+             26 MAKE_FUNCTION            0
+             28 STORE_NAME               5 (wmwnwnwm)
+
+ 26          30 LOAD_CONST               8 ((None,))
+             32 LOAD_CONST               5 (<code object mmmwnmmnwmnwnwn at 0x00000264A25E7530, file "otpyrc.py", line 26>)
+             34 MAKE_FUNCTION            1 (defaults)
+             36 STORE_NAME               6 (mmmwnmmnwmnwnwn)
+
+ 48          38 LOAD_CONST               6 (<code object mwmwwmmnw at 0x00000264A24D5C30, file "otpyrc.py", line 48>)
+             40 MAKE_FUNCTION            0
+             42 STORE_NAME               7 (mwmwwmmnw)
+
+ 51          44 LOAD_CONST               7 (<code object wmnwwnnnwwnm at 0x00000264A24D5B50, file "otpyrc.py", line 51>)
+             46 MAKE_FUNCTION            0
+             48 STORE_NAME               8 (wmnwwnnnwwnm)
+             50 RETURN_CONST             1 (None)
+
+Disassembly of <code object __init__ at 0x00000264A2297B40, file "otpyrc.py", line 13>:
+ 13           0 RESUME                   0
+
+ 14           2 LOAD_GLOBAL              1 (NULL + SystemRandom)
+             12 LOAD_FAST                1 (mwmmmwwmmwnmmmwm)
+             14 CALL                     1
+             22 LOAD_FAST                0 (self)
+             24 STORE_ATTR               1 (mwmmnnnnwmnnwwwm)
+             34 RETURN_CONST             0 (None)
+
+Disassembly of <code object mmnnnnnwwwnmw at 0x00000264A2281730, file "otpyrc.py", line 16>:
+ 16           0 RESUME                   0
+
+ 17           2 LOAD_GLOBAL              0 (mwnwmwwmnmmn)
+             12 LOAD_FAST                2 (nwmnnnnmwmww)
+             14 BINARY_SUBSCR
+             18 UNPACK_SEQUENCE          2
+             22 STORE_FAST               4 (wmwwwnnmmmmw)
+             24 STORE_FAST               5 (mmnnwnwnm)
+
+ 18          26 LOAD_FAST                1 (wnwmnwmnmn)
+             28 LOAD_FAST                4 (wmwwwnnmmmmw)
+             30 BINARY_OP                0 (+)
+             34 LOAD_FAST                5 (mmnnwnwnm)
+             36 BINARY_OP                5 (*)
+             40 LOAD_CONST               1 (2)
+             42 LOAD_FAST                3 (wnnmwmmmw)
+             44 LOAD_CONST               1 (2)
+             46 BINARY_OP                2 (//)
+             50 BINARY_OP                8 (**)
+             54 BINARY_OP                6 (%)
+             58 RETURN_VALUE
+
+Disassembly of <code object wmwnwnwm at 0x00000264A22C2780, file "otpyrc.py", line 20>:
+ 20           0 RESUME                   0
+
+ 21           2 LOAD_FAST                1 (mnwnmmnmnwmm)
+              4 LOAD_CONST               1 (1)
+              6 BINARY_OP               13 (+=)
+             10 STORE_FAST               1 (mnwnmmnmnwmm)
+
+ 22          12 LOAD_GLOBAL              1 (NULL + isPrime)
+             22 LOAD_FAST                1 (mnwnmmnmnwmm)
+             24 CALL                     1
+             32 POP_JUMP_IF_TRUE        17 (to 68)
+
+ 23     >>   34 LOAD_FAST                1 (mnwnmmnmnwmm)
+             36 LOAD_CONST               1 (1)
+             38 BINARY_OP               13 (+=)
+             42 STORE_FAST               1 (mnwnmmnmnwmm)
+
+ 22          44 LOAD_GLOBAL              1 (NULL + isPrime)
+             54 LOAD_FAST                1 (mnwnmmnmnwmm)
+             56 CALL                     1
+             64 POP_JUMP_IF_TRUE         1 (to 68)
+             66 JUMP_BACKWARD           17 (to 34)
+
+ 24     >>   68 LOAD_FAST                1 (mnwnmmnmnwmm)
+             70 RETURN_VALUE
+
+Disassembly of <code object mmmwnmmnwmnwnwn at 0x00000264A25E7530, file "otpyrc.py", line 26>:
+ 26           0 RESUME                   0
+
+ 27           2 LOAD_FAST                1 (wmnwmnwnmww)
+              4 LOAD_CONST               1 (2)
+              6 BINARY_OP                6 (%)
+             10 LOAD_CONST               2 (0)
+             12 COMPARE_OP              40 (==)
+             16 POP_JUMP_IF_TRUE         2 (to 22)
+             18 LOAD_ASSERTION_ERROR
+             20 RAISE_VARARGS            1
+
+ 28     >>   22 LOAD_GLOBAL              1 (NULL + int)
+             32 LOAD_GLOBAL              3 (NULL + bin)
+             42 LOAD_FAST                0 (self)
+             44 LOAD_ATTR                4 (mwmmnnnnwmnnwwwm)
+             64 LOAD_ATTR                7 (NULL|self + getrandbits)
+             84 LOAD_FAST                1 (wmnwmnwnmww)
+             86 CALL                     1
+             94 CALL                     1
+            102 LOAD_CONST               1 (2)
+            104 LOAD_CONST               0 (None)
+            106 BINARY_SLICE
+            108 LOAD_ATTR                9 (NULL|self + zfill)
+            128 LOAD_FAST                1 (wmnwmnwnmww)
+            130 CALL                     1
+            138 LOAD_CONST               1 (2)
+            140 CALL                     2
+            148 STORE_FAST               3 (nmmwmwnnnmmm)
+
+ 30         150 LOAD_FAST                3 (nmmwmwnnnmmm)
+            152 LOAD_FAST                1 (wmnwmnwnmww)
+            154 LOAD_CONST               1 (2)
+            156 BINARY_OP                2 (//)
+            160 BINARY_OP                9 (>>)
+            164 LOAD_FAST                3 (nmmwmwnnnmmm)
+            166 LOAD_CONST               1 (2)
+            168 LOAD_FAST                1 (wmnwmnwnmww)
+            170 LOAD_CONST               1 (2)
+            172 BINARY_OP                2 (//)
+            176 BINARY_OP                8 (**)
+            180 BINARY_OP                6 (%)
+            184 STORE_FAST               5 (nwwnnmnnmwnw)
+            186 STORE_FAST               4 (wwnmwwnnnwmmn)
+
+ 31         188 LOAD_GLOBAL             11 (NULL + range)
+            198 LOAD_GLOBAL             12 (wwwwmnmmwnnn)
+            208 CALL                     1
+            216 GET_ITER
+        >>  218 FOR_ITER                26 (to 274)
+            222 STORE_FAST               6 (nwwwnmnn)
+
+ 32         224 LOAD_FAST                5 (nwwnnmnnmwnw)
+            226 LOAD_FAST                4 (wwnmwwnnnwmmn)
+            228 LOAD_FAST                0 (self)
+            230 LOAD_ATTR               15 (NULL|self + mmnnnnnwwwnmw)
+            250 LOAD_FAST                5 (nwwnnmnnmwnw)
+            252 LOAD_FAST                6 (nwwwnmnn)
+            254 LOAD_FAST                1 (wmnwmnwnmww)
+            256 CALL                     3
+            264 BINARY_OP               12 (^)
+            268 STORE_FAST               5 (nwwnnmnnmwnw)
+            270 STORE_FAST               4 (wwnmwwnnnwmmn)
+            272 JUMP_BACKWARD           28 (to 218)
+
+ 31     >>  274 END_FOR
+
+ 34         276 LOAD_FAST                4 (wwnmwwnnnwmmn)
+            278 LOAD_FAST                1 (wmnwmnwnmww)
+            280 LOAD_CONST               1 (2)
+            282 BINARY_OP                2 (//)
+            286 BINARY_OP                3 (<<)
+            290 LOAD_FAST                5 (nwwnnmnnmwnw)
+            292 BINARY_OP                7 (|)
+            296 STORE_FAST               3 (nmmwmwnnnmmm)
+
+ 36         298 LOAD_FAST                2 (wnnnmmnnwnnmwnm)
+            300 LOAD_CONST               0 (None)
+            302 COMPARE_OP              40 (==)
+            306 POP_JUMP_IF_FALSE       56 (to 420)
+
+ 37         308 LOAD_GLOBAL             17 (NULL + Random)
+            318 LOAD_GLOBAL              1 (NULL + int)
+            328 LOAD_GLOBAL             19 (NULL + time)
+            338 CALL                     0
+            346 CALL                     1
+            354 CALL                     1
+            362 STORE_FAST               7 (nmnwnwnnmm)
+
+ 38         364 LOAD_FAST                7 (nmnwnwnnmm)
+            366 LOAD_ATTR               21 (NULL|self + sample)
+            386 LOAD_GLOBAL             11 (NULL + range)
+            396 LOAD_FAST                1 (wmnwmnwnmww)
+            398 CALL                     1
+            406 LOAD_FAST                1 (wmnwmnwnmww)
+            408 KW_NAMES                 3 (('population', 'k'))
+            410 CALL                     2
+            418 STORE_FAST               2 (wnnnmmnnwnnmwnm)
+
+ 40     >>  420 LOAD_GLOBAL             23 (NULL + list)
+            430 LOAD_GLOBAL              3 (NULL + bin)
+            440 LOAD_FAST                3 (nmmwmwnnnmmm)
+            442 CALL                     1
+            450 LOAD_CONST               1 (2)
+            452 LOAD_CONST               0 (None)
+            454 BINARY_SLICE
+            456 LOAD_ATTR                9 (NULL|self + zfill)
+            476 LOAD_FAST                1 (wmnwmnwnmww)
+            478 CALL                     1
+            486 CALL                     1
+            494 STORE_FAST               3 (nmmwmwnnnmmm)
+
+ 41         496 BUILD_LIST               0
+            498 STORE_FAST               6 (nwwwnmnn)
+
+ 42         500 LOAD_FAST                2 (wnnnmmnnwnnmwnm)
+            502 GET_ITER
+        >>  504 FOR_ITER                11 (to 530)
+            508 STORE_FAST               8 (nwmmwnwmmwwnm)
+
+ 43         510 LOAD_FAST                6 (nwwwnmnn)
+            512 LOAD_FAST                3 (nmmwmwnnnmmm)
+            514 LOAD_FAST                8 (nwmmwnwmmwwnm)
+            516 BINARY_SUBSCR
+            520 BUILD_LIST               1
+            522 BINARY_OP               13 (+=)
+            526 STORE_FAST               6 (nwwwnmnn)
+            528 JUMP_BACKWARD           13 (to 504)
+
+ 42     >>  530 END_FOR
+
+ 44         532 LOAD_GLOBAL              1 (NULL + int)
+            542 LOAD_CONST               4 ('')
+            544 LOAD_ATTR               25 (NULL|self + join)
+            564 LOAD_FAST                6 (nwwwnmnn)
+            566 CALL                     1
+            574 LOAD_CONST               1 (2)
+            576 CALL                     2
+            584 STORE_FAST               3 (nmmwmwnnnmmm)
+
+ 46         586 LOAD_FAST                3 (nmmwmwnnnmmm)
+            588 LOAD_GLOBAL             27 (NULL + getPrime)
+            598 LOAD_FAST                1 (wmnwmnwnmww)
+            600 CALL                     1
+            608 LOAD_FAST                2 (wnnnmmnnwnnmwnm)
+            610 BUILD_TUPLE              3
+            612 RETURN_VALUE
+
+Disassembly of <code object mwmwwmmnw at 0x00000264A24D5C30, file "otpyrc.py", line 48>:
+ 48           0 RESUME                   0
+
+ 49           2 LOAD_GLOBAL              1 (NULL + pow)
+             12 LOAD_FAST                1 (nmmmnwmwmnnmn)
+             14 LOAD_FAST                2 (mnwwmnwwmmwnwnn)
+             16 LOAD_FAST                3 (nmmmnnnnmnmnnnmm)
+             18 CALL                     3
+             26 RETURN_VALUE
+
+Disassembly of <code object wmnwwnnnwwnm at 0x00000264A24D5B50, file "otpyrc.py", line 51>:
+ 51           0 RESUME                   0
+
+ 52           2 LOAD_GLOBAL              1 (NULL + pow)
+             12 LOAD_FAST                1 (wmnmwnmwmnnw)
+             14 LOAD_FAST                2 (wmmnmmnnnw)
+             16 LOAD_FAST                3 (nmmwwwnmwmmmw)
+             18 CALL                     3
+             26 RETURN_VALUE
+
+Disassembly of <code object nwwmmmmmwnww at 0x00000264A2702010, file "otpyrc.py", line 54>:
+ 54           0 RESUME                   0
+
+ 55           2 NOP
+
+ 56           4 LOAD_GLOBAL              1 (NULL + mnwwmwnwmww)
+             14 LOAD_GLOBAL              3 (NULL + os)
+             24 LOAD_ATTR                4 (urandom)
+             44 LOAD_CONST               1 (16)
+             46 CALL                     1
+             54 CALL                     1
+             62 STORE_FAST               0 (wwwmwwmw)
+
+ 57          64 NOP
+
+ 58     >>   66 LOAD_GLOBAL              7 (NULL + int)
+             76 LOAD_GLOBAL              9 (NULL + input)
+             86 LOAD_CONST               2 ('\nWhat do you want to do?\n    1) Generate RSA primes\n    2) Encrypt a message\n    3) Decrypt a message\n    4) Get the encrypted flag\n    5) Exit\n\n')
+             88 CALL                     1
+             96 CALL                     1
+            104 STORE_FAST               1 (nwmwwnwmwwwww)
+
+ 67         106 LOAD_FAST                1 (nwmwwnwmwwwww)
+
+ 68         108 COPY                     1
+            110 LOAD_CONST               3 (1)
+            112 COMPARE_OP              40 (==)
+            116 POP_JUMP_IF_FALSE       93 (to 304)
+            118 POP_TOP
+
+ 69         120 LOAD_GLOBAL              7 (NULL + int)
+            130 LOAD_GLOBAL              9 (NULL + input)
+            140 LOAD_CONST               4 ('Number of bits: ')
+            142 CALL                     1
+            150 CALL                     1
+            158 STORE_FAST               2 (wnnwmwmww)
+
+ 70         160 LOAD_FAST                2 (wnnwmwmww)
+            162 LOAD_CONST               5 (1024)
+            164 COMPARE_OP              26 (<=)
+            168 POP_JUMP_IF_TRUE         2 (to 174)
+            170 LOAD_ASSERTION_ERROR
+            172 RAISE_VARARGS            1
+
+ 71     >>  174 LOAD_FAST                0 (wwwmwwmw)
+            176 LOAD_ATTR               11 (NULL|self + mmmwnmmnwmnwnwn)
+            196 LOAD_FAST                2 (wnnwmwmww)
+            198 CALL                     1
+            206 UNPACK_SEQUENCE          3
+            210 STORE_FAST               3 (wmwwnwwmnn)
+            212 STORE_FAST               4 (nnnwmmwnn)
+            214 STORE_FAST               5 (mmmwmnnwmwnww)
+
+ 72         216 LOAD_GLOBAL             13 (NULL + print)
+            226 LOAD_CONST               6 ('wmwwnwwmnn = ')
+            228 LOAD_FAST                3 (wmwwnwwmnn)
+            230 FORMAT_VALUE             2 (repr)
+            232 BUILD_STRING             2
+            234 CALL                     1
+            242 POP_TOP
+
+ 73         244 LOAD_GLOBAL             13 (NULL + print)
+            254 LOAD_CONST               7 ('nnnwmmwnn = ')
+            256 LOAD_FAST                4 (nnnwmmwnn)
+            258 FORMAT_VALUE             2 (repr)
+            260 BUILD_STRING             2
+            262 CALL                     1
+            270 POP_TOP
+
+ 74         272 LOAD_GLOBAL             13 (NULL + print)
+            282 LOAD_CONST               8 ('mmmwmnnwmwnww = ')
+            284 LOAD_FAST                5 (mmmwmnnwmwnww)
+            286 FORMAT_VALUE             2 (repr)
+            288 BUILD_STRING             2
+            290 CALL                     1
+            298 POP_TOP
+            300 EXTENDED_ARG             1
+            302 JUMP_FORWARD           402 (to 1108)
+
+ 75     >>  304 COPY                     1
+            306 LOAD_CONST               9 (2)
+            308 COMPARE_OP              40 (==)
+            312 POP_JUMP_IF_FALSE      115 (to 544)
+            314 POP_TOP
+
+ 76         316 LOAD_GLOBAL             14 (bytes)
+            326 LOAD_ATTR               17 (NULL|self + fromhex)
+            346 LOAD_GLOBAL              9 (NULL + input)
+            356 LOAD_CONST              10 ('Message: ')
+            358 CALL                     1
+            366 CALL                     1
+            374 STORE_FAST               6 (mwmwmmmnwmnmwnw)
+
+ 77         376 LOAD_GLOBAL              7 (NULL + int)
+            386 LOAD_GLOBAL              9 (NULL + input)
+            396 LOAD_CONST              11 ('e: ')
+            398 CALL                     1
+            406 CALL                     1
+            414 STORE_FAST               7 (wnnwwmnn)
+
+ 78         416 LOAD_GLOBAL              7 (NULL + int)
+            426 LOAD_GLOBAL              9 (NULL + input)
+            436 LOAD_CONST              12 ('n: ')
+            438 CALL                     1
+            446 CALL                     1
+            454 STORE_FAST               8 (nmwwwnmwmnnnn)
+
+ 79         456 LOAD_FAST                0 (wwwmwwmw)
+            458 LOAD_ATTR               19 (NULL|self + mwmwwmmnw)
+            478 LOAD_GLOBAL             21 (NULL + bytes_to_long)
+            488 LOAD_FAST                6 (mwmwmmmnwmnmwnw)
+            490 CALL                     1
+            498 LOAD_FAST                7 (wnnwwmnn)
+            500 LOAD_FAST                8 (nmwwwnmwmnnnn)
+            502 CALL                     3
+            510 STORE_FAST               9 (mwnwwmnnm)
+
+ 80         512 LOAD_GLOBAL             13 (NULL + print)
+            522 LOAD_CONST              13 ('mwnwwmnnm = ')
+            524 LOAD_FAST                9 (mwnwwmnnm)
+            526 FORMAT_VALUE             2 (repr)
+            528 BUILD_STRING             2
+            530 CALL                     1
+            538 POP_TOP
+            540 EXTENDED_ARG             1
+            542 JUMP_FORWARD           282 (to 1108)
+
+ 81     >>  544 COPY                     1
+            546 LOAD_CONST              14 (3)
+            548 COMPARE_OP              40 (==)
+            552 POP_JUMP_IF_FALSE      114 (to 782)
+            554 POP_TOP
+
+ 82         556 LOAD_GLOBAL             14 (bytes)
+            566 LOAD_ATTR               17 (NULL|self + fromhex)
+            586 LOAD_GLOBAL              9 (NULL + input)
+            596 LOAD_CONST              15 ('Ciphertext: ')
+            598 CALL                     1
+            606 CALL                     1
+            614 STORE_FAST              10 (mmnwnmwwwwnmwmn)
+
+ 83         616 LOAD_GLOBAL              7 (NULL + int)
+            626 LOAD_GLOBAL              9 (NULL + input)
+            636 LOAD_CONST              16 ('d: ')
+            638 CALL                     1
+            646 CALL                     1
+            654 STORE_FAST              11 (nwnwwmnwwmnnwm)
+
+ 84         656 LOAD_GLOBAL              7 (NULL + int)
+            666 LOAD_GLOBAL              9 (NULL + input)
+            676 LOAD_CONST              12 ('n: ')
+            678 CALL                     1
+            686 CALL                     1
+            694 STORE_FAST              12 (nwmmnmwwwnn)
+
+ 85         696 LOAD_FAST                0 (wwwmwwmw)
+            698 LOAD_ATTR               23 (NULL|self + wmnwwnnnwwnm)
+            718 LOAD_GLOBAL             21 (NULL + bytes_to_long)
+            728 LOAD_FAST               10 (mmnwnmwwwwnmwmn)
+            730 CALL                     1
+            738 LOAD_FAST               11 (nwnwwmnwwmnnwm)
+            740 LOAD_FAST               12 (nwmmnmwwwnn)
+            742 CALL                     3
+            750 STORE_FAST              13 (nmmnmmwww)
+
+ 86         752 LOAD_GLOBAL             13 (NULL + print)
+            762 LOAD_CONST              17 ('nmmnmmwww = ')
+            764 LOAD_FAST               13 (nmmnmmwww)
+            766 FORMAT_VALUE             2 (repr)
+            768 BUILD_STRING             2
+            770 CALL                     1
+            778 POP_TOP
+            780 JUMP_FORWARD           163 (to 1108)
+
+ 87     >>  782 COPY                     1
+            784 LOAD_CONST              18 (4)
+            786 COMPARE_OP              40 (==)
+            790 POP_JUMP_IF_FALSE      135 (to 1062)
+            792 POP_TOP
+
+ 88         794 LOAD_FAST                0 (wwwmwwmw)
+            796 LOAD_ATTR               11 (NULL|self + mmmwnmmnwmnwnwn)
+            816 LOAD_CONST               5 (1024)
+            818 CALL                     1
+            826 UNPACK_SEQUENCE          3
+            830 STORE_FAST              14 (nmmmmnmmm)
+            832 STORE_FAST              15 (wmmmmnwnwmnw)
+            834 STORE_FAST              16 (nwnnnwwwwmnmmmn)
+
+ 89         836 LOAD_GLOBAL             13 (NULL + print)
+            846 LOAD_CONST              19 ('nwnnnwwwwmnmmmn = ')
+            848 LOAD_FAST               16 (nwnnnwwwwmnmmmn)
+            850 FORMAT_VALUE             2 (repr)
+            852 BUILD_STRING             2
+            854 CALL                     1
+            862 POP_TOP
+
+ 90         864 LOAD_FAST                0 (wwwmwwmw)
+            866 LOAD_ATTR               25 (NULL|self + wmwnwnwm)
+            886 LOAD_FAST               14 (nmmmmnmmm)
+            888 CALL                     1
+            896 STORE_FAST              14 (nmmmmnmmm)
+
+ 91         898 LOAD_CONST              20 (65537)
+            900 STORE_FAST              16 (nwnnnwwwwmnmmmn)
+
+ 92         902 LOAD_FAST               14 (nmmmmnmmm)
+            904 LOAD_FAST               15 (wmmmmnwnwmnw)
+            906 BINARY_OP                5 (*)
+            910 STORE_FAST              17 (wnnwmmmwmmwmm)
+
+ 93         912 LOAD_FAST                0 (wwwmwwmw)
+            914 LOAD_ATTR               19 (NULL|self + mwmwwmmnw)
+            934 LOAD_GLOBAL             21 (NULL + bytes_to_long)
+            944 LOAD_GLOBAL             26 (nmmnmmwmnnnwwn)
+            954 CALL                     1
+            962 LOAD_FAST               16 (nwnnnwwwwmnmmmn)
+            964 LOAD_FAST               17 (wnnwmmmwmmwmm)
+            966 CALL                     3
+            974 STORE_FAST              18 (mnnmwnnnnmmw)
+
+ 94         976 LOAD_GLOBAL             13 (NULL + print)
+            986 LOAD_CONST              21 ('mnnmwnnnnmmw = ')
+            988 LOAD_FAST               18 (mnnmwnnnnmmw)
+            990 FORMAT_VALUE             2 (repr)
+            992 BUILD_STRING             2
+            994 CALL                     1
+           1002 POP_TOP
+
+ 95        1004 LOAD_GLOBAL             13 (NULL + print)
+           1014 LOAD_CONST              19 ('nwnnnwwwwmnmmmn = ')
+           1016 LOAD_FAST               16 (nwnnnwwwwmnmmmn)
+           1018 FORMAT_VALUE             2 (repr)
+           1020 BUILD_STRING             2
+           1022 CALL                     1
+           1030 POP_TOP
+
+ 96        1032 LOAD_GLOBAL             13 (NULL + print)
+           1042 LOAD_CONST              22 ('wnnwmmmwmmwmm = ')
+           1044 LOAD_FAST               17 (wnnwmmmwmmwmm)
+           1046 FORMAT_VALUE             2 (repr)
+           1048 BUILD_STRING             2
+           1050 CALL                     1
+           1058 POP_TOP
+           1060 JUMP_FORWARD            23 (to 1108)
+
+ 97     >> 1062 LOAD_CONST              23 (5)
+           1064 COMPARE_OP              40 (==)
+           1068 POP_JUMP_IF_FALSE       12 (to 1094)
+
+ 98        1070 LOAD_GLOBAL             29 (NULL + exit)
+           1080 LOAD_CONST              24 (0)
+           1082 CALL                     1
+           1090 POP_TOP
+           1092 JUMP_FORWARD             7 (to 1108)
+
+ 99     >> 1094 NOP
+
+100        1096 LOAD_GLOBAL             30 (NotImplementedError)
+           1106 RAISE_VARARGS            1
+
+ 57     >> 1108 EXTENDED_ARG             2
+           1110 JUMP_BACKWARD          523 (to 66)
+        >> 1112 PUSH_EXC_INFO
+
+101        1114 LOAD_GLOBAL             32 (KeyboardInterrupt)
+           1124 CHECK_EXC_MATCH
+           1126 POP_JUMP_IF_FALSE        2 (to 1132)
+           1128 POP_TOP
+
+102        1130 RAISE_VARARGS            0
+
+103     >> 1132 POP_TOP
+
+104        1134 LOAD_GLOBAL             35 (NULL + Exception)
+           1144 LOAD_CONST              25 ('Error')
+           1146 CALL                     1
+           1154 RAISE_VARARGS            1
+        >> 1156 COPY                     3
+           1158 POP_EXCEPT
+           1160 RERAISE                  1
+ExceptionTable:
+  4 to 1110 -> 1112 [0]
+  1112 to 1154 -> 1156 [1] lasti

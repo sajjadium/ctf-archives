@@ -1,0 +1,10 @@
+The flag consists of two parts.
+
+- The first part is broadcasted by AMOP *publically* with the title `flag1`.
+- The second part is broadcasted by AMOP *privately* with the title `flag2`.
+    - while the subscriber's privkey is attached
+
+BTW, 
+1. The sdk folder provides you with necessary files to interact with the node.
+2. The fisco-bcos version is `2.9.1`.
+3. The remote broadcast message uses [java-sdk-demo](https://github.com/FISCO-BCOS/java-sdk-demo) main-2.0

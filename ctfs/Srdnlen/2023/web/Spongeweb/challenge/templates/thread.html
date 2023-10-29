@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spongeweb</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+<body>
+    <div class="main-container" style="height: 100%;">
+    {% if thread_uuid %}                 
+        <h2>You Thread Id: {{ thread_uuid }}</h2>
+    {% endif %}
+    {% if result %}                 
+    <div class="form-container">
+            <div class="feedback-input" style="text-align: center;"><h2>{{ result[0] }}</h2>{{ result[1] | safe }}</div>
+    </div>
+    {% endif %}
+    <h2 style="font-size: 20px;">Wait for the admin to approve it.</h2>
+    <div class="img-container">
+        <img src="{{ url_for('static', filename='gifs/wave.gif') }}" alt="">
+    </div>
+</div>
+</body>
+</html>

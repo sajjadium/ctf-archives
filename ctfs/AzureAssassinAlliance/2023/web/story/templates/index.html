@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page with CAPTCHA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+        
+        .container {
+            margin: 0 auto;
+            width: 300px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #888888;
+        }
+
+        .captcha {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #eee;
+            padding: 10px;
+        }
+
+        .captcha img {
+            width: 100px;
+            height: 40px;
+            border: 1px solid #aaa;
+        }
+
+        .input-group {
+            margin: 10px 0;
+        }
+
+        .input-group input {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-group label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .login-button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="input-group">
+            <label for="captcha">CAPTCHA</label>
+            <input type="text" id="captcha" name="captcha" required>
+            <div class="captcha">
+                <img src="/captcha" name="captcha-img" id="captcha-img" alt="CAPTCHA">
+                <!-- <img src="/captcha" name="captcha-img" id="captcha-img" title="change"> -->
+            </div>
+        </div>
+        <button class="login-button" type="submit" onclick="submitLogin()">Login</button>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // 当点击图片时更换验证码
+        $('#captcha-img').click(function() {
+            $(this).attr('src', '/captcha?' + new Date().getTime());
+        });
+    
+        // 提交登录请求
+        function submitLogin() {
+            let captchaVal = $('#captcha').val();
+            let username = $('#username').val();
+            let password = $('#password').val();
+            console.log(captchaVal);
+            $.ajax({
+                url: '/login',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    captcha: captchaVal, 
+                    username: username, 
+                    password: password
+                }),
+                dataType: 'json',
+                success: function(response) {
+                    // alert(response.message);
+                    window.location.href="/";
+                },
+                error: function(error) {
+                    alert(error.responseJSON.message);
+                    $('#captcha-img').click();  // 刷新验证码
+                }
+            });
+            console.log(password);
+        }
+    </script>
+</body>
+
+</html>

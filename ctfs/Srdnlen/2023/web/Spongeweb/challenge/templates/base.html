@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='admin-style.css') }}">
+	<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+
+<body>
+	{% block content %}{% endblock %}
+
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<ul class="flashes">
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+	{% endwith %}
+</body>
+
+</html>

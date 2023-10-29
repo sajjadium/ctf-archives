@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel{% endblock %}
+
+{% block content %}
+<h1>Admin Panel</h1>
+<form method="get" action="/admin">
+	<label>Analytics</label>
+	<input type="text" name="query"><br>
+	<input type="submit" value="Search">
+</form>
+{% if param %}    
+<h1>Result</h1>
+{% for i in result %}
+	<h2>{{param}} : {{i[0]}}</h2>
+	{% endfor %}
+{% endif %}
+<form method="get" action="{{ url_for('logout') }}">
+	<input type="submit" value="Logout">
+</form>
+{% endblock %}

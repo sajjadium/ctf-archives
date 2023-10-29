@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<title>My Bidda</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  vertical-align: middle;
+}
+
+/* Position the image container (needed to position the left and right arrows) */
+.container {
+  position: relative;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 40%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Container for image text */
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Six columns side by side */
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+/* Add a transparency effect for thumnbail images */
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+</style>
+<body>
+
+<h2 style="text-align:center">My Bidda</h2>
+<center>
+<h3>A bidda is a small town or village in Sardinia</h3>
+</center>
+<a href="/send_bidda"><button>Send us your bidda</button></a>
+<a href="/inspect_bidda"><button>Watch your biddas</button></a>
+<div class="row">
+{% if bidda %}
+<div class="column">
+  <img class="demo cursor" src="{{ bidda.image }}" style="width:100%" alt="{{ bidda.name }} - Population: {{ bidda.population }}">
+</div>
+{% else %}
+  {% set tmp = env.__dict__.get(name) %}
+  {% if tmp == None %}
+  <div class="column">
+    <img class="demo cursor" src="https://lh6.googleusercontent.com/Bu-pRqU_tWZV7O3rJ5nV1P6NjqFnnAs8kVLC5VGz_Kf7ws0nDUXoGTc7pP87tyUCfu8VyXi0YviIm7CxAISDr2lJSwWwXQxxz98qxVfMcKTJfLPqbcfhn-QEeOowjrlwX1LYDFJN" style="width:100%" alt="404 Bidda Not Found - Population: 0">
+  </div>
+  {% else %}
+  <div class="column">
+    <p>Did you want to see the default bidda called {{ tmp }}?</p>
+    <a href="/">In the home you can see them all</a>
+  </div>
+  {% endif %}
+{% endif %}
+
+<form method="GET" action="/inspect_bidda">
+  <label for="name">Name:</label>
+  <input type="text" name="name" placeholder="Name">
+  <input type="submit" value="Submit">
+</form>
+
+</div>
+ 
+    
+    
+    <div class="column">
+      <img class="demo cursor" src="https://www.vistanet.it/cagliari/wp-content/uploads/sites/2/2017/11/FotoBaradiliComune08-770x480.jpg" style="width:100%" onclick="currentSlide(3)" alt="Baradili - Population: 75">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="https://www.sardegnaturismo.it/sites/default/files/galleria/005_borore_02_tomba_dei_giganti_imbertighe.jpg" style="width:100%" onclick="currentSlide(4)" alt="Borore - Population: 1976">
+    </div>
+  </div>
+
+
+    
+</body>
+</html>
