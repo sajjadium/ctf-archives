@@ -1,0 +1,1 @@
+A few years ago we have installed some weather stations around the town and the surrounding country side. Unfortunately, the project leader left us last year, so now we have the data but don't know what to do with it. Maybe you can find something interesting in the data?

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/water.min.css">
+    <style>
+        tr {
+            font-family: monospace;
+        }
+
+        .correct {
+            color: green;
+        }
+
+        .wrong {
+            color: rgb(182, 0, 0);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .correct {
+                color: #00ff00;
+            }
+
+            .wrong {
+                color: #ff0000;
+            }
+
+            .warning {
+            padding: 0.75rem;
+            border-left: 0.5rem solid #d00;
+            background-color: rgba(255, 0, 0, 0.432) !important;
+            color: white;
+            margin: 0.5rem 0;
+        }
+        }
+
+        textarea {
+            resize: none;
+            overflow: hidden;
+        }
+
+        .logo {
+            height: 1em;
+            margin-right: 0.5em;
+        }
+
+        .warning {
+            padding: 0.75rem;
+            border-left: 0.5rem solid #d00;
+            background-color: #fee;
+            margin: 0.5rem 0;
+        }
+
+        .plain, .plain:hover {
+            color: inherit;
+            text-decoration:inherit
+        }
+
+        table details, table details summary, table details[open], table details[open] summary {
+            background-color: inherit;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+    <title>DDD Training {{#if challenge}} – {{challenge.title}}{{/if}}</title>
+</head>
+
+<body>
+    <h1>
+        <a href="/" class="plain">DDD Training</a>
+    </h1>
+    {{{body}}}
+</body>
+
+</html>

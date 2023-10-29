@@ -1,0 +1,7 @@
+<form action="/upload" method="POST" encType="multipart/form-data">
+    <h3>Submit</h3>
+    <p>Please upload your source code here:</p>
+    <input type="file" name="uploadFile" id="file" required accept=".s">
+    <input type="hidden" name="challenge" value="{{challenge.id}}">
+    <input type="submit" value="Check my submission">
+</form>

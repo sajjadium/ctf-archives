@@ -1,0 +1,1 @@
+To protect against dishonest users, this service implements the latest zero knowledge proof technology for all parties. This is a safe technology, as stated by our knowledgeable consultants. Only real users may obtain the securely encrypted flag.

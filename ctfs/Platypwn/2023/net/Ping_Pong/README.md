@@ -1,0 +1,1 @@
+After your successful investigation of previous breaches you're tasked with looking into another one. The somewhat competent admin you've made friends with has already looked into it and told you that there was nothing to be found. Yet, you insist on taking a look yourself, which may prove to be a good idea.

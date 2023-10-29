@@ -1,0 +1,7 @@
+{
+  "execMap": {
+    "ts": "node --require ts-node/register"
+  },
+  "watch": "src/**/*",
+  "ext": "ts"
+}

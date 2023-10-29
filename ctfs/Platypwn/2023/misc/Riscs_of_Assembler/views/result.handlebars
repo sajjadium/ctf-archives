@@ -1,0 +1,29 @@
+<h2>{{challenge.title}}</h2>
+
+<h3>Results</h3>
+
+{{#if attempt.finished}}
+{{> result-table}}
+
+{{else if attempt.failed}}
+
+<p class="wrong">
+    An error occurred while checking your submission. Please try again in a few seconds.
+</p>
+
+<p>
+    Issues like this can have many different reasons, for example:
+    <ul>
+        <li>Your file does not contain valid RISC-V assembler code.</li>
+        <li>Your assembler code exceeded the test time limit. To prevent Denial of Service attacks, there is a time limit for test cases, after which the test run will be stopped.</li>
+    </ul>
+</p>
+
+{{else}}
+
+<p>Please be patient while we're checking your submission. This may take a couple of seconds...</p>
+<meta http-equiv="refresh" content="6">
+
+{{/if}}
+
+<a href="/{{challenge.id}}" target="_blank">Go back to the assignment and start another try</a>

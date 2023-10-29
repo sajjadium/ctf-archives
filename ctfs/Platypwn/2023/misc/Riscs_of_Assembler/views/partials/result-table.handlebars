@@ -1,0 +1,42 @@
+<p>Your code fulfilled <strong>{{attempt.points}} of {{attempt.tests.length}}</strong> test case(s).
+    <br>
+    Therefore, you'll receive <strong>{{percentPoints attempt}}%</strong> of the points for this assignment.
+</p>
+
+<a href="/{{challenge.id}}" target="_blank">Go back to the assignment and start another try</a>
+
+
+<h4>Test Report</h4>
+<table>
+    <tr>
+        <th>Input</th>
+        {{outputNames attempt}}
+    </tr>
+    {{#each attempt.tests}}
+    <tr {{#if this.fulfilled}} class="correct" {{else}} class="wrong" {{/if}}>
+        <td>{{prettyPrintRipesInput this.input}}</td>
+        {{#each this.outputs}}
+        <td>{{this.actualOutput}} {{#unless this.correct}}(Expected: {{this.expectedOutput}}){{/unless}}</td>
+        {{/each}}
+        <td>
+            {{#if this.fulfilled}}
+                <details>
+                    <summary>Show output</summary>
+
+                    {{prettyPrintStdout this.stdout}}
+                </details>
+            {{else}}
+                <i>Output redacted for incorrect test cases</i>
+            {{/if}}
+        </td>
+    </tr>
+    {{/each}}
+</table>
+
+<h4>Hints for improving your submission</h4>
+<ul>
+    <li>Check whether you're reading the inputs from the correct registers.</li>
+    <li>Your code will be tested on a 64bits RISC-V singe-cycle processor without ISA extensions. Make sure to select this processor type while solving the assignment.</li>
+    <li>Do not accidentally overwrite the inputs with test data.</li>
+    <li>Check whether you're writing the outputs to the correct registers.</li>
+</ul>

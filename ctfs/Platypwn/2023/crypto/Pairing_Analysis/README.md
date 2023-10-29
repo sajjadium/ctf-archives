@@ -1,0 +1,1 @@
+There is a notorious cyber gang that threatens the peace in Dasdorf, known only by their public keys. Our law enforcement agents have recently acquired a database containing secret keys, however the data has been scrambled. We also fear that the criminals have anticipated this action and have planted diversions accordingly. Can you restore law and order to this keypair mess?
