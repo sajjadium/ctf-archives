@@ -1,0 +1,1 @@
+Set sail on a digital adventure as you uncover the ancient Pirate's Code. The code is shrouded by Hexa, a language known to only the savviest of pirates. Can you decode the hidden message and claim your prize?
