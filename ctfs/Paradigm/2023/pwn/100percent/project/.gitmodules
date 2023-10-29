@@ -1,0 +1,16 @@
+[submodule "lib/forge-std"]
+	path = lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
+	branch = v1.7.1
+[submodule "lib/uniswap/v3-core"]
+	path = lib/uniswap/v3-core
+	url = https://github.com/uniswap/v3-core
+[submodule "lib/uniswap/v3-periphery"]
+	path = lib/uniswap/v3-periphery
+	url = https://github.com/uniswap/v3-periphery
+[submodule "lib/openzeppelin-contracts"]
+	path = lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
+[submodule "lib/clones-with-immutable-args"]
+	path = lib/clones-with-immutable-args
+	url = https://github.com/wighawag/clones-with-immutable-args

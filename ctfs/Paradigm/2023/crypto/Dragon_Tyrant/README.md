@@ -1,0 +1,3 @@
+cmichel
+
+Once upon a time, the planet was tyrannized by a giant dragon. The dragon stood taller than the largest cathedral, and it was covered with thick black scales. Its red eyes glowed with hate, and from its terrible jaws flowed an incessant stream of evil-smelling yellowish-green slime. Sages predicted that a day would come when technology would enable humans to fly and do many other astonishing things. One of the sages, who was held in high esteem by some of the other sages but whose eccentric manners had made him a social outcast and recluse, went so far as to predict that technology would eventually make it possible to build a contraption that could kill the dragon-tyrant.

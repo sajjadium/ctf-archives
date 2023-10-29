@@ -1,0 +1,38 @@
+/* Interface */
+#define function setNumber(uint256) nonpayable returns ()
+#define function getNumber() view returns (uint256)
+
+/* Storage Slots */
+#define constant NUMBER_LOCATION = FREE_STORAGE_POINTER()
+
+/* Methods */
+#define macro SET_NUMBER() = takes (0) returns (0) {
+    0x04 calldataload   // [number]
+    [NUMBER_LOCATION]   // [ptr, number]
+    sstore              // []
+}
+
+#define macro GET_NUMBER() = takes (0) returns (0) {
+    // Load number from storage.
+    [NUMBER_LOCATION]   // [ptr]
+    sload                // [number]
+
+    // Store number in memory.
+    0x00 mstore
+
+    // Return number
+    0x20 0x00 return
+}
+
+#define macro MAIN() = takes (0) returns (0) {
+    // Identify which function is being called.
+    0x00 calldataload 0xE0 shr
+    dup1 0x3fb5c1cb eq set jumpi
+    dup1 0xf2c9ecd8 eq get jumpi
+
+    set:
+        SET_NUMBER()
+    get:
+        GET_NUMBER()
+
+}

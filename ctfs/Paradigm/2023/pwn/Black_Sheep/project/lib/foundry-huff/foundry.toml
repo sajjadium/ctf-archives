@@ -1,0 +1,6 @@
+[profile.default]
+src = 'src'
+out = 'out'
+libs = ['lib']
+ffi = true
+fuzz_runs = 2_000

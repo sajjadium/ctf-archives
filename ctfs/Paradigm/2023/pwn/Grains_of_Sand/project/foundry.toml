@@ -1,0 +1,19 @@
+[profile.default]
+src = 'src'
+out = '.cache/out'
+libs = ['lib']
+cache_path = '.cache/cache'
+broadcast = '.cache/broadcast'
+fs_permissions = [{ access = 'read-write', path = '/'}]
+
+remappings = [
+    "forge-std=lib/forge-std/src",
+    "forge-ctf=lib/forge-ctf/src",
+    "@openzeppelin=lib/openzeppelin-contracts",
+    "@uniswap/v3-core=lib/v3-core",
+    "@uniswap/v3-periphery=lib/v3-periphery",
+    "@clones-with-immutable-args=lib/clones-with-immutable-args",
+    "@chainlink=lib/chainlink",
+]
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config

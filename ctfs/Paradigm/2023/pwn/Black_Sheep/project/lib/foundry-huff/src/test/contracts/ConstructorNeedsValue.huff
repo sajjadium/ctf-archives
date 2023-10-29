@@ -1,0 +1,16 @@
+
+#define macro CONSTRUCTOR() = takes (0) returns (0) {
+    callvalue       // [msg.value]
+    iszero          // [is_msg_value_zero]
+    iszero          // [is_msg_value_non_zero]
+    deposited       // [deposited_jumpdest, is_msg_value_non_zero]
+    jumpi           // []
+    0x00 0x00 revert
+    deposited:
+}
+
+#define macro MAIN() = takes (0) returns (0) {
+    0x00 calldataload 0xE0 shr
+    0x00 mstore
+    0x20 0x00 return
+}

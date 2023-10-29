@@ -1,0 +1,15 @@
+[profile.default]
+src = 'src'
+out = '.cache/out'
+libs = ['lib']
+cache_path = '.cache/cache'
+broadcast = '.cache/broadcast'
+fs_permissions = [{ access = 'read-write', path = '/'}]
+
+remappings = [
+    "forge-std=lib/forge-std/src",
+    "forge-ctf=lib/forge-ctf/src",
+    "@openzeppelin=lib/openzeppelin-contracts",
+]
+
+# See more config options https://github.com/foundry-rs/foundry/tree/master/config

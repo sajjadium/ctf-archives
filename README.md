@@ -1564,7 +1564,11 @@
             <td><a href="https://ctftime.org/event/639/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/Paradigm">Paradigm</a></td>
+            <td rowspan=2><a href="ctfs/Paradigm">Paradigm</a></td>
+            <td><a href="ctfs/Paradigm/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2151/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Paradigm/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1719/tasks/" target="_blank">CTFtime</a></td>
         </tr>

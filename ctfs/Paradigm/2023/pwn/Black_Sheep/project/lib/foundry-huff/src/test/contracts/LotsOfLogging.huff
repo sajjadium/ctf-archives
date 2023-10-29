@@ -1,0 +1,56 @@
+/* Events */
+#define event LogOne()
+#define event LogTwo(address indexed a)
+#define event LogThree(address indexed a, uint256 indexed b)
+#define event LogFour(address indexed a, uint256 indexed b, bytes32 indexed c)
+#define event Extended(address indexed a, uint256 indexed b, bytes32 indexed h1, bytes32 h2, bytes32 two)
+
+/* Constructor */
+#define macro CONSTRUCTOR() = takes(0) returns (0) {
+  // Empty Anonymous Log
+  // 0x00 0x00 log0
+
+  // LogOne
+  __EVENT_HASH(LogOne)      // [hash]
+  0x00 0x00 log1            // []
+
+  // LogTwo
+  caller                    // [address]
+  __EVENT_HASH(LogTwo)      // [hash, address]
+  0x00 0x00 log2            // []
+
+  // LogThree
+  selfbalance               // [balance]
+  caller                    // [address, balance]
+  __EVENT_HASH(LogThree)    // [hash, address, balance]
+  0x00 0x00 log3            // []
+
+  // LogFour
+  0x01 0x00 mstore          // []
+  0x20 0x00 sha3            // [bytes32_hash]
+  selfbalance               // [balance, bytes32_hash]
+  caller                    // [address, balance, bytes32_hash]
+  __EVENT_HASH(LogFour)     // [hash, address, balance, bytes32_hash]
+  0x00 0x00 log4            // []
+
+  // Evented Log
+  0x01 0x00 mstore          // []
+  0x20 0x00 sha3            // [hash1]
+  0x02 0x00 mstore          // [hash1]
+  0x20 0x00 sha3            // [hash2, hash1]
+  0x00 mstore               // [hash1]
+  0x03 0x20 mstore          // [hash1]
+  0x20 0x20 sha3            // [two, hash1]
+  0x20 mstore               // [hash1]
+  selfbalance               // [balance, hash1]
+  caller                    // [address, balance, hash1]
+  __EVENT_HASH(Extended)    // [hash, address, balance, hash1]
+  0x40 0x00 log4            // []
+}
+
+/* Main Macro - Does Nothing */
+#define macro MAIN() = takes (0) returns (0) {
+    0x00 calldataload 0xE0 shr
+    0x00 mstore
+    0x20 0x00 return
+}

@@ -1,0 +1,7 @@
+[profile.default]
+src = 'src'
+out = '.cache/out'
+libs = ['lib']
+cache_path = '.cache/cache'
+broadcast = '.cache/broadcast'
+fs_permissions = [{ access = 'read-write', path = '/'}]

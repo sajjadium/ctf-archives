@@ -1,0 +1,20 @@
+[profile.default]
+out = '.cache/out'
+libs = ['lib']
+cache_path = '.cache/cache'
+broadcast = '.cache/broadcast'
+solc_version = '0.8.20'
+evm_version = 'shanghai'
+auto_detect_solc = false
+optimizer = true
+optimizer_runs = 200 # Default amount
+ffi = true
+fuzz_runs = 1_000
+
+fs_permissions = [{ access = 'read-write', path = '/'}]
+
+remappings = [
+  "forge-std=lib/forge-std/src/",
+  "foundry-huff=lib/foundry-huff/src/",
+]
+

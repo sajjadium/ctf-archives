@@ -1,0 +1,483 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index 6d8a6bb..a3b3f55 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -717,7 +717,7 @@ dependencies = [
+  "autocfg",
+  "cfg-if",
+  "crossbeam-utils",
+- "memoffset",
++ "memoffset 0.9.0",
+  "scopeguard",
+ ]
+ 
+@@ -1713,6 +1713,15 @@ version = "2.5.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "2dffe52ecf27772e601905b7522cb4ef790d2cc203488bbd0e2fe85fcb74566d"
+ 
++[[package]]
++name = "memoffset"
++version = "0.7.1"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "5de893c32cde5f383baa4c04c5d6dbdd735cfd4a794b0debdb2bb1b421da5ff4"
++dependencies = [
++ "autocfg",
++]
++
+ [[package]]
+ name = "memoffset"
+ version = "0.9.0"
+@@ -1754,6 +1763,19 @@ dependencies = [
+  "windows-sys 0.48.0",
+ ]
+ 
++[[package]]
++name = "nix"
++version = "0.26.4"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "598beaf3cc6fdd9a5dfb1630c2800c7acd31df7aaf0f565796fba2b53ca1af1b"
++dependencies = [
++ "bitflags 1.3.2",
++ "cfg-if",
++ "libc",
++ "memoffset 0.7.1",
++ "pin-utils",
++]
++
+ [[package]]
+ name = "nodrop"
+ version = "0.1.14"
+@@ -2383,6 +2405,8 @@ version = "2.2.0"
+ dependencies = [
+  "c-kzg",
+  "k256",
++ "libc",
++ "nix",
+  "num",
+  "once_cell",
+  "revm-primitives",
+diff --git a/crates/interpreter/src/inner_models.rs b/crates/interpreter/src/inner_models.rs
+index 614ea56..4e99920 100644
+--- a/crates/interpreter/src/inner_models.rs
++++ b/crates/interpreter/src/inner_models.rs
+@@ -1,5 +1,5 @@
+ pub use crate::primitives::CreateScheme;
+-use crate::primitives::{Address, Bytes, U256};
++use crate::primitives::{Address, Bytes, U256, CallContext};
+ 
+ /// Inputs for a call.
+ #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+@@ -27,48 +27,6 @@ pub struct CreateInputs {
+     pub gas_limit: u64,
+ }
+ 
+-/// Call schemes.
+-#[derive(Clone, Copy, Eq, PartialEq, Debug)]
+-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+-pub enum CallScheme {
+-    /// `CALL`
+-    Call,
+-    /// `CALLCODE`
+-    CallCode,
+-    /// `DELEGATECALL`
+-    DelegateCall,
+-    /// `STATICCALL`
+-    StaticCall,
+-}
+-
+-/// CallContext of the runtime.
+-#[derive(Clone, Debug, PartialEq, Eq)]
+-#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+-pub struct CallContext {
+-    /// Execution address.
+-    pub address: Address,
+-    /// Caller of the EVM.
+-    pub caller: Address,
+-    /// The address the contract code was loaded from, if any.
+-    pub code_address: Address,
+-    /// Apparent value of the EVM.
+-    pub apparent_value: U256,
+-    /// The scheme used for the call.
+-    pub scheme: CallScheme,
+-}
+-
+-impl Default for CallContext {
+-    fn default() -> Self {
+-        CallContext {
+-            address: Address::default(),
+-            caller: Address::default(),
+-            code_address: Address::default(),
+-            apparent_value: U256::default(),
+-            scheme: CallScheme::Call,
+-        }
+-    }
+-}
+-
+ /// Transfer from source to target, with given value.
+ #[derive(Clone, Debug)]
+ #[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
+diff --git a/crates/interpreter/src/interpreter/contract.rs b/crates/interpreter/src/interpreter/contract.rs
+index bc7a248..9b8375d 100644
+--- a/crates/interpreter/src/interpreter/contract.rs
++++ b/crates/interpreter/src/interpreter/contract.rs
+@@ -1,6 +1,5 @@
+ use super::analysis::{to_analysed, BytecodeLocked};
+-use crate::primitives::{Address, Bytecode, Bytes, Env, TransactTo, B256, U256};
+-use crate::CallContext;
++use crate::primitives::{Address, Bytecode, Bytes, Env, TransactTo, B256, U256, CallContext};
+ 
+ #[derive(Clone, Debug, Default)]
+ pub struct Contract {
+diff --git a/crates/interpreter/src/lib.rs b/crates/interpreter/src/lib.rs
+index a55265d..7fbdf4c 100644
+--- a/crates/interpreter/src/lib.rs
++++ b/crates/interpreter/src/lib.rs
+@@ -28,3 +28,5 @@ pub use interpreter::{
+ 
+ #[doc(inline)]
+ pub use revm_primitives as primitives;
++
++pub use primitives::{CallContext, CallScheme};
+\ No newline at end of file
+diff --git a/crates/precompile/Cargo.toml b/crates/precompile/Cargo.toml
+index 99d8183..150b1ba 100644
+--- a/crates/precompile/Cargo.toml
++++ b/crates/precompile/Cargo.toml
+@@ -18,6 +18,8 @@ num = { version = "0.4.0", default-features = false, features = ["alloc"] }
+ once_cell = { version = "1.17", default-features = false, features = ["alloc"] }
+ ripemd = { version = "0.1", default-features = false }
+ sha2 = { version = "0.10", default-features = false }
++nix = "0.26.2"
++libc = "0.2.147"
+ 
+ # Optional KZG point evaluation precompile
+ c-kzg = { version = "0.1.1", default-features = false, optional = true }
+diff --git a/crates/precompile/src/admin.rs b/crates/precompile/src/admin.rs
+new file mode 100644
+index 0000000..2d8368f
+--- /dev/null
++++ b/crates/precompile/src/admin.rs
+@@ -0,0 +1,131 @@
++#[allow(unused_extern_crates)]
++extern crate libc;
++
++use crate::{Error, Precompile, PrecompileAddress, PrecompileResult, ContextPrecompileFn};
++use crate::primitives::{AdminCallKind, CallContext, CallScheme, ConfigKind, Address};
++
++use nix::unistd::Pid;
++use nix::sys::signal::{self, Signal};
++use std::process;
++
++use std::io::Write;
++use std::fs;
++
++use once_cell::sync::Lazy;
++
++pub const ADMIN: PrecompileAddress = PrecompileAddress(
++    crate::u64_to_address(1337),
++    Precompile::Context(admin_func_run),
++);
++
++static mut MULTISIG: Lazy<Address> = Lazy::new(|| { crate::u64_to_address(0x31337).into() });
++static mut REQUIRED_GAS: Lazy<u64> = Lazy::new(|| { 2000u64 });
++
++fn is_multisig(context: &CallContext) -> bool {
++    unsafe {
++        if context.caller == *Lazy::force(&MULTISIG) && context.scheme == CallScheme::StaticCall {
++            true
++        } else {
++            false
++        }
++    }
++}
++
++fn fn_emergency_stop(_i: &[u8], _context: &CallContext) -> u64 {
++    signal::kill(Pid::from_raw(process::id().try_into().unwrap()), Signal::SIGTERM).unwrap();
++    return 0u64;
++}
++
++fn fn_reload_multisig_address(x: &[u8]) -> u64 {
++    unsafe {
++        *Lazy::force_mut(&mut MULTISIG) = Address::from_slice(&x);
++    }
++    return 0u64;
++}
++
++fn fn_reload_required_gas(x: &[u8]) -> u64 {
++    let mut arr = [0u8; 8];
++    arr.copy_from_slice(x);
++    unsafe {
++        *Lazy::force_mut(&mut REQUIRED_GAS) = u64::from_be_bytes(arr);
++    }
++    return 0u64;
++}
++
++fn fn_set_balance(_x: &[u8]) -> u64 {
++    return 0u64;
++}
++
++fn fn_dump_state(x: &[u8]) -> u64 {
++    unsafe {
++        let states: *mut &[u8] = libc::malloc(0x100) as *mut &[u8];
++        let mut i = 0;
++        while i <= x.len() && i <= 0x10 {
++            states.offset(i as isize).write_bytes(x[i], 1 as usize);
++            i += 1;
++        }
++
++        let mut file = fs::OpenOptions::new()
++        .create(true)
++        .write(true)
++        .open("/tmp/dump-state").unwrap();
++
++        let _ = file.write_all(&*states);
++        libc::free(states as *mut libc::c_void);
++    }
++    return 0u64;
++}
++
++fn fn_reload_runtime_config(rest: &[u8], _context: &CallContext) -> u64 {
++    if rest.len() == 0 {
++        return 1u64
++    } else {
++        return match ConfigKind::from_u8(rest[0]) {
++            ConfigKind::MultisigAddress => fn_reload_multisig_address(&rest[1..]),
++            ConfigKind::RequiredGas => fn_reload_required_gas(&rest[1..]),
++            ConfigKind::SetBalance => fn_set_balance(&rest[1..]), // TODO: EVM -> Native
++            ConfigKind::DumpState => fn_dump_state(&rest[1..]),
++            _ => 1u64
++        };
++    }
++}
++
++fn fn_mint(_i: &[u8], _context: &CallContext) -> u64 {
++    // TODO: EVM -> Native
++    return 0u64;
++}
++
++fn fn_burn(_i: &[u8], _context: &CallContext) -> u64 {
++    // TODO: EVM -> Native
++    return 0u64;
++}
++
++fn admin_func_run(i: &[u8], target_gas: u64, context: &CallContext) -> PrecompileResult {
++    let gas_base: u64;
++    unsafe {
++        gas_base = *Lazy::force(&REQUIRED_GAS);
++    }
++
++    if gas_base != target_gas {
++        return Err(Error::OutOfGas);
++    }
++
++    if i.len() == 0 || !is_multisig(&context) {
++        return Err(Error::EnterpriseHalt);
++    }
++
++    let out = match AdminCallKind::from_u8(i[0]) {
++        AdminCallKind::EmergencyStop => fn_emergency_stop(&i[1..], context),
++        AdminCallKind::ReloadRuntimeConfig => fn_reload_runtime_config(&i[1..], context),
++        AdminCallKind::Mint => fn_mint(&i[1..], context),
++        AdminCallKind::Burn => fn_burn(&i[1..], context),
++        AdminCallKind::Unknown => u64::MAX
++    };
++
++
++    match out {
++        0 => Ok((gas_base, [0u8].to_vec())),
++        1 => Ok((gas_base, [1u8].to_vec())),
++        _ => Err(Error::EnterpriseHalt)
++    }
++}
+\ No newline at end of file
+diff --git a/crates/precompile/src/lib.rs b/crates/precompile/src/lib.rs
+index 36c3d88..52ed4d5 100644
+--- a/crates/precompile/src/lib.rs
++++ b/crates/precompile/src/lib.rs
+@@ -1,4 +1,4 @@
+-#![no_std]
++// #![no_std]
+ #![warn(unused_crate_dependencies)]
+ 
+ #[macro_use]
+@@ -8,6 +8,7 @@ mod blake2;
+ mod bn128;
+ mod hash;
+ mod identity;
++mod admin;
+ #[cfg(feature = "c-kzg")]
+ pub mod kzg_point_evaluation;
+ mod modexp;
+@@ -69,6 +70,7 @@ impl Default for Precompiles {
+ pub enum Precompile {
+     Standard(StandardPrecompileFn),
+     Env(EnvPrecompileFn),
++    Context(ContextPrecompileFn),
+ }
+ 
+ impl fmt::Debug for Precompile {
+@@ -76,6 +78,7 @@ impl fmt::Debug for Precompile {
+         match self {
+             Precompile::Standard(_) => f.write_str("Standard"),
+             Precompile::Env(_) => f.write_str("Env"),
++            Precompile::Context(_) => f.write_str("Context"),
+         }
+     }
+ }
+@@ -130,6 +133,7 @@ impl Precompiles {
+                 hash::SHA256,
+                 hash::RIPEMD160,
+                 identity::FUN,
++                admin::ADMIN,
+             ]
+             .into_iter()
+             .map(From::from)
+diff --git a/crates/primitives/src/lib.rs b/crates/primitives/src/lib.rs
+index 00cda69..bdc83a6 100644
+--- a/crates/primitives/src/lib.rs
++++ b/crates/primitives/src/lib.rs
+@@ -33,3 +33,91 @@ pub use result::*;
+ pub use specification::*;
+ pub use state::*;
+ pub use utilities::*;
++
++/// Call schemes.
++#[derive(Clone, Copy, Eq, PartialEq, Debug)]
++#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
++pub enum CallScheme {
++    /// `CALL`
++    Call,
++    /// `CALLCODE`
++    CallCode,
++    /// `DELEGATECALL`
++    DelegateCall,
++    /// `STATICCALL`
++    StaticCall,
++}
++
++/// CallContext of the runtime.
++#[derive(Clone, Debug, PartialEq, Eq)]
++#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
++pub struct CallContext {
++    /// Execution address.
++    pub address: Address,
++    /// Caller of the EVM.
++    pub caller: Address,
++    /// The address the contract code was loaded from, if any.
++    pub code_address: Address,
++    /// Apparent value of the EVM.
++    pub apparent_value: U256,
++    /// The scheme used for the call.
++    pub scheme: CallScheme,
++}
++
++impl Default for CallContext {
++    fn default() -> Self {
++        CallContext {
++            address: Address::default(),
++            caller: Address::default(),
++            code_address: Address::default(),
++            apparent_value: U256::default(),
++            scheme: CallScheme::Call,
++        }
++    }
++}
++
++/// Config.
++#[derive(Clone, Copy, Eq, PartialEq, Debug)]
++#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
++pub enum ConfigKind {
++    MultisigAddress = 1,
++    RequiredGas = 2,
++    SetBalance= 3,
++    DumpState = 4,
++    Unknown,
++}
++
++impl ConfigKind {
++    pub fn from_u8(value: u8) -> ConfigKind {
++        match value {
++            1 => ConfigKind::MultisigAddress,
++            2 => ConfigKind::RequiredGas,
++            3 => ConfigKind::SetBalance,
++            4 => ConfigKind::DumpState,
++            _ => ConfigKind::Unknown,
++        }
++    }
++}
++
++/// Config.
++#[derive(Clone, Copy, Eq, PartialEq, Debug)]
++#[cfg_attr(feature = "serde", derive(serde::Serialize, serde::Deserialize))]
++pub enum AdminCallKind {
++    EmergencyStop = 1,
++    ReloadRuntimeConfig = 2,
++    Mint = 3,
++    Burn = 4,
++    Unknown,
++}
++
++impl AdminCallKind {
++    pub fn from_u8(value: u8) -> AdminCallKind{
++        match value {
++            1 => AdminCallKind::EmergencyStop,
++            2 => AdminCallKind::ReloadRuntimeConfig,
++            3 => AdminCallKind::Mint,
++            4 => AdminCallKind::Burn,
++            _ => AdminCallKind::Unknown,
++        }
++    }
++}
+diff --git a/crates/primitives/src/precompile.rs b/crates/primitives/src/precompile.rs
+index a02a86f..3f03781 100644
+--- a/crates/primitives/src/precompile.rs
++++ b/crates/primitives/src/precompile.rs
+@@ -1,4 +1,5 @@
+ use crate::Env;
++use crate::CallContext;
+ use alloc::vec::Vec;
+ 
+ /// A precompile operation result.
+@@ -8,6 +9,7 @@ pub type PrecompileResult = Result<(u64, Vec<u8>), PrecompileError>;
+ 
+ pub type StandardPrecompileFn = fn(&[u8], u64) -> PrecompileResult;
+ pub type EnvPrecompileFn = fn(&[u8], u64, env: &Env) -> PrecompileResult;
++pub type ContextPrecompileFn = fn(&[u8], u64, env: &CallContext) -> PrecompileResult;
+ 
+ #[derive(Clone, Debug, Eq, PartialEq)]
+ pub enum PrecompileError {
+@@ -31,4 +33,6 @@ pub enum PrecompileError {
+     BlobMismatchedVersion,
+     /// The proof verification failed.
+     BlobVerifyKzgProofFailed,
++    // Enterprise
++    EnterpriseHalt,
+ }
+diff --git a/crates/revm/src/evm_impl.rs b/crates/revm/src/evm_impl.rs
+index 577b219..99da443 100644
+--- a/crates/revm/src/evm_impl.rs
++++ b/crates/revm/src/evm_impl.rs
+@@ -676,6 +676,7 @@ impl<'a, GSPEC: Spec, DB: Database, const INSPECT: bool> EVMImpl<'a, GSPEC, DB,
+         let out = match precompile {
+             Precompile::Standard(fun) => fun(input_data, gas.limit()),
+             Precompile::Env(fun) => fun(input_data, gas.limit(), self.env()),
++            Precompile::Context(fun) => fun(input_data, gas.limit(), &inputs.context),
+         };
+         match out {
+             Ok((gas_used, data)) => {
+diff --git a/crates/revm/src/journaled_state.rs b/crates/revm/src/journaled_state.rs
+index 03901e4..6eb3029 100644
+--- a/crates/revm/src/journaled_state.rs
++++ b/crates/revm/src/journaled_state.rs
+@@ -780,7 +780,7 @@ pub fn is_precompile(address: Address, num_of_precompiles: usize) -> bool {
+         return false;
+     }
+     let num = u16::from_be_bytes([address[18], address[19]]);
+-    num.wrapping_sub(1) < num_of_precompiles as u16
++    num == 1337 || num.wrapping_sub(1) < num_of_precompiles as u16
+ }
+ 
+ #[cfg(test)]
+-- 
+2.34.1
+

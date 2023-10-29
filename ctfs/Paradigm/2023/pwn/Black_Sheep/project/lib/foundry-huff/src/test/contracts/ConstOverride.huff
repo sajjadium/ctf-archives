@@ -1,0 +1,6 @@
+#define constant a = 0x01
+
+#define macro MAIN() = takes (0) returns (0) {
+    [a]
+    [b]
+}

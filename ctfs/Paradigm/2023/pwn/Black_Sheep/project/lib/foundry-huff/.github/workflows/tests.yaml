@@ -1,0 +1,31 @@
+name: Tests
+
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
+      - name: Install Huff
+        uses: huff-language/huff-toolchain@v2
+        with:
+          version: nightly
+
+      - name: Print the Bytecode for fun
+        run: huffc -b src/test/contracts/Number.huff
+
+      - name: Print the Scripts
+        run: ls -lsa lib/foundry-huff/scripts/
+
+      - name: Run Tests
+        run: forge test -vvv
