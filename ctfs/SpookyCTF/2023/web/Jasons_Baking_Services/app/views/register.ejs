@@ -1,0 +1,49 @@
+<!--include header-->
+<%-include('include/_header')%>
+<!--/include header-->
+
+<header>
+  <link href="register.css" rel="stylesheet">
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Jason Bake Shop</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+          <li class="nav-item">
+              <a class="nav-link" href="/">Login</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/register">Register</a>
+          </li>
+      </ul>   
+  </div>
+</nav>
+<br>
+<br>
+<div class="d-flex justify-content-center" >
+  <div class="text-center" class="col align-self-center" style="width:25%">
+    <form class="form-signin" method="post" action="register">
+      <img class="mb-4" src="/img/logo2.png" alt="" width="122" height="122">
+      <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+      
+      <label for="username" class="sr-only"><b></b></label>
+      <input class="form-control" type="text" placeholder="Username" name="username" id="username" required>
+
+      <label for="password" class="sr-only"></label>
+      <input class="form-control" type="password" placeholder="Password" name="password"  id="inputPassword"  required>
+      <br>
+      <button class="btn btn-lg btn-danger btn-block" type="submit">Register</button>
+    </form>
+  </div>
+</div>
+
+
+
+<!--include footer-->
+<%-include('include/_footer')%>
+<!--/include footer-->

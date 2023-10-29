@@ -1,0 +1,94 @@
+<!--include footer-->
+<%-include('include/_header')%>
+<!--/include footer-->
+<style>
+    .body{
+      background-image: url('../assets/img/background.png');
+    }
+</style>
+
+<nav id="navbar-custom" class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Jason Bake Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/flag">Flag</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/logout">Logout</a>
+            </li>
+        </ul>   
+    </div>
+</nav>
+<div class="bg-image img-fluid" style="background-image: url('img/background.png'); height: auto; width: auto;">
+    
+    <div class="container d-flex justify-content-center">
+        <h1> Welcome <%=name%>!</h1>
+    </div>
+    <div class="container d-flex justify-content-center">
+            <p> Orders Go live Oct 30th!<p>
+     </div>
+     <div class="container d-flex justify-content-center">
+        <p> Pickup Only: Locations must be a dark place where no one can hear you.</p>
+    </div>
+    <div class="container d-flex justify-content-center">
+            <div class="card col-md-6 p-3" style="width: 18rem;">
+            <img class="card-img-top col-md-6" src="/img/cookie1.png" alt="Card image cap">
+                <div class="card-body"> 
+                <h5 class="card-title">Mask Cookies</h5>
+                <p class="card-text"> No one cared who I was 'til I put on the mask. -Bane  </p>
+                </div>
+            </div>
+            <div class="card col-md-6 p-3" style="width: 18rem;">
+                <img class="card-img-top" src="/img/cookie2.png" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title">Little Me Cookies</h5>
+                <p class="card-text">Don't worry, these ones won't kill you!</p>
+                </div>
+            </div>
+            <div class="card col-md-6 p-3" style="width: 18rem;">
+                <img class="card-img-top" src="/img/cookie3.png" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title">Realistic Face Cookies</h5>
+                <p class="card-text">Make sure to remove googley eyes before eating, real eyes are $1.00 each!</p>
+                </div>
+            </div>
+    </div>
+    <br>
+    <br>
+    <div class="container d-flex justify-content-center">
+        <div class="card col-md-6" style="width: 18rem;">
+            <img class="card-img-top col-md-6 p-3" src="/img/cookie4.png" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title">Double Blood and Orange Cookie</h5>
+                <p class="card-text">May contain human!</p>
+                </div>
+            </div>
+            <div class="card col-md-6" style="width: 18rem;">
+                <img class="card-img-top p-3" src="/img/cookie5.png" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title">Hockey Mask Cookies</h5>
+                <p class="card-text">Real white choclate, a hint of lemon zest and blood!</p>
+                </div>
+            </div>
+            <div class="card col-md-6 p-3" style="width: 18rem;">
+                <img class="card-img-top" src="/img/cookie6.png" alt="Card image cap">
+                <div class="card-body">
+                <h5 class="card-title">Evil Gremlin Cookies</h5>
+                <p class="card-text">They come alive at night, if you eat them, they always come back.</p>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+<!--include footer-->
+<%-include('include/_footer')%>
+<!--/include footer-->
