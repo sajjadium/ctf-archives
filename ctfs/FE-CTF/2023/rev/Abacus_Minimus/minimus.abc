@@ -1,0 +1,85 @@
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <stdio.h>
+
+#include "rt0.h"
+/* void poof();
+ * void eval(val_t fun, ...);
+ * val_t num(uint64_t n);
+ * val_t force(val_t v);
+ * uint64_t toi(val_t v);
+ */
+
+fun undefined {
+  poof();
+}
+
+fun ite c t f {
+  return toi(c) ? t : f;
+}
+
+fun o f g x {
+  return f(g x);
+}
+
+fun seq x y {
+  force(x);
+  return y;
+}
+
+fun eq x y {
+  return num(toi(x) == toi(y));
+}
+
+fun lor x y {
+  return num(toi(x) ? toi(x) : toi(y));
+}
+
+fun readchar _ {
+  return num(getchar());
+}
+
+fun writechar c {
+  putchar(toi(c));
+  return VOID;
+}
+
+let VOID;
+
+let EndOfInput = -1;
+let Newline = 10;
+
+fun withinput f st {
+  let c = readchar VOID;
+  return ite (eq c EndOfInput) undefined (
+    ite (eq c Newline) st (
+      withinput f (f c st)
+    )
+  );
+}
+
+fun magic c st {
+  let st_ = num(toi(st) + 1);
+  let d = num(*(char *)toi(st));
+  let e = num(*(char *)toi(st_));
+  let f = num(toi(d) ^ toi(e));
+  return ite (eq c f) st_ undefined;
+}
+
+fun check st {
+  let x = num(*(char *)(toi(st)));
+  let y = num(*(char *)(toi(st) + 1));
+  return ite (eq x y) st undefined;
+}
+
+let run = o check (withinput magic);
+
+char data[] = {
+#include "data.h"
+};
+
+int main(int argc, char *argv[]) {
+  puts("Enter flag, please:");
+  eval(run, num((uint64_t)data));
+}

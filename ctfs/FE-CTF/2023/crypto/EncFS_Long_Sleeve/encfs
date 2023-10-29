@@ -1,0 +1,726 @@
+#!/usr/bin/env python3
+import os
+import math
+import struct
+import time
+import functools
+import logging
+import hashlib
+import numpy as np
+
+from numpy.linalg import matrix_power
+from collections import OrderedDict
+from pathlib import PurePath as Path
+from errno import *
+from stat import S_IFDIR, S_IFLNK, S_IFREG
+from fuse import FUSE, FuseOSError, Operations, LoggingMixIn, fuse_get_context
+
+BLKSZ = 0x1000
+
+log = logging.getLogger('encfs')
+
+M = np.zeros((0x100,)*2,np.int8)
+for i, j in enumerate([
+    0xfc,0x91,0xc6,0x94,0xd0,0x71,0x0b,0x2f,0x68,0x39,0xc9,0xac,0x1b,0x6e,0xbe,0x08,
+    0x69,0x9a,0x34,0x48,0x3e,0xb3,0x2a,0xdf,0x7e,0x5d,0x17,0xf2,0xa9,0xde,0xe7,0x07,
+    0x47,0x5a,0x7c,0x09,0x4a,0x01,0xa2,0x12,0x6c,0xca,0x43,0xdb,0x9d,0x33,0xc2,0xcc,
+    0x05,0xaf,0xd3,0x1e,0xf6,0x62,0xe3,0xd6,0xeb,0x59,0x55,0xbd,0x41,0x0a,0x3d,0x0f,
+    0xef,0xd8,0xc0,0x61,0x93,0xdc,0x11,0xb1,0x15,0x8b,0xea,0xe6,0x64,0x5f,0x8e,0xfe,
+    0x6b,0x13,0xf5,0x04,0x9b,0x35,0xb5,0xba,0xce,0x38,0x92,0x87,0x52,0x19,0xf9,0x3b,
+    0x81,0x9c,0xcf,0xb9,0xe8,0xa3,0xc3,0xb7,0x63,0x10,0x8c,0xc7,0x44,0xa8,0x75,0xc5,
+    0xb8,0x30,0xae,0x37,0x70,0x89,0x24,0x96,0x67,0x77,0x20,0xa6,0xbb,0x1a,0x53,0x45,
+    0xe4,0xe9,0x4c,0x28,0xf0,0x1f,0x22,0x1c,0x7a,0x46,0x50,0xb0,0xfd,0x21,0xc8,0x9e,
+    0x0d,0xd9,0x8d,0x83,0x7b,0x60,0x06,0x7d,0x3c,0xc1,0x90,0x14,0x49,0x18,0xa4,0xe1,
+    0x74,0xcd,0x65,0x58,0x02,0x40,0xee,0x72,0xda,0xb4,0x85,0x84,0x79,0xe0,0x66,0x3f,
+    0x16,0x36,0x03,0x1d,0x5b,0x56,0xf3,0x4d,0xa0,0x31,0xe5,0xff,0x6a,0xfb,0xfa,0xec,
+    0x57,0x5c,0xed,0xa7,0x32,0xf8,0xad,0x2b,0x73,0xd7,0x0e,0x4b,0x00,0xd2,0x26,0x3a,
+    0x2c,0x8f,0xa1,0x6f,0xdd,0x99,0xf7,0x54,0x27,0x25,0x6d,0x8a,0x4f,0x9f,0x51,0x97,
+    0xd1,0xd4,0xcb,0x88,0x80,0x42,0xe2,0x2d,0x82,0x95,0x76,0x23,0x0c,0x2e,0xb2,0xb6,
+    0xab,0x29,0xbf,0xa5,0x86,0xd5,0x98,0x4e,0xc4,0x5e,0xf1,0x78,0xaa,0xbc,0x7f,0xf4,
+    ]): M[i,j] = 1
+
+class DB(object):
+    def __init__(self, path, key=None, max_size=math.inf, read_only=False, cache_size=1<<16):
+        self.max_size = max_size
+        self.read_only = read_only
+        self.path = path
+        self.fd = open(path, 'r+b' if os.path.exists(path) else 'w+b')
+        self.size = os.fstat(self.fd.fileno()).st_size
+        self.position = self.fd.tell()
+        self.cache = OrderedDict()
+        self.cache_size = cache_size
+        self.cache_hits = 0
+        self.cache_misses = 0
+
+        if key:
+            k = int.from_bytes(hashlib.sha1(key).digest(), 'big')
+            # Avoid weak keys
+            while True:
+                self.codebook = list(matrix_power(M, k)@range(0x100))
+                if not any(x == self.codebook[x] for x in range(0x100)):
+                    break
+                k += 1
+        else:
+            self.codebook = list(range(0x100))
+
+        self.inv_codebook = [self.codebook.index(x) for x in range(0x100)]
+
+    def _prepare(self, offset):
+        if offset >= self.max_size:
+            raise FuseOSError(ENOSPC)
+        if offset >= self.size:
+            self.size = offset + 1
+            self.fd.truncate(self.size)
+        if offset != self.position:
+            self.position = self.fd.seek(offset)
+        self.position += 1
+
+    def _update_cache(self, i, b):
+        self.cache[i] = b
+        self.cache.move_to_end(i)
+        if len(self.cache) > self.cache_size:
+            self.cache.popitem(last=False)
+
+    def __getitem__(self, i):
+        b = self.cache.get(i)
+        if b is None:
+            self.cache_misses += 1
+            self._prepare(i)
+            b = self.inv_codebook[self.fd.read(1)[0]]
+            self._update_cache(i, b)
+        else:
+            self.cache_hits += 1
+        return b
+
+    def __setitem__(self, i, b):
+        if self.read_only:
+            raise FuseOSError(EROFS)
+        self._update_cache(i, b)
+        self._prepare(i)
+        self.fd.write(bytes([self.codebook[b]]))
+
+    def __del__(self):
+        log.debug(f'DB cache stats: misses = {self.cache_misses}, hits = {self.cache_hits}')
+
+class RWMixin(object):
+    def readat(self, offset, numb):
+        return bytes([self[offset + i] for i in range(numb)])
+
+    def writeat(self, offset, data):
+        for i, b in enumerate(data):
+            self[offset + i] = b
+
+    def readcstringat(self, offset):
+        ret = bytearray()
+        while True:
+            b = self[offset]
+            if not b:
+                break
+            ret.append(b)
+            offset += 1
+        return bytes(ret)
+
+    def writecstringat(self, offset, string):
+        self.writeat(offset, string + b'\0')
+
+    def readi32at(self, offset):
+        return struct.unpack('I', self.readat(offset, 4))[0]
+
+    def writei32at(self, offset, val):
+        self.writeat(offset, struct.pack('I', val))
+
+    def readrefat(self, offset):
+        blkno = self.readi32at(offset)
+        if blkno:
+            return Block(self.db, blkno)
+
+    def writerefat(self, offset, ref):
+        blkno = ref.blkno if ref else 0
+        self.writei32at(offset, blkno)
+
+class Block(RWMixin):
+    def __init__(self, db, blkno):
+        self.db = db
+        self.blkno = blkno
+
+    def __getitem__(self, i):
+        assert 0 <= i < BLKSZ
+        return self.db[BLKSZ * self.blkno + i]
+
+    def __setitem__(self, i, b):
+        assert 0 <= i < BLKSZ
+        self.db[BLKSZ * self.blkno + i] = b
+
+    def __str__(self):
+        return f'Block #{self.blkno} @ +{self.blkno * BLKSZ}'
+
+class BAT(object):
+    def __init__(self, db, nblk=1<<20, do_format=False):
+        self.db = db
+        self.nblk = nblk & ~7
+        self.root_blkno = batsz = math.ceil(nblk / 0x8000)
+        if do_format:
+            for i in range(batsz >> 3):
+                self.db[i] = 0xff
+            self.db[batsz >> 3] = 0xff >> 8 - (batsz & 7)
+            for i in range((batsz >> 3) + 1, self.nblk >> 3):
+                self.db[i] = 0
+            self.nfree = self.nblk - batsz
+        else:
+            self.nfree = 0
+            for i in range(self.nblk >> 3):
+                b = self.db[i]
+                if b == 0xff:
+                    pass
+                elif b == 0:
+                    self.nfree += 8
+                else:
+                    for _ in range(8):
+                        self.nfree += b & 1 == 0
+                        b >>= 1
+
+    def alloc(self):
+        for i in range(self.nblk >> 3):
+            if self.db[i] == 0xff:
+                continue
+            b = self.db[i]
+            for j in range(8):
+                if b & 1 << j == 0:
+                    b |= 1 << j
+                    self.db[i] = b
+                    blkno = i * 8 + j
+                    self.nfree -= 1
+                    log.debug(f'BAT:alloc() -> {blkno}')
+                    return Block(self.db, blkno=blkno)
+            break
+        raise FuseOSError(ENOSPC)
+
+    def free(self, blk):
+        i, j = divmod(blk.blkno, 8)
+        assert self.db[i] & 1 << j
+        self.nfree += 1
+        log.debug(f'BAT:free({blk.blkno})')
+        self.db[i] &= ~(1 << j)
+
+def parse_fields(*fields):
+    ret = {}
+    off = 0
+    for name, fmt in fields:
+        sz = struct.calcsize(fmt)
+        ret[name] = (fmt, off, sz)
+        off += sz
+    return ret
+
+class Inode(RWMixin):
+    parent = None
+
+    __fields__ = parse_fields(
+        ('tail',     'I'),
+
+        ('st_mode',  'I'),
+        ('st_nlink', 'Q'),
+        ('st_uid',   'I'),
+        ('st_gid',   'I'),
+        ('st_size',  'Q'),
+        ('st_ctime', 'd'),
+        ('st_mtime', 'd'),
+        ('st_atime', 'd'),
+
+        ('numb',     'I'),
+        ('data',     'I'),
+    )
+
+    @classmethod
+    def offsetof(cls, attr):
+        return cls.__fields__[attr][1]
+
+    def __getattr__(self, attr):
+        if attr in self.__fields__:
+            fmt, off, sz = self.__fields__[attr]
+            return struct.unpack(fmt, self.head.readat(off, sz))[0]
+        else:
+            raise AttributeError(attr)
+
+    def __setattr__(self, attr, val):
+        if attr in self.__fields__:
+            fmt, off, sz = self.__fields__[attr]
+            self.head.writeat(off, struct.pack(fmt, val))
+        else:
+            super().__setattr__(attr, val)
+
+    def __init__(self, bat, head=None):
+        self.bat = bat
+        self.db = bat.db
+        if head is None:
+            self.head = bat.alloc()
+            self.tail = 0
+            self.numb = 0
+            now = time.time()
+            self.st_ctime = now
+            self.st_mtime = now
+            self.st_atime = now
+            uid, gid, _pid = fuse_get_context()
+            self.st_uid = uid
+            self.st_gid = gid
+        else:
+            self.head = head
+
+    @property
+    def is_dir(self):
+        return bool(self.st_mode & S_IFDIR)
+
+    @property
+    def is_reg(self):
+        return bool(self.st_mode & S_IFREG)
+
+    @property
+    def is_lnk(self):
+        return bool(self.st_mode & S_IFLNK)
+
+    @classmethod
+    def _numb_to_nblk(cls, numb):
+        sz = cls.offsetof('data') - 4 + numb
+        return (sz + BLKSZ - 4 - 1) // (BLKSZ - 4)
+
+    @property
+    def nblk(self):
+        return self._numb_to_nblk(self.numb)
+
+    def resize(self, numb):
+        oldnblk = self.nblk
+        newnblk = self._numb_to_nblk(numb)
+        delta = abs(newnblk - oldnblk)
+        if delta:
+            blk = self.head
+            for _ in range(min(oldnblk, newnblk) - 1):
+                blk = blk.readrefat(0)
+
+            if oldnblk < newnblk:
+                for _ in range(delta):
+                    fw = self.bat.alloc()
+                    blk.writerefat(0, fw)
+                    blk = fw
+                blk.writerefat(0, None)
+
+            else:
+                lst = blk
+                for _ in range(delta):
+                    blk = blk.readrefat(0)
+                    self.bat.free(blk)
+                lst.writerefat(0, None)
+
+        self.numb = numb
+
+    def free(self):
+        self.resize(0)
+        self.bat.free(self.head)
+
+    def _offset_to_blk_off(self, offset):
+        off = self.offsetof('data') + offset
+        blk = self.head
+        while off >= BLKSZ:
+            blk = blk.readrefat(0)
+            off -= BLKSZ - 4
+        return blk, off
+
+    def __getitem__(self, i):
+        assert 0 <= i < self.numb
+        blk, off = self._offset_to_blk_off(i)
+        return blk[off]
+
+    def __setitem__(self, i, b):
+        assert 0 <= i < self.numb
+        blk, off = self._offset_to_blk_off(i)
+        blk[off] = b
+
+    def getattr(self):
+        return dict(
+            st_mode=self.st_mode,
+            st_nlink=self.st_nlink,
+            st_uid=self.st_uid,
+            st_gid=self.st_gid,
+            st_size=self.st_size,
+            st_ctime=self.st_ctime,
+            st_mtime=self.st_mtime,
+            st_atime=self.st_atime,
+            st_blocks=self.nblk * (BLKSZ // 512),
+        )
+
+    # DIR interface
+
+    dentsz = 4 + 0x100
+
+    @property
+    def children(self):
+        for off in range(0, self.numb, self.dentsz):
+            blk = self.readrefat(off)
+            nm = self.readcstringat(off + 4).decode()
+            ino = Inode(self.bat, head=blk)
+            ino.parent = self
+            yield nm, ino
+
+    def find(self, name):
+        for cname, child in self.children:
+            if cname == name:
+                return child
+
+    def readdir(self):
+        ret = ['.', '..']
+        for name, _child in self.children:
+            ret.append(name)
+        return ret
+
+    def append_child(self, name, ino):
+        name = name.encode()
+        if len(name) >= self.dentsz - 4:
+            raise FuseOSError(ENAMETOOLONG)
+        off = self.numb
+        self.resize(self.numb + self.dentsz)
+        self.st_size = self.nblk * BLKSZ
+        self.writerefat(off, ino.head)
+        self.writecstringat(off + 4, name)
+
+    def remove_child(self, name):
+        for i, (cname, _child) in enumerate(self.children):
+            if cname == name:
+                break
+        else:
+            raise FuseOSError(ENOENT)
+        for off in range(i * self.dentsz, self.numb - self.dentsz, self.dentsz):
+            self.writei32at(off, self.readi32at(off + self.dentsz))
+            self.writecstringat(off + 4, self.readcstringat(off + 4 + self.dentsz))
+        self.resize(self.numb - self.dentsz)
+        self.st_size = self.nblk * BLKSZ
+
+    # LNK interface
+
+    def readlink(self):
+        lnk = bytearray()
+        i = 0
+        while True:
+            b = self[i]
+            if not b:
+                break
+            lnk.append(b)
+            i += 1
+        return lnk.decode()
+
+    def writelink(self, lnk):
+        data = lnk.encode() + b'\0'
+        self.resize(len(data))
+        self.st_size = len(data) - 1
+        self.writeat(0, data)
+
+    # REG interface
+
+    def readfile(self, count, offset):
+        ret = b''
+        count = min(self.st_size - offset, count)
+        blkno, offset = divmod(offset, BLKSZ)
+        while count:
+            blk = self.readrefat(blkno * 4)
+            n = min(count, BLKSZ - offset)
+            ret += blk.readat(offset, n)
+            count -= n
+            offset = 0
+            blkno += 1
+        return ret
+
+    def writefile(self, data, offset):
+        if offset > self.st_size:
+            self.truncate(offset)
+        end = len(data) + offset
+        if end > self.st_size:
+            self.resizefile(end)
+        blkno, offset = divmod(offset, BLKSZ)
+        while data:
+            blk = self.readrefat(blkno * 4)
+            n = min(len(data), BLKSZ - offset)
+            blk.writeat(offset, data[:n])
+            data = data[n:]
+            offset = 0
+            blkno += 1
+
+    @staticmethod
+    def _fsize_to_nblk(fsize):
+        return (fsize + BLKSZ - 1) // BLKSZ
+
+    def resizefile(self, length):
+        oldnblk = self._fsize_to_nblk(self.st_size)
+        newnblk = self._fsize_to_nblk(length)
+        self.st_size = length
+
+        if oldnblk > newnblk:
+            for i in range(newnblk, oldnblk):
+                blk = self.readrefat(i * 4)
+                self.bat.free(blk)
+            self.resize(newnblk * 4)
+
+        elif oldnblk < newnblk:
+            self.resize(newnblk * 4)
+            for i in range(oldnblk, newnblk):
+                blk = self.bat.alloc()
+                self.writerefat(i * 4, blk)
+
+    def truncate(self, length):
+        oldsz = self.st_size
+        self.resizefile(length)
+        if oldsz < length:
+            numb = length - oldsz
+            self.writefile(b'\0' * numb, oldsz)
+
+class EncFS(LoggingMixIn, Operations):
+    def __init__(self, dbpath, key=None, nblk=1<<20, do_format=False, read_only=False):
+        self.db = DB(dbpath, key, max_size=nblk*BLKSZ, read_only=read_only)
+        self.bat = BAT(self.db, nblk=nblk, do_format=do_format)
+        self.fd = 0
+        if do_format:
+            root = Inode(self.bat)
+            assert root.head.blkno == self.bat.root_blkno
+            root.st_mode = S_IFDIR | 0o755
+            root.st_nlink = 2
+            root.st_size = BLKSZ
+        else:
+            rootblk = Block(self.db, self.bat.root_blkno)
+            root = Inode(self.bat, rootblk)
+            if not root.is_dir:
+                raise ValueError('Root is not a directory (did you --format?)')
+        self.root = root
+
+    def resolve(self, path, exist=None):
+        path = Path(path)
+        assert path.is_absolute
+        dino = self.root
+        parts = list(path.parts[1:])
+        if not parts:
+            return self.root, b'', self.root
+        name = parts.pop()
+        while parts:
+            part = parts.pop(0)
+            dino = dino.find(part)
+            if not dino:
+                raise FuseOSError(ENOENT)
+        mbino = dino.find(name)
+        if exist is not None:
+            if exist and not mbino:
+                raise FuseOSError(ENOENT)
+            elif not exist and mbino:
+                raise FuseOSError(EEXIST)
+        return dino, name, mbino
+
+    def with_path(func):
+        @functools.wraps(func)
+        def wrapper(self, path, *args):
+            dino, name, mbino = self.resolve(path)
+            return func(self, dino, name, mbino, *args)
+        return wrapper
+
+    def with_path_exist(func):
+        @functools.wraps(func)
+        def wrapper(self, path, *args):
+            dino, name, ino = self.resolve(path, exist=True)
+            return func(self, dino, name, ino, *args)
+        return wrapper
+
+    def with_path_not_exist(func):
+        @functools.wraps(func)
+        def wrapper(self, path, *args):
+            dino, name, _mbino = self.resolve(path, exist=False)
+            return func(self, dino, name, *args)
+        return wrapper
+
+    @with_path_exist
+    def chmod(self, _dino, _name, ino, mode):
+        ino.st_mode |= mode
+
+    @with_path_exist
+    def chown(self, _dino, _name, ino, uid, gid):
+        ino.st_uid = uid
+        ino.st_gid = gid
+
+    @with_path_not_exist
+    def create(self, dino, name, mode):
+        ino = Inode(self.bat)
+        ino.st_mode = S_IFREG | mode
+        ino.st_nlink = 1
+        ino.st_size = 0
+        dino.append_child(name, ino)
+
+        self.fd += 1
+        return self.fd
+
+    @with_path_exist
+    def getattr(self, _dino, _name, ino, _fh):
+        return ino.getattr()
+
+    @with_path_not_exist
+    def link(self, dino, name, target):
+        _, _, ino = self.resolve(target, exist=True)
+        if ino.is_dir:
+            raise FuseOSError(EPERM)
+        ino.st_nlink += 1
+        dino.append_child(name, ino)
+
+    @with_path_not_exist
+    def mkdir(self, dino, name, mode):
+        ino = Inode(self.bat)
+        ino.st_mode = S_IFDIR | mode
+        ino.st_nlink = 2
+        ino.st_size = BLKSZ
+        dino.append_child(name, ino)
+        dino.st_nlink += 1
+
+    @with_path
+    def open(self, dino, name, mbino, flags):
+        if mbino and flags & os.O_CREAT:
+            raise FuseOSError(EEXIST)
+        elif not (mbino or flags & os.O_CREAT):
+            raise FuseOSError(ENOENT)
+
+        if not mbino:
+            ino = Inode(self.bat)
+            ino.st_mode = S_IFREG
+            ino.st_nlink = 1
+            ino.st_size = 0
+            dino.append_child(name, ino)
+        else:
+            ino = mbino
+
+        if flags & os.O_TRUNC:
+            ino.truncate(0)
+
+        self.fd += 1
+        return self.fd
+
+    @with_path_exist
+    def read(self, _dino, _name, ino, size, offset, _fh):
+        if not ino.is_reg:
+            raise FuseOSError(EINVAL)
+        return ino.readfile(size, offset)
+
+    @with_path_exist
+    def readdir(self, _dino, _name, ino, _fh):
+        if not ino.is_dir:
+            raise FuseOSError(EINVAL)
+        return ino.readdir()
+
+    @with_path_exist
+    def readlink(self, _dino, _name, ino):
+        if not ino.is_lnk:
+            raise FuseOSError(EINVAL)
+        return ino.readlink()
+
+    def rename(self, oldpath, newpath):
+        olddino, oldname, ino = self.resolve(oldpath, exist=True)
+        newdino, newname, newmbino = self.resolve(newpath)
+        if newmbino:
+            self.unlink(newpath)
+        olddino.remove_child(oldname)
+        newdino.append_child(newname, ino)
+        if ino.is_dir:
+            olddino.st_nlink -= 1
+            newdino.st_nlink += 1
+
+    @with_path_exist
+    def rmdir(self, dino, name, ino):
+        if ino == self.root:
+            raise FuseOSError(EBUSY)
+        if not ino.is_dir:
+            raise FuseOSError(ENOTDIR)
+        if ino.st_nlink != 2:
+            raise FuseOSError(ENOTEMPTY)
+        dino.remove_child(name)
+        dino.st_nlink -= 1
+        ino.free()
+
+    def statfs(self, path):
+        return dict(
+            f_bsize=BLKSZ,
+            f_blocks=self.bat.nblk,
+            f_bfree=self.bat.nfree,
+            f_bavail=self.bat.nfree,
+        )
+
+    @with_path_not_exist
+    def symlink(self, dino, name, target):
+        ino = Inode(self.bat)
+        ino.name = name
+        ino.st_mode = S_IFLNK | 0o777
+        ino.st_nlink = 1
+        ino.writelink(target)
+        dino.append_child(name, ino)
+
+    @with_path_exist
+    def truncate(self, _dino, _name, ino, length, _fh=None):
+        ino.truncate(length)
+
+    @with_path_exist
+    def unlink(self, dino, name, ino):
+        if ino.is_dir:
+            raise FuseOSError(EISDIR)
+        dino.remove_child(name)
+        ino.st_nlink -= 1
+        if ino.st_nlink == 0:
+            if ino.is_reg:
+                ino.resizefile(0)
+            ino.free()
+
+    @with_path_exist
+    def utimens(self, _dino, _name, ino, times=None):
+        if times:
+            atime, mtime = times
+        else:
+            now = time.time()
+            atime, mtime = now, now
+        ino.st_atime = atime
+        ino.st_mtime = mtime
+
+    @with_path_exist
+    def write(self, _dino, _name, ino, data, offset, _fh):
+        ino.writefile(data, offset)
+        return len(data)
+
+def main():
+    import argparse
+    import logging
+    p = argparse.ArgumentParser()
+    p.add_argument('database')
+    p.add_argument('mount')
+    p.add_argument('--password', '-p')
+    p.add_argument('--format', '-f', action='store_true')
+    p.add_argument('--read-only', '-ro', action='store_true')
+    p.add_argument('--verbose', '-v', action='count', default=0)
+    args = p.parse_args()
+
+    if args.password:
+        key = args.password.encode()
+    else:
+        key = None
+
+    loglevel = {
+        0: logging.ERROR,
+        1: logging.WARNING,
+        2: logging.INFO,
+        3: logging.DEBUG,
+    }.get(args.verbose, logging.DEBUG)
+    logging.basicConfig(level=loglevel)
+    if args.verbose <= 3:
+        logging.getLogger('fuse').disabled = True
+
+    fs = EncFS(
+        args.database,
+        key=key,
+        do_format=bool(args.format),
+        read_only=bool(args.read_only),
+    )
+    fuse = FUSE(
+        fs,
+        args.mount,
+        foreground=True,
+        allow_other=False,
+        nonempty=True,
+        nothreads=True
+    )
+
+if __name__ == '__main__':
+    main()

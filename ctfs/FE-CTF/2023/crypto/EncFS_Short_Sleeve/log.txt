@@ -1,0 +1,90 @@
+~$ mkdir -p mnt
+~$ truncate -s 0 encfs.db
+~$ ./encfs encfs.db mnt/ --format --password REDACTED &
+[1] 22
+~$ cd mnt
+~/mnt$ echo does this thing even work > test
+~/mnt$ cat test
+does this thing even work
+~/mnt$ cp ../flag.svg .
+~/mnt$ ln test hardlink
+~/mnt$ ln -s test symlink
+~/mnt$ ls -la
+total 24
+drwxr-xr-x 2 root root  4096 Jul 29 14:06 .
+drwxr-xr-x 4 user user  4096 Oct 25  2023 ..
+-rw-r--r-- 1 user user 33730 Jul 29 14:06 flag.svg
+-rw-r--r-- 2 user user    26 Jul 29 14:06 hardlink
+lrwxrwxrwx 1 user user     4 Jul 29 14:07 symlink -> test
+-rw-r--r-- 2 user user    26 Jul 29 14:06 test
+~/mnt$ cat hardlink
+does this thing even work
+~/mnt$ cat symlink
+does this thing even work
+~/mnt$ rm test
+~/mnt$ cat hardlink
+does this thing even work
+~/mnt$ rm hardlink
+~/mnt$ mkdir dirs
+~/mnt$ for x in `seq 100` ; do mkdir dirs/dir$x ; echo $x > dirs/dir$x/x ; done
+~/mnt$ find dirs | wc -l
+201
+~/mnt$ rm -rf dirs
+~/mnt$ inkscape -D -o flag.png flag.svg
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+Fontconfig error: No writable cache directories
+
+** (inkscape:157): WARNING **: 11:14:07.821: Failed to wrap object of type 'GtkRecentManager'. Hint: this error is commonly caused by failing to call a library init() function.
+~/mnt$ rm flag.svg
+~/mnt$ convert flag.png flag.jpg
+~/mnt$ convert flag.jpg flag.gif
+~/mnt$ echo '#include <stdio.h>' > hello.c
+~/mnt$ echo '#include <stdlib.h>' >> hello.c
+~/mnt$ echo 'int main() {' >> hello.c
+~/mnt$ echo '  printf("Hello, world!\\n");' >> hello.c
+~/mnt$ echo '  return EXIT_SUCCESS;' >> hello.c
+~/mnt$ echo '}' >> hello.c
+~/mnt$ cat hello.c
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+  printf("Hello, world!\n");
+  return EXIT_SUCCESS;
+}
+~/mnt$ gcc hello.c -o hello
+~/mnt$ ./hello
+Hello, world!
+~/mnt$ ls -la
+total 32
+drwxr-xr-x 2 root root   4096 Jul 29 14:06 .
+drwxr-xr-x 4 user user   4096 Oct 25  2023 ..
+-rw-r--r-- 1 user user 129505 Jul 29 14:10 flag.gif
+-rw-r--r-- 1 user user 134526 Jul 29 14:10 flag.jpg
+-rw-r--r-- 1 user user  87676 Jul 29 14:09 flag.png
+-rwxr-xr-x 1 user user  15952 Jul 29 14:12 hello
+-rw-r--r-- 1 user user    106 Jul 29 14:10 hello.c
+lrwxrwxrwx 1 user user      4 Jul 29 14:07 symlink -> test
+~/mnt$ date
+Sat Jul 29 14:12:48 UTC 2023
+~/mnt$ inkscape --version
+Inkscape 1.2.2 (b0a8486541, 2022-12-01)
+~/mnt$ convert --version
+Version: ImageMagick 6.9.11-60 Q16 x86_64 2021-01-25 https://imagemagick.org
+Copyright: (C) 1999-2021 ImageMagick Studio LLC
+License: https://imagemagick.org/script/license.php
+Features: Cipher DPC Modules OpenMP(4.5) 
+Delegates (built-in): bzlib djvu fftw fontconfig freetype heic jbig jng jp2 jpeg lcms lqr ltdl lzma openexr pangocairo png tiff webp wmf x xml zlib
+~/mnt$ gcc --version
+gcc (Debian 12.2.0-14) 12.2.0
+Copyright (C) 2022 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+~/mnt$ uname -a
+Linux 7474222ab852 5.10.0-23-amd64 #1 SMP Debian 5.10.179-1 (2023-05-12) x86_64 GNU/Linux
+~/mnt$ fg
+./encfs encfs.db mnt/ --format --password REDACTED
+^C
+~/mnt$

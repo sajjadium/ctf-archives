@@ -1,0 +1,1 @@
+The year is 2077, and amidst the digital sprawl, there's a rumor of a system that grants any wish if you speak its language. Dive deep, craft the perfect shellcode, and gain control. Will you harness the power or crash in the process? Let the shakedown begin!

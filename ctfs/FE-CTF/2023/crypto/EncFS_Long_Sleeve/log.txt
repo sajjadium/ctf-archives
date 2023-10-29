@@ -1,0 +1,38 @@
+~$ mkdir -p mnt
+~$ truncate -s 0 encfs.db
+~$ ./encfs encfs.db mnt/ --format --password REDACTED &
+[1] 45
+~$ cd mnt
+~/mnt$ openssl enc -aes-256-cbc -pbkdf2 -nosalt -k IOnlyTellTheSecretToMyVeryBestFriends -in ../flag > flag.enc
+~/mnt$ echo '# Dear diary' > diary.md
+~/mnt$ echo '- Today I made an encrypted file system' >> diary.md
+~/mnt$ echo '- I also really enjoy Taylor Swift' >> diary.md
+~/mnt$ echo "- But don't tell anyone" >> diary.md
+~/mnt$ pandoc diary.md -o diary.pdf
+~/mnt$ ls -la
+total 20
+drwxr-xr-x 2 root root  4096 Jul 29 14:06 .
+drwxr-xr-x 4 user user  4096 Oct 25  2023 ..
+-rw-r--r-- 1 user user   112 Jul 29 14:06 diary.md
+-rw-r--r-- 1 user user 51609 Jul 29 14:07 diary.pdf
+-rw-r--r-- 1 user user    64 Jul 29 14:06 flag.enc
+~/mnt$ file diary.pdf
+diary.pdf: PDF document, version 1.5
+~/mnt$ date
+Sat Jul 29 14:08:07 UTC 2023
+~/mnt$ pandoc --version
+pandoc 2.17.1.1
+Compiled with pandoc-types 1.22.2.1, texmath 0.12.4, skylighting 0.12.3.1,
+citeproc 0.6.0.1, ipynb 0.2
+User data directory: /home/user/.local/share/pandoc
+Copyright (C) 2006-2022 John MacFarlane. Web:  https://pandoc.org
+This is free software; see the source for copying conditions. There is no
+warranty, not even for merchantability or fitness for a particular purpose.
+~/mnt$ openssl version
+OpenSSL 3.0.11 19 Sep 2023 (Library: OpenSSL 3.0.11 19 Sep 2023)
+~/mnt$ uname -a
+Linux b35dc430d5e1 5.10.0-23-amd64 #1 SMP Debian 5.10.179-1 (2023-05-12) x86_64 GNU/Linux
+~/mnt$ fg
+./encfs encfs.db mnt/ --format --password REDACTED
+^C
+~/mnt$

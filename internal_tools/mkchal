@@ -67,7 +67,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and')
 
 def get_challenge_name(line):
   for original_name in reversed(line.strip().split('/')):
@@ -108,6 +108,10 @@ if __name__ == '__main__':
           continue
       elif f.endswith('.tar.gz') or f.endswith('.tgz') or f.endswith('.txz') or f.endswith('.tar.xz'):
         if subprocess.run(['tar', 'xzvf', f, '-C', tmp_path], shell=False).returncode != 0:
+          subprocess.run(['mv', f, chal_name])
+          continue
+      elif f.endswith('.tar'):
+        if subprocess.run(['tar', 'xvf', f, '-C', tmp_path], shell=False).returncode != 0:
           subprocess.run(['mv', f, chal_name])
           continue
       elif f.endswith('.7z'):
