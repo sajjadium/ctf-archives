@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap" rel="stylesheet">
+  <title>Welcome to TSG CTF!</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+
+      background: steelblue;
+      color: white;
+      font-family: 'Raleway';
+      font-size: 2vmin;
+    }
+    h1 {
+      font-size: 8vmin;
+      line-height: 1em;
+      margin: 0;
+    }
+    p {
+      line-height: 1em;
+    }
+    #result {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to TSG CTF!</h1>
+  <p>First of all, test your luck by rolling this <i>flag-dice</i>!</p>
+  <form id="form" oninput="result.textContent = ''">
+    <input name="guess" type="text" placeholder="TSGCTF{...">
+    <button type="submit">Guess the flag</button>
+  </form>
+  <p id="result"></p>
+  <script>
+    form.onsubmit = async (event) => {
+      event.preventDefault();
+      const guess = new FormData(form).get('guess');
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({[guess]: true}),
+      });
+      result.textContent = await res.text();
+    };
+  </script>
+</body>
+</html>

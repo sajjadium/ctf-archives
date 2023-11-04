@@ -1,0 +1,11 @@
+<% if (me && !user._id.equals(me._id)) { %>
+  <% if (!me.following.some((id) => id.equals(user._id))) { %>
+    <form class="d-inline-block" action="/users/<%= user._id %>/follow" method="POST">
+      <button type="submit" class="btn btn-outline-light">+ Follow</button>
+    </form>
+  <% } else { %>
+    <form class="d-inline-block" action="/users/<%= user._id %>/unfollow" method="POST">
+      <button type="submit" class="btn btn-primary">Following</button>
+    </form>
+  <% } %>
+<% } %>

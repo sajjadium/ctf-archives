@@ -1,0 +1,26 @@
+<nav class="navbar bg-dark">
+  <div class="container">
+    <a href="/" class="navbar-brand">Yatter</a>
+    <% if (!me) { %>
+      <div>
+        <a class="btn btn-primary" href="/register">Register</a>
+        <a class="btn btn-outline-primary" href="/login">Log in</a>
+      </div>
+    <% } else { %>
+      <div class="dropdown">
+        <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          Logged in as @<%= me.username %>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li><a class="dropdown-item" href="/@<%= me.username %>">Profile</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <form action="/logout" method="POST">
+              <button type="submit" class="dropdown-item">Log out</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    <% } %>
+  </div>
+</nav>

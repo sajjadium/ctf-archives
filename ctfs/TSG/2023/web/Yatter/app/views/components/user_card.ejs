@@ -1,0 +1,8 @@
+<div class="card my-3">
+  <div class="card-body">
+    <div class="float-end">
+      <%- include("follow_button", { me, user }); -%>
+    </div>
+    <h4 class="card-title"><a href="/@<%= user.username %>">@<%= user.username %></a></h4>
+  </div>
+</div>

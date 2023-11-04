@@ -1,0 +1,52 @@
+<%- include("layouts/header", { title: `@${user.username}'s profile` }); -%>
+
+<%- include("components/navbar", { me }); -%>
+
+<main class="container py-4">
+  <div class="float-end">
+    <%- include("components/follow_button", { me, user }); -%>
+  </div>
+  <h1 class="mb-4"><a href="/@<%= user.username %>">@<%= user.username %></a>'s profile</h1>
+  <ul class="list-inline mb-4">
+    <li class="list-inline-item"><%= user.following.length %> following</li>
+    <li class="list-inline-item"><%= user.followers.length %> followers</li>
+  </ul>
+  <ul class="nav nav-underline nav-fill">
+    <li class="nav-item">
+      <% if (tab === "posts") { %>
+        <a class="nav-link active" aria-current="page" href="/@<%= user.username %>">Yeets</a>
+      <% } else { %>
+        <a class="nav-link" href="/@<%= user.username %>">Yeets</a>
+      <% } %>
+    </li>
+    <li class="nav-item">
+      <% if (tab === "following") { %>
+        <a class="nav-link active" aria-current="page" href="/@<%= user.username %>?tab=following">Following</a>
+      <% } else { %>
+        <a class="nav-link" href="/@<%= user.username %>?tab=following">Following</a>
+      <% } %>
+    </li>
+    <li class="nav-item">
+      <% if (tab === "followers") { %>
+        <a class="nav-link active" aria-current="page" href="/@<%= user.username %>?tab=followers">Followers</a>
+      <% } else { %>
+        <a class="nav-link" href="/@<%= user.username %>?tab=followers">Followers</a>
+      <% } %>
+    </li>
+  </ul>
+  <% if (tab === "posts") { %>
+    <% for (const post of user.posts.toReversed()) { %>
+      <%- include("components/post_card", { me, post, author: user }); -%>
+    <% } %>
+  <% } else if (tab === "following") { %>
+    <% for (const followedUser of user.following.toReversed()) { %>
+      <%- include("components/user_card", { me, user: followedUser }); -%>
+    <% } %>
+  <% } else if (tab === "followers") { %>
+    <% for (const follower of user.followers.toReversed()) { %>
+      <%- include("components/user_card", { me, user: follower }); -%>
+    <% } %>
+  <% } %>
+</main>
+
+<%- include("layouts/footer"); -%>

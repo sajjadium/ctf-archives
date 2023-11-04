@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Raleway:wght@800&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Upside-down cake</title>
+		<style>
+			body {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				width: 100vw;
+				height: 100vh;
+				margin: 0;
+
+				background: steelblue;
+				color: white;
+				font-family: 'Raleway';
+				font-size: 2vmin;
+			}
+			h1 {
+				font-size: 8vmin;
+				line-height: 1em;
+				margin: 0;
+			}
+			p {
+				line-height: 1em;
+			}
+			#result {
+				color: gold;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>I love long palindrome!</h1>
+		<p>Send me a long palindrome to get flag :)</p>
+		<form id="form" oninput="result.textContent = ''">
+			<input name="palindrome" type="text" />
+			<button type="submit">Send palindrome</button>
+		</form>
+		<p id="result"></p>
+		<script>
+			form.onsubmit = async (event) => {
+				event.preventDefault();
+				const palindrome = new FormData(form).get('palindrome');
+				const res = await fetch('/', {
+					method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify({palindrome}),
+				});
+				result.textContent = await res.text();
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission</title>
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css@1.4.1/css/sakura.css" integrity="sha384-lzpv4gnTVy8IhpHMjuN9DVx9lyGKEFc8Rj7D8CsXK0W3UFVOEqdDCWPSkVGNDTUg" crossorigin="anonymous">
+</head>
+<body>
+    <h1>Submission</h1>
+    <pre><code><%- code %></code></pre>
+    <form action="/report" method="POST">
+        <input type="hidden" name="path" value="<%= pagePath %>">
+        <input type="submit" value="Report this page">
+    </form>
+</body>
+</html>

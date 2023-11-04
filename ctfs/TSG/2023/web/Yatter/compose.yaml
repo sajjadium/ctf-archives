@@ -1,0 +1,17 @@
+version: "3"
+services:
+  app:
+    restart: always
+    build: ./app
+    working_dir: /app
+    read_only: true
+    depends_on:
+      - mongo
+    ports:
+      - 8080:8080
+    environment:
+      - PORT=8080
+      - MONGO_URL=mongodb://mongo:27017/app
+  mongo:
+    restart: always
+    image: mongo

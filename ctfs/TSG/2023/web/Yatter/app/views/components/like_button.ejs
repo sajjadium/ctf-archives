@@ -1,0 +1,13 @@
+<% if (me) { %>
+  <% if (!post.likes.some((id) => id.equals(me._id))) { %>
+    <form class="d-inline-block" action="/posts/<%= post._id %>/like" method="POST">
+      <button type="submit" class="btn">♡ <%= post.likes.length %> likes</button>
+    </form>
+  <% } else { %>
+    <form class="d-inline-block" action="/posts/<%= post._id %>/unlike" method="POST">
+      <button type="submit" class="btn"><span class="text-danger">♥</span> <%= post.likes.length %> likes</button>
+    </form>
+  <% } %>
+<% } else { %>
+  <button class="btn">♡ <%= post.likes.length %> likes</button>
+<% } %>

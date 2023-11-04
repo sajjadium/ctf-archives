@@ -1,0 +1,10 @@
+<div class="card my-3">
+  <div class="card-body">
+    <small class="float-end"><a href="/@<%= author.username %>/<%= post._id %>"><%= post.createdAt.toLocaleString() %></a></small>
+    <h5 class="card-title"><a href="/@<%= author.username %>">@<%= author.username %></a></h5>
+    <p class="card-text" style="white-space: pre-wrap;"><%= post.content %></p>
+  </div>
+  <div class="card-footer">
+    <%- include("like_button", { me, post }); -%>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+{
+  "name": "worker",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@types/ioredis": "^4.28.10",
+    "@types/node": "^20.8.0",
+    "@types/puppeteer": "^5.4.7",
+    "ioredis": "^5.3.2",
+    "puppeteer": "^21.3.6",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "start": "ts-node worker.ts"
+  }
+}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+		<title>Absurdres</title>
+	</head>
+	<body>
+		<h1><a href="/">Absurdres</a></h1>
+		<h2>{{title}}</h2>
+		<article>
+			{% for line in body.splitlines() %}
+				<p>{{line}}</p>
+			{% endfor %}
+		</article>
+	</body>
+</html>
+

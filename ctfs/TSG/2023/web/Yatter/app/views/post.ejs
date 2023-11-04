@@ -1,0 +1,25 @@
+<%- include("layouts/header", { title: `@${post.author.username}'s yeet` }); -%>
+
+<%- include("components/navbar", { me }); -%>
+
+<main class="container py-4">
+  <div class="float-end">
+    <%- include("components/follow_button", { me, user: post.author }); -%>
+  </div>
+  <h1 class="mb-4"><a href="/@<%= post.author.username %>">@<%= post.author.username %></a>'s yeet</h1>
+  <div class="card mb-4">
+    <div class="card-body">
+      <p class="text-end"><a href="/@<%= post.author.username %>/<%= post._id %>"><%= post.createdAt.toLocaleString() %></a></p>
+      <p class="fs-5 mb-4" style="white-space: pre-wrap;"><%= post.content %></p>
+    </div>
+    <div class="card-footer">
+      <%- include("components/like_button", { me, post }); -%>
+    </div>
+  </div>
+  <h4>Liked by</h4>
+  <% for (const likingUser of post.likes.toReversed()) { %>
+    <%- include("components/user_card", { me, user: likingUser }); -%>
+  <% } %>
+</main>
+
+<%- include("layouts/footer"); -%>

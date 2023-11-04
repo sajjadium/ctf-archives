@@ -1,0 +1,380 @@
+@RULE Frictionless
+
+@TABLE
+n_states:16
+neighborhood:Moore
+symmetries:none
+var a={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}
+var b={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}
+var c={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}
+var d={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}
+var e={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}
+var f={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}
+var g={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}
+var h={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}
+var i={0,1,2,3,4,5,6,7,8,9,10,11,12,13,14}
+var j={0,1,2,3,4,9,10,11,12,13,14}
+var k={0,1,2,3,4,9,10,11,12,13,14}
+var l={0,1,2,3,4,9,10,11,12,13,14}
+var m={0,1,2,3,4,9,10,11,12,13,14}
+var n={0,1,2,3,4,9,10,11,12,13,14}
+var o={0,1,2,3,4,9,10,11,12,13,14}
+var p={0,1,2,3,4,9,10,11,12,13,14}
+var q={0,1,2,3,4,9,10,11,12,13,14}
+var r={0,1,2,3,4,9,10,11,12,13,14}
+var s={0,5,6,7,8,9,10,11,12,13,14}
+var t={0,5,6,7,8,9,10,11,12,13,14}
+var u={0,5,6,7,8,9,10,11,12,13,14}
+var v={0,5,6,7,8,9,10,11,12,13,14}
+var w={0,5,6,7,8,9,10,11,12,13,14}
+var x={0,5,6,7,8,9,10,11,12,13,14}
+var y={0,5,6,7,8,9,10,11,12,13,14}
+var z={0,5,6,7,8,9,10,11,12,13,14}
+var aa={0,5,6,7,8,9,10,11,12,13,14}
+var ab={0,9,10,11,12,13,14}
+var ac={0,1,2,9,10,13,14}
+var ad={0,1,4,11,12,13,14}
+var ae={0,2,1,12,9,13,14}
+var af={0,2,3,10,11,13,14}
+var ag={0,3,2,9,10,13,14}
+var ah={0,3,4,11,12,13,14}
+var ai={0,4,3,10,11,13,14}
+var aj={0,4,1,12,9,13,14}
+var ak={0,1,2,9,12,13,14}
+var al={0,2,3,10,11,13,14}
+var am={2,3,10}
+var an={3,4,11}
+var ao={0,2,3,10,9,13,14}
+var ap={0,3,4,11,12,13,14}
+var aq={4,1,12}
+var ar={0,3,4,11,10,13,14}
+var as={0,4,1,12,9,13,14}
+var at={0,1,2,9,10,13,14}
+var au={1,2,9}
+var av={0,4,1,12,11,13,14}
+var aw={4,3,11}
+var ax={0,4,3,11,10,13,14}
+var ay={0,1,4,12,9,13,14}
+var az={0,2,1,9,10,13,14}
+var ba={1,4,12}
+var bb={0,1,4,12,11,13,14}
+var bc={0,2,1,9,12,13,14}
+var bd={0,3,2,10,11,13,14}
+var be={2,1,9}
+var bf={0,3,2,10,9,13,14}
+var bg={0,4,3,11,12,13,14}
+var bh={3,2,10}
+0,0,0,0,0,0,0,0,0,0
+1,b,c,d,e,f,g,h,13,14
+2,b,13,d,e,f,g,h,i,14
+3,b,c,d,13,f,g,h,i,14
+4,b,c,d,e,f,13,h,i,14
+1,13,c,d,e,f,g,h,i,14
+2,b,c,13,e,f,g,h,i,14
+3,b,c,d,e,13,g,h,i,14
+4,b,c,d,e,f,g,13,i,14
+2,b,c,d,e,f,g,h,13,14
+3,b,13,d,e,f,g,h,i,14
+4,b,c,d,13,f,g,h,i,14
+1,b,c,d,e,f,13,h,i,14
+2,13,c,d,e,f,g,h,i,14
+3,b,c,13,e,f,g,h,i,14
+4,b,c,d,e,13,g,h,i,14
+1,b,c,d,e,f,g,13,i,14
+3,b,c,d,e,f,g,h,13,14
+4,b,13,d,e,f,g,h,i,14
+1,b,c,d,13,f,g,h,i,14
+2,b,c,d,e,f,13,h,i,14
+3,13,c,d,e,f,g,h,i,14
+4,b,c,13,e,f,g,h,i,14
+1,b,c,d,e,13,g,h,i,14
+2,b,c,d,e,f,g,13,i,14
+4,b,c,d,e,f,g,h,13,14
+1,b,13,d,e,f,g,h,i,14
+2,b,c,d,13,f,g,h,i,14
+3,b,c,d,e,f,13,h,i,14
+4,13,c,d,e,f,g,h,i,14
+1,b,c,13,e,f,g,h,i,14
+2,b,c,d,e,13,g,h,i,14
+3,b,c,d,e,f,g,13,i,14
+5,b,c,d,e,f,g,h,13,14
+6,b,13,d,e,f,g,h,i,14
+7,b,c,d,13,f,g,h,i,14
+8,b,c,d,e,f,13,h,i,14
+5,13,c,d,e,f,g,h,i,14
+6,b,c,13,e,f,g,h,i,14
+7,b,c,d,e,13,g,h,i,14
+8,b,c,d,e,f,g,13,i,14
+6,b,c,d,e,f,g,h,13,14
+7,b,13,d,e,f,g,h,i,14
+8,b,c,d,13,f,g,h,i,14
+5,b,c,d,e,f,13,h,i,14
+6,13,c,d,e,f,g,h,i,14
+7,b,c,13,e,f,g,h,i,14
+8,b,c,d,e,13,g,h,i,14
+5,b,c,d,e,f,g,13,i,14
+7,b,c,d,e,f,g,h,13,14
+8,b,13,d,e,f,g,h,i,14
+5,b,c,d,13,f,g,h,i,14
+6,b,c,d,e,f,13,h,i,14
+7,13,c,d,e,f,g,h,i,14
+8,b,c,13,e,f,g,h,i,14
+5,b,c,d,e,13,g,h,i,14
+6,b,c,d,e,f,g,13,i,14
+8,b,c,d,e,f,g,h,13,14
+5,b,13,d,e,f,g,h,i,14
+6,b,c,d,13,f,g,h,i,14
+7,b,c,d,e,f,13,h,i,14
+8,13,c,d,e,f,g,h,i,14
+5,b,c,13,e,f,g,h,i,14
+6,b,c,d,e,13,g,h,i,14
+7,b,c,d,e,f,g,13,i,14
+13,14,c,d,e,f,g,h,i,14
+13,b,c,14,e,f,g,h,i,14
+13,b,c,d,e,14,g,h,i,14
+13,b,c,d,e,f,g,14,i,14
+13,b,14,d,e,f,g,h,i,14
+13,b,c,d,14,f,g,h,i,14
+13,b,c,d,e,f,14,h,i,14
+13,b,c,d,e,f,g,h,14,14
+13,b,c,d,e,f,g,14,i,14
+13,14,c,d,e,f,g,h,i,14
+13,b,c,14,e,f,g,h,i,14
+13,b,c,d,e,14,g,h,i,14
+14,b,c,d,e,f,g,h,i,14
+14,b,c,d,e,f,g,h,i,14
+14,b,c,d,e,f,g,h,i,14
+14,b,c,d,e,f,g,h,i,14
+13,b,c,14,e,f,g,h,i,14
+13,b,c,d,e,14,g,h,i,14
+13,b,c,d,e,f,g,14,i,14
+13,14,c,d,e,f,g,h,i,14
+13,b,c,d,e,f,14,h,i,14
+13,b,c,d,e,f,g,h,14,14
+13,b,14,d,e,f,g,h,i,14
+13,b,c,d,14,f,g,h,i,14
+13,b,c,d,e,14,g,h,i,14
+13,b,c,d,e,f,g,14,i,14
+13,14,c,d,e,f,g,h,i,14
+13,b,c,14,e,f,g,h,i,14
+13,b,c,d,14,f,g,h,i,14
+13,b,c,d,e,f,14,h,i,14
+13,b,c,d,e,f,g,h,14,14
+13,b,14,d,e,f,g,h,i,14
+ab,k,l,m,n,o,p,q,r,ab
+1,k,ac,m,n,o,p,q,ad,5
+2,k,ae,m,af,o,p,q,r,6
+3,k,l,m,ag,o,ah,q,r,7
+4,k,l,m,n,o,ai,q,aj,8
+1,k,ak,m,al,o,p,q,am,6
+2,k,an,m,ao,o,ap,q,r,7
+3,k,l,m,aq,o,ar,q,as,8
+4,k,at,m,n,o,au,q,av,5
+1,k,aw,m,n,o,ax,q,ay,8
+2,k,az,m,ba,o,p,q,bb,5
+3,k,bc,m,bd,o,be,q,r,6
+4,k,l,m,bf,o,bg,q,bh,7
+s,t,u,v,w,5,y,z,7,15
+s,t,8,v,w,x,y,6,aa,15
+s,7,u,v,5,x,y,z,aa,15
+s,t,u,8,w,x,6,z,aa,15
+s,t,u,v,w,5,y,z,6,15
+s,t,7,v,w,x,y,6,aa,15
+s,7,u,v,8,x,y,z,aa,15
+s,t,u,8,w,x,5,z,aa,15
+s,t,u,v,w,5,y,z,aa,1
+s,t,u,v,w,x,y,6,aa,2
+s,7,u,v,w,x,y,z,aa,3
+s,t,u,8,w,x,y,z,aa,4
+s,7,u,v,w,5,y,z,aa,15
+s,t,u,8,w,x,y,6,aa,15
+s,7,u,v,w,5,y,z,aa,15
+s,t,u,8,w,x,y,6,aa,15
+s,10,u,v,w,5,y,z,aa,15
+s,t,u,11,w,x,y,6,aa,15
+s,7,u,v,w,12,y,z,aa,15
+s,t,u,8,w,x,y,9,aa,15
+s,11,u,v,w,5,y,z,aa,15
+s,t,u,12,w,x,y,6,aa,15
+s,7,u,v,w,9,y,z,aa,15
+s,t,u,8,w,x,y,10,aa,15
+s,t,u,v,w,5,y,z,aa,1
+s,t,u,v,w,x,y,6,aa,2
+s,7,u,v,w,x,y,z,aa,3
+s,t,u,8,w,x,y,z,aa,4
+s,t,7,v,w,5,y,z,aa,15
+s,t,u,v,8,x,y,6,aa,15
+s,7,u,v,w,x,5,z,aa,15
+s,t,u,8,w,x,y,z,6,15
+s,t,8,v,w,5,y,z,aa,15
+s,t,u,v,5,x,y,6,aa,15
+s,7,u,v,w,x,6,z,aa,15
+s,t,u,8,w,x,y,z,7,15
+s,t,u,v,w,5,y,z,aa,1
+s,t,u,v,w,x,y,6,aa,2
+s,7,u,v,w,x,y,z,aa,3
+s,t,u,8,w,x,y,z,aa,4
+s,t,u,v,w,5,y,7,aa,15
+s,8,u,v,w,x,y,6,aa,15
+s,7,u,5,w,x,y,z,aa,15
+s,t,u,8,w,6,y,z,aa,15
+s,t,u,v,w,5,y,6,aa,15
+s,7,u,v,w,x,y,6,aa,15
+s,7,u,8,w,x,y,z,aa,15
+s,t,u,8,w,5,y,z,aa,15
+s,t,u,v,w,5,y,9,aa,15
+s,10,u,v,w,x,y,6,aa,15
+s,7,u,11,w,x,y,z,aa,15
+s,t,u,8,w,12,y,z,aa,15
+s,t,u,v,w,5,y,10,aa,15
+s,11,u,v,w,x,y,6,aa,15
+s,7,u,12,w,x,y,z,aa,15
+s,t,u,8,w,9,y,z,aa,15
+s,t,u,v,w,5,y,z,aa,1
+s,t,u,v,w,x,y,6,aa,2
+s,7,u,v,w,x,y,z,aa,3
+s,t,u,8,w,x,y,z,aa,4
+7,t,u,v,w,5,y,z,aa,15
+8,t,u,v,w,x,y,6,aa,15
+5,7,u,v,w,x,y,z,aa,15
+6,t,u,8,w,x,y,z,aa,15
+8,t,u,v,w,5,y,z,aa,15
+5,t,u,v,w,x,y,6,aa,15
+6,7,u,v,w,x,y,z,aa,15
+7,t,u,8,w,x,y,z,aa,15
+6,t,u,v,w,5,y,z,aa,15
+7,t,u,v,w,x,y,6,aa,15
+8,7,u,v,w,x,y,z,aa,15
+5,t,u,8,w,x,y,z,aa,15
+5,t,u,v,w,5,y,z,aa,15
+6,t,u,v,w,x,y,6,aa,15
+7,7,u,v,w,x,y,z,aa,15
+8,t,u,8,w,x,y,z,aa,15
+9,t,u,v,w,5,y,z,aa,15
+10,t,u,v,w,x,y,6,aa,15
+11,7,u,v,w,x,y,z,aa,15
+12,t,u,8,w,x,y,z,aa,15
+10,t,u,v,w,5,y,z,aa,15
+11,t,u,v,w,x,y,6,aa,15
+12,7,u,v,w,x,y,z,aa,15
+9,t,u,8,w,x,y,z,aa,15
+11,t,u,v,w,5,y,z,aa,15
+12,t,u,v,w,x,y,6,aa,15
+9,7,u,v,w,x,y,z,aa,15
+10,t,u,8,w,x,y,z,aa,15
+12,t,u,v,w,5,y,z,aa,15
+9,t,u,v,w,x,y,6,aa,15
+10,7,u,v,w,x,y,z,aa,15
+11,t,u,8,w,x,y,z,aa,15
+s,t,u,v,w,5,y,z,aa,1
+s,t,u,v,w,x,y,6,aa,2
+s,7,u,v,w,x,y,z,aa,3
+s,t,u,8,w,x,y,z,aa,4
+s,t,u,7,w,5,y,z,aa,15
+s,t,u,v,w,8,y,6,aa,15
+s,7,u,v,w,x,y,5,aa,15
+s,6,u,8,w,x,y,z,aa,15
+s,t,u,8,w,5,y,z,aa,15
+s,t,u,v,w,5,y,6,aa,15
+s,7,u,v,w,x,y,6,aa,15
+s,7,u,8,w,x,y,z,aa,15
+s,t,u,11,w,5,y,z,aa,15
+s,t,u,v,w,12,y,6,aa,15
+s,7,u,v,w,x,y,9,aa,15
+s,10,u,8,w,x,y,z,aa,15
+s,t,u,12,w,5,y,z,aa,15
+s,t,u,v,w,9,y,6,aa,15
+s,7,u,v,w,x,y,10,aa,15
+s,11,u,8,w,x,y,z,aa,15
+s,t,u,v,w,5,y,z,aa,1
+s,t,u,v,w,x,y,6,aa,2
+s,7,u,v,w,x,y,z,aa,3
+s,t,u,8,w,x,y,z,aa,4
+s,t,u,v,w,5,7,z,aa,15
+s,t,u,v,w,x,y,6,8,15
+s,7,5,v,w,x,y,z,aa,15
+s,t,u,8,6,x,y,z,aa,15
+s,t,u,v,w,5,8,z,aa,15
+s,t,u,v,w,x,y,6,5,15
+s,7,6,v,w,x,y,z,aa,15
+s,t,u,8,7,x,y,z,aa,15
+s,t,u,v,w,5,6,z,aa,15
+s,t,u,v,w,x,y,6,7,15
+s,7,8,v,w,x,y,z,aa,15
+s,t,u,8,5,x,y,z,aa,15
+s,t,u,v,w,5,5,z,aa,15
+s,t,u,v,w,x,y,6,6,15
+s,7,7,v,w,x,y,z,aa,15
+s,t,u,8,8,x,y,z,aa,15
+s,t,u,v,w,5,9,z,aa,15
+s,t,u,v,w,x,y,6,10,15
+s,7,11,v,w,x,y,z,aa,15
+s,t,u,8,12,x,y,z,aa,15
+s,t,u,v,w,5,10,z,aa,15
+s,t,u,v,w,x,y,6,11,15
+s,7,12,v,w,x,y,z,aa,15
+s,t,u,8,9,x,y,z,aa,15
+s,t,u,v,w,5,y,z,aa,1
+s,t,u,v,w,x,y,6,aa,2
+s,7,u,v,w,x,y,z,aa,3
+s,t,u,8,w,x,y,z,aa,4
+s,t,u,v,7,5,y,z,aa,15
+s,t,u,v,w,x,8,6,aa,15
+s,7,u,v,w,x,y,z,5,15
+s,t,6,8,w,x,y,z,aa,15
+s,t,u,v,8,5,y,z,aa,15
+s,t,u,v,w,x,5,6,aa,15
+s,7,u,v,w,x,y,z,6,15
+s,t,7,8,w,x,y,z,aa,15
+s,t,u,v,6,5,y,z,aa,15
+s,t,u,v,w,x,7,6,aa,15
+s,7,u,v,w,x,y,z,8,15
+s,t,5,8,w,x,y,z,aa,15
+s,t,u,v,5,5,y,z,aa,15
+s,t,u,v,w,x,6,6,aa,15
+s,7,u,v,w,x,y,z,7,15
+s,t,8,8,w,x,y,z,aa,15
+s,t,u,v,11,5,y,z,aa,15
+s,t,u,v,w,x,12,6,aa,15
+s,7,u,v,w,x,y,z,9,15
+s,t,10,8,w,x,y,z,aa,15
+s,t,u,v,12,5,y,z,aa,15
+s,t,u,v,w,x,9,6,aa,15
+s,7,u,v,w,x,y,z,10,15
+s,t,11,8,w,x,y,z,aa,15
+s,t,u,v,w,5,y,z,aa,1
+s,t,u,v,w,x,y,6,aa,2
+s,7,u,v,w,x,y,z,aa,3
+s,t,u,8,w,x,y,z,aa,4
+5,t,u,v,w,x,y,z,aa,0
+6,t,u,v,w,x,y,z,aa,0
+7,t,u,v,w,x,y,z,aa,0
+8,t,u,v,w,x,y,z,aa,0
+s,t,u,v,w,x,y,z,aa,s
+a,b,c,d,e,f,g,h,15,a
+a,15,c,d,e,f,g,h,i,a
+a,b,15,d,e,f,g,h,i,a
+a,b,c,d,e,f,g,15,i,a
+a,b,c,15,e,f,g,h,i,a
+a,b,c,d,e,f,15,h,i,a
+a,b,c,d,e,15,g,h,i,a
+a,b,c,d,15,f,g,h,i,a
+a,b,c,d,e,f,g,h,i,15
+
+@COLORS
+0 0 0 0
+1 0 143 0
+2 0 159 0
+3 0 175 0
+4 0 191 0
+5 0 207 0
+6 0 223 0
+7 0 239 0
+8 0 255 0
+9 0 0 159
+10 0 0 191
+11 0 0 223
+12 0 0 255
+13 64 64 0
+14 255 255 0
+15 255 0 0

@@ -1,0 +1,14 @@
+{
+  "name": "absurdres",
+  "version": "1.0.0",
+  "description": "解答者に配布するソースコードなどのファイルをここに置く",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": ["hack", "the", "planet"],
+  "type": "module",
+  "author": "hakatashi",
+  "devDependencies": {
+    "jest": "^29.6.4"
+  }
+}

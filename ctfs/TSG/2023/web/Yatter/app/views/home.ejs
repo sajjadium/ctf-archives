@@ -1,0 +1,19 @@
+<%- include("layouts/header", { title: `Home` }); -%>
+
+<%- include("components/navbar", { me }); -%>
+
+<main class="container py-4">
+  <% if (me) { %>
+    <form action="/post" method="POST">
+      <textarea class="form-control mb-3" name="content" rows="4" required placeholder="What's happening?"></textarea>
+      <div class="d-grid offset-9 col-3">
+        <button type="submit" class="btn btn-primary">Yeet!</button>
+      </div>
+    </form>
+  <% } %>
+  <% for (const post of posts.toReversed()) { %>
+    <%- include("components/post_card", { me, post, author: post.author }); -%>
+  <% } %>
+</main>
+
+<%- include("layouts/footer"); -%>

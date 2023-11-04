@@ -67,7 +67,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('?', 'q')
 
 def get_challenge_name(line):
   for original_name in reversed(line.strip().split('/')):
@@ -84,8 +84,8 @@ def get_challenge_name(line):
 
 if __name__ == '__main__':
   # create challenge directory
-  lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', replace_special_characters(l).strip('\n')) for l in sys.stdin.readlines()]).strip().split('\n')
-  chal_name = get_challenge_name(lines[0])
+  lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', l.strip('\n')) for l in sys.stdin.readlines()]).strip().split('\n')
+  chal_name = get_challenge_name(replace_special_characters(lines[0]))
 
   lines = '\n'.join(lines[1:]).strip().split('\n')
   lines = [l for l in lines if is_valid(l)]

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+		<script type="module" src="/assets/index.mjs"></script>
+		<script type="module" src="/assets/image.mjs"></script>
+		<title>Absurdres</title>
+	</head>
+	<body>
+		<h1><a href="/">Absurdres</a></h1>
+		<figure>
+			{{img|safe}}
+			<figcaption>
+				Quote this image by
+				<code>!&lsqb;description&rsqb;&lpar;{{image_id}}&rpar;</code>
+				<button type="button" class="copy">Copy</button>
+			</figcaption>
+		</figure>
+		<script nonce="{{csp_nonce()}}">
+			const files = {{files|json|safe}};
+			const file = getBestImage(files, window.devicePixelRatio);
+
+			const img = document.querySelector('img');
+			img.style.cursor = 'zoom-in';
+
+			let zoom = false;
+			img.onclick = () => {
+				if (zoom) {
+					img.style = '';
+					img.style.cursor = 'zoom-in';
+				} else {
+					img.href = file.url;
+					img.style.background = 'black';
+					img.style.position = 'fixed';
+					img.style.top = '0';
+					img.style.left = '0';
+					img.style.width = '100%';
+					img.style.height = '100%';
+					img.style.objectFit = 'contain';
+					img.style.cursor = 'zoom-out';
+				}
+				zoom = !zoom;
+			};
+		</script>
+	</body>
+</html>
+

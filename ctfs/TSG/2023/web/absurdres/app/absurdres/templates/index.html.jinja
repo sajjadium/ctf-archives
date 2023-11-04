@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+		<title>Absurdres</title>
+	</head>
+	<body>
+		<h1>Absurdres</h1>
+		<h2>Upload Image:</h2>
+		<form action="/image" method="POST" enctype="multipart/form-data">
+			<input type="file" name="image" accept="image/*">
+			<input type="submit" value="Upload">
+		</form>
+		<h2>Create Post:</h2>
+		<form action="/post" method="POST">
+			<input type="text" name="title" placeholder="Title">
+			<textarea name="body" placeholder="Look at my cute doggy!&#10;&#10;!&lsqb;alt text&rsqb;&lpar;file id&rpar;"></textarea>
+			<input type="submit" value="Create">
+		</form>
+		<h2>Report problem:</h2>
+		<p>If you have any problems with the site, please report them:</p>
+		<form action="/report" method="POST">
+			<input type="url" name="url" placeholder="http://...">
+			<input type="submit" value="Report">
+		</form>
+	</body>
+</html>

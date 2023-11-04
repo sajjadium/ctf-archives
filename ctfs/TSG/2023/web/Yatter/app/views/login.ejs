@@ -1,0 +1,21 @@
+<%- include("layouts/header", { title: `Log in to Yatter` }); -%>
+
+<main class="mx-auto my-5" style="max-width: 330px;">
+  <h1 class="h3 mb-3">Log in to Yatter</h1>
+  <form action="/login" method="POST">
+    <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="username" name="username" required placeholder="username" />
+      <label for="username">Username</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="password" name="password" required placeholder="password" />
+      <label for="password">Password</label>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Log in</button>
+  </form>
+  <% if (error) { %>
+    <div class="alert alert-danger mt-3" role="alert"><%= error %></div>
+  <% } %>
+</main>
+
+<%- include("layouts/footer"); -%>

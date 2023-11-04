@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.0/milligram.css"
+		/>
+		<title>Beginner's Web 2021</title>
+		<style>
+			body {
+				text-align: center;
+				padding: 2rem;
+			}
+			.row {
+				justify-content: center;
+				margin: 1rem 0 1.5rem;
+			}
+		</style>
+		<script type="module">
+			import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.esm.browser.js'
+			new Vue({
+				el: '#app',
+				data: () => ({
+					input: '',
+					salt: '',
+					result: '',
+					converter: 'Base64',
+				}),
+				async mounted() {
+					const res = await fetch(`/?${new URLSearchParams({action: 'GetSalt'})}`);
+					this.salt = await res.text();
+				},
+				methods: {
+					async encode() {
+						const res = await fetch(`/?${new URLSearchParams({action: this.converter, data: this.input})}`);
+						this.result = await res.text();
+					},
+				},
+				watch: {
+					async salt(salt) {
+						await fetch(`/?${new URLSearchParams({action: 'SetSalt', data: salt})}`);
+					},
+				},
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container" id="app">
+			<h1>OmniEncoder 2021</h1>
+			<textarea v-model="input"></textarea>
+			<div class="row">
+				<input v-if="converter === 'Scrypt'" class="column column-40" placeholder="Salt" v-model="salt">
+				<select class="column column-20" v-model="converter">
+					<option value="Base64">Base64</option>
+					<option value="Scrypt">scrypt</option>
+				</select>
+				<button class="column column-10" @click="encode">Encode</button>
+			</div>
+			<textarea disabled :value="result"></textarea>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "absurdres"
+version = "0.1.0"
+description = ""
+authors = ["hakatashi"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^2.3.3"
+flask-talisman = "^1.1.0"
+pillow = "^10.0.0"
+pymongo = "^4.5.0"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

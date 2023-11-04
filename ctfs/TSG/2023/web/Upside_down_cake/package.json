@@ -1,0 +1,11 @@
+{
+  "name": "upside_down_cake",
+  "scripts": {
+    "start": "npm install && node main.mjs"
+  },
+  "author": "hakatashi",
+  "dependencies": {
+    "@hono/node-server": "^1.2.0",
+    "hono": "^3.9.1"
+  }
+}

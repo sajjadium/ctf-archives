@@ -1,0 +1,9 @@
+<% layout('./layout') %>
+
+<div id="body"><%= it.body %></div>
+
+<form method="POST">
+	<input class="button-primary" type="submit" value="Report Abuse">
+</form>
+
+<script src="/public/post.js" defer></script>
