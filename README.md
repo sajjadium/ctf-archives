@@ -1397,7 +1397,11 @@
             <td><a href="https://ctftime.org/event/1173/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/MCTF">M*CTF</a></td>
+            <td rowspan=4><a href="ctfs/MCTF">M*CTF</a></td>
+            <td><a href="ctfs/MCTF/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2095/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/MCTF/2022/Quals">2022 Quals</a></td>
             <td><a href="https://ctftime.org/event/1784/tasks/" target="_blank">CTFtime</a></td>
         </tr>
