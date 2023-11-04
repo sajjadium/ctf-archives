@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% set active_page = "index" %}
+
+{% block content %}
+<section class="container-full">
+  <div class="hero">
+    <div class="hero-content-container">
+      <h1 class="hero-title">EPFL Cyber Library</h1>
+      <div class="hero-content">
+        Located at the Rolex Learning Center, the EPFL Library is open 7/7, from 7am to midnight, and is accessible to everyone.
+        <p>
+          But what if you need your trusty <a href="https://epfl.swisscovery.slsp.ch/permalink/41SLSP_EPF/1d9suj6/cdi_globaltitleindex_catalog_85598397" target="_blank" rel="noopener">Kali Linux cookbook</a> during a CTF at 3am? Or you're a challenge author and the <a href="https://epfl.swisscovery.slsp.ch/permalink/41SLSP_EPF/1itcu0v/alma991170344796805501" target="_blank" rel="noopener">handbook to create CTF challenges</a> is already borrowed?
+          You can find all of this and more in our new Cyber Library!
+        </p>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="https://www.epfl.ch/campus/visitors/wp-content/uploads/2019/03/Rolex-Learning-Center-vue-nuit.jpg" class="img-fluid">
+    </div>
+  </div>
+
+  <div class="py-5 bg-gray-100">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+          <h3 class="h4">Submit a document to the Cyber collection</h3>
+  
+          <div class="form-group mt-4">
+            <label for="url-input">Document URL</label>
+            <form action="{{ url_for('main.submit') }}" method="post" class="input-group input-group-inner-space mb-3">
+              <input type="url" id="url-input" class="form-control" name="url" placeholder="https://example.com">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+          <!-- Display the number of documents available live, with a button enable live statistics -->
+          <h3 class="h4">Statistics</h3>
+          <p><span id="counter" class="h1">0</span> documents have been indexed.</p>
+          <a href="#" id="enable-live-statistics">Enable live statistics</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="/static/js/counter.js"></script>
+{% endblock %}
+
+{% block title %}EPFL Cyber Library{% endblock %}

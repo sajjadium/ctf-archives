@@ -1,0 +1,20 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/settings.css">
+</head>
+<body>
+
+<script src="/static/settings.js"></script>
+Change your profile: <br/>
+<label for="username">username</label>
+<input type="text" name="username" /><br/>
+<label for="premiumPin">Pin for premium access (leave empty if you have none)</label>
+<input type="text" id="premiumPinInput" name="premiumPin" />
+<button id="updateSettingsButton">save</button>
+
+<div class="notifications">
+    <%- include('./partials/notifications.ejs') %>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+[id$="Link"],
+[id$="isPremium"],
+[id$="takepicture"],
+[id$="createNewChallBut"],
+[id$="challMetadata"],
+[id$="getGeolocation"],
+[id$="captureButton"],
+[id$="camerastartButton"],
+[id$="mapdiv"],
+[id$="duel"] {
+    display: none;
+}
+.show {
+    display: block !important;
+}
+
+/* Thank you chatGPT for everything under there :)) */
+
+/* General Styles */
+/* Centering Styles */
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+/* Header Styles */
+#settingsLink {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+    display:block;
+}
+
+/* Premium Styles */
+#isPremium {
+    color: #27ae60;
+}
+
+/* Greeting Styles */
+p {
+    font-size: 18px;
+}
+
+/* Capture Photo Styles */
+#takepicture {
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+#video {
+    border: 2px solid #3498db;
+    border-radius: 5px;
+}
+
+#captureButton, #camerastartButton, #happycatButton, #confirmButton {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#captureButton:hover, #camerastartButton:hover, #happycatButton:hover, #confirmButton:hover {
+    background-color: #2980b9;
+}
+
+/* Create Challenge Styles */
+#createNewChallBut {
+    background-color: #e67e22;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#createNewChallBut:hover {
+    background-color: #d35400;
+}
+
+#challMetadata {
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+#OpenLayersVersion, #winText, #endMetadataButton {
+    margin: 5px;
+}
+
+#endMetadataButton {
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#endMetadataButton:hover {
+    background-color: #27ae60;
+}
+
+/* Geolocation Styles */
+#getGeolocation {
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+#fakeBut, #realBut {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#fakeBut:hover, #realBut:hover {
+    background-color: #c0392b;
+}
+
+/* Duel Styles */
+#duel {
+    margin-top: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+#usernameInput, #challengeUserButton {
+    margin: 5px;
+}
+
+#challengeUserButton {
+    background-color: #9b59b6;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#challengeUserButton:hover {
+    background-color: #8e44ad;
+}
+
+/* Map Styles */
+#mapdiv {
+    margin-top: 20px;
+    height: 300px;
+    width: 300px;
+    border: 2px solid #34495e;
+}
+

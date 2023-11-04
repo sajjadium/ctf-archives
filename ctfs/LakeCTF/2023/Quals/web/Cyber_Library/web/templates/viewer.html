@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% set active_page = "collection" %}
+
+{% block content %}
+<section class="container-full">
+    <div class="py-5 bg-gray-100">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+            <h3 class="h4">Secure Viewer</h3>
+            <div class="form-group mt-4">
+                <div class="input-group input-group-inner-space mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="scheme">https://</span>
+                    </div>
+                    <input type="text" id="url-input" class="form-control" name="url" placeholder="example.com">
+                </div>
+                <iframe id="iframe" width="100%" height="500px" sandbox="allow-scripts" referrerpolicy="no-referrer"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/static/js/viewer.js"></script>
+    {% if is_admin %}<script src="/static/js/admin.js"></script>{% endif %}
+  </section>
+{% endblock %}
+
+{% block title %}Secure Viewer - EPFL Cyber Library{% endblock %}

@@ -1,0 +1,22 @@
+services:
+  https-proxy:
+    image: nginxproxy/nginx-proxy
+    ports:
+      - "9011:80" # remote has this for https: - "9011:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      # remote has this for https: - ./certs:/etc/nginx/certs:ro
+  web:
+    build: .
+    init: true
+    environment:
+      - "PREMIUM_PIN=012-023-034" # diffrent on remote
+      - "FLAG=EPFL{fake_flag}" # diffrent on remote
+      - "LATLON=12.454545,12.454545" # different on remote
+      - "VIRTUAL_HOST=localhost" #remote uses "VIRTUAL_HOST=chall.polygl0ts.ch"
+      - "VIRTUAL_PORT=9011"
+      - "CHALL_URL=http://localhost:9011" # remote uses "CHALL_URL=https://chall.polygl0ts.ch:9011"
+    extra_hosts:
+      - "a.tile.openstreetmap.org:127.0.0.1" # avoid unncessary req to openstreetmap from bot
+      - "b.tile.openstreetmap.org:127.0.0.1"
+      - "c.tile.openstreetmap.org:127.0.0.1"

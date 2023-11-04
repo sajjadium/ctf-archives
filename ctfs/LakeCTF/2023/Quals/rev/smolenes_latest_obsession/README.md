@@ -1,0 +1,1 @@
+One of their servers is running a weird shell... The runchal.bash is how they run it, so we are missing the prompt file, but maybe we can still retrieve its contents? Go FORTH, and find the flag! Should be as easy as 1 1 + 2 eq .

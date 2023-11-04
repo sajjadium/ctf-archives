@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/home.css">
+</head>
+<body>
+
+<a href="/settings" id="settingsLink" class="settings-link">Settings</a>
+
+<div id="isPremium"><%- isPremium %></div>
+
+<p>Hello <%= username %></p>
+
+<div id="takepicture">
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="captureButton">Capture Photo</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <script src="/static/happycat.js"></script>
+    <button id="camerastartButton">Use device camera (only use it if you're okay with being seen by everyone)</button>
+    <button id="happycatButton">Use happy cat</button>
+    <button id="confirmButton">Confirm</button>
+</div>
+
+<button id="createNewChallBut">Create new challenge</button>
+
+<div id="challMetadata">
+    <label for="OpenLayersVersion">Open Layers Version</label>
+    <select id="OpenLayersVersion" name="OpenLayersVersion">
+        <option value="2.10">2.10</option>
+        <option value="2.11">2.11</option>
+        <option value="2.12">2.12</option>
+        <option value="2.13">2.13</option>
+    </select>
+    <label for="winText">Win text</label>
+    <input type="text" id="winText" name="winText" />
+    <button id="endMetadataButton">Next</button>
+</div>
+
+<div id="getGeolocation">
+    <h1>HTML Geolocation</h1>
+    <p>Click the button to get your coordinates.</p>
+    <button id="fakeBut">Use random fake location for testing</button><br/>
+    <button id="realBut">Use current real location (only use it if you're okay with your position being known by everyone)</button>
+</div>
+
+<div id="duel">
+    <p>Challenge a user:</p>
+    <label for="username">Username</label>
+    <input type="text" id="usernameInput" name="username" /><br/>
+    <button id="challengeUserButton">Send invitation</button>
+    <p id="demo"></p>
+</div>
+
+<div id="mapdiv" class="map-container"></div>
+<script src="/static/OpenLayers2.13.js"></script>
+<script src="/static/home.js"></script>
+
+<div class="notifications">
+    <%- include('./partials/notifications.ejs') %>
+</div>
+
+</body>
+</html>

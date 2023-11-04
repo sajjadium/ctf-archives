@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/playwright/python:v1.39.0-jammy
+USER root
+
+RUN pip install playwright==1.39.0 rq==1.15.1
+RUN playwright install --with-deps firefox
+
+COPY web/bot.py /app/web/bot.py
+
+WORKDIR /app
+
+CMD [ "rq", "worker", "--with-scheduler", "--url", "redis://redis:6379"]

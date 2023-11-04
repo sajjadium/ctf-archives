@@ -1375,6 +1375,10 @@
         </tr>
         <tr>
             <td rowspan=1><a href="ctfs/LakeCTF">LakeCTF</a></td>
+            <td><a href="ctfs/LakeCTF/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2069/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/LakeCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1728/tasks/" target="_blank">CTFtime</a></td>
         </tr>

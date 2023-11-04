@@ -1,0 +1,11 @@
+Flask==2.3.3
+Flask-Cors==4.0.0
+Flask-Limiter==3.5.0
+Flask-Login==0.6.2
+flask-sock==0.7.0
+Flask-SQLAlchemy==3.1.1
+playwright==1.39.0
+redis==5.0.1
+rq==1.15.1
+validators==0.22.0
+werkzeug==2.3.7 # Werkzeug 3.0.0 breaks Flask-Login

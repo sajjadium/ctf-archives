@@ -1,0 +1,18 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/challenge.css">
+</head>
+<body>
+
+<div id="challId"><%= challId %></div>
+<img src="data:image/png;base64,<%= img %>">
+<iframe <%- iframeAttributes %>></iframe>
+<button id="submitButton">Submit position</button>
+<div id="out"></div>
+<script src="/static/challenge.js"></script>
+<div class="notifications">
+    <%- include('./partials/notifications.ejs') %>
+</div>
+
+</body>
+</html>

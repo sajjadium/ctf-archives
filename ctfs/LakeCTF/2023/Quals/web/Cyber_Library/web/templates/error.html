@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% set active_page = "error" %}
+
+{% block content %}
+<section class="container">
+  <h2>{{ e.name }}</h2>
+  <p>{{ e.description }}</p>
+</section>
+{% endblock %}
+
+{% block title %}{{ e.name }}{% endblock %}

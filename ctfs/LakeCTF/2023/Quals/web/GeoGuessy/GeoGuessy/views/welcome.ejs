@@ -1,0 +1,15 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/register.css">
+</head>
+<body>
+
+Welcome <b id="username"><%= username %></b> Your secret token is <b id="token"><%= token %></b> Keep it secret!
+<a href="/" id="homeBut">home</a>
+
+<div class="notifications">
+    <%- include('./partials/notifications.ejs') %>
+</div>
+
+</body>
+</html>
