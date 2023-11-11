@@ -1,0 +1,84 @@
+main function:
+ 12           0 LOAD_CONST               1 (0)
+              2 LOAD_CONST               2 (('FLAG',))
+              4 IMPORT_NAME              0 (secret)
+              6 IMPORT_FROM              1 (FLAG)
+              8 STORE_FAST               0 (FLAG)
+             10 POP_TOP
+
+ 13          12 LOAD_FAST                0 (FLAG)
+             14 STORE_FAST               1 (flag)
+
+ 14          16 LOAD_CONST               3 ('ZHEkjgfhdiIR')
+             18 STORE_FAST               2 (key)
+
+ 15          20 LOAD_GLOBAL              2 (open)
+             22 LOAD_CONST               4 ('flag.enc')
+             24 LOAD_CONST               5 ('wb+')
+             26 CALL_FUNCTION            2
+             28 SETUP_WITH              17 (to 64)
+             30 STORE_FAST               3 (encrypted)
+
+ 16          32 LOAD_FAST                3 (encrypted)
+             34 LOAD_METHOD              3 (write)
+             36 LOAD_GLOBAL              4 (encrypt)
+             38 LOAD_FAST                1 (flag)
+             40 LOAD_FAST                2 (key)
+             42 CALL_FUNCTION            2
+             44 CALL_METHOD              1
+             46 POP_TOP
+             48 POP_BLOCK
+
+ 15          50 LOAD_CONST               0 (None)
+             52 DUP_TOP
+             54 DUP_TOP
+             56 CALL_FUNCTION            3
+             58 POP_TOP
+             60 LOAD_CONST               0 (None)
+             62 RETURN_VALUE
+        >>   64 WITH_EXCEPT_START
+             66 POP_JUMP_IF_TRUE        35 (to 70)
+             68 RERAISE                  1
+        >>   70 POP_TOP
+             72 POP_TOP
+             74 POP_TOP
+             76 POP_EXCEPT
+             78 POP_TOP
+             80 LOAD_CONST               0 (None)
+             82 RETURN_VALUE
+encrypt function:
+  5           0 LOAD_CONST               1 (b'')
+              2 STORE_FAST               2 (res)
+
+  6           4 LOAD_GLOBAL              0 (range)
+              6 LOAD_GLOBAL              1 (len)
+              8 LOAD_FAST                0 (a)
+             10 CALL_FUNCTION            1
+             12 CALL_FUNCTION            1
+             14 GET_ITER
+        >>   16 FOR_ITER                21 (to 60)
+             18 STORE_FAST               3 (i)
+
+  7          20 LOAD_FAST                2 (res)
+             22 LOAD_GLOBAL              2 (bytes)
+             24 LOAD_FAST                0 (a)
+             26 LOAD_FAST                3 (i)
+             28 BINARY_SUBSCR
+             30 LOAD_GLOBAL              3 (ord)
+             32 LOAD_FAST                1 (b)
+             34 LOAD_FAST                3 (i)
+             36 LOAD_GLOBAL              1 (len)
+             38 LOAD_FAST                1 (b)
+             40 CALL_FUNCTION            1
+             42 BINARY_MODULO
+             44 BINARY_SUBSCR
+             46 CALL_FUNCTION            1
+             48 BINARY_XOR
+             50 BUILD_LIST               1
+             52 CALL_FUNCTION            1
+             54 INPLACE_ADD
+             56 STORE_FAST               2 (res)
+             58 JUMP_ABSOLUTE            8 (to 16)
+
+  8     >>   60 LOAD_FAST                2 (res)
+             62 RETURN_VALUE

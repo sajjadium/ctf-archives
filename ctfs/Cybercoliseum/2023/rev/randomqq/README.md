@@ -1,0 +1,1 @@
+A friend of mine from the forum made some strange file encryptor. I know a lot about his algorithm: nothing. No idea what it does, but it can definitely be reversed. Help me please do this. But for some reason it still won't start... The archive contains an encrypted file with a flag and the encryptor itself. I really want to understand what is in the encrypted file!

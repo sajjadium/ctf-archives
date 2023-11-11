@@ -1,0 +1,3 @@
+Only a few people can be admin kings! Our developers of the console interface for CTF understand this, so they made a special authorization option for administrators...
+
+We also use only the most popular ciphers and encodings!

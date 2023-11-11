@@ -1,0 +1,1 @@
+When analyzing the attacker's hard drive, a password-protected secret_text.zip archive was found. In other files, the word codeby, various numbers and 8-character passwords are often found. Colleagues have already run the archive through 2 billion passwords, but to no avail. I heard that you have a video card farm. Can you help?
