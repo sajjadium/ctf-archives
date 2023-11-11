@@ -1,1 +1,1 @@
-[CTFtime Page](https://ctftime.org/event/2095)
+[CTFtime Page](https://ctftime.org/event/2096)

@@ -19,7 +19,10 @@ def is_valid(line):
   if line.strip().lower().startswith('fastest solvers'):
     return False
 
-  if re.search('\d+[ \t]+points', line.lower()) or re.search('\d+[ \t]*solves', line.lower()) or re.search('\d+[ \t]+solve', line.lower()):
+  if re.search('\d+[ \t]+points', line.lower()) or re.search('\d+[ \t]*solves', line.lower()) or re.search('\d+[ \t]+solve', line.lower()) or re.search('\d+[ \t]+score', line.lower()):
+    return False
+
+  if re.fullmatch("[0-9a-z-]+\.zip", line.strip().lower()):
     return False
 
   if re.search('\d+[ \t]*pt', line):
