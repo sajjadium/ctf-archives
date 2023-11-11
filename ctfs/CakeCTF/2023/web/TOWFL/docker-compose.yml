@@ -1,0 +1,17 @@
+version: '3'
+services:
+  challenge:
+    build: ./service
+    ports:
+      - "8888:8080"
+    links:
+      - redis
+    environment:
+      - UWSGI_INI=/app/uwsgi.ini
+      - LISTEN_PORT=8080
+      - FLAG="FakeCTF{*** REDACTED ***}"
+    restart: unless-stopped
+
+  redis:
+    build: ./redis
+    restart: unless-stopped

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+        <script
+			      src="https://code.jquery.com/jquery-3.6.0.min.js"
+			      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			      crossorigin="anonymous"></script>
+        <title>PandaMemo</title>
+        <style>
+         .row {
+             display: grid;
+             grid-template-columns: auto 3em;
+         }
+         .row > * {
+             margin: 0.5em;
+         }
+         .error { color: red; }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Panda Memo</h1>
+            <p>&#x1f43c; of the people, by the people, for the people</p>
+        </header>
+        <main>
+            <section>
+                <div id="template" style="display: none;">
+                    <div class="row">
+                        <input id="memo" type="text" placeholder="Memo">
+                        <button id="del">&minus;</button>
+                        <input id="index" type="hidden">
+                        <input id="changed" type="hidden">
+                        <small id="cation" style="display: none;">
+                            *Change not saved
+                        </small>
+                    </div>
+                </div>
+                <button id="add">New &#x1f43c;</button>
+                <button id="update">Save &#x1f43c;</button>
+                <div id="field"></div>
+            </section>
+            <div class="error">
+                <p id="err"></p>
+            </div>
+        </main>
+        <script>
+         const fetchMemo = () => {
+             $('#err').hide();
+             $('#field').children().toArray().forEach((elem) => {
+                 elem.remove();
+             });
+
+             $.ajax('/show', { type: 'get' })
+              .done(data => {
+                  if (data.status !== 'success') return;
+                  for (let i = 0; i < data.result.length; i++) {
+                      let template = $('#template').find('div');
+                      let field = $('#field');
+                      let form = template.clone(true, true);
+                      form.find('#memo').val(data.result[i]);
+                      form.find('#index').val(i);
+                      form.find('#changed').val(0);
+                      form.appendTo(field);
+                  }
+              })
+              .fail(() => {
+                  $('#err').html("Server error");
+                  $('#err').show();
+              });
+         };
+
+         $(document).ready(function() {
+             fetchMemo();
+         });
+
+         $('#add').click(function() {
+             $.ajax('/new', { type: 'post' })
+              .fail(() => {
+                  $('#err').html("Server error");
+                  $('#err').show();
+              });
+             fetchMemo();
+         });
+
+         $('#del').click(function() {
+             let index = $(this).parent().find('#index').val();
+             $.ajax('/del', {
+                 type: 'post',
+                 data: JSON.stringify({ index }),
+                 dataType: 'json',
+                 contentType: 'application/json'
+             })
+              .fail(() => {
+                  $('#err').html("Server error");
+                  $('#err').show();
+              });
+             fetchMemo();
+         });
+
+         $('#update').click(function() {
+             let rows = $('#field').children();
+             let changed = [];
+             rows.toArray().forEach(row => {
+                 if ($(row).find('#changed').val() != "0") {
+                     let index = $(row).find('#index').val();
+                     let memo = $(row).find('#memo').val();
+                     changed.push({ index, memo });
+                 }
+             });
+
+             changed.forEach(data => {
+                 $.ajax('/edit', {
+                     type: 'post',
+                     data: JSON.stringify(data),
+                     dataType: 'json',
+                     contentType: 'application/json'
+                 })
+                  .fail(() => {
+                      $('#err').html("Server error");
+                      $('#err').show();
+                  });
+             });
+
+             fetchMemo();
+         });
+
+         $('#memo').change(function() {
+             $(this).parent().find('#cation').show();
+             $(this).parent().find('#changed').val(1);
+         });
+        </script>
+    </body>
+</html>

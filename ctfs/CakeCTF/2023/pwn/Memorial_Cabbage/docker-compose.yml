@@ -1,0 +1,8 @@
+version: '3'
+services:
+  dist_cabbage:
+    build: .
+    ports:
+      - "9001:5000"
+    privileged: true
+    restart: unless-stopped

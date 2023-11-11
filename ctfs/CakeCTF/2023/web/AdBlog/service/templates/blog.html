@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }} - AdBlog</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.6/purify.min.js"></script>
+    <link rel="stylesheet" href="/static/css/simple-v1.min.css">
+    <link rel="stylesheet" href="/static/css/ad-style.css">
+  </head>
+  <body>
+    <div id="ad-overlay" class="overlay">
+      <div class="overlay-content">
+        <h3>AdBlock Detected</h3>
+        <p>
+          The revenue earned from advertising enables us to provide the quality content you're trying to reach on this blog. In order to view the post, we request that you disable adblock in plugin settings.
+        </p>
+        <button onclick="location.reload();">I have disabld AdBlock</button>
+      </div>
+    </div>
+    <div>
+      <!-- Blog -->
+      <h1>{{ title }}</h1>
+      <div id="content" style="margin: 1em;"></div>
+      <hr>
+      <!-- Ad -->
+      <p style="text-align: center;"><small>Ad by AdBlog</small></p>
+      <div id="ad" style="display: none;">
+           <div style="margin: 0 auto;text-align:center;overflow:hidden;border-radius:0px;-webkit-box-shadow: 16px 17px 18px -7px rgba(18,1,18,0.61);-moz-box-shadow: 16px 17px 18px -7px rgba(18,1,18,0.61);box-shadow: 16px 17px 18px -7px rgba(18,1,18,0.61);background:#fff2d2;border:1px solid #000000;padding:1px;max-width:calc(100% - 16px);width:640px">
+	         <div class="imgAnim927"  style="display: inline-block;position:relative;vertical-align: middle;padding:8px">
+		       <img src="https://2023.cakectf.com/neko.png" style="max-width:100%;width:60px"/>
+	         </div>
+	         <div class="titleAnim927"  style="display:inline-block;text-shadow:#9a9996 4px 4px 4px;position:relative;vertical-align: middle;padding:8px;font-size:32px;color:#241f31;font-weight:bold">CakeCTF 2023</div>
+	         <div  style="display:inline-block;text-shadow:#9a9996 4px 4px 4px;position:relative;vertical-align: middle;padding:8px;font-size:20px;color:#241f31;font-weight:normal">is taking place!</div>
+	         <div class="btnAnim927"  style="display:inline-block;position:relative;vertical-align: middle;padding:16px" >
+		       <a target="_blank" href="https://2023.cakectf.com/"><input type="button" value="Play Now" style="margin:0px;background:#f5c211;padding:4px;border:2px solid #c01c28;color:#c01c28;border-radius:0px;cursor:pointer;width:80px" /></a></div>
+           </div>
+      </div>
+    </div>
+    <script src="/static/js/ads.js"></script>
+    <script>
+     let content = DOMPurify.sanitize(atob("{{ content }}"));
+     document.getElementById("content").innerHTML = content;
+
+     window.onload = async () => {
+       if (await detectAdBlock()) {
+         showOverlay = () => {
+           document.getElementById("ad-overlay").style.width = "100%";
+         };
+       }
+
+       if (typeof showOverlay === 'undefined') {
+         document.getElementById("ad").style.display = "block";
+       } else {
+         setTimeout(showOverlay, 1000);
+       }
+     }
+    </script>
+  </body>
+</html>

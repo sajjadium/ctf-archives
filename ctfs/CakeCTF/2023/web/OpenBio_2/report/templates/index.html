@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OpenBio Bug Tracker</title>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LeQbA8mAAAAAFWV-AjUOVM2RPUzeKmOfsX9mTHL"></script>
+    <style>
+     body {
+       font-size: 18px;
+       background-color: #212121;
+       color: #f1f1f1;
+     }
+     form {
+       display: block;
+       width: 50%;
+     }
+     input {
+       font-size: 1em;
+       width: 100%;
+       margin: 0.5em;
+     }
+     button {
+       font-size: 1em;
+       width: 6em;
+       height: 1.8em;
+       float: right;
+     }
+    </style>
+  </head>
+  <body>
+    <h1>Report to Admin</h1>
+    <p>If you find a sensitive/harmful bio, please report it.</p>
+    <form action="/" method="POST" id="form">
+      {% if error %}<p style="color: red;">{{ error }}</p>{% endif %}
+      {% if ok %}<p style="color: green;">{{ ok }}</p>{% endif %}
+      <input type="text" name="url" placeholder="Bio ID (i.e. c6c50a1afc38a877701171d770de7492c3552882281595340fe4b57200196f26)">
+      <button id="report">Report</button>
+    </form>
+  </body>
+  <script>
+   document.getElementById('form').addEventListener('submit', (event) => {
+     document.getElementById('report').disabled = true;
+     event.preventDefault();
+     grecaptcha.ready(() => {
+       grecaptcha
+         .execute('6LeQbA8mAAAAAFWV-AjUOVM2RPUzeKmOfsX9mTHL',
+                  {action: 'submit'})
+         .then((token) => {
+           const input = document.createElement('input');
+           input.type = 'hidden';
+           input.name = 'g-recaptcha-response';
+           input.value = token;
+           form.appendChild(input);
+           form.submit();
+         });
+     });
+   });
+  </script>
+</html>

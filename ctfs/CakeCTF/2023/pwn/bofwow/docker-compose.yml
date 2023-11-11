@@ -1,0 +1,8 @@
+version: '3'
+services:
+  dist_bofwow:
+    build: .
+    ports:
+      - "9003:5000"
+    privileged: true
+    restart: unless-stopped

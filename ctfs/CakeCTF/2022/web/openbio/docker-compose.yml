@@ -1,0 +1,23 @@
+version: '3'
+services:
+  challenge:
+    build: ./service
+    ports:
+      - "8003:8080"
+    links:
+      - redis
+    environment:
+      - UWSGI_INI=/home/ctf/uwsgi.ini
+      - LISTEN_PORT=8080
+    restart: always
+
+  crawler:
+    build: ./crawler
+    links:
+      - challenge
+      - redis
+    restart: always
+
+  redis:
+    build: ./redis
+    restart: always

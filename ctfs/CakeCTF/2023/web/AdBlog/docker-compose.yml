@@ -1,0 +1,35 @@
+version: '3'
+services:
+  challenge:
+    build: ./service
+    ports:
+      - "8001:8080"
+    links:
+      - redis
+    environment:
+      - UWSGI_INI=/app/uwsgi.ini
+      - LISTEN_PORT=8080
+    restart: unless-stopped
+
+  report:
+    build: ./report
+    ports:
+      - "8002:8080"
+    links:
+      - redis
+      - crawler
+    environment:
+      - UWSGI_INI=/app/uwsgi.ini
+      - LISTEN_PORT=8080
+    restart: unless-stopped
+
+  crawler:
+    build: ./crawler
+    links:
+      - challenge
+      - redis
+    restart: unless-stopped
+
+  redis:
+    build: ./redis
+    restart: unless-stopped

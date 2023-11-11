@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ name }}'s Bio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  </head>
+  <body>
+    <div class="container" style="margin-top: 4em;">
+      <h4>{{ name }}'s Biography</h4>
+      <div id="bio">{{ bio1 | safe }}{{ bio2 | safe }}</div>
+      {% if email %}<hr><p>Contact: <a href="mailto:{{ email }}">{{email}}</a></p>{% endif %}
+    </div>
+  </body>
+</html>

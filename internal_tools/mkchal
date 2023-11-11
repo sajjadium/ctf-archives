@@ -74,7 +74,7 @@ def get_challenge_name(line):
     if original_name not in ['beginner', 'medium', 'hard', 'easy']:
       break
 
-  args = re.sub('(\d+ solves|\d+ pts)', '', original_name.strip()).strip().split()
+  args = re.sub('(\d+ solves|\d+ pts|- \d+$)', '', original_name.strip()).strip().split()
 
   tokens = []
   for a in args:

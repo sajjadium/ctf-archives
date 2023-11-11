@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bio Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h2>Bio Generator</h2>
+      <form method="POST" action="/">
+        {% if err %}<p style="color:red;">Error: {{ err }}</p>{% endif %}
+        <div class="row">
+          <div class="six columns">
+            <label for="name">Name</label>
+            <input class="u-full-width" type="text" placeholder="Your Name" id="name" name="name">
+          </div>
+          <div class="six columns">
+            <label for="email">Email</label>
+            <input class="u-full-width" type="email" placeholder="test@example.com" id="email" name="email">
+          </div>
+        </div>
+        <label for="bio1">Bio 1</label>
+        <textarea class="u-full-width" placeholder="I'm a <b>security researcher</b> working for CakeCTF." id="bio1" name="bio1" required></textarea>
+        <label for="bio2">Bio 2 (optional)</label>
+        <textarea class="u-full-width" placeholder="Feel free to contact me :)" id="bio2" name="bio2"></textarea>
+        <p><small>* Allowed tags: &lt;a&gt;, &lt;abbr&gt;, &lt;acronym&gt;, &lt;b&gt;, &lt;blockquote&gt;, &lt;code&gt;, &lt;em&gt;, &lt;i&gt;, &lt;li&gt;, &lt;ol&gt;, &lt;strong&gt;, &lt;ul&gt;</small></p>
+        <input class="button-primary" type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{{ username }} - OpenBio</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.3/dist/css/uikit.min.css" />
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.3/dist/js/uikit.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.3/dist/js/uikit-icons.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        {% if not is_report %}
+        <script src="https://www.google.com/recaptcha/api.js?render=6LdRTcwhAAAAAOh7L7kEylfV3pggpvmR4bdezlVh"></script>
+        {% endif %}
+    </head>
+    <body>
+        <div class="uk-section uk-section-muted uk-flex uk-animation-fade" uk-height-viewport>
+            <div class="uk-container">
+                <h1>
+                    {{ username }}'s Profile
+                    <a id="copy" class="uk-icon-button" uk-icon="link" uk-tooltip="Copy link"></a>
+                    {% if not is_report %}<a id="report" class="uk-icon-button" uk-icon="warning" uk-tooltip="Report spam"></a>{% endif %}
+                </h1>
+                <p class="uk-text-large">{{ bio|safe }}</p>
+            </div>
+        </div>
+        <input type="hidden" id="csrf_token" value="{{ csrf_token() }}">
+    </body>
+    <script nonce="{{ csp_nonce }}">
+{% if not is_report %}
+     $('#report').click(function(e) {
+         e.preventDefault();
+         grecaptcha.ready(function() {
+             grecaptcha.execute('6LdRTcwhAAAAAOh7L7kEylfV3pggpvmR4bdezlVh', {action: 'submit'}).then(function(recaptcha) {
+                 let username = "{{ username }}";
+                 let csrf_token = $('#csrf_token').val();
+                 $.post('/api/support/report', { username, csrf_token, recaptcha }, (data) => {
+                     UIkit.modal.alert(data.message);
+                 }).fail(res => {
+                     UIkit.modal.alert(`Unknown error with status: ${res.status}`);
+                 });
+             });
+         });
+     });
+{% endif %}
+     $('#copy').click(function() {
+         let t = $('<input>').attr({
+             value: "{{ url_for('profile', user=username, _external=True) }}"
+         });
+         t.appendTo($(document.body));
+         t.select();
+         document.execCommand('copy');
+         t.remove();
+     });
+    </script>
+</html>

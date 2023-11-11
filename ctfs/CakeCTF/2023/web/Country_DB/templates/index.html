@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ISO country code query</title>
+    <script>
+     function getFlagEmoji(countryCode) {
+       const codePoints = countryCode
+         .toUpperCase()
+         .split('')
+         .map(char => 127397 + char.charCodeAt());
+       return String.fromCodePoint(...codePoints);
+     }
+
+     function setText(text) {
+       document.getElementById("result").innerText = `=> ${text}`;
+     }
+
+     function queryCountryCode() {
+       let code = document.getElementById("code").value;
+       fetch('/api/search', {
+         method: 'POST',
+         headers: {'Content-Type': 'application/json'},
+         body: JSON.stringify({code})
+       }).then(response => {
+         if (response.status !== 200) {
+           setText("Country code is not found");
+           throw new Error(response.statusText);
+         } else {
+           return response.json();
+         }
+       }).then(data => {
+         setText(getFlagEmoji(code) + " " + data.name);
+       }).catch(err => {})
+     }
+    </script>
+  </head>
+  <body>
+    <label for="code">Country code: </label>
+    <input id="code" type="text" maxlength="2" style="width: 2em;" required>
+    <button onclick="queryCountryCode()">Search</button>
+    <p id="result"></p>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+@keyframes rotateAnim {
+    0% { transform: rotate(deg);}
+    100% { transform:rotate(360deg);}
+}
+@keyframes semiRotate {
+    0% { transform: rotate(-15deg);}
+    50% { transform:rotate(0deg);}
+    100% { transform: rotate(15deg);}
+}
+@keyframes scaler {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.5); }
+}
+.imgAnim927 {
+    animation: rotateAnim 2s linear 0s infinite forwards running;
+}
+.titleAnim927 {
+    animation: semiRotate 1s ease-out 0s infinite alternate none running;
+}
+.btnAnim927 {
+    animation: scaler 1s linear 0s infinite alternate none running;
+}
+.btnAnim927:hover{
+    animation-play-state: paused;
+}
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0, 0.8);
+    overflow-x: hidden;
+}
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 40%;
+    text-align: center;
+    margin: auto auto;
+    color: #eee;
+    font-size: 20px;
+} 

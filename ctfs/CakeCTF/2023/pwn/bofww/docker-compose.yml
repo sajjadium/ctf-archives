@@ -1,0 +1,8 @@
+version: '3'
+services:
+  dist_bofww:
+    build: .
+    ports:
+      - "9002:5000"
+    privileged: true
+    restart: unless-stopped

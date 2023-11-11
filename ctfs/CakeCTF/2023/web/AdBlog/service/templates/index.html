@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="/static/css/simple-v1.min.css">
+    <link rel="stylesheet" href="/static/css/ad-style.css">
+    <script src="/static/js/blockadblock.js"></script>
+  </head>
+  <body>
+    <div>
+      <h1>Blog</h1>
+      {% if msg %}<p style="color:red;">Error: {{ msg }}</p>{% endif %}
+      <form method="POST" action="/">
+        <p>
+          <label for="title">Title:</label>
+          <input type="text" id="title" name="title" required>
+        </p>
+        <p>
+          <label for="content">Blog content (HTML):</label>
+          <textarea id="content" name="content" rows="12"></textarea>
+        </p>
+        <button>Post</button>
+      </form>
+    </div>
+  </body>
+</html>

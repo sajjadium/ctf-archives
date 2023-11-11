@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TOWFL - Test of Wolf as a Foreign Language</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <style>
+     @font-face {
+       font-family: "WolfLanguage";
+       src: url("/static/fonts/hymmnos.ttf") format("truetype");
+     }
+     .wolflang {
+       font-family: "WolfLanguage";
+       font-size: 1.5em;
+     }
+     .qlink {
+       margin-left: 1em;
+     }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <header id="start">
+          <h1>TOWFL - Test of Wolf as a Foreign Language</h1>
+          <img src="/static/img/towfl.webp" width="30%"><br>
+          <button id="btn-start">Start Exam</button>
+        </header>
+      </section>
+      <section id="exam" hidden>
+        {% for i in range(10) %}
+        <div class="qlink" id="q{{ i+1 }}"><a href="#">Q{{ i+1 }}</a></div>
+        {% endfor %}
+        <hr>
+        <div>
+          <p><b>READING PASSAGE</b></p>
+          <p class="wolflang" id="exam-passage"></p>
+          <hr>
+          <p><b>QUESTIONS</b></p>
+          {% for i in range(10) %}
+          <form>
+            <p>Q{{ i+1 }}. <span class="wolflang" id="exam-question-{{ i+1 }}"></span></p>
+            {% for j in range(4) %}
+            <div>
+              <input type="radio" name="exam-ans-{{i+1}}" id="exam-ans-{{i+1}}-{{j+1}}">
+              <label class="wolflang" for="exam-ans-{{i+1}}-{{j+1}}" id="exam-question-{{i+1}}-{{j+1}}"></label>
+            </div>
+            {% endfor %}
+          </form>
+          {% endfor %}
+        </div>
+        <button id="submit">Go To Next</button>
+      </section>
+      <section id="score" hidden>
+        <header>
+          <h1>Your Score</h1>
+          <p><b id="score-value"></b> / 100</p>
+          <p id="flag"></p>
+          <a href="/">Go back to home</a>
+        </header>
+      </section>
+    </main>
+    <script src="/static/js/script.js"></script>
+  </body>
+</html>
