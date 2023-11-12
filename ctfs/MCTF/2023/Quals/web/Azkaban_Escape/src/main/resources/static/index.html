@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAGIC</title>
+    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+  </head>
+  <body>
+    <div class="container">
+      <ul class="chat-messages" id="chat">
+        <li class="chat-message-container start from">
+          <div class="message-icon">
+            <div class="error-icon">!</div>
+            <img src="./magic-wand-svgrepo-com.svg" />
+          </div>
+          <div class="message-content">
+            Welcome to Azkaban! You managed to sneak your magic wand in here, but you can only perform simple spells, or else the Dementors will notice you. Good luck with your escape!
+
+            <p>
+              Try the following spells:
+              <code>2+2</code> or <code>T(Math).pow(2, 3)</code>
+            </p>
+          </div>
+        </li>
+      </ul>
+      <div class="input-container">
+        <form id="input-form">
+          <input type="text" id="input-message" />
+          <div class="input-send" id="input-send-message">
+            <img src="./send-icon.svg" />
+          </div>
+          <div class="clear-history" id="clear-history">
+            <img src="./trash-can-icon.svg" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
