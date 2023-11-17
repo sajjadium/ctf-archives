@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "dev": "tailwindcss -i input.css -o ./static/style.css -w",
+    "build": "tailwindcss -i input.css -o ./static/style.css -m"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
+  }
+}

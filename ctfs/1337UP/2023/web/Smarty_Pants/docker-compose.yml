@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  smartypants:
+    read_only: true
+    ports:
+      - "80:80"
+    build: "."
+    tmpfs:
+      - /tmp
+      - /run

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CTFC</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+	<!-- cdn -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="../static/js/main.js"></script>
+</head>
+<body>
+<div class="sm:container sm:mx-auto">
+	<!-- navbar -->
+
+	<div class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
+    <div class="grid h-full max-w-lg grid-cols-3 mx-auto">
+
+        <button data-tooltip-target="tooltip-wallet" type="button" class="inline-flex flex-col items-center justify-center px-5">
+            <a class="w-6 h-6 text-2xl mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">
+                <ion-icon name="checkmark-circle"></ion-icon>
+            </a>
+            <span class="sr-only">Solves</span>
+        </button>
+        <div id="tooltip-wallet" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            Solves
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+
+        <div class="flex items-center justify-center">
+            <a href="/">
+                <button data-tooltip-target="tooltip-new" type="button" class="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+                <ion-icon class="text-white" name="flag"></ion-icon>
+                <span class="sr-only">CTF</span>
+            </button>
+            </a>
+        </div>
+        <div id="tooltip-new" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            CTF
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+
+        <button onclick="location.href='/logout'"  data-tooltip-target="tooltip-settings" type="button" class="inline-flex flex-col items-center justify-center px-5">
+            <a class="mt-1 text-2xl text-gray-500 dark:text-gray-400">
+                <ion-icon name="log-out"></ion-icon>
+            </a>
+            <span class="sr-only">Log Out</span>
+        </button>
+        <div id="tooltip-settings" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+            Log Out
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% block body %}
+{% endblock %}
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+</body>
+</html>

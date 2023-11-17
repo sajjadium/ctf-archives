@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1 class="text-6xl mb-4 text-center">Welcome to ShareIt!</h1>
+<p class="text-lg mb-2">
+  We are happy to have you onboard {{username}}!<br />
+  ShareIt is a platform where you can share all your opinions on everything with
+  everyone.<br /><br />
+  <span class="font-bold">Start now by sharing your first opinion:</span>
+</p>
+<div class="flex flex-col items-end w-full space-y-4">
+  <textarea id="opinion" class="text-black w-full p-2"></textarea>
+  <button class="bg-green-600 rounded p-2" onclick="shareOpinion()">
+    Share!
+  </button>
+</div>
+<script>
+  let opinionElm = document.getElementById("opinion");
+  function shareOpinion() {
+    /*Just act like the opinion is shared with everyone, no one will notice anyways*/
+    opinionElm.value = "";
+    alert("Nice take! Your opinion on this matter is shared with everyone!");
+  }
+</script>
+{% endblock %}

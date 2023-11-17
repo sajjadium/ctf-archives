@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block title %}Register{% endblock %} {% block
+content %}
+<h3 class="text-6xl mx-auto mb-5 border-b pb-6">Register</h3>
+<form
+  class="mx-auto p-6 flex flex-col items-center space-y-4 max-w-min bg-secondary rounded-md"
+  method="POST"
+>
+  <label class="block">
+    <span class="block text-md font-medium">Username</span>
+    <input class="p-1 rounded text-black" type="text" name="username" />
+  </label>
+  <input
+    class="text-md p-1 rounded bg-green-700 self-end hover:cursor-pointer"
+    type="submit"
+    value="Register"
+  />
+</form>
+{% endblock %}

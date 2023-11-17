@@ -52,7 +52,11 @@
             <td><a href="https://ctftime.org/event/1968/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/1337UP">1337UP</a></td>
+            <td rowspan=2><a href="ctfs/1337UP">1337UP</a></td>
+            <td><a href="ctfs/1337UP/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2134/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/1337UP/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1597/tasks/" target="_blank">CTFtime</a></td>
         </tr>
