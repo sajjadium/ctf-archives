@@ -34,7 +34,7 @@ def is_valid(line):
   if re.search(r'\d{2}/\d{2}, \d{2}:\d{2}:\d{2}', line):
     return False
 
-  if line.lower().startswith('points:') or line.lower().startswith('solves:'):
+  if line.lower().startswith('points:') or line.lower().startswith('solves:') or line.lower().startswith('topics:'):
     return False
 
   if 'points' in line.lower() and 'solves' in line.lower():

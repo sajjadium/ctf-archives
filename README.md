@@ -1952,7 +1952,11 @@
             <td><a href="https://ctftime.org/event/2137/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/Square">Square</a></td>
+            <td rowspan=4><a href="ctfs/Square">Square</a></td>
+            <td><a href="ctfs/Square/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2111/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Square/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1756/tasks/" target="_blank">CTFtime</a></td>
         </tr>
