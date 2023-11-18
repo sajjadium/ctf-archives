@@ -1435,6 +1435,11 @@
             <td><a href="https://ctftime.org/event/1138/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/MUST">MUST</a></td>
+            <td><a href="ctfs/MUST/2023/Quals">2023 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2175/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/MeePwn">MeePwn</a></td>
             <td><a href="ctfs/MeePwn/2018/Quals">2018 Quals</a></td>
             <td><a href="https://ctftime.org/event/625/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/MeePwn/2018/Quals">PersianCats</a></td>

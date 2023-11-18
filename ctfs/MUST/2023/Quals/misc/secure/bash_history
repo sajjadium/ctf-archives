@@ -1,0 +1,688 @@
+
+docker ps -a
+docker rm -f 1e161d7997e6
+docker images
+clear
+docker ps
+ls
+cat docker-compose.yml 
+ss 
+ss --tuln
+ss -tuln
+ls
+clear
+ls
+cd web/
+ls
+vim Dockerfile 
+docker ps
+docker ps -a
+docker
+clear
+docker
+clear
+ls
+clear
+ls
+vim Dockerfile 
+clear
+poweroff
+cd ../../
+ls
+clear
+vim .readme.txt
+cat .readme.txt 
+clear
+ls
+clear
+cat .readme.txt 
+echo $CR_PAT
+clera
+clear
+docker tag web ghcr.io/3nhj0/web
+docker images
+vim .readme.txt 
+docker push ghcr.io/3nhj0/web
+clear
+ls
+cd treafik/
+ls
+clear
+ls
+cd web/
+ls
+clear
+ls
+cd ..
+ls
+vim docker-compose.yml 
+docker images
+clear
+ls
+docker-compose up -d
+sudo systemctl status apache2
+sudo systemctl stop apache2
+clear
+docker images
+docker ps
+docker-compose push
+ls
+cd web
+ls
+cat Dockerfile 
+ls
+clear
+cd Documents/
+ls
+clear
+docker ps
+docker ps a
+docker ps -a
+clear
+docker images
+docker rmi -f hello
+docker rmi -f ghcr.io/3nhj0/hello
+docker images
+clear
+ls
+cat docker-compose.yaml 
+rm docker-compose.yaml 
+ls
+clear
+ls
+cd test/
+ls
+cat Dockerfile 
+cd ..
+ls
+rm -rf test/
+ls
+clear
+ls
+cd treafik/
+ls
+cat docker-compose.yml 
+ls
+clear
+ls
+cat docker-compose.yml 
+cd web
+ls
+clear
+ls
+docker images
+clear
+ls
+docker build -t web .
+clear
+docker images
+clear
+ls
+cd .
+cd ..
+ls
+cd web
+l
+cd ..
+ls
+cd web
+ls
+cat Dockerfile 
+cd ..
+ss -tuln
+clear
+ls
+clear
+ls
+cat docker-compose.yml 
+docker-compose down
+docker ps
+docker ps -a
+docker rm -f 407dc293bb22
+docker ps -a
+docker rm -f 407dc293bb22
+sudo docker rm -f 407dc293bb22
+docker ps
+docker
+clear
+ls
+docker logs
+clear
+ls
+docker images
+docker rmi -f web
+docker rmi -f ghcr.io/3nhj0/web
+docker images
+docker rmi 55bd57d4d7b9
+docker rmi -f 55bd57d4d7b9
+clear
+docker images
+docker rmi -f 55bd57d4d7b9
+docker rm 407dc293bb22
+docker stop  407dc293bb22
+sudo docker stop  407dc293bb22
+sudo docker stop 407dc293bb22
+sudo usermod -aG docker $USER
+sudo service docker restart
+ls -l /var/run/docker.sock
+sudo chown root:docker /var/run/docker.sock
+sestatus
+sudo docker ps
+sudo docker stop 407dc293bb22
+docker ps
+clear
+ls
+docker ps
+docker exec -it 407dc293bb22 /bin/bash
+clear
+ls
+docker ps
+ls
+clear
+ls
+vim docker-compose.yml 
+docker-compose up
+vim docker-compose.yml 
+docker-compose up
+vim docker-compose.yml 
+docker-compose up
+clear
+ls
+docker ps
+sudo poweroff
+sudo nmap -F localhost
+clear
+docker ps
+docker exec -it 30e8508f01e1 bas
+docker exec -it 30e8508f01e1 bash
+clear
+ls
+vim Dockerfile 
+clear
+ls
+docker ps 
+docker rm -f distracted_lehmann 
+clear
+ls
+docker run
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+docker ps
+clear
+ls
+docker push .
+doker push web .
+docker push web .
+clear
+docker images
+docker push web
+clear
+ls
+docker images
+docker rmi web
+docker rmi -f web
+clear
+docker build -t web .
+docker
+clear
+ls
+docker run -p 3000:80 -t web 
+clear
+docker ps
+docker ps -a
+docker rm -f b425efbd3f9c
+docker rm -f e44a93a6e1fe
+clear
+docker images
+docker rmi -f web
+clear
+ls
+cd ..
+ls
+docker pull ghcr.io/3nhj0/web:latest
+clear
+ls
+clear
+ls
+clear
+ls
+cd web
+ls
+clear
+sl
+[fwjeorwqo
+qqwing
+sudo apt install qqwing
+clear
+qqwing --generate
+clear
+qqwing --generate --one-line
+qqwing --solve --one-line
+cleR
+CLEAR
+clear
+docker ps
+docker ps -a
+docker rm -f 407dc293bb22
+docker ps -a
+clear
+cd Documents/
+ls
+cd treafik/
+ls
+clear
+ls
+docker images
+docker rmi 55bd57d4d7b9
+docker rmi a7e39aab1a6c
+clear
+ls
+clear
+ls
+clear
+clera
+ls
+clear
+ls
+cat docker-compose.yml 
+clear
+ls
+rm docker-compose.yml 
+ls
+clear
+ls
+cd web/
+ls
+docker build -t web .
+docker run -t web -p 80:3000
+clear
+ls
+cat Dockerfile 
+ls
+clear
+docker run -p 4000 web
+docker ps -a
+clear
+docker images
+clear
+ls
+clear
+ls
+cd ..
+ls
+cd web
+ls
+clear
+ls
+docker ps -a
+clear
+docker images
+docker run -d -p 8080:8080 -p 80:80     -v $PWD/traefik.yml:/etc/traefik/traefik.yml traefik:v2.10
+docker images
+docker run -d -p 8080:8080 -p 80:80 -v $PWD/traefik.yml:/etc/traefik/traefik.yml traefik:v2.5
+clear
+docker ps
+docker ps -a
+docker rm -f 398190fb8f0e
+clear
+docker ps -a
+clear
+docker images
+cat /etc/traefik.yml
+clear
+ls
+clear
+s
+ls
+clear
+poweroff
+systemctl status apache
+systemctl status apache2
+systemctl disable apache2
+systemctl stop  apache2
+ss -tuln
+clear
+docker ps
+docker exec -it confident_einstein /bin/bash
+sudo nmap -F localhost
+ls
+clear
+ls
+cler
+clear
+ls
+docker ps
+docker stop b4d353f2f929
+docker rm -f b4d353f2f929
+docker run web
+clear
+sudo nmap -F localhost
+clear
+ls
+clear
+ls
+clear
+sls
+clear
+docker ps
+docker ps -a
+docker images
+clear
+ls
+clear
+docker run -d -p 8080:8080 -p 80:80 traefik
+docker images
+docker run -d -p 8080:8080 -p 80:80 traefik:v2.5
+docker ps -a
+sudo systemctl stop apache2
+docker ps -as
+docker run -d -p 8080:8080 -p 80:80 traefik:v2.5
+docker ps
+docker p
+docker ps
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clear
+ls
+clea
+rls
+clea
+poweroff
+docker ps -a
+sudo poweroff
+sudo nmap -F localhost
+docker run -d --name web --network traefik_network     --label "traefik.enable=true"     --label "traefik.http.routers.web-http.entrypoints=web"     --label "traefik.http.routers.web-http.rule=Host(`web.localhost`)"     web
+docker ps
+clear
+ls
+docker ps
+docker rm -f 3fb5e7f5b3e8
+clear
+docker ps -a
+docker rm -f clever_dubinsky 
+clear
+docker ps -a
+docker rm 72984d357744
+docker ps -a
+docker rm 0a6a867ed9bf
+docker rm -f 0a6a867ed9bf
+clear
+docker ps
+clear
+docker images
+ls
+clear
+ls
+cd ..
+ls
+docker-compose docker\ compose.yml 
+clear
+ls
+mv docker\ compose.yml docker-compose.yaml
+docker-compose up
+docker pull ghcr.io/3nhj0/web:latest
+vim docker-compose.yaml 
+docker-compose up
+docker
+clear
+ls
+vim docker-compose.yaml 
+docker-compose up
+vim docker-compose.yaml 
+clear
+ls
+cd ..
+ls
+cd treafik/
+ls
+rm -rf *
+clear
+docker ps
+docker ps -a
+docker images
+clear
+docker network
+clear
+ifconfig
+clear
+docker images
+docker rmi traefik
+docker rm -fi traefik:2.5
+docker rmi -f traefik:2.5
+clear
+ls
+docker images
+docker rmi 865923368a9f
+clear
+docker ps
+docker images
+docker pull traefik:v3.0
+docker images
+clear
+ls
+clear
+ls
+mv docker\ compose.yml docker-compose.yaml
+ls
+docker-compose up
+docker ps
+clear
+docker ps
+clear
+docker ps
+docker ps =a
+docker ps -a
+docker rm -f 44f0775ed476
+docker
+clea
+clear
+docker 
+clear
+docker images
+clear
+python3
+cear
+clear
+ls
+clear
+ifconfig
+clear
+echo "Z3VkYm95" | base64 -d > .env 
+clear
+mysqldump --defaults-file=~/.env -u enhj0 NS356 > /home/superl0gic1112/backup/backup_$(date +%Y%m%d%H%M%S).sql
+dockernetwork create -d treafic_network --subnet 192.168.0.0/24 --gateway 192.168.0.1 --ip-range
+docker network create -d treafic_network --subnet 192.168.0.0/24 --gateway 192.168.0.1 --ip-range
+docker network create -d treafic_network --subnet 192.168.0.0/24 --gateway 192.168.0.
+docker network create -d treafic_network --subnet 192.168.0.0/24 --gateway 192.168.0.1
+docker network create -d bridge --subnet 192.168.0.0/24 --gateway 192.168.0.1 traefik_network
+clear
+ifconfig
+clear
+ls
+cd Documents/
+ls
+clear
+ls
+cd treafik/
+ls
+clear
+ls
+cd web/
+ls
+clear
+ls
+clear
+lc
+clear
+docker images
+clear
+ls
+ls -alh
+clear
+ls
+cd traefik.yml/
+ls
+cd .
+cd ..
+ls
+rmdir traefik.yml/
+clear
+ls
+clear
+ls
+docker build -t web .
+clear
+docker ps
+clear
+docker ps -a
+clear
+ls -alh
+clear
+docker ps
+clear
+docker images
+clear
+docker images
+ls
+clear
+ls
+clear
+ls
+clear
+l
+sudo nmap -F localhost
+clear
+sudo systemctl status sshd
+sudo systemctl status ssh
+sudo systemctl status ssh.service
+sudo systemctl status openssh
+sudo systemctl status openssh-client
+sudo apt install openssh-client
+ssh
+clear
+sudo systemctl status ssh
+sudo systemctl start ssh
+ufw status
+clear
+docker ps -a
+sudo systemctl stop apache2
+clear
+docker ps -a
+docker start 7821efb31b34
+ifconfig
+clear
+ls
+cd Documents/
+ls
+clear
+ls
+cd treafik/
+ls
+clear
+ls
+cat docker-compose.yaml 
+ls
+clear
+ls
+cat docker-compose.yaml 
+clear
+ls
+clear
+ls
+clear
+ls
+docker-compose down
+docker-compose up
+vim docker-compose.yaml 
+docker-compose push
+docker-compose up
+docker ps
+docker-compose down
+clear
+ls
+docker ps
+docker ps -a
+docker-compose up
+clear
+docker ps 
+docker ps -a
+docker-compose down
+clear
+ls
+docker ps -a
+clear
+docker images
+clear
+ls
+cat docker-compose.yaml 
+ls
+clear
+kls
+clear
+ls
+vim docker-compose.yaml 
+cat > docker-compose.yaml 
+clear
+ls
+vim docker-compose.yaml 
+docker-compose up
+vim
+docker-compose up
+vim docker-compose.yaml 
+docker-compose pull
+sudo docker-compose pull
+clear
+ls
+docker -d
+clear
+docker-compose up 
+sudo docker-compose up 
+clear
+vim docker-compose.yaml 
+docker-compose pull
+clea
+clear
+poweroff
+sudo vim /etc/hosts
+sudo systemctl stop apache2
+clear
+sudo vim /etc/hosts
+reboot
+docker ps
+clear
+docker pull
+clear
+docker pull traefik/whoami
+ls
+cd DOc
+cd Doc
+cd Documents/
+ls
+cd treafik/
+ls
+poweroff
+cd DOwn
+cd Downloads/
+ls
+file critical_secrets 
+openssl enc -aes-256-cbc -salt -in flag.txt -out flag.enc
+
