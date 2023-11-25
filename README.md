@@ -921,7 +921,11 @@
             <td><a href="https://ctftime.org/event/1341/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/Glacier">Glacier</a></td>
+            <td rowspan=2><a href="ctfs/Glacier">Glacier</a></td>
+            <td><a href="ctfs/Glacier/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/1992/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Glacier/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1803/tasks/" target="_blank">CTFtime</a></td>
         </tr>
@@ -2118,6 +2122,11 @@
         <tr>
             <td><a href="ctfs/TJCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/928/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td rowspan=1><a href="ctfs/TPCTF">TPCTF</a></td>
+            <td><a href="ctfs/TPCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2161/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
             <td rowspan=1><a href="ctfs/TMUCTF">TMUCTF</a></td>
