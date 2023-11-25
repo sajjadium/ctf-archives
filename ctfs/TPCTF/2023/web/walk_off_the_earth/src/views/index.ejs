@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="/static/bulma.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="column">
+            <h1 class="title">The important thing isn't can you read music, it's can you hear it.</h1>
+            <form action="/note" method="GET">
+                <div class="field">
+                    <label class="label" for="text">Text</label>
+                    <div class="control">
+                        <input class="input" type="text" name="text" id="text" value="hello">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="button is-link" type="submit" value="Submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="column">
+            <form action="/visit" method="POST">
+                <div class="field">
+                    <label class="label" for="path">Path</label>
+                    <div class="control">
+                        <input class="input" type="text" name="path" id="path" placeholder="/note?text=hello">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="pow"><%= desc %></label>
+                    <div class="control">
+                        <input class="input" type="text" name="pow" id="pow">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <input class="button is-link" type="submit" value="Submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
