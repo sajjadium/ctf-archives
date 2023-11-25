@@ -67,6 +67,12 @@ def is_valid(line):
   if re.fullmatch(r"first blood: (\w|\.)+", line.strip().lower()):
     return False
 
+  if re.fullmatch(r"(http|https)://\d+\.\d+\.\d+\.\d+/", line.strip().lower()):
+    return False
+
+  if re.fullmatch(r"nc \d+\.\d+\.\d+\.\d+ \d+", line.strip().lower()):
+    return False
+
   return True
 
 def replace_special_characters(line):

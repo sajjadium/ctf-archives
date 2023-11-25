@@ -1,0 +1,10 @@
+#!/bin/sh
+
+mount -t proc none /proc
+mount -t sysfs none /sys
+mknod -m 666 /dev/null c 1 3
+mknod -m 660 /dev/mem c 1 1
+mknod /dev/ttyAMA0 c 204 64
+
+setsid cttyhack sh -c "GLIBC_TUNABLES=glibc.mem.tagging=5 /main"
+exit

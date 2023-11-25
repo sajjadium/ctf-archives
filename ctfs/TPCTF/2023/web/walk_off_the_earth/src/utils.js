@@ -14,6 +14,23 @@ const randomString = (length) => {
     return result;
 }
 
+const generatePow = () => {
+    const prefix = randomString(5);
+    const suffix = randomString(5);
+    console.log(suffix);
+    const result = crypto.createHash('sha256').update(prefix + suffix).digest('hex');
+    const desc = `hashlib.sha256(b'${prefix}' + b'?????').hexdigest() == '${result}'`;
+    return {
+        suffix,
+        desc,
+    };
+};
+
+const checkPow = (pow, answer) => {
+    return pow === answer;
+};
+
+
 
 function custom_sanitize(html) {
     const BLOCKED_TAG = /(script|iframe|a|img|svg|audio|video)$/i

@@ -2,7 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const crypto = require('crypto');
 
-const { sanitize } = require('./utils');
+const { generatePow, checkPow,sanitize } = require('./utils');
 const visit = require('./visit');
 const random_bytes = size => crypto.randomBytes(size).toString('hex');
 const sha256 = text => crypto.createHash('sha256').update(text).digest('hex');
@@ -13,7 +13,7 @@ app.set('views', './views');
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 60*60*1000 },
     secret: random_bytes(64),
     resave: false,
     saveUninitialized: false,
@@ -37,6 +37,10 @@ app.get('/note', (req, res) => {
 })
 
 app.post('/visit', async (req, res) => {
+    // if (!checkPow(req.session.pow, req.body.pow)) {
+    //     res.send('Wrong PoW!');
+    //     return;
+    // }
     const { path, pow } = req.body;
     if ((pow && typeof pow == 'string') && (sha256(req.session.pow + pow).slice(0, difficulty) == '0'.repeat(difficulty))) {
       req.session.pow = random_bytes(8);

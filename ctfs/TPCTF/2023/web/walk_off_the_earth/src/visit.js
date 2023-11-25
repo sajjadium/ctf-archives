@@ -21,19 +21,27 @@ async function visit(path) {
                 '--no-sandbox',
                 '--disable-setuid-sandbox',
             ],
-            executablePath: '/usr/bin/chromium-browser',
+            executablePath: '/usr/bin/google-chrome-stable',
         });
 
         page = await browser.newPage();
 
-        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 2000 });
+
+        await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 500 });
+
+
+        if(!browser.connected){
+            return "ByeBye!";
+        }
 
         try {
             let text = new URL(url).searchParams.get('text');
             text = sanitize(text);
-            await page.waitForFunction(text => document.write(text), { timeout: 2000 },text);
+            console.log(text);
+            await page.waitForFunction(text => document.write(text), { timeout: 500 },text);
             res = "ByeBye!";
         } catch (e) {
+            console.log(e);
             if (e instanceof puppeteer.ProtocolError && e.message.includes('Target closed')) {
                 return res;
             }
@@ -41,6 +49,7 @@ async function visit(path) {
             res = "ByeBye!";
         }
     } catch (e) {
+        res = "ByeBye";
         try { await browser.close(); } catch (e) { }
         return res;
     }
