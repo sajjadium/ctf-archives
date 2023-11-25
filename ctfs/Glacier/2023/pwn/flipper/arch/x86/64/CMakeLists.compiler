@@ -1,0 +1,14 @@
+if(CMAKE_CROSSCOMPILING)
+INCLUDE(CMakeForceCompiler)
+
+SET(CMAKE_SYSTEM_NAME Generic)
+SET(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
+find_program(CMAKE_ASM_COMPILER x86_64-linux-gnu-gcc)
+find_program(CMAKE_C_COMPILER x86_64-linux-gnu-gcc)
+find_program(CMAKE_CXX_COMPILER x86_64-linux-gnu-g++)
+
+find_program(LD_EXECUTABLE x86_64-linux-gnu-gcc)
+find_program(OBJCOPY_EXECUTABLE x86_64-linux-gnu-objcopy)
+
+endif(CMAKE_CROSSCOMPILING)

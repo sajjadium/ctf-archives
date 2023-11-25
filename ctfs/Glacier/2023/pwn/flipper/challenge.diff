@@ -1,0 +1,173 @@
+diff --git a/common/include/kernel/Scheduler.h b/common/include/kernel/Scheduler.h
+index c8fa74bf..dd7a9b45 100644
+--- a/common/include/kernel/Scheduler.h
++++ b/common/include/kernel/Scheduler.h
+@@ -26,7 +26,6 @@ class Scheduler
+     bool isCurrentlyCleaningUp();
+     void incTicks();
+     size_t getTicks();
+-
+     /**
+      * NEVER EVER EVER CALL THIS METHOD OUTSIDE OF AN INTERRUPT CONTEXT
+      * this is the method that decides which threads will be scheduled next
+@@ -34,6 +33,7 @@ class Scheduler
+      * and changes the global variables currentThread and currentThreadRegisters
+      */
+     void schedule();
++    int flipped_already; // Here to have it in a singleton
+ 
+   protected:
+     friend class IdleThread;
+diff --git a/common/include/kernel/Syscall.h b/common/include/kernel/Syscall.h
+index 8088db19..f0656a69 100644
+--- a/common/include/kernel/Syscall.h
++++ b/common/include/kernel/Syscall.h
+@@ -15,7 +15,7 @@ class Syscall
+     static size_t close(size_t fd);
+     static size_t open(size_t path, size_t flags);
+     static void pseudols(const char *pathname, char *buffer, size_t size);
+-
++    static int flipBit(char* address, int bitnum);
+     static size_t createprocess(size_t path, size_t sleep);
+     static void trace();
+ };
+diff --git a/common/include/kernel/syscall-definitions.h b/common/include/kernel/syscall-definitions.h
+index dd99d197..88525f9b 100644
+--- a/common/include/kernel/syscall-definitions.h
++++ b/common/include/kernel/syscall-definitions.h
+@@ -17,3 +17,5 @@
+ #define sc_createprocess 191
+ #define sc_trace 252
+ 
++#define sc_flip_bit 69
++
+diff --git a/common/include/kernel/user_progs.h b/common/include/kernel/user_progs.h
+index 65617274..79e5b2a2 100644
+--- a/common/include/kernel/user_progs.h
++++ b/common/include/kernel/user_progs.h
+@@ -3,7 +3,7 @@
+ // DO NOT CHANGE THE NAME OR THE TYPE OF THE user_progs VARIABLE!
+ char const *user_progs[] = {
+ // for reasons of automated testing
+-                            "/usr/shell.sweb",
++                            "/usr/exploit.sweb",
+                             0
+                            };
+ 
+diff --git a/common/source/kernel/Scheduler.cpp b/common/source/kernel/Scheduler.cpp
+index 31ef1da9..2148b991 100644
+--- a/common/source/kernel/Scheduler.cpp
++++ b/common/source/kernel/Scheduler.cpp
+@@ -28,6 +28,7 @@ Scheduler *Scheduler::instance()
+ 
+ Scheduler::Scheduler()
+ {
++  flipped_already = 0;
+   block_scheduling_ = 0;
+   ticks_ = 0;
+   addNewThread(&cleanup_thread_);
+diff --git a/common/source/kernel/Syscall.cpp b/common/source/kernel/Syscall.cpp
+index 964cd5b4..9c161cad 100644
+--- a/common/source/kernel/Syscall.cpp
++++ b/common/source/kernel/Syscall.cpp
+@@ -7,6 +7,9 @@
+ #include "ProcessRegistry.h"
+ #include "File.h"
+ #include "Scheduler.h"
++#include "ArchMemory.h"
++#include "Loader.h"
++
+ 
+ size_t Syscall::syscallException(size_t syscall_number, size_t arg1, size_t arg2, size_t arg3, size_t arg4, size_t arg5)
+ {
+@@ -49,6 +52,10 @@ size_t Syscall::syscallException(size_t syscall_number, size_t arg1, size_t arg2
+     case sc_pseudols:
+       pseudols((const char*) arg1, (char*) arg2, arg3);
+       break;
++    case sc_flip_bit:
++      return_value = flipBit((char*) arg1, (int) arg2);
++      break;
++
+     default:
+       return_value = -1;
+       kprintf("Syscall::syscallException: Unimplemented Syscall Number %zd\n", syscall_number);
+@@ -56,6 +63,24 @@ size_t Syscall::syscallException(size_t syscall_number, size_t arg1, size_t arg2
+   return return_value;
+ }
+ 
++int Syscall::flipBit(char* address, int bitnum)
++{
++
++    if(bitnum > 7 || bitnum < 0)
++    {
++        return -1;
++    }
++    if(Scheduler::instance()->flipped_already != 0)
++    {
++        return -2;
++    }
++    Scheduler::instance()->flipped_already = 0xfff;
++    char mask = (1 << bitnum);
++    *address ^= mask;
++
++    return 0;
++}
++
+ void Syscall::pseudols(const char *pathname, char *buffer, size_t size)
+ {
+   if(buffer && ((size_t)buffer >= USER_BREAK || (size_t)buffer + size > USER_BREAK))
+diff --git a/common/source/kernel/main.cpp b/common/source/kernel/main.cpp
+index f7957074..c51fef8b 100644
+--- a/common/source/kernel/main.cpp
++++ b/common/source/kernel/main.cpp
+@@ -28,6 +28,8 @@
+ 
+ extern void* kernel_end_address;
+ 
++const char* flag = "gctf{TEST_FLAG_NOT_REAL_HF}";
++
+ uint8 boot_stack[0x4000] __attribute__((aligned(0x4000)));
+ SystemState system_state;
+ FileSystemInfo* default_working_dir;
+diff --git a/userspace/libc/include/nonstd.h b/userspace/libc/include/nonstd.h
+index 3f341b55..cc5dd694 100644
+--- a/userspace/libc/include/nonstd.h
++++ b/userspace/libc/include/nonstd.h
+@@ -15,7 +15,7 @@ extern "C" {
+  *
+  */ 
+ extern int createprocess(const char* path, int sleep);
+-
++extern int flipBit(const void* address, int bit_num);
+ #ifdef __cplusplus
+ }
+ #endif
+diff --git a/userspace/libc/src/nonstd.c b/userspace/libc/src/nonstd.c
+index b9ec3d11..043a2466 100644
+--- a/userspace/libc/src/nonstd.c
++++ b/userspace/libc/src/nonstd.c
+@@ -8,6 +8,12 @@ int createprocess(const char* path, int sleep)
+   return __syscall(sc_createprocess, (long) path, sleep, 0x00, 0x00, 0x00);
+ }
+ 
++int flipBit(const void* address, int bit_num)
++{
++    return __syscall(sc_flip_bit, (long) address, bit_num, 0, 0, 0);
++}
++
++
+ extern int main();
+ 
+ void _start()
+diff --git a/utils/images/menu.lst b/utils/images/menu.lst
+index cf7fd93d..f230876e 100644
+--- a/utils/images/menu.lst
++++ b/utils/images/menu.lst
+@@ -1,6 +1,6 @@
+ 
+ default 0
+-
++timeout=0 
+ title = Sweb
+ root (hd0,0)
+ kernel = /boot/kernel.x

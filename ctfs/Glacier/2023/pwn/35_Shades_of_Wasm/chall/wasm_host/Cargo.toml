@@ -1,0 +1,15 @@
+[package]
+name = "wasm_host"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.75"
+base64 = "0.21.5"
+wasmtime = "=6.0.0"
+wasmtime-wasi = "=6.0.0"
+cranelift-codegen = "=0.93.0"
+cranelift-codegen-meta = "=0.93.0"
+cranelift-codegen-shared = "=0.93.0"

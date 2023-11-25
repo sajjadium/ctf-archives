@@ -1,0 +1,10 @@
+version: "3"
+services:
+  app:
+    build: .
+    ports:
+      - 1337:1337
+    read_only: true
+
+    pids_limit: 8
+    mem_limit: 20971520

@@ -1,0 +1,53 @@
+FROM tobi312/php:8.1-apache
+WORKDIR /var/www/html
+
+COPY ./web/ /var/www/html/
+COPY ./flag/flag.txt /
+
+RUN mkdir -p /var/sqlite/
+COPY ./sqlite.db /var/sqlite/
+
+RUN chown -R 33:33 /var/sqlite/
+RUN chmod 750 /var/sqlite/sqlite.db
+RUN mkdir -p /var/www/html/uploads/
+RUN chown 33:33 /var/www/html/uploads/
+RUN chmod -R 777 /var/www/html/uploads/
+
+USER root
+
+RUN ln -s /dev/null /root/.bash_history
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    python3 python3-pip curl unzip wget cron util-linux \
+    fonts-liberation libasound2 libatk-bridge2.0-0 procps \
+    libnss3 lsb-release xdg-utils libxss1 libdbus-glib-1-2 \
+    libcairo2 libcups2 libgbm1 libgtk-3-0 libpango-1.0-0 \
+    libu2f-udev libvulkan1 libxkbcommon-x11-0 xvfb
+    
+RUN CHROMEDRIVER_VERSION=`curl -sS https://googlechromelabs.github.io/chrome-for-testing/LATEST_RELEASE_STABLE` && \
+    wget -q -O chromedriver_linux64.zip https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/$CHROMEDRIVER_VERSION/linux64/chromedriver-linux64.zip && \
+    unzip chromedriver_linux64.zip && mv chromedriver-linux64/chromedriver /usr/bin/ && \
+    chmod +x /usr/bin/chromedriver && \
+    rm chromedriver_linux64.zip && rm -r chromedriver-linux64
+
+RUN CHROME_SETUP=google-chrome.deb && \
+    wget -q -O $CHROME_SETUP "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" && \
+    dpkg -i $CHROME_SETUP && \
+    apt-get install -y -f && \
+    rm $CHROME_SETUP
+
+RUN rm /usr/lib/python3.11/EXTERNALLY-MANAGED
+
+RUN python3 -m pip install selenium urllib3 python-decouple requests bs4 pyvirtualdisplay
+
+COPY ./admin-simulation/ /root/admin_simulation
+
+RUN echo '#!/bin/bash' > /entrypoint.d/simulation.sh
+RUN echo 'echo "$(env | grep "HOST=.*")" >> /etc/environment' >> /entrypoint.d/simulation.sh
+RUN echo 'echo "$(env | grep "ADMIN_PW=.*")" >> /etc/environment' >> /entrypoint.d/simulation.sh
+RUN echo 'service cron start' >> /entrypoint.d/simulation.sh
+RUN chmod +x /entrypoint.d/simulation.sh
+
+RUN echo '* * * * * root /usr/bin/flock -w 0 /var/cron.lock python3 /root/admin_simulation/admin.py "$ADMIN_PW" > /var/log/admin_simulation.log 2> /var/log/admin_simulation.error' >> /etc/crontab

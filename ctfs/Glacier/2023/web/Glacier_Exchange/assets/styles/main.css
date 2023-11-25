@@ -1,0 +1,141 @@
+html {
+    background: url(/assets/images/bg.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.box {
+    background-color: #27273e;
+    opacity: 0.9;
+    /* min-height: 500px; */
+}
+
+.textfield-area {
+    border: 1px solid #72727b;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.textfield-area .button {
+    color: white;
+    background: transparent;
+    border: none;
+}
+
+.textfield-area input:hover {
+    color: white;
+}
+
+.textfield-area input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    width: 100%;
+}
+
+.textfield-area label {
+    font-size: 12px;
+}
+
+.textfield-area input:focus,
+.textfield-area .button:focus,
+.textfield-area .button:focus-visible,
+.select-area .input:focus,
+.select-area .input:active {
+    outline: 0 !important;
+    box-shadow: none !important;
+}
+
+.select-area {
+    height: 0;
+}
+
+.select-area .input,
+.select-area .input:focus,
+.select-area .input::placeholder {
+    background: #3b3b4f;
+    color: white;
+    border: none;
+}
+
+.select-area .control.has-icons-right .input:focus~.icon {
+    color: #dbdbdb;
+}
+
+.select-area .dropdown-item {
+    font-size: 0.75rem;
+}
+
+.select-area .dropdown-menu {
+    padding-top: 0;
+    min-width: 0;
+}
+
+.select-area a.dropdown-item {
+    padding-right: 1rem;
+    color: white;
+}
+
+.select-area .dropdown-content {
+    background: #27273e;
+    border: 1px solid #353544;
+    border-radius: 0px 0px 2px 2px;
+    padding: 0px;
+}
+
+.select-area .dropdown-item:hover {
+    background: #1e1e31;
+}
+
+.rotate-area i {
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #3a3a57;
+    font-size: 30px;
+    color: #15b1d5;
+}
+
+.rotate-area i:hover {
+    background-color: #151522;
+    cursor: pointer;
+}
+
+
+/** Chart library style **/
+
+#chartcontrols {
+    height: auto;
+    padding: 5px 5px 0 16px;
+    max-width: 100%;
+}
+
+#chartdiv {
+    width: 100%;
+    height: 600px;
+    max-width: 100%;
+}
+
+.balance .table {
+    background-color: transparent;
+    color: white;
+    width: 100%;
+}
+
+.balance .table th {
+    background-color: transparent;
+    color: white;
+}
+
+.fancy-button button,
+.fancy-button button:focus,
+.fancy-button button:hover,
+.fancy-button button::placeholder {
+    background-color: #90b4ce;
+    border-color: #02375e;
+    border-width: 2px;
+    color: #111160;
+}
+

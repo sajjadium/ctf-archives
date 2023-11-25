@@ -1,0 +1,1 @@
+"You start your journey up the glacier, to get to new heights (maybe even the moon). To get up the first part of the glacie you will need a guide to help you. The cheapest guide that you find charges you 1000 glacier coins, but unfortunately you only have 10. Find a way to pay the guide. To get the ticket, run solve-pow.py"

@@ -1,0 +1,20 @@
+# Read the comments, they are actually helpful. (like this one)
+version: "3"
+
+services:
+  app:
+    # Challenge related options
+    build: .
+    ports:
+      - 1337:1337
+    # Uncomment this block during development
+    # Every time you rebuild your file you can immeditately test it
+    # volumes:
+    #  - ./chall:/app
+
+    # Security releated options
+    user: 1337:1337
+    privileged: false
+    read_only: true
+    cap_add: [] # See "man 7 capabilities" for a full list 
+    cap_drop: [] # See "man 7 capabilities" for a full list

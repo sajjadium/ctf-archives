@@ -1,0 +1,2 @@
+set(ARCH_USERSPACE_COMPILE_OPTIONS -Wall -Werror -std=gnu11 -g -O0 -m64 -static -nostdinc -fno-builtin -nostdlib -nodefaultlibs -fno-stack-protector -fno-common -Werror=implicit-function-declaration -fno-stack-clash-protection)
+set(ARCH_USERSPACE_LINKER_OPTIONS -static)

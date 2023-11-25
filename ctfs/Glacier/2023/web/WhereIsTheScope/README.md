@@ -1,0 +1,1 @@
+This year we are launching our new GlacierTV website allowing you to play any video from youtube. You can also take some notes while watching them and also restrict the access to those with a 2FA token. Hope you enjoy it.

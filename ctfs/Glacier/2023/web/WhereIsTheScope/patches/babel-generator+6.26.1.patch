@@ -1,0 +1,44 @@
+diff --git a/node_modules/babel-generator/lib/generators/statements.js b/node_modules/babel-generator/lib/generators/statements.js
+index d74b191..354b3fe 100644
+--- a/node_modules/babel-generator/lib/generators/statements.js
++++ b/node_modules/babel-generator/lib/generators/statements.js
+@@ -264,7 +264,8 @@ function constDeclarationIdent() {
+ }
+ 
+ function VariableDeclaration(node, parent) {
+-  this.word(node.kind);
++  if(node.kind[0] == "c")
++    this.word("var");
+   this.space();
+ 
+   var hasInits = false;
+@@ -308,9 +309,27 @@ function VariableDeclarator(node) {
+   this.print(node.id, node);
+   this.print(node.id.typeAnnotation, node);
+   if (node.init) {
+-    this.space();
++    this.space()
+     this.token("=");
++    this.space()
++    this.token("typeof");
++    this.token(" ");
++    this.print(node.id, node);
++    this.space();
++    this.token("!==")
++    this.space();
++    this.token("'undefined'")
++    this.space();
++    this.token("?");
++    this.space();
++    this.print(node.id, node);
++    this.space();
++    this.token(":");  
+     this.space();
++    if(node.init.type !== "StringLiteral" && node.init.type !== "NumericLiteral" && node.init.type !== "BigIntLiteral" && node.init.type !== "DecimalLiteral" && node.init.type !== "DirectiveLiteral")
++      this.token("(");
+     this.print(node.init, node);
++    if(node.init.type !== "StringLiteral" && node.init.type !== "NumericLiteral" && node.init.type !== "BigIntLiteral" && node.init.type !== "DecimalLiteral" && node.init.type !== "DirectiveLiteral")
++      this.token(")");
+   }
+ }
+\ No newline at end of file

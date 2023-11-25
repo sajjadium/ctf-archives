@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+
+	<title>GlacierExchange</title>
+	<link rel="shortcut icon" href="/assets/icons/favicon.ico">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="assets/styles/main.css">
+</head>
+
+<body>
+	<section class="hero is-fullheight" v-if="coins.length > 0 && balances.length > 0" id="app">
+		<div class="hero-body">
+			<div class="container">
+				<div class="columns">
+					<div class="column">
+						<glacier-chart :key="sourceCoinValue + '/' + targetCoinValue" :name="sourceCoinValue + '/' + targetCoinValue"></glacier-chart>
+					</div>
+					<div class="column">
+						<div class="balance box has-text-white">
+							<h1 class="title has-text-centered has-text-white">Your Balance</h1>
+							<table class="table has-text-centered">
+								<thead>
+									<tr>
+										<th class="has-text-centered">Coin</th>
+										<th class="has-text-centered">Balance</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr v-for="balance in balances">
+										<th class="has-text-centered">$$ balance.name $$</th>
+										<td>$$ balance.value $$</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="2">
+											<div class="fancy-button buttons are-medium">
+												<button class="button is-fullwidth" @click="joinGlacierClub">Join GlacierClub</button>
+											</div>
+										</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+						<div class="box has-text-white">
+							<h1 class="title has-text-centered has-text-white">GlacierExchange</h1>
+
+							<p style="text-align: justify;" class="mb-5">
+								The GlacierExchange is a revolutionary tool for converting glacierchain coins from one
+								currency to another.
+								The conversion rate is always guaranteed to be 1:1 without fees.
+							</p>
+							<!-- Input field -->
+							<div class="textfield-area">
+								<div class="columns is-flex is-vcentered">
+									<div class="column">
+										<label for="from">From</label>
+										<input type="text" v-model="sourceCoinAmount" />
+									</div>
+									<div class="column is-two-fifths has-text-right">
+										<div class="dropdown-trigger">
+											<button @click="dropdownVisibility.source ^= 1" class="button"
+												aria-haspopup="true" aria-controls="dropdown-menu">
+												<img class="mr-3" style="width: 32px" :src="'/assets/icons/' + sourceCoin.name + '.png'" alt="">
+												<span>$$ sourceCoin.short $$</span>
+												<span class="ml-2 icon is-small">
+													<i class="fa fa-angle-down" aria-hidden="true"></i>
+												</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Dropdown -->
+							<div class="select-area" id="select-area-from">
+								<div :class="['dropdown', dropdownVisibility.source ? 'is-active' : '']">
+									<div class="dropdown-menu" role="menu" data-adjust-width-to="select-area-from">
+										<div class="control has-icons-right">
+											<input v-model="sourceCoinFilter" type="text"
+												placeholder="Search for symbol" class="input is-transparent is-small">
+											<span class="icon is-right">
+												<i class="fa fa-search"></i>
+											</span>
+										</div>
+										<div class="dropdown-content">
+											
+											<a @click="changeSourceCoin(coin.name)" href="javascript:void(0)"
+												v-for="coin in filteredSourceCoins" class="dropdown-item">
+												<img class="mr-3" style="width: 16px; vertical-align: middle;" :src="'/assets/icons/' + coin.name + '.png'" alt="">
+												$$ coin.value $$
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Swap Coins -->
+							<div class="has-text-centered rotate-area mt-5 mb-5">
+								<i @click="swapCoins" class="fa-solid fa-rotate"></i>
+							</div>
+
+							<!-- Input field -->
+							<div class="textfield-area">
+								<div class="columns is-flex is-vcentered">
+									<div class="column">
+										<label for="from">To</label>
+										<input type="text" disabled :value="sourceCoinAmount" />
+									</div>
+									<div class="column is-two-fifths has-text-right">
+										<div class="dropdown-trigger">
+											<button @click="dropdownVisibility.target ^= 1" class="button"
+												aria-haspopup="true" aria-controls="dropdown-menu">
+												<img class="mr-3" style="width: 32px" :src="'/assets/icons/' + targetCoin.name + '.png'" alt="">
+												<span>$$ targetCoin.short $$</span>
+												<span class="ml-2 icon is-small">
+													<i class="fa fa-angle-down" aria-hidden="true"></i>
+												</span>
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Dropdown -->
+							<div class="select-area" id="select-area-from">
+								<div :class="['dropdown', dropdownVisibility.target ? 'is-active' : '']">
+									<div class="dropdown-menu" role="menu" data-adjust-width-to="select-area-from">
+										<div class="control has-icons-right">
+											<input v-model="targetCoinFilter" type="text"
+												placeholder="Search for symbol" class="input is-transparent is-small">
+											<span class="icon is-right">
+												<i class="fa fa-search"></i>
+											</span>
+										</div>
+										<div class="dropdown-content">
+											<a @click="changeTargetCoin(coin.name)" href="javascript:void(0)"
+												v-for="coin in filteredTargetCoins" class="dropdown-item">
+												<img class="mr-3" style="width: 16px; vertical-align: middle;" :src="'/assets/icons/' + coin.name + '.png'" alt="">
+												$$ coin.value $$
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="fancy-button buttons are-medium mt-4">
+								<button class="button is-fullwidth" @click="convert">Convert</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div ref="modalGlacierclub" class="modal">
+			<div class="modal-background" @click="closeClubModal"></div>
+		  
+			<div class="modal-content">
+			  <div class="box has-text-white">
+				<div v-if="club && club.inClub === true">
+					<h1 class="title has-text-centered has-text-white">Welcome my lord</h1>
+					<p>
+						Your royality is sufficient to join glacier club.<br />
+						A member of the glacier club will contact you.<br />
+						Please hold ready your club token when they contact you<br />
+						Club-Token: $$ club.clubToken $$
+					</p>
+				</div>
+				<div v-else>
+					<h1 class="title has-text-centered has-text-white">Insufficient royality</h1>
+					<p>
+						You are not eligible to join the royal club of the glaciers.<br />
+						Earn more money to get a member!<br />
+						Make sure to empty all coins except the cashout wallet.
+					</p>
+				  </div>
+				</div>
+			</div>
+		  
+			<button @click="closeClubModal" class="modal-close is-large" aria-label="close"></button>
+		</div>
+	</section>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.7.14"></script>
+
+	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/stock.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/themes/Dark.js"></script>
+
+	<script src="/assets/scripts/chart.component.js"></script>
+	<script src="/assets/scripts/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>GlacierTV</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+    </head>
+    <body>
+        <div id="navigation">
+            <div class="offset-md-3 col-md-6 text-center">
+                <div class="input-group">
+                    <span class="input-group-text"><i style="color: #ff0000; font-size:20px;" class="bi bi-youtube"></i></span>
+                    <input id="searchInput" value="" type="text" class="form-control form-control-sm" placeholder="Paste a link to a Youtube video" aria-label="Search" aria-describedby="search">
+                    <span class="input-group-text" id="search"><i class="bi bi-search"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-3" style="padding-left: 50px;">
+                <p>You can setup a 2FA token for this session in order to protect your notes.</p>
+                <button id="setup_2fa" class="btn btn-warning btn-sm">Setup 2FA</button>
+                <p id="fa_note" style="display: none; margin-top: 10px; color:#f03b3b">Please keep your 2FA token save and do not share with anyone!<br/>2FA is now activated!</p>
+                <div style="width: 100px" class="text-center mt-2" id="qrcode_2fa"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-center">
+                    <iframe width="970" height="600" id="viewer" frameborder="0"></iframe>
+                    <br />
+                    <a class="btn btn-secondary source-link" href=""><i class="bi bi-youtube"></i> Source</a>
+                    <a class="btn btn-danger" id="reportBtn"><i class="bi bi-flag"></i> Report</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <p>You can store here your notes. For security reasons we recommend setting up a 2FA token!</p>
+                <textarea class="notes" name="" id="notes_content" cols="30" rows="10"></textarea>
+                <br /><br />
+                <button class="btn btn-danger" id="notes_submit">Save notes</button>
+                <button class="btn btn-light" id="notes_load">Load notes</button>
+            </div>          
+        </div>
+        <!-- https://davidshimjs.github.io/qrcodejs/ -->
+        <script src="/libs/qrcode.min.js"></script>
+        <script src="/assets/js/index.js"></script>
+    </body>
+</html>

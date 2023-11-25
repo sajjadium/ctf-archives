@@ -1,0 +1,67 @@
+set(KERNEL_BINARY kernel64.x)
+
+if (CMAKE_COMPILER_IS_GNUCC AND (CMAKE_CXX_COMPILER_VERSION VERSION_EQUAL 8 OR CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 8))
+  set(FCF_PROTECTION_FLAG -fcf-protection=none)
+else()
+  set(FCF_PROTECTION_FLAG )
+endif()
+
+set(ARCH_X86_64_KERNEL_CFLAGS -m64 -O0 -gdwarf-2 -Wall -Wextra -Werror -Wno-error=format -Wno-nonnull-compare -nostdinc -nostdlib -nostartfiles -nodefaultlibs -fno-builtin -fno-exceptions -fno-stack-protector -ffreestanding -mcmodel=kernel -mno-red-zone -mgeneral-regs-only -mno-mmx -mno-sse2 -mno-sse3 -mno-3dnow ${FCF_PROTECTION_FLAG} ${NOPICFLAG})
+
+set(KERNEL_CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -std=gnu++17 -nostdinc++ -fno-rtti ${ARCH_X86_64_KERNEL_CFLAGS})
+set(KERNEL_CMAKE_C_FLAGS   ${CMAKE_C_FLAGS}   -std=gnu11 ${ARCH_X86_64_KERNEL_CFLAGS})
+
+set(ARCH_LD_ARGUMENTS -m64 -Wl,--build-id=none -Wl,-z,max-page-size=0x1000 -Wl,-melf_x86_64 -nostdinc -nostdlib -nodefaultlibs)
+set(KERNEL_LD_ARGUMENT ${ARCH_LD_ARGUMENTS} -mcmodel=kernel ${NOPIEFLAG})
+set(ARCH_APPEND_LD_ARGUMENTS )
+
+
+function(ARCH2OBJ ARCHOBJ_LIBNAME LIBRARY_NAME)
+  file(GLOB arch_files "*.32.C")
+
+  if(arch_files)
+    set(ARCHOBJS_TARGET ${LIBRARY_NAME}_archobjs)
+
+    add_library(${ARCHOBJS_TARGET} OBJECT ${arch_files})
+
+    target_compile_options(${ARCHOBJS_TARGET} PRIVATE
+      $<$<COMPILE_LANGUAGE:CXX>:${KERNEL_CMAKE_CXX_FLAGS}>
+      $<$<COMPILE_LANGUAGE:C>:${KERNEL_CMAKE_C_FLAGS}>
+      -m32 -g0 -mcmodel=32 -mgeneral-regs-only -momit-leaf-frame-pointer -Wa,--64 -fno-toplevel-reorder ${FCF_PROTECTION_FLAG}
+      )
+
+    set(${ARCHOBJ_LIBNAME} ${ARCHOBJS_TARGET} PARENT_SCOPE)
+  endif(arch_files)
+endfunction(ARCH2OBJ)
+
+set(KERNEL_IMAGE_OBJCOPY COMMAND ${OBJCOPY_EXECUTABLE} ${PROJECT_BINARY_DIR}/kernel.x --strip-unneeded ${PROJECT_BINARY_DIR}/kernel.x)
+if ("${DEBUG}" STREQUAL "1")
+  set(KERNEL_IMAGE_OBJCOPY )
+endif()
+set(KERNEL_IMAGE_OBJCOPY
+  COMMAND ${PROJECT_BINARY_DIR}/add-dbg ${PROJECT_BINARY_DIR}/kernel.x ${PROJECT_BINARY_DIR}/kernel.dbg
+  ${KERNEL_IMAGE_OBJCOPY}
+  COMMAND mv ${PROJECT_BINARY_DIR}/kernel.x ${PROJECT_BINARY_DIR}/kernel64.x && ${OBJCOPY_EXECUTABLE} -O elf32-i386 ${PROJECT_BINARY_DIR}/kernel64.x ${PROJECT_BINARY_DIR}/kernel.x
+  )
+
+set(AVAILABLE_MEMORY 8M)
+
+set(QEMU_BIN qemu-system-x86_64)
+set(QEMU_FLAGS_COMMON -m ${AVAILABLE_MEMORY} -drive file=${HDD_IMAGE},index=0,media=disk -debugcon stdio -no-reboot)
+string(REPLACE ";" " " QEMU_FLAGS_COMMON_STR "${QEMU_FLAGS_COMMON}")
+
+# qemu: Run qemu in non debugging mode
+add_custom_target(qemu
+	COMMAND	${QEMU_BIN} ${QEMU_FLAGS_COMMON} -cpu qemu64 | tee output.log
+	COMMENT "Executing `${QEMU_BIN} ${QEMU_FLAGS_COMMON_STR} -cpu qemu64`"
+	WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
+	COMMAND reset -I
+	)
+
+# qemugdb: Run qemu in debugging mode
+add_custom_target(qemugdb
+	COMMAND	${QEMU_BIN} ${QEMU_FLAGS_COMMON} -s -S | tee output.log
+	COMMENT "Executing `gdb ${QEMU_BIN} ${QEMU_FLAGS_COMMON_STR} -s -S on localhost:1234`"
+	WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
+	COMMAND reset -I
+	)

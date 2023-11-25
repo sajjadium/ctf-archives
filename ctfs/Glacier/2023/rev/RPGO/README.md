@@ -1,0 +1,1 @@
+Somebody recently tried developing a new game, but it seems like they forgot to implement some important features. That has never stopped anyone from playing a game, right? But just playing the game is not enough, you need to get the highscore! Can you speedrun it?

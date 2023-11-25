@@ -1,0 +1,39 @@
+
+default 0
+timeout 0
+
+
+title = Sweb
+root (hd0,0)
+kernel = /boot/kernel.x
+modulenounzip = /boot/kernel.dbg
+
+title = Sweb - SVGA - 640x480x16
+root (hd0,0)
+kernel = /boot/kernel.x
+modulenounzip = /boot/kernel.dbg
+vbematch 640 480 16
+
+title = Sweb - SVGA - 800x600x16
+root (hd0,0)
+kernel = /boot/kernel.x
+modulenounzip = /boot/kernel.dbg
+vbematch 800 600 16
+
+title = Sweb - SVGA - 1024x768x16
+root (hd0,0)
+kernel = /boot/kernel.x
+modulenounzip = /boot/kernel.dbg
+vbematch 1024 768 16
+
+title = Sweb - SVGA - 1280x1024x16
+root (hd0,0)
+kernel = /boot/kernel.x
+modulenounzip = /boot/kernel.dbg
+vbematch 1280 1024 16
+
+title = Sweb - SVGA - 1600x1200x16
+root (hd0,0)
+kernel = /boot/kernel.x
+modulenounzip = /boot/kernel.dbg
+vbematch 1600 1200 16

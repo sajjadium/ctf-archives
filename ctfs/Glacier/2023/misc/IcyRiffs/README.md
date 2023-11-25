@@ -1,0 +1,1 @@
+At the last halloween party we played some guitar hero, which was a whole lot of fun and helped me to get over my fear of ghosts. Eventually we played through all the songs the game had to offer, so I decided to create one of my own. I also added a Warmup Map called Invincible, so that you can easily shred through the other one. I hope you enjoy it!

@@ -1,0 +1,1 @@
+Within the heart of Austria's alpine mystery lies your next conquest. Ascend the highest peak, shrouded in whispers of past explorers, to uncover the flag.txt awaiting atop. Beware the silent guards that stand sentinel along the treacherous path, obstructing your ascent.

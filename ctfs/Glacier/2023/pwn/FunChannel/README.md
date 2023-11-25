@@ -1,0 +1,1 @@
+"Good luck getting my secret password hehe. (Note: There are a lot of files in the current directory. The flag file has an arbitrary name, is the only file that ends with .txt and consists only of numbers 0-9 and letters. a-zA-Z)"

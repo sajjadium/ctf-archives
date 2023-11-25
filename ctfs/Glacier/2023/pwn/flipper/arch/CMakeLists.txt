@@ -1,0 +1,4 @@
+
+
+include(${ARCH}/CMakeLists.subfolders)
+

@@ -1,0 +1,28 @@
+define stop_on_pagefault
+	handle SIGSEGV stop print pass
+	echo Now stopping on every pagefault\n
+end
+document stop_on_pagefault
+	Tells GDB to stop on every pagefault (default)
+end
+
+define continue_on_pagefault
+	handle SIGSEGV nostop noprint nopass
+	echo Now continuing on every pagefault\n
+end
+document continue_on_pagefault
+	Tells GDB to ignore pagefaults
+end 
+
+set architecture i386:x86-64
+
+# Connect to Bochs' gdbstub
+target remote 127.0.0.1:1234
+
+# Welcome message
+echo \n\n
+echo You can now set trace and breakpoints.\n
+echo Enter 'continue' (or 'c') when you're done.\n
+
+break sweb_assert
+break startup

@@ -1,0 +1,17 @@
+export TERM='xterm-256color'
+PROMPT="%F{209}[%F{green}%n@%M %F{116}%(3~|../%2~|%~)%F{209}]$%f "
+
+clear
+
+echo ""
+echo ".--------------------------------------------------------------------."
+echo "|   [ Welcome to pwn/glacier-military-daemon from GlacierCTF2023 ]   |"
+echo "|                                                                    |"
+echo "| - Don't try to take infra down. Don't be Eve                       |"
+echo "| - You have zsh as shell & this is Debian 12 slim                   |"
+echo "| - There is a flag in /flag.txt and a binary in /sbin/grhealth      |"
+echo "| - This instance is unique and has a timeout of 5 minutes           |"
+echo "| - chall.zip has a local version without PoW, JWT or timeouts       |"
+echo "|                                                                    |"
+echo "·--------------------------------------------------------------------·"
+echo ""
