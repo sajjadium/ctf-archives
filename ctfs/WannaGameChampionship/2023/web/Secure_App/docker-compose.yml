@@ -1,0 +1,45 @@
+version: '3'
+services:
+  app:
+    build: ./
+    restart: always
+    depends_on:
+      app-db:
+        condition: service_healthy
+    environment:
+      - MYSQL_HOSTNAME=app-db
+      - MYSQL_ROOT_PASSWORD=66b909b7e5e1ef823e35736a84cf6e33
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=to016
+      - MYSQL_PASSWORD=095b9af4f38414e886c5e54505430cff
+  app-db:
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password 
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=66b909b7e5e1ef823e35736a84cf6e33
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=to016
+      - MYSQL_PASSWORD=095b9af4f38414e886c5e54505430cff
+    volumes:
+      - "./flag:/var/lib/mysql-files/flag"
+      - "./db/init.sql:/docker-entrypoint-initdb.d/init.sql"
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
+  bot:
+    build: ./bot
+    restart: always
+    volumes:
+      - "./flag:/flag"
+  service:
+    image: nginx:alpine
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app
+      - bot

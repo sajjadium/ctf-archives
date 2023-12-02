@@ -1,0 +1,9 @@
+version: '3'
+services:
+  service:
+    build: ./
+    restart: always
+    volumes:
+      - ./flag:/flag
+    ports:
+      - 12001:12001

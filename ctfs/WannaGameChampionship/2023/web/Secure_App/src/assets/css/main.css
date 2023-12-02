@@ -1,0 +1,68 @@
+.canvas_img{
+    height: auto;
+    width: 500px;
+}
+
+.navbar-nav{
+    width: 100%;
+}
+
+.nav-right{
+    width: 100%;
+    float: right;
+    text-align: right;
+}
+
+@media only screen and (max-width: 600px) 
+{
+    .canvas_img{
+        height: auto;
+        width: 250px;
+    }
+}
+
+#particles-js {
+    position : absolute;
+    width:100%;
+    height:100%;
+}
+
+.panel.panel-default{
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: 1px solid #714cdf;
+    background-color: #0c0d16;
+}
+
+.solved
+{
+    background-color: #282a38 !important;
+}
+
+#svgContainer { 
+	z-index: -10;
+	position:absolute;
+}
+
+.mb-10{
+    margin-bottom: 6rem !important;
+}
+
+
+a:focus {
+    outline:none;
+}
+a::-moz-focus-inner {
+    border:0;
+}
+/* CLOCK */
+.countdown-timer {
+    zoom: 0.5;
+    -moz-transform: scale(0.5);
+}
+
+.footer img{
+    width: 350px;
+    height: 250px;
+}

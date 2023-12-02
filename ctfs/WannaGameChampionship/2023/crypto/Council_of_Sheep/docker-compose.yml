@@ -1,0 +1,15 @@
+version: '3'
+services:
+  service:
+    build: ./
+    restart: always
+    volumes:
+      - ./flag:/flag
+    expose:
+      - 12345
+    networks:
+      - net
+networks:
+  net:
+    name: cnsc_frp_containers
+    external: true

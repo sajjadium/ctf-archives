@@ -1,0 +1,107 @@
+<?php
+require '../config.php';
+session_start();
+if (!@$_SESSION["isLoggedIn"]) {
+    header("Location: /index.php");
+    die();
+}
+
+if (isset($_POST['confirm_code']) && is_string($_POST['confirm_code'])) {
+
+    $query = $conn->prepare("SELECT username, password FROM users WHERE username = ? and password = ?");
+    $md5_password = md5($password);
+    $query->execute([$_SESSION["username"], md5($_POST['confirm_code'])]);
+
+    $result = $query->fetch(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        session_destroy();
+        die("Logout successfully");
+    } else {
+        die("Logout failed");
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>App - CTF</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="../assets/css/bootstrap4-neon-glow.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/particles.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
+
+</head>
+
+<body>
+
+    <div id="particles-js"></div>
+    <div class="navbar-dark text-white">
+    </div>
+    <div class="jumbotron bg-transparent mb-0 radius-0">
+        <div class="container">
+            <div class="row">
+
+
+            </div>
+            <div class="col-xl-6">
+
+            </div>
+        </div>
+        <div class="container py-5 mb-5">
+
+            <div class="row py-4">
+                <div class="col-md-8 order-md-2">
+                    <h4 class="mb-3">Confirm logout</h4>
+                    <form method="POST" action="/api/logout.php">
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
+                                </div>
+                                <input type="password" class="form-control" id="confirm_code" name="confirm_code" placeholder="Enter your password to logout" required>
+                            </div>
+                        </div>
+                        <hr class="mb-4">
+                        <hr class="mb-4">
+                        <button class="btn btn-outline-success btn-shadow btn-lg btn-block" type="submit"> Send </button>
+                    </form>
+                    <br>
+
+
+                </div>
+                <div class="col-md-2 order-md-1"></div>
+                <div class="col-md-2 order-md-3"></div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="row justify-content-center" style="text-align: center">
+            </div>
+            <div style="text-align: center">
+                &copy; 2023 UIT.
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,8 @@
+services:
+  service:
+    build: .
+    ports:
+      - 10024:10024
+    environment:
+      PYTHONUNBUFFERED: 1
+    restart: always

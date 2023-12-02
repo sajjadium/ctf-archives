@@ -1,0 +1,21 @@
+services:
+  app:
+    build: src
+    ports:
+      - 2808:2808
+    restart: always
+    environment:
+      PYTHONUNBUFFERED: 1
+    depends_on:
+      - mongo
+    volumes:
+      - ./flag:/flag
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 123456
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet

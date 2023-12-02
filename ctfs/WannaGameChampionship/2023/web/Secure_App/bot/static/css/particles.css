@@ -1,0 +1,19 @@
+/* ---- base ---- */
+
+canvas{
+  display:block;
+  vertical-align:bottom;
+  /* background: rgb(33,36,50); */
+  position: fixed;
+}
+
+/* ---- particles.js container ---- */
+
+#particles-js{
+  width: 100%;
+  height: 100%;
+  background-image: url('');
+  background-size: cover;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+}

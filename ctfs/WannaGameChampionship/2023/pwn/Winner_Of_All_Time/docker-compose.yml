@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  winner_of_all_time:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./flag:/flag
+    expose:
+      - 13337
+    ports:
+      - "13337:13337"
+    

@@ -2449,6 +2449,11 @@
             <td><a href="https://ctftime.org/event/1988/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/WannaGameChampionship">WannaGameChampionship</a></td>
+            <td><a href="ctfs/WannaGameChampionship/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2146/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/WeCTF">WeCTF</a></td>
             <td><a href="ctfs/WeCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1546/tasks/" target="_blank">CTFtime</a></td>
