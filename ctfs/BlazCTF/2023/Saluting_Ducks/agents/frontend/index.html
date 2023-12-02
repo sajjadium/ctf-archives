@@ -1,0 +1,810 @@
+<html>
+<head>
+    <title>Saluting Duck</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#92d374">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+
+<body class="background">
+    <div class="nav">
+        <div class="nav-title">
+            <div>
+                <label style="font-size: 40px;">Saluting Ducks</label>
+                <div style="display: flex; align-items: center; font-size: 30px;">
+                    <img src="poop.png" style="height: 1.2em; margin-left: -5px;" draggable="false"/>
+                    <label id="poop-count">0</label>
+                    <label>($</label>
+                    <label id="usdt-value">0</label>
+                    <label>)</label>
+                </div>
+            </div>
+            <div style="margin-left: 40px;" id="ducks-illustraation">
+                
+            </div>
+
+        </div>
+    </div>
+    <div id="ducks"></div>
+    <div class="leaderboard">
+        <label id="saving"></label>
+        <!-- <img src="earth2.png" style="height: 5em;"/> -->
+        <button onclick="reset()">Reset</button>
+    </div>
+
+    
+    <canvas id="canvasChessboard" ></canvas>
+</body>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    .leaderboard {
+        font: 25px 'VT323', monospace;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+
+        z-index: 100;
+    }
+    .store {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    .store-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 10px;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+
+    .close {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        cursor: pointer;
+        font-size: 1.5em;
+    }
+
+    .nav {
+        font-family: 'VT323', monospace;
+        font-weight: 800;
+        background-color: whitesmoke;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 100;
+        border-radius: 10px;
+        border-style: solid;
+        border-width: 5px;
+    }
+    .nav-title {
+        display: flex;
+        align-items: center;
+        padding: 10px 25px;
+    }
+    #ducks-illustraation {
+        max-width: 200px;
+        overflow-x: scroll;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        height: 100%;
+        font-size: 40px;
+    }
+    .gift {
+        position: absolute;
+        transition: all 1s;
+        z-index: 20;
+        height: 5em;
+    }
+    .duck {
+        position: absolute;
+        transition: all 7s;
+        z-index: 20;
+        cursor: pointer;
+
+    }
+    @media screen and (max-width: 600px) {
+        .nav {
+            font: 25px 'VT323', monospace;
+            border-width: 3px;
+            right: 10px;
+        }
+        .nav-title {
+            padding: 5px 10px;
+        }
+        .gift {
+            height: 3em;
+        }
+        .duck {
+            transition: all 10s;
+        }
+        .leaderboard {
+            font: 10px 'VT323', monospace;
+        }
+
+    }
+
+
+    .duck-illustration {
+        margin-left: -15px;
+    }
+    .poop-count {
+    }
+    
+    .background {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
+    #ducks {
+        overflow: hidden;
+    }
+
+
+
+    .duck-clicked {
+        animation: squeeze 0.5s ease-in-out forwards;
+    }
+
+    .poop {
+        position: absolute;
+        opacity: 0;
+        transition: all 0.2s;
+    }
+
+    .poop-appear {
+        opacity: 1;
+    }
+
+    @keyframes poop-appear {
+        0% {
+            transform: scale(0.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes poop-disappear {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0.5);
+        }
+    }
+
+    @keyframes squeeze {
+        0% {
+            transform: scaleX(1) scaleY(1); /* Initial state */
+        }
+        50% {
+            transform: scaleX(1.2) scaleY(0.8); /* Squeeze state (wider and shorter) */
+        }
+        100% {
+            transform: scaleX(1) scaleY(1); /* Return to initial state */
+        }
+    }
+</style>
+
+<script src="https://bernardo-castilho.github.io/DragDropTouch/DragDropTouch.js"></script>
+<script>
+    let duckHeight;
+    let duckPoopSize;
+    let duckPoopDeviation;
+    let protectedArea = 200;
+    let navDivident = 4;    
+
+    if (window.innerWidth < 600) {
+        duckHeight = {
+            0: 2,
+            1: 3,
+            2: 4,
+            3: 4.5,
+            4: 4.8,
+            5: 5,
+            6: 5.2,
+            7: 5.4,
+            8: 5.6,
+            9: 5.8,
+            10: 6,
+            11: 6.2,
+            12: 6.4,
+        };
+
+        duckPoopSize = {
+            0: 1.6,
+            1: 2,
+            2: 2.5,
+            3: 2.8,
+            4: 3,
+            5: 3.2,
+            6: 3.4,
+            7: 3.6,
+            8: 3.8,
+            9: 4,
+            10: 4.2,
+            11: 4.4,
+            12: 4.6,
+        };
+
+        duckPoopDeviation = {
+            0: 15,
+            1: 20,
+            2: 25,
+            3: 28,
+            4: 30,
+            5: 32,
+            6: 34,
+            7: 36,
+            8: 38,
+            9: 40,
+            10: 42,
+            11: 44,
+            12: 46,
+        };
+        navDivident = 2;
+        protectedArea = 70;
+    } else {
+        duckHeight = {
+            0: 4,
+            1: 4.5,
+            2: 5,
+            3: 5.5,
+            4: 6,
+            5: 6.5,
+            6: 7,
+            7: 7.3,
+            8: 7.6,
+            9: 7.9,
+            10: 8.2,
+            11: 8.5,
+            12: 8.8,
+        };
+
+        duckPoopSize = {
+            0: 3,
+            1: 3.2,
+            2: 3.5,
+            3: 4,
+            4: 4.2,
+            5: 4.4,
+            6: 4.6,
+            7: 4.8,
+            8: 5,
+            9: 5.2,
+            10: 5.4,
+            11: 5.6,
+            12: 5.8,
+        };
+
+        duckPoopDeviation = {
+            0: 22,
+            1: 24,
+            2: 28,
+            3: 38,
+            4: 38,
+            5: 38,
+            6: 38,
+            7: 40,
+            8: 42,
+            9: 44,
+            10: 46,
+            11: 48,
+            12: 50,
+            
+        };
+    }
+
+    let journals = [];
+
+    let unopenAirDrop = 0;
+
+    function airdrop() {
+        unopenAirDrop++;
+        let giftBox = document.createElement("img");
+        giftBox.draggable = false;
+        giftBox.src = "gift.png";
+
+        let x = Math.floor(Math.random() * window.innerWidth);
+        let y = Math.floor(Math.random() * window.innerHeight);
+        if (x < protectedArea) {
+            x = protectedArea - giftBox.offsetLeft;
+        }
+        if (y < protectedArea) {
+            y = protectedArea - giftBox.offsetTop;
+        }
+        if (x > window.innerWidth - giftBox.offsetWidth - protectedArea) {
+            x = window.innerWidth - giftBox.offsetWidth - protectedArea - giftBox.offsetLeft;
+        }
+        if (y > window.innerHeight - giftBox.offsetHeight - protectedArea) {
+            y = window.innerHeight - giftBox.offsetHeight - protectedArea - giftBox.offsetTop;
+        }
+        
+        giftBox.style.left = x + "px";
+        giftBox.style.top = -1000 + "px";
+
+        setTimeout(function() {
+            giftBox.style.top = y + "px";
+        }, 500);
+
+        giftBox.classList.add("gift");
+        document.getElementById("ducks").appendChild(giftBox);
+
+        giftBox.onclick = async function() {
+            ducks--;
+            unopenAirDrop--;
+            giftBox.remove();
+            let duckName = (await (await fetch("https://randomuser.me/api/")).json())["results"][0]["name"]["first"];
+            console.log(duckName);
+            journals.push({
+                "type": "mint",
+                "timestamp": parseInt(new Date().getTime() / 1000),
+                "name": duckName
+            })
+            createDuck(0, x, y, duckName);
+        }
+        ducks++;
+    }
+
+    function largeIntToString(i) {
+        if (i < 1000) {
+            return i;
+        }
+        if (i < 1000000) {
+            return (i / 1000).toFixed(2) + "k";
+        }
+        if (i < 1000000000) {
+            return (i / 1000000).toFixed(2) + "m";
+        }
+        return (i / 1000000000).toFixed(2) + "b";
+    }
+
+
+    let totalPoops = 0;
+    let totalUsdt = 0;
+
+    function updatePoopDisplay() {
+        document.getElementById("poop-count").innerHTML = largeIntToString(totalPoops);
+        document.getElementById("usdt-value").innerHTML = totalUsdt.toFixed(3);
+    }
+
+    function addPoop(amt) {
+        totalPoops += amt;
+        totalUsdt = totalPoops / 10000;
+        updatePoopDisplay();
+    }
+
+    function getLevel(duck) {
+        let runes = duck.src.split("/");
+        let last = runes[runes.length - 1];
+        return parseInt(last.replace(/duck/g, "").replace(".png", ""));
+    }
+
+    function duckPoop(duck, poop) {
+        duck.classList.add("duck-clicked");
+        let level = getLevel(duck);
+        // console.log(level);
+        addPoop(level * 2);
+
+        poop.style.height = duckPoopSize[level] + "em";
+        let l = duck.offsetLeft + duck.offsetWidth - poop.offsetWidth;
+        let t = duck.offsetTop + duck.offsetHeight - poop.offsetHeight;
+        poop.style.left = l + 10 + "px";
+        poop.style.top = t + 10 + "px";
+
+        setTimeout(function() {
+            // make the poop to be bottom right of the duck
+            poop.classList.add("poop-appear");
+            poop.style.left = l + duckPoopDeviation[level] + "px";
+            poop.style.top = t + duckPoopDeviation[level] + "px";
+        }, 400);
+
+        setTimeout(function() {
+            duck.classList.remove("duck-clicked");
+            poop.classList.remove("poop-appear");
+        }, 1800);
+    }
+
+    let ducksPosition = {};
+
+    function move(duck) {
+        // randomize the move, max distance is 100px
+        if (Math.random() < 0.5) {
+            var x = Math.floor(Math.random() * 50);
+        } else {
+            var x = -Math.floor(Math.random() * 50);
+        }
+
+        if (Math.random() < 0.5) {
+            var y = Math.floor(Math.random() * 50);
+        } else {
+            var y = -Math.floor(Math.random() *50);
+        }
+
+
+        if (duck.offsetLeft + x < protectedArea) {
+            x = protectedArea - duck.offsetLeft;
+        }
+
+        if (duck.offsetLeft + x > window.innerWidth - duck.offsetWidth - protectedArea) {
+            x = window.innerWidth - duck.offsetWidth - protectedArea - duck.offsetLeft;
+        }
+
+        if (duck.offsetTop + y < protectedArea) {
+            y = protectedArea - duck.offsetTop;
+        }
+
+        if (duck.offsetTop + y > window.innerHeight - duck.offsetHeight - protectedArea) {
+            y = window.innerHeight - duck.offsetHeight - protectedArea - duck.offsetTop;
+        }
+
+        duck.style.left = duck.offsetLeft + x + "px";
+        duck.style.top = duck.offsetTop + y + "px";
+        ducksPosition[duck.id] = {x: pxToInt(duck.style.left), y: pxToInt(duck.style.top)};
+
+    }
+
+    let isMouseDown = false;
+    let mouseDownDuck = null;
+    let counter = 0;
+
+    function pxToInt(px) {
+        return parseInt(px.substring(0, px.length - 2));
+    }
+
+    function cartesianDistance(x1, y1, x2, y2) {
+        // console.log(x1, y1, x2, y2);
+        return Math.sqrt(Math.pow(x1-x2, 2) + Math.pow(y1-y2, 2));
+    }
+
+    function findClosestDuck(x, y, src, srcDuckId=null) {
+        let minDistance = 400;
+        let closestDuck = null;
+        let allDistance = {}
+        for (let duckId in ducksPosition) {
+            let duck = document.getElementById(duckId);
+            if (!duck) {
+                continue;
+            }
+            // console.log(ducksPosition[duckId])
+            let distance = cartesianDistance(x, y, ducksPosition[duckId].x, ducksPosition[duckId].y);
+            allDistance[duckId] = distance;
+            // console.log(duckId, srcDuckId, distance, src, duck.src)
+            if (distance < minDistance && duck.src == src && duckId !== srcDuckId) {
+                minDistance = distance;
+                closestDuck = duck;
+            }
+        }
+        // console.log("all distance", allDistance);
+        return closestDuck;
+    }
+    let ducks = 0;
+    let userAcquiredLevel = -1;
+
+    function mergeDuck(duck1, duck2) {
+        let duck1X = pxToInt(duck1.style.left);
+        let duck1Y = pxToInt(duck1.style.top);
+        let duck2X = pxToInt(duck2.style.left);
+        let duck2Y = pxToInt(duck2.style.top);
+        let newX = (duck1X + duck2X) / 2;
+        let newY = (duck1Y + duck2Y) / 2;
+        duck1.style.left = newX + "px";
+        duck1.style.top = newY + "px";
+        ducksPosition[duck1.id] = {x: newX, y: newY};
+        delete ducksPosition[duck2.id];
+        duck2.remove();
+        document.getElementById(`poop` + duck2.id.substring(4)).remove();
+        let level = getLevel(duck1);
+        duck1.src = `duck${level + 1}.png`;
+        duck1.style.height = duckHeight[level + 1] + "em";
+
+        journals.push({
+            "type": "combine",
+            "timestamp": parseInt(new Date().getTime() / 1000),
+            "level": level + 1,
+            "duckNames": [duck1.name, duck2.name],
+        })
+
+        if (userAcquiredLevel < level + 1) {
+            level = level + 1;
+            document.getElementById("ducks-illustraation").innerHTML += `<img src="duck${level}.png" style="height: ${duckHeight[level] / navDivident}em;" draggable="false" class="duck-illustration"/>`;
+            userAcquiredLevel = level;
+        }
+        ducks--;
+    }
+
+
+    function createDuck(level=0, _x=0, _y=0, duckName="") {
+        let idx = counter++;
+        const duck = document.createElement("img");
+        duck.id = `duck-${idx}`;
+        duck.src = `duck${level}.png`;
+        duck.classList.add("duck");
+        duck.style.height = duckHeight[level] + "em";
+
+        duck.name = duckName;
+
+        let x = Math.floor(Math.random() * window.innerWidth);
+        let y = Math.floor(Math.random() * window.innerHeight);
+        if (x < protectedArea) {
+            x = protectedArea - duck.offsetLeft;
+        }
+        if (y < protectedArea) {
+            y = protectedArea - duck.offsetTop;
+        }
+        if (x > window.innerWidth - duck.offsetWidth - protectedArea) {
+            x = window.innerWidth - duck.offsetWidth - protectedArea - duck.offsetLeft;
+        }
+        if (y > window.innerHeight - duck.offsetHeight - protectedArea) {
+            y = window.innerHeight - duck.offsetHeight - protectedArea - duck.offsetTop;
+        }
+
+        x = _x || x;
+        y = _y || y;
+
+        duck.style.left = x + "px";
+        duck.style.top = y + "px";
+        ducksPosition[duck.id] = {x: pxToInt(duck.style.left), y: pxToInt(duck.style.top)};
+
+        duck.ondragstart = function() {
+            return false;
+        };
+
+        const poop = document.createElement("img");
+        poop.src = "poop.png";
+        poop.draggable = false;
+        poop.id = `poop-${idx}`;
+        poop.classList.add("poop");
+        document.getElementById("ducks").appendChild(poop);
+
+        document.getElementById("ducks").appendChild(duck);
+        const startAfter = Math.floor(Math.random() * 1000);
+
+        let it;
+        function action() {
+            let movePoop = [];
+            let moveIt = setInterval(function() {
+                move(duck);
+            }, 5000);
+            movePoop.push(moveIt);
+
+            
+            let poopIt = setInterval(function() {
+                duckPoop(duck, poop);
+            }, 3000);
+            movePoop.push(poopIt);
+            return movePoop;
+        }
+
+        setTimeout(function() {
+            it = action();
+        }, startAfter);
+
+        duck.onmousedown = function(event) {
+            duck.classList.add("duck-clicked");
+            setTimeout(function() {
+                duck.classList.remove("duck-clicked");
+            }, 500);
+            if (isMouseDown) {
+                return;
+            }
+            isMouseDown = true;
+            duck.style.position = 'absolute';
+            duck.style.zIndex = 1000;
+            duck.style.transition = "none";
+            document.body.appendChild(duck);
+            moveAt(event.pageX, event.pageY);
+
+            function moveAt(pageX, pageY) {
+                duck.style.left = pageX - duck.offsetWidth / 2 + 'px';
+                duck.style.top = pageY - duck.offsetHeight / 2 + 'px';
+            }
+
+            function onMouseMove(event) {
+                ducksPosition[duck.id] = {x: pxToInt(duck.style.left), y: pxToInt(duck.style.top)};
+                moveAt(event.pageX, event.pageY);
+            }
+            document.addEventListener('mousemove', onMouseMove);
+            duck.onmouseup = function() {
+                isMouseDown = false;
+                duck.style.transition = "all 0.5s";
+                // it = action();
+                // console.log("mouseup");
+                document.removeEventListener('mousemove', onMouseMove);
+                duck.onmouseup = null;
+                mouseDownDuck = duck;
+                // console.log(
+                //     "position",
+                //     ducksPosition, 
+                //     findClosestDuck(pxToInt(duck.style.left), pxToInt(duck.style.top), duck.src, duck.id), duck.style.left, duck.style.top);
+                let closestDuck = findClosestDuck(pxToInt(duck.style.left), pxToInt(duck.style.top), duck.src, duck.id);
+                // console.log(
+                //     "original duck",
+                //     duck,
+                //     "closest duck",    
+                //     closestDuck
+                // );
+                if (closestDuck && closestDuck !== duck) {
+                    mergeDuck(duck, closestDuck);
+                }
+            };
+        };
+
+        ducks++;
+        while (userAcquiredLevel < level) {
+            document.getElementById("ducks-illustraation").innerHTML += `<img src="duck${userAcquiredLevel + 1}.png" style="height: ${duckHeight[userAcquiredLevel + 1] / navDivident}em;" draggable="false" class="duck-illustration"/>`;
+            userAcquiredLevel++;
+        }
+    }
+
+    // recover
+    let userToken = localStorage.getItem("userToken");
+    if (!userToken) {
+        userToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        localStorage.setItem("userToken", userToken);
+        let addr = prompt("Please enter an address to receive reward:", "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045");
+        fetch(`/register?userToken=${userToken}&rewardAddr=${addr}`, {
+            method: "GET",
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            console.log(data);
+        }).catch(function(err) {
+            alert(err);
+        });
+    }
+
+
+    let savedDucks = localStorage.getItem("ducks");
+    if (savedDucks) {
+        savedDucks = JSON.parse(savedDucks);
+        for (let duck of savedDucks["ducks"]) {
+            createDuck(duck["level"], duck["x"], duck["y"]);
+        }
+        totalPoops = savedDucks["poops"];
+        totalUsdt = totalPoops / 10000;
+        let totalPoopsText = totalPoops;
+        if (totalPoops > 1000) {
+            totalPoopsText = (totalPoops / 1000).toFixed(2) + "k";
+        }
+        if (totalPoops > 1000000) {
+            totalPoopsText = (totalPoops / 1000000).toFixed(2) + "m";
+        }
+        if (totalPoops > 1000000000) {
+            totalPoopsText = (totalPoops / 1000000000).toFixed(2) + "b";
+        }
+        document.getElementById("poop-count").innerHTML = totalPoopsText;
+        document.getElementById("usdt-value").innerHTML = totalUsdt.toFixed(3);
+    } else {
+        airdrop();
+    }
+
+    setInterval(function() {
+        if (ducks < 8 || unopenAirDrop < 3) {
+            airdrop();
+        }
+    }, 3000);
+
+    setInterval(function() {
+        document.getElementById("saving").innerHTML = "Saving...";
+        let toSave = {
+            "ducks": [],
+            "poops": 0,
+        };
+        for (let duckId in ducksPosition) {
+            if (!document.getElementById(duckId)) {
+                continue;
+            }
+            let duckInfo = {
+                "level": getLevel(document.getElementById(duckId)),
+                "x": ducksPosition[duckId].x,
+                "y": ducksPosition[duckId].y,
+            }
+            toSave["ducks"].push(duckInfo);
+        }
+        toSave["poops"] = totalPoops;
+        let toSaveStr = JSON.stringify(toSave);
+        localStorage.setItem("ducks", toSaveStr);
+        document.getElementById("saving").innerHTML = "Last saved: " + new Date().toLocaleString();
+    }, 5000);
+    
+
+    function choose(choices) {
+        let index = Math.floor(Math.random() * choices.length);
+        return choices[index];
+    }
+
+    setInterval(function() {
+        if (journals.length > 0) {
+            /// send first 10 to server and remove them
+            let toSubmit = journals.slice(0, 10);
+            journals = journals.slice(10);
+            console.log("journals", toSubmit, journals);
+
+            fetch(`/checkpoint`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    "userToken": userToken,
+                    "sequences": toSubmit,
+                }),
+            }).then(function(response) {
+                return response.json();
+            }).then(function(data) {
+                console.log(data);
+            }).catch(function(err) {
+                alert(err);
+            });
+        }
+    }, 1000)
+
+    const boardWidth = 32;
+
+    function calcOffset(playerCoordXY, rel) {
+        if (playerCoordXY > rel / 2 && boardWidth - playerCoordXY > rel / 2) {
+            return playerCoordXY - rel / 2
+        }
+        if (boardWidth - playerCoordXY <= rel / 2) {
+            return boardWidth - rel
+        }
+        return 0;
+    }
+
+    let canvas = document.getElementById("canvasChessboard");
+    const width = window.innerWidth;
+    const squareSize = 180;
+        const widthRel = window.innerWidth / squareSize;
+        const height = window.innerHeight;
+        const heightRel = window.innerHeight / squareSize;
+
+    canvas.width = width;
+    canvas.height = height;
+    let playerX = 0;
+    let playerY = 0;
+    const offsetX = calcOffset(playerX, widthRel);
+    const offsetY = calcOffset(playerY, heightRel);
+    // position of board's top left
+    const boardTopx = -offsetX * squareSize;
+    const boardTopy = -offsetY * squareSize;
+    let context = canvas.getContext("2d");
+
+    let colorChoices = {};
+    for(let i=0; i<boardWidth*20; i++) {
+        for(let j=0; j<boardWidth*20; j++) {
+            if (!colorChoices[i]) colorChoices[i] = {};
+            if (!colorChoices[i][j]) {
+                colorChoices[i][j] = choose(["#92d374","#92d374", "#92d374", "#92d374", "#92d374", "#92d374", "#7fb765", "#9de37d"])
+            }
+            context.fillStyle = colorChoices[i][j];
+            let xOffset = boardTopx + j*squareSize/20;
+            let yOffset = boardTopy + i*squareSize/20;
+            context.fillRect(xOffset, yOffset, squareSize/20 + 0.5, squareSize/20 + 0.5);
+        }
+    }
+
+    function reset() {
+        localStorage.removeItem("ducks");
+        localStorage.removeItem("userToken");
+        location.reload();
+    }
+</script>
+
+</html>

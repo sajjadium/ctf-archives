@@ -1,0 +1,20 @@
+name: paradigm-ctf-challenge
+services:
+  launcher:
+    container_name: challenge
+    image: challenge
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    command: socat TCP-LISTEN:1337,reuseaddr,fork exec:"python3 -u challenge/challenge.py"
+    expose:
+      - 1337
+    ports:
+      - "1337:1337"
+    networks:
+      - ctf_network
+
+networks:
+  ctf_network:
+    name: paradigmctf
+    external: true

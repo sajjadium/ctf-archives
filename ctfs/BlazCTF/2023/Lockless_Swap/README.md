@@ -1,0 +1,1 @@
+With all his fancy onchain games built, Tony got successfully hired by Pancakeswap. He was in charge of reducing gas cost when swapping tokens. One day, he figured reentrancy lock keeps writing storage, which is quite costly. He secretly removed the lock, handed to CertiK for audits, and deployed the new gas-savvy Pancakeswap V2.

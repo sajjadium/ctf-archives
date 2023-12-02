@@ -76,6 +76,9 @@ def is_valid(line):
   if re.fullmatch(r"nc [a-z0-9]{1,63}(\.[a-z0-9-]{1,63})+ \d+", line.strip().lower()):
     return False
 
+  if re.fullmatch(r"\d{1,2}/\d{1,2}/\d{4}", line.strip().lower()):
+    return False
+
   return True
 
 def replace_special_characters(line):

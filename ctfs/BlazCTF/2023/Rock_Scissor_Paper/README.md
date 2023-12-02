@@ -1,0 +1,1 @@
+Tony found out average salary of smart contract developers could reach millions of dollars. He started to learn about Solidity and deployed his first ever smart contract of epic rock scissor paper game!

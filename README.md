@@ -358,6 +358,11 @@
             <td><a href="https://ctftime.org/event/1733/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/BlazCTF">BlazCTF</a></td>
+            <td><a href="ctfs/BlazCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2145/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/Blaze">Blaze</a></td>
             <td><a href="ctfs/Blaze/2019">2019</a></td>
             <td><a href="https://ctftime.org/event/790/tasks/" target="_blank">CTFtime</a></td>

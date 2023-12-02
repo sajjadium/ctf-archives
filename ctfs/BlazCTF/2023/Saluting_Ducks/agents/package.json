@@ -1,0 +1,19 @@
+{
+  "name": "ducks-backend",
+  "version": "1.0.0",
+  "description": "Backend for saluting ducks",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zoltu/ethereum-abi-encoder": "^5.0.4",
+    "@zoltu/ethereum-types": "^9.0.4",
+    "ethers": "^6.8.1",
+    "express": "^4.18.2",
+    "viem": "^1.19.9",
+    "web3": "^4.2.2"
+  }
+}

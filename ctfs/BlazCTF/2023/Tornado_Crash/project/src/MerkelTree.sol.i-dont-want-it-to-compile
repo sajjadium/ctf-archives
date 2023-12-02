@@ -1,0 +1,102 @@
+/*
+    copyright 2018 to the Miximus Authors
+
+    This file is part of Miximus.
+
+    Miximus is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Miximus is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Miximus.  If not, see <https://www.gnu.org/licenses/>.
+*/
+pragma solidity ^0.4.19;
+
+contract MerkelTree {
+    mapping(bytes32 => bool) public serials;
+    mapping(bytes32 => bool) public roots;
+    uint256 public tree_depth = 29;
+    uint256 public no_leaves = 536870912;
+
+    struct Mtree {
+        uint256 cur;
+        bytes32[536870912][30] leaves2;
+    }
+
+    Mtree public MT;
+
+    event leafAdded(uint256 index);
+
+    //Merkletree.append(com)
+    function insert(bytes32 com) internal returns (bool res) {
+        require(MT.cur != no_leaves - 1);
+        MT.leaves2[0][MT.cur] = com;
+        updateTree();
+        leafAdded(MT.cur);
+        MT.cur++;
+
+        return true;
+    }
+
+    function getMerkelProof(uint256 index) view returns (bytes32[29], uint256[29]) {
+        uint256[29] memory address_bits;
+        bytes32[29] memory merkelProof;
+
+        for (uint256 i = 0; i < tree_depth; i++) {
+            address_bits[i] = index % 2;
+            if (index % 2 == 0) {
+                merkelProof[i] = getUniqueLeaf(MT.leaves2[i][index + 1], i);
+            } else {
+                merkelProof[i] = getUniqueLeaf(MT.leaves2[i][index - 1], i);
+            }
+            index = uint256(index / 2);
+        }
+        return (merkelProof, address_bits);
+    }
+
+    function getSha256(bytes32 input, bytes32 sk) view returns (bytes32) {
+        return (sha256(input, sk));
+    }
+
+    function getUniqueLeaf(bytes32 leaf, uint256 depth) returns (bytes32) {
+        if (leaf == 0x0) {
+            for (uint256 i = 0; i < depth; i++) {
+                leaf = sha256(leaf, leaf);
+            }
+        }
+        return (leaf);
+    }
+
+    function updateTree() internal returns (bytes32 root) {
+        uint256 CurrentIndex = MT.cur;
+        bytes32 leaf1;
+        bytes32 leaf2;
+        for (uint256 i = 0; i < tree_depth; i++) {
+            uint256 NextIndex = uint256(CurrentIndex / 2);
+            if (CurrentIndex % 2 == 0) {
+                leaf1 = MT.leaves2[i][CurrentIndex];
+                leaf2 = getUniqueLeaf(MT.leaves2[i][CurrentIndex + 1], i);
+            } else {
+                leaf1 = getUniqueLeaf(MT.leaves2[i][CurrentIndex - 1], i);
+                leaf2 = MT.leaves2[i][CurrentIndex];
+            }
+            MT.leaves2[i + 1][NextIndex] = (sha256(leaf1, leaf2));
+            CurrentIndex = NextIndex;
+        }
+        return MT.leaves2[tree_depth][0];
+    }
+
+    function getLeaf(uint256 j, uint256 k) view returns (bytes32 root) {
+        root = MT.leaves2[j][k];
+    }
+
+    function getRoot() view returns (bytes32 root) {
+        root = MT.leaves2[tree_depth][0];
+    }
+}
