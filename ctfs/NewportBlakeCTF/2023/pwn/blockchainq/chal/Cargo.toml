@@ -1,0 +1,17 @@
+[package]
+name = "blockchain"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+solana-program-runtime = "1.17.6"
+solana_rbpf = "0.8.0"
+
+[patch.crates-io]
+solana_rbpf = { path = "./rbpf" }
+
+[lib]
+name = "blockchain"
+crate-type = ["cdylib", "lib"]

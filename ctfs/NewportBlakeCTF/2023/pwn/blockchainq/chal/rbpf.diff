@@ -1,0 +1,70 @@
+diff --git a/src/elf.rs b/src/elf.rs
+index 0442174..b8032c5 100644
+--- a/src/elf.rs
++++ b/src/elf.rs
+@@ -7,7 +7,7 @@
+ // this loader will need to be re-written to use the program headers instead.
+ 
+ use crate::{
+-    aligned_memory::{is_memory_aligned, AlignedMemory},
++    aligned_memory::AlignedMemory,
+     ebpf::{self, EF_SBPF_V2, HOST_ALIGN, INSN_SIZE},
+     elf_parser::{
+         consts::{
+@@ -359,29 +359,25 @@ impl<C: ContextObject> Executable<C> {
+ 
+     /// Fully loads an ELF, including validation and relocation
+     pub fn load(bytes: &[u8], loader: Arc<BuiltinProgram<C>>) -> Result<Self, ElfError> {
++        let elf_bytes = AlignedMemory::<{ HOST_ALIGN }>::from(bytes);
++        // avoid copying bytes a second time in load_with_parser, the slice is guaranteed to be aligned now anyways
++        let bytes =
++            unsafe { std::slice::from_raw_parts(elf_bytes.as_slice().as_ptr(), elf_bytes.len()) };
+         if loader.get_config().new_elf_parser {
+             // The new parser creates references from the input byte slice, so
+             // it must be properly aligned. We assume that HOST_ALIGN is a
+             // multiple of the ELF "natural" alignment. See test_load_unaligned.
+-            let aligned;
+-            let bytes = if is_memory_aligned(bytes.as_ptr() as usize, HOST_ALIGN) {
+-                bytes
+-            } else {
+-                aligned = AlignedMemory::<{ HOST_ALIGN }>::from_slice(bytes);
+-                aligned.as_slice()
+-            };
+-            Self::load_with_parser(&NewParser::parse(bytes)?, bytes, loader)
++            Self::load_with_parser(&NewParser::parse(bytes)?, elf_bytes, loader)
+         } else {
+-            Self::load_with_parser(&GoblinParser::parse(bytes)?, bytes, loader)
++            Self::load_with_parser(&GoblinParser::parse(bytes)?, elf_bytes, loader)
+         }
+     }
+ 
+     fn load_with_parser<'a, P: ElfParser<'a>>(
+         elf: &'a P,
+-        bytes: &[u8],
++        mut elf_bytes: AlignedMemory<HOST_ALIGN>,
+         loader: Arc<BuiltinProgram<C>>,
+     ) -> Result<Self, ElfError> {
+-        let mut elf_bytes = AlignedMemory::from_slice(bytes);
+         let config = loader.get_config();
+         let header = elf.header();
+         let sbpf_version = if header.e_flags == EF_SBPF_V2 {
+diff --git a/src/jit.rs b/src/jit.rs
+index c68bb8b..5b29c07 100644
+--- a/src/jit.rs
++++ b/src/jit.rs
+@@ -115,13 +115,13 @@ impl JitProgram {
+                 "mov r15, [r11 + 0x48]",
+                 "mov rbp, [r11 + 0x50]",
+                 "mov r11, [r11 + 0x58]",
+-                "call r10",
++                "call qword ptr [r10 + r11 * 8]",
+                 "pop rbp",
+                 "pop rbx",
+                 host_stack_pointer = in(reg) &mut vm.host_stack_pointer,
+                 inlateout("rdi") (vm as *mut _ as *mut u64).offset(get_runtime_environment_key() as isize) => _,
+                 inlateout("rax") (vm.previous_instruction_meter as i64).wrapping_add(registers[11] as i64) => _,
+-                inlateout("r10") self.pc_section[registers[11] as usize] => _,
++                inlateout("r10") self.pc_section.as_ptr() => _,
+                 inlateout("r11") &registers => _,
+                 lateout("rsi") _, lateout("rdx") _, lateout("rcx") _, lateout("r8") _,
+                 lateout("r9") _, lateout("r12") _, lateout("r13") _, lateout("r14") _, lateout("r15") _,

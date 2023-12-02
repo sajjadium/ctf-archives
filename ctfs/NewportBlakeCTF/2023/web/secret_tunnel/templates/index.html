@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Tunnel</title>
+
+    <style>
+        body {
+            background-image: url('tunnel.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh;
+        }
+
+        p {
+            color: white;
+            font-size: 1.5em;
+        }
+
+        #title-bar {
+            text-align: center;
+            font-size: 3em;
+            color: white;
+        }
+
+        #url-form-container {
+            width: 300px;
+            height: 100px;
+            text-align: center;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        #url-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        #submit-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #data-output {
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            width: 300px;
+            height: 1.5em;
+            text-align: center;
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title-bar">Secret Tunnel</h1>
+
+    <p>This magical tunnel allows you to see the first 20 characters of any website! Can you pass through this tunnel and find the flag?</p>
+
+    <div id="url-form-container">
+        <form id="url-form" action="/fetchdata" method="POST">
+            <label for="url-input">Enter a URL:</label>
+            <input type="text" id="url-input" name="url" placeholder="Enter URL">
+            <button type="submit" id="submit-button">Enter tunnel</button>
+        </form>
+
+        <div id="data-output"></div>
+    </div>
+
+    <script>
+        const urlForm = document.getElementById('url-form');
+        const dataOutput = document.getElementById('data-output');
+
+        urlForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(urlForm);
+
+            fetch('/fetchdata', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    dataOutput.textContent = data;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
+</body>
+</html>

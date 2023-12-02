@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walter's Crystal Shop</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Walter's Crystal Shop</h1>
+
+  <form id="crystalForm">
+    <label for="crystalName">Crystal Name:</label>
+    <input type="text" id="crystalName" name="crystalName" required>
+    <button type="submit">Search Crystals</button>
+  </form>
+
+  <div id="results"></div>
+
+  <script>
+    const crystalForm = document.getElementById('crystalForm');
+    crystalForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const crystalName = document.getElementById('crystalName').value;
+
+      const payload = { crystalName: crystalName };
+
+      fetch('/crystals?name=' + encodeURIComponent(crystalName))
+      .then(response => response.json())
+      .then(data => {
+        const resultsElem = document.getElementById('results');
+        resultsElem.innerHTML = '';
+
+        if (data.length === 0) {
+          resultsElem.textContent = 'No crystals found.';
+          return;
+        }
+
+        const crystalTable = document.createElement('table');
+        const tableHeader = document.createElement('tr');
+        const headerCells = ['Name', 'Price', 'Quantity'];
+
+        for (const headerCell of headerCells) {
+          const th = document.createElement('th');
+          th.textContent = headerCell;
+          tableHeader.appendChild(th);
+        }
+
+        crystalTable.appendChild(tableHeader);
+
+        for (const crystal of data) {
+          const tableRow = document.createElement('tr');
+          const tdName = document.createElement('td');
+          const tdPrice = document.createElement('td');
+          const tdQuantity = document.createElement('td');
+
+          tdName.textContent = crystal.name;
+          tdPrice.textContent = `$${crystal.price}`;
+          tdQuantity.textContent = crystal.quantity;
+
+          tableRow.appendChild(tdName);
+          tableRow.appendChild(tdPrice);
+          tableRow.appendChild(tdQuantity);
+
+          crystalTable.appendChild(tableRow);
+        }
+
+        resultsElem.appendChild(crystalTable);
+      });
+    });
+  </script>
+</body>
+</html>
+

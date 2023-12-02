@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Galleria</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+            * {
+                font-family: "Roboto", sans-serif;
+            }
+
+            .gallery {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .gallery img {
+                width: 200px;
+                height: 200px;
+                object-fit: cover;
+                margin: 10px;
+            }
+            .header {
+                background-color: #990000;
+                color: white;
+                padding: 20px;
+                text-align: center;
+            }
+            .upload-form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 20px;
+            }
+            .upload-form input[type="file"] {
+                margin-bottom: 10px;
+            }
+            .upload-form button {
+                padding: 10px 20px;
+                background-color: #990000;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Welcome to the Galleria!</h1>
+        </div>
+        <div class="upload-form">
+            <h2>Upload your images here:</h2>
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <input type="file" name="image" accept="image/*" />
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+    </body>
+</html>
