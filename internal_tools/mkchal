@@ -73,6 +73,9 @@ def is_valid(line):
   if re.fullmatch(r"nc \d+\.\d+\.\d+\.\d+ \d+", line.strip().lower()):
     return False
 
+  if re.fullmatch(r"nc [a-z0-9]{1,63}(\.[a-z0-9-]{1,63})+ \d+", line.strip().lower()):
+    return False
+
   return True
 
 def replace_special_characters(line):
@@ -87,7 +90,7 @@ def get_challenge_name(line):
 
   tokens = []
   for a in args:
-    tokens.extend(re.sub('[^0-9a-zA-Z_+]+', ' ', a.replace("'", "")).strip().split())
+    tokens.extend(re.sub(r'[^0-9a-zA-Z_+\.]+', ' ', a.replace("'", "")).strip().split())
 
   return '_'.join(tokens)
 

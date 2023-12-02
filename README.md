@@ -2151,12 +2151,16 @@
             <td><a href="https://ctftime.org/event/758/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/TUCTF">TUCTF</a></td>
-            <td><a href="ctfs/TUCTF/2022">2022</a></td>
+            <td rowspan=3><a href="ctfs/TU">TU</a></td>
+            <td><a href="ctfs/TU/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2173/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/TU/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1830/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/TUCTF/2018">2018</a></td>
+            <td><a href="ctfs/TU/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/650/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
