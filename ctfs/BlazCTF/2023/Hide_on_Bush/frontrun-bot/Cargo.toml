@@ -1,0 +1,20 @@
+[package]
+name = "frontrun-bot"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.70"
+artemis-core = { git = "https://github.com/paradigmxyz/artemis.git", rev = "4bb158070833ec2b789a2ece14c896c4b28ce3be" }
+async-trait = "0.1.64"
+clap = { version = "4.2.5", features = ["derive"] }
+dotenv = "0.15.0"
+ethers = { version = "2", features = ["ws", "rustls"]}
+futures = "0.3.27"
+tokio = { version = "1.18", features = ["full"] }
+tracing = "0.1.37"
+tracing-subscriber = "0.3.16"
+tokio-stream = "0.1.14"
+revm = { version = "3.5.0", features = ["ethersdb", "optional_no_base_fee"] }

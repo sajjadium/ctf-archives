@@ -1,0 +1,1 @@
+Tony wanted to buy Azuki NFT with ETHs but he only had USDT. He gave Uniswap a try to swap for some ETHs. He had no idea about slippage and set it to 100. Tony later discovered that he recived no ETHs. He cried all day.
