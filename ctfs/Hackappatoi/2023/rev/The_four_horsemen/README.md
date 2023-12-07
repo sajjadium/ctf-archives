@@ -1,0 +1,1 @@
+The Cavaliere is returned. He is awake and he’s ready to unleash the apocalypse. Are you the chosen one? Solving this challenge will give you the access to the war against the four horsemen. Be ready.
