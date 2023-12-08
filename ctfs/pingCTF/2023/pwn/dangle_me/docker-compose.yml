@@ -1,0 +1,8 @@
+version: '3'
+services:
+  dangle-me:
+    build: .
+    ports:
+      - "30000:5000"
+    privileged: true
+    restart: unless-stopped

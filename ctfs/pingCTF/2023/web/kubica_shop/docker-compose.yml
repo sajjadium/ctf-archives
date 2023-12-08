@@ -1,0 +1,11 @@
+version: "3"
+services:
+    kubica-shop:
+        build: .
+        ports:
+            - "10002:3000"
+        restart: always
+        tty: true
+        stdin_open: true
+        environment:
+            - FLAG=ping{FAKE}

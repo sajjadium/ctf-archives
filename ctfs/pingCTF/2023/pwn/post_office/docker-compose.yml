@@ -1,0 +1,8 @@
+version: '3'
+services:
+  post-office:
+    build: .
+    ports:
+      - "30002:5000"
+    privileged: true
+    restart: unless-stopped

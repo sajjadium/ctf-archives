@@ -1,0 +1,1 @@
+This is no ordinary reversing challenge! As the Christmas season is coming, we thought that a real elf would be a great addition to our team. Unfortunately, the image of the elf got completely smashed and we can't see anything. Can you help us recover the elf? Please DON'T confuse a leprechaun with an elf!

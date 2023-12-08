@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Kubica Shop</title>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css"
+		/>
+		<script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+		<script
+			defer
+			src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
+		></script>
+		<script defer>
+			<% if (user) { %>
+			window.addEventListener("DOMContentLoaded", () => {
+			    const logoutButton = document.getElementById("logoutButton");
+			    logoutButton.addEventListener("click", () => {
+			        document.cookie =
+			            "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+			        window.location.href = "/";
+			    });
+			});
+			<% } %>
+		</script>
+		<style>
+			#myVideo {
+				position: fixed;
+				right: 0;
+				bottom: 0;
+				z-index: -1;
+				min-width: 100%;
+				min-height: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<video autoplay muted loop id="myVideo">
+			<source src="kubica.mp4" type="video/mp4" />
+			Your browser does not support HTML5 video.
+		</video>
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+			<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<div class="buttons">
+							<a class="button is-primary" href="/">Home</a>
+							<% if (!user) { %>
+							<a class="button is-primary" href="/auth">
+								<strong>Sign up <%= user %></strong>
+							</a>
+							<a class="button is-light" href="/auth"> Log in </a>
+							<% } else { %>
+							<a class="button is-link" href="/me">
+								Go to your page
+							</a>
+							<div class="button">
+								Balance: <%= user.balance %>
+							</div>
+							<button class="button is-danger" id="logoutButton">
+								Logout
+							</button>
+							<% } %>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<section class="hero">
+			<div class="hero-body">

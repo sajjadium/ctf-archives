@@ -1,0 +1,18 @@
+<div class="content box">
+	<p class="subtitle"><%= product.name %></p>
+	<p><%= product.description %></p>
+	<p>Price: <code><%= product.price %></code></p>
+	<figure class="image is-128x128">
+		<img src="<%= product.imageUrl %>" />
+	</figure>
+	<% if (user) { %>
+	<div>
+		<button
+			class="buy-button button is-primary"
+			id="product-<%= product.id %>"
+		>
+			Buy now!
+		</button>
+	</div>
+	<% } %>
+</div>

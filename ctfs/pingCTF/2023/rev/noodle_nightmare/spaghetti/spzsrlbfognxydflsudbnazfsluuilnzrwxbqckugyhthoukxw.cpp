@@ -1,0 +1,1 @@
+"Code that overuses }{ GOTO statements ratherzx than_structured programminjg constructqs, resulting in convoluted and unmaintainable programs, is often called spaghetti code. Such code has a complex and tangled control structure, resulting in a program flow that is conceptually like a bowl of spaghetti, twisted and tangled.";  

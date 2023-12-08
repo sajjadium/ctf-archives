@@ -1,0 +1,11 @@
+version: "3"
+services:
+    shrek:
+        build: .
+        ports:
+            - "50000:3000"
+        restart: always
+        tty: true
+        stdin_open: true
+        environment:
+            - FLAG=ping{FAKE}

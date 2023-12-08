@@ -1,0 +1,78 @@
+<%- include('header', { user: user }); -%>
+
+<div class="box">
+	<p>You are logged in as <%= user.username %></p>
+	<hr />
+	<div>
+		<p>Redeem your code:</p>
+		<input
+			type="text"
+			class="input"
+			placeholder="ABCDEF"
+			id="redeem-input"
+		/>
+		<br />
+		<br />
+		<button class="button is-primary" id="redeem-button">Redeem</button>
+	</div>
+	<hr />
+	<p class="title">Your items:</p>
+	<% if (user.products.length === 0) { %>
+	<p>You have no products.</p>
+	<% } else { %>
+	<div>
+		<% user.products.forEach((product) => { %>
+		<div><%- include('user/product', {product: product}); %></div>
+		<% }); %>
+	</div>
+	<% } %>
+
+	<hr />
+
+	<p class="title">Your coupons:</p>
+	<% if (user.coupons.length === 0) { %>
+	<p>You have no coupons.</p>
+	<% } else { %>
+	<div>
+		<% user.coupons.forEach((coupon) => { %>
+		<div><%- include('user/coupon', {coupon: coupon}); %></div>
+		<% }); %>
+	</div>
+	<% } %>
+</div>
+<script defer>
+	const redeemButton = document.getElementById("redeem-button");
+
+	const redeem = async (couponCode) => {
+		redeemButton.classList.add("is-loading");
+		try {
+			const response = await fetch("/api/redeem", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ couponCode }),
+			});
+
+			const data = await response.json();
+			if (data.success) {
+				alert("Coupon redeemed!");
+				window.location.reload();
+			} else if (data.error) {
+				alert(data.error);
+			} else {
+				alert("Something went wrong!");
+			}
+		} finally {
+			redeemButton.classList.remove("is-loading");
+		}
+	};
+
+	redeemButton.addEventListener("click", () => {
+		const redeemInput = document.getElementById("redeem-input");
+		const code = redeemInput.value;
+		redeem(code);
+	});
+</script>
+
+<%- include('footer'); -%>

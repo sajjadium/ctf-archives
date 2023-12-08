@@ -1,0 +1,11 @@
+<div class="content box" id="product-<%= product.id %>">
+    <p class="subtitle"><%= product.name %></p>
+    <figure class="image is-128x128">
+        <img src="<%= product.imageUrl %>" />
+    </figure>
+    <% 
+        if (product.name === "Claim Your Victory: Kubica's First Win Finish Flag") {
+            __append(`<p>Flag: <code>${process.env.FLAG}</code></p>`);
+        }
+    %>
+</div>

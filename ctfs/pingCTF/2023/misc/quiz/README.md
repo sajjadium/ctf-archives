@@ -1,0 +1,1 @@
+Our university created a new quiz system. It's very secure, so we can't cheat on it. We can't even see the possible answers and the questions don't make sense to me anymore. I suspect that our professor is choosing the answers randomly... Can you help me?

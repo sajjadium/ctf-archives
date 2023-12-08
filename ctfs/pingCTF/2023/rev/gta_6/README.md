@@ -1,0 +1,1 @@
+Bajtek, the coding daredevil, stumbled upon semi-legal access to GTA VI's source code. Excitedly attempting to reverse engineer it, he found a digital labyrinth of inefficiency.The loading screen moved at a pace slower than Internet Explorer on a dial-up connection. Help Bajtek get past the loading screen and finaly get to the actual game.

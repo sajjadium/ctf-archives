@@ -1,0 +1,50 @@
+<%- include('header', { user: user }); -%>
+
+<div>
+	<% products.forEach((product) => { %>
+	<p><%- include('product', {product: product}); %></p>
+	<% }); %>
+</div>
+
+<script>
+	window.addEventListener("DOMContentLoaded", () => {
+		const buttons = document.querySelectorAll(".buy-button");
+
+		const buy = async (productId) => {
+			try {
+				const response = await fetch("/api/buy", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ productId }),
+				});
+				const data = await response.json();
+				if (data.error) {
+					alert(data.error);
+				} else if (data.success) {
+					alert("You bought the product!");
+					window.location.reload();
+				} else {
+					alert("Something went wrong!");
+				}
+			} catch (error) {
+				alert(error);
+			}
+		};
+
+		buttons.forEach((button) => {
+			button.addEventListener("click", () => {
+				const productId = button.id.split("product-")[1];
+				button.classList.add("is-loading");
+				try {
+					buy(productId);
+				} finally {
+					button.classList.remove("is-loading");
+				}
+			});
+		});
+	});
+</script>
+
+<%- include('footer'); -%>

@@ -1,0 +1,79 @@
+<%- include('header'); -%>
+<div class="box">
+	<p class="title">Login or register</p>
+	<p class="subtitle">
+		to buy our <strong>AWESOME</strong> stuff! New users get
+		<strong>FREE</strong> 10 dollars!
+	</p>
+
+	<div class="field">
+		<p class="control has-icons-left has-icons-right">
+			<input
+				class="input"
+				type="text"
+				placeholder="Username"
+				id="username"
+			/>
+			<span class="icon is-small is-left">
+				<i class="fas fa-envelope"></i>
+			</span>
+			<span class="icon is-small is-right">
+				<i class="fas fa-check"></i>
+			</span>
+		</p>
+	</div>
+	<div class="field">
+		<p class="control has-icons-left">
+			<input
+				class="input"
+				type="password"
+				placeholder="Password"
+				id="password"
+			/>
+			<span class="icon is-small is-left">
+				<i class="fas fa-lock"></i>
+			</span>
+		</p>
+	</div>
+	<div class="field">
+		<p class="control">
+			<button class="button is-success" id="loginButton">
+				Login / Register
+			</button>
+		</p>
+	</div>
+</div>
+<script>
+	const button = document.getElementById("loginButton");
+
+	const auth = async () => {
+		button.classList.add("is-loading");
+		try {
+			const password = document.getElementById("password").value;
+			const username = document.getElementById("username").value;
+
+			const response = await fetch("/api/auth", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ password, username }),
+			});
+			const data = await response.json();
+			if (data.error) {
+				alert(data.error);
+			} else {
+				alert("You are logged in!");
+				window.location.href = "/";
+			}
+		} catch (err) {
+			alert("Something went wrong!");
+		} finally {
+			button.classList.remove("is-loading");
+		}
+	};
+
+	button.addEventListener("click", auth);
+</script>
+
+<%- include('footer'); -%>

@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.avatar img {
+    max-width: 100%;
+    height: auto;
+}
+
+.message p {
+    word-wrap: break-word;
+	flex: 1; 
+	overflow: auto;
+}
+
+.user1 {
+    background-color: #f0f0f0;
+    text-align: right;
+}
+
+.user2 {
+    background-color: #dff0d8;
+    text-align: left;
+}
