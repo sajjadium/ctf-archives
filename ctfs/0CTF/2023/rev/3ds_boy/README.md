@@ -1,0 +1,1 @@
+With a vibrant 16-bit art style, my new game "3ds boy" will give you a surge of nostalgia for the days when all your free time was lost to collecting monsters, gear and experiences on your 3DS. Relive the thrill of tactical combat, character building, and exploration - now in an easy-to-pick-up 2D RPG celebration for Nintendo 3DS!
