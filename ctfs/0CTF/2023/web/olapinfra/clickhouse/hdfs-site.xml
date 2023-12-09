@@ -1,0 +1,5 @@
+<configuration>
+<property><name>dfs.namenode.rpc-address</name><value>namenode:8020</value></property>
+<property><name>dfs.permissions.enabled</name><value>false</value></property>
+<property><name>dfs.replication</name><value>1</value></property>
+</configuration>

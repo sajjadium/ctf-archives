@@ -8,7 +8,11 @@
     </thead>
     <tbody>
         <tr>
-            <td rowspan=7><a href="ctfs/0CTF">0CTF</a></td>
+            <td rowspan=8><a href="ctfs/0CTF">0CTF</a></td>
+            <td><a href="ctfs/0CTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2073/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/0CTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1717/tasks/" target="_blank">CTFtime</a></td>
         </tr>

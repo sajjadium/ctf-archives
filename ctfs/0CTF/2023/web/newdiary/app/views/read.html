@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+    content="script-src 'nonce-<%= nonce %>'; frame-src 'none'; object-src 'none'; base-uri 'self'; style-src 'unsafe-inline' https://unpkg.com">
+  <title></title>
+  <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+  <style>
+    textarea {
+      width: 90%;
+      height: 3em;
+      resize: none;
+    }
+
+    header {
+      height: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li>Diary</li>
+      </ul>
+      <ul>
+        <li><a id="share">share</a></li>
+        <li><a href="/logout">logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main id="container">
+    <h2 id="title"></h2>
+    <hr>
+    <div id="content"></div>
+  </main>
+  <script nonce="<%= nonce %>" src="/static/js/read.js"></script>
+</body>
+
+</html>

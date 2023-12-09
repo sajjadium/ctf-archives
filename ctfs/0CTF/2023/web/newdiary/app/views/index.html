@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <style>
+textarea {
+    width: 90%;
+    height: 3em;
+    resize: none;
+}
+header {
+    height: 10px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><%= username %>&#x27;s diary</li>
+            </ul>
+            <ul>
+                <li><a href="/share">share</a></li>
+                <li><a href="/logout">logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>new post</h2>
+        <form action="/write", method="POST">
+            <label>title <input type="text" name="title" placeholder="" required /></label>
+            <label>
+                content
+                <textarea name="content" placeholder="" required></textarea>
+            </label>
+            <button>POST</button>
+        </form>
+
+        <% if (notes.length > 0) { %>
+        <h2>posts</h2>
+        <ul>
+            <% iter = notes.keys(); %>
+            <% for (const idx of iter) { %>
+            <li><a href="/read#id=<%= idx %>"><%= notes[idx].title %></a></li>
+            <% } %>
+        </ul>
+        <% } %>
+    </main>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+    "name": "olapinfra/php",
+    "autoload": {
+        "psr-4": {
+            "OLAPInfra\\Php\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "zsx",
+            "email": "zsx@zsxsoft.com"
+        }
+    ],
+    "require": {
+        "smi2/phpclickhouse": "^1.5"
+    }
+}

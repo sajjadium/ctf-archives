@@ -1,0 +1,7 @@
+<configuration>
+<property><name>yarn.resourcemanager.hostname</name><value>resourcemanager</value></property>
+<property><name>yarn.nodemanager.aux-services</name><value>mapreduce_shuffle</value></property>
+<property><name>yarn.nodemanager.vmem-check-enabled</name><value>false</value></property>
+<property><name>yarn.nodemanager.pmem-check-enabled</name><value>false</value></property>
+<property><name>yarn.nodemanager.delete.debug-delay-sec</name><value>600</value></property>
+</configuration>

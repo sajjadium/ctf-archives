@@ -1,0 +1,105 @@
+version: '3.8'
+services:
+# A very large docker-compose but only a few useful
+# like web challenge in somectf :(
+  web:
+    build: ./web
+    networks:
+      - inner_network
+      - outer_network
+    ports:
+      - "8080:80"
+    depends_on:
+      - clickhouse
+  clickhouse:
+    build: ./clickhouse
+    ports:
+      - "8123:8123"
+    networks:
+      - inner_network
+    environment:
+      - FLAG=fakeflag{part_1
+    depends_on:
+      - hive
+  hive:
+    build: hive
+    networks:
+      - inner_network
+      #- outer_network #for debug
+    environment:
+      - SERVICE_NAME=hiveserver2
+      - DB_DRIVER=mysql
+      - IS_RESUME=true
+      - FLAG=part_2}
+    depends_on:
+      namenode:
+        condition: service_started
+      datanode:
+        condition: service_started
+      mysql:
+        condition: service_healthy
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=hive
+    networks:
+      - inner_network
+    healthcheck:
+      test: mysql --user=root --password=123456 -e 'SELECT 1'
+      timeout: 20s
+      interval: 3s
+      retries: 10
+  namenode:
+    image: apache/hadoop:3.3.6
+    command: ["hdfs", "namenode"]
+    networks:
+      - inner_network
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    env_file:
+      - ./hadoop/config
+    environment:
+      ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
+  datanode:
+    image: apache/hadoop:3.3.6
+    command: ["hdfs", "datanode"]
+    networks:
+      - inner_network
+    depends_on:
+      - namenode
+    env_file:
+      - ./hadoop/config
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+  resourcemanager:
+    image: apache/hadoop:3.3.6
+    hostname: resourcemanager
+    command: ["yarn", "resourcemanager"]
+    networks:
+      - inner_network
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    env_file:
+      - ./hadoop/config
+  nodemanager:
+    image: apache/hadoop:3.3.6
+    command: ["yarn", "nodemanager"]
+    networks:
+      - inner_network
+    env_file:
+      - ./hadoop/config
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+networks:
+  inner_network:
+    internal: true
+  outer_network:

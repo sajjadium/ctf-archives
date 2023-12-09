@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <style>
+        form {
+            border: none !important;
+            box-shadow: none !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>New diary</h1>
+        <div>New diary just for you :D</div>
+    </header>
+    <main>
+            <% if (typeof msg === 'string') { %><article>
+                <aside>
+                    <p><%= msg %></p>
+                </aside>
+            </article><% } %>
+            <section>
+            <aside>
+                <form action="/login" method="POST">
+                    <label for="">username <input id="username" name="username" placeholder="username" required minlength="4" maxlength="10"></label>
+                    <label for="">password <input id="password" type="password" name="password" placeholder="password" required minlength="6"></label>
+                    <button id="submit">LOGIN</button>
+                </form>
+            </aside>
+        </section>
+    </main>
+</body>
+</html>

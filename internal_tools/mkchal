@@ -16,6 +16,9 @@ def is_valid(line):
   if line.strip().lower().startswith('flag format:'):
     return False
 
+  if line.strip().lower() == 'attachment':
+    return False
+
   if line.strip().lower().startswith('download link') or  line.strip().lower().startswith('challenge author'):
     return False
 
@@ -73,6 +76,9 @@ def is_valid(line):
   if re.fullmatch(r"(http|https)://\d+\.\d+\.\d+\.\d+/", line.strip().lower()):
     return False
 
+  if re.fullmatch(r"\d+\.\d+\.\d+\.\d+:\d+", line.strip().lower()):
+    return False
+
   if re.fullmatch(r"nc \d+\.\d+\.\d+\.\d+ \d+", line.strip().lower()):
     return False
 
@@ -92,7 +98,7 @@ def get_challenge_name(line):
     if original_name not in ['beginner', 'medium', 'hard', 'easy']:
       break
 
-  args = re.sub('(\d+ solves|\d+ pts|- \d+$)', '', original_name.strip()).strip().split()
+  args = re.sub('(\d+ solves|\d+ pts$)', '', original_name.strip()).strip().split()
 
   tokens = []
   for a in args:
@@ -124,7 +130,7 @@ if __name__ == '__main__':
         if subprocess.run(['unzip', '-d', tmp_path, f], shell=False).returncode != 0:
           subprocess.run(['mv', f, chal_name])
           continue
-      elif f.endswith('.tar.gz') or f.endswith('.tgz') or f.endswith('.txz') or f.endswith('.tar.xz'):
+      elif f.endswith('.tar.gz') or f.endswith('.tgz') or f.endswith('.txz') or f.endswith('.tar.xz') or f.endswith('.tzst'):
         if subprocess.run(['tar', 'xzvf', f, '-C', tmp_path], shell=False).returncode != 0:
           subprocess.run(['mv', f, chal_name])
           continue
