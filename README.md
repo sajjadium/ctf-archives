@@ -2260,8 +2260,12 @@
             <td><a href="https://ctftime.org/event/1257/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/Tsuku">Tsuku</a></td>
-            <td><a href="ctfs/Tsuku/2021">2021</a></td>
+            <td rowspan=2><a href="ctfs/TsukuCTF">TsukuCTF</a></td>
+            <td><a href="ctfs/TsukuCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2169/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/TsukuCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1442/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

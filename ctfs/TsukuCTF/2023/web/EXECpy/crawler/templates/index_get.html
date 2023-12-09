@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXECpy Crawler</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-800 h-screen flex justify-center items-center">
+    <div class="bg-gray-700 p-8 rounded-lg w-1/2">
+        <h1 class="text-white text-3xl mb-4">EXECpy - Crawler</h1>
+        <form action="/crawler" method="post">
+            <div class="mb-4">
+                <label for="url" class="block text-white text-sm font-bold mb-2">URL:</label>
+                <input type="text" name="url" id="url" placeholder="Enter URL" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

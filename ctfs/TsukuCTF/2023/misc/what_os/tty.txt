@@ -1,0 +1,102 @@
+login: root
+root
+# ls -al
+total    8
+ 41 sdrwr-  7 root     70 Jan  1 00:00:00 .
+ 41 sdrwr-  7 root     70 Jan  1 00:00:00 ..
+ 43 sdrwr-  2 root    630 Jan  1 00:00:00 bin
+ 42 sdrwr-  2 root    250 Jan  1 00:00:00 dev
+104 sdrwr-  2 root    110 Jan  1 00:00:00 etc
+114 sdrwrw  2 root    140 Jan  1 00:00:00 tmp
+ 41 sdrwr-  9 root    100 Jan  1 00:00:00 usr
+# chdir etc
+# ls -al
+total   34
+104 sdrwr-  2 root    110 Jan  1 00:00:00 .
+ 41 sdrwr-  7 root     70 Jan  1 00:00:00 ..
+106 lxrwr-  1 bin    5778 Jan  1 00:00:00 as2
+105 sxrwr-  1 bin     446 Jan  1 00:00:00 getty
+107 sxrwr-  1 sys    2662 Jan  1 00:00:00 glob
+108 sxrwr-  1 sys    1192 Jan  1 00:00:00 init
+109 sxrwr-  1 sys     186 Jan  1 00:00:00 msh
+110 s-rw--  1 sys     272 Jan  1 00:00:00 passwd
+111 s-rwr-  1 root    512 Jan  1 00:00:00 std0
+112 s-rwr-  1 bin    2082 Jan  1 00:00:00 suftab
+113 s-rwr-  1 sys      88 Jan  1 00:00:00 uids
+# ed uids
+88
+1,7p
+root:0
+sys:1
+bin:3
+adm:3
+jfo:4
+ken:6
+dmr:7
+q
+# echo "who is dmr and ken?"
+who is dmr and ken? 
+# chdir /
+# chdir usr
+# ls -al
+total   10
+ 41 sdrwr-  9 root    100 Jan  1 00:00:00 .
+ 41 sdrwr-  9 root    100 Jan  1 00:00:00 ..
+ 42 sdrwr-  2 root     80 Jan  1 00:00:00 boot
+ 49 sdrwr-  2 root     60 Jan  1 00:00:00 fort
+ 54 sdrwr-  2 root     70 Jan  1 00:00:00 jack
+ 57 sdrwr-  5 ken     120 Jan  1 00:00:00 ken
+ 59 sdrwr-  2 root    110 Jan  1 00:00:00 lib
+ 83 sdrwr-  5 root     60 Jan  1 00:00:00 src
+ 68 sdrwr-  2 root    160 Jan  1 00:00:00 sys
+208 sxrwrw  1 root     54 Jan  1 00:00:00 x
+# chdir sys
+# ls -al
+total  325
+ 68 sdrwr-  2 root    160 Jan  1 00:00:00 .
+ 41 sdrwr-  9 root    100 Jan  1 00:00:00 ..
+ 70 sxrwr-  1 root   2192 Jan  1 00:00:00 a.out
+ 71 l-rwr-  1 root  16448 Jan  1 00:00:00 core
+ 72 s-rwr-  1 sys    1928 Jan  1 00:00:00 maki.s
+ 69 lxrwrw  1 root  12636 Jan  1 00:00:00 u0.s
+ 81 lxrwrw  1 root  18901 Jan  1 00:00:00 u1.s
+ 80 lxrwrw  1 root  19053 Jan  1 00:00:00 u2.s
+ 79 lxrwrw  1 root   7037 Jan  1 00:00:00 u3.s
+ 78 lxrwrw  1 root  13240 Jan  1 00:00:00 u4.s
+ 77 lxrwrw  1 root   9451 Jan  1 00:00:00 u5.s
+ 76 lxrwrw  1 root   9819 Jan  1 00:00:00 u6.s
+ 75 lxrwrw  1 root  16293 Jan  1 00:00:00 u7.s
+ 74 lxrwrw  1 root  17257 Jan  1 00:00:00 u8.s
+ 73 lxrwrw  1 root  10784 Jan  1 00:00:00 u9.s
+ 82 sxrwrw  1 root   1422 Jan  1 00:00:00 ux.s
+# echo "OS source codes"
+OS source codes 
+# cal
+Year? 1971
+
+
+
+
+
+
+
+
+                                  1971
+
+
+
+            Jan                     Feb                     Mar
+    S  M Tu  W Th  F  S     S  M Tu  W Th  F  S     S  M Tu  W Th  F  S
+                   1  2        1  2  3  4  5  6        1  2  3  4  5  6
+    3  4  5  6  7  8  9     7  8  9 10 11 12 13     7  8  9 10 11 12 13
+   10 11 12 13 14 15 16    14 15 16 17 18 19 20    14 15 16 17 18 19 20
+   17 18 19 20 21 22 23    21 22 23 24 25 26 27    21 22 23 24 25 26 27
+   24 25 26 27 28 29 30    28                      28 29 30 31
+   31
+
+
+
+            Apr                     May                     Jun
+    S  M Tu  W Th  F  S     S  M Tu  W Th  F  S     S  M Tu  W Th  F  S
+                1  2  3                       1           1  2  3  4  5
+    4  5  6  7  8  9 10     2  3  4  5  6  7  8     6  7  8  9 10 11 12

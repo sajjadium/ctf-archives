@@ -1,0 +1,26 @@
+services:
+  uwsgi:
+    build: ./app
+    environment:
+      TZ: "Asia/Tokyo"
+    expose:
+      - "7777"
+    restart: always
+    read_only: true
+  cuwsgi:
+    build: ./crawler
+    env_file:
+      - .env
+    expose:
+      - "8888"
+    restart: always
+  nginx:
+    build: ./nginx
+    links:
+      - uwsgi
+      - cuwsgi
+    ports:
+      - "31416:80"
+    environment:
+      TZ: "Asia/Tokyo"
+    restart: always

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>メモ閲覧 - MEMOwow</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
+        <div class="mb-4">
+            <span class="text-gray-700 text-lg font-bold mr-2">メモID:</span>
+            <span id="memoId" class="text-gray-700 text-lg">{{ id }}</span>
+        </div>
+        <label for="content" class="block text-gray-700 text-sm font-bold mb-2">本文:</label>
+        <p class="text-gray-600 mb-6"><code style="white-space: pre;">{{ memo }}</code></p>
+        <a href="/" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">トップに戻る</a>
+    </div>
+</body>
+</html>

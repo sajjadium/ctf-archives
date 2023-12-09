@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>メモを書く - MEMOwow</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-lg w-full">
+        <h2 class="text-gray-700 text-lg font-bold mb-4">メモを書く</h2>
+        <form action="/write" method="post">
+            <div class="mb-6">
+                <label for="content" class="block text-gray-700 text-sm font-bold mb-2">本文:</label>
+                <textarea id="content" name="content" minlength="8" maxlength="256" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" rows="8" placeholder="メモを書く" required></textarea>
+            </div>
+            <div class="flex justify-start">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-4">メモを送信</button>
+                <a href="/" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">トップに戻る</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
