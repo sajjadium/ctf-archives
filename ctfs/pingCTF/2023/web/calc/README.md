@@ -1,0 +1,1 @@
+Calculators are cool, right? I have made a simple one for you. It's not perfect, but it works. I hope you will like it! Some people say that it's not secure, but I don't know what they mean. I have tested it on my Windows 10 and it works like a charm!

@@ -1,0 +1,9 @@
+version: "3"
+services:
+    pocket-app:
+        build: ./src
+        ports:
+            - "10003:3000"
+        restart: always
+        tty: true
+        stdin_open: true

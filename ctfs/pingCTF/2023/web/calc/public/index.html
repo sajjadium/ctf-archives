@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			http-equiv="Content-Security-Policy"
+			content="default-src 'none'; object-src 'none'; style-src-elem 'self'; script-src 'self' 'unsafe-eval';" />
+		<script src="esprima.js"></script>
+		<script src="code.js"></script>
+		<link rel="stylesheet" href="style.css" />
+		<title>Calculator</title>
+	</head>
+	<body>
+		<div class="app-container">
+			<h1>Calculator</h1>
+			<textarea
+				id="code"
+				rows="20"
+				placeholder="a = 1 + 1
+b = 2 + a
+c = Math.sqrt(b)"></textarea>
+			<div id="output">Result:</div>
+			<button id="btn">calculate</button>
+			<a id="x" href="/report.html">Report</a>
+		</div>
+	</body>
+</html>

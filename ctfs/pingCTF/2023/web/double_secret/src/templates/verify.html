@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Verify</h1>
+    <form method="post" action="/verify" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".txt">
+        <button type="submit" class="btn btn-primary">Verify</button>
+    </form>
+{% endblock %}

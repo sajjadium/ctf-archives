@@ -1,0 +1,14 @@
+{
+  "name": "prepare",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "tomek7667",
+  "license": "ISC",
+  "dependencies": {
+    "sqlite3": "5.1.6"
+  }
+}

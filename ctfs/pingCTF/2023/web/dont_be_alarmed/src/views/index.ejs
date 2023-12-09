@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+		<link
+			href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
+			rel="stylesheet"
+			type="text/css" />
+		<style>
+			canvas {
+				border: 1px solid #d3d3d3;
+				background-color: #f1f1f1;
+			}
+		</style>
+		<title>dont be alarmed, just play the game man</title>
+	</head>
+	<body>
+		<div class="hero">
+			<div class="hero-body">
+				<div><%- include('game'); -%></div>
+				<div>
+					<a class="button is-link" href="/highscores">highscores</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

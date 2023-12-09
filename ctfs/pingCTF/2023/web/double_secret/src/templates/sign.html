@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Sign</h1>
+    <form method="post" action="/sign" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".txt">
+        <button type="submit" class="btn btn-primary">Sign</button>
+    </form>
+{% endblock %}

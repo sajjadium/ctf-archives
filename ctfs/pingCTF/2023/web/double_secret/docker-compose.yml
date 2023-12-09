@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+    db:
+        image: mysql
+        command: --default-authentication-plugin=mysql_native_password
+        restart: always
+        tmpfs:
+            - /var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+
+    challenge:
+        build: .
+        environment:
+            FLAG: "ping{FAKE}"
+            INSTANCER_USERNAME: "${INSTANCER_USERNAME:-admin}"
+            INSTANCER_PASSWORD: "${INSTANCER_PASSWORD:-admin}"
+        ports:
+            - "${PORT:-3000}:3000"

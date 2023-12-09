@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Text Report Generator</title>
+		<style>
+			body {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+				margin: 0;
+				font-family: Arial, sans-serif;
+				background-color: #121212;
+				color: #ffffff;
+			}
+
+			#report-container {
+				text-align: center;
+			}
+
+			#report-text {
+				font-size: 2em;
+				margin-bottom: 20px;
+			}
+
+			#url {
+				padding: 10px;
+				font-size: 1em;
+				background-color: #333;
+				color: #ffffff;
+				border: none;
+				margin-bottom: 10px;
+			}
+
+			#generate-button {
+				padding: 12px 24px;
+				font-size: 1em;
+				background-color: #4caf50;
+				color: #ffffff;
+				border: none;
+				cursor: pointer;
+			}
+
+			#generate-button:hover {
+				background-color: #45a049;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="report-container">
+			<h1>Report link to the bot</h1>
+			<br />
+			<div id="report-text"></div>
+			<input
+				type="text"
+				id="url"
+				placeholder="http://localhost:3000/?code=a=2-2" />
+			<br />
+			<button onclick="report()" id="generate-button">REPORT</button>
+		</div>
+
+		<script>
+			function report() {
+				fetch(
+					`/report?url=${encodeURIComponent(
+						document.getElementById("url").value
+					)}`,
+					{ method: "POST" }
+				).then(async (a) => {
+					alert(await a.text());
+				});
+			}
+		</script>
+	</body>
+</html>

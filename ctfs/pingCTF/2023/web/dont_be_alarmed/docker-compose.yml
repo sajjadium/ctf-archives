@@ -1,0 +1,11 @@
+version: "3"
+services:
+    dont-be-alarmed:
+        build: .
+        ports:
+            - "10007:3000"
+        restart: always
+        tty: true
+        stdin_open: true
+        environment:
+            - FLAG=ping{FAKE}

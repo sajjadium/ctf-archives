@@ -1,0 +1,1 @@
+In this challenge, your school teacher dismissed your abilities by calling you a lame loser. Now, you have the chance to prove her wrong by showcasing your skills in solving equations of the form ax + by = 0. You already know x,y! If you get a,b you can decrypt ct.
