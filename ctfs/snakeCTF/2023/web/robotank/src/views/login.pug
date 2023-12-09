@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .row.justify-content-center
+    .col-6
+      .card
+        .card-body
+          h5.card-title Login
+          form(action="/auth/login" method="POST" enctype="application/json")
+            .mb-3
+              label.form-label(for="username") Username:
+              input.form-control(type="text" id="username" name="username")
+
+            .mb-3
+              label.form-label(for="password") Password:
+              input.form-control(type="password" id="password" name="password")
+
+            .mb-3
+              button.btn.btn-primary.ms-auto(type="submit" id="submit") Log in

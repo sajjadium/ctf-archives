@@ -1,0 +1,36 @@
+<% content_for :content do %>
+  <% content_for :subcontent do %>
+    <h4 class="card-title center-align black-text">Login</h4>
+    <% if @message %>
+      <div class="center">
+        <span class="error"><%= @message %></span>
+      </div>
+    <% end %>
+    <%= form_with url: "/login", method: :post, model: @account do |form| %>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= form.label :username, class: "black-text" %>
+          <%= form.text_field :username, class: "black-text" %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <%= form.label :password, class: "black-text" %>
+          <%= form.password_field :password, class: "black-text" %>
+        </div>
+      </div>
+
+      <div class="row center-align">
+        <%= form.submit "Login", class: "white-text waves-light btn" %>
+      </div>
+    <% end %>
+    <div>
+      <%= link_to "Click here to reset your password", "/reset", class: "black-text" %>
+    </div>
+    <div>
+      <%= link_to "Click here to register", "/register", class: "black-text" %>
+    </div>
+  <% end %>
+  <%= render "layouts/authform" %>
+<% end %>

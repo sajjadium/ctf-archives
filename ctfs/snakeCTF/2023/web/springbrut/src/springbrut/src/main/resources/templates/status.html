@@ -1,0 +1,23 @@
+<head>
+    <title>Admin page</title>
+</head>
+
+<body>
+    <h1>Hello World!</h1>
+    <p>Here's the status of the app:</p>
+    <p>Disk free: <span id="disk.free"></span></p>
+    <p>Requests: <span id="http.server.requests"></span></p>
+    <p>CPU: <span id="process.cpu.usage"></span></p>
+    <p>Process uptime: <span id="process.uptime"></span></p>
+    <p>Load average (1m): <span id="system.load.average.1m"></span></p>
+    <script>
+        const w = new Worker("/js/worker.js");
+        w.onmessage = (event) => {
+            field = event.data.name;
+            tag = window.document.getElementById(field);
+            tag.innerText = event.data.value;
+        }
+    </script>
+</body>
+
+</html>

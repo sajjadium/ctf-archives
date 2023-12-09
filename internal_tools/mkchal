@@ -169,6 +169,9 @@ if __name__ == '__main__':
 
     os.system('find "%s" -name "*" -depth 1 | while read line; do mv "$line" "%s"; done' % (final_path, chal_name))
 
+  # compress any pcap or pcapng file
+  os.system("find \"%s\" -type f -name \"*.pcap*\" | grep -E -e '.*\.pcap(ng){0,1}$' | xargs -n 1 xz" % (chal_name))
+
   readme = ''
   if os.path.exists('%s/README.md' % chal_name):
     readme = open('%s/README.md' % chal_name).read()

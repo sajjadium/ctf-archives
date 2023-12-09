@@ -1,0 +1,14 @@
+{
+    "name": "bot",
+    "version": "1.0.0",
+    "description": "",
+    "main": "bot.js",
+    "scripts": {
+        "bot": "node bot.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "puppeteer": "^21.0.1"
+    }
+}

@@ -1,0 +1,33 @@
+<% content_for :content do %>
+  <% content_for :subcontent do %>
+    <%= form_with model: @kitten do |form| %>
+      <h4 class="card-title center-align black-text">Add your kitten details</h4>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= form.label :description, class: "black-text" %>
+          <%= form.text_area :description, class: "black-text materialize-textarea" %>
+        </div>
+        <% @kitten.errors.full_messages_for(:description).each do |message| %>
+          <div class="red-text">
+            <span class="error"><%= message %></span>
+          </div>
+        <% end %>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= form.label :location, class: "black-text" %>
+          <%= form.text_area :location, class: "black-text materialize-textarea" %>
+        </div>
+        <% @kitten.errors.full_messages_for(:location).each do |message| %>
+          <div>
+            <span class="error"><%= message %></span>
+          </div>
+        <% end %>
+      </div>
+      <div class="row center-align">
+        <%= form.submit "Add", class: "white-text waves-light btn" %>
+      </div>
+    <% end %>
+  <% end %>
+  <% render "layouts/internalform" %>
+<% end %>

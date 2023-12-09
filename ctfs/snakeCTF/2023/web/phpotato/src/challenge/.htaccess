@@ -1,0 +1,19 @@
+php_flag register_globals off
+
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^/?$                                                        /index.php?page=home                                [L]
+
+# TODO: FIX and make it better
+
+RewriteRule ^(home|login|register|admin)$                               /index.php?page=$1                                  [NC,L]
+
+RewriteRule ^(home|admin)/sort-(asc|desc)/?$                            /index.php?page=$1\&sort=$3                         [NC,L]
+RewriteRule ^(home|admin)/sort-(asc|desc)/limit-([^/]+)/?$              /index.php?page=$1\&sort=$3\&limit=$4               [NC,L]
+
+RewriteRule ^(home|admin)/p-([^/]+)/?$                                  /index.php?page=$1\&precision=$2                    [NC,L]
+RewriteRule ^(home|admin)/p-([^/]+)/sort-(asc|desc)/?$                  /index.php?page=$1\&precision=$2\&sort=$3           [NC,L]
+RewriteRule ^(home|admin)/p-([^/]+)/sort-(asc|desc)/limit-([^/]+)/?$    /index.php?page=$1\&precision=$2\&sort=$3\&limit=$4 [NC,L]
+
+RewriteRule ^(home|login|register|admin)\.php$ -                                                                            [NC,F,L]

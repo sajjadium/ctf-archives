@@ -1,0 +1,24 @@
+<% content_for :content do %>
+  <div class="row">
+    <div class="center">
+      <h3>Cats</h3>
+      <h5><i>These cats are so cute, check them out</i></h5>
+    </div>
+  </div>
+  <div class="carousel" id="cat-img-carousel">
+    <% @kittens.each do |k| %>
+      <a class="carousel-item" href="<%= url_for k %>">
+        <img src="<%= h k.location %>"/>
+      </a>
+    <% end %>
+  </div>
+  <div class="carousel" id="cat-desc-carousel">
+    <% @kittens.each do |k| %>
+      <a class="carousel-item" href="<%= url_for k %>">
+        <p class="black-text"><%= h k.description %></p>
+      </a>
+    <% end %>
+  </div>
+  <div data-controller>
+  <script src="<%= asset_url('carousel.js')%>"></script>
+<% end %>

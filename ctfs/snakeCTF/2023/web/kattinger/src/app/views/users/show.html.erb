@@ -1,0 +1,85 @@
+<% content_for :content do %>
+  <% content_for :subcontent_1 do %>
+    <div class="row ">
+      <h4 class="card-title center-align black-text">Account information</h4>
+    </div>
+    <div class="row padded-lr-5">
+      <label for="username" class="black-text">Username</label>
+      <p class="black-text" name="username">
+        <%= @account.username %>
+      </p>
+    </div>
+    <div class="row padded-lr-5">
+      <label for="admin" class="black-text">admin</label>
+      <p class="black-text" name="admin">
+        <%= @account.username === ENV['ADMIN_USER'] %>
+      </p>
+    </div>
+    <div class="row padded-lr-5">
+      <label for="password" class="black-text">Password</label>
+      <p class="black-text" name="password">
+        <% if current_user().id === @account.id %>
+          <%= @account.password %>
+        <% else %>
+          [REDACTED]
+        <% end %>
+      </p>
+    </div>
+    <div class="row padded-lr-5">
+      <label for="token" class="black-text">token</label>
+      <p class="black-text" name="token">
+        <% if current_user().id === @account.id %>
+          <%= @account.reset_token %>
+        <% else %>
+          [REDACTED]
+        <% end %>
+      </p>
+    </div>
+    <% if current_user().id === @account.id || is_admin?() %>
+      <div class="row center">
+        <%= link_to "Edit", edit_user_path(@account), class: "white-text btn" %>
+        <%= link_to "Delete",
+        user_path(@account),
+        class: "white-text btn",
+        data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure? You're gonna die."
+        } %>
+      </div>
+    <% end %>
+  <% end %>
+  <% content_for :subcontent_2 do %>
+    <div class="row">
+      <h5 class="card-title center-align black-text">Account comments</h5>
+    </div>
+    <% @account.comments.each do |c| %>
+      <div class="comment">
+        <div class="row padded-lr-5">
+          <span class="black-text">
+            <%= "⭐" * c.rate + "☆" * (10 - c.rate) %>
+            <% if current_user().id == @account.id || is_admin?() %>
+              <%= link_to "Delete",
+              comment_path(c.id),
+              method: :delete,
+              class: "white-text btn right top",
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
+            <% end %>
+          </span>
+          <p class="black-text">
+            <%= link_to "Kitten ##{c.cat.id}", c.cat %>
+          </p>
+        </div>
+        <div class="row padded-lr-5">
+          <p class="black-text" name="body">
+            <%= c.body %>
+          </p>
+        </div>
+      </div>
+      <hr class="margin-lr-3">
+    <% end %>
+  <% end %>
+  <%= render "layouts/internalshow" %>
+<% end %>

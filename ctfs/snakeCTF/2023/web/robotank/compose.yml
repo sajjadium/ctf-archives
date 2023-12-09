@@ -1,0 +1,37 @@
+version: "3"
+services:
+  app:
+    build: src
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=REDACTED
+      - DATABASE_HOST=database
+      - DATABASE_USER=admin
+      - DATABASE_PASSWORD=REDACTED
+      - DATABASE_NAME=bot
+      - DATABASE_POOL_LIMIT=15
+      - SECRET_KEY=REDACTED
+      - REGISTER_API_KEY=REDACTED
+      - BACKEND_HOST=REDACTED
+      - BACKEND_PORT=REDACTED
+      - BACKEND_USERNAME=REDACTED
+      - BACKEND_PASSWORD=REDACTED
+      - COUPON_VALUE=5
+      - SHIELD_DURATION=10
+      - SHIELD_PRICE=15
+      - SHIELD_TEXT=shield
+      - SHIELD_NAME=shield #if changed, fix css
+      - KEY_LENGTH=32
+      - NODE_ENV=development
+    depends_on:
+      - database
+  database:
+    image: mariadb:11
+    restart: unless-stopped
+    volumes:
+      - ./src/db:/docker-entrypoint-initdb.d
+    environment:
+      - "MYSQL_RANDOM_ROOT_PASSWORD=yes"

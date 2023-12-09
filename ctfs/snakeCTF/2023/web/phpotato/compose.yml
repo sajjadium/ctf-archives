@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  app:
+    build: ./src/challenge
+    ports:
+      - 5003:80
+    environment:
+      - "FLAG=snakeCTF{REDACTED}"
+      - "DB_HOST=db"
+      - "DB_USER=app"
+      - "DB_PASSWORD=REDACTED"
+      - "DB_DATABASE=photatopower"
+      - "DB_PORT=3306"
+      - "PRECISION=8"
+    restart: unless-stopped
+  db:
+    image: mariadb:11
+    volumes:
+      - ./src/db/:/docker-entrypoint-initdb.d
+    environment:
+      - "MYSQL_DATABASE=photatopower"
+      - "MYSQL_RANDOM_ROOT_PASSWORD=yes"
+    restart: unless-stopped

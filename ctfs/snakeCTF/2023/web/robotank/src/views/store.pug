@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  link(rel="stylesheet" href="css/store.css")
+  .row.justify-content-center
+    .store-items
+      each item in items 
+        button.btn.store-item.btn-lg(class=`${item.name}-button btn-${item.color}` disabled=item.disabled onclick=item.action)
+          h5= item.text
+
+  script(src="js/store.js")

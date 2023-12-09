@@ -1,0 +1,25 @@
+version: "3"
+services:
+  springbrut:
+    build:
+      context: ./src/springbrut
+    image: springbrut
+    restart: unless-stopped
+    ports:
+      - "5002:8080"
+    depends_on:
+      - database
+  database:
+    image: mariadb:11
+    restart: unless-stopped
+    volumes:
+      - ./src/db/:/docker-entrypoint-initdb.d
+    environment:
+      - "MYSQL_RANDOM_ROOT_PASSWORD=yes"
+  bot:
+    build:
+      context: ./src/bot
+    image: springbrut-bot
+    restart: unless-stopped
+    environment:
+      - "ADMIN_PASSWORD=REDACTED"

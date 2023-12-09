@@ -1,0 +1,15 @@
+<div class="valign-wrapper" style="width:100%;height:90%;position: absolute;">
+  <div class="valign" style="width:100%;">
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m4 offset-m4">
+          <div class="card">
+            <div class="card-content">
+              <%= content_for?(:subcontent) ? yield(:subcontent) : yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

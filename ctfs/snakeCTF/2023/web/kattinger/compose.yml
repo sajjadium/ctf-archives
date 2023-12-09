@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  kattinger-app:
+    build: ./src
+    ports:
+      - 5001:3000
+    environment:
+      FLAG: "REDACTED"
+      HOST: "kattinger-app"
+      ADMIN_USER: "REDACTED"
+      ADMIN_PASSWORD: "REDACTEDREDACTEDREDACTED"
+      SECRET: "REDACTEDREDACTEDREDACTEDREDACTED"
+    restart: unless-stopped

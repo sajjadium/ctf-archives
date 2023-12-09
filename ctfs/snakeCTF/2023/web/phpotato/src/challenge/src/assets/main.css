@@ -1,0 +1,205 @@
+body {
+    margin: 0;
+    height: 100%;
+}
+
+body::before {
+    background-image: url('chalkboard.jpg'), url('chalkboard.jpg');
+    background-blend-mode: difference;
+    background-size: cover;
+    opacity: 0.6;
+    background-position: calc(50% - 1px) calc(50% - 1px), calc(50% + 1px) calc(50% + 1px);
+    filter: brightness(3) grayscale(1);
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: -1;
+    background-attachment: fixed;
+}
+
+.navbar-wrapper {
+    width: 100%;
+}
+
+.navbar {
+    margin: 0;
+    padding: 0;
+    background: repeating-linear-gradient(-55deg,
+            #5f5c5c,
+            #5f5c5c 10px,
+            #2e2d2d 10px,
+            #2e2d2d 20px);
+}
+
+.navbar-item {
+    display: inline-block;
+    margin: 5px 20px;
+    border: 2px solid black;
+    padding: 3px 4px;
+    font-size: 2rem;
+    color: black;
+    backdrop-filter: blur(5px);
+    text-shadow: 0px 0px 2px white;
+
+}
+
+.navbar-item a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.current {
+    color: #863030;
+    text-shadow: 0px 0px 2px black;
+}
+
+.main-form {
+    backdrop-filter: blur(10px);
+    background-blend-mode: multiply;
+    background-size: 100px 100px;
+    margin: 10% 30%;
+    font-size: 2rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.form-entry {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.form-entry .box-input {
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, 0);
+    border: 2px solid black;
+    border-radius: 10px;
+    flex: 1;
+}
+
+.message {
+    font-size: 1.5rem;
+    color: red;
+    text-align: center;
+    font-family: Apple Chancery, cursive;
+    text-shadow: 0px 0px 2px black;
+}
+
+.submit {
+    font-size: 1.5rem;
+}
+
+.form-title {
+    font-family: Apple Chancery, cursive;
+    text-align: center;
+}
+
+.ruled-paper {
+    width: 70%;
+    margin-left: 15%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.written-form-entry > label {
+    flex: 1;
+}
+
+.ruled-paper .ruled-paper-header {
+    background-image: linear-gradient(90deg, transparent 79px, #ec7063 79px, #ec7063 81px, transparent 81px);
+    background-size: 100% 1.2em;
+    flex-grow: 1;
+    text-align: center;
+    font-family: Apple Chancery, cursive;
+}
+
+.ruled-paper .ruled-paper-body {
+    background-image: linear-gradient(90deg, transparent 79px, #ec7063 79px, #ec7063 81px, transparent 81px),
+        linear-gradient(#85c1e9 .1em, transparent .1em);
+    background-size: 100% 1.2em;
+    flex-grow: 8;
+    padding-top: .2rem;
+    padding-left: 6rem;
+    line-height: 1.2;
+}
+
+.numbers {
+    display: flex;
+    flex-direction: column;
+}
+
+.num {
+    display: inherit;
+    font-size: 1.5rem;
+    font-family: Apple Chancery, cursive;
+    justify-content: space-around;
+    margin-bottom: 0;
+}
+
+.pipe {
+    text-align: center;
+    font-size: 1.2rem;
+    font-family: Apple Chancery, cursive;
+    margin-bottom: 10px;
+}
+
+hr {
+    box-shadow: 0px 1px 0px 0px rgba(112, 112, 112, 0.3);
+    width: 70%;
+}
+
+.begin-section {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    flex-direction: row;
+}
+
+.number-container {
+    text-align: center;
+}
+
+.ruled-paper-body form {
+    display: flex;
+    flex-direction: column;
+}
+
+.numbers form {
+    display: flex;
+    flex-direction: column;
+}
+
+.written-submit {
+    padding: 3px 50px;
+    background: rgba(255, 255, 255, 0);
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    margin: 0 auto;
+}
+
+.written-form-entry {
+    display: flex;
+    justify-content: end;
+    font-size: 1.5rem;
+}
+
+
+.written-form-entry .box-input {
+    margin-left: 30px;
+}
+
+code {
+    white-space: pre-line;
+}

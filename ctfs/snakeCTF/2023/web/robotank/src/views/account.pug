@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  h1.text-center.mb-5 Account details for #{user.username}
+  .row.justify-content-center
+    .col-4
+      .mb-3
+        .card
+          .card-header Account balance
+          .card-body
+            p Balance: #{user.balance}
+        
+      if public_key && generator && challenge 
+        .card
+            .card-header Public key
+            .card-body
+              p Public Key: #{public_key}
+              p Generator (x): #{generator}
+              p Challenge for token: #{challenge}
+      if user.motto
+        .card
+          .card-header Account motto
+          .card-body
+              p(id="current_motto" name="current_motto") #{user.motto}
+    .col-8
+      .mb-3
+        .card
+          .card-header Update your account
+          .card-body
+            form.row.mb-3.justify-content-end(action=`/account/${user.id}/motto` method="POST")
+              label.form-label.col-sm-3.col-form-label.mb-1.mb-sm-0(for="motto") Account motto
+              .col-sm-6
+                input.form-control(type="text" name="motto" id="motto" placeholder="Account motto")
+              .col-sm-3
+                button.btn.btn-primary.d-block.w-100(type="submit") Update 
+            form.row.mb-3(action=`/account/${user.id}/token` method="POST")
+              label.form-label.col-sm-3.col-form-label.mb-1.mb-sm-0(for="token") Reset token for account
+              .col-sm-6
+                input.form-control(type="text" name="token" id="token" placeholder="Token")
+              .col-sm-3
+                button.btn.btn-primary.d-block.w-100(type="submit") Reset account 
+            form.row.mb-3(action=`/account/${user.id}/coupon` method="POST")
+              label.form-label.col-sm-3.col-form-label.mb-1.mb-sm-0(for="coupon") Redeem your coupon
+              .col-sm-6
+                input.form-control(type="text" name="coupon" placeholder="Coupon" value=`${user.coupon? user.coupon : ''}`)
+              .col-sm-3
+                button.btn.btn-primary.d-block.w-100(type="submit") Redeem

@@ -1,0 +1,22 @@
+<nav class="teal ">
+  <div class="nav-wrapper">
+    <a href="/" class="logo">
+      <img src=<%= image_url('logo.png') %> class="logo-image"/>
+    </a>
+    <a href="#" class="brand-logo">Kattinger</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><%= link_to "Best kittens", "/cats", class: "white-text" %></li>
+      <li><%= link_to "Add your cat", "/cats/new", class: "white-text" %></li>
+      <li><%= link_to "Account", current_user(), class: "white-text" %></li>
+      <% if is_admin?()%>
+        <li><%= link_to "FLAG", "/admin", class: "white-text" %></li>
+      <% end %>
+      <li><%= link_to "Logout",
+        "/logout",
+        data: {
+          turbo_method: :post,
+          turbo_confirm: "Are you sure you want to log out?"
+        } %></li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,17 @@
+<% content_for :content do %>
+  <% content_for :subcontent_1 do %>
+        <div class="row ">
+      <h4 class="card-title center-align black-text">Image preview</h4>
+    </div>
+    <div class="center row">
+        <img src='<%=  @image_url %>' class="preview" />
+    </div>
+    <% if is_admin?() %>
+        <div class="center row">
+          <p>Same cat on LSD:</p>
+          <img src='<%= @processed_data %>' class="preview" />
+        </div>
+    <% end %>
+  <% end %>
+  <%= render "layouts/internalshow" %>
+<% end %>

@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  div(class="admin-item-panel")
+    each item in items
+      .item-view 
+        p= item.name
+        p Owner: #{item.username}
+        button(onclick=`resetOwnership(${item.id})`) Reset
+  
+  script(src="/js/admin.js")

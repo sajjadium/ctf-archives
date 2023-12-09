@@ -1,0 +1,76 @@
+<% content_for :content do %>
+  <% content_for :subcontent_1 do %>
+    <div class="row ">
+      <h4 class="card-title center-align black-text">Here's all about this cat</h4>
+    </div>
+    <div class="row padded-lr-5">
+      <label for="description" class="black-text">Description</label>
+      <p class="black-text" name="description">
+        <%= h @kitten.description %></p>
+    </div>
+    <div class="row padded-lr-5">
+      <label for="location" class="black-text">Location</label>
+      <p class="black-text" name="location">
+      <%= link_to @kitten.location, "/preview?id=#{@kitten.id}", id: "location" %>
+      </p>
+    </div>
+    <div class="row center">
+      <%= link_to "Edit", edit_cat_path(@kitten), class: "white-text btn" %>
+      <%= link_to "Delete",
+      cat_path(@kitten),
+      class: "white-text btn",
+      data: {
+        turbo_method: :delete,
+        turbo_confirm:
+          "Are you sure? You're gonna be charged with crimes against humanity."
+      } %>
+    </div>
+  <% end %>
+  
+  <% content_for :subcontent_2 do %>
+    <div class="row">
+      <h5 class="card-title center-align black-text">Latest comments</h5>
+    </div>
+    <% @kitten.comments.each do |c| %>
+      <div class="comment">
+        <div class="row padded-lr-5">
+          <span class="black-text">
+            <%= link_to c.user.username, c.user %>
+          </span>
+          <span class="black-text">
+            <%= "⭐" * c.rate + "☆" * (10 - c.rate) %>
+          </span>
+        </div>
+        <div class="row padded-lr-5">
+          <p class="black-text" name="User">
+            <%= h c.body %>
+          </p>
+        </div>
+      </div>
+      <hr class="margin-lr-3">
+    <% end %>
+    <%= form_with url: "/comments", model: @comment do |form| %>
+      <%= form.hidden_field :cat_id, value: @kitten.id %>
+      <%= form.hidden_field :user_id, value: @user.id %>
+      <h5 class="card-title center-align black-text">Add your comment</h5>
+      <div class="row padded-lr-5">
+        <div class="input-field col s12">
+          <%= form.label :rate, class: "black-text" %>
+          <p class="range-field padded-lr-5">
+            <input type="range" name="rate" min="0" max="10"/>
+          </p>
+        </div>
+      </div>
+      <div class="row padded-lr-5">
+        <div class="input-field col s12">
+          <%= form.label :body, class: "black-text" %>
+          <%= form.text_area :body, class: "black-text materialize-textarea" %>
+        </div>
+      </div>
+      <div class="row center-align">
+        <%= form.submit "Add", class: "white-text waves-light btn" %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= render "layouts/internalshow" %>
+<% end %>

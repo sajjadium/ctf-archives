@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .row.justify-content-center.mb-3
+    .col-9
+      .card
+        .card-header 
+          h1= message
+        .card-body
+          h2= error.status
+          pre #{error.stack}
+ 
+  if logged
+    .row.justify-content-center
+      h5.text-center Report error to admin
+      .col-6.mb-3
+        form(action="/report" method="POST")
+          .mb-3
+            label.form-label(for="url") Report url
+            input.form-control(type="text" name="url" id="url" placeholder="http(s)://...")
+          button.btn.btn-primary.d-block.w-100(type="submit") Report
