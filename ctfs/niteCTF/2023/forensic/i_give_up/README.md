@@ -1,0 +1,3 @@
+John Doe, the admin of a very famous meme page, has been missing for quite a while. I was analysing the last video he was working on, but the frames I extracted are corrupted. I am sending the frames and audio to you; I give up.
+
+Hint:- Do the frames actually lead to the flag, xor it's just another rickroll? Where's the key tho...

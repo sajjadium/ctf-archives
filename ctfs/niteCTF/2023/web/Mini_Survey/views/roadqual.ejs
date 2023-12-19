@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ministry of transportation - survey</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      padding-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Bootstrap Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Survey - MoT</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/roadqualsurvey">Road Quality</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/pollutionsurvey">Pollution</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Form -->
+  <form id="pollutionForm" action="/roadqualsurvey" method="POST"><p>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required></p>
+    <p>
+    <label for="city">City Name:</label>
+    <input type="text" id="city" name="city" required></p><p>
+
+    <label for="roadRate">Road Quality (1 to 10):</label>
+    <select id="roadRate" name="roadRate" required>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select></p>
+
+    <label for="reasons">Reasons(seperated by commas): </label>
+    <input type="text" id="reasons" name="reasons" required>
+
+    <button type="submit" onclick="submitForm()" class="btn btn-primary">Submit</button>
+  </form>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <script>
+    function submitForm() {
+      
+    }
+  </script>
+
+</body>
+</html>

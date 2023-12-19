@@ -1,0 +1,1 @@
+No wonder we were so easily hacked. Our investigation revealed that one of our employees has been communicating with the hacker. However, without any proof, there is no way to take action. Find the secret message.

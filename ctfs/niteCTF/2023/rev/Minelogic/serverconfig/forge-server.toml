@@ -1,0 +1,20 @@
+
+#Server configuration settings
+[server]
+	#Set this to true to remove any BlockEntity that throws an error in its update method instead of closing the server and reporting a crash log. BE WARNED THIS COULD SCREW UP EVERYTHING USE SPARINGLY WE ARE NOT RESPONSIBLE FOR DAMAGES.
+	removeErroringBlockEntities = false
+	#Set this to true to remove any Entity (Note: Does not include BlockEntities) that throws an error in its tick method instead of closing the server and reporting a crash log. BE WARNED THIS COULD SCREW UP EVERYTHING USE SPARINGLY WE ARE NOT RESPONSIBLE FOR DAMAGES.
+	removeErroringEntities = false
+	#Set this to true to check the entire entity's collision bounding box for ladders instead of just the block they are in. Causes noticeable differences in mechanics so default is vanilla behavior. Default: false.
+	fullBoundingBoxLadders = false
+	#Base zombie summoning spawn chance. Allows changing the bonus zombie summoning mechanic.
+	#Range: 0.0 ~ 1.0
+	zombieBaseSummonChance = 0.1
+	#Chance that a zombie (or subclass) is a baby. Allows changing the zombie spawning mechanic.
+	#Range: 0.0 ~ 1.0
+	zombieBabyChance = 0.05
+	#The permission handler used by the server. Defaults to forge:default_handler if no such handler with that name is registered.
+	permissionHandler = "forge:default_handler"
+	#Set this to true to enable advertising the dedicated server to local LAN clients so that it shows up in the Multiplayer screen automatically.
+	advertiseDedicatedServerToLan = true
+

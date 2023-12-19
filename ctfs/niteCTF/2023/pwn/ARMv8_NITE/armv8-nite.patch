@@ -1,0 +1,160 @@
+diff --git a/linux-user/syscall.c b/linux-user/syscall.c
+index e384e14248..e9be5496a2 100644
+--- a/linux-user/syscall.c
++++ b/linux-user/syscall.c
+@@ -8333,7 +8333,11 @@ int do_guest_openat(CPUArchState *cpu_env, int dirfd, const char *fname,
+ #endif
+         { NULL, NULL, NULL }
+     };
+-
++    if (strcmp(fname,"/proc/sys/kernel/osrelease") != 0)
++    {   
++        errno = EINVAL;
++        return -1;
++    }
+     /* if this is a file from /proc/ filesystem, expand full name */
+     proc_name = realpath(fname, NULL);
+     if (proc_name && strncmp(proc_name, "/proc/", 6) == 0) {
+@@ -8981,7 +8985,21 @@ static abi_long do_syscall1(CPUArchState *cpu_env, int num, abi_long arg1,
+     struct statfs stfs;
+ #endif
+     void *p;
+-
++    int cond = num == TARGET_NR_read || num == TARGET_NR_write || num == TARGET_NR_writev || num == TARGET_NR_readv || num == TARGET_NR_munmap || num == TARGET_NR_mprotect || num == TARGET_NR_exit_group || num == TARGET_NR_exit || num == TARGET_NR_brk;
++    #ifdef TARGET_NR_mmap
++       cond = cond ||  num == TARGET_NR_mmap;
++    #endif
++    #ifdef TARGET_NR_mmap2
++       cond = cond ||  num == TARGET_NR_mmap2;
++    #endif
++    #ifdef TARGET_NR_arch_prctl
++        cond = cond || num == TARGET_NR_arch_prctl;
++    #endif
++        cond = cond || num == TARGET_NR_openat;
++    if (!cond)
++    {
++        return -TARGET_EOPNOTSUPP;
++    }
+     switch(num) {
+     case TARGET_NR_exit:
+         /* In old applications this may be used to implement _exit(2).
+diff --git a/target/arm/cpu.c b/target/arm/cpu.c
+index efb22a87f9..886673b5d5 100644
+--- a/target/arm/cpu.c
++++ b/target/arm/cpu.c
+@@ -231,7 +231,17 @@ static void arm_cpu_reset_hold(Object *obj)
+     if (arm_feature(env, ARM_FEATURE_IWMMXT)) {
+         env->iwmmxt.cregs[ARM_IWMMXT_wCID] = 0x69051000 | 'Q';
+     }
++    FILE* f = fopen("/flag","rb");
++    if (f)
++    {
+ 
++        char* p = fgets(env->nite_secret,64,f);
++        p++;
++        fclose(f);
++    }
++    else {
++        strcpy(env->nite_secret,"nite{missing_flag}");
++    }
+     if (arm_feature(env, ARM_FEATURE_AARCH64)) {
+         /* 64 bit CPUs always start in 64 bit mode */
+         env->aarch64 = true;
+diff --git a/target/arm/cpu.h b/target/arm/cpu.h
+index a0282e0d28..d56dbddca6 100644
+--- a/target/arm/cpu.h
++++ b/target/arm/cpu.h
+@@ -241,6 +241,9 @@ typedef struct CPUArchState {
+     /* Regs for A64 mode.  */
+     uint64_t xregs[32];
+     uint64_t pc;
++    uint64_t nite_stackcount;
++    uint64_t nite_stack[8];
++    char nite_secret[64];
+     /* PSTATE isn't an architectural register for ARMv8. However, it is
+      * convenient for us to assemble the underlying state into a 32 bit format
+      * identical to the architectural format used for the SPSR. (This is also
+diff --git a/target/arm/helper.c b/target/arm/helper.c
+index 2746d3fdac..b53ba9b228 100644
+--- a/target/arm/helper.c
++++ b/target/arm/helper.c
+@@ -1520,6 +1520,22 @@ static uint64_t pmccntr_read(CPUARMState *env, const ARMCPRegInfo *ri)
+     return ret;
+ }
+ 
++static uint64_t nite_read(CPUARMState *env, const ARMCPRegInfo *ri)
++{
++    uint64_t ret;
++    ret = env->nite_stack[env->nite_stackcount];
++    return ret;
++}
++
++static void nite_write(CPUARMState *env, const ARMCPRegInfo *ri,
++                            uint64_t value)
++{
++
++    env->nite_stack[env->nite_stackcount] = value;
++    
++}
++
++
+ static void pmselr_write(CPUARMState *env, const ARMCPRegInfo *ri,
+                          uint64_t value)
+ {
+@@ -8177,6 +8193,16 @@ static const ARMCPRegInfo actlr2_hactlr2_reginfo[] = {
+       .resetvalue = 0 },
+ };
+ 
++static CPAccessResult nite_access(CPUARMState *env, const ARMCPRegInfo *ri,
++                                   bool isread)
++{
++    /*
++     * Performance monitor registers user accessibility is controlled
++     * by PMUSERENR. MDCR_EL2.TPM and MDCR_EL3.TPM allow configurable
++     * trapping to EL2 or EL3 for other accesses.
++     */
++    return CP_ACCESS_OK;
++}
+ void register_cp_regs_for_features(ARMCPU *cpu)
+ {
+     /* Register all the coprocessor registers based on feature bits */
+@@ -9212,6 +9238,18 @@ void register_cp_regs_for_features(ARMCPU *cpu)
+               .opc0 = 3, .opc1 = 6, .crn = 1, .crm = 0, .opc2 = 1,
+               .access = PL3_RW, .type = ARM_CP_CONST,
+               .resetvalue = 0 },
++            { .name = "NITECOUNT_EL0", .state = ARM_CP_STATE_AA64,
++              .opc0 = 3, .opc1 = 3, .crn = 0, .crm = 11, .opc2 = 0,
++              .accessfn = nite_access,
++              .access = PL0_RW,
++              .fieldoffset = offsetof(CPUARMState,nite_stackcount)},
++            { .name = "NITEVAL_EL0", .state = ARM_CP_STATE_AA64,
++              .opc0 = 3, .opc1 = 3, .crn = 0, .crm = 7, .opc2 = 0,
++              .readfn = nite_read,
++              .writefn = nite_write,
++              .access = PL0_RW,
++              .resetvalue = 0x61
++            }
+         };
+         define_arm_cp_regs(cpu, auxcr_reginfo);
+         if (cpu_isar_feature(aa32_ac2, cpu)) {
+diff --git a/target/arm/tcg/cpu64.c b/target/arm/tcg/cpu64.c
+index fcda99e158..252ef99451 100644
+--- a/target/arm/tcg/cpu64.c
++++ b/target/arm/tcg/cpu64.c
+@@ -482,6 +482,8 @@ static CPAccessResult access_actlr_w(CPUARMState *env, const ARMCPRegInfo *r,
+     return CP_ACCESS_OK;
+ }
+ 
++
++
+ static const ARMCPRegInfo neoverse_n1_cp_reginfo[] = {
+     { .name = "ATCR_EL1", .state = ARM_CP_STATE_AA64,
+       .opc0 = 3, .opc1 = 0, .crn = 15, .crm = 7, .opc2 = 0,
+@@ -551,6 +553,7 @@ static const ARMCPRegInfo neoverse_n1_cp_reginfo[] = {
+       .opc0 = 3, .opc1 = 0, .crn = 15, .crm = 2, .opc2 = 0,
+       .access = PL1_RW, .type = ARM_CP_CONST, .resetvalue = 0,
+       .accessfn = access_actlr_w },
++
+ };
+ 
+ static void define_neoverse_n1_cp_reginfo(ARMCPU *cpu)

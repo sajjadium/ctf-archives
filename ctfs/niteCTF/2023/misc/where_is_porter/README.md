@@ -1,0 +1,1 @@
+Porter has gone MIA. Yes there is some action happening. But right now we need to focus on finding her. The following evidence was found at one of the multiple condos she had rented. Can you figure out where she went?

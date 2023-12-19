@@ -1546,12 +1546,16 @@
             <td><a href="https://ctftime.org/event/2072/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/nite">nite</a></td>
-            <td><a href="ctfs/nite/2022">2022</a></td>
+            <td rowspan=3><a href="ctfs/niteCTF">niteCTF</a></td>
+            <td><a href="ctfs/niteCTF/2023">2023</a></td>
+            <td><a href="https://ctftime.org/event/2207/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/niteCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1758/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/nite/2021">2021</a></td>
+            <td><a href="ctfs/niteCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1449/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

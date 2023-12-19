@@ -34,9 +34,6 @@ def is_valid(line):
   if re.search('\d+[ \t]*pt', line):
     return False
 
-  if line.strip().lower().startswith('author:'):
-    return False
-
   if re.search(r'\d{2}/\d{2}, \d{2}:\d{2}:\d{2}', line):
     return False
 
@@ -67,7 +64,7 @@ def is_valid(line):
   if re.fullmatch("difficulty: (easy|medium|hard|baby|guessy)", line.strip().lower()):
     return False
 
-  if re.fullmatch(r"author: \w+", line.strip().lower()):
+  if re.match(r"author\s*:", line.strip().lower()):
     return False
 
   if re.fullmatch(r"first blood: (\w|\.)+", line.strip().lower()):
@@ -91,7 +88,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('?', 'q').replace('è', 'e').replace('🏃', 'Ran')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('?', 'q').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e')
 
 def get_challenge_name(line):
   for original_name in reversed(line.strip().split('/')):
