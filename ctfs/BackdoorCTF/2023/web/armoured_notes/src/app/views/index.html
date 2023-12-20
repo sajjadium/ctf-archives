@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <title>Armoured Notes</title>
+<style>body {
+  background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 13%, rgba(0,212,255,1) 100%);
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-family: "Audiowide", sans-serif;
+
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width:100vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width:80vw;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1,h2,h3,h5 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+h4{
+  text-align: center;
+
+  width:60vw;
+}
+.glowing-border {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+ 
+  align-items: center;
+  border: 3px solid #ffffff;
+  animation: glowing 2s infinite;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { border-color: #ffffff; box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff, 0 0 20px #007BFF; }
+  50% { border-color: #007BFF; box-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #007BFF, 0 0 20px #007BFF; }
+  100% { border-color: #ffffff; box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff, 0 0 20px #007BFF; }
+}
+label {
+  margin-bottom: 5px;
+}
+
+input[type="text"], textarea, input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+input[type="submit"] {
+  background-color: #007BFF;
+  color: #fff;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}</style>
+  </head>
+  <body>
+    <div class="glowing-border">
+    <h1>Armoured Notes(beta)</h1>
+    <h2>Please write your notes here.You may also share with others(Note they will have edit access if you do so)</h1>
+    <h3>If nobody wants to read share it with our <a href="/report">superadmin bot</a> :)</h2>
+<div id="handler"><!--app-html--></div>
+    <form>
+      <label for="lname">username:</label><br>
+      <input type="text" id="uname" name="uname" value="John"><br>
+      <label for="unmame">password:</label><br>
+      <input type="text" id="uname" name="pass" value="Doe"><br><br>
+      <textarea name="message" rows="10" cols="30">Your note...</textarea>
+      <input type="submit" value="Save">
+    </form>    
+    <h5>You can add styles to your note on the next page.</h5>
+</div>
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting normally
+  
+      let uname = document.querySelector('input[name="uname"]').value;
+      let pass = document.querySelector('input[name="pass"]').value;
+      let message = document.querySelector('textarea[name="message"]').value;
+      if(message.length > 300){
+        alert("message too long")
+        return
+      }
+      fetch('/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({uname: uname, pass: pass, message: message})
+      }).then((res)=>{
+        return res.json()
+      }).then((data)=>{
+        if(data.code=="err"){
+          alert("Sorry only admin can make notes at the moment. Inconvenience is regretted.")
+        }else{
+          document.getElementById('handler').innerHTML = `<a href="/posts/${data.code}">Here is the link of your note</a>`;
+        }
+      }).catch((err)=>{
+        alert("something went wrong")
+      })
+  
+      
+    });
+  </script>
+</body>
+</html>

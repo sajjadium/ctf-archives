@@ -1,0 +1,15 @@
+version: '69'
+services:
+  mongodb:
+    image: mongo:latest
+    restart: always
+    expose:
+      - 27017
+  app:
+    depends_on:
+      - mongodb
+    env_file:
+      - ./src/app/.env
+    build: src/
+    ports:
+      - "3000:3000"

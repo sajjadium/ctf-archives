@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  php_sucks:
+    build: .
+    ports:
+      - "4052:80"

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Armoured Notes</title>
+   <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+   <script src="https://cdn.quilljs.com/1.3.7/quill.js"></script>
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+
+   <style>
+    body {
+      background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 13%, rgba(0,212,255,1) 100%);
+font-family: "Audiowide", sans-serif;
+
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+
+  .glowing-border {
+  border: 3px solid #ffffff;
+  animation: glowing 2s infinite;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { border-color: #ffffff; box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff, 0 0 20px #007BFF; }
+  50% { border-color: #007BFF; box-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #007BFF, 0 0 20px #007BFF; }
+  100% { border-color: #ffffff; box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff, 0 0 20px #007BFF; }
+}
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  h4{
+  text-align: center;
+
+  width:60vw;
+}
+
+  #editor {
+    height: 300px;
+    width: 100%;
+    max-height: 300px;
+    
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #0056b3;
+  }
+  </style>
+</head>
+<body>
+  
+   
+   <script type="module">
+      let toolbarOptions = [
+         ['bold', 'italic', 'underline'],[{
+            'size': ['small', false, 'large', 'huge']
+         }],[{
+            'color': []
+         }, {
+            'background': []
+         }]
+      ]
+      let quill = new Quill('#editor', {
+         modules: {
+            toolbar: toolbarOptions
+         },
+         theme: 'snow'
+      });
+      </script>
+      <script>
+      function saveNote() {
+      const noteId = window.location.pathname.split('/')[2];
+      const content = document.getElementById('editor').innerText;
+      if (content.length > 1000) { // change 1000 to your desired maximum length
+      alert('Content is too long');
+      return;
+    }
+      fetch('/save', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id: noteId, message: content }),
+      })
+      .then(response => response.json())
+      .then(alert("saved !"))
+      .catch((error) => {
+        alert('try again later');
+      });
+    }
+   </script>
+ <div class="glowing-border">
+  <h1>Please view your note you may also modify it :)</h1>
+  <h2>I added the editing feature here, will add it to the mainpage soon.</h2>
+  <div id="editor"><!--app-html--></div>
+  <button onclick="saveNote()">Save</button>
+</div>
+</body>
+</html>

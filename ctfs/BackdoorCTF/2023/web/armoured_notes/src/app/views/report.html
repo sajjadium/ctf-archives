@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+
+  <title>Superadmin Bot</title>
+  <style>
+    body {
+font-family: "Audiowide", sans-serif;
+      
+      background: rgb(2,0,36);
+background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 13%, rgba(0,212,255,1) 100%);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .glowing-border {
+  border: 3px solid #ffffff;
+  animation: glowing 2s infinite;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% { border-color: #ffffff; box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff, 0 0 20px #007BFF; }
+  50% { border-color: #007BFF; box-shadow: 0 0 5px #007BFF, 0 0 10px #007BFF, 0 0 15px #007BFF, 0 0 20px #007BFF; }
+  100% { border-color: #ffffff; box-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 15px #ffffff, 0 0 20px #007BFF; }
+}
+
+
+    .admin-bot {
+      width:75vw;
+      height:50vh;
+      padding-top: 20vh;
+      padding-right: 2vw;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1,h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      display:block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: none;
+      background-color: #007BFF;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #handler {
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-bot glowing-border">
+    <h1>Superadmin Bot</h1>
+    <h2>Share notes with me lonely people of the world, I understand everyone.</h2>
+    <input type="text" name="url" placeholder="Enter URL">
+    <button onclick="fetchReport()">Share</button>
+    <div id="handler"><!--app-html--></div>
+  </div>
+
+  <script>
+    function fetchReport() {
+      let url = document.querySelector('input[name="url"]').value;
+      fetch('/report', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({url: url})
+      }).then((res)=>{
+        return res.json()
+      }).then((data)=>{
+        if(data.code=="err"){
+          alert("something went wrong")
+        }else{
+          document.getElementById('handler').innerHTML = `${data.msg}`;
+        }
+      }).catch((err)=>{
+        alert("you have reached the limit try again later.")
+      })
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+    php-apache-environment:
+        container_name: php-apache
+        build:
+            context: ./php
+            dockerfile: Dockerfile
+        depends_on:
+            - db
+        volumes:
+            - ./php/src:/var/www/html/
+        ports:
+            - 8000:80
+    db:
+        container_name: db
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: PASSWORD
+            MYSQL_DATABASE: DATABASE
+        volumes:
+            - ./dump.sql:/docker-entrypoint-initdb.d/dump.sql
+        ports:
+            - "9906:3306"
+    

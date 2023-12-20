@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  secrets_of_j4ck4l:
+    build: .
+    ports:
+      - "4053:4053"
