@@ -1,0 +1,10 @@
+[package]
+name = "abc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rug = "1.22"
+static_init = "1.0"
+scanf = "1.2"
+sha2 = "0.10"

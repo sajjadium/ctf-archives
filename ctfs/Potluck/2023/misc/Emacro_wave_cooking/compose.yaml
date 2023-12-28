@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  macrowave:
+    build: .
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 31337:31337

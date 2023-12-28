@@ -1,0 +1,71 @@
+diff --git a/Dockerfile.build_system b/Dockerfile.build_system
+index a678165..e889663 100644
+--- a/Dockerfile.build_system
++++ b/Dockerfile.build_system
+@@ -42,8 +42,19 @@ COPY 0001-Store-the-open-file-descriptors-of-the-process-in-it.patch auxv.patch
+ RUN patch -p1 < auxv.patch
+ # Build the kernel; the result will be in `arch/x86/boot/bzImage`.
+ RUN make allnoconfig && make potluck.config && make -j4
++RUN cp arch/x86/boot/bzImage vmlinux / && make clean && tar cf /src.tar .
++
++# --- GDB ---
++RUN apt -y install gdb
++WORKDIR /busybox-1.36.1
++RUN for lib in $(ldd /usr/bin/gdb | grep -o '/lib[^ ]*') /usr/bin/gdb; do cp --parents ${lib} _install/; done
++RUN mkdir _install/usr/lib && cp -r /usr/lib/python3.10 _install/usr/lib
++RUN mkdir _install/usr/share && cp -r /usr/share/gdb _install/usr/share
++RUN cd _install && find . -print0 | cpio --create --format=newc --reproducible --null | gzip -c > /initramfs.cpio.gz
+ 
+ # --- FINAL OUTPUT ---
+ FROM scratch as output
+ COPY --from=build /initramfs.cpio.gz /
+-COPY --from=build /linux-6.1.69/arch/x86/boot/bzImage /
+\ No newline at end of file
++COPY --from=build /bzImage /
++COPY --from=build /vmlinux /
++COPY --from=build /src.tar /
+\ No newline at end of file
+diff --git a/init b/init
+index 4a1700b..88ccca9 100644
+--- a/init
++++ b/init
+@@ -15,7 +15,7 @@ mkdir -p /dev/shm /dev/pts
+ mount -t tmpfs tmpfs /dev/shm
+ mount -t tmpfs tmpfs /tmp
+ mount -t devpts none /dev/pts
+-chmod 666 /dev/ptmx
++chmod 666 /dev/ptmx /dev/urandom
+ 
+ echo 'root:x:0:0:root:/root:/bin/sh' > /etc/passwd
+ echo 'potluck:x:31337:31337:potluck:/tmp:/bin/sh' >> /etc/passwd
+diff --git a/potluck.config b/potluck.config
+index 17756aa..e3005be 100644
+--- a/potluck.config
++++ b/potluck.config
+@@ -9,3 +9,6 @@ CONFIG_PROC_FS=y
+ CONFIG_SYSFS=y
+ CONFIG_TMPFS=y
+ CONFIG_EARLY_PRINTK=y
++CONFIG_DEBUG_KERNEL=y
++CONFIG_DEBUG_INFO=y
++CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT=y
+\ No newline at end of file
+diff --git a/run.sh b/run.sh
+index cbdbe11..36cbfaa 100755
+--- a/run.sh
++++ b/run.sh
+@@ -3,11 +3,12 @@
+ set -e
+ 
+ qemu-system-x86_64 \
+-     -initrd prebuilt_system/initramfs.cpio.gz \
+-     -kernel prebuilt_system/bzImage \
++     -s -S \
++     -initrd custom_system/initramfs.cpio.gz \
++     -kernel custom_system/bzImage \
+      -append "root=/dev/ram console=ttyS0 oops=panic quiet" \
+      -nographic \
+      -monitor /dev/null \
+      -m 256 \
+      -smp 1 \
+      -no-reboot

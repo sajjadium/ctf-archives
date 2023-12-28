@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    const template = (token) => `/${token}/`;
+
+    window.onload = function(){
+      document.getElementById('tokenForm').addEventListener('submit', function(s) {
+      s.preventDefault();
+      this.action = template(this.elements["token"].value);
+      this.submit();
+    });
+    }
+    
+    </script>
+    <link rel="stylesheet" href="static/style.css">
+    <title>Cookmaster 9001</title>
+  </head>
+  <body>
+    <div class="bg-[url('static/background.avif')] bg-cover h-screen w-screen flex items-center justify-center text-white content-center	" >
+      <div class="grid grid-cols-3 content-center justify-center content-around">
+        <div>
+        </div>
+      <div class="bg-stone-700 rounded-2xl p-8">
+        <form action="placeholder" id="tokenForm" method="POST" class="w-fit grid grid-cols-1 gap-4 justify-center items-center">
+        <h1 class="text-[3vw] font-bold justify-center">CookMaster 9001</h1>
+          <p class="text-sm justify-left">Use get_token.py to solve the PoW and get a valid token. Tokens expire after 15 minutes.</p>
+          <div class="w-full">
+          <label for="token align-center">Token</label>
+          <input type="text" id="token" autocomplete="off" class="w-full text-black" />
+          </div>
+          <button class="text-[2vw] bg-green-800 rounded-xl">Start</button>
+        </form>
+      </div>
+      <div>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>
+

@@ -1,0 +1,1 @@
+Imagine a world where your code soars on the performance of nginx, dancing gracefully with modern scripting and transformation powers. While PHP aficionados are still trying to figure out their 500 internal errors and CGI fans are busy scripting their way to the last century, you'll be light-years ahead, sipping espresso and deploying functionalities like it's nobody's business.

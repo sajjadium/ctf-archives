@@ -1,0 +1,138 @@
+From a17c4536ad5018e7298120f94721a59eb2bacaa2 Mon Sep 17 00:00:00 2001
+From: Ivan Komarov <Ivan.Komarov@dfyz.info>
+Date: Tue, 26 Sep 2023 15:52:25 +0200
+Subject: [PATCH 1/1] Store the open file descriptors of the process in its
+ auxiliary table
+
+Currently, checking if an integer refers to an open file descriptor
+requires a syscall (e.g., `fcntl(fd, F_GETFL)`). To avoid this,
+store all open file descriptors in the auxiliary table, using
+keys in `[AT_FIRST_OPEN_FD; AT_FIRST_OPEN_FD + AT_MAX_FDS)`,
+which userspace can then retrieve with `getauxval()`.
+
+An example userspace program:
+
+int main() {
+    for (unsigned long key = AT_FIRST_OPEN_FD; key < AT_FIRST_OPEN_FD + AT_MAX_FDS; ++key) {
+        unsigned long val = getauxval(key);
+        if (val != 0) {
+            printf("Open FD: %d\n", (int)(val - 1));
+        }
+    }
+    return 0;
+}
+
+Run it like this:
+
+./test 42<./test
+
+To get an output like this:
+
+Open FD: 0
+Open FD: 1
+Open FD: 2
+Open FD: 42
+
+Note that since 0 is not a valid auxv value, you need to subtract one
+from the `getauxval()` result.
+
+If there is more than AT_MAX_FDS descriptors open, this initial
+implementation only stores the first AT_MAX_FDS descriptiors in
+the auxiliary table and completely ignores the rest. We assume
+this is not a problem for sane userspace programs that operate
+on a couple of dozen descriptors at most.
+---
+ fs/binfmt_elf.c             | 27 ++++++++++++++++++++++++---
+ include/linux/mm_types.h    |  2 +-
+ include/uapi/linux/auxvec.h |  3 +++
+ 3 files changed, 28 insertions(+), 4 deletions(-)
+
+diff --git a/fs/binfmt_elf.c b/fs/binfmt_elf.c
+index e6c9c0e08448..d96da5997e79 100644
+--- a/fs/binfmt_elf.c
++++ b/fs/binfmt_elf.c
+@@ -46,6 +46,7 @@
+ #include <linux/cred.h>
+ #include <linux/dax.h>
+ #include <linux/uaccess.h>
++#include <linux/fdtable.h>
+ #include <asm/param.h>
+ #include <asm/page.h>
+ 
+@@ -192,6 +193,9 @@ create_elf_tables(struct linux_binprm *bprm, const struct elfhdr *exec,
+ 	int ei_index;
+ 	const struct cred *cred = current_cred();
+ 	struct vm_area_struct *vma;
++	struct fdtable *fdt;
++	unsigned i;
++	unsigned fd_count = 0;
+ 
+ 	/*
+ 	 * In some cases (e.g. Hyper-Threading), we want to avoid L1
+@@ -240,11 +244,21 @@ create_elf_tables(struct linux_binprm *bprm, const struct elfhdr *exec,
+ 
+ 	/* Create the ELF interpreter info */
+ 	elf_info = (elf_addr_t *)mm->saved_auxv;
+-	/* update AT_VECTOR_SIZE_BASE if the number of NEW_AUX_ENT() changes */
++	/*
++	 * update AT_VECTOR_SIZE_BASE if the number of NEW_AUX_ENT() changes
++	 *
++	 * since the number of file descriptors is not known at compile time,
++	 * add some sanity checks to make sure we don't overflow auxv
++	 */
++#define SAFE_PUT_AUX_ENT(val) \
++	do { \
++		if ((char *)elf_info < (char *)mm->saved_auxv + sizeof(mm->saved_auxv)) \
++			*elf_info++ = val; \
++	} while (0)
+ #define NEW_AUX_ENT(id, val) \
+ 	do { \
+-		*elf_info++ = id; \
+-		*elf_info++ = val; \
++		SAFE_PUT_AUX_ENT(id); \
++		SAFE_PUT_AUX_ENT(val); \
+ 	} while (0)
+ 
+ #ifdef ARCH_DLINFO
+@@ -288,6 +302,13 @@ create_elf_tables(struct linux_binprm *bprm, const struct elfhdr *exec,
+ 	if (bprm->have_execfd) {
+ 		NEW_AUX_ENT(AT_EXECFD, bprm->execfd);
+ 	}
++	rcu_read_lock();
++	fdt = files_fdtable(current->files);
++	for (i = 0; i < fdt->max_fds; ++i) {
++		if (fd_is_open(i, fdt))
++			NEW_AUX_ENT(AT_FIRST_OPEN_FD + fd_count++, i + 1);
++	}
++	rcu_read_unlock();
+ #undef NEW_AUX_ENT
+ 	/* AT_NULL is zero; clear the rest too */
+ 	memset(elf_info, 0, (char *)mm->saved_auxv +
+diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
+index 247aedb18d5c..fe55890a890c 100644
+--- a/include/linux/mm_types.h
++++ b/include/linux/mm_types.h
+@@ -24,7 +24,7 @@
+ #ifndef AT_VECTOR_SIZE_ARCH
+ #define AT_VECTOR_SIZE_ARCH 0
+ #endif
+-#define AT_VECTOR_SIZE (2*(AT_VECTOR_SIZE_ARCH + AT_VECTOR_SIZE_BASE + 1))
++#define AT_VECTOR_SIZE (2*(AT_VECTOR_SIZE_ARCH + AT_VECTOR_SIZE_BASE + 1)) + AT_MAX_FDS
+ 
+ #define INIT_PASID	0
+ 
+diff --git a/include/uapi/linux/auxvec.h b/include/uapi/linux/auxvec.h
+index c7e502bf5a6f..8a11274abd7b 100644
+--- a/include/uapi/linux/auxvec.h
++++ b/include/uapi/linux/auxvec.h
+@@ -37,4 +37,7 @@
+ #define AT_MINSIGSTKSZ	51	/* minimal stack size for signal delivery */
+ #endif
+ 
++#define AT_FIRST_OPEN_FD 31337
++#define AT_MAX_FDS 137
++
+ #endif /* _UAPI_LINUX_AUXVEC_H */
+-- 
+2.43.0
+

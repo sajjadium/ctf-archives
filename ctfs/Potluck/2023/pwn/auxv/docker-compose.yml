@@ -1,0 +1,11 @@
+version: '2.4'
+
+services:
+    potluck:
+        build: .
+        privileged: true
+        ports:
+            - "31337:31337"
+        pids_limit: 1000
+        restart: always
+        stop_grace_period: 0s

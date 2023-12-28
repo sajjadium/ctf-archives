@@ -1,0 +1,1 @@
+Our development team created a secure way of booting firmware by authenticating against a different chip. We have the firmware, however we don't have the secure chip at hand :c Can you help us by emulating the secure processor so that we can boot our firmware?

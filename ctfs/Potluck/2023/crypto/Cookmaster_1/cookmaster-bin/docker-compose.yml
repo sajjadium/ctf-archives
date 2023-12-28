@@ -1,0 +1,29 @@
+version: '3.7'
+
+x-common-config:
+  &common-config
+  user: "${UID-1000}:${GID-1000}"
+
+services:
+  heater:
+    <<: *common-config
+    image: heater
+    build:
+      context: ./
+      dockerfile: ./heater/Dockerfile
+    restart: always
+    network_mode: "none"
+
+  controller:
+    <<: *common-config
+    image: controller
+    build:
+      context: ./
+      dockerfile: ./controller/Dockerfile
+    restart: always
+    environment:
+      EC_SKEY: '/app/privkey'
+      CAN_IF: 'vcan0'
+      RECIPE_PATH: '/app/recipes.json'
+      FLAG_PATH: '/app/flag'
+    network_mode: "service:heater"

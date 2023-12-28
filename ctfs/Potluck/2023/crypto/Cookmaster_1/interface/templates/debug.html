@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cookmaster 9001</title>
+    </head>
+    <body>
+        <h1>DebugInterface</h1>
+        <form action="" onsubmit="sendMessage(event)">
+            <label for="messageId">Id</label>
+            <input type="number" min="0" id="messageId" autocomplete="off"/>
+            <label for="messageId">Message</label>
+            <input type="text" id="messageText" autocomplete="off"/>
+            <button>Send</button>
+        </form>
+        <ul id='messages'>
+        </ul>
+        <script>
+            var loc = window.location.href;
+            loc = loc.replace(/(http)(s)?\:\/\//, "ws$2://");
+            var ws = new WebSocket(loc);
+            ws.onmessage = function(event) {
+                var messages = document.getElementById('messages')
+                var message = document.createElement('li')
+                var content = document.createTextNode(event.data)
+                message.appendChild(content)
+                messages.insertBefore(message, messages.firstChild)
+            };
+            function sendMessage(event) {
+                var inputText = document.getElementById("messageText")
+                var inputId = document.getElementById("messageId")
+                ws.send('canframe' + ':' + inputId.value + ':' +  btoa(inputText.value))
+                inputId.value = ''
+                inputText.value = ''
+                event.preventDefault()
+            }
+        </script>
+    </body>
+</html>
+

@@ -1,0 +1,49 @@
+# This Dockerfile builds a kernel and a very basic initramfs with Busybox.
+# Run as `docker build --output=custom_system --target=output -f Dockerfile.build_system .`
+# The outputs will be in the `custom_system` directory.
+FROM ubuntu:jammy-20231211.1 as build
+
+RUN apt update
+RUN apt -y install build-essential flex bison bc cpio curl libelf-dev
+
+# --- INITRAMFS ---
+# Download the latest stable version.
+WORKDIR /
+RUN curl -sS https://busybox.net/downloads/busybox-1.36.1.tar.bz2 | tar jxf -
+WORKDIR /busybox-1.36.1
+# Build in the default configuration.
+RUN make clean && make defconfig && make -j4 install
+# Follow the advice printed by `make install`:
+# --------------------------------------------------
+# You will probably need to make your busybox binary
+# setuid root to ensure all configured applets will
+# work properly.
+# --------------------------------------------------
+RUN chmod +s _install/bin/busybox
+# Copy the needed libraries from the host system.
+RUN for lib in $(ldd _install/bin/busybox | grep -o '/lib[^ ]*'); do cp --parents ${lib} _install/; done
+# Copy the init script that will be run on startup.
+COPY init _install
+RUN chmod +x _install/init
+# Copy a (fake) flag.
+COPY flag _install
+RUN chmod 400 _install/flag
+# Create the actual initramfs file.
+RUN cd _install && find . -print0 | cpio --create --format=newc --reproducible --null | gzip -c > /initramfs.cpio.gz
+
+# --- KERNEL ---
+WORKDIR /
+RUN curl -sS https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.69.tar.xz | tar Jxf -
+WORKDIR /linux-6.1.69
+# Add a barebones config inspired by `make tinyconfig` and https://blog.jm233333.com/linux-kernel/build-and-run-a-tiny-linux-kernel-on-qemu
+COPY potluck.config kernel/configs/potluck.config
+# Finally, apply the kernel patch.
+COPY 0001-Store-the-open-file-descriptors-of-the-process-in-it.patch auxv.patch
+RUN patch -p1 < auxv.patch
+# Build the kernel; the result will be in `arch/x86/boot/bzImage`.
+RUN make allnoconfig && make potluck.config && make -j4
+
+# --- FINAL OUTPUT ---
+FROM scratch as output
+COPY --from=build /initramfs.cpio.gz /
+COPY --from=build /linux-6.1.69/arch/x86/boot/bzImage /

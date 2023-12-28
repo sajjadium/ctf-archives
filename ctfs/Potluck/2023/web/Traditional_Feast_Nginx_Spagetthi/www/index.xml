@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page>
+  <title>Nginx Spagetthi</title>
+  <content>Create your own Spaghetti with nginx!</content>
+  <form target="/spaghetti">
+    <input type="text" name="name" />
+    <input type="textarea" name="recipe" />
+    <input type="select" name="image" value="0" label="Choose an image">
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+    </input>
+    <input type="button" label="Create Spaghetti" />
+  </form>
+</page>

@@ -1,0 +1,31 @@
+#!/bin/sh
+set -e
+
+# The bare minimum to get the system working. Mostly
+# copied from the init script of the `hypersecure`
+# challenge from hxp CTF 2022 and the `flipper` challenge
+# from zer0pts CTF 2023 (thanks guys).
+
+mkdir -p /etc /proc /sys /tmp
+mount -t proc none /proc
+mount -t sysfs none /sys
+mdev -s
+
+mkdir -p /dev/shm /dev/pts
+mount -t tmpfs tmpfs /dev/shm
+mount -t tmpfs tmpfs /tmp
+mount -t devpts none /dev/pts
+chmod 666 /dev/ptmx
+
+echo 'root:x:0:0:root:/root:/bin/sh' > /etc/passwd
+echo 'potluck:x:31337:31337:potluck:/tmp:/bin/sh' >> /etc/passwd
+echo 'root:x:0:' > /etc/group
+echo 'potluck:x:31337:' >> /etc/group
+chmod 644 /etc/passwd
+chmod 644 /etc/group
+
+setsid /bin/cttyhack setuidgid 31337 /bin/sh
+
+umount /proc
+umount /sys
+poweroff -d 1 -n -f

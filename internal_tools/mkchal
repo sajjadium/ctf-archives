@@ -88,7 +88,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('?', 'q').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('?', 'q').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o')
 
 def get_challenge_name(line):
   for original_name in reversed(line.strip().split('/')):
@@ -103,6 +103,20 @@ def get_challenge_name(line):
 
   return '_'.join(tokens)
 
+def unpack_file(fname):
+  if fname.endswith('.zip') or re.match(r'.*\.zip\.[0-9a-f]+$', fname):
+    return subprocess.run(['unzip', fname], shell=False).returncode == 0
+  elif not fname.endswith('.cpio.gz') and (fname.endswith('.tar.gz') or fname.endswith('.tgz') or fname.endswith('.txz') or fname.endswith('.tar.xz') or fname.endswith('.tzst') or fname.endswith('.gz')):
+    return subprocess.run(['tar', 'xzvf', fname], shell=False).returncode == 0
+  elif fname.endswith('.tar'):
+    return subprocess.run(['tar', 'xvf', fname], shell=False).returncode == 0
+  elif fname.endswith('.7z'):
+    return subprocess.run(['7z', 'x', fname], shell=False).returncode == 0
+  elif fname.endswith('.rar'):
+    return subprocess.run(['unrar', 'x', fname], shell=False).returncode == 0
+
+  return False
+
 if __name__ == '__main__':
   # create challenge directory
   lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', l.strip('\n')) for l in sys.stdin.readlines()]).strip().split('\n')
@@ -114,43 +128,37 @@ if __name__ == '__main__':
   shutil.rmtree(chal_name, ignore_errors=True)
   os.mkdir(chal_name)
 
-  # find all the files downloaded in the past 60 seconds
   download_dir = os.path.expanduser('~/Downloads')
-  files = set()
-  for f in os.listdir(download_dir):
-    if time.time() - os.path.getmtime(os.path.join(download_dir, f)) <= 60:
-      files.add(os.path.join(download_dir, f))
 
   with tempfile.TemporaryDirectory() as tmp_path:
-    for f in files:
-      if f.endswith('.zip') or re.match(r'.*\.zip\.[0-9a-f]+$', f):
-        if subprocess.run(['unzip', '-d', tmp_path, f], shell=False).returncode != 0:
-          subprocess.run(['mv', f, chal_name])
-          continue
-      elif f.endswith('.tar.gz') or f.endswith('.tgz') or f.endswith('.txz') or f.endswith('.tar.xz') or f.endswith('.tzst'):
-        if subprocess.run(['tar', 'xzvf', f, '-C', tmp_path], shell=False).returncode != 0:
-          subprocess.run(['mv', f, chal_name])
-          continue
-      elif f.endswith('.tar'):
-        if subprocess.run(['tar', 'xvf', f, '-C', tmp_path], shell=False).returncode != 0:
-          subprocess.run(['mv', f, chal_name])
-          continue
-      elif f.endswith('.7z'):
-        if subprocess.run(['7z', 'x', f, '-o' + tmp_path], shell=False).returncode != 0:
-          subprocess.run(['mv', f, chal_name])
-          continue
-      elif f.endswith('.rar'):
-        if subprocess.run(['unrar', 'x', f, '-op' + tmp_path], shell=False).returncode != 0:
-          os.system('mv "%s" "%s"' % (f, chal_name))
-          continue
-      else:
-        subprocess.run(['mv', f, chal_name])
-        continue
+    # move all the files downloaded in the past 60 seconds into the tmp directory
+    for f in os.listdir(download_dir):
+      fname = os.path.join(download_dir, f)
 
-      os.remove(f)
+      if time.time() - os.path.getmtime(fname) <= 60:
+        subprocess.run(['mv', fname, tmp_path])
 
+    # unpack files recursively until no packed file is available
+    curr_dir = os.getcwd()
+    os.chdir(tmp_path)
+
+    while True:
+      found_packed_files = False
+
+      for f in os.listdir(tmp_path):
+        if unpack_file(f):
+          found_packed_files = True
+          os.remove(f)
+
+      if not found_packed_files:
+        break
+
+    os.chdir(curr_dir)
+
+    # clean up unnecessary files
     os.system('rm -rf `find "%s" -name __MACOSX`' % tmp_path)
 
+    # identify the directories/files needed to be copied to the final challenge directory.
     final_path = tmp_path
     while True:
       children = os.listdir(final_path)

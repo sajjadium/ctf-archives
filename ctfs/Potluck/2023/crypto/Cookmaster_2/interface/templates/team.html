@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+
+      var loc = window.location.href;
+      var wsloc = loc.replace(/(http)(s)?\:\/\//, "ws$2://") + "ws";
+        var ws = false;
+
+        function wsState() {
+          var btn = document.getElementById('reconnect')
+          if (ws && ws.readyState !== WebSocket.CLOSED) {
+            var connText = document.getElementById("connectionField")
+            connText.textContent = "Connected"
+            btn.disabled = true
+          } else {
+            var connText = document.getElementById("connectionField")
+            connText.textContent = "Connecting..."
+            connectWS();
+            btn.disabled = false
+          }
+        }
+
+        function makeSauce(name) {
+          if (ws.readyState !== WebSocket.CLOSED) {
+            console.log("Making Sauce")
+            ws.send('sauce:' + name)
+          }
+        };
+        function connectWS() {
+          if (ws && ws.readyState !== WebSocket.CLOSED) {
+            return 
+          }
+
+          ws = new WebSocket(wsloc);
+          ws.onmessage = function(event) {
+            var connText = document.getElementById("connectionField")
+            connText.textContent = "Connected"
+
+            var info = JSON.parse(event.data)
+            if(info.state) {
+              var tempText = document.getElementById("tempField");
+              tempText.textContent = info.state["temp"] + " °C";
+
+              if (info.state.step) {
+                var statusText = document.getElementById("statusField");
+                var step = info.state.step;
+                switch (step.name) {
+                  case 'add':
+                    statusText.textContent = `Adding ${step.values.grams}g of ${step.values.name}`;
+                    break;
+                  case 'mix':
+                    statusText.textContent = `Mixing (L${step.values.strength} for ${step.values.seconds}s)`;
+                    break;
+                  case 'heat':
+                    statusText.textContent = `Heating (${step.values.degrees} °C for ${step.values.seconds}s)`;
+                    break;
+                  case 'wait':
+                    statusText.textContent = `Waiting for  ${step.values.seconds}s`;
+                    break;
+                  default:
+                    break;
+                }
+              }
+            }
+
+            console.log(event.data);
+          };
+        }
+        function startContainers() {
+            console.log('Starting containers...')
+            fetch(window.location.pathname.replace(/\/+$/, '') + '/container/start', { method: "POST" }).then(x => x.json()).then(x => console.log('Containers started: ' + x.status));
+        }
+        function stopContainers() {
+            console.log('Stopping containers...')
+            fetch(window.location.pathname.replace(/\/+$/, '') + '/container/stop', { method: "POST" }).then(x => x.json()).then(x => console.log('Containers stopped: ' + x.status));
+        }
+        window.onload = function(){
+          self.setInterval(wsState, 5000);
+        }
+
+    </script>
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Cookmaster 9001</title>
+  </head>
+  <body>
+    <div class="bg-[url('/static/background.avif')] bg-cover h-screen w-screen flex items-center justify-center text-white content-center" >
+      <div class="bg-stone-700 rounded-2xl p-8 w-1/2">
+        <h1 class="text-[3vw] font-bold justify-center">CookMaster 9001</h1>
+        <div class="w-full">
+            <div class="sm:flex sm:space-x-4">
+                <div class="inline-block align-bottom bg-green-900 rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+                    <div class="bg-green-900 p-5">
+                        <div class="sm:flex sm:items-start">
+                            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                                <h3 class="text-sm leading-6 font-medium text-gray-200">Connection Status</h3>
+                                <p class="text-3xl font-bold text-white" id="connectionField">Connecting...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inline-block align-bottom bg-green-900 rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+                    <div class="bg-green-900 p-5">
+                        <div class="sm:flex sm:items-start">
+                            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                                <h3 class="text-sm leading-6 font-medium text-gray-200">Temperature</h3>
+                                <p class="text-3xl font-bold text-white" id="tempField">N.A.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inline-block align-bottom bg-green-900 rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/3 sm:my-8">
+                    <div class="bg-green-900 p-5">
+                        <div class="sm:flex sm:items-start">
+                            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                                <h3 class="text-sm leading-6 font-medium text-gray-200">Last Status</h3>
+                                <p class="text-3xl font-bold text-white" id="statusField">N.A.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="w-full">
+            <h2 class="text-lg justify-left">Sauce Recipes</h3>
+            <div class="sm:flex sm:space-x-4">
+                {% for recipe in recipes %}
+                <button onclick="makeSauce('{{ recipe }}')" class="inline-block bg-green-800 rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/4 sm:my-8">
+                    <div class="bg-green-800 p-5">
+                        <div class="sm:flex sm:items-start">
+                            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                                <p class="text-3xl font-bold text-white" id="statusField">{{ recipe }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="w-full">
+            <h2 class="text-lg justify-left">Controls</h3>
+            <div class="sm:flex sm:space-x-4">
+                <button onclick="connectWS()" class="inline-block bg-green-800 rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/4 sm:my-8">
+                    <div class="bg-green-800 p-5">
+                        <div class="sm:flex sm:items-start">
+                            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                                <p class="text-3xl font-bold text-white" id="reconnect">Reconnect</p>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                <button onclick="startContainers()" class="inline-block bg-green-800 rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/4 sm:my-8">
+                    <div class="bg-green-800 p-5">
+                        <div class="sm:flex sm:items-start">
+                            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                                <p class="text-3xl font-bold text-white" id="startMachine">Start Machine</p>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                <button onclick="stopContainers()" class="inline-block bg-green-800 rounded-lg text-left overflow-hidden shadow transform transition-all mb-4 w-full sm:w-1/4 sm:my-8">
+                    <div class="bg-green-800 p-5">
+                        <div class="sm:flex sm:items-start">
+                            <div class="text-center sm:mt-0 sm:ml-2 sm:text-left">
+                                <p class="text-3xl font-bold text-white" id="stopMachine">Stop Machine</p>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <p class="text-sm justify-left">Take a look at your browser console log messages for more info.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
