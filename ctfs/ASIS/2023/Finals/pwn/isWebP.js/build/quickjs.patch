@@ -1,0 +1,191 @@
+diff --git a/Makefile b/Makefile
+index 9b003f0..796c76f 100644
+--- a/Makefile
++++ b/Makefile
+@@ -108,10 +108,10 @@ ifdef CONFIG_WIN32
+ DEFINES+=-D__USE_MINGW_ANSI_STDIO # for standard snprintf behavior
+ endif
+ 
+-CFLAGS+=$(DEFINES)
++CFLAGS+=$(DEFINES) -I../libwebp/imageio/ -I../libwebp/src/
+ CFLAGS_DEBUG=$(CFLAGS) -O0
+ CFLAGS_SMALL=$(CFLAGS) -Os
+-CFLAGS_OPT=$(CFLAGS) -O2
++CFLAGS_OPT=$(CFLAGS) -O0
+ CFLAGS_NOLTO:=$(CFLAGS_OPT)
+ LDFLAGS=-g
+ ifdef CONFIG_LTO
+@@ -168,7 +168,7 @@ all: $(OBJDIR) $(OBJDIR)/quickjs.check.o $(OBJDIR)/qjs.check.o $(PROGS)
+ 
+ QJS_LIB_OBJS=$(OBJDIR)/quickjs.o $(OBJDIR)/libregexp.o $(OBJDIR)/libunicode.o $(OBJDIR)/cutils.o $(OBJDIR)/quickjs-libc.o $(OBJDIR)/libbf.o 
+ 
+-QJS_OBJS=$(OBJDIR)/qjs.o $(OBJDIR)/repl.o $(QJS_LIB_OBJS)
++QJS_OBJS=$(OBJDIR)/qjs.o $(QJS_LIB_OBJS)
+ ifdef CONFIG_BIGNUM
+ QJS_OBJS+=$(OBJDIR)/qjscalc.o
+ endif
+@@ -180,6 +180,7 @@ LIBS+=-ldl -lpthread
+ endif
+ LIBS+=$(EXTRA_LIBS)
+ 
++LIBS+=libwebp/libimagedec.a libwebp/libwebpdemux.a libwebp/libimageenc.a libwebp/libimageio_util.a libwebp/libwebp.a libwebp/libsharpyuv.a
+ $(OBJDIR):
+ 	mkdir -p $(OBJDIR) $(OBJDIR)/examples $(OBJDIR)/tests
+ 
+diff --git a/qjs.c b/qjs.c
+index c2d63e9..c08c9a2 100644
+--- a/qjs.c
++++ b/qjs.c
+@@ -41,8 +41,8 @@
+ #include "cutils.h"
+ #include "quickjs-libc.h"
+ 
+-extern const uint8_t qjsc_repl[];
+-extern const uint32_t qjsc_repl_size;
++// extern const uint8_t qjsc_repl[];
++// extern const uint32_t qjsc_repl_size;
+ #ifdef CONFIG_BIGNUM
+ extern const uint8_t qjsc_qjscalc[];
+ extern const uint32_t qjsc_qjscalc_size;
+@@ -118,8 +118,8 @@ static JSContext *JS_NewCustomContext(JSRuntime *rt)
+     }
+ #endif
+     /* system modules */
+-    js_init_module_std(ctx, "std");
+-    js_init_module_os(ctx, "os");
++    // js_init_module_std(ctx, "std");
++    // js_init_module_os(ctx, "os");
+     return ctx;
+ }
+ 
+@@ -338,6 +338,8 @@ int main(int argc, char **argv)
+     }
+ #endif
+     
++    setbuf(stdout,NULL);
++    setbuf(stdin,NULL);
+     /* cannot use getopt because we want to pass the command line to
+        the script */
+     optind = 1;
+@@ -525,7 +527,8 @@ int main(int argc, char **argv)
+                 goto fail;
+         }
+         if (interactive) {
+-            js_std_eval_binary(ctx, qjsc_repl, qjsc_repl_size, 0);
++            // js_std_eval_binary(ctx, qjsc_repl, qjsc_repl_size, 0);
++            exit(1);
+         }
+         js_std_loop(ctx);
+     }
+diff --git a/qjsc.c b/qjsc.c
+index f8e60b3..23b9b00 100644
+--- a/qjsc.c
++++ b/qjsc.c
+@@ -509,8 +509,8 @@ int main(int argc, char **argv)
+     memset(&dynamic_module_list, 0, sizeof(dynamic_module_list));
+     
+     /* add system modules */
+-    namelist_add(&cmodule_list, "std", "std", 0);
+-    namelist_add(&cmodule_list, "os", "os", 0);
++    // namelist_add(&cmodule_list, "std", "std", 0);
++    // namelist_add(&cmodule_list, "os", "os", 0);
+ 
+     for(;;) {
+         c = getopt(argc, argv, "ho:cN:f:mxevM:p:S:D:");
+diff --git a/quickjs-libc.c b/quickjs-libc.c
+index d99bbf4..923dae4 100644
+--- a/quickjs-libc.c
++++ b/quickjs-libc.c
+@@ -3783,8 +3783,8 @@ void js_std_add_helpers(JSContext *ctx, int argc, char **argv)
+     
+     JS_SetPropertyStr(ctx, global_obj, "print",
+                       JS_NewCFunction(ctx, js_print, "print", 1));
+-    JS_SetPropertyStr(ctx, global_obj, "__loadScript",
+-                      JS_NewCFunction(ctx, js_loadScript, "__loadScript", 1));
++    // JS_SetPropertyStr(ctx, global_obj, "__loadScript",
++                      // JS_NewCFunction(ctx, js_loadScript, "__loadScript", 1));
+     
+     JS_FreeValue(ctx, global_obj);
+ }
+diff --git a/quickjs.c b/quickjs.c
+index 719fde1..80ee90f 100644
+--- a/quickjs.c
++++ b/quickjs.c
+@@ -32,6 +32,7 @@
+ #include <time.h>
+ #include <fenv.h>
+ #include <math.h>
++#include <webpdec.h>
+ #if defined(__APPLE__)
+ #include <malloc/malloc.h>
+ #elif defined(__linux__)
+@@ -48858,6 +48859,60 @@ static JSValue js_global_unescape(JSContext *ctx, JSValueConst this_val,
+     return string_buffer_end(b);
+ }
+ 
++
++static JSValue js_global_isWebP(JSContext *ctx, JSValueConst this_val,
++                                  int argc, JSValueConst *argv)
++{
++    JSObject *tarray;
++    JSValue obj;
++    uint8_t *buf;
++    size_t buflen;
++    WebPBitstreamFeatures *bitstream;
++    WebPDecoderConfig config;
++    VP8StatusCode status;
++
++    if(argc != 1 || JS_VALUE_GET_TAG(argv[0]) != JS_TAG_OBJECT){
++        return JS_UNDEFINED;
++    }
++
++    obj = JS_ToObject(ctx, argv[0]);
++    tarray = JS_VALUE_GET_OBJ(obj);
++    if(tarray->class_id != JS_CLASS_UINT8_ARRAY){
++        JS_FreeValue(ctx, obj);
++        return JS_UNDEFINED;
++    }
++
++    buflen = tarray->u.array.count;
++    buf = tarray->u.array.u.uint8_ptr;
++
++    if(!WebPInitDecoderConfig(&config)){
++        JS_FreeValue(ctx, obj);
++        return JS_UNDEFINED;
++    }
++
++    bitstream = &config.input;
++    status = WebPGetFeatures(buf, buflen, bitstream);
++    if (status != VP8_STATUS_OK) {
++        JS_FreeValue(ctx, obj);
++        return JS_UNDEFINED;
++    }
++    config.output.colorspace = bitstream->has_alpha ? MODE_RGBA : MODE_RGB;
++    status = DecodeWebP(buf, buflen, &config);
++    WebPFreeDecBuffer(&config.output);
++    JS_FreeValue(ctx, obj);
++    if(status == VP8_STATUS_OK){
++        return JS_NewBool(ctx, 1);
++    } else {
++        return JS_NewBool(ctx, 0);
++    }
++}
++
++static JSValue js_gc(JSContext *ctx, JSValueConst this_val,
++                         int argc, JSValueConst *argv)
++{
++    JS_RunGC(JS_GetRuntime(ctx));
++    return JS_UNDEFINED;
++}
+ /* global object */
+ 
+ static const JSCFunctionListEntry js_global_funcs[] = {
+@@ -48865,6 +48920,8 @@ static const JSCFunctionListEntry js_global_funcs[] = {
+     JS_CFUNC_DEF("parseFloat", 1, js_parseFloat ),
+     JS_CFUNC_DEF("isNaN", 1, js_global_isNaN ),
+     JS_CFUNC_DEF("isFinite", 1, js_global_isFinite ),
++    JS_CFUNC_DEF("isWebP", 1, js_global_isWebP ),
++    JS_CFUNC_DEF("gc", 0, js_gc ),
+ 
+     JS_CFUNC_MAGIC_DEF("decodeURI", 1, js_global_decodeURI, 0 ),
+     JS_CFUNC_MAGIC_DEF("decodeURIComponent", 1, js_global_decodeURI, 1 ),

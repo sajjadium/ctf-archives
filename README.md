@@ -89,7 +89,11 @@
             <td><a href="https://ctftime.org/event/1091/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=12><a href="ctfs/ASIS">ASIS</a></td>
+            <td rowspan=13><a href="ctfs/ASIS">ASIS</a></td>
+            <td><a href="ctfs/ASIS/2023/Finals">2023 Finals</a></td>
+            <td><a href="https://ctftime.org/event/1953/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/ASIS/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/1952/tasks/" target="_blank">CTFtime</a></td>
         </tr>

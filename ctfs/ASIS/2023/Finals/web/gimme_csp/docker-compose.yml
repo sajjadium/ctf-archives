@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  bot:
+    build: ./bot/
+    restart: always 
+    ports:
+      - "8001:8000"
+    environment:
+      - "FLAG=ASIS{test-flag}"
+      - "CAPTCHA_SECRET=REDACTED"
+      - "WEB_DOMAIN=gimmecsp.asisctf.com"
+  web:
+    build: ./app/
+    restart: always 
+    ports:
+      - "8000:8000"

@@ -1,0 +1,1 @@
+hint for beginners: read about CSPs and Iframes and what features they can offer that you can use to bypass or exfiltrate things. The challenge isn't easy if you are new to CTFs or don't have much experience however it should be the easiest web challenge.

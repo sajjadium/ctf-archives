@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>Sayeha</title>
+	</head>
+	<body>
+		<div id="ctx"></div>
+		<script>
+			function containsText(){
+				for(let i=0;i<0x10000;i++){
+					if(window.find(String.fromCharCode(i))){
+						return true
+					}
+				}
+				return false
+			}
+
+			let params = new URLSearchParams(document.location.search)
+			let html = params.get('html') ?? '<!-- hi -->'
+			let p = params.get('p') ?? 'console.log(1337)'
+			let shadow = ctx.attachShadow({mode: 'closed'});
+
+			let mtag = document.createElement('meta')
+			mtag.httpEquiv = 'Content-Security-Policy'
+			mtag.content = `default-src 'none'; script-src 'unsafe-eval';`
+			document.head.appendChild(mtag)
+
+			shadow.appendChild(document.createElement('div'))
+			shadow.children[0].innerHTML = `<!-- ${localStorage.getItem('secret') ?? 'ASIS{test-flag}'} -->`
+			shadow.children[0].innerHTML += html.slice(0,0x2000)
+			localStorage.removeItem('secret')
+
+			if(
+				shadow.children.length != 1 ||
+				shadow.children[0].innerText != '' ||
+				containsText()
+			){
+				throw 'no'
+			}
+
+			shadow = null
+			mtag = null
+
+			setTimeout(p,500)
+		</script>
+	</body>
+</html>
+

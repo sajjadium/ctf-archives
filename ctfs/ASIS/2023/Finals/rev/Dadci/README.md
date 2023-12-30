@@ -1,0 +1,1 @@
+The ASIS CTF final introduces a challenging reverse engineering task called dadci. This intricate challenge pushes the limits of reverse engineering, presenting a formidable test in the final hours of 2023.

@@ -1,0 +1,13 @@
+diff --git a/src/dec/vp8l_dec.c b/src/dec/vp8l_dec.c
+index 45012162..13ae6c0f 100644
+--- a/src/dec/vp8l_dec.c
++++ b/src/dec/vp8l_dec.c
+@@ -517,7 +517,7 @@ static int ReadHuffmanCodes(VP8LDecoder* const dec, int xsize, int ysize,
+   WebPSafeFree(mapping);
+   if (!ok) {
+     WebPSafeFree(huffman_image);
+-    WebPSafeFree(huffman_tables);
++    // WebPSafeFree(huffman_tables);
+     VP8LHtreeGroupsFree(htree_groups);
+   }
+   return ok;

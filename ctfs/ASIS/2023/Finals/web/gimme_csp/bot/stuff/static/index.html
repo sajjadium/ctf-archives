@@ -1,0 +1,60 @@
+<html>
+	<head>
+		<style>
+			body{
+				background-color: #9DB2BF;
+				font-family: sans-serif;
+				font-size: 18px;
+				color: #27374D;
+			}
+
+			#main-container {
+				background-color: transparent;
+				height: fit-content;
+				width: fit-content;
+				padding: 10px;
+				border-radius: 10px;
+				margin: 30px auto;
+			}
+
+			#h-container {
+				text-align: center;
+			    color: white;
+				margin-bottom: 20px;
+			}
+
+			input {
+				width: 300px;
+				font-size: 16px;
+				padding: 5px;
+				border-radius: 5px;
+				outline: none;
+				box-shadow: none;
+			}
+
+			#submit-btn {
+				padding: 10px 20px;
+				margin-top: 20px;
+				font-size: 16px;
+				cursor: pointer;
+				background-color: #122923;
+				color: white;
+				border: 0px;
+				border-radius: 2px;
+			}
+		</style>
+		<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+	</head>
+	<body>
+		<div id="main-container">
+			<form action="/report" method="POST">
+				<div id="h-container">
+					Report your URL.
+				</div>
+				<input name="url" type="text"><br><br>
+				<div class="g-recaptcha" data-sitekey="6LcoMTgpAAAAALfechZ3NssjOgfbnyP0SZXz6bhB"></div>
+				<input id="submit-btn" type="submit" value="Submit"><br>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,1 @@
+Did you know that Javascript doesn't have an image validator by default? That's why I decided to implement something like isNaN for images (isPNG, isJpeg, isWebP). So far I've only implemented isWebP and I wanna do a beta test before submitting the proposal to ECMA. You can also test the feature via the address below. Can't wait for your feedbacks!
