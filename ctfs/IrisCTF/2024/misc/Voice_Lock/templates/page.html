@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Voice Lock</title>
+        <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        
+        #wordsText {
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+
+        #recordButton {
+            display: flex;
+            font-size: 2em;
+            padding: 20px 30px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #recordButton.recording {
+            background-color: #ff5252;
+            color: white;
+            border-color: #ff5252;
+        }
+    </style>
+    </head>
+    <body>
+        <div style="margin: 64px">
+            <h1>Voice Vault</h1>
+            <p id="wordsText"></p>
+            <button id="recordButton" onclick="toggleRecording()">🎤 Record</button>
+        </div>
+
+        <script>
+        // PoW
+        async function digestMessage(message) {
+            const msgUint8 = new TextEncoder().encode(message);
+            const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
+            const hashArray = new Uint8Array(hashBuffer);
+            return hashArray;
+        }
+
+        async function solvePow(prefix) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let answer = '';
+            while (true) {
+                const guess = prefix + answer;
+                if (answer.length > 200) {
+                    answer = '';
+                }
+                const digest = await digestMessage(guess);
+                if (digest[0] === 0 && digest[1] === 0 && digest[2] < 10) {
+                    return answer;
+                }
+                answer += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+        }
+        </script>
+
+        <script>
+        let token = undefined;
+        let pow = undefined;
+        let words = [];
+        let isRecording = false;
+        let isAudioSetup = false;
+        let mediaRecorder;
+        let chunks = [];
+        
+        async function getToken() {
+            const response = await fetch('/get_random_message', {
+                method: 'GET'
+            });
+
+            const j = await response.json();
+            words = j['region'];
+            token = j['token'];
+            pow = j['pow'];
+
+            const text = `Please record the following words.<br/>You will be logged in based on your voice.<br/>${words.join(' ')}`
+            document.getElementById('wordsText').innerHTML = text;
+        }
+
+        async function setupAudio() {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream);
+
+            mediaRecorder.ondataavailable = function (e) {
+                chunks.push(e.data);
+            }
+
+            mediaRecorder.onstop = function (e) {
+                const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
+                chunks = [];
+                sendAudio(blob);
+            }
+            
+            isAudioSetup = true;
+        }
+
+        async function toggleRecording() {
+            if (!isAudioSetup) {
+                await setupAudio();
+                return;
+            }
+            if (!isRecording) {
+                mediaRecorder.start();
+                document.getElementById('recordButton').classList.add('recording');
+                document.getElementById('recordButton').innerText = 'Recording...';
+            } else {
+                mediaRecorder.stop();
+                document.getElementById('recordButton').classList.remove('recording');
+                document.getElementById('recordButton').innerText = '🎤 Record';
+            }
+            isRecording = !isRecording;
+        }
+
+        async function sendAudio(blob) {
+            document.getElementById('recordButton').disabled = true;
+            const origText = document.getElementById('wordsText').innerHTML;
+            document.getElementById('wordsText').innerHTML = 'Running proof of work...';
+            const powAnswer = await solvePow(pow);
+            document.getElementById('wordsText').innerHTML = 'Submitting...';
+
+            const formData = new FormData();
+            formData.append('token', token);
+            formData.append('audio', blob);
+            formData.append('pow_answer', powAnswer);
+            console.log(`pow is ${powAnswer}`);
+
+            const response = await fetch('/submit_voice', {
+                method: 'POST',
+                body: formData
+            });
+
+            const j = await response.json();
+
+            let issue = '';
+            if (j['error']) {
+                issue = j['error'];
+            } else if (j['decision'] !== 'True') {
+                issue = 'That did not match any known voices or the text was incorrectly read.';
+            }
+
+            if (issue === '') {
+                window.location.href = '/secret?token=' + token;
+            } else {
+                document.getElementById('wordsText').innerText = 'That did not match any known voices or the text was incorrectly read.';
+                setTimeout(() => {
+                    getToken();
+                    document.getElementById('recordButton').disabled = false;
+                }, 5000);
+            }
+        }
+
+        getToken();
+    </script>
+    </body>
+</html>

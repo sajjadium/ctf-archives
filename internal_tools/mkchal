@@ -8,6 +8,7 @@ import time
 import tempfile
 import shutil
 import string
+import glob
 
 def is_valid(line):
   if len(line.strip()) == 0:
@@ -88,7 +89,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('?', 'q').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o')
 
 def get_challenge_name(line):
   for original_name in reversed(line.strip().split('/')):
@@ -104,12 +105,14 @@ def get_challenge_name(line):
   return '_'.join(tokens)
 
 def unpack_file(fname):
+  dname = os.path.dirname(fname)
+
   if fname.endswith('.zip') or re.match(r'.*\.zip\.[0-9a-f]+$', fname):
-    return subprocess.run(['unzip', fname], shell=False).returncode == 0
+    return subprocess.run(['unzip', fname, '-d', dname], shell=False).returncode == 0
   elif not fname.endswith('.cpio.gz') and (fname.endswith('.tar.gz') or fname.endswith('.tgz') or fname.endswith('.txz') or fname.endswith('.tar.xz') or fname.endswith('.tzst') or fname.endswith('.gz')):
-    return subprocess.run(['tar', 'xzvf', fname], shell=False).returncode == 0
+    return subprocess.run(['tar', 'xzvf', fname, '-C', dname], shell=False).returncode == 0
   elif fname.endswith('.tar'):
-    return subprocess.run(['tar', 'xvf', fname], shell=False).returncode == 0
+    return subprocess.run(['tar', 'xvf', fname, '-C', dname], shell=False).returncode == 0
   elif fname.endswith('.7z'):
     return subprocess.run(['7z', 'x', fname], shell=False).returncode == 0
   elif fname.endswith('.rar'):
@@ -119,11 +122,11 @@ def unpack_file(fname):
 
 if __name__ == '__main__':
   # create challenge directory
-  lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', l.strip('\n')) for l in sys.stdin.readlines()]).strip().split('\n')
+  lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', l.rstrip()) for l in sys.stdin.readlines()]).strip().split('\n')
   chal_name = get_challenge_name(replace_special_characters(lines[0]))
 
   lines = '\n'.join(lines[1:]).strip().split('\n')
-  lines = [l for l in lines if is_valid(l)]
+  lines = [l.strip('\n') for l in lines if is_valid(l)]
 
   shutil.rmtree(chal_name, ignore_errors=True)
   os.mkdir(chal_name)
@@ -139,21 +142,23 @@ if __name__ == '__main__':
         subprocess.run(['mv', fname, tmp_path])
 
     # unpack files recursively until no packed file is available
-    curr_dir = os.getcwd()
-    os.chdir(tmp_path)
+    # curr_dir = os.getcwd()
+    # os.chdir(tmp_path)
 
     while True:
       found_packed_files = False
 
-      for f in os.listdir(tmp_path):
-        if unpack_file(f):
-          found_packed_files = True
-          os.remove(f)
+      for root, _, files in os.walk(tmp_path):
+        for f in files:
+          fname = os.path.join(root, f)
+          if unpack_file(fname):
+            found_packed_files = True
+            os.remove(fname)
 
       if not found_packed_files:
         break
 
-    os.chdir(curr_dir)
+    # os.chdir(curr_dir)
 
     # clean up unnecessary files
     os.system('rm -rf `find "%s" -name __MACOSX`' % tmp_path)
@@ -180,7 +185,7 @@ if __name__ == '__main__':
   readme = ''
   if os.path.exists('%s/README.md' % chal_name):
     readme = open('%s/README.md' % chal_name).read()
-  readme = '\n'.join(lines[0:]).strip() + '\n' + '\n\n' + readme
+  readme = re.sub('\n{3,}', '\n\n', '\n'.join(lines[0:]).strip()) + '\n' + '\n\n' + readme
   open('%s/README.md' % chal_name, 'w').write(readme.strip() + '\n')
 
   print('\n\n+++++++++++++++++++++++++++++++++++++++++++++++')

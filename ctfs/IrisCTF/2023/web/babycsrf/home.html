@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h4>Welcome to my home page!</h4>
+        Message of the day: <span id="message">(loading...)</span>
+        <script>
+window.setMessage = (m) => {
+    document.getElementById("message").innerText = m;
+}
+window.onload = () => {
+    s = document.createElement("script");
+    s.src = "/api";
+    document.body.appendChild(s);
+}
+        </script>
+    </body>
+</html>

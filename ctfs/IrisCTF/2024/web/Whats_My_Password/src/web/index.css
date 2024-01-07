@@ -1,0 +1,7 @@
+/* Dark mode detection */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #333; /* Change background to a dark color */
+        color: #fff; /* Change text color for better readability */
+    }
+}

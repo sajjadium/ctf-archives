@@ -1,0 +1,20 @@
+--- sheet.o.js	2022-08-11 17:32:27.803553441 -0700
++++ sheet.js	2022-08-11 17:38:51.821472938 -0700
+@@ -7,13 +7,16 @@
+   new Proxy(target, {
+     get: (target, prop) => {
+       if (prop === 'constructor') return null;
++      if (prop === '__proto__') return null;
+       const value = target[prop];
+       if (typeof value === 'number') return value;
+       return wrap(value);
+     },
+   });
+ 
+-const math = wrap(Math);
++// Math has too much of an attack surface :(
++const SlightlyLessUsefulMath = new Object();
++const math = wrap(SlightlyLessUsefulMath);
+ 
+ const getValue = (target, prop) => {
+   if (prop === 'Math') return math;

@@ -1,0 +1,1 @@
+I bought this 3d model on Deckfab, but I can't seem to open it in blender. I found a forum post where people recommended using the Autodesk FBX Converter, but even that had a weird error. Did I get scammed, or is this just skill issue?
