@@ -1,0 +1,1 @@
+Decrypting this is not usually easy, but you see that the public key is only 24 bits long! You quickly collect the encrypted message and get to work...... Public Key: 14537813, 5. Get Cracking! Intercepted.txt
