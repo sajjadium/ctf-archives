@@ -1,0 +1,31 @@
+FROM node:20-bullseye-slim
+
+RUN apt-get update && apt-get install -y socat && rm -rf /var/lib/apt/lists/*
+
+RUN useradd -m ctfuser
+
+WORKDIR /home/ctfuser/app
+
+COPY --chown=ctfuser:ctfuser package.json .
+COPY --chown=ctfuser:ctfuser chal.js .
+
+COPY --chown=ctfuser:ctfuser evaluation_patched.js /home/ctfuser/app/evaluation_patched.js
+
+RUN npm install
+
+# Replace the original evaluation.js with the patched version
+RUN cp /home/ctfuser/app/evaluation_patched.js /home/ctfuser/app/node_modules/@babel/traverse/lib/path/evaluation.js
+
+RUN echo "uoftctf{fake_flag}" > /home/ctfuser/app/flag && \
+    chmod 444 /home/ctfuser/app/flag
+
+RUN chown -R ctfuser:ctfuser /home/ctfuser
+
+EXPOSE 3000
+
+USER root
+RUN chmod -R 555 /home/ctfuser/app && \
+    chmod 444 /home/ctfuser/app/flag
+USER ctfuser
+
+ENTRYPOINT ["socat", "TCP-LISTEN:3000,reuseaddr,fork", "EXEC:'node chal.js',pty,ctty,stderr,raw,echo=0"]

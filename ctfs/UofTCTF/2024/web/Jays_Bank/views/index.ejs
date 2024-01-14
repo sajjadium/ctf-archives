@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - Jay's Bank</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Jay's Bank</h1>
+        <p>Welcome to my (work in progress) bank. Feel free to look around during our pre-alpha-alpha-alpha stage.</p>
+        <nav>
+            <ul>
+                <% if (username) { %>  <!-- Check if the user is logged in -->
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/profile">Edit Profile</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                <% } else { %>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                <% } %>
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>

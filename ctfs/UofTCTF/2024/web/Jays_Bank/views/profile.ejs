@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile - Jay's Bank</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        <h1>Your Profile, <%= username %></h1>
+        <div id="messageBox" class="message-box" style="display:none;"></div>
+        <% if (incomplete) { %>
+            <p class="warning">You need to finish setting up your profile before you can use all the features of this website.</p>
+        <% } %>
+        <form id="profileForm">
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" value="<%= phone %>" required>
+            </div>
+            <div class="form-group">
+                <label for="credit_card">Credit Card:</label>
+                <input type="text" id="credit_card" name="credit_card" value="<%= credit_card ? '**** '.repeat(3) + credit_card.slice(-4) : '' %>" required>
+            </div>
+            <div class="form-group">
+                <label for="secret_question">Secret Question:</label>
+                <input type="text" id="secret_question" name="secret_question" value="<%= secret_question %>" required>
+            </div>
+            <div class="form-group">
+                <label for="secret_answer">Secret Answer:</label>
+                <input type="text" id="secret_answer" name="secret_answer" required>
+            </div>
+            <div class="form-group">
+                <label for="current_password">Current Password (for verification):</label>
+                <input type="password" id="current_password" name="current_password" required>
+            </div>
+            <button type="submit">Update Profile</button>
+        </form>
+        <form id="changePasswordForm">
+            <div class="form-group">
+                <label for="new_password">New Password:</label>
+                <input type="password" id="new_password" name="new_password" required>
+            </div>
+            <div class="form-group">
+                <label for="secret_answer">Secret Answer:</label>
+                <input type="text" id="secret_answer_cp" name="secret_answer" required>
+            </div>
+            <button type="submit">Change Password</button>
+        </form>
+        
+    </div>
+    <script src="/js/profile.js"></script>
+</body>
+</html>

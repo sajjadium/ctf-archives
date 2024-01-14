@@ -1,0 +1,19 @@
+{
+  "name": "js_jail",
+  "version": "1.0.0",
+  "description": "",
+  "main": "chal.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "SteakEnthusiast",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/generator": "^7.23.6",
+    "@babel/parser": "^7.23.6",
+    "@babel/traverse": "^7.23.6",
+    "readline": "^1.3.0"
+  },
+  "type": "module"
+}

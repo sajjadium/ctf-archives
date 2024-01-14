@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for Access</title>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Register for The Varsity</h1>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="hasVoucher" onclick="toggleVoucher()">
+                <label for="hasVoucher">I have a voucher</label>
+            </div>
+            <div class="form-group" id="voucherGroup" style="display:none;">
+                <label for="voucher">Subscription Voucher:</label>
+                <input type="text" id="voucher">
+            </div>
+            <p id="feedback" style="color:red;"></p>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <script src="js/register.js"></script>
+</body>
+</html>

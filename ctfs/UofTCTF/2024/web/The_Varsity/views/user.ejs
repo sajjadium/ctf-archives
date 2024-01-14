@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome <%= username %>!</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="greeting">Greetings, <%= username %>!</h1>
+        <% if (subscription === 'premium') { %>
+            <p id="subscriptionNotice">As a premium member, you have exclusive access to all articles, including the latest insights and analyses. Enjoy your full access!</p>
+        <% } else { %>
+            <p id="subscriptionNotice">You are currently exploring as a guest. Upgrade to premium to unlock our full library, including our most recent and in-depth articles.</p>
+        <% } %>
+        <div id="articleSelector">
+            <label for="articleNum">Select Article:</label>
+            <select id="articleNum">
+                <% for(let i = 1; i <= 10; i++) { %>
+                    <option value="<%= i - 1 %>">Article <%= i %></option>
+                <% } %>
+            </select>
+            <button onclick="requestArticle()">Load Article</button>
+        </div>
+        <div id="statusMessage" class="status-message"></div>
+        <div id="articles" class="article-content">
+            <!-- Articles will be loaded here -->
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Jay's Bank</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/profile">Edit Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+        <h1>Welcome, <%= username %></h1>
+        <p>Your phone number: <%= phone %></p>
+        <p>Your credit card (last 4 digits): <%= credit_card.slice(-4) %></p>
+        <% if (flag) { %>
+            <p>Since you're the admin, here is your flag: <%= flag %></p>
+        <% } %>
+    </div>
+</body>
+</html>
