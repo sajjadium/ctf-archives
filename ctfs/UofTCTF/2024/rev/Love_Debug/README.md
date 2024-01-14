@@ -1,0 +1,3 @@
+If you send this to someone, you'll be dumped... unless it's someone who knows a thing or two about reverse engineering...
+
+Side Note: A love letter is what inspired the author to become a hacker.
