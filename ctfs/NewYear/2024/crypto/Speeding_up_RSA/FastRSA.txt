@@ -1,0 +1,21 @@
+from Crypto.Util.number import getPrime, isPrime, bytes_to_long
+from random import shuffle, randint
+from secret import flag
+
+flag = bytes_to_long(flag)
+
+def GenerateModulo():
+    p = getPrime(512)
+    res = [q for q in range(p, p+100, 2) if isPrime(q)]
+    shuffle(res)
+    return (p, res[0])
+
+p, q = GenerateModulo()
+n = p * q
+e = 65537
+
+ciphertext = pow(flag, e, n)
+
+print(f"n = {n}")
+print(f"e = {e}")
+print(f"ciphertext = {ciphertext}")

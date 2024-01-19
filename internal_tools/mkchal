@@ -116,7 +116,7 @@ def unpack_file(fname):
   elif fname.endswith('.7z'):
     return subprocess.run(['7z', 'x', fname], shell=False).returncode == 0
   elif fname.endswith('.rar'):
-    return subprocess.run(['unrar', 'x', fname], shell=False).returncode == 0
+    return subprocess.run(['unrar', 'x', fname, dname], shell=False).returncode == 0
 
   return False
 
