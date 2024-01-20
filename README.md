@@ -1295,8 +1295,12 @@
             <td><a href="https://ctftime.org/event/1996/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/InsomniHack">Insomni'hack</a></td>
-            <td><a href="ctfs/InsomniHack/2023/Quals">2023 Quals</a></td>
+            <td rowspan=4><a href="ctfs/Insomnihack">Insomni'hack</a></td>
+            <td><a href="ctfs/Insomnihack/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2139/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/Insomnihack/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/1831/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

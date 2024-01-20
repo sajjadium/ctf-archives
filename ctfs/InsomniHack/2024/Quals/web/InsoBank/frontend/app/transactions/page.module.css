@@ -1,0 +1,125 @@
+.new {
+	margin: 40px;
+}
+
+.verified {
+	background-color: green;
+}
+
+.unverified {
+	backround-color: #cacaca;
+}
+
+.batchcheckbox {
+	margin: 10px;
+	transform: scale(2);
+}
+
+.batchcheckbox:checked {
+	accent-color: lightgreen;
+}
+
+.batchhead {
+	display: flex;
+	margin: 5px;
+}
+.batch {
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+	margin: 5px;
+	background-color: #444444;
+	border-radius: 3px;
+}
+
+.unacceptable {
+	background-color: red;
+	padding: 5px;
+}
+.good {
+	background-color: #639d63;
+	padding: 5px;
+}
+
+.transaction {
+	display:flex;
+	background-color: #969696;
+	width: 100%;
+	border-radius: 2px;
+	margin-bottom: 4px;
+}
+
+.transaction div {
+	margin: 5px;
+	padding: 5px;
+	flex-grow: 1;
+
+}
+
+.delete {
+	padding: 3px;
+	margin: 2px;
+	background-color: #dd4343;
+	border-radius: 5px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.validate {
+	padding: 3px;
+	margin: 2px;
+	background-color: #71af71;
+	border-radius: 5px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+select.account {
+	padding: 5px;
+}
+
+.toggle {
+	line-height: 30px;
+	cursor: pointer;
+
+}
+
+.sourcename {
+	line-height: 30px;
+	flex-grow: 1;
+	width: 500px;
+}
+
+.createtx {
+	display: flex;
+	padding: 5px;
+	gap: 10px;
+	background-color: #969696;
+	width: 100%;
+	border-radius: 2px;
+	margin-top: 2px;
+
+}
+
+.add {
+	border-radius:5px;
+	background-color: #71af71;
+	color: white;
+}
+
+.recipient {
+	flex-grow: 1;
+}
+
+button.add {
+	width: 30px;
+	height: 30px;
+	border-radius: 5px;
+}
+
+button.add:disabled {
+	background-color: grey;
+
+}

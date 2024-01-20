@@ -1,0 +1,16 @@
+services:
+  terminal-pursuit:
+    build: .
+    ports:
+      - 1337:5000
+    cap_drop:
+      - all
+    cap_add:
+      - chown
+      - setuid
+      - setgid
+      - sys_admin
+      - mknod
+    security_opt:
+      - seccomp=unconfined
+      - apparmor=unconfined

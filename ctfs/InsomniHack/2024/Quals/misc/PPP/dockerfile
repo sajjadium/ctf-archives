@@ -1,0 +1,17 @@
+FROM python:latest
+RUN apt-get update && apt-get upgrade
+RUN groupadd -g 1000 tototo
+RUN useradd -g tototo -u 1000 tototo
+
+ADD ppp.py /app/ppp.py
+ADD flag /flag
+ADD readflag /readflag
+
+RUN chown root:root /readflag \
+    && chown root:root /flag \
+    && chmod 4555 /readflag \
+    && chmod 400 /flag
+   
+
+USER tototo
+CMD ["timeout", "3", "/usr/bin/python3", "/app/ppp.py"]

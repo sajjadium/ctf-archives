@@ -1,0 +1,1 @@
+CREATE TABLE batch_transactions(id text, batchid text, sender text, recipient text, amount decimal, verified boolean default false, executed boolean default false);

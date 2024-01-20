@@ -1,0 +1,19 @@
+table.account {
+	margin: 50px;
+}
+
+
+table.account td{
+	text-align: center;
+	width: 250px;
+	margin: 15px;
+	padding: 10px;
+}
+
+
+
+table.account input[type=text] {
+	padding: 10px;
+	width: 100%;
+}
+

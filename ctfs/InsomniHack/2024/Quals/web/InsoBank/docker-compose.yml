@@ -1,0 +1,44 @@
+version: '3.3'
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - '3000:3000'
+    command: npm start
+  api:
+    build: ./api
+    volumes:
+      - ./api:/app
+    command: python /app/app.py
+    ports:
+      - '5000:5000'
+    environment:
+      MYSQL_HOST: 'mysql'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_DB: 'inso24'
+      PG_HOST: 'pg'
+      PG_DB: 'inso24'
+      PG_USER: 'postgres'
+      PG_PASSWORD: 'postgres'
+      FLAG: 'INS{fake-flag}'
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: 'inso24'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    volumes:
+      - './mysql-start/init.sql:/docker-entrypoint-initdb.d/init.sql'
+      - './mysql-data:/var/lib/mysql'
+  pg:
+    image: postgres:14.10-alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=inso24
+    volumes: 
+      - './pg-data:/var/lib/postgresql/data'
+      - './pg-start/init.sql:/docker-entrypoint-initdb.d/create_tables.sql'
