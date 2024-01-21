@@ -1,0 +1,136 @@
+diff --git a/src/Makefile b/src/Makefile
+index b771196..b66c109 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -7,7 +7,7 @@
+ PLAT= guess
+ 
+ CC= gcc -std=gnu99
+-CFLAGS= -O2 -Wall -Wextra -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
++CFLAGS= -O0 -g -w -Wextra -DLUA_COMPAT_5_3 $(SYSCFLAGS) $(MYCFLAGS)
+ LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
+ LIBS= -lm $(SYSLIBS) $(MYLIBS)
+ 
+diff --git a/src/lapi.c b/src/lapi.c
+index 34e64af..b1501c8 100644
+--- a/src/lapi.c
++++ b/src/lapi.c
+@@ -473,18 +473,7 @@ LUA_API lua_State *lua_tothread (lua_State *L, int idx) {
+ ** conversion should not be a problem.)
+ */
+ LUA_API const void *lua_topointer (lua_State *L, int idx) {
+-  const TValue *o = index2value(L, idx);
+-  switch (ttypetag(o)) {
+-    case LUA_VLCF: return cast_voidp(cast_sizet(fvalue(o)));
+-    case LUA_VUSERDATA: case LUA_VLIGHTUSERDATA:
+-      return touserdata(o);
+-    default: {
+-      if (iscollectable(o))
+-        return gcvalue(o);
+-      else
+-        return NULL;
+-    }
+-  }
++  return NULL;
+ }
+ 
+ 
+diff --git a/src/lbaselib.c b/src/lbaselib.c
+index 1d60c9d..cb00621 100644
+--- a/src/lbaselib.c
++++ b/src/lbaselib.c
+@@ -506,17 +506,11 @@ static int luaB_tostring (lua_State *L) {
+ static const luaL_Reg base_funcs[] = {
+   {"assert", luaB_assert},
+   {"collectgarbage", luaB_collectgarbage},
+-  {"dofile", luaB_dofile},
+-  {"error", luaB_error},
+   {"getmetatable", luaB_getmetatable},
+   {"ipairs", luaB_ipairs},
+-  {"loadfile", luaB_loadfile},
+-  {"load", luaB_load},
+   {"next", luaB_next},
+   {"pairs", luaB_pairs},
+-  {"pcall", luaB_pcall},
+   {"print", luaB_print},
+-  {"warn", luaB_warn},
+   {"rawequal", luaB_rawequal},
+   {"rawlen", luaB_rawlen},
+   {"rawget", luaB_rawget},
+@@ -526,7 +520,6 @@ static const luaL_Reg base_funcs[] = {
+   {"tonumber", luaB_tonumber},
+   {"tostring", luaB_tostring},
+   {"type", luaB_type},
+-  {"xpcall", luaB_xpcall},
+   /* placeholders */
+   {LUA_GNAME, NULL},
+   {"_VERSION", NULL},
+diff --git a/src/linit.c b/src/linit.c
+index 69808f8..1845767 100644
+--- a/src/linit.c
++++ b/src/linit.c
+@@ -41,15 +41,9 @@
+ */
+ static const luaL_Reg loadedlibs[] = {
+   {LUA_GNAME, luaopen_base},
+-  {LUA_LOADLIBNAME, luaopen_package},
+-  {LUA_COLIBNAME, luaopen_coroutine},
+-  {LUA_TABLIBNAME, luaopen_table},
+-  {LUA_IOLIBNAME, luaopen_io},
+   {LUA_OSLIBNAME, luaopen_os},
+   {LUA_STRLIBNAME, luaopen_string},
+   {LUA_MATHLIBNAME, luaopen_math},
+-  {LUA_UTF8LIBNAME, luaopen_utf8},
+-  {LUA_DBLIBNAME, luaopen_debug},
+   {NULL, NULL}
+ };
+ 
+diff --git a/src/loslib.c b/src/loslib.c
+index ad5a927..4d11888 100644
+--- a/src/loslib.c
++++ b/src/loslib.c
+@@ -403,17 +403,7 @@ static int os_exit (lua_State *L) {
+ 
+ 
+ static const luaL_Reg syslib[] = {
+-  {"clock",     os_clock},
+-  {"date",      os_date},
+-  {"difftime",  os_difftime},
+-  {"execute",   os_execute},
+   {"exit",      os_exit},
+-  {"getenv",    os_getenv},
+-  {"remove",    os_remove},
+-  {"rename",    os_rename},
+-  {"setlocale", os_setlocale},
+-  {"time",      os_time},
+-  {"tmpname",   os_tmpname},
+   {NULL, NULL}
+ };
+ 
+diff --git a/src/lstrlib.c b/src/lstrlib.c
+index 0316716..38e3053 100644
+--- a/src/lstrlib.c
++++ b/src/lstrlib.c
+@@ -1830,9 +1830,7 @@ static int str_unpack (lua_State *L) {
+ static const luaL_Reg strlib[] = {
+   {"byte", str_byte},
+   {"char", str_char},
+-  {"dump", str_dump},
+   {"find", str_find},
+-  {"format", str_format},
+   {"gmatch", gmatch},
+   {"gsub", str_gsub},
+   {"len", str_len},
+diff --git a/src/lvm.h b/src/lvm.h
+index dba1ad2..485b5aa 100644
+--- a/src/lvm.h
++++ b/src/lvm.h
+@@ -96,7 +96,7 @@ typedef enum {
+ #define luaV_fastgeti(L,t,k,slot) \
+   (!ttistable(t)  \
+    ? (slot = NULL, 0)  /* not a table; 'slot' is NULL and result is 0 */  \
+-   : (slot = (l_castS2U(k) - 1u < hvalue(t)->alimit) \
++   : (slot = (l_castU2S(k) - 1u < hvalue(t)->alimit) \
+               ? &hvalue(t)->array[k - 1] : luaH_getint(hvalue(t), k), \
+       !isempty(slot)))  /* result not empty? */
+ 

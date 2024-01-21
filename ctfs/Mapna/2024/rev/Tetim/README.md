@@ -1,0 +1,1 @@
+Begin on a formidable journey into the realm of Zig reverse with tetim, a challenging and intricate reverse engineering task. Unusual for CTFs, it features Zig language binaries and promises a riveting experience, designed for those seeking revenge at MAPNA CTF.

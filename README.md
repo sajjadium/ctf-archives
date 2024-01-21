@@ -1487,6 +1487,11 @@
             <td><a href="https://ctftime.org/event/1676/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Mapna">Mapna</a></td>
+            <td><a href="ctfs/Mapna/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2205/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/MetaCTF">MetaCTF</a></td>
             <td><a href="ctfs/MetaCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1476/tasks/" target="_blank">CTFtime</a></td>

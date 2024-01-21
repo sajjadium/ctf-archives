@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Novel Reader</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"> 
+    <link rel="stylesheet" href="static/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="color: #C4141C">
+        Welcome Reader!!
+      </h1>
+      <div>Balance:</div>
+      <span id="credit" style="color: black; font-weight: bold; font-size: 20px"
+        ></span
+      >
+      <div style="color: #000000">Words Balance:</div>
+      <span
+        id="words_balance"
+        style="color: black; font-weight: bold; font-size: 20px"
+        ></span
+      >
+
+      <div>
+        <h2 style="color: #C4141C">Novels</h2>
+        <button
+          id="list-public-novels-button"
+          style="color: #fff"
+        >
+          Explore Public Novels ✨
+        </button>
+        <button
+          id="list-private-novels-button"
+          style="color: #fff"
+        >
+          My Private Collection
+        </button>
+        <div id="novel-list"></div>
+      </div>
+      <h2 style="color: #C4141C">Charge Account</h2>
+      <form id="charge-form">
+        <label for="nwords">Number of Words:</label>
+        <input type="number" id="nwords" name="nwords" />
+        <button type="submit" style="color: white;">Charge Account</button>
+      </form>
+      <div id="charge-result-success" style="color: green;"></div>
+      <div id="charge-result-error" style="color: red;"></div>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./static/script.js"></script>
+</html>

@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  bot:
+    build: ./bot/
+    restart: always 
+    ports:
+      - "8001:8000"
+    environment:
+      - "FLAG=MAPNA{test-flag}"
+      - "CAPTCHA_SECRET="
+  web:
+    build: ./app/
+    restart: always 
+    ports:
+      - "8000:8000"

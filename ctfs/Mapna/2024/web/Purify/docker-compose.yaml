@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  bot:
+    build: ./bot/
+    restart: always 
+    ports:
+      - "8001:8000"
+    environment:
+      - "FLAG=MAPNA{test-flag}"
+      - "CAPTCHA_SECRET="
+  web:
+    image: nginx@sha256:4c0fdaa8b6341bfdeca5f18f7837462c80cff90527ee35ef185571e1c327beac
+    restart: always 
+    ports:
+      - "8000:80"
+    volumes:
+      - ./app/static:/var/www/html:ro
+      - ./app/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      
