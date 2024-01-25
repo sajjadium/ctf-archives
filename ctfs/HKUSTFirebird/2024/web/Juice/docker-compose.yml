@@ -1,0 +1,9 @@
+services:
+  app:
+    build: ./app
+    container_name: relay
+    image: app
+    ports:
+      - 36005:8080
+    restart: unless-stopped
+    deploy: { resources: { limits: { cpus: "0.50", memory: 256M } } }

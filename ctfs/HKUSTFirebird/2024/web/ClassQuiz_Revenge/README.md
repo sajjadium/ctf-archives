@@ -1,0 +1,3 @@
+ClassQuiz - a cutting-edge learning journey. Backend powered by the speedy FastAPI and SocketIO, ensuring seamless, real-time interactions. The frontend is powered by latest technologies - SvelteKit and TailwindCSS crafts a sleek and responsive user interface, removing virtual DOM, all turbocharged by Vite bundler with SSR support. Our infrastructure, featuring Meilisearch, Caddy, Postgres, and Redis guarantees optimal performance. ClassQuiz is more than just a quiz app; it's an exciting journey into the latest technologies.
+
+Send your favourite ClassQuiz page to the administrator via the "XSS Bot".

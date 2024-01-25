@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  mpi:
+    build: ./chall
+    ports:
+      - "20015:1337"
+    networks:
+      - default
+
+networks:
+  default:

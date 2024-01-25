@@ -1,0 +1,17 @@
+diff --git a/Caddyfile-docker b/Caddyfile-docker
+index 876e2b4..e059eb9 100644
+--- a/Caddyfile-docker
++++ b/Caddyfile-docker
+@@ -8,4 +8,12 @@
+ 	reverse_proxy /openapi.json http://api:80 # Only use if you need to serve the OpenAPI spec
+ 	reverse_proxy /socket.io/* api:80
+ 
++	# add security headers for security
++	header {
++		# block all XSS attacks
++		X-XSS-Protection "1; mode=block"
++		
++		# block all frame attacks
++		X-Frame-Options "Deny"
++	}
+ }

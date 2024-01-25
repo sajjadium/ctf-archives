@@ -1,0 +1,18 @@
+diff --git a/frontend/svelte.config.js b/frontend/svelte.config.js
+index 76983da..c6e2245 100644
+--- a/frontend/svelte.config.js
++++ b/frontend/svelte.config.js
+@@ -22,7 +22,12 @@ const config = {
+ 		adapter: adapter({
+ 			out: 'build',
+ 			precompress: true
+-		})
++		}),
++		csp: {
++			directives: {
++				'script-src': ['self']
++			}
++		}
+ 		// +++ SOON OBSOLETE +++
+ 		/*
+ 		vite: {

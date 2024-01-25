@@ -1,0 +1,1 @@
+<?=(isset($_GET["giveme"]) && $_GET["giveme"] === "flag") ? getenv("FLAG") : "🤔";?>

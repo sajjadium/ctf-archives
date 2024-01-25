@@ -1,0 +1,13 @@
+services:
+  infantwaf.proxy:
+    build: ./proxy
+    ports:
+      - 3001:80
+    deploy: { resources: { limits: { cpus: '1', memory: 512M } } }
+    restart: unless-stopped
+  infantwaf.backend:
+    build: ./backend
+    deploy: { resources: { limits: { cpus: '1', memory: 512M } } }
+    restart: unless-stopped
+    environment:
+      - FLAG=firebird{dummy_test_flag}

@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  lua:
+    build: ./chall
+    ports:
+      - "20016:1337"
+    networks:
+      - default
+
+networks:
+  default:

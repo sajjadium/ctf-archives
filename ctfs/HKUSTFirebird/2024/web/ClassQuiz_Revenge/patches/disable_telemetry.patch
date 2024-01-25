@@ -1,0 +1,13 @@
+diff --git a/classquiz/__init__.py b/classquiz/__init__.py
+index b966a5a..792b986 100644
+--- a/classquiz/__init__.py
++++ b/classquiz/__init__.py
+@@ -63,7 +63,7 @@ async def startup() -> None:
+     if not database_.is_connected:
+         await database_.connect()
+     await meilisearch_init()
+-    await telemetry_ping()
++    # await telemetry_ping()
+ 
+ 
+ @app.on_event("shutdown")

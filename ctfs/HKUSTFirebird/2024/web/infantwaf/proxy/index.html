@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<title>infantwaf</title>
+<body>
+  <div style="transform: rotate({{ text_rot }}deg);">
+    <h1>Do you want a flag?</h1>
+    <button id="button" style="font-size: 3rem; transform: rotate({{ button_rot }}deg) translatex({{ button_trans }}rem);">
+      Click me!
+    </button>
+  </div>
+  <script>
+    button.addEventListener("click", async () => {
+      const flag = await fetch("/?giveme=flag", {
+        method: "GET",
+      }).then((r) => r.text());
+
+      alert(flag);
+    });
+  </script>
+</body>
+</html>

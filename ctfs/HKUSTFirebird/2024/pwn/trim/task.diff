@@ -1,0 +1,112 @@
+diff --git a/lbaselib.c b/lbaselib.c
+index 1d60c9de..a4bb91bf 100644
+--- a/lbaselib.c
++++ b/lbaselib.c
+@@ -506,12 +506,12 @@ static int luaB_tostring (lua_State *L) {
+ static const luaL_Reg base_funcs[] = {
+   {"assert", luaB_assert},
+   {"collectgarbage", luaB_collectgarbage},
+-  {"dofile", luaB_dofile},
++  // {"dofile", luaB_dofile},
+   {"error", luaB_error},
+   {"getmetatable", luaB_getmetatable},
+   {"ipairs", luaB_ipairs},
+-  {"loadfile", luaB_loadfile},
+-  {"load", luaB_load},
++  // {"loadfile", luaB_loadfile},
++  // {"load", luaB_load},
+   {"next", luaB_next},
+   {"pairs", luaB_pairs},
+   {"pcall", luaB_pcall},
+diff --git a/linit.c b/linit.c
+index 69808f84..b4e9781d 100644
+--- a/linit.c
++++ b/linit.c
+@@ -41,15 +41,15 @@
+ */
+ static const luaL_Reg loadedlibs[] = {
+   {LUA_GNAME, luaopen_base},
+-  {LUA_LOADLIBNAME, luaopen_package},
++  // {LUA_LOADLIBNAME, luaopen_package},
+   {LUA_COLIBNAME, luaopen_coroutine},
+   {LUA_TABLIBNAME, luaopen_table},
+-  {LUA_IOLIBNAME, luaopen_io},
+-  {LUA_OSLIBNAME, luaopen_os},
++  // {LUA_IOLIBNAME, luaopen_io},
++  // {LUA_OSLIBNAME, luaopen_os},
+   {LUA_STRLIBNAME, luaopen_string},
+   {LUA_MATHLIBNAME, luaopen_math},
+   {LUA_UTF8LIBNAME, luaopen_utf8},
+-  {LUA_DBLIBNAME, luaopen_debug},
++  // {LUA_DBLIBNAME, luaopen_debug},
+   {NULL, NULL}
+ };
+ 
+diff --git a/loadlib.c b/loadlib.c
+index 6d289fce..83f086ed 100644
+--- a/loadlib.c
++++ b/loadlib.c
+@@ -693,7 +693,7 @@ static const luaL_Reg pk_funcs[] = {
+ 
+ 
+ static const luaL_Reg ll_funcs[] = {
+-  {"require", ll_require},
++  // {"require", ll_require},
+   {NULL, NULL}
+ };
+ 
+diff --git a/lstrlib.c b/lstrlib.c
+index 03167161..c1b37e33 100644
+--- a/lstrlib.c
++++ b/lstrlib.c
+@@ -146,6 +146,26 @@ static int str_upper (lua_State *L) {
+   return 1;
+ }
+ 
++static int str_trim (lua_State *L) {
++  size_t l;
++  size_t i;
++  size_t start;
++  luaL_Buffer b;
++  char *p;
++  const char *s = luaL_checklstring(L, 1, &l);
++
++  // find the first non-space character
++  start = 0;
++  while (isspace(s[start]))
++    start++;
++
++  p = luaL_buffinitsize(L, &b, strlen(s) - start + 1);
++  for (i=start; i<l; i++)
++    p[i - start] = uchar(s[i]);
++  luaL_pushresultsize(&b, l);
++  return 1;
++}
++
+ 
+ static int str_rep (lua_State *L) {
+   size_t l, lsep;
+@@ -1845,6 +1865,7 @@ static const luaL_Reg strlib[] = {
+   {"pack", str_pack},
+   {"packsize", str_packsize},
+   {"unpack", str_unpack},
++  {"trim", str_trim},
+   {NULL, NULL}
+ };
+ 
+diff --git a/lua.c b/lua.c
+index 3af5ce6a..bfafb545 100644
+--- a/lua.c
++++ b/lua.c
+@@ -36,6 +36,11 @@ static lua_State *globalL = NULL;
+ 
+ static const char *progname = LUA_PROGNAME;
+ 
++__attribute__((__used__))
++static void win(void) {
++  system("cat flag*.txt");
++  exit(0);
++}
+ 
+ #if defined(LUA_USE_POSIX)   /* { */
+ 
