@@ -1,0 +1,63 @@
+version: "3"
+services:
+  database:
+    container_name: database
+    image: redis/redis-stack:latest
+    environment:
+      - REDIS_ARGS=--save 60 1
+    networks:
+      - ctf_network
+    volumes:
+      - database:/data
+
+  ctf-server-orchestrator:
+    container_name: orchestrator
+    image: gcr.io/paradigmxyz/infra/paradigmctf.py:v1.0.0
+    user: root
+    command: uvicorn ctf_server:orchestrator --host 0.0.0.0 --port 7283
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      - BACKEND=docker
+      - DATABASE=redis
+      - REDIS_URL=redis://database:6379/0
+    networks:
+      - ctf_network
+    depends_on:
+      - database
+
+  ctf-server-anvil-proxy:
+    container_name: anvil-proxy
+    image: gcr.io/paradigmxyz/infra/paradigmctf.py:v1.0.0
+    command: uvicorn ctf_server:anvil_proxy --host 0.0.0.0 --port 8545
+    ports:
+      - "8545:8545"
+    environment:
+      - DATABASE=redis
+      - REDIS_URL=redis://database:6379/0
+    networks:
+      - ctf_network
+    depends_on:
+      - database
+
+  challenge:
+    container_name: challenge
+    image: challenge
+    build:
+      context: .
+      target: challenge
+    command: socat TCP-LISTEN:1337,reuseaddr,fork exec:"python3 -u challenge/challenge.py"
+    expose:
+      - 1337
+    ports:
+      - "1337:1337"
+    networks:
+      - ctf_network
+
+volumes:
+  database:
+    driver: local
+
+networks:
+  ctf_network:
+    name: paradigmctf

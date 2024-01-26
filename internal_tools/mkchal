@@ -29,6 +29,9 @@ def is_valid(line):
   if re.search('solves\s+\d+', line.lower()):
     return False
 
+  if re.search('score:\s*\d+', line.lower()):
+    return False
+
   if re.search('\d+[ \t]+points', line.lower()) or re.search('\d+[ \t]*solves', line.lower()) or re.search('\d+[ \t]+solve', line.lower()) or re.search('\d+[ \t]+score', line.lower()):
     return False
 

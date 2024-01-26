@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./
+    image: chatterbox
+    ports:
+      - "8080:8080"
+
