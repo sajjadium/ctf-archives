@@ -1,0 +1,15 @@
+<header>
+    <nav>
+        <div class="nav-container">
+            <ul>
+                {% if request.endpoint == "login" or request.endpoint == "signup" %}
+                <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                {% else %}
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+</header>

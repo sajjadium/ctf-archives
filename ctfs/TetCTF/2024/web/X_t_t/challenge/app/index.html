@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electron App Render Values</title>
+</head>
+<body>
+    <h1>ID: <span id="id"></span></h1>
+    <p>Title: <span id="title"></span></p>
+    <p>Content: <span id="content"></span></p>
+    
+    
+    <script>
+        
+        // Set values in HTML elements
+        document.getElementById('id').textContent =atob(window.envVariables.id);
+        document.getElementById('content').textContent = atob(envVariables.content);
+        document.getElementById('title').textContent = atob(envVariables.title);
+        const regexP = /((http[s]?):\/\/[^\s]+)/;
+        
+        link = atob(envVariables.content).match(regexP)[0];
+        const iframe = document.createElement('iframe');
+        local = link.includes("http://localhost/tmp/");
+        
+        if(local)
+            {iframe.src = link;}
+        else
+           {
+            iframe.src = "http://example.com";}
+        
+        document.body.appendChild(iframe);
+        if(atob(envVariables.content).startsWith("[IMPORTANT ALERT]")){
+        electron.send("CreateViewer",atob(window.envVariables.id));}
+    </script>
+</body>
+</html>

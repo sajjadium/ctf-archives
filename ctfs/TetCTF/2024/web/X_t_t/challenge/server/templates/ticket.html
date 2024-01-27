@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Ticket page {% endblock %}
+
+{% block content %}
+{% if not error_message %}
+<h1>Ticket Details</h1>
+<p><strong>ID:</strong> {{ ticket.id }} </p>
+{% if ticket.new %}<p> new tiket</p>
+{% else %} <p> old ticket</p>
+{% endif %}
+<p><strong>Title:</strong> {{ ticket.title }}</p>
+<p><strong>Content:</strong> {{ ticket.content }}</p>
+<p><strong>file:</strong> <a href="{{files}}">link</p>
+
+<form action="{{ url_for('report') }}" method="post">
+    <input hidden type="text" name="id" value="{{ ticket.id }}" />
+    <div class="g-recaptcha" data-sitekey="{{ sitekey }}"></div>
+    <input type="submit" value="Report to admin" />
+</form>
+{% if sitekey %}
+<script src='https://www.google.com/recaptcha/api.js' async defer></script>
+{% endif %}
+{% else %}
+<div id="error-message" class="error-message">{{ error_message }}</div>
+{% endif %}
+{% endblock %}

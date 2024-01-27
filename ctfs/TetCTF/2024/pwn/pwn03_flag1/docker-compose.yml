@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  notes_manager:
+    build: ./
+    container_name: notes_manager
+    ports:
+      - "31339:9999"
+    expose:
+      - "31339"

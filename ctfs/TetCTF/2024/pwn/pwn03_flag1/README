@@ -1,0 +1,14 @@
+# PHAN DUA CHO THI SINH
+
+dua cac file sau:
+./notes_manager/build/interface
+./notes_manager/build/backend
+./notes_manager/build/libc.so.6
+
+voi phan source code trong folder notes_manager tru cai folder build ra
+
+2 files flag1, flag2 tu gen flag content dum nha roi build docker image sau
+
+# SETUP
+la xong
+`docker compose up -d`

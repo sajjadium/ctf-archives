@@ -1,0 +1,6 @@
+FROM ubuntu:latest
+MAINTAINER peternguyen
+RUN apt-get update
+RUN apt-get install cmake python3 build-essential libssl-dev libcap-dev libcap2-bin libcap-ng-utils  -y
+
+SHELL ["/bin/bash", "-c"]

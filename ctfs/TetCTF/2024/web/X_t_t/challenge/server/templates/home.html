@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} Home page {% endblock %}
+
+{% block content %}
+<h1>Welcome to the home page!</h1>
+<h2>Submit a Ticket</h2>
+<form action="/ticket" method="post" enctype="multipart/form-data">
+  <label for="title">Title:</label><br>
+  <input type="text" id="title" name="title" required><br><br>
+  <label for="title">Content:</label><br>
+  <input type="text" id="content" name="content" required><br><br>
+  <label for="file">Select File:</label><br>
+  <input type="file" id="file" name="file" required><br><br>
+  
+  <input type="submit" value="Upload">
+</form>
+<div id="error-message" class="error-message">{{ error_message }}</div>
+<div id="success-message" class="success-message">{{ success_message }}</div>
+{% endblock %}

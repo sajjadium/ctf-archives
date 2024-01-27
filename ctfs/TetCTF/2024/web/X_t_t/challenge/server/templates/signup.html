@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Signup page {% endblock %}
+
+{% block content %}
+<h1>Signup</h1>
+<form id="signup-form" action="/signup" method="POST">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" required>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required>
+  <label for="password">Re-enter Password:</label>
+  <input type="password" id="repassword" name="repassword" required>
+  <button type="submit">Signup</button>
+  <div id="error-message" class="error-message">{{ error_message }}</div>
+</form>
+{% endblock %}

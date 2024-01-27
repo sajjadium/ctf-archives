@@ -1,0 +1,120 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+/* Style the navigation bar */
+body, ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Style the navigation bar */
+.nav-container {
+  background-color: #333;
+  overflow: hidden;
+}
+
+.nav-container ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.nav-container li {
+  margin: 0;
+}
+
+.nav-container a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px; /* Adjust padding to make buttons smaller */
+  display: block;
+  transition: background-color 0.3s;
+}
+
+.nav-container a:hover {
+  background-color: #555;
+}
+
+/* Align navigation bar to the left */
+@media screen and (max-width: 768px) {
+  .nav-container ul {
+      justify-content: flex-start; /* Align to the left on smaller screens */
+  }
+}
+
+
+.login-container,
+.home-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  margin-top: 0;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 8px 0 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.success-message {
+  color: #4BB543;
+  margin-top: 10px;
+}
+
+.error-message {
+  color: #ff0000;
+  margin-top: 10px;
+}
+
+.home-container {
+  max-width: 600px;
+}
+
+.home-container h2 {
+  margin-top: 20px;
+}
+
+.home-container button[type="submit"] {
+  margin-top: 20px;
+}

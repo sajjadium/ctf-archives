@@ -1,0 +1,14 @@
+version: '3'
+services:
+  webserver:
+    image: php:8.3.2-apache
+    volumes:
+      - ./html:/var/www/html
+    ports:
+      - "8080:80"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
