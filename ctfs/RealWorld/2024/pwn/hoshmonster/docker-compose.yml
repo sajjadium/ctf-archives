@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  ff24:
+    build: .
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./data:/root/data
+      - ./flag:/flag:ro
+    restart: always

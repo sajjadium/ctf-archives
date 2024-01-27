@@ -1,0 +1,35 @@
+FROM debian:bookworm@sha256:0dc902c61cb495db4630a6dc2fa14cd45bd9f8515f27fbb12e3d73a119d30bf1
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN echo 'Acquire::Check-Valid-Until "0";' > /etc/apt/apt.conf.d/10no--check-valid-until \
+  && sed -i 's/deb.debian.org\/debian-security/snapshot.debian.org\/archive\/debian-security\/20231218T000000Z/g' /etc/apt/sources.list.d/debian.sources \
+  && sed -i 's/deb.debian.org\/debian/snapshot.debian.org\/archive\/debian\/20231218T000000Z/g' /etc/apt/sources.list.d/debian.sources \
+  && apt-get update \
+  && apt-get -y upgrade \
+  && apt-get install -y libreadline8 procps \
+  && apt-get clean autoclean \
+  && rm -rf /var/cache/apt/lists
+
+ADD postgres-binary.tar.gz /opt/
+COPY readflag flag docker-entrypoint.sh init.sql /
+
+RUN chmod 400 /flag \
+  && chown root:root /readflag \
+  && chmod 555 /readflag \
+  && chmod u+s readflag \
+  && chmod 555 docker-entrypoint.sh \
+  && useradd -m -s /bin/bash postgres \
+  && mkdir -p /var/run/postgresql \
+  && chown -R postgres:postgres /var/run/postgresql \
+  && chmod 3777 /var/run/postgresql \
+  && mkdir -p /var/lib/postgresql \
+  && chown -R postgres:postgres /var/lib/postgresql \
+  && chmod 1777 /var/lib/postgresql
+
+USER postgres
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+EXPOSE 5432
+CMD ["postgres"]

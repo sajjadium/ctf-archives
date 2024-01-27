@@ -1,0 +1,22 @@
+FROM debian:bookworm@sha256:0dc902c61cb495db4630a6dc2fa14cd45bd9f8515f27fbb12e3d73a119d30bf1 AS builder
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN echo 'Acquire::Check-Valid-Until "0";' > /etc/apt/apt.conf.d/10no--check-valid-until \
+  && sed -i 's/deb.debian.org\/debian-security/snapshot.debian.org\/archive\/debian-security\/20231218T000000Z/g' /etc/apt/sources.list.d/debian.sources \
+  && sed -i 's/deb.debian.org\/debian/snapshot.debian.org\/archive\/debian\/20231218T000000Z/g' /etc/apt/sources.list.d/debian.sources \
+  && apt-get update \
+  && apt-get -y upgrade \
+  && apt-get install -y build-essential curl wget ca-certificates libreadline-dev zlib1g-dev
+RUN cd / \
+  && wget https://ftp.postgresql.org/pub/source/v12.17/postgresql-12.17.tar.bz2 \
+  && tar xf postgresql-12.17.tar.bz2 \
+  && mv postgresql-12.17 postgresql \
+  && cd postgresql
+WORKDIR /postgresql
+COPY support_calc_text_sum.diff /
+RUN patch -p1 < ../support_calc_text_sum.diff \
+  && ./configure --prefix="/opt/postgres" \
+  && make -j$(nproc) && make install \
+  && cd contrib/pg_backtrace \
+  && make -j$(nproc) && make install
