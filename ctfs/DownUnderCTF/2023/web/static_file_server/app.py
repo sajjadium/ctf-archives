@@ -15,6 +15,6 @@ app.add_routes([
     web.get('/', index),
 
     # this is handled by https://github.com/aio-libs/aiohttp/blob/v3.8.5/aiohttp/web_urldispatcher.py#L654-L690
-    web.static('/files', './files', follow_symlinks=True)
+    web.static('/files', './files')
 ])
 web.run_app(app)
