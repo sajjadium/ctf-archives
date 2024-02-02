@@ -1,0 +1,22 @@
+FROM debian:bookworm-slim as builder
+RUN apt update && \
+    apt install -y \
+        build-essential cmake curl libmpfr-dev \
+        libmpc-dev libgmp-dev e2fsprogs ninja-build \
+        qemu-system-gui qemu-system-x86 qemu-utils \
+        ccache rsync unzip texinfo libssl-dev \
+        sudo gcc g++ git wget && \
+    rm -rf /var/lib/apt/lists/*
+RUN git clone https://github.com/SerenityOS/serenity/
+RUN useradd build -m -d /home/build
+RUN chown -R build:build serenity
+USER build
+WORKDIR serenity
+COPY patch .
+RUN git apply patch
+RUN ./Meta/serenity.sh build lagom js
+
+FROM scratch
+COPY --from=builder /serenity/Build/lagom/bin/js .
+COPY --from=builder /serenity/Build/lagom/lib/ .
+

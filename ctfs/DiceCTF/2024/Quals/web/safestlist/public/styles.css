@@ -1,0 +1,9 @@
+.note:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: red;
+}
+
+.note:hover::marker {
+    content: '🗑️ ';
+}

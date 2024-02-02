@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>funnylogin</title>
+        <link rel="stylesheet" href="https://unpkg.com/axist@latest/dist/axist.min.css" />
+    </head>
+    <body>
+        <h3>funnylogin</h3>
+        <hr />
+        <div id="login">
+            <h5>Login:</h5>
+            <form method="POST" action="/api/login">
+                <fieldset>
+                <p>
+                    <label for="user">Username</label>
+                    <input id="user" name="user" />
+                </p>
+                <p>
+                    <label for="pass">Password</label>
+                    <input id="pass" name="pass" type="password" />
+                </p>
+                <p>
+                    <input type="submit" value="Submit" />
+                </p>
+                </fieldset>
+            </form>
+        </div>
+        <div id="flag"></div>
+        <script>
+            const params = new URLSearchParams(location.search);
+            if (params.has("message")) {
+                alert(params.get("message"));
+                history.pushState(null, null, "/");
+            }
+            if (params.has("flag")) {
+                document.querySelector("#login").style.display = "none";
+                document.querySelector("#flag").innerText = params.get("flag");
+            }
+        </script>
+    </body>
+</html>

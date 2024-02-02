@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>safestlist</title>
+  <link rel="stylesheet" href="/marx.css">
+</head>
+<body>
+  <main>
+    <h1>🔒 safestlist</h1>
+    <hr />
+    <h4>Create a new entry:</h4>
+    <form method="POST" action="/create">
+      <input type="text" name="text" />
+      <br />
+      <input type="submit" value="create" />
+    </form>
+    <hr />
+    <h4>Submit a URL:</h4>
+    <form method="POST" action="/submit">
+      <input type="url" name="url" placeholder="http(s)://" />
+      <br />
+      <input type="submit" value="submit" />
+    </form>
+    <hr />
+    <h4>View your list:</h4>
+    <h6>NOTE: please make sure that you have no other windows open when to prevent attackers from leaking your notes!</h6>
+    <br />
+    <form method="POST" action="/view">
+      <input type="hidden" name="viewToken" value="{{ viewToken }}" />
+      <input type="submit" value="view" />
+    </form>
+  </main>
+  <script>
+    const params = new URLSearchParams(location.search);
+    if (params.has("message")) {
+      const message = document.createElement("h5");
+      message.innerText = params.get("message");
+      document.querySelector("h1").insertAdjacentElement("afterend", message);
+      history.replaceState(null, null, "/");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+Base: https://github.com/SerenityOS/serenity/tree/fbde901614368dcf03d4a8eee800d8b89131465f
+
+diff --git a/Userland/Libraries/LibJIT/X86_64/Assembler.h b/Userland/Libraries/LibJIT/X86_64/Assembler.h
+index 79b96cf81f..465c4cb38c 100644
+--- a/Userland/Libraries/LibJIT/X86_64/Assembler.h
++++ b/Userland/Libraries/LibJIT/X86_64/Assembler.h
+@@ -472,12 +472,23 @@ struct X86_64Assembler {
+     private:
+         void link_jump(X86_64Assembler& assembler, size_t offset_in_instruction_stream)
+         {
+-            auto offset = offset_of_label_in_instruction_stream.value() - offset_in_instruction_stream;
++            auto offset = static_cast<ssize_t>(offset_of_label_in_instruction_stream.value() - offset_in_instruction_stream);
+             auto jump_slot = offset_in_instruction_stream - 4;
+-            assembler.m_output[jump_slot + 0] = (offset >> 0) & 0xff;
+-            assembler.m_output[jump_slot + 1] = (offset >> 8) & 0xff;
+-            assembler.m_output[jump_slot + 2] = (offset >> 16) & 0xff;
+-            assembler.m_output[jump_slot + 3] = (offset >> 24) & 0xff;
++            if (offset <= INT8_MAX && offset >= INT8_MIN && assembler.m_output[jump_slot - 1] == 0xE9) {
++                auto small_offset = static_cast<int8_t>(offset + 3);
++                // JMP rel8
++                assembler.m_output[jump_slot - 1] = 0xEB;
++                assembler.m_output[jump_slot + 0] = small_offset;
++                // NOP3_OVERRIDE_NOP
++                assembler.m_output[jump_slot + 1] = 0x0F;
++                assembler.m_output[jump_slot + 2] = 0x1F;
++                assembler.m_output[jump_slot + 3] = 0x00;
++            } else {
++                assembler.m_output[jump_slot + 0] = (offset >> 0) & 0xff;
++                assembler.m_output[jump_slot + 1] = (offset >> 8) & 0xff;
++                assembler.m_output[jump_slot + 2] = (offset >> 16) & 0xff;
++                assembler.m_output[jump_slot + 3] = (offset >> 24) & 0xff;
++            }
+         }
+     };
+ 

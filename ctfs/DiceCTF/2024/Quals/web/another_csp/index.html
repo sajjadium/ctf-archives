@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>another-csp</title>
+	<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'">
+	<style>
+		* {
+			font-family: monospace;
+		}
+		#content {
+			margin-left: auto;
+			margin-right: auto;
+			width: 100%;
+			max-width: 800px;
+		}
+		button {
+			font-size: 1.5em;
+		}
+		iframe {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			width: 90vw;
+			height: 800px;
+			border: 1px gray solid;
+		}
+	</style>
+</head>
+<body>
+	<div id="content">
+		<h1>another-csp</h1>
+		<p>i've made too many csp challenges, but every year another funny one comes up.</p>
+		<form id="form">
+			<textarea id="code" placeholder="your code here" rows="20" cols="80"></textarea>
+			<br>
+			<button id="submit">run</button>
+		</form>
+		<br>
+	</div>
+	<iframe id="sandbox" name="sandbox" sandbox></iframe>
+</body>
+<script>
+	document.getElementById('form').onsubmit = e => {
+		e.preventDefault();
+		const code = document.getElementById('code').value;
+		const token = localStorage.getItem('token') ?? '0'.repeat(6);
+		const content = `<h1 data-token="${token}">${token}</h1>${code}`;
+		document.getElementById('sandbox').srcdoc = content;
+	}
+</script>
+</html>

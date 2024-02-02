@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>safestlist</title>
+  <link rel="stylesheet" href="/marx.css">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/purify.js"></script>
+</head>
+<body>
+  <main>
+    <h1>🔒 safestlist</h1>
+    <hr />
+    <ul></ul>
+    <a href="/">← Back</a>
+    <form method="POST" action="/remove">
+      <input type="hidden" name="index" value="0" />
+    </form>
+  </main>
+  <script type="text/plain">{{ notes }}</script>
+  <script>
+    const notes = JSON.parse(decodeURIComponent(document.querySelector("script[type='text/plain']").innerHTML));
+    document.querySelector("ul").append(...notes.map((n, i) => Object.assign(document.createElement("li"), {
+      innerHTML: DOMPurify.sanitize(n),
+      className: "note",
+      onclick: () => {
+        if (confirm("Are you sure you want to delete this note?")) {
+          document.querySelector("input[name='index']").value = i;
+          document.querySelector("form").submit();
+        }
+      }
+    })));
+  </script>
+</body>
+</html>

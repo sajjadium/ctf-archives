@@ -1,0 +1,18 @@
+{
+  "name": "safestlist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cookie": "^9.2.0",
+    "@fastify/formbody": "^7.4.0",
+    "@fastify/static": "^6.12.0",
+    "fastify": "^4.25.2",
+    "puppeteer": "^21.6.1"
+  }
+}
