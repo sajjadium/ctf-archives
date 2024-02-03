@@ -217,6 +217,15 @@
             <td><a href="https://ctftime.org/event/2103/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=2><a href="ctfs/BSidesAhmedabad">BSides Ahmedabad</a></td>
+            <td><a href="ctfs/BSidesAhmedabad/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1466/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/BSidesAhmedabad/2020">2020</a></td>
+            <td><a href="https://ctftime.org/event/1065/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/BSidesAlgiers">BSides Algiers</a></td>
             <td><a href="ctfs/BSidesAlgiers/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1950/tasks/" target="_blank">CTFtime</a></td>
@@ -356,13 +365,9 @@
             <td><a href="https://ctftime.org/event/1960/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/BSidesAhmedabad">BSides Ahmedabad</a></td>
-            <td><a href="ctfs/BSidesAhmedabad/2021">2021</a></td>
-            <td><a href="https://ctftime.org/event/1466/tasks/" target="_blank">CTFtime</a></td>
-        </tr>
-        <tr>
-            <td><a href="ctfs/BSidesAhmedabad/2020">2020</a></td>
-            <td><a href="https://ctftime.org/event/1065/tasks/" target="_blank">CTFtime</a></td>
+            <td rowspan=1><a href="ctfs/Bearcat">Bearcat</a></td>
+            <td><a href="ctfs/Bearcat/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2208/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
             <td rowspan=1><a href="ctfs/BlackhatMEA">BlackhatMEA</a></td>
