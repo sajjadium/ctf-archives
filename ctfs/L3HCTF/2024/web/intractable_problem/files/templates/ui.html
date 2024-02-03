@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L3H OJ - Online Code Judge</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/python/python.min.js"></script>
+  <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        height: 100%;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    main {
+        display: flex;
+        flex: 1;
+    }
+
+    #left-panel {
+        flex: 3;
+        padding: 20px;
+        overflow-y: auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #right-panel {
+        flex: 7;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    p {
+        color: #555;
+    }
+
+    #code {
+        width: 100%;
+        height: calc(100% - 50px); /* 充满整个右侧区域减去按钮的高度 */
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        padding: 10px;
+        overflow: hidden; /* 防止单行代码过长时拉长编辑器宽度 */
+    }
+
+    #submit-button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    #result {
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+<header>
+    L3H OJ - Online Code Judge
+</header>
+<main>
+    <div id="left-panel">
+        <h2>Factorization-因式分解</h2>
+        <p>
+            <strong>English:</strong><br>
+            Given an integer n with a length greater than 1e1200, write a Python function factorization(n: string) -> tuple[int]. The function aims to decompose n into the product of two prime numbers and return a tuple containing these two prime numbers. If there are multiple ways to decompose n, return any of them. If it is not possible to decompose n into the product of two prime numbers, return an empty tuple. Also, ensure that the algorithm completes within 5 seconds.
+        </p>
+        <p>
+            <strong>中文:</strong><br>
+            给定一个长度大于1e1200的整数n，编写一个Python函数factorization(n: string) -> tuple[int]，该函数的目标是将n分解为两个素数的乘积，并返回这两个素数的元组。如果存在多种分解方式，返回任意一种即可。如果无法分解为两个素数的乘积，返回一个空元组。同时，确保算法在5秒内运行完成。
+        </p>
+        <p>
+            <strong>Constraints:</strong><br>
+            The function should have the following signature: <br>`def factorization(n: string) -> tuple[int]:`<br>
+            Ensure that the data range is within the condition: n > 1e1200.<br>
+            python version: 3.9<br>
+        </p>
+        <p>
+            <strong>Example:</strong><br>
+            assert factorization("475351521661751895074243540593246523618520972762595326174697928346647449185707206389372598608282256811380383190404032166299523773876666472318922771558460628922277645582535896588392594852348364084486238690655886599662367924001363590890812569109607895649813694370973050166651599259363145304057574590261370137156345437028249669334816370867546264934399464411690740735374840773285676630953190762843889635335648692663436908686889192131418923952156737681378051424318800555412895888641288923532804009225241172014330751000713428923763015983470002282812420327758290830348817195665779855293893693142884954591776887440116299690776904519514487393065587363451907300009023254511134788478071909356307262305936997765142311740417401740215024210235228476651440834599996880310013126057525596739488334970720452546216492817137957765149662995022876095807674805933494023084627647842899226400123509014325356709584029475066552524553994024148937417531578363523647609350117317152112454523593395381403793772200111642392639779328230687917361604026583194221950469127065881137668287444416512334844540835655398630104079775375403801713674878390745076588634622157793966573291367630125590213945405976547505316614387405153185226679179240531948600380493017553285385829221") == (22795587872587969391443417913508006959131599341683342331620804425719804629445532382045329887422425754304334661765572696075000674725865953854077500711873540913938845768720139973177075627078456816987380785038496178861392482978946605440618917335546903565527453138404396401412702764183016894421287854815731025960318912373991434747284395892355072355141969330355118332898138751984691147594129863713221846900590975670266726914434414465786824558780254453743611906031268745971635446683518917203475121983304696434286263098752166797797614231711084622749897616350161670834685024505479533034472056056721335813090937223142900332573, 20852786263668554492846144231536365075491320717677931834796676560768638251044940791230010961261397811710847442043709196536120470645995065963612669551336112147989061770392077850813708244735764253895969292673089724251585608830462520711300462261559771514092259169747093795092901846382942907427536458814110446192050739169458521423456040610138628395832371339815215089987251492997760233278928217728440604013650190960547607308483098574454090503590151456479331920975348607961012062725850279061980243632569525267470516109333231611462403041286526840873643820525169332768191554393237762638712821474099713618756354721521606540777)
+        </p>
+    </div>
+    <div id="right-panel">
+        <h2>代码编辑器-Code Editor</h2>
+        <textarea id="code">def factorization(n: string) -> tuple[int]:</textarea>
+        <button id="submit-button">提交评测-Submit</button>
+        <div id="result"></div>
+    </div>
+</main>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var codeEditor = CodeMirror.fromTextArea(document.getElementById("code"), {
+            mode: "python", // 语言模式
+            lineNumbers: true, // 显示行号
+            indentUnit: 4, // 智能缩进单位为4个空格长度
+            indentWithTabs: true, // 使用制表符进行智能缩进
+        });
+
+        var submitButton = document.getElementById("submit-button");
+        var resultContainer = document.getElementById("result");
+
+        submitButton.addEventListener("click", function() {
+            var code = codeEditor.getValue();
+            // 发送 POST 请求到评测接口
+            // 这里使用简单的示例，实际上你需要根据你的后端接口进行相应的修改
+            fetch("/judge", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ code: code })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 处理评测结果
+                resultContainer.innerHTML = "<h2>评测结果</h2>" + JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                // 处理错误
+                resultContainer.innerHTML = "<h2>评测失败</h2><p>" + error.message + "</p>";
+            });
+        });
+    });
+</script>
+</body>
+</html>

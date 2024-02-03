@@ -117,7 +117,7 @@ def unpack_file(fname):
   dname = os.path.dirname(fname)
 
   if fname.endswith('.zip') or re.match(r'.*\.zip\.[0-9a-f]+$', fname):
-    return subprocess.run(['unzip', fname, '-d', dname], shell=False).returncode == 0
+    return subprocess.run(['7z', 'x', fname, '-o' + dname], shell=False).returncode == 0
   elif not fname.endswith('.cpio.gz') and (fname.endswith('.tar.gz') or fname.endswith('.tgz') or fname.endswith('.txz') or fname.endswith('.tar.xz') or fname.endswith('.tzst') or fname.endswith('.gz') or fname.endswith('.tar.zst')):
     return subprocess.run(['tar', 'xzvf', fname, '-C', dname], shell=False).returncode == 0
   elif fname.endswith('.tar'):
