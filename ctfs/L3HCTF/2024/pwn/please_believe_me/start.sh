@@ -1,0 +1,13 @@
+./qemu-system-aarch642 \
+        -nographic \
+        -smp 2 \
+        -machine virt,secure=on,mte=off,gic-version=3,virtualization=false \
+        -cpu max,sve=off,pauth-impdef=on \
+        -d unimp  \
+        -m 1057 \
+        -monitor /dev/null \
+        -bios flash.bin           \
+        -initrd rootfs.cpio.gz \
+        -kernel Image -no-acpi \
+        -append 'console=ttyAMA0,38400 keep_bootcon root=/dev/vda2 ' \
+        -object rng-random,filename=/dev/urandom,id=rng0 -device virtio-rng-pci,rng=rng0,max-bytes=1024,period=1000 -netdev user,id=vmnic -device virtio-net-device,netdev=vmnic
