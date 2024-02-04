@@ -1,0 +1,1 @@
+safe short url service.

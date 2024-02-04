@@ -1,0 +1,48 @@
+version: "3"
+name: l3hctf_end_of_programming
+services:
+    backend:
+        image: l3hctf/endofprogramming-backend
+        build: ./backend
+        mem_limit: 1G
+        cpus: 0.5
+        environment:
+          - PYTHONUNBUFFERED=TRUE
+          - FLAG=flag{test}
+          - ENGINE_NAME=gpt-3.5-turbo
+          - OPENAI_API_KEY=KKKEEEYYYYYYYYYYYYYYYYYYYY
+          - OPENAI_API_URL=https://asdasd
+
+
+    judge_server:
+        mem_limit: 1G
+        cpus: 2
+        image: registry.cn-hangzhou.aliyuncs.com/onlinejudge/judge_server
+        read_only: true
+        cap_drop:
+            - SETPCAP
+            - MKNOD
+            - NET_BIND_SERVICE
+            - SYS_CHROOT
+            - SETFCAP
+            - FSETID
+        tmpfs:
+            - /tmp
+        volumes:
+            - $PWD/data/tests/test_case:/test_case:ro
+            - $PWD/data/log:/log
+            # - $PWD/server:/code:ro
+            - $PWD/data/run:/judger
+        environment:
+            - BACKEND_URL=http://backend:80/api/judge_server_heartbeat
+            - SERVICE_URL=http://judge-server:12358
+            - TOKEN=2q3r4t5y6u7i8o9p0sacuhu32
+            - DISABLE_HEARTBEAT=true
+        # ports:
+        #     - "0.0.0.0:12358:8080"
+    nginx-proxy:
+        image: nginx
+        ports:
+        - "45631:80"
+        volumes:
+        - $PWD/nginx_conf/conf.d/ratelimit.conf:/etc/nginx/conf.d/ratelimit.conf:ro

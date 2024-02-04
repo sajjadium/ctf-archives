@@ -1,0 +1,62 @@
+<html>
+
+<head>
+	<title>ICPC</title>
+	<style type="text/css">
+        body {
+            font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+        }
+    </style>
+	<!-- STYLE STEALED FROM escape-web-->
+</head>
+<body>
+	<h1 style="text-align: center;">International Chatting Programming Contest</h1>
+	<div>
+		<h2 style="text-align: center;">Problem</h2>
+		<div style="text-align: center;">
+			<a href="/problem">中文题面</a>
+			<a href="/problem_en">English</a>
+		</div>
+	</div>
+	<div style="width: 65%; margin: auto;">
+        <h2 style="text-align: center;">Code?</h2>
+        <div style="position: relative;">
+            <textarea id="input"
+                style="width: 100%; height: 300px; font-size: 16px; padding: 10px; box-sizing: border-box; resize:none; outline: none">Solve the problem using cpp</textarea>
+            <button id="run"
+                style="position: absolute; right: 20px; bottom: 25px; padding: 10px; font-size: 16px; background-color: #0fd59d; cursor: pointer;">▶
+                GO</button>
+        </div>
+    </div>
+	<div style="width: 65%; margin: auto;">
+        <h2 style="text-align: center;">Output</h2>
+        <div style="width: 100%; height: 300px; border: 1px solid #ccc; overflow: auto;">
+            <pre id="output" style="padding: 10px; font-size: 16px;"></pre>
+        </div>
+    </div>
+</body>
+<script>
+	    var input = document.getElementById('input');
+        var output = document.getElementById('output');
+        var run = document.getElementById('run');
+		let gogogo = ()=>{
+			code = input.value;
+			output.innerText = "Judging...";
+			run.disable = true;
+			fetch('/submit', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				body: 'prompt=' + encodeURIComponent(code)
+			}).then(res => res.text()).then(res => {
+				output.innerText = res;
+				run.disable = false;
+			}).catch(err => {
+				output.innerText = err;
+				run.disable = false;
+			});
+		}
+		run.addEventListener('click', gogogo);
+</script>
+</html>
