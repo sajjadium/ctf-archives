@@ -1,0 +1,27 @@
+[package]
+name = "laugh-minty"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ark-ec = { version = "^0.4.0", default-features = false }
+ark-ff = { version = "^0.4.0", default-features = false }
+ark-serialize = { version = "^0.4.0", features = [ "derive" ] }
+ark-std = { version = "^0.4.0", default-features = false, features = [ "std" ] }
+ark-r1cs-std = { version = "^0.4.0", default-features = false }
+ark-mnt4-753 = { version = "^0.4.0", default-features = false, features = [ "r1cs", "curve" ] }
+ark-mnt6-753 = { version = "^0.4.0", default-features = false, features = [ "r1cs" ] }
+ark-bls12-381 = { version = "^0.4.0", default-features = false, features = [ "curve" ] }
+ark-ed-on-bls12-381 = { version = "^0.4.0", default-features = false, features = [ "r1cs" ] }
+ark-crypto-primitives = { version = "^0.4.0", default-features = false, features = [ "r1cs", "merkle_tree" ] }
+ark-relations = { version = "^0.4.0", default-features = false }
+ark-groth16 = { version = "^0.4.0", default-features = false }
+rand = "0.8"
+digest = { version = "0.9" }
+blake2 = { version = "0.9", default-features = false }
+rand_chacha = { version = "0.3.0", default-features = false }
+hex = "0.4.3"
+
+[[bin]]
+name = "main"
+path = "src/main.rs"

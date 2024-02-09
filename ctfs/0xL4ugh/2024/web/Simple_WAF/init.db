@@ -1,0 +1,25 @@
+
+--
+-- Database: `simplewaf`
+--
+CREATE DATABASE IF NOT EXISTS `simplewaf` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `simplewaf`;
+
+-- --------------------------------------------------------
+
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` varchar(50) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+
+
+
+
+insert into users(id,username,password) values('1','admin','c0b12ccad044e2e525cf818077413c4c');

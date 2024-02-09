@@ -1,0 +1,68 @@
+
+--
+-- Database: `ghazycorp`
+--
+CREATE DATABASE IF NOT EXISTS `ghazycorp` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `ghazycorp`;
+
+-- --------------------------------------------------------
+
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(50) NOT NULL,
+  `level` INT(3) DEFAULT 1,
+  `confirmed` INT(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Table structure for table `admins`
+--
+
+DROP TABLE IF EXISTS `admins`;
+
+CREATE TABLE IF NOT EXISTS `admins` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(50) NOT NULL,
+  `level` INT(3) DEFAULT 1,
+  `confirmed` INT(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+--
+-- Table structure for table `mail_users`
+--
+
+DROP TABLE IF EXISTS `mail_users`;
+CREATE TABLE IF NOT EXISTS `mail_users` (
+  `id` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+
+
+
+
+--
+-- Table structure for table `mails`
+--
+
+DROP TABLE IF EXISTS `mails`;
+CREATE TABLE IF NOT EXISTS `mails` (
+  `id` varchar(50) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `user_id` varchar(50) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=66 ;
+
+
+insert into admins(email,password,level,confirmed) values('admin@ghazycorp.com','bc2f48c55ca3eb8de5d20560624b5e1a',1,1); 
+insert into mail_users(id,email,password) values('1','admin@ghazycorp.com','bc2f48c55ca3eb8de5d20560624b5e1a'); 

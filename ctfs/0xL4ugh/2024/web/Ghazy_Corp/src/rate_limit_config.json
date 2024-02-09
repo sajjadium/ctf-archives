@@ -1,0 +1,9 @@
+[
+    {
+        "database_file_name": "requests.json",
+        "interval_time_seconds": 30,
+        "request_allowance": 5,
+        "redirect_location": "https://google.com",
+        "die_on_rate_limit": true 
+    }
+]
