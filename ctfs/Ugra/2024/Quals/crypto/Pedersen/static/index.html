@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8" />
+    <title>Buy a flag</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;900&display=swap" rel="stylesheet">
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+            font: 24px Lato, sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            box-sizing: border-box;
+            margin: 0;
+            background-color: lightgray;
+            padding: 1em;
+        }
+
+        main {
+            margin: 1em auto;
+            background-color: white;
+            padding: 1em;
+            max-width: 1000px;
+            box-sizing: border-box;
+        }
+
+        .note {
+            font-size: 0.75em;
+            color: darkgray;
+        }
+
+        .popup {
+            position: fixed;
+            bottom: 1em;
+            right: 1em;
+            background-color: white;
+            border: 1px solid black;
+            padding: 1em;
+            width: fit-content;
+            animation: boxShadowAnimation 1s infinite;
+            transition: background-color 0.2s;
+            transition: right 0.2s;
+            text-align: center;
+            font-size: 1.25em;
+        }
+
+        .popup:hover {
+            background-color: lightyellow;
+            right: 1.5em;
+        }
+
+        .popup p {
+            margin: 0.5em 0;
+        }
+
+        .popup button {
+            padding: 0.3em 1em;
+            background-color: yellow;
+            color: brown;
+            transition: background-color 0.4s;
+        }
+
+        .popup button:hover {
+            background-color: orange;
+        }
+
+        h2 {
+            background-color: yellow;
+            color: darkgreen;
+            padding: 0em 1em;
+            transform: skewX(-25deg);
+            width: fit-content;
+        }
+
+        button {
+            font: inherit;
+            border-radius: 0;
+            border: none;
+            cursor: pointer;
+        }
+
+        button.shout {
+            padding: 0.7em 2em;
+            background-color: darkcyan;
+            color: white;
+            animation: shoutAnimation 3s infinite;
+            transition: opacity 0.2s;
+        }
+
+        button.shout:hover {
+            opacity: 0.9;
+        }
+
+        @keyframes shoutAnimation {
+            0% {
+                box-shadow: 0px 0px 1px 1px cyan;
+            }
+            50% {
+                box-shadow: 0px 0px 10px 2px cyan;
+            }
+            100% {
+                box-shadow: 0px 0px 1px 1px cyan;
+            }
+        }
+
+        @keyframes boxShadowAnimation {
+            0% {
+                box-shadow: -5px -5px 5px 5px rgba(133, 133, 133, 0.3);
+            }
+            25% {
+                box-shadow: -5px 5px 5px 5px rgba(255, 0, 0, 0.3);
+            }
+            50% {
+                box-shadow: 5px 5px 5px 5px rgba(0, 255, 0, 0.3);
+            }
+            75% {
+                box-shadow: 5px -5px 5px 5px rgba(0, 0, 255, 0.3);
+            }
+            100% {
+                box-shadow: -5px -5px 5px 5px rgba(133, 133, 133, 0.3);
+            }
+        }
+
+        
+    </style>
+    <body>
+        <main>
+            <h1>Flag Shop</h1>
+            <p>Now you have an unique opportunity to just buy a flag!</p>
+            <h2>Only today for 1337 ₽!</h2>
+            <p><button class="shout">Buy</button></p>
+            <p class="note">Your transaction is secured by our innovative wallet.</p>
+        </main>
+        <div class="popup">
+            <p>100 ₽ for free</p>
+            <p><button class="promo">Get</button></p>
+        </div>
+        <script>
+            window.addEventListener('load', () => {
+                const baseUrl = window.location.pathname.replace(/\/+$/, '');
+
+                const verifyResponse = async (response) => {
+                    if (!response.ok) {
+                        throw new Error(await response.text());
+                    } else {
+                        return await response.text();
+                    }
+                }
+
+                document.querySelector('.shout').addEventListener('click', () => {
+                    const wallet = prompt('Enter your wallet');
+                    if (!wallet) {
+                        alert('Transaction is cancelled.');
+                        return;
+                    }
+
+                    fetch(`${baseUrl}/checkout?wallet=${encodeURIComponent(wallet)}`)
+                        .then(verifyResponse)
+                        .then(data => {
+                            alert('Thank you for your purchase!\n\n Your flag is: ' + data);
+                        })
+                        .catch(error => {
+                            alert(error);
+                        });
+                });
+
+                document.querySelector('.promo').addEventListener('click', () => {
+                    fetch(`${baseUrl}/issue`)
+                        .then(verifyResponse)
+                        .then(data => {
+                            alert('Your wallet with 100 ₽ balance is ready! Copy and save this value:\n\n' + data + '\n\nDO NOT PASS THIS VALUE TO ANYONE, INCLUDING US\n\nHave a nice day!');
+                        })
+                        .catch(error => {
+                            alert(error);
+                        });
+                });
+            });
+        </script>
+    </body>
+</html>

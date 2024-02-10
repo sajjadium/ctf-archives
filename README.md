@@ -2439,6 +2439,11 @@
             <td><a href="https://ctftime.org/event/1471/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Ugra">Ugra</a></td>
+            <td><a href="ctfs/Ugra/2241/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/1246/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Union">Union</a></td>
             <td><a href="ctfs/Union/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1246/tasks/" target="_blank">CTFtime</a></td>
