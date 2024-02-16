@@ -1,0 +1,40 @@
+MogamBro has guarded your flag behind a grand equation. The equation involves 26 mysterious integers each constrained by a set of peculiar bounds. You need to find the number of solutions for the sum:
+
+x1 + x2 + ... x26 = 69696969
+
+The bounds are:
+
+2008 <= x1  < 67434882
+5828 <= x2  < 35387831
+2933 <= x3  < 30133881
+411  <= x4  < 63609725
+4223 <= x5  < 18566959
+1614 <= x6  < 25526751
+5679 <= x7  < 44298843
+6349 <= x8  < 26793895
+117  <= x9  < 40292840
+2321 <= x10 < 42293336
+2281 <= x11 < 26301527
+1939 <= x12 < 50793633
+6273 <= x13 < 51546489
+1477 <= x14 < 36871159
+800  <= x15 < 65314188
+4727 <= x16 < 15882817
+2828 <= x17 < 40562779
+1782 <= x18 < 48186923
+1744 <= x19 < 37382713
+2486 <= x20 < 56149154
+6312 <= x21 < 18170199
+2188 <= x22 < 63940428
+5380 <= x23 < 58244044
+1772 <= x24 < 29193116
+2708 <= x25 < 22309445
+1528 <= x26 < 40848052
+
+
+The flag is equal to the remainder when the number of solutions is divided by 69696969.
+Wrap the flag that you get in BITSCTF{}
+
+
+
+

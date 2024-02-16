@@ -1,0 +1,3 @@
+You have the power to change some things. Now will you be mogambro or someone else?
+
+You might stumble across some red herrings...

@@ -1,0 +1,44 @@
+<!Doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Find me</title>
+    </head>
+    <body onload="bodyHandle();">
+        <h1>Welcome</h1>
+        <form action="/updateName" method="POST">
+            <label for="name" style="font-size: 20px;">Enter Your Name:</label>
+            <input type="text" id="name" name="name" style="border-radius: 5px;" placeholder="Name">
+            <br />
+            <button type="submit" style="padding: 2px; margin: 5px; ">Enter</button>
+        </form>
+        <hr>
+        <h2>Here is the value</h2>
+        <textarea id="input" style="margin: 5px; width: 450px; height: 150px; ">
+            eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1pa2UgT3hmYXQiLCJpYXQiOjE1MTYyMzkwMjJ9.l04Dmbi20P6OxKueB0euZiFFv4NoSpnwIm0HPmAR914
+        </textarea>
+        <br />
+        <button onclick="buttonHandle();" style="padding: 2px; margin: 5px;">Enter</button>
+        <script>
+            function bodyHandle() {
+                const defaultValue = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ik1pa2UgT3hmYXQiLCJpYXQiOjE1MTYyMzkwMjJ9.l04Dmbi20P6OxKueB0euZiFFv4NoSpnwIm0HPmAR914";
+                let value = "";
+                if (document.cookie.length <= 4) {
+                    value = defaultValue;
+                } else {
+                    value = document.cookie.split("jwt=")[1];
+                    if (value[value.length - 1] == ';') {
+                        value = value.substr(0, value.length - 1);
+                    }
+                }
+                document.getElementById("input").value = value;
+                document.cookie =`jwt=${value};`;
+            }
+            function buttonHandle() {
+                document.cookie =`jwt=${document.getElementById("input").value};`;
+                location.reload();
+            }
+        </script>
+    </body>
+</html>
