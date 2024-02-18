@@ -1,0 +1,27 @@
+<div id="alert">
+  <div class="row">
+    <img src="/static/weewoo.gif" height="25" />
+    <h3 style="color: red">HACKER ALERT</h3>
+    <img src="/static/weewoo.gif" height="25" />
+  </div>
+</div>
+<script>
+  elm = document.getElementById("alert");
+
+  function stuff() {
+    setTimeout(() => {
+      console.log("Hi");
+      elm.innerHTML += `    <div class="row">
+        <img src="/static/weewoo.gif" height="25"><h3 style="color: red;">HACKER ALERT</h3><img src="/static/weewoo.gif" height="25">
+    </div>`;
+      stuff();
+    }, 100);
+  }
+  stuff();
+</script>
+<style>
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>

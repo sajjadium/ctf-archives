@@ -1,0 +1,30 @@
+<h2>Result for {{ name }}:</h2>
+<table id="data" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Guests</th>
+      <th>Neatness</th>
+      <th>Sleep time</th>
+      <th>Awake time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{ user[1] }}</td>
+      <td>{{ user[2] }}</td>
+      <td>{{ user[3] }}</td>
+      <td>{{ user[4] }}</td>
+      <td>{{ user[5] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<a href="/">Back</a>
+
+<style>
+  * {
+    border: 1px solid black; border-collapse: collapse;
+  }
+</style>

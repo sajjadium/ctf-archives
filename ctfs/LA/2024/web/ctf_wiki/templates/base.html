@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>{% block title %}{% endblock %} | CTF Wiki</title>
+    <link rel="shortcut icon" href="/static/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li id="logo">
+          <a href="/home"><img src="/static/logo.png" alt="CTF Wiki logo" /></a>
+        </li>
+        <li><a href="/home">Home</a></li>
+        {% if session.get("username") is not none %}
+        <li><a href="/create">Create</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/login">Login</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <section class="content">{% block content %}{% endblock %}</section>
+
+    <hr />
+
+    <footer>
+      <p>&copy; <a href="https://pbr.acmcyber.com/">Psi Beta Rho</a> 2024</p>
+    </footer>
+  </body>
+</html>

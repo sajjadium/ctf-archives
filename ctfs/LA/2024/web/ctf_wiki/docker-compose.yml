@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "uwu"
+      POSTGRES_PASSWORD: "rawr"
+  wiki:
+    build: .
+    ports:
+      - "1337:1337"
+    environment:
+      SECRET_KEY: "secret"
+      ADMINPW: "admin"
+      FLAG: "flag{test-flag}"
+      POSTGRES_USER: "uwu"
+      POSTGRES_PASSWORD: "rawr"
+    depends_on:
+      - "db"

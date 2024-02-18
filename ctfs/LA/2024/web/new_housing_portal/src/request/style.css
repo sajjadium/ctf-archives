@@ -1,0 +1,21 @@
+.invitations {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.invitation {
+  display: flex;
+  flex-direction: row;
+  background: var(--housing-grey);
+  padding: 1rem;
+}
+
+.invitation > * {
+  flex: 50%;
+}
+
+.invitation .col:nth-child(2) {
+  display: flex;
+  justify-content: right;
+}

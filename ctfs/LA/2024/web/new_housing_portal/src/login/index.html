@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | New Housing Portal</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="./style.css">
+  <script defer src="./index.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>ULAC: Universidad de Los Angeles - Cyber</h1>
+    <p><a href="/">Home</a></p>
+  </div>
+
+  <main class="forms">
+    <form name="existing-account" action="/login" method="POST">
+      <h2>Login</h2>
+      <div class="err hidden"></div>
+      <label>
+        Username
+        <input type="text" name="username">
+      </label>
+      <label>
+        Password
+        <input type="password" name="password">
+      </label>
+      <input type="submit" value="Login">
+    </form>
+
+    <form name="new-account" action="/register" method="POST">
+      <h2>Register</h2>
+      <label>
+        Username
+        <input type="text" name="username">
+      </label>
+      <label>
+        Password
+        <input type="password" name="password">
+      </label>
+      <label>
+        Name
+        <input type="text" name="name">
+      </label>
+      <label>
+        Deepest Darkest Secret
+        <input type="text" name="deepestDarkestSecret">
+      </label>
+      <input type="submit" value="Sign Up">
+    </form>
+  </main>
+</body>
+</html>

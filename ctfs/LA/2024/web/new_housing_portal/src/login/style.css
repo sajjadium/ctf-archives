@@ -1,0 +1,15 @@
+.forms {
+  display: flex;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+.forms > * {
+  flex: 50%;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}

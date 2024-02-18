@@ -1,0 +1,46 @@
+<form action="/submit" method="post">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" placeholder="name" />
+  <br />
+  <label for="guests">Guest preference?</label>
+  <select id="guests" name="guests">
+    <option value="na">No preference</option>
+    <option>No guests at all</option>
+    <option>No guests after 10pm</option>
+    <option>No overnight guests</option>
+    <option>Ask before late night guests</option>
+    <option>Ask before overnight guests</option>
+  </select>
+  <br />
+  <label for="neatness">Neatness preference?</label>
+  <select id="neatness" name="neatness">
+    <option value="na">No preference</option>
+    <option>Put things away as we use them</option>
+    <option>Straighten up before bed</option>
+    <option>Clean up once per week</option>
+    <option>Straighten up for guests</option>
+    <option>Messy is ok</option>
+  </select>
+  <br />
+  <label for="sleep">When do you plan to go to bed?</label>
+  <select id="sleep" name="sleep">
+    <option value="na">No preference</option>
+    <option>8-10pm</option>
+    <option>10pm-midnight</option>
+    <option>midnight-2am</option>
+    <option>2am-4am</option>
+    <option>Other</option>
+  </select>
+  <label for="sleep">When do you usually wake up?</label>
+  <select id="awake" name="awake">
+    <option value="na">No preference</option>
+    <option>4-6am</option>
+    <option>6-8pm</option>
+    <option>8-10am</option>
+    <option>10am-noon</option>
+    <option>noon-2pm</option>
+    <option>Other</option>
+  </select>
+
+  <button type="submit">Get Matches!</button>
+</form>

@@ -1,0 +1,33 @@
+body {
+  color: yellow;
+  background-color: purple;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.hide {
+  display: none;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.display img:not(.hide) {
+  width: 10rem;
+  animation: move 10s both infinite linear;
+}
+
+@media (prefers-reduced-motion) {
+  display img:not(.hide) {
+    animation: none;
+  }
+}
+
+@keyframes move {
+  to {
+    transform: translateX(80vw) rotate(1440deg);
+  }
+}

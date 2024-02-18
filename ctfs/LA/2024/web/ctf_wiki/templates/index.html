@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% block title %}Home{% endblock %} {% block content
+%}
+<h1>Home</h1>
+
+<img src="/static/ctf-wiki.png" alt="CTF Wiki" id="logo-img">
+
+<p>Welcome to CTF Wiki! Here you can find the blurbs for some of our favorite CTF players! Log in to try and make a wiki for your favorite CTFers.</p>
+
+<h2>Search</h2>
+
+<form action="/search" method="post">
+  <span>
+    <strong>Search: </strong>
+    <input type="text" name="search" {% if query is not none %}value="{{ query }}"{% endif %} placeholder="Search query here."></span>
+  <span>
+    <input type="submit" value="Search" />
+  </span>
+</form>
+
+<p>Here are some CTFers:</p>
+{% if not ctfers %}
+<p class="error"><strong>Error: </strong>No CTFers found.</p>
+{% else %}
+<ul class="results">
+  {% for ctfer in ctfers %}
+  <li><a href="/view/{{ctfer[0]}}">{{ ctfer[1] }} ({{ ctfer[3] }})</a></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

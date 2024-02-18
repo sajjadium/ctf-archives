@@ -1,0 +1,67 @@
+:root {
+  --housing-bright-blue: #0075db;
+  --housing-blue: #005587;
+  --housing-grey: #d7d7d7;
+  --housing-red: #f04155;
+  --material-blue: #2196f3;
+}
+
+body {
+  margin: 0;
+  padding: 0 15%;
+  background-color: var(--housing-grey);
+  font-family: Arial;
+}
+
+h1 {
+  margin: 0;
+}
+
+.header {
+  padding: 1rem 3rem 3rem 3rem;
+  background: var(--housing-blue);
+  color: white;
+}
+
+.header a {
+  color: white;
+  text-decoration: underline;
+}
+
+main {
+  padding: 2rem;
+  background-color: white;
+  height: calc(100vh - 7rem);
+}
+
+button,
+[type=submit] {
+  background-color: var(--housing-bright-blue);
+  color: white;
+  text-transform: uppercase;
+  border: none !important;
+  padding: 0.5rem;
+  width: max-content;
+}
+
+button:hover,
+[type=submit]:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.err {
+  color: var(--housing-red);
+}
+
+a {
+  color: var(--material-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

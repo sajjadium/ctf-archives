@@ -1,0 +1,3 @@
+arcblroth
+
+Three tiny letters have come together to mean so much to me this past year. From psi beta rho to register base pointer, I can't imagine a world where r, b, and p come apart...

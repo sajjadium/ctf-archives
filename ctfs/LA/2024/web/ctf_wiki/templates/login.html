@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block title %}Login{% endblock %} {% block content
+%}
+<h1>Login</h1>
+<p>
+  Log into your account! If there is no user with your username, it will log you
+  in to a new account.
+</p>
+
+{% if error %}
+<p class="error"><strong>Error: </strong>{{ error }}</p>
+{% endif %}
+
+<form action="/login" method="POST">
+  <span>
+    <strong>Username:</strong>
+    <input type="text" name="username" placeholder="Username" required />
+  </span>
+  <span>
+    <strong>Password:</strong>
+    <input type="password" name="password" placeholder="Password" required />
+  </span>
+  <span>
+    <input type="submit" value="Login" />
+  </span>
+</form>
+{% endblock %}

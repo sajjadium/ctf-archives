@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Roomate Finder | New Housing Portal</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="./index.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>ULAC: Universidad de Los Angeles - Cyber</h1>
+    <p><a href="/">Home</a></p>
+  </div>
+
+  <main>
+    <h2>Roomate Finder</h2>
+    Looking for roomates? Look no further!
+
+    <div class="search">
+      <label>
+        Username (enter to search)
+        <input type="text" name="username">
+      </label>
+      <div class="err hidden"></div>
+      <div class="user hidden">
+        <p>Name: <span class="name"></span></p>
+        <p>Username: <span class="username"></span></p>
+
+        <form name="invite" action="/finder" method="POST">
+          <input type="hidden" name="username">
+          <input type="submit" value="Invite">
+        </form>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

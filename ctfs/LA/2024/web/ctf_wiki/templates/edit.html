@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% block title %}Edit {{ name }} {% endblock %} {%
+block content %}
+<h1>Edit {{ name }}</h1>
+{% if error %}
+<p class="error"><strong>Error: </strong>{{ error }}</p>
+{% endif %}
+<form action="/edit/{{ id }}" method="POST">
+  <input type="hidden" name="id" value="{{ id }}" required />
+  <span>
+    <strong>Name:</strong>
+    <input
+      type="text"
+      name="name"
+      placeholder="CTFer Name (e.g. Aplet123)"
+      value="{{ name }}"
+      required
+    />
+  </span>
+  <span>
+    <strong>Image URL:</strong>
+    <input
+      type="text"
+      name="image"
+      placeholder="https://example.com/image.jpg"
+      value="{{ image }}"
+      required
+    />
+  </span>
+  <span>
+    <strong>Team:</strong>
+    <input
+      type="text"
+      name="team"
+      placeholder="CTF Team (e.g. PBR | UCLA)"
+      value="{{ team }}"
+      required
+    />
+  </span>
+  <span>
+    <strong>Specialty:</strong>
+    <input
+      type="text"
+      name="specialty"
+      placeholder="Specialty (e.g. web)"
+      value="{{ specialty }}"
+      required
+    />
+  </span>
+  <span>
+    <strong>Website:</strong>
+    <input
+      type="text"
+      name="website"
+      placeholder="CTFer's Website (e.g. https://pbr.acmcyber.com/)"
+      value="{{ website }}"
+      required
+    />
+  </span>
+  <span>
+    <strong>Description:</strong>
+    <textarea
+      name="description"
+      placeholder="Description (Supports Markdown)"
+      required
+    >
+{{ description }}</textarea
+    >
+  </span>
+  <span>
+    <strong>Searchable:</strong>
+    <input
+      type="checkbox"
+      name="searchable"
+      {%
+      if
+      searchable
+      %}checked{%
+      endif
+      %}
+    />
+  </span>
+  <span>
+    <input type="submit" value="Edit" />
+  </span>
+</form>
+{% endblock %}

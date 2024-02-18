@@ -1,0 +1,69 @@
+{% extends 'base.html' %} {% block title %}Create{% endblock %} {% block content
+%}
+<h1>Create</h1>
+{% if error %}
+<p class="error"><strong>Error: </strong>{{ error }}</p>
+{% endif %}
+<form action="/create" method="POST">
+  <span>
+    <strong>Name:</strong>
+    <input
+      type="text"
+      name="name"
+      placeholder="CTFer Name (e.g. Aplet123)"
+      required
+    />
+  </span>
+  <span>
+    <strong>Image URL:</strong>
+    <input
+      type="text"
+      name="image"
+      placeholder="https://example.com/image.jpg"
+      required
+    />
+  </span>
+  <span>
+    <strong>Team:</strong>
+    <input
+      type="text"
+      name="team"
+      placeholder="CTF Team (e.g. PBR | UCLA)"
+      required
+    />
+  </span>
+  <span>
+    <strong>Specialty:</strong>
+    <input
+      type="text"
+      name="specialty"
+      placeholder="Specialty (e.g. web)"
+      required
+    />
+  </span>
+  <span>
+    <strong>Website:</strong>
+    <input
+      type="text"
+      name="website"
+      placeholder="CTFer's Website (e.g. https://pbr.acmcyber.com/)"
+      required
+    />
+  </span>
+  <span>
+    <strong>Description:</strong>
+    <textarea
+      name="description"
+      placeholder="Description (Supports Markdown)"
+      required
+    ></textarea>
+  </span>
+  <span>
+    <strong>Searchable:</strong>
+    <input type="checkbox" name="searchable" />
+  </span>
+  <span>
+    <input type="submit" value="Create" />
+  </span>
+</form>
+{% endblock %}

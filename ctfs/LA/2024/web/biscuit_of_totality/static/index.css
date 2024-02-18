@@ -1,0 +1,149 @@
+* {
+  box-sizing: border-box;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  color: white;
+}
+
+*::selection {
+  background-color: #70c1ffaa;
+}
+
+:root {
+  --earth-flux: #95634e;
+  --earth-redux: #66463e;
+  --arbor-flux: #84e296;
+
+  --mana-bright: #70c1ff;
+  --mana-dark: #20a4f3;
+}
+
+html, body {
+  margin: 0px;
+}
+
+body {
+  background: linear-gradient(
+    -45deg,
+    var(--earth-redux) calc(1*100%/8),
+    var(--earth-flux) calc(1*100%/8),
+    var(--earth-flux) calc(3*100%/8),
+    var(--earth-redux) calc(3*100%/8),
+    var(--earth-redux) calc(5*100%/8),
+    var(--earth-flux) calc(5*100%/8),
+    var(--earth-flux) calc(7*100%/8),
+    var(--earth-redux) calc(7*100%/8)
+  ) repeat center / max(50vw, 50vh) max(50vw, 50vh);
+}
+
+@keyframes bg-scroll {
+  from { background-position-x: 0; }
+  to   { background-position-x: max(50vw, 50vh); }
+}
+
+@media not (prefers-reduced-motion) {
+  body {
+    animation: bg-scroll 10s linear 0s infinite forwards;
+  }
+}
+
+h1 {
+  margin: 3rem auto 0 auto;
+  font-size: 2.5rem;
+  width: 80vw;
+  height: 2.5rem;
+  text-align: center;
+}
+
+@keyframes speen {
+    0% { transform: rotate(-5deg); }
+   50% { transform: rotate( 5deg); }
+  100% { transform: rotate(-5deg); }
+}
+
+@media not (prefers-reduced-motion) {
+  h1 {
+    animation: speen 4s ease-in-out -1s infinite forwards;
+  }
+}
+
+.game {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 3.5rem 5vw 0 5vw;
+  gap: 5vw;
+}
+
+.tile-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.tile-wrapper img {
+  image-rendering: pixelated;
+  object-fit: contain;
+  width: 100%;
+  max-width: min(20vh, 512px);
+  max-height: min(20vh, 512px);
+  filter: brightness(120%) drop-shadow(0 0 1rem lightblue);
+  cursor: pointer;
+}
+
+@media not (prefers-reduced-motion) {
+  .tile-wrapper {
+    animation: speen 4s ease-in-out -3s infinite reverse;
+  }
+
+  .tile-wrapper img {
+    transition: ease-in-out 0.1s transform, filter;
+  }
+
+  .tile-wrapper img:hover {
+    transform: scale(120%);
+    filter: brightness(120%) drop-shadow(0 0 2rem lightblue);
+  }
+
+  .tile-wrapper img:active {
+    transform: scale(150%);
+  }
+}
+
+.stats-wrapper {
+  margin: auto 0;
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+ol, ul {
+  margin: 0;
+}
+
+.stats code {
+  display: inline-block;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.stats .thing {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: ease-in-out 0.1s color;
+}
+
+.stats .thing:hover {
+  color: var(--mana-bright);
+}
+
+.stats p {
+  margin: 0.5rem 0 0 0;
+}
+
+.stats #potatoes li:first-of-type::before {
+  content: "Sponsored Tater: ";
+}

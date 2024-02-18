@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block title %}{{ name }}{% endblock %} {% block
+content %}
+<div id="head">
+  <img src="{{ image }}" alt="{{ name }}" />
+  <div id="metadata">
+    <span class="name">{{ name }}</span>
+    <div><strong>Team: </strong>{{ team }}</div>
+    <div><strong>Specialty: </strong>{{ specialty }}</div>
+    <div>
+      <strong>Website: </strong><a href="{{ website }}">{{ website }}</a>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="ctfer-info">{{ description | safe }}</div>
+{% endblock %}

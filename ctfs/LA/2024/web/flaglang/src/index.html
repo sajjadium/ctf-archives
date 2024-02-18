@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flag Lang - Language of Flags</title>
+  <script>
+    window.countries = JSON.parse(atob($countries$));
+  </script>
+  <script defer src="./assets/flag.js"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <span class="iso" style="display: none">$iso$</span>
+
+  <h1>View Other Country Flags!</h1>
+  <div class="flags">
+    <div class="your-flag">
+      <p>You are from <select></select></p>
+      <p>We say <span class="msg">$msg$</span> in <span class="name">$name$</span></p>
+      <img alt="$iso$ flag" />
+    </div>
+    <div class="other-flag">
+      <p>I wonder what people in <select></select> say.</p>
+      <p>They say <span class="msg">$msg$</span></p>
+      <p class="error" style="display: none;"></p>
+      <img alt="$iso$ flag" />
+    </div>
+  </div>
+</body>
+</html>

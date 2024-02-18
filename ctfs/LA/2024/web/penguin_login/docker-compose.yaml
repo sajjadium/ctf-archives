@@ -1,0 +1,19 @@
+# docker-compose to be handed out
+# all the secret information is rawrdacted
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: "uwu"
+      POSTGRES_PASSWORD: "rawr"
+  main:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      PASSWORD: "passwordowo"
+      POSTGRES_USER: "uwu"
+      POSTGRES_PASSWORD: "rawr"
+    depends_on:
+      - "db"

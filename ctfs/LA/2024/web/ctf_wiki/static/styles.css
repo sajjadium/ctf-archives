@@ -1,0 +1,201 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  --ctf-blue: #2774ae;
+  --ctf-gold: #ffd100;
+}
+
+h1 {
+  color: var(--ctf-yellow);
+}
+
+/* Navigation Bar */
+
+nav {
+  display: block;
+  position: fixed;
+  background-color: var(--ctf-blue);
+  top: 0;
+  width: 100%;
+  height: 5rem;
+  box-shadow: 0 0 10px 0 black;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+}
+
+nav li {
+  text-align: center;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+nav li a {
+  color: white;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  color: var(--ctf-gold);
+}
+
+nav li img {
+  width: 5rem;
+  height: 5rem;
+  float: left;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  height: 6rem;
+  padding: 1.5rem;
+}
+
+.content {
+  padding: 1rem;
+  width: 60%;
+  margin: 5rem auto 5rem;
+  min-height: 60vh;
+}
+
+/* Form */
+form span {
+  display: block;
+  padding: 0.5rem 0;
+  width: 80%;
+  margin: 0 auto;
+}
+
+form > span > input,
+form > span > textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.1rem 0;
+}
+
+form > span > input[type="submit"] {
+  background-color: var(--ctf-blue);
+  color: white;
+  display: block;
+  border: none;
+  padding: 1rem;
+  cursor: pointer;
+  width: 10rem;
+  margin: 0.5rem auto;
+  border-radius: 10px;
+}
+
+form > span > input[type="submit"]:hover {
+  box-shadow: 0 0 10px 0 black;
+}
+
+form > span > input[name="searchable"] {
+  width: 5%;
+  margin: 0;
+  padding: 0;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Results */
+
+#logo-img {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.results {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+.results li {
+  list-style-type: none;
+  margin: 1rem;
+  padding: 1rem;
+  width: 30%;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 black;
+}
+
+.results li a {
+  text-decoration: none;
+  color: black;
+}
+
+.results li:hover {
+  box-shadow: 0 0 20px 0 black;
+}
+
+.results li:hover a {
+  color: var(--ctf-blue);
+}
+
+/* CTFer Page */
+
+#head > img {
+  width: calc(15rem - 5%);
+  height: calc(15rem - 5%);
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 6.5% 2rem 3.5% 2rem;
+  display: inline-block;
+  padding: 0;
+}
+
+#head > #metadata {
+  float: right;
+  border-left: black 5px solid;
+  width: calc(100% - 20rem);
+  height: 12rem;
+  padding: 1rem;
+  margin: 5% 0;
+}
+
+hr {
+  margin: 1rem 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  border-top: 1px dashed black;
+}
+
+#metadata > div {
+  display: block;
+  margin: 1rem 1rem;
+  width: 100%;
+}
+
+#metadata > .name {
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0 0 3rem 1rem;
+  padding: 0;
+}
+
+.ctfer-info {
+  margin: 0;
+  padding: 1rem 3rem;
+}

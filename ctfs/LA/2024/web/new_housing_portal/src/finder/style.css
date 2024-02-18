@@ -1,0 +1,14 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+}
+
+[name=username] {
+  max-width: 20ch;
+}
