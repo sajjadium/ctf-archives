@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="/static/css/stuff.css" />
+  </head>
+  <body>
+      <div id="user-data">
+        <p id="message">{% if msg %}{{msg}}<hr>{% endif %}</p>
+
+        <center><h3>Hello {{username}}!</h3></center>
+        <hr>
+        <h3>Your stuff</h3>
+        <p id="stuff">{{stuff|safe}}</p>
+      </div>
+
+      <div id="edit-stuff">
+        <hr>
+        <h3>Edit your stuff</h3>
+        <form method="POST" action="/set_stuff">
+        <input type="text" name="stuff" id="stuff-input" placeholder="Enter your stuff">
+
+        <p><b>Mood indicator:</b></p>
+        <select name="special_type">
+          <option value="emoji">Emoji</option>
+          <option value="image">Image</option>
+        </select>
+        <select name="special_val">
+          <option value="cow">Cow</option>
+          <option value="cat">Cat</option>
+          <option value="fish">Fish</option>
+        </select>
+
+        <br>
+        <input type="submit" name="" value="Change my stuff">
+      </div>
+
+      <div>
+        <hr>
+        <h3><a href="/view_stuff">View the latest stuff</a></h3>
+      </div>
+
+  </body>
+</html>
+
+
