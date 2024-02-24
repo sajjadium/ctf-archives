@@ -1,0 +1,7 @@
+syntax = "proto2";
+
+message Note {
+  optional string title = 1 [default="user"];
+  optional string content = 2;
+  optional string author = 3 [default="user"];
+}

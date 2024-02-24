@@ -1,0 +1,24 @@
+.gallery.row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .gallery img {
+    width: 200px; 
+    height: 150px; 
+    object-fit: cover; 
+    margin: 5px; 
+  }
+
+  .modal-dialog {
+  max-width: 90%;
+}
+
+.modal-body {
+  text-align: center;
+}
+
+#modalImage {
+  max-width: 100%;
+  height: auto;
+}

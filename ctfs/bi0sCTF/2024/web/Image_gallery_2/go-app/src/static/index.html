@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+  <h1 class="mb-4">Image Gallery</h1>
+
+  <form action="/upload" method="post" enctype="multipart/form-data" class="mb-4">
+    <div class="mb-3">
+      <label for="image" class="form-label">Choose Image</label>
+      <input type="file" class="form-control" id="image" name="file" accept="image/*" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Upload Image</button>
+  </form>
+
+  <div class="gallery row">
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/files.js?nocache=1"></script>
+<script src="/main.js"></script>
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <img id="modalImage" src="" alt="Full View">
+        <button type="button" class="btn btn-danger" id="delete">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

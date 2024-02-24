@@ -1,0 +1,56 @@
+<!-- views/customise.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Settings</title>
+</head>
+<body>
+  <h1>Settings</h1>
+  <form id="customizationForm">
+    <label for="titleCheckbox">Title:</label>
+    <input type="checkbox" id="titleCheckbox" name="titleCheckbox">
+
+    <label for="authorCheckbox">Author:</label>
+    <input type="checkbox" id="authorCheckbox" name="authorCheckbox">
+
+    <button type="button" onclick="customizeFields()">Customize</button>
+  </form>
+
+  <div id="message" style="color: red;"></div>
+
+  <script>
+    function customizeFields() {
+      const data = [];
+
+      const titleCheckbox = document.getElementById('titleCheckbox');
+      const authorCheckbox = document.getElementById('authorCheckbox');
+
+      if (titleCheckbox.checked) {
+        data.push({ title: 'required' });
+      } else {
+        data.push({ title: 'optional' });
+      }
+
+      if (authorCheckbox.checked) {
+        data.push({ author: 'required' });
+      } else {
+        data.push({ author: 'optional' });
+      }
+
+      // Send a fetch request with the data array
+      fetch('/customise', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data }),
+      })
+        .then(response => response.json())
+        .then(result => {
+          document.getElementById("message").innerText = result.Message; 
+        })
+        .catch(error => console.error('Error:', error));
+    }
+  </script>
+</body>
+</html>

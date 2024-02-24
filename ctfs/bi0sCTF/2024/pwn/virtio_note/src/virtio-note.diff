@@ -1,0 +1,313 @@
+diff --git a/hw/virtio/meson.build b/hw/virtio/meson.build
+index 13e7c6c272..02ba8724c4 100644
+--- a/hw/virtio/meson.build
++++ b/hw/virtio/meson.build
+@@ -37,6 +37,7 @@ specific_virtio_ss.add(when: 'CONFIG_VHOST_USER_GPIO', if_true: files('vhost-use
+ specific_virtio_ss.add(when: ['CONFIG_VIRTIO_PCI', 'CONFIG_VHOST_USER_GPIO'], if_true: files('vhost-user-gpio-pci.c'))
+ specific_virtio_ss.add(when: 'CONFIG_VHOST_USER_SCMI', if_true: files('vhost-user-scmi.c'))
+ specific_virtio_ss.add(when: ['CONFIG_VIRTIO_PCI', 'CONFIG_VHOST_USER_SCMI'], if_true: files('vhost-user-scmi-pci.c'))
++specific_virtio_ss.add(files('virtio-note.c'))
+ 
+ virtio_pci_ss = ss.source_set()
+ virtio_pci_ss.add(when: 'CONFIG_VHOST_VSOCK', if_true: files('vhost-vsock-pci.c'))
+@@ -64,6 +65,7 @@ virtio_pci_ss.add(when: 'CONFIG_VIRTIO_IOMMU', if_true: files('virtio-iommu-pci.
+ virtio_pci_ss.add(when: 'CONFIG_VIRTIO_MEM', if_true: files('virtio-mem-pci.c'))
+ virtio_pci_ss.add(when: 'CONFIG_VHOST_VDPA_DEV', if_true: files('vdpa-dev-pci.c'))
+ virtio_pci_ss.add(when: 'CONFIG_VIRTIO_MD', if_true: files('virtio-md-pci.c'))
++virtio_pci_ss.add(files('virtio-note-pci.c'))
+ 
+ specific_virtio_ss.add_all(when: 'CONFIG_VIRTIO_PCI', if_true: virtio_pci_ss)
+ 
+diff --git a/hw/virtio/virtio-note-pci.c b/hw/virtio/virtio-note-pci.c
+new file mode 100644
+index 0000000000..b8836411d6
+--- /dev/null
++++ b/hw/virtio/virtio-note-pci.c
+@@ -0,0 +1,81 @@
++#include "qemu/osdep.h"
++#include "hw/virtio/virtio-pci.h"
++#include "hw/virtio/virtio-note.h"
++#include "hw/qdev-properties.h"
++#include "qapi/error.h"
++#include "qemu/module.h"
++#include "qom/object.h"
++
++typedef struct VirtIONotePCI VirtIONotePCI;
++
++#define TYPE_VIRTIO_NOTE_PCI "virtio-note-pci-base"
++DECLARE_INSTANCE_CHECKER(VirtIONotePCI, VIRTIO_NOTE_PCI,
++                         TYPE_VIRTIO_NOTE_PCI)
++
++struct VirtIONotePCI {
++    VirtIOPCIProxy parent_obj;
++    VirtIONote vdev;
++};
++
++static Property virtio_note_properties[] = {
++    DEFINE_PROP_BIT("ioeventfd", VirtIOPCIProxy, flags,
++                    VIRTIO_PCI_FLAG_USE_IOEVENTFD_BIT, true),
++    DEFINE_PROP_UINT32("vectors", VirtIOPCIProxy, nvectors,
++                       DEV_NVECTORS_UNSPECIFIED),
++    DEFINE_PROP_END_OF_LIST(),
++};
++
++static void virtio_note_pci_realize(VirtIOPCIProxy *vpci_dev, Error **errp)
++{
++    VirtIONotePCI *vrng = VIRTIO_NOTE_PCI(vpci_dev);
++    DeviceState *vdev = DEVICE(&vrng->vdev);
++
++    if (vpci_dev->nvectors == DEV_NVECTORS_UNSPECIFIED) {
++        vpci_dev->nvectors = 1;
++    }
++
++    if (!qdev_realize(vdev, BUS(&vpci_dev->bus), errp)) {
++        return;
++    }
++}
++
++static void virtio_note_pci_class_init(ObjectClass *klass, void *data)
++{
++    DeviceClass *dc = DEVICE_CLASS(klass);
++    VirtioPCIClass *k = VIRTIO_PCI_CLASS(klass);
++    PCIDeviceClass *pcidev_k = PCI_DEVICE_CLASS(klass);
++
++    k->realize = virtio_note_pci_realize;
++    set_bit(DEVICE_CATEGORY_MISC, dc->categories);
++
++    pcidev_k->vendor_id = 0xb105;
++    pcidev_k->device_id = 0x1337;
++    pcidev_k->revision = VIRTIO_PCI_ABI_VERSION;
++    pcidev_k->class_id = PCI_CLASS_OTHERS;
++    device_class_set_props(dc, virtio_note_properties);
++}
++
++static void virtio_note_initfn(Object *obj)
++{
++    VirtIONotePCI *dev = VIRTIO_NOTE_PCI(obj);
++
++    virtio_instance_init_common(obj, &dev->vdev, sizeof(dev->vdev),
++                                TYPE_VIRTIO_NOTE);
++}
++
++static const VirtioPCIDeviceTypeInfo virtio_note_pci_info = {
++    .base_name             = TYPE_VIRTIO_NOTE_PCI,
++    .generic_name          = "virtio-note-pci",
++    .transitional_name     = "virtio-note-pci-transitional",
++    .non_transitional_name = "virtio-note-pci-non-transitional",
++    .instance_size = sizeof(VirtIONotePCI),
++    .instance_init = virtio_note_initfn,
++    .class_init    = virtio_note_pci_class_init,
++};
++
++static void virtio_rng_pci_register(void)
++{
++    virtio_pci_types_register(&virtio_note_pci_info);
++}
++
++type_init(virtio_rng_pci_register)
+diff --git a/hw/virtio/virtio-note.c b/hw/virtio/virtio-note.c
+new file mode 100644
+index 0000000000..5a71e2378b
+--- /dev/null
++++ b/hw/virtio/virtio-note.c
+@@ -0,0 +1,122 @@
++#include "qemu/osdep.h"
++#include "hw/hw.h"
++#include "hw/virtio/virtio.h"
++#include "hw/virtio/virtio-note.h"
++#include "qemu/iov.h"
++#include "qemu/error-report.h"
++#include "standard-headers/linux/virtio_ids.h"
++#include "sysemu/runstate.h"
++
++static uint64_t virtio_note_get_features(VirtIODevice *vdev, uint64_t f, Error **errp)
++{
++    return f;
++}
++
++static void virtio_note_set_status(VirtIODevice *vdev, uint8_t status)
++{
++    if (!vdev->vm_running) {
++        return;
++    }
++    vdev->status = status;
++}
++
++static void virtio_note_handle_req(VirtIODevice *vdev, VirtQueue *vq) {
++    VirtIONote *vnote = VIRTIO_NOTE(vdev);
++    VirtQueueElement *vqe = 0;
++    req_t *req = 0;
++
++    while(!virtio_queue_ready(vq)) {
++        return;
++    }
++
++    if (!runstate_check(RUN_STATE_RUNNING)) {
++        return;
++    }
++
++    vqe = virtqueue_pop(vq, sizeof(VirtQueueElement));
++    if(!vqe) goto end;
++
++    if(vqe->out_sg->iov_len != sizeof(req_t)) goto end;
++    req = calloc(1, sizeof(req_t));
++    if(!req) goto end;
++    if(iov_to_buf(vqe->out_sg, vqe->out_num, 0, req, vqe->out_sg->iov_len) != sizeof(req_t)) goto end;
++
++    if(!vnote->notes[req->idx])
++    {
++        virtio_error(vdev, "Corrupted note encountered");
++        goto end;
++    }
++
++    switch(req->op)
++    {
++        case READ:
++            cpu_physical_memory_write(req->addr, vnote->notes[req->idx], NOTE_SZ);
++            break;
++
++        case WRITE:
++            cpu_physical_memory_read(req->addr, vnote->notes[req->idx], NOTE_SZ);
++            break;
++
++        default:
++            goto end;
++    }
++
++    virtqueue_push(vq, vqe, vqe->out_sg->iov_len);
++    virtio_notify(vdev, vq);
++
++end:
++    g_free(vqe);
++    free(req);
++    return;
++}
++
++static void virtio_note_device_realize(DeviceState *dev, Error **errp) {
++    VirtIODevice *vdev = VIRTIO_DEVICE(dev);
++    VirtIONote *vnote = VIRTIO_NOTE(dev);
++    virtio_init(vdev, VIRTIO_ID_NOTE, 0);
++    vnote->vnq = virtio_add_queue(vdev, 4, virtio_note_handle_req);
++    for(int i = 0; i < N_NOTES; i++)
++    {
++        vnote->notes[i] = calloc(NOTE_SZ, 1);
++        if(!vnote->notes[i])
++        {
++            virtio_error(vdev, "Unable to initialize notes");
++            return;
++        }
++    }
++}
++
++static void virtio_note_device_unrealize(DeviceState *dev) {
++    VirtIODevice *vdev = VIRTIO_DEVICE(dev);
++    VirtIONote *vnote = VIRTIO_NOTE(dev);
++    for(int i = 0; i < N_NOTES; i++)
++    {
++        free(vnote->notes[i]);
++        vnote->notes[i] = NULL;
++    }
++    virtio_cleanup(vdev);
++}
++
++static void virtio_note_class_init(ObjectClass *klass, void *data) {
++    DeviceClass *dc = DEVICE_CLASS(klass);
++    VirtioDeviceClass *vdc = VIRTIO_DEVICE_CLASS(klass);
++
++    set_bit(DEVICE_CATEGORY_MISC, dc->categories);
++    vdc->realize = virtio_note_device_realize;
++    vdc->unrealize = virtio_note_device_unrealize;
++    vdc->get_features = virtio_note_get_features;
++    vdc->set_status = virtio_note_set_status;
++}
++
++static const TypeInfo virtio_note_info = {
++    .name = TYPE_VIRTIO_NOTE,
++    .parent = TYPE_VIRTIO_DEVICE,
++    .instance_size = sizeof(VirtIONote),
++    .class_init = virtio_note_class_init,
++};
++
++static void virtio_register_types(void) {
++    type_register_static(&virtio_note_info);
++}
++
++type_init(virtio_register_types);
+diff --git a/hw/virtio/virtio.c b/hw/virtio/virtio.c
+index 969c25f4cf..6e982e53e4 100644
+--- a/hw/virtio/virtio.c
++++ b/hw/virtio/virtio.c
+@@ -194,7 +194,8 @@ const char *virtio_device_names[] = {
+     [VIRTIO_ID_PARAM_SERV] = "virtio-param-serv",
+     [VIRTIO_ID_AUDIO_POLICY] = "virtio-audio-pol",
+     [VIRTIO_ID_BT] = "virtio-bluetooth",
+-    [VIRTIO_ID_GPIO] = "virtio-gpio"
++    [VIRTIO_ID_GPIO] = "virtio-gpio",
++    [VIRTIO_ID_NOTE] = "virtio-note"
+ };
+ 
+ static const char *virtio_id_to_name(uint16_t device_id)
+diff --git a/include/hw/virtio/virtio-note.h b/include/hw/virtio/virtio-note.h
+new file mode 100644
+index 0000000000..7ded196b3a
+--- /dev/null
++++ b/include/hw/virtio/virtio-note.h
+@@ -0,0 +1,33 @@
++#ifndef QEMU_VIRTIO_NOTE_H
++#define QEMU_VIRTIO_NOTE_H
++
++#include "exec/hwaddr.h"
++#include "hw/virtio/virtio.h"
++#include "sysemu/rng.h"
++#include "standard-headers/linux/virtio_rng.h"
++#include "qom/object.h"
++
++#define NOTE_SZ           0x40
++#define N_NOTES           0x10
++#define TYPE_VIRTIO_NOTE  "virtio-note-device"
++#define VIRTIO_NOTE(obj) \
++        OBJECT_CHECK(VirtIONote, (obj), TYPE_VIRTIO_NOTE)
++
++typedef enum {
++    READ,
++    WRITE
++} operation;
++
++typedef struct req_t {
++    unsigned int idx;
++    hwaddr addr;
++    operation op;
++} req_t;
++
++typedef struct VirtIONote {
++    VirtIODevice parent_obj;
++    VirtQueue *vnq;
++    char *notes[N_NOTES];
++} VirtIONote;
++
++#endif
+diff --git a/include/standard-headers/linux/virtio_ids.h b/include/standard-headers/linux/virtio_ids.h
+index 7aa2eb7662..c3708e439f 100644
+--- a/include/standard-headers/linux/virtio_ids.h
++++ b/include/standard-headers/linux/virtio_ids.h
+@@ -68,6 +68,7 @@
+ #define VIRTIO_ID_AUDIO_POLICY		39 /* virtio audio policy */
+ #define VIRTIO_ID_BT			40 /* virtio bluetooth */
+ #define VIRTIO_ID_GPIO			41 /* virtio gpio */
++#define VIRTIO_ID_NOTE            42
+ 
+ /*
+  * Virtio Transitional IDs
+diff --git a/system/qdev-monitor.c b/system/qdev-monitor.c
+index 74f4e41338..e101a5662e 100644
+--- a/system/qdev-monitor.c
++++ b/system/qdev-monitor.c
+@@ -111,6 +111,8 @@ static const QDevAlias qdev_alias_table[] = {
+     { "virtio-tablet-device", "virtio-tablet", QEMU_ARCH_VIRTIO_MMIO },
+     { "virtio-tablet-ccw", "virtio-tablet", QEMU_ARCH_VIRTIO_CCW },
+     { "virtio-tablet-pci", "virtio-tablet", QEMU_ARCH_VIRTIO_PCI },
++    { "virtio-note-device", "virtio-note", QEMU_ARCH_VIRTIO_MMIO },
++    { "virtio-note-pci", "virtio-note", QEMU_ARCH_VIRTIO_PCI },
+     { }
+ };
+ 

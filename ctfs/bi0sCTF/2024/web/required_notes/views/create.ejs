@@ -1,0 +1,156 @@
+<!-- views/create.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Note</title>
+  <style>
+    body {
+      background-color: #303030; /* Dark background color */
+      color: #ffffff; /* Text color */
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background-color: #444444; /* Card background color */
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      width: 400px;
+      box-sizing: border-box;
+    }
+
+    h1, h2 {
+      color: #ffffff; /* Heading text color */
+      text-align: center;
+    }
+
+    form {
+      max-width: 100%;
+      margin-top: 20px;
+    }
+
+    label {
+      color: #ffffff; /* Label text color */
+    }
+
+    input[type="text"], textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      background-color: #333333; /* Input background color */
+      color: #ffffff; /* Input text color */
+      border: 1px solid #ffffff; /* Input border color */
+    }
+
+    input[type="button"] {
+      background-color: #ffffff; /* Button background color */
+      color: #303030; /* Button text color */
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    input[type="button"]:hover {
+      background-color: #555555; /* Button background color on hover */
+    }
+
+    #message {
+      color: #ff0000; /* Error message color */
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    #noteList {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #noteList li {
+      margin-bottom: 8px;
+    }
+
+    #noteList a {
+      text-decoration: none;
+      color: #ffffff; /* Link text color */
+    }
+
+    #noteList a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1>Create a New Note</h1>
+  <form id="noteForm">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br>
+    <label for="content">Content:</label><br>
+    <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
+    <input type="button" value="Create Note" onclick="submitNote()">
+  </form>
+
+<div id="message" style="color: red;"></div>
+
+<script>
+function addItemToList(item) {
+  const noteList = document.getElementById('noteList');
+  const listItem = document.createElement('li');
+
+  const link = document.createElement('a');
+  link.href = `/view/${item.Noteid}`; 
+  link.textContent = item.Noteid; 
+  listItem.appendChild(link);
+
+  noteList.appendChild(listItem);
+}
+
+function submitNote() {
+  const title = document.getElementById("title").value;
+  const content = document.getElementById("content").value;
+
+  const noteData = { title, content };
+
+  fetch("/create", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(noteData),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.Message) {
+        document.getElementById("message").innerHTML = data.Message;
+        if (data.Noteid){
+          addItemToList(data);
+        }
+      } 
+    })
+    .catch((error) => {
+      console.error("error:", error);
+      document.getElementById("message").innerText = 'Error';
+    });
+
+}
+</script>
+
+  <% if (Message) { %>
+    <p><%= Message %></p>
+  <% } %>
+  <h2>Created Notes:</h2>
+  <ul id="noteList" style="text-align:center">
+    <% for (const noteId of noteList) { %>
+      <li><a href="/view/<%= noteId %>"><%= noteId %></a></li>
+    <% } %>
+  </ul>
+  </div>
+</body>
+</html>

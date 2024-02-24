@@ -1,0 +1,67 @@
+<!-- views/view.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Note Viewer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      color: #333333;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #333333;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 20px;
+      color: #333333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #555555;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Note Details</h1>
+
+    <% if (noteData.title) { %>
+      <h2><%= noteData.title %></h2>
+    <% } %>
+
+    <% if (noteData.author) { %>
+      <p>Author: <%= noteData.author %></p>
+    <% } %>
+
+    <p><%- noteData.content %></p>
+
+    <button onclick="redirectToTemp()">Delete</button>
+
+  </div>
+  <script>
+      function redirectToTemp() {
+        window.location.href = "?temp";
+      }
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+diff --git a/src/compiler/node-properties.cc b/src/compiler/node-properties.cc
+index 08149558722..6dabffbe8d1 100644
+--- a/src/compiler/node-properties.cc
++++ b/src/compiler/node-properties.cc
+@@ -448,7 +448,7 @@ NodeProperties::InferMapsResult NodeProperties::InferMapsUnsafe(
+           // We reached the allocation of the {receiver}.
+           return kNoMaps;
+         }
+-        result = kUnreliableMaps;  // JSCreate can have side-effect.
++        // result = kUnreliableMaps;  // JSCreate can have side-effect.
+         break;
+       }
+       case IrOpcode::kJSCreatePromise: {

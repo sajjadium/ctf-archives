@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+    nginx:
+      image: nginx:latest
+      volumes:
+        - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        - ./nginx/template:/etc/nginx/templates/10-variables.conf.template:ro
+      ports:
+        - 80:80
+      restart: always
+      environment:
+        - APP_HOST=http://nginx
+        
+    app:
+      build: go-app
+      restart: on-failure
+      environment:
+        - APP_HOST=http://nginx
+
+    bot:
+      build: bot
+      environment:
+        - APP_HOST=http://nginx
+        - FLAG=flag{test}
+      platform: linux/amd64
+      ports:
+        - 8003:8080

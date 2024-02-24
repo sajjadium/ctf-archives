@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+
+<body>
+  <h1> Create Temporary Notes</h1>
+  <div>
+    <form action="/create" method="post">
+      <label for="title">Title:</label>
+      <input type="text" name="title" required><br>
+      <label for="note">Note:</label>
+      <textarea name="note" rows="4" cols="50" required></textarea><br>
+      <button name="create" type="submit">Create Note</button>
+    </form>
+  </div>
+  <div>
+    <form action="/search" method="post">
+      <label for="searchTitle">Search :</label>
+      <input type="text" name="searchTitle" required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  <a href="/report">Report</a>
+  <a href="/logout">Logout</a>
+</body>
+
+</html>

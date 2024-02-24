@@ -1,0 +1,3 @@
+map $host $app_host  {
+  default "${APP_HOST}";
+}
