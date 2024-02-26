@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Kutty Posts</title>
+  <link rel="stylesheet" href="/css/posts.css">
+
+</head>
+<body>
+<ul class="tilesWrap">
+	{{#each rows}}
+		<li>
+			<h2>01</h2>
+			<h3>{{this.title}}</h3>
+			<p>{{{this.content}}}</p>
+			<button name="{{this.id}}">Verify Post</button>
+			<p>By: {{this.author}}</p>
+			<a href="/post/{{this.id}}"><button>View Post</button></a>
+			<form id="{{this.id}}" action="/verify" method="post" target="_blank">
+				<input type="hidden" name="id" value="{{this.id}}">
+			</form>
+		</li>     
+    {{/each}}
+</ul>
+{{#if error}}
+    <h1>{{error}}</h1>
+{{/if}}
+<script nonce="{{nonce}}">
+
+	function getcol() {
+		var hex = "0123456789ABCDEF";
+		var color = "#";
+		for (var i = 0; i < 6; i++) {
+			color += hex[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	}
+
+	var list=document.getElementsByTagName('li');
+    for(var i=0;i<list.length;i++) {
+		list[i].getElementsByTagName('h2')[0].innerText = i < 9 ? "0"+(i+1) : i+1;
+		button=list[i].getElementsByTagName('button')[0];
+        button.onclick = function() {
+            document.getElementById(button.name).submit();
+            }
+        };
+</script>
+</body>
+</html>

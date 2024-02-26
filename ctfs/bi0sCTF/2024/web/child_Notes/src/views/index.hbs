@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Kutty Notes</title>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/home.css">
+        <link rel="stylesheet" href="/css/bootstrap-icons.css">
+        <script nonce={{nonce}} src="/js/bootstrap.min.js"></script>
+        <script nonce={{nonce}} src="/js/popper.min.js"></script>
+    </head>
+    <body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 col-md-12">
+                <div class="logout d-flex">
+                    <button id="posts" class="btn btn-primary">
+                        <span class="bi bi-journals"></span>
+                        <span>Posts</span>
+                    </button>
+                    <button id="logout" class="btn btn-danger">
+                        <span class="bi bi-box-arrow-right"></span>
+                        <span>Logout</span>
+                    </button>
+                </div>
+                <div class="title">I meant something which can post</div>
+                
+                <form action="/create" method="POST">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="t" name="title" class="form-control" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content" class="form-control" placeholder="Content"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        Post <i class="bi bi-send"></i>
+                    </button>
+                </form>
+            </div>
+            <div class="col-12 col-md-12">
+                <div class="subtitle accent-color">Search</div>
+                <form action="/search" method="GET" class="form-inline">
+                <div class="form-group d-flex align-items-center">
+                    <h5 class="mr-2">Get Post</h5>
+                    <select id="f" name="f" class="form-control form-control-underlined">
+                        <option class="opt" value="content">Content</option>
+                        <option class="opt" value="title">Title</option>
+                        <option class="opt" value="id">ID</option>
+                    </select>
+                    <h5 class="ml-2 mr-2">Where</h5>
+                    <input type="text" id="q" name="q" class="form-control form-control-underlined" placeholder="Search">
+                    <h5 class="ml-2 mr-2">in Title - </h5>
+                    <button type="submit" class="ml-2 btn btn-primary">
+                        Search <i class="bi bi-search"></i> 
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <script nonce="{{nonce}}">
+        document.getElementById("logout").onclick = function() {
+            window.location.href = "/logout";
+        }
+        document.getElementById("posts").onclick = function() {
+            window.location.href = "/posts";
+        }
+    </script>
+    </body>
+</html>

@@ -1,0 +1,47 @@
+<html>
+    <head><title>Login/Register</title></head>
+    <link rel="stylesheet" href="/css/login.css">
+</html>
+<h2>Start your Journey</h2>
+<div class="container" id="container">
+	<div class="form-container sign-up-container">
+		<form id="register" action="/register" method="post">
+			<h1>Create Account</h1>
+			<input type="text" id="regusername" name="username" placeholder="Usename" />
+			<input type="password" id="regpassword" name="password" placeholder="Password" />
+			<button id="reg">Sign Up</button>
+		</form>
+	</div>
+	<div class="form-container sign-in-container">
+		<form id="login" action="/login" method="post">
+			<h1>Sign in</h1>
+			<input type="text" id="logusername" name="username" placeholder="Username" />
+			<input type="password" id="logpassword" name="password" placeholder="Password" />
+			<a href="/login?There_is_nothing_we_can_do_about_that">Forgot your password?</a>
+			<button id="log">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				{{#if error}}
+					<p>{{error}}</p>
+				{{else}}
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				{{/if}}
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				{{#if error}}
+					<p>{{error}}</p>
+				{{else}}
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				{{/if}}
+				<button class="ghost" id="signUp">Sign Up</button>
+			</div>
+		</div>
+	</div>
+    <script nonce="{{nonce}}" src="/js/login.js"></script>
+</div>

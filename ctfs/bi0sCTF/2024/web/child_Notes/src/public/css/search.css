@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+}
+
+.title {
+    /* Apply the title style from your provided CSS */
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0;
+    color: #FF4B2B; /* Use the desired color */
+    text-transform: uppercase;
+    padding: 20px 0;
+    }
+
+.post-table {
+    width: 100%;
+    margin-bottom: 40px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+  /* Add styles for table cells */
+.post-table td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+
+  /* Add hover effect for table rows */
+.post-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.search-result-card {
+    margin-bottom: 20px;
+    border-radius: 5px;
+    background-color: #f8f8f8; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+.search-result-card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    background-color: #f3f3f3;
+}
+
+.search-result-card .card-body {
+    padding: 15px;
+}
+
+.post-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    color: #FF66CC; /* Soft Pink (you can choose a color you prefer) */
+    margin-bottom: 10px; /* Add some spacing below the post-title */
+}
+
+.key-text {
+    text-transform: uppercase;
+    font-weight: bold; /* Make the key text bold */
+    color: #3399FF; /* Soft Blue (you can choose a color you prefer) */
+    margin-bottom: 4px; /* Add spacing between key and value */
+}
+
+/* Optional: Style the values if needed */
+.value-text {
+    /* Add additional styling as per your preference */
+    color: #000; /* Darken the value text color for better contrast */
+    margin-bottom: 12px; /* Add spacing below each value */
+}

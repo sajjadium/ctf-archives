@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dashboard</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    </head>
+    <body>
+        <!-- split the window vertically into two div boxes and align notes table in the righ and form in the left-->
+        <h1 style="text-align: center">Dashboard</h1>
+        <p style="text-align: center">Welcome {{ message }} <a href="/logout">LOGOUT</a></p>
+         <!-- move the container div a bit to the right to center align properly -->
+        <div class="container" style="margin-left: 20%;margin-top: 5%">
+            
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Make a note</h2>
+            </div>
+            <div class="col-sm-6">
+                <h2>Notes</h2>
+            </div>
+        </div>
+        <div class="row"> 
+            <div class="col-sm-6">
+                <form action="/makenote" method="POST">
+                    <label for="title">Title: </label>
+                    <input id="title" type="text" name="title"><br><br>
+                    <label for="content">Body: </label><br>
+                    <textarea id="content" name="content"></textarea><br><br>
+                    <input type="submit" onclick="encodeContents()" value="make note">
+                </form>
+                <span>{{ err_msg }}</span>
+            </div>
+            <div class="col-sm-6">
+                <table>
+                    {% for note in notes %}
+                    <tr>
+                        <td><a href="/viewnote/{{ note }}">{{ note }}</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        </div>
+        <script>
+            encodeContents = () =>{
+                var content = document.getElementById('content');
+                content.value = btoa(content.value);
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    </body>
+</html>

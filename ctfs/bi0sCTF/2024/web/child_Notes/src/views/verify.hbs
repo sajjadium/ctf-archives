@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Report</title>
+        <script nonce="{{nonce}}">
+            window.addEventListener('securitypolicyviolation', function(event) {
+                document.location='about:blank';
+            });
+        </script>
+    </head>
+    <body>
+        <h1 id="title">{{title}}</h1>
+        <p id="content">{{{content}}}</p>
+        Author : <p id="author">{{author}}</p>
+        <script nonce="{{nonce}}" src="/js/verify.js"></script>
+        <a href="/post/{{id}}">View Post</a>
+        <script nonce="{{nonce}}">
+            let id = "{{id}}";
+            let user = "{{user}}";
+            (async function() {
+                for(let i = 0; i < rows.length; i++) {
+                    if(rows[i].author.username == 'admin' || rows[i].author.username != user && rows[i].id == id) {
+                        console.log("You can't Report Another user's post")
+                        if(rows[i].author.username == 'admin'){
+                            console.log("Blocking user for trying to Report admin's post")
+                            document.location=`/${user}/block?block=true`;
+                        }
+                    }
+                    else if (rows[i].author.username == user && rows[i].id == id){
+                        console.log("Checking post");
+                        check(rows,id).then((result) => {
+                            if(result) {
+                                if(result.delete){
+                                    del(id).then((result) => {
+                                        if(result) {
+                                            console.log("Kutty Post deleted");
+                                        }
+                                        else {
+                                            console.log("Kutty error occurred");
+                                        }
+                                    });
+                                }
+                                else{
+                                    console.log("The Kutty Post is Safe");
+                                }
+                            }
+                            else {
+                                console.log("Kutty error occurred");
+                            }
+                        });
+                    }
+                }
+            })();
+        </script>
+    </body>
+</html>

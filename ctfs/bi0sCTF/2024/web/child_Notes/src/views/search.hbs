@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kutty Search</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/search.css">
+    <script nonce={{nonce}} src="/js/bootstrap.min.js"></script>
+    <script nonce={{nonce}} src="/js/popper.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="title">Search Results</h1>
+        <div class="row" id="searchResults">
+            {{#each posts}}
+            <div class="col-md-6">
+            <div class="card search-result-card">
+                <div class="card-body">
+                <h5 class="card-title post-title">Post {{@index}}</h5>
+                {{#each this}}
+                <h5 class="card-title key-text">{{@key}}</h5>
+                <p class="card-text value-text">{{{this}}}</p>
+                {{/each}}
+                </div>
+            </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <script nonce="{{nonce}}">
+        const searchResults = document.getElementById("searchResults");
+        searchResults.classList.add("fade-in");
+    </script>
+</body>
+</html>

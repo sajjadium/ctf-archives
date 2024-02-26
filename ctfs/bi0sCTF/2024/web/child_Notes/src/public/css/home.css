@@ -1,0 +1,74 @@
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+.logout {
+    justify-content: space-between;
+}
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #3c97bf;
+    text-align: center;
+}
+.subtitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    color: #FF4B2B;
+    text-align: center;
+}
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+button[type="submit"] {
+    cursor: pointer;
+    background-color: #FF416C;
+    background-image: linear-gradient(to right, #FF4B2B, #FF416C);
+    color: #fff;
+}
+.bi {
+    margin-right: 5px;
+}
+.accent-color {
+    color: #FF4B2B;
+}
+.form-group {
+    display: flex;
+    align-items: center;
+}
+h5 {
+    flex-grow: 1;
+    align-items: center;
+    text-align: center;
+}
+
+.form-control-underlined {
+    width: 30%;
+    flex-grow: 1.5;
+    font-size: 1.1rem;
+    border: none;
+    border-bottom: 2px solid #FF4B2B;
+    border-radius: 0;
+    padding: 4px 0;
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0 5px; /* Add a small margin between the elements */
+}
+
+.form-control-underlined:focus {
+    border-color: #3c97bf;
+    background-color: transparent;
+    outline: none;
+    box-shadow: none;
+}
+
+/* Prevent heading elements from wrapping to multiple lines */
+.form-group h5 {
+    flex-shrink: 0;
+    white-space: nowrap;
+    margin: 0;
+}

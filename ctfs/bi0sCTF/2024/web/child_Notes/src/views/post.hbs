@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Kutty Post</title>
+  <link rel="stylesheet" href="/css/posts.css">
+
+</head>
+<body>
+<ul class="tilesWrap">
+    <li>
+        <h2>01</h2>
+        <h3>{{title}}</h3>
+        <p>{{{content}}}</p>
+        <button name="{{this.id}}">Verify Post</button>
+        <p>By: {{author}}</p>
+        <form id="{{id}}" action="/verify" method="post" target="_blank">
+            <input type="hidden" name="id" value="{{id}}">
+        </form>
+    </li>
+</ul>
+{{#if error}}
+    <h1>{{error}}</h1>
+{{/if}}
+<script nonce="{{nonce}}">
+    var list=document.getElementsByTagName('li');
+    for(var i=0;i<list.length;i++) {
+		list[i].getElementsByTagName('h2')[0].innerText = i < 9 ? "0"+(i+1) : i+1;
+		button=list[i].getElementsByTagName('button')[0];
+        button.onclick = function() {
+            document.getElementById(button.name).submit();
+            }
+        };
+</script>
+</body>
+</html>
