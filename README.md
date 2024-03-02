@@ -2813,6 +2813,11 @@
             <td><a href="https://ctftime.org/event/566/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/NullconHackIM/2018">PersianCats</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/osugaming">osugaming</a></td>
+            <td><a href="ctfs/osugaming/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/998/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/p4ctf">p4ctf</a></td>
             <td><a href="ctfs/p4ctf/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/1976/tasks/" target="_blank">CTFtime</a></td>

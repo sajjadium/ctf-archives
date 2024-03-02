@@ -1,0 +1,16 @@
+[package]
+name = "framework"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+solana-program-test = "1.16.9"
+solana-program = "1.16.9"
+solana-logger = "1.16.9"
+solana-sdk = "1.16.9"
+chall = { path ="./chall/programs/chall", features = ["no-entrypoint"] }
+sol-ctf-framework = { git = "https://github.com/otter-sec/sol-ctf-framework", branch="rewrite-v2" }
+#sol-ctf-framework = { path="../../sol-ctf-framework" }
+threadpool = "1.8.1"

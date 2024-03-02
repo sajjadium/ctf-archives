@@ -1,0 +1,94 @@
+osu file format v14
+
+[General]
+AudioFilename: audio.mp3
+AudioLeadIn: 0
+PreviewTime: -1
+Countdown: 0
+SampleSet: Normal
+StackLeniency: 0.7
+Mode: 1
+LetterboxInBreaks: 0
+WidescreenStoryboard: 0
+
+[Editor]
+DistanceSpacing: 0.3
+BeatDivisor: 1
+GridSize: 16
+TimelineZoom: 1
+
+[Metadata]
+Title:XNOR XNOR XNOR
+TitleUnicode:XNOR XNOR XNOR
+Artist:Frums
+ArtistUnicode:Frums
+Creator:QuintecX
+Version:Futsuu
+Source:
+Tags:
+BeatmapID:0
+BeatmapSetID:-1
+
+[Difficulty]
+HPDrainRate:5
+CircleSize:5
+OverallDifficulty:5
+ApproachRate:5
+SliderMultiplier:1.4
+SliderTickRate:1
+
+[Events]
+//Background and Video events
+//Break Periods
+//Storyboard Layer 0 (Background)
+//Storyboard Layer 1 (Fail)
+//Storyboard Layer 2 (Pass)
+//Storyboard Layer 3 (Foreground)
+//Storyboard Layer 4 (Overlay)
+//Storyboard Sound Samples
+
+[TimingPoints]
+3927.26174496644,402.684563758389,4,1,0,100,1,0
+
+
+[HitObjects]
+213,163,705,5,4,0:0:0:0:
+213,163,1108,1,2,0:0:0:0:
+213,163,1511,1,4,0:0:0:0:
+213,163,1913,1,0,0:0:0:0:
+213,163,2316,1,0,0:0:0:0:
+213,163,2719,1,4,0:0:0:0:
+213,163,3121,1,2,0:0:0:0:
+213,163,3524,1,2,0:0:0:0:
+213,163,3927,1,0,0:0:0:0:
+213,163,4329,1,4,0:0:0:0:
+213,163,4732,1,0,0:0:0:0:
+213,163,5135,1,4,0:0:0:0:
+213,163,5537,1,2,0:0:0:0:
+213,163,5940,1,0,0:0:0:0:
+213,163,6343,1,4,0:0:0:0:
+213,163,6746,1,0,0:0:0:0:
+213,163,7148,1,6,0:0:0:0:
+213,163,7551,1,0,0:0:0:0:
+213,163,7954,1,6,0:0:0:0:
+213,163,8356,1,2,0:0:0:0:
+213,163,8759,1,0,0:0:0:0:
+213,163,9162,1,4,0:0:0:0:
+213,163,9564,1,0,0:0:0:0:
+213,163,9967,1,2,0:0:0:0:
+213,163,10370,1,2,0:0:0:0:
+213,163,10772,1,0,0:0:0:0:
+213,163,11175,1,2,0:0:0:0:
+213,163,11578,1,6,0:0:0:0:
+213,163,11980,1,0,0:0:0:0:
+213,163,12383,1,2,0:0:0:0:
+213,163,12786,1,0,0:0:0:0:
+213,163,13189,1,6,0:0:0:0:
+213,163,13591,1,4,0:0:0:0:
+213,163,13994,1,0,0:0:0:0:
+213,163,14397,1,2,0:0:0:0:
+213,163,14799,1,0,0:0:0:0:
+213,163,15202,1,4,0:0:0:0:
+213,163,15605,1,4,0:0:0:0:
+213,163,16007,1,2,0:0:0:0:
+213,163,16410,1,0,0:0:0:0:

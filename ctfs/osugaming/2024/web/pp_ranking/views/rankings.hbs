@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="en">
+  <head>
+    <link rel="stylesheet" media="all" href="https://osugaming.lol/assets/css/app.5fe70da2.css">
+    <title>performance · rankings | osu!</title>
+  </head>
+  <body class="t-section osu-layout osu-layout--body">
+    <style>
+      :root {
+        --base-hue: 115;
+        --base-hue-deg: 115deg;
+      }
+    </style>
+    <div class="js-pinned-header hidden-xs no-print nav2-header">
+      <div class="nav2-header__body">
+        <div class="nav2-header__triangles"></div>
+        <div class="nav2-header__transition-overlay"></div>
+        <div class="osu-page">
+          <div class="nav2 js-nav-button">
+            <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
+              <div class="nav2__col nav2__col--logo">
+                <a href="https://osu.ppy.sh/home" class="nav2__logo-link">
+                  <div class="nav2__logo nav2__logo--bg"></div>
+                  <div class="nav2__logo"></div>
+                </a>
+              </div>
+              <div class="nav2__col nav2__col--menu">
+                <a class="nav2__menu-link-main js-menu" href="/rankings">
+                  <span class="u-relative"> rankings <span class="nav2__menu-link-bar u-section--bg-normal"></span>
+                  </span>
+                </a>
+                {{#if user}}
+                <a class="nav2__menu-link-main js-menu" href="/submit">
+                  <span class="u-relative"> submit <span class="nav2__menu-link-bar"></span>
+                  </span>
+                </a>
+                {{else}}
+                <a class="nav2__menu-link-main js-menu" href="/register">
+                  <span class="u-relative"> register <span class="nav2__menu-link-bar"></span>
+                  </span>
+                </a>
+                <a class="nav2__menu-link-main js-menu" href="/login">
+                  <span class="u-relative"> login <span class="nav2__menu-link-bar"></span>
+                  </span>
+                </a>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="osu-layout__section osu-layout__section--full">
+      <div class="header-v4 header-v4--rankings">
+        <div class="header-v4__container header-v4__container--main">
+          <div class="header-v4__bg-container">
+            <div class="header-v4__bg "></div>
+          </div>
+          <div class="hidden-xs js-sync-height--target"></div>
+          <div class="header-v4__content">
+            <div class="header-v4__row header-v4__row--title">
+              <div class="header-v4__icon"></div>
+              <div class="header-v4__title"> rankings </div>
+            </div>
+          </div>
+        </div>
+        <div class="header-v4__container">
+          <div class="header-v4__content">
+            <div class="header-v4__row header-v4__row--bar">
+              <ul class="header-nav-v4 header-nav-v4--list">
+                <li class="header-nav-v4__item">
+                  <a class="
+                                            header-nav-v4__link
+                                            header-nav-v4__link--active
+                                        " href="/rankings">
+                    <span class="fake-bold">performance</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="osu-page osu-page--generic" id="scores">
+        <div class="ranking-page">
+          {{#if flag}}
+            <h4>Flag: {{ flag }}</h4>
+          {{/if}}
+          <table class="ranking-page-table">
+            <thead>
+              <tr>
+                <th class="ranking-page-table__heading"></th>
+                <th class="ranking-page-table__heading ranking-page-table__heading--main"></th>
+
+                <th class="ranking-page-table__heading ranking-page-table__heading--focused"> Play Count </th>
+                <th class="ranking-page-table__heading ranking-page-table__heading--focused"> Performance </th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each ranking}}
+              <tr class="ranking-page-table__row">
+                <td class="ranking-page-table__column ranking-page-table__column--rank"> {{rank}} </td>
+                <td class="ranking-page-table__column">
+                  <div class="ranking-page-table__user-link">
+                    <a href="#">
+                      <span class="flag-country flag-country--medium" style="background-image: url('{{flag}}');"></span>
+                    </a>
+                    <a class="ranking-page-table__user-link-text js-usercard"> {{username}} </a>
+                  </div>
+                </td>
+                <td class="ranking-page-table__column ranking-page-table__column--dimmed"> {{formatNum playCount}} </td>
+                <td class="ranking-page-table__column ranking-page-table__column--focused"> {{formatNum performance}} </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer class="no-print footer">
+      <div class="footer__row">
+        <a class="footer__link" href="https://osu.ppy.sh/legal/en/Terms"> Terms </a>
+        <a class="footer__link" href="https://osu.ppy.sh/legal/en/Privacy"> Privacy </a>
+        <a class="footer__link" href="https://osu.ppy.sh/legal/en/Copyright"> Copyright (DMCA) </a>
+        <a class="footer__link" href="https://status.ppy.sh"> Server Status </a>
+        <a class="footer__link" href="https://github.com/ppy"> Source Code </a>
+      </div>
+      <div class="footer__row">ppy powered 2007-2024</div>
+    </footer>
+  </body>
+</html>
