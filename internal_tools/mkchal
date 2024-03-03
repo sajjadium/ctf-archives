@@ -9,7 +9,6 @@ import tempfile
 import shutil
 import string
 import glob
-import zipfile
 from pathlib import Path
 
 def is_valid(line):
@@ -115,22 +114,6 @@ def get_challenge_name(line):
 
   return '_'.join(tokens)
 
-def unpack_file(fname):
-  dname = os.path.dirname(fname)
-
-  if zipfile.is_zipfile(fname):
-    return subprocess.run(['7z', 'x', fname, '-o' + dname + '/' + Path(fname).stem], shell=False).returncode == 0
-  elif not fname.endswith('.cpio.gz') and (fname.endswith('.tar.gz') or fname.endswith('.tgz') or fname.endswith('.txz') or fname.endswith('.tar.xz') or fname.endswith('.tzst') or fname.endswith('.gz') or fname.endswith('.tar.zst')):
-    return subprocess.run(['tar', 'xzvf', fname, '-C', dname], shell=False).returncode == 0
-  elif fname.endswith('.tar'):
-    return subprocess.run(['tar', 'xvf', fname, '-C', dname], shell=False).returncode == 0
-  elif fname.endswith('.7z'):
-    return subprocess.run(['7z', 'x', fname, '-o' + dname], shell=False).returncode == 0
-  elif fname.endswith('.rar'):
-    return subprocess.run(['unrar', 'x', fname, dname], shell=False).returncode == 0
-
-  return False
-
 if __name__ == '__main__':
   # create challenge directory
   lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', l.rstrip()) for l in sys.stdin.readlines()])
@@ -145,51 +128,12 @@ if __name__ == '__main__':
 
   download_dir = os.path.expanduser('~/Downloads')
 
-  with tempfile.TemporaryDirectory() as tmp_path:
-    # move all the files downloaded in the past 60 seconds into the tmp directory
-    for f in os.listdir(download_dir):
-      fname = os.path.join(download_dir, f)
+  # move all the files downloaded in the past 60 seconds into the chal directory
+  for f in os.listdir(download_dir):
+    fname = os.path.join(download_dir, f)
 
-      if time.time() - os.path.getmtime(fname) <= 60:
-        subprocess.run(['mv', fname, tmp_path])
-
-    # unpack files recursively until no packed file is available
-    # curr_dir = os.getcwd()
-    # os.chdir(tmp_path)
-
-    while True:
-      found_packed_files = False
-
-      for root, _, files in os.walk(tmp_path):
-        for f in files:
-          fname = os.path.join(root, f)
-          if unpack_file(fname):
-            found_packed_files = True
-            os.remove(fname)
-
-      if not found_packed_files:
-        break
-
-    # os.chdir(curr_dir)
-
-    # clean up unnecessary files
-    os.system('rm -rf `find "%s" -name __MACOSX`' % tmp_path)
-
-    # identify the directories/files needed to be copied to the final challenge directory.
-    final_path = tmp_path
-    while True:
-      children = os.listdir(final_path)
-      if len(children) == 0 or len(children) > 1:
-        break
-
-      child_path = os.path.join(final_path, children[0])
-
-      if not os.path.isdir(child_path):
-        break
-
-      final_path = child_path
-
-    os.system('find "%s" -name "*" -depth 1 | while read line; do mv "$line" "%s"; done' % (final_path, chal_name))
+    if time.time() - os.path.getmtime(fname) <= 60:
+      subprocess.run(['mv', fname, chal_name])
 
   # compress any pcap or pcapng file
   os.system("find \"%s\" -type f -name \"*.pcap*\" | grep -E -e '.*\.pcap(ng){0,1}$' | xargs -n 1 xz" % (chal_name))

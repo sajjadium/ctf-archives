@@ -956,6 +956,11 @@
             <td><a href="https://ctftime.org/event/1115/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/GCC">GCC</a></td>
+            <td><a href="ctfs/GCC/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2251/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/GDGAlgiers">GDGAlgiers</a></td>
             <td><a href="ctfs/GDGAlgiers/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1745/tasks/" target="_blank">CTFtime</a></td>
