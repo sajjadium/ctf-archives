@@ -1,0 +1,3 @@
+pwn naughtyb0y easy
+
+Just a normal note taking app...
