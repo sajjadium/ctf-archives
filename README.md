@@ -2882,6 +2882,11 @@
             <td><a href="https://ctftime.org/event/2158/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/vikeCTF">vikeCTF</a></td>
+            <td><a href="ctfs/vikeCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2263/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="ctfs/vishwa">vishwa</a></td>
             <td><a href="ctfs/vishwa/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1904/tasks/" target="_blank">CTFtime</a></td>

@@ -1,0 +1,1 @@
+Delve into the realm of Norse mythology and unlock the secrets of the runic script in this cryptic challenge. Armed with your wits and keen eye, decrypt the ancient messages hidden within the runes. Will you prove yourself worthy of Odin's wisdom or fall prey to the tricks of Loki? Prepare to embark on a journey through Viking lore as you unravel the Runebound Riddles!

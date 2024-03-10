@@ -1,0 +1,1 @@
+Welcome to vikeMERCH, your one stop shop for Viking-themed merchandise! We're still working on our website, but don't let that stop you from browsing our high-quality items. We just know you'll love the Viking sweater vest.
