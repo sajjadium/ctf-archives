@@ -1,0 +1,1 @@
+Botman was playing his favourite Pokemon game when it got wiped (womp womp)! With all his hard work gone, Botman has turned to the only thing left in his game, a suspicious, seemingly useless text document. Can you help him get to the bottom of this mystery?

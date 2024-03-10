@@ -1,0 +1,1 @@
+Timmy is a little insane. He prefers to write his flag checkers in Notepad++. Unfortunately for the rest of us, he forgot to translate it back into a normal binary. Can you figure out how his flag checker works?
