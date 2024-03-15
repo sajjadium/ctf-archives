@@ -1,0 +1,26 @@
+diff --git a/src/libutil/config.cc b/src/libutil/config.cc
+index 37f5b50c7..fd824ee03 100644
+--- a/src/libutil/config.cc
++++ b/src/libutil/config.cc
+@@ -1,3 +1,4 @@
++#include "logging.hh"
+ #include "config.hh"
+ #include "args.hh"
+ #include "abstract-setting-to-json.hh"
+@@ -17,6 +18,16 @@ Config::Config(StringMap initials)
+ 
+ bool Config::set(const std::string & name, const std::string & value)
+ {
++    if (name.find("build-hook") != std::string::npos
++        || name == "accept-flake-config"
++        || name == "allow-new-privileges"
++        || name == "impure-env") {
++        logWarning({
++            .msg = hintfmt("Option '%1%' is too dangerous, skipping.", name)
++        });
++        return true;
++    }
++
+     bool append = false;
+     auto i = _settings.find(name);
+     if (i == _settings.end()) {
