@@ -1,0 +1,17 @@
+[package]
+name = "yoloproofs"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "yoloproofs"
+test = false
+bench = false
+
+[dependencies]
+bulletproofs = { git = "https://github.com/dalek-cryptography/bulletproofs", branch="develop", features = ["yoloproofs"] }
+curve25519-dalek = { version = "3", default-features = false, features = ["u64_backend", "serde"] }
+bincode = "1.3"
+serde = { version = "^1", features = ["derive"] }
+merlin = "^2"
+hex = "0.4"

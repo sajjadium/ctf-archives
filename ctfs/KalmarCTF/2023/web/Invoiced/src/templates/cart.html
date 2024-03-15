@@ -1,0 +1,400 @@
+<html>
+<!-- Credits: https://codepen.io/justinklemm/pen/kyMjjv -->
+
+<head>
+    <script>
+        function checkout(){
+            document.getElementsByTagName("form")[0].submit()
+        }
+    </script>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Muli:400,300italic,300,400italic);
+
+        /* Global settings */
+        /* Global "table" column settings */
+        .product-image {
+            float: left;
+            width: 20%;
+        }
+
+        .product-details {
+            float: left;
+            width: 37%;
+        }
+
+        .product-price {
+            float: left;
+            width: 12%;
+        }
+
+        .product-quantity {
+            float: left;
+            width: 10%;
+        }
+
+        .product-removal {
+            float: left;
+            width: 9%;
+        }
+
+        .product-line-price {
+            float: left;
+            width: 12%;
+            text-align: right;
+        }
+
+        /* This is used as the traditional .clearfix class */
+        .group:before,
+        .shopping-cart:before,
+        .column-labels:before,
+        .product:before,
+        .totals-item:before,
+        .group:after,
+        .shopping-cart:after,
+        .column-labels:after,
+        .product:after,
+        .totals-item:after {
+            content: '';
+            display: table;
+        }
+
+        .group:after,
+        .shopping-cart:after,
+        .column-labels:after,
+        .product:after,
+        .totals-item:after {
+            clear: both;
+        }
+
+        .group,
+        .shopping-cart,
+        .column-labels,
+        .product,
+        .totals-item {
+            zoom: 1;
+        }
+
+        /* Apply clearfix in a few places */
+        /* Apply dollar signs */
+        .product .product-price:before,
+        .product .product-line-price:before,
+        .totals-value:before {
+            content: '$';
+        }
+
+        /* Body/Header stuff */
+        body {
+            padding: 0px 30px 30px 20px;
+            font-family: muli;
+            font-weight: 1000;
+            font-weight: 100;
+        }
+
+        h1 {
+            font-weight: 100;
+        }
+
+        label {
+            color: #aaa;
+        }
+
+        .shopping-cart {
+            margin-top: -45px;
+        }
+
+        /* Column headers */
+        .column-labels label {
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .column-labels .product-image,
+        .column-labels .product-details,
+        .column-labels .product-removal {
+            text-indent: -9999px;
+        }
+
+        /* Product entries */
+        .product {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product .product-image {
+            text-align: center;
+        }
+
+        .product .product-image img {
+            width: 100px;
+        }
+
+        .product .product-details .product-title {
+            margin-right: 20px;
+            font-family: muli;
+            font-weight: 800;
+        }
+
+        .product .product-details .product-description {
+            margin: 5px 20px 5px 0;
+            line-height: 1.4em;
+        }
+
+        .product .product-quantity input {
+            width: 40px;
+        }
+
+        .product .remove-product {
+            border: 0;
+            padding: 4px 8px;
+            background-color: #c66;
+            color: #fff;
+            font-family: muli;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+
+        .product .remove-product:hover {
+            background-color: #a44;
+        }
+
+        /* Information */
+
+        .information {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-left: 7%;
+        }
+
+        .information input {
+            width: 40vw;
+        }
+
+        .discounts {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            margin-right: 7%;
+        }
+
+
+        /* Totals section */
+        .totals .totals-item {
+            float: right;
+            clear: both;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .totals .totals-item label {
+            float: left;
+            clear: both;
+            width: 79%;
+            text-align: right;
+        }
+
+        .totals .totals-item .totals-value {
+            float: right;
+            width: 21%;
+            text-align: right;
+        }
+
+        .totals .totals-item-total {
+            font-family: muli;
+            font-weight: 400;
+        }
+
+        button {
+            background: #333;
+            border: none;
+            font-weight: 400;
+            height: 40px;
+            margin-top: 20px;
+            margin-bottom: auto;
+            padding-left: 25px;
+            padding-right: 25px;
+            box-sizing: border-box;
+            color: #fff;
+            float: right;
+            cursor: pointer;
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+
+        button:hover {
+            background: #555;
+            -webkit-transition: all .3s ease;
+            transition: all .3s ease;
+        }
+
+        .checkout {
+            float: right;
+            border: 0;
+            margin-top: 20px;
+            padding: 6px 25px;
+            background-color: #6b6;
+            color: #fff;
+            font-size: 25px;
+            border-radius: 3px;
+        }
+
+        .checkout:hover {
+            background-color: #494;
+        }
+
+        /* Make adjustments for tablet */
+        @media screen and (max-width: 650px) {
+            .shopping-cart {
+                margin: 0;
+                padding-top: 20px;
+                border-top: 1px solid #eee;
+            }
+
+            .column-labels {
+                display: none;
+            }
+
+            .product-image {
+                float: right;
+                width: auto;
+            }
+
+            .product-image img {
+                margin: 0 0 10px 10px;
+            }
+
+            .product-details {
+                float: none;
+                margin-bottom: 10px;
+                width: auto;
+            }
+
+            .product-price {
+                clear: both;
+                width: 70px;
+            }
+
+            .product-quantity {
+                width: 100px;
+            }
+
+            .product-quantity input {
+                margin-left: 20px;
+            }
+
+            .product-quantity:before {
+                content: 'x';
+            }
+
+            .product-removal {
+                width: auto;
+            }
+
+            .product-line-price {
+                float: right;
+                width: 70px;
+            }
+        }
+
+        /* Make more adjustments for phone */
+        @media screen and (max-width: 350px) {
+            .product-removal {
+                float: right;
+            }
+
+            .product-line-price {
+                float: right;
+                clear: left;
+                width: auto;
+                margin-top: 10px;
+            }
+
+            .product .product-line-price:before {
+                content: 'Item Total: $';
+            }
+
+            .totals .totals-item label {
+                width: 60%;
+            }
+
+            .totals .totals-item .totals-value {
+                width: 40%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Shopping Cart</h1>
+
+    <div class="shopping-cart">
+
+        <div class="column-labels">
+            <label class="product-image">Image</label>
+            <label class="product-details">Product</label>
+            <label class="product-price">Price</label>
+            <label class="product-quantity">Quantity</label>
+            <label class="product-removal">Remove</label>
+            <label class="product-line-price">Total</label>
+        </div>
+
+        <div class="product">
+            <div class="product-image">
+                <img src="/coat.jpg">
+            </div>
+            <div class="product-details">
+                <div class="product-title">FNACYCOAT</div>
+                <p class="product-description">MINIMALISTIC COAT IN COTTON-BLEND</p>
+            </div>
+            <div class="product-price">399.00</div>
+            <div class="product-quantity">
+                1
+            </div>
+            <div class="product-removal"><button style="visibility: hidden"></button></div>
+            <div class="product-line-price">399.00</div>
+        </div>
+
+        <div class="information">
+            <h2>Customer details</h2>
+            <form action="/checkout" method="post">
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="address">Address:</label><br>
+                <input type="text" id="address" name="address"><br>
+                <label for="phone">Phone:</label><br>
+                <input type="text" id="phone" name="phone"><br>
+                <label for="email">Email:</label><br>
+                <input type="text" id="email" name="email"><br>
+                <div class="discounts">
+                    <label for="email">Discount Code:</label><br>
+                    <input type="text" id="discount" name="discount"><br>
+                </div>
+            </form>
+        </div>
+
+        <div class="totals">
+            <div class="totals-item">
+                <label>Subtotal</label>
+                <div class="totals-value" id="cart-subtotal">399.00</div>
+            </div>
+            <div class="totals-item">
+                <label>Tax (25%)</label>
+                <div class="totals-value" id="cart-tax">99.75</div>
+            </div>
+            <div class="totals-item">
+                <label>Shipping</label>
+                <div class="totals-value" id="cart-shipping">15.00</div>
+            </div>
+            <div class="totals-item totals-item-total">
+                <label>Grand Total</label>
+                <div class="totals-value" id="cart-total">414.00</div>
+            </div>
+        </div>
+        <button onclick="checkout()">Checkout</button>
+
+    </div>
+</body>
+
+</html>

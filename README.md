@@ -1379,8 +1379,12 @@
             <td><a href="https://ctftime.org/event/1590/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/Kalmar">Kalmar</a></td>
-            <td><a href="ctfs/Kalmar/2023">2023</a></td>
+            <td rowspan=2><a href="ctfs/KalmarCTF">KalmarCTF</a></td>
+            <td><a href="ctfs/KalmarCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2227/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/KalmarCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1878/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

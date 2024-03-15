@@ -1,0 +1,18 @@
+[package]
+name = "aes_frast"
+version = "0.3.0"
+edition = "2021"
+authors = ["KaneGreen <737445366KG@Gmail.com>"]
+license = "Apache-2.0"
+description = "An easy-to-use lib for AES encryption and decryption, coded in pure safe Rust-lang."
+repository = "https://github.com/KaneGreen/aes_frast"
+documentation = "https://docs.rs/aes_frast/"
+readme = "README.md"
+categories = ["cryptography"]
+keywords = ["crypto", "aes"]
+
+[dependencies]
+
+[profile.release]
+codegen-units = 1
+lto = true
