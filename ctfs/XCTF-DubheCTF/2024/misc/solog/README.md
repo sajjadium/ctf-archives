@@ -1,0 +1,3 @@
+Do you know xlog? I also wrote a solog, but it seems that I forgot to delete some test code…
+
+你知道 xlog 吗？我也写了一个 solog，但是我好像忘记删掉一些测试代码了。。。

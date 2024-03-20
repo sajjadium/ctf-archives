@@ -2637,6 +2637,11 @@
             <td><a href="https://ctftime.org/event/2004/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/XCTF-DubheCTF">XCTF-DubheCTF</a></td>
+            <td><a href="ctfs/XCTF-DubheCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2279/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=4><a href="ctfs/X-MAS">X-MAS</a></td>
             <td><a href="ctfs/X-MAS/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1787/tasks/" target="_blank">CTFtime</a></td>
