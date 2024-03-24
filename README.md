@@ -2338,7 +2338,11 @@
             <td><a href="https://ctftime.org/event/955/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/TexSAW">TexSAW</a></td>
+            <td rowspan=2><a href="ctfs/TexSAW">TexSAW</a></td>
+            <td><a href="ctfs/TexSAW/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2281/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/TexSAW/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1959/tasks/" target="_blank">CTFtime</a></td>
         </tr>

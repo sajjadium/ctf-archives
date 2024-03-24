@@ -1,0 +1,5 @@
+A private investigator is looking for information that will help them track down a cybercriminal nicknamed Kannon, who leaked sensitive data from many large websites back in March 2023. While this led to the immediate suspension of Kannon’s account, the authorities were unable to track down and arrest Kannon in-person to this day. Rumor has it that Kannon recently started putting their skills to use at a new job at Shady Corp. Anyways, because you are a data privacy specialist, the private investigator has asked you to examine a set of tables containing “anonymized” data and see if you can determine any personally identifying information about Kannon. Find the following information about Kannon: social media username, date of birth, gender, race/ethnicity, height, weight, city, state, zipcode, job title, salary, phone number, and medical diagnosis.
+
+Note: All data values to be put in the flag should copied directly from the data tables without modifying the text of any data entry
+
+Disclaimer: The above scenario and data sets are completely fictional

@@ -1,0 +1,1 @@
+Commander, we managed to gain access to the Ironblood's encryption servers, but we only know the key. If we get the IV, we will be able to decrypt all of their messages, locate their submarines, and win the war!

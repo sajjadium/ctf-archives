@@ -1,0 +1,1 @@
+As a 90’s kid I still remember when the PS2 came out! See below my database for the games company I run. Find for me the number of games on the database released for the playstation in the 2000’s (2000-2009 inclusive).

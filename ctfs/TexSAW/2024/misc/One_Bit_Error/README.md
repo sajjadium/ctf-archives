@@ -1,0 +1,1 @@
+A friend sent me this image of a famous mathematician, but apparently one of the pixels was corrupted on its way to me. Luckily, my friend thought ahead and used some kind of error-correcting code to guard against this, but I don't really understand it. Can you find me which pixel was changed?

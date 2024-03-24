@@ -1,0 +1,1 @@
+You’ve decided to look for treasure in various piles of garbage in a junkyard at nc 3.23.56.243 9010. However, you must be careful: Some treasures contain lead, asbestos, or other poisonous materials, so make sure to avoid these treasures! Can you dive through all the garbage heaps and collect all the salvageable treasure while avoiding the toxic treasures?

@@ -1,0 +1,1 @@
+McQueen got into a crazy crash and seemed to forget some of the places he has visited. See if you can jog his memory. Flag will be the names of all places, all lowercase, with no spaces or underscores, wrapped between the brackets of texsaw{}.
