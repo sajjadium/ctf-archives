@@ -1,0 +1,59 @@
+
+patches:     file format elf64-x86-64
+
+Contents of section .rodata:
+ 2000 01000200 00000000 6a637466 7b4e494c  ........jctf{NIL
+ 2010 7d006e69 6c206275 73746572 00706174  }.nil buster.pat
+ 2020 63686573 2d6f686f 756c6968 616e0000  ches-ohoulihan..
+ 2030 69662d79 6f752d63 616e2d64 6f646765  if-you-can-dodge
+ 2040 2d612d77 72656e63 682d796f 752d6361  -a-wrench-you-ca
+ 2050 6e2d646f 6467652d 612d6261 6c6c00    n-dodge-a-ball. 
+
+0000000000001177 <main>:
+    1177:	f3 0f 1e fa          	endbr64 
+    117b:	55                   	push   rbp
+    117c:	48 89 e5             	mov    rbp,rsp
+    117f:	48 83 ec 30          	sub    rsp,0x30
+    1183:	89 7d dc             	mov    DWORD PTR [rbp-0x24],edi
+    1186:	48 89 75 d0          	mov    QWORD PTR [rbp-0x30],rsi
+    118a:	48 8d 05 8c 0e 00 00 	lea    rax,[rip+0xe8c]        # 201d <_IO_stdin_used+0x1d>
+    1191:	48 89 45 f0          	mov    QWORD PTR [rbp-0x10],rax
+    1195:	48 8d 05 94 0e 00 00 	lea    rax,[rip+0xe94]        # 2030 <_IO_stdin_used+0x30>
+    119c:	48 89 45 f8          	mov    QWORD PTR [rbp-0x8],rax
+    11a0:	c7 45 ec 00 00 00 00 	mov    DWORD PTR [rbp-0x14],0x0
+    11a7:	eb 1e                	jmp    11c7 <main+0x50>
+    11a9:	83 7d ec 1d          	cmp    DWORD PTR [rbp-0x14],0x1d
+    11ad:	7e 0a                	jle    11b9 <main+0x42>
+    11af:	b8 00 00 00 00       	mov    eax,0x0
+    11b4:	e8 90 ff ff ff       	call   1149 <a>
+    11b9:	b8 00 00 00 00       	mov    eax,0x0
+    11be:	e8 9d ff ff ff       	call   1160 <b>
+    11c3:	83 45 ec 01          	add    DWORD PTR [rbp-0x14],0x1
+    11c7:	83 7d ec 16          	cmp    DWORD PTR [rbp-0x14],0x16
+    11cb:	7e dc                	jle    11a9 <main+0x32>
+    11cd:	b8 00 00 00 00       	mov    eax,0x0
+    11d2:	c9                   	leave  
+    11d3:	c3                   	ret    
+    11d4:	66 2e 0f 1f 84 00 00 	nop    WORD PTR cs:[rax+rax*1+0x0]
+    11db:	00 00 00 
+    11de:	66 90                	xchg   ax,ax
+
+0000000000001149 <a>:
+    1149:	f3 0f 1e fa          	endbr64 
+    114d:	55                   	push   rbp
+    114e:	48 89 e5             	mov    rbp,rsp
+    1151:	48 8d 3d b0 0e 00 00 	lea    rdi,[rip+0xeb0]        # 2008 <_IO_stdin_used+0x8>
+    1158:	e8 f3 fe ff ff       	call   1050 <puts@plt>
+    115d:	90                   	nop
+    115e:	5d                   	pop    rbp
+    115f:	c3                   	ret    
+
+0000000000001160 <b>:
+    1160:	f3 0f 1e fa          	endbr64 
+    1164:	55                   	push   rbp
+    1165:	48 89 e5             	mov    rbp,rsp
+    1168:	48 8d 3d a3 0e 00 00 	lea    rdi,[rip+0xea3]        # 2012 <_IO_stdin_used+0x12>
+    116f:	e8 dc fe ff ff       	call   1050 <puts@plt>
+    1174:	90                   	nop
+    1175:	5d                   	pop    rbp
+    1176:	c3                   	ret    
