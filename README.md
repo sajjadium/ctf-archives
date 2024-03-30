@@ -631,6 +631,11 @@
             <td><a href="https://ctftime.org/event/1735/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/CursedCTF/2024/Quals">CursedCTF</a></td>
+            <td><a href="ctfs/CursedCTF/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2239/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/CYBERGON">CYBERGON</a></td>
             <td><a href="ctfs/CyBRICS/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2058/tasks/" target="_blank">CTFtime</a></td>
