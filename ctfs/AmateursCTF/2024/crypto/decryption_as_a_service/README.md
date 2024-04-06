@@ -1,0 +1,3 @@
+hellopir2
+
+Hi, please do not decrypt the flag. Or anything else, for that matter...
