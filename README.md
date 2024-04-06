@@ -2454,13 +2454,18 @@
             <td><a href="https://ctftime.org/event/1040/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td><a href="ctfs/UMass/2021">2021</a></td>
+            <td><a href="https://ctftime.org/event/1282/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/UMass">UMass</a></td>
             <td><a href="ctfs/UMass/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1561/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/UMass/2021">2021</a></td>
-            <td><a href="https://ctftime.org/event/1282/tasks/" target="_blank">CTFtime</a></td>
+            <td rowspan=1><a href="ctfs/UNbreakableInternational">UNbreakableInternational</a></td>
+            <td><a href="ctfs/UNbreakableInternational/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2297/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
             <td rowspan=6><a href="ctfs/UTCTF">UTCTF</a></td>

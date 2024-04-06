@@ -1,0 +1,1 @@
+In the heart of a bustling metropolis lies a mysterious facility known only as the 'File-Factory.' Rumored to be the creation of a reclusive genius programmer, the File-Factory operates in secrecy, generating files of unknown purpose.
