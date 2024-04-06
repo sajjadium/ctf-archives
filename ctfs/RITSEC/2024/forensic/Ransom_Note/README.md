@@ -1,0 +1,1 @@
+After the break-in to his lab Anthony found a suspicious new file on his desktop named README.txt. Anthony opened the file and found that it was a ransom demand from whomever stole his invention. Perhaps the contents of the ransom note contain a clue to the attacker's identity.

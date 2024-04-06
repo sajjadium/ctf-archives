@@ -1,0 +1,1 @@
+I was rummaging around some old files and found this badly made app (not mine by the way). Do you think you can uncover any hidden information hiding in when running it? You can download it here(guess.apk).
