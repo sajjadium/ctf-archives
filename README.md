@@ -2257,12 +2257,16 @@
             <td><a href="https://ctftime.org/event/932/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/THC">THC</a></td>
-            <td><a href="ctfs/THC/2022">2022</a></td>
+            <td rowspan=3><a href="ctfs/THCon">THCon</a></td>
+            <td><a href="ctfs/THCon/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2269/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/THCon/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1628/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/THC/2021">2021</a></td>
+            <td><a href="ctfs/THCon/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1381/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

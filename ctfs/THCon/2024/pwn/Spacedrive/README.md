@@ -1,0 +1,1 @@
+To upload the firmware updates to our satellites, we deplopped SpaceDrive, a safe file uploader across the stars. Because we experienced many issues with malicious ZipFiles in the past, our security team also developped a zip scanner to detected embeded malware. Will you be able to break it to take control of the satellite?
