@@ -55,8 +55,12 @@
             <td><a href="https://ctftime.org/event/1248/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/24h">24h</a></td>
-            <td><a href="ctfs/24h/2023">2023</a></td>
+            <td rowspan=2><a href="ctfs/24hCTF">24hCTF</a></td>
+            <td><a href="ctfs/24hCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2310/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/24hCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1968/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
