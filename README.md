@@ -2196,7 +2196,11 @@
             <td><a href="https://ctftime.org/event/1575/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=6><a href="ctfs/TAMUctf">TAMUctf</a></td>
+            <td rowspan=7><a href="ctfs/TAMUctf">TAMUctf</a></td>
+            <td><a href="ctfs/TAMUctf/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2238/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/TAMUctf/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1914/tasks/" target="_blank">CTFtime</a></td>
         </tr>
