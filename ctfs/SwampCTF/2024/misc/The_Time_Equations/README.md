@@ -1,0 +1,1 @@
+I have found the secrets of time travel hidden in 5 linear equations! HOWEVER, they need to be solved within 10 seconds or else the quantumn state of the universe changes and the original equations are no longer valid! Can you do it?

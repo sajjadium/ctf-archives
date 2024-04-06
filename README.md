@@ -2181,6 +2181,11 @@
             <td><a href="https://ctftime.org/event/767/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/SwampCTF">SwampCTF</a></td>
+            <td><a href="ctfs/SwampCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2138/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/SyskronSecurity">Syskron Security</a></td>
             <td><a href="ctfs/SyskronSecurity/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1148/tasks/" target="_blank">CTFtime</a></td>
