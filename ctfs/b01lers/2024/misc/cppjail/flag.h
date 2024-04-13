@@ -1,0 +1,1 @@
+#define FLAG "bctf{fake_very_very_very_very_very_flag}"

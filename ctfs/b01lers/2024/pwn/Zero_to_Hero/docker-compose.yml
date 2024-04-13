@@ -1,0 +1,12 @@
+version: "3"
+services:
+    zero2hero:
+        container_name: zero2hero_container
+        build:
+            dockerfile: ./deploy/Dockerfile
+            context: ../
+        logging:
+            driver: "json-file"
+        ports:
+            - "4900:5000"
+        privileged: true

@@ -2771,7 +2771,11 @@
             <td><a href="https://ctftime.org/event/577/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/b01lers">b01lers</a></td>
+            <td rowspan=5><a href="ctfs/b01lers">b01lers</a></td>
+            <td><a href="ctfs/b01lers/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2250/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/b01lers/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1875/tasks/" target="_blank">CTFtime</a></td>
         </tr>
