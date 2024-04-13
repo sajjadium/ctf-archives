@@ -2111,7 +2111,11 @@
             <td><a href="https://ctftime.org/event/970/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/SpaceHeroes">SpaceHeroes</a></td>
+            <td rowspan=3><a href="ctfs/SpaceHeroes">SpaceHeroes</a></td>
+            <td><a href="ctfs/SpaceHeroes/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2254/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/SpaceHeroes/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1856/tasks/" target="_blank">CTFtime</a></td>
         </tr>
