@@ -2096,6 +2096,11 @@
             <td><a href="https://ctftime.org/event/2220/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/ShunyaCTF">ShunyaCTF</a></td>
+            <td><a href="ctfs/ShunyaCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2336/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/SpamAndFlags">SpamAndFlags</a></td>
             <td><a href="ctfs/SpamAndFlags/2020/Quals">2020 Quals</a></td>
             <td><a href="https://ctftime.org/event/970/tasks/" target="_blank">CTFtime</a></td>

@@ -1,0 +1,1 @@
+my grandfather sent me this one photo describing it as his one of the most cherised and sacred memories during his time. help me find out some details about it. part 1: png header error, after solving flag would be printed on the photo.

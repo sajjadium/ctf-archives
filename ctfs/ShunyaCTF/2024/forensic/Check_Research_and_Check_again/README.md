@@ -1,0 +1,1 @@
+Sometimes in life, everything goes wrong, nothing works and you crash every time you try to look within yourself. In such moments, calculate where you came from, and see what you can correct, generally the last thing you did wrong is what needs to be corrected first.
