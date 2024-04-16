@@ -1344,8 +1344,12 @@
             <td><a href="https://ctftime.org/event/662/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/InCTF/2018">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/Incognito">Incognito</a></td>
-            <td><a href="ctfs/Incognito/2022">2022</a></td>
+            <td rowspan=2><a href="ctfs/INCOGNITO">INCOGNITO</a></td>
+            <td><a href="ctfs/INCOGNITO/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2316/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/INCOGNITO/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1632/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
