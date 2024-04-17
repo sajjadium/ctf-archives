@@ -1,0 +1,3 @@
+My cousin is really obsessed with mystery novels. He just finished one by his favorite author, Caeser Eightrows the Eighth, called "Rail Fence" . My uncle gave me this message he wrote, but it seems to be encoded somehow...
+
+    O:94wo-I936wia{82ltxNI14-NiB60}r-zK8!w!bvILjiZ

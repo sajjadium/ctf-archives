@@ -1,0 +1,1 @@
+You know how we tell our club members to encrypt their files with our public key prior to uploading them? I never thought one of them would would actually do that -- and I thought wrong. Unfortunately, it seems like I have misplaced the private key that was generated along with the public key. Do you think there's any way you can recover the contents of this encrypted file?

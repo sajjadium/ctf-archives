@@ -2114,11 +2114,6 @@
             <td><a href="https://ctftime.org/event/2336/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/SpamAndFlags">SpamAndFlags</a></td>
-            <td><a href="ctfs/SpamAndFlags/2020/Quals">2020 Quals</a></td>
-            <td><a href="https://ctftime.org/event/970/tasks/" target="_blank">CTFtime</a></td>
-        </tr>
-        <tr>
             <td rowspan=3><a href="ctfs/SpaceHeroes">SpaceHeroes</a></td>
             <td><a href="ctfs/SpaceHeroes/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2254/tasks/" target="_blank">CTFtime</a></td>
@@ -2130,6 +2125,16 @@
         <tr>
             <td><a href="ctfs/SpaceHeroes/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1567/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td rowspan=1><a href="ctfs/SpamAndFlags">SpamAndFlags</a></td>
+            <td><a href="ctfs/SpamAndFlags/2020/Quals">2020 Quals</a></td>
+            <td><a href="https://ctftime.org/event/970/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td rowspan=1><a href="ctfs/SpartanCTF">SpartanCTF</a></td>
+            <td><a href="ctfs/SpartanCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2313/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
             <td rowspan=1><a href="ctfs/SpookyCTF">SpookyCTF</a></td>
