@@ -1,0 +1,1 @@
+I'm waking up to code and trust, I tap my keys and I clear the dust, I'm breathing in the numericals. I'm cracking codes, shaping data, Then checking out on the digital strata, This is it, the cryptanalysis, Goooo
