@@ -1,0 +1,1 @@
+So we just hired an intern for our CTF. He wanted to make some challenges, but we told him to just make us a flyer to keep him occupied. Surely he didn't put a flag in here or else he's getting fired. Let us know..
