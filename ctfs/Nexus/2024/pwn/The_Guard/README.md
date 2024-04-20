@@ -1,0 +1,1 @@
+Welcome to ""The Guard"", where a vigilant sentinel stands between you and victory. Your challenge: outsmart the digital guardian using binary exploitation. But be cautious of its watchful eye and cunning defenses. Will you bypass the guard and claim triumph, or will you falter in your attempt? It's time to prove your mettle.

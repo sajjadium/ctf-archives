@@ -1673,6 +1673,11 @@
             <td><a href="https://ctftime.org/event/2072/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Nexus">Nexus</a></td>
+            <td><a href="ctfs/Nexus/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2331/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="ctfs/niteCTF">niteCTF</a></td>
             <td><a href="ctfs/niteCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2207/tasks/" target="_blank">CTFtime</a></td>
