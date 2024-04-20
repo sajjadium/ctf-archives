@@ -1,0 +1,1 @@
+Mr. Krabs has been tinkering with the restaurant thermometer to see what makes his staff the most productive. He's been tracking the data in his journal, but some "Lagrange" guy just called saying Mr. Krabs already has all the info he needs. Can you help Mr. Krabs predict how his staff will fare?

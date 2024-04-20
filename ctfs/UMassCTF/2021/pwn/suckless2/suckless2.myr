@@ -1,0 +1,101 @@
+use std
+
+var flag = "Obvious decoy is obvious. Hit the server, you fool."
+var version = "sldiary 0.1.1"
+
+const intro = {
+	std.put("(\\ \n")
+	std.put("\\'\\ \n")
+	std.put(" \\'\\     __________  \n")
+	std.put(" / '|   ()_________)\n")
+	std.put(" \\ '/    \\ ~~~~~~~~ \\       {}\n", version)
+	std.put("   \\       \\ ~~~~~~   \\\n")
+	std.put("   ==).     \\__________\\\n")
+	std.put("  (__)       ()__________)\n")
+	std.put("\n")
+	std.put("type 'help' for available commands\n")
+}
+
+const showver = {
+	var tmp = flag
+	std.put("this is {}\n", version)
+}
+
+const addmsg = {n, buf -> byte#
+	var i
+	var msg = std.bytealloc(n)
+	for i = 0; buf[i] != ('\n' : byte); i++;
+		(((msg : std.size) + i) : byte#)# = buf[i]
+	;;
+	-> msg
+}
+
+const msgstrconv = {n, msg
+	var i
+	var sb = std.mksb()
+	for i = 0; i < n; i++
+		std.sbputc(sb, ((((msg : uint64) + i) : byte#)# : char))
+	;;
+	-> std.sbfin(sb)
+}
+
+const getln = {
+	var sb = std.mksb()
+	var buf = std.slalloc(0x40)
+	match std.read(std.In, buf)
+		| `std.Ok(n):
+		| `std.Err(n): std.die("i/o error")
+	;;
+	std.sbputs(sb, buf)
+	-> std.sbfin(sb)
+}
+
+const main = {
+	intro()
+	var notes = std.slalloc(0)
+
+    var line
+	while true
+		std.put("> ")
+		line = getln()
+		if std.strhas(line, "help")
+			std.put("help: print this\n")
+			std.put("new: make a new note\n")
+			std.put("show: show all of your notes\n")
+			std.put("version: show the version of sldiary\n")
+		elif std.strhas(line, "new")
+			std.put("note length: ")
+			std.slfree(line)
+			line = getln()
+			var len
+			match std.strfind(line, "\n")
+			| `std.Some(n): line = line[:n]
+			| `std.None:
+			;;		
+			match std.intparse(line)
+			| `std.Some(n): len = n
+			| `std.None: std.put("invalid length\n"); continue
+			;;
+			std.put("note: ")
+			std.slfree(line)
+			line = getln()
+			var msg = addmsg(len, line)
+			notes = std.slpush(&notes, (len, msg))
+		elif std.strhas(line, "show")
+			var i
+			for i = 0; i < notes.len; i++;
+				var len, msg
+				(len, msg) = notes[i]
+				std.put("address: {}\n", (msg : byte#))
+				std.put("{}: {}\n", i, msgstrconv((len : uint64), msg))
+			;;
+		elif std.strhas(line, "version")
+			showver()
+		else
+			std.put("invalid command\n")
+		;;
+		std.slfree(line)
+	;;
+
+	std.slfree(notes)
+}

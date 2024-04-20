@@ -1,0 +1,1 @@
+Factoring is always fun! We're going to play a little game of golf based around factoring. You have 5 minutes to factor a given number, and I'll release more bits of one of the factors throughout the competition until someone solves it!
