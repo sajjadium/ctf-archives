@@ -1,0 +1,1 @@
+Introducing NFT-based escrows - you can deposit assets and trade escrows by selling your ownership NFT! However, I accidentally renounced ownership for my own escrow. Can you help me recover the funds?
