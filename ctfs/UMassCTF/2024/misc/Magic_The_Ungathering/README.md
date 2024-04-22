@@ -1,0 +1,1 @@
+I took 2 much red40 while watchmaxxing spongebob and I forgor to write a welcome challenge. Now all I can see is this image burned into my retinas. WHAT DOES IT MEAN!?! (There is a word in this image, wrap it in UMASS{} to get the flag. Example: if the word was ALLIGATOR the flag would be UMASS{ALLIGATOR})
