@@ -1,0 +1,1 @@
+My girlfriend cheated on me. And My Friend send me "The seamless flow of words hinted at their close connection, like hidden bonds between the letters." And After the first one my Friend Wants more complex That is the reason he hide another thing so I want to solve that steg. Please help me.
