@@ -1,0 +1,1 @@
+We found an image that was encrypted in aes-256 with a password. We also found a program that the creators of the image used to verify their password. We have further identified the user of the machine containing the image as "SuperS3cretUsername". Can you decrypt the image?

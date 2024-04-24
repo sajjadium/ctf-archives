@@ -60,7 +60,7 @@ def is_valid(line):
   if is_all_numeric:
     return False
 
-  if line.strip().lower() in ['welcome', 'expert', 'beginner', 'web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography', 'unrated', 'reverse engineering', 'task', 'information', 'insights', 'read this carrefully because sometimes the author might leave hints.', 'download files', 'play challenge']:
+  if line.strip().lower() in ['welcome', 'expert', 'beginner', 'web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography', 'unrated', 'reverse engineering', 'task', 'information', 'insights', 'read this carrefully because sometimes the author might leave hints.', 'download files', 'play challenge', 'problem', 'previous submissions']:
     return False
 
   if re.fullmatch("category (forensics|reverse|web|crypto|pwn)", line.strip().lower()):
@@ -106,7 +106,9 @@ def get_challenge_name(line):
     if original_name not in ['beginner', 'medium', 'hard', 'easy']:
       break
 
-  args = re.sub('(\d+ solves|\d+ pts$)', '', original_name.strip()).strip().split()
+  args = re.sub('(\d+ solves|\d+ pts$)', '', original_name.strip()).strip()
+  args = re.sub('\(solved by \d+ team(s)?\)$', '', args).strip()
+  args = args.split()
 
   tokens = []
   for a in args:

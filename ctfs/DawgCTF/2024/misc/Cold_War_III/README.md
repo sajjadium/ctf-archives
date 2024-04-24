@@ -1,0 +1,1 @@
+My friend really loves exploring the world, and DMing us Open Source Intelligence challenges on Discord. This one is particularly tricky. All I know Is I'm looking for a former soviet town. In addition to the cryptic photos, there is a text file with some clues. Can you help me figure out the name of the former soviet town?

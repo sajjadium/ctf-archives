@@ -1,0 +1,1 @@
+This chess game has been very pivotal in the chess world, but all history is eventually lost. Among the many relevant factors of this event, one of the players debuted a fascinating invention. What is the US patent number of that invention?

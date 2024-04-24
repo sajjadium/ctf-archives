@@ -1,0 +1,1 @@
+Recently, the employee in charge of encrypting company files was transferred to another location and we haven't been able to get in contact. We have an important file that needs decrypting and all we know is the employee used Blum Blum Shub to generate keys for the AES algorithm used for encryption.

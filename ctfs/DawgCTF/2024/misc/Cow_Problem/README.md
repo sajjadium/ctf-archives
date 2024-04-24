@@ -1,0 +1,1 @@
+This cow named BESSIE came up to me and was talking about some problem with MINIMIZING UGLINESS and gave me this data. I don't know much about math or computers, but you do, right? Can you help her out?

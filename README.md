@@ -799,20 +799,24 @@
             <td><a href="https://ctftime.org/event/1118/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/Dawg">Dawg</a></td>
-            <td><a href="ctfs/Dawg/2023">2023</a></td>
+            <td rowspan=5><a href="ctfs/DawgCTF">DawgCTF</a></td>
+            <td><a href="ctfs/DawgCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2343/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/DawgCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1974/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Dawg/2022">2022</a></td>
+            <td><a href="ctfs/DawgCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1633/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Dawg/2021">2021</a></td>
+            <td><a href="ctfs/DawgCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1319/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Dawg/2020">2020</a></td>
+            <td><a href="ctfs/DawgCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1030/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

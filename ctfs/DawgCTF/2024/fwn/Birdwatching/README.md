@@ -1,0 +1,1 @@
+Look! A bird! …wait, you don’t see it? I’m sure there’s one hidden in the lower bits of the prairie, can you find it and tell me its scientific name? (Flag formatting: Capital first word, words separated by underscore. If the hidden bird is an American Robin —> DawgCTF{Turdus_migratorius} )

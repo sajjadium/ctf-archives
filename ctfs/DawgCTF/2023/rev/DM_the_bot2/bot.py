@@ -1,0 +1,25 @@
+#BY: J4NU5
+import discord
+
+STRING = 4
+START = 22
+STOP = 58
+
+if __name__ == "__main__":
+    client = discord.Client(intents=discord.Intents.default())
+
+    @client.event
+    async def on_ready():
+        print('We have logged in as {0.user}'.format(client))
+
+    msglist = ["TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaX","Bpc2NpbmcgZWxpdCwgc2VkIGRvIGVpdXNtb2QgdGVtcG9yIGluY2lkaWR1bnQgdXQgbGFib3JlIGV0IGRvbG9yZSBtYWduYSBhbGlxdWEuIFVybmEgY29uZGltZW50dW0gbWF0dGlzIHBlbGxlbnRlc3F1ZSBpZCBuaWJoIHRvcnRvciBpZCBhbGlxdWV0LiBGYW==","NpbGlzaXMgbWFnbmEgZXRpYW0gdGVtcG9yIG9yY2kgZXUuIFNhcGllbiBldCBsaWd1bGEgdWxsYW1jb3JwZXIgbWFsZXN1YWRhLiBUcmlzdGlxdWUgbnVsbGE","gYWxpcXVldCBlbmltIHRvcnRvciBhdC4gUXVpcyByaXN1cyBzZWQgdnVscHV0YXRlIG9kaW8uIFNhZ2l0dGlzIGFsaXF1YW0gbWFsZXN1YWRhIGJpYmVuZHVt","IGFyY3Ugdml0YWUgZWxlbWRGF3Z0NURns1dDR0MWNfMHJfZHluNG0xYz99VudHVtIGN1cmFiaXR1ci4gSGFiaXRhc3NlIHBsYXRlYSBkaWN0dW1zdCBxdW=","lzcXVlIHNhZ2l0dGlzIHB1cnVzIHNpdCBhbWV0LiBQdXJ1cyBncmF2aWRhIHF1aXMgYmxhbmRpdCB0dXJwaXMgY3Vyc3VzIGluIGhhYyBoYWJpdGFzc2UuIFZvbHV0cGF0IGFjIHRpbmNpZHVudCB2aXRhZSBzZW1wZXIuIFF1YW0gZWxlbWVudHVtIHB1b==","HZpbmFyIGV0aWFtIG5vbiBxdWFtIGxhY3VzLiBBbWV0IHRlbGx1cyBjcmFzIGFkaXBpc2NpbmcgZW5pbSBldSB0dXJwaXMgZWdlc3Rhcy4KCkZldWdpYXQgbmlzbCBwcmV0aXVtIGZ1c2NlIGlkIHZlbGl0IHV0IHRvcnRvciBwcmV0aXVtIHZpdmVycmEuIEVuaW0gZGlhbSB2dWxwdXRhdGUgdXQgcGhhcmV0cmEgc2l0IGFtZ","XQuIEZldWdpYXQgcHJldGl1bSBuaWJoIGlwc3VtIGNvbnNlcXVhdCBuaXNsLiBCaWJlbmR1bSB1dCB0cmlzdGlxdWUgZXQgZWdlc3RhcyBxdWlzIGlwc3VtIHN1c3BlbmRpc3NlIHVsdHJpY2VzLiBWaXZlcnJhIGlwc3VtIG51bmMgYWxpcXVldCBi","aWJlbmR1bSBlbmltIGZhY2lsaXNpcyBncmF2aWRhIG5lcXVlLiBDb25zZWN0ZXR1ciBhZGlwaXNjaW5nIGVsaXQgdXQgYWxpcXVhbSBwdXJ1cyBzaXQgYW1ldCBsdWN0dXMuIEVyYXQgdmVsaXQgc2NlbG","VyaXNxdWUgaW4gZGljdHVtIG5vbiBjb25zZWN0ZXR1ciBhIGVyYXQuIERpYW0gc29sbGljaXR1ZGluIHRlbXBvciBpZCBldSBuaXNsIG51bmMgbWkgaXBzdW0uIFJpc3VzIHF1aXMgdmFyaXVzIHF1YW0gcXVpc3F1ZSBpZCBkaWFtIHZlbCBxdWFtIGV","sZW1lbnR1bS4gUG9zdWVyZSBsb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCBjb25zZWN0ZXR1ci4gVWxsYW1jb3JwZXIgbW9yYmkgdGluY2lkdW50IG9ybmFyZSBtYXNzYS4gUXVhbSBhZGlwaXNjaW5nIHZpdGFlIHByb2luIHNhZ2l0dGlzIG5pc2wgcmhvbmN1cy4gRXUgY29uc2VxdWF0IGFjIGZlbGlzIGRvbmVjIGV0IG9kaW8gcGVsbGVudGVzcX","VlIGRpYW0gdm9sdXRwYXQuIEV0IG1hZ25pcyBkaXMgcGFydHVyaWVudCBtb250ZXMgbmFzY2V0dXIuIEFsaXF1YW0gbWFsZXN1YWRhIGJpYmVuZHVtIGFyY3Ugdml0YWUuIEluIG51bGxhIHBvc3VlcmUgc29sbGljaXR1ZGluIGFsaXF1YW0u"]
+
+    @client.event
+    async def on_message(message):
+        if message.author == client.user:
+            return
+        
+        if message.content.startswith('hello') or message.content.startswith('Hello') or message.content.startswith('hi') or message.content.startswith('Hi'):
+            await message.channel.send(msglist[STRING][START:STOP])
+
+    client.run('THIS_SHOULD_PROBABLY_BE_A_PROPER_BOT_ID')

@@ -1,0 +1,1 @@
+My friend from Kazakhstan sent me this weird picture, he says that it's the key to a secret treasure room underground. Do you know where this picture was taken? The flag will be the official name of it, and should be 5 letters, all capital letters, and 1 number. 6 characters total.

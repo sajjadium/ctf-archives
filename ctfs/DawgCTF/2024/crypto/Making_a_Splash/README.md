@@ -1,0 +1,1 @@
+You know the spinning circle that shows up when Windows boots up? Fun bit of Windows trivia: That’s actually an internal font Windows uses called Segoe Boot Lite, with each frame being a custom glyph. Cool, right?

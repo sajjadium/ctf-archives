@@ -1,0 +1,1 @@
+We recovered this image from a hard drive, but it appears to be mosaically censored! Can you figure out how to decensor this image and recover the original text? Your flag will be the text with underscores, e.g DawgCTF{Hey_Everybody_What_Is_This}

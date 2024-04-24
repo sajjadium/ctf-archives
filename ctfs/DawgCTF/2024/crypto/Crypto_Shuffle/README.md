@@ -1,0 +1,1 @@
+You've stumbled upon an encrypted message along with the phrase "lucky 7" during your investigation into a notorious hacking group known as "The Cipher Syndicate." The message appears to be encoded with a combination of ciphers. See if you can uncover the plaintext.

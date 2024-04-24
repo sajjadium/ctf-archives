@@ -1,0 +1,1 @@
+She handed me a file and said, "Help me find the egg and get it out". I don't think she meant literal eggs. She also said "The password is 12345" whatever that means. Remind me to change the combination on my luggage.
