@@ -1,0 +1,3 @@
+easy crypto
+
+Whenever I send my friend memes on instagram about how “Life has no meaning” they tell me to stop being a nihilist, I wonder what that means…

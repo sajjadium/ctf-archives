@@ -1,0 +1,3 @@
+easy misc
+
+A strange machine has appeared in the Underworld, as if from another time. An image of the machine has been crafted, maybe it contains more information on the device...
