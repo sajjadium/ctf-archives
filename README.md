@@ -554,7 +554,7 @@
         </tr>
         <tr>
             <td rowspan=1><a href="ctfs/CTF@CIT">CTF@CIT</a></td>
-            <td><a href="ctfs/CTFZone/2024">2024</a></td>
+            <td><a href="ctfs/CTF@CIT/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2339/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
@@ -848,7 +848,7 @@
             <td><a href="https://ctftime.org/event/2106/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Defcamp/2022/Quals">2022 Quals</a></td>
+            <td><a href="ctfs/Defcamp/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1560/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
@@ -865,8 +865,8 @@
             <td><a href="https://ctftime.org/event/1060/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/DiceCTF/Quals">DiceCTF Quals</a></td>
-            <td><a href="ctfs/DiceCTF/2024/Quals">2024</a></td>
+            <td rowspan=4><a href="ctfs/DiceCTF">DiceCTF</a></td>
+            <td><a href="ctfs/DiceCTF/2024/Quals">2024 Quals</a></td>
             <td><a href="https://ctftime.org/event/2217/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
