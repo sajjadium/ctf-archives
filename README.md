@@ -1381,20 +1381,20 @@
             <td><a href="https://ctftime.org/event/1996/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/Insomnihack">Insomni'hack</a></td>
-            <td><a href="ctfs/Insomnihack/2024/Quals">2024 Quals</a></td>
+            <td rowspan=4><a href="ctfs/insomnihack">insomnihack</a></td>
+            <td><a href="ctfs/insomnihack/2024/Quals">2024 Quals</a></td>
             <td><a href="https://ctftime.org/event/2139/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Insomnihack/2023/Quals">2023 Quals</a></td>
+            <td><a href="ctfs/insomnihack/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/1831/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/InsomniHack/2022/Quals">2022 Quals</a></td>
+            <td><a href="ctfs/insomnihack/2022/Quals">2022 Quals</a></td>
             <td><a href="https://ctftime.org/event/1505/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/InsomniHack/2019/Quals">2019 Quals</a></td>
+            <td><a href="ctfs/insomnihack/2019/Quals">2019 Quals</a></td>
             <td><a href="https://ctftime.org/event/686/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
@@ -2949,7 +2949,7 @@
             <td><a href="https://ctftime.org/event/1895/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/nullconHackIM">nullcon HackIM</a></td>
+            <td rowspan=5><a href="ctfs/nullconHackIM">nullconHackIM</a></td>
             <td><a href="ctfs/nullconHackIM/2023">2023 Goa</a></td>
             <td><a href="https://ctftime.org/event/2065/tasks/" target="_blank">CTFtime</a></td>
         </tr>
