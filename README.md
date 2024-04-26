@@ -2950,11 +2950,11 @@
         </tr>
         <tr>
             <td rowspan=5><a href="ctfs/nullconHackIM">nullconHackIM</a></td>
-            <td><a href="ctfs/nullconHackIM/2023">2023 Goa</a></td>
+            <td><a href="ctfs/nullconHackIM/2023-Goa">2023 Goa</a></td>
             <td><a href="https://ctftime.org/event/2065/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/nullconHackIM/2023">2023 Berlin</a></td>
+            <td><a href="ctfs/nullconHackIM/2023-Berlin">2023 Berlin</a></td>
             <td><a href="https://ctftime.org/event/1900/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
