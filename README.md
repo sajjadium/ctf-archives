@@ -2532,7 +2532,11 @@
             <td><a href="https://ctftime.org/event/587/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/UIUCTF/2018">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/UMDCTF">UMDCTF</a></td>
+            <td rowspan=5><a href="ctfs/UMDCTF">UMDCTF</a></td>
+            <td><a href="ctfs/UMDCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2323/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/UMDCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1949/tasks/" target="_blank">CTFtime</a></td>
         </tr>

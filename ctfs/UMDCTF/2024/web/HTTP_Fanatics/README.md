@@ -1,0 +1,3 @@
+tahmid-23
+
+The official HTTP Fanatics webpage has upgraded their server infrastructure to HTTP/3. I still don't know how to sign up...
