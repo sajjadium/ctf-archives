@@ -1,0 +1,1 @@
+Spurdo decided to develop a web game while he was solo leveling. But due to lack of skill, spurdo developed a game that cannot be completed by anyone sane enough. And because of that he decided to invite some beta players(you) for his game.
