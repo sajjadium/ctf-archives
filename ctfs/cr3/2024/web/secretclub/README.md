@@ -1,0 +1,3 @@
+I think that youtube video taught me the wrong way to roll my own authentication...
+
+https://secretclub.1337.sb $ nc 1337.sb 50000
