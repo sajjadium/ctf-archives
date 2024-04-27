@@ -178,6 +178,11 @@
             <td><a href="https://ctftime.org/event/2024/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/AirOverflow">AirOverflow</a></td>
+            <td><a href="ctfs/AirOverflow/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2360/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/AmateursCTF">AmateursCTF</a></td>
             <td><a href="ctfs/AmateursCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2226/tasks/" target="_blank">CTFtime</a></td>
