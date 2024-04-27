@@ -925,6 +925,11 @@
             <td><a href="https://ctftime.org/event/648/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/DreamhackInvitational">DreamhackInvitational</a></td>
+            <td><a href="ctfs/DreamhackInvitational/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2308/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/EBCTF">EBCTF</a></td>
             <td><a href="ctfs/EBCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1696/tasks/" target="_blank">CTFtime</a></td>
