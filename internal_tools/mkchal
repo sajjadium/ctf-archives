@@ -139,6 +139,8 @@ if __name__ == '__main__':
 
   # compress any pcap or pcapng file
   os.system("find \"%s\" -type f -name \"*.pcap*\" | grep -E -e '.*\.pcap(ng){0,1}$' | xargs -n 1 xz" % (chal_name))
+  # compress any wav file
+  os.system("find \"%s\" -type f -name \"*.wav\" | grep -E -e '.*\.wav$' | xargs -n 1 xz" % (chal_name))
 
   readme = ''
   if os.path.exists('%s/README.md' % chal_name):
