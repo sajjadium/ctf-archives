@@ -1,0 +1,5 @@
+FR : La forensique mémoire avec Volatility2 est ma grande passion, et ce depuis sa sortie en août 2006 ! Récemment, j'ai même participé à un concours d'analyse mémoire sur un chat IRC assez rétro. Même si j'ai eu quelques difficultés à trouver le bon profil à utiliser, un utilisateur nommé "jonas_kahnwald44" a pu m'en fournir un fonctionnel. Maintenant que j'en parle, j'ai remarqué un message inattendu lors de l'exécution de Volatility2 avec ce profil. Pourriez-vous jeter un oeil à cette capture réseau réalisée sur mon serveur d'analyse ?
+
+EN : Memory forensics with Volatility2 has been my great passion since its release in August 2006! Recently, I even participated in a memory analysis contest on a rather retro IRC chat. Although I had some difficulties finding the right profile to use, a user named "jonas_kahnwald44" was able to provide me with a functional one. Now that I mention it, I noticed an unexpected message while running Volatility2 with this profile. Could you take a look at this network capture made on my analysis server?
+
+Author: Abyss Watcher

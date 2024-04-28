@@ -1634,7 +1634,11 @@
             <td><a href="https://ctftime.org/event/1420/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/MidnightFlag">Midnight Flag</a></td>
+            <td rowspan=2><a href="ctfs/MidnightFlag">Midnight Flag</a></td>
+            <td><a href="ctfs/MidnightFlag/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2295/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/MidnightFlag/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1947/tasks/" target="_blank">CTFtime</a></td>
         </tr>
