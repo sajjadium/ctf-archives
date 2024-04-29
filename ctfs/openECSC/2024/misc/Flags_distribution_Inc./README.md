@@ -1,3 +1,0 @@
-Alberto247
-
-Finally Flags distribution Inc. made a false step! They accidentally exposed their client certificate signing endpoint to the internet... It doesn't seem to be able to sign admin certificates though...
