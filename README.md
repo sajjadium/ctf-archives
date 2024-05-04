@@ -3091,6 +3091,11 @@
             <td><a href="https://ctftime.org/event/2158/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/squ1rrel">squ1rrel</a></td>
+            <td><a href="ctfs/squ1rrel/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2370/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/vikeCTF">vikeCTF</a></td>
             <td><a href="ctfs/vikeCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2263/tasks/" target="_blank">CTFtime</a></td>

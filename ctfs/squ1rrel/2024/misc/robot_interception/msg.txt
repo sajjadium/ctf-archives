@@ -1,0 +1,10 @@
+We've intercepted some velocity command communications data between a robot and its controller, but we can't figure
+out what it's doing. As far as we know, the robot has the following parameters:
+
+theta = [q0, q1, q2, q3, q4, q5, q6]
+alpha = [pi/2, -pi/2, 0, -pi/2, pi/2, -pi/2, 0]
+a     = [0.000, 0.000, 0.135, 0.380, 0.000, 0.000, 0.000]
+d     = [0.100, 0.135, 0.000, 0.000, 0.120, 0.000, 0.070]
+
+We're also pretty sure it's start position is:
+qi = [0, 0, 0, 0, 0, 0, 0]
