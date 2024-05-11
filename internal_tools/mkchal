@@ -60,7 +60,7 @@ def is_valid(line):
   if is_all_numeric:
     return False
 
-  if line.strip().lower() in ['welcome', 'expert', 'beginner', 'web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography', 'unrated', 'reverse engineering', 'task', 'information', 'insights', 'read this carrefully because sometimes the author might leave hints.', 'download files', 'play challenge', 'problem', 'previous submissions']:
+  if line.strip().lower() in ['welcome', 'expert', 'beginner', 'web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography', 'unrated', 'reverse engineering', 'task', 'information', 'insights', 'read this carrefully because sometimes the author might leave hints.', 'download files', 'play challenge', 'problem', 'previous submissions', 'download', 'admin bot', 'website']:
     return False
 
   if re.fullmatch("category (forensics|reverse|web|crypto|pwn)", line.strip().lower()):
@@ -87,7 +87,7 @@ def is_valid(line):
   if re.fullmatch(r"nc \d+\.\d+\.\d+\.\d+ \d+", line.strip().lower()):
     return False
 
-  if re.fullmatch(r"nc [a-z0-9\-]{1,63}(\.[a-z0-9-]{1,63})+ \d+", line.strip().lower()):
+  if re.fullmatch(r"nc [a-z0-9\-_]{1,63}(\.[a-z0-9-_]{1,63})+ \d+", line.strip().lower()):
     return False
 
   if re.fullmatch(r"\d{1,2}/\d{1,2}/\d{4}", line.strip().lower()):
@@ -119,6 +119,7 @@ if __name__ == '__main__':
   chal_name = get_challenge_name(replace_special_characters(lines[0]))
 
   lines = '\n'.join(lines[1:]).strip().split('\n')
+  lines = [re.sub(r"nc [a-z0-9\-_]{1,63}(\.[a-z0-9-_]{1,63})+ \d+", '', l) for l in lines]
   lines = [l.strip('\n') for l in lines if is_valid(l)]
 
   shutil.rmtree(chal_name, ignore_errors=True)
