@@ -1,0 +1,3 @@
+C:
+CHALL.EXE
+EXIT
