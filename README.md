@@ -2107,7 +2107,11 @@
             <td><a href="https://ctftime.org/event/1566/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/SanDiego">SanDiego</a></td>
+            <td rowspan=2><a href="ctfs/SanDiego">SanDiego</a></td>
+            <td><a href="ctfs/SanDiego/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2325/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/SanDiego/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1910/tasks/" target="_blank">CTFtime</a></td>
         </tr>
