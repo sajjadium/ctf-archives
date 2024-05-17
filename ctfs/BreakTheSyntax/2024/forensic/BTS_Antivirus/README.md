@@ -1,0 +1,1 @@
+I realised that something was wrong with that free flag document, so I decided to download an antivirus. It worked well - maybe too well, because it seems to have encrypted all my files. I don't really know how to feel about that - maybe it's for security. I've captured internet traffic and created a memory dump of the antivirus process. Can you analyze what it really did?

@@ -438,7 +438,11 @@
             <td><a href="https://ctftime.org/event/2181/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/BreakTheSyntax">Break the Syntax</a></td>
+            <td rowspan=4><a href="ctfs/BreakTheSyntax">Break the Syntax</a></td>
+            <td><a href="ctfs/BreakTheSyntax/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2289/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/BreakTheSyntax/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1940/tasks/" target="_blank">CTFtime</a></td>
         </tr>
