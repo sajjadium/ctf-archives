@@ -1,0 +1,3 @@
+stosp
+
+my friends password is keysmash.... :(... i got some of his old keysmashes tho.... he types kinda funny....
