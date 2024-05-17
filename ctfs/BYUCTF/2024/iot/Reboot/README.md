@@ -1,0 +1,3 @@
+We found a command injection..... but you have to reboot the router to activate it...
+
+Author: Legoclones

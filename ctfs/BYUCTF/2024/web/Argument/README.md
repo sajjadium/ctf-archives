@@ -1,0 +1,3 @@
+I just wanted to make a simple application where people can store files. But I'm a good college student and have taken web security classes, so I'm aware of all the vulnerabilities that may exist and made my app perfectly secure! There's no way you'd be able to get the flag...
+
+Author: Legoclones
