@@ -99,12 +99,13 @@ def replace_special_characters(line):
   return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake')
 
 def get_challenge_name(line):
-  for original_name in reversed(line.strip().split('/')):
+  for original_name in reversed(line.strip('|').strip().split('/')):
     if original_name not in ['beginner', 'medium', 'hard', 'easy']:
       break
 
   args = re.sub('(\d+ solves|\d+ pts$)', '', original_name.strip()).strip()
   args = re.sub('\(solved by \d+ team(s)?\)$', '', args).strip()
+  args = re.sub('\d+$', '', args).strip()
   args = args.split()
 
   tokens = []
@@ -120,6 +121,7 @@ if __name__ == '__main__':
 
   lines = '\n'.join(lines[1:]).strip().split('\n')
   lines = [re.sub(r"nc [a-z0-9\-_]{1,63}(\.[a-z0-9-_]{1,63})+ \d+", '', l) for l in lines]
+  lines = [l.strip('|') for l in lines]
   lines = [l.strip('\n') for l in lines if is_valid(l)]
 
   shutil.rmtree(chal_name, ignore_errors=True)
