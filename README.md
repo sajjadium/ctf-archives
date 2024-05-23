@@ -1751,7 +1751,11 @@
             <td><a href="https://ctftime.org/event/1822/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/NahamCon">NahamCon</a></td>
+            <td rowspan=6><a href="ctfs/NahamCon">NahamCon</a></td>
+            <td><a href="ctfs/NahamCon/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2364/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/NahamCon/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2023/tasks/" target="_blank">CTFtime</a></td>
         </tr>

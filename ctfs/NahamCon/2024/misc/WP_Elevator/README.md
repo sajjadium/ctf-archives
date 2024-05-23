@@ -1,0 +1,3 @@
+Author: Patchstack
+
+Asked my freelance developer friend to write me an authorization plugin so I can share knowledge with selected memebers. He is still working on it but gave me an early version. I don't know how it works but will talk with him once he finishes.
