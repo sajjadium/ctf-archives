@@ -1,0 +1,3 @@
+It's so easy to make a secure flag checker, just check it on the server, duh...
+
+Author: ahh

@@ -133,7 +133,7 @@ if __name__ == '__main__':
   for f in os.listdir(download_dir):
     fname = os.path.join(download_dir, f)
 
-    if time.time() - os.path.getmtime(fname) <= 60:
+    if time.time() - os.path.getmtime(fname) <= 120:
       subprocess.run(['mv', fname, chal_name])
 
   # compress any pcap or pcapng file
