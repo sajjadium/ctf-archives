@@ -12,6 +12,9 @@ import glob
 from pathlib import Path
 
 def is_valid(line):
+  if line.lower() in ['source dockerfile', 'files', 'challenge', 'challenge.py']:
+    return False
+
   if len(line.strip()) == 0:
     return True
 
@@ -96,7 +99,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A')
 
 def get_challenge_name(line):
   for original_name in reversed(line.strip('|').strip().split('/')):
@@ -106,6 +109,7 @@ def get_challenge_name(line):
   args = re.sub('(\d+ solves|\d+ pts$)', '', original_name.strip()).strip()
   args = re.sub('\(solved by \d+ team(s)?\)$', '', args).strip()
   args = re.sub('\d+$', '', args).strip()
+  args = re.sub('(misc|crypto|rev|web|pwn)$', '', args).strip()
   args = args.split()
 
   tokens = []

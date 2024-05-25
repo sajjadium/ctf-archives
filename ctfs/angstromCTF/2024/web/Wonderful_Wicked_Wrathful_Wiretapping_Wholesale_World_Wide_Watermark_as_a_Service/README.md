@@ -1,0 +1,3 @@
+Watered Down Watermark as a Service (from 2021) returns with a vengeance! We turned off the screenshot feature since everyone was abusing it to leak flags. Now it's perfectly secure for sure...
+
+Author: clam

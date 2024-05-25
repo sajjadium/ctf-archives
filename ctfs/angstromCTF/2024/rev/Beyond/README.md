@@ -1,0 +1,3 @@
+To positive or negative infinity, and beyond...
+
+Author: rous
