@@ -1,0 +1,141 @@
+  5           0 BUILD_LIST               0
+              2 LOAD_CONST               1 (('_', '3', 'N', 'D', 'J', 'b', 'M', '3', 'n', 'D', 'f', 'S', '}'))
+              4 LIST_EXTEND              1
+              6 STORE_FAST               0 (chars)
+
+  6           8 LOAD_CONST               2 ('btctf{py7h0nS_')
+             10 STORE_FAST               1 (flag)
+
+  7          12 LOAD_CONST               3 (']{1Jv]2f]G5{@]vL2f')
+             14 STORE_FAST               2 (encrypted_part)
+
+  8          16 LOAD_CONST               4 (2)
+             18 STORE_FAST               3 (key)
+
+  9          20 LOAD_GLOBAL              0 (len)
+             22 LOAD_FAST                2 (encrypted_part)
+             24 CALL_FUNCTION            1
+             26 LOAD_CONST               5 (1)
+             28 BINARY_SUBTRACT
+             30 STORE_FAST               4 (i)
+
+ 10          32 LOAD_FAST                4 (i)
+             34 LOAD_CONST               6 (0)
+             36 COMPARE_OP               4 (>)
+             38 POP_JUMP_IF_FALSE       40 (to 80)
+
+ 11     >>   40 LOAD_FAST                1 (flag)
+             42 LOAD_GLOBAL              1 (chr)
+             44 LOAD_GLOBAL              2 (ord)
+             46 LOAD_FAST                2 (encrypted_part)
+             48 LOAD_FAST                4 (i)
+             50 BINARY_SUBSCR
+             52 CALL_FUNCTION            1
+             54 LOAD_FAST                3 (key)
+             56 BINARY_XOR
+             58 CALL_FUNCTION            1
+             60 INPLACE_ADD
+             62 STORE_FAST               1 (flag)
+
+ 12          64 LOAD_FAST                4 (i)
+             66 LOAD_CONST               5 (1)
+             68 BINARY_SUBTRACT
+             70 STORE_FAST               4 (i)
+
+ 10          72 LOAD_FAST                4 (i)
+             74 LOAD_CONST               6 (0)
+             76 COMPARE_OP               4 (>)
+             78 POP_JUMP_IF_TRUE        20 (to 40)
+
+ 13     >>   80 LOAD_FAST                1 (flag)
+             82 LOAD_FAST                0 (chars)
+             84 LOAD_CONST               6 (0)
+             86 BINARY_SUBSCR
+             88 INPLACE_ADD
+             90 STORE_FAST               1 (flag)
+
+ 14          92 LOAD_FAST                1 (flag)
+             94 LOAD_FAST                0 (chars)
+             96 LOAD_CONST               7 (3)
+             98 BINARY_SUBSCR
+            100 INPLACE_ADD
+            102 STORE_FAST               1 (flag)
+
+ 15         104 LOAD_FAST                1 (flag)
+            106 LOAD_FAST                0 (chars)
+            108 LOAD_CONST               8 (8)
+            110 BINARY_SUBSCR
+            112 INPLACE_ADD
+            114 STORE_FAST               1 (flag)
+
+ 16         116 LOAD_FAST                1 (flag)
+            118 LOAD_FAST                0 (chars)
+            120 LOAD_CONST               9 (7)
+            122 BINARY_SUBSCR
+            124 INPLACE_ADD
+            126 STORE_FAST               1 (flag)
+
+ 17         128 LOAD_FAST                1 (flag)
+            130 LOAD_FAST                0 (chars)
+            132 LOAD_CONST              10 (10)
+            134 BINARY_SUBSCR
+            136 INPLACE_ADD
+            138 STORE_FAST               1 (flag)
+
+ 18         140 LOAD_FAST                1 (flag)
+            142 LOAD_FAST                0 (chars)
+            144 LOAD_CONST              11 (6)
+            146 BINARY_SUBSCR
+            148 INPLACE_ADD
+            150 STORE_FAST               1 (flag)
+
+ 19         152 LOAD_FAST                1 (flag)
+            154 LOAD_FAST                0 (chars)
+            156 LOAD_CONST               4 (2)
+            158 BINARY_SUBSCR
+            160 INPLACE_ADD
+            162 STORE_FAST               1 (flag)
+
+ 20         164 LOAD_FAST                1 (flag)
+            166 LOAD_FAST                0 (chars)
+            168 LOAD_CONST              12 (9)
+            170 BINARY_SUBSCR
+            172 INPLACE_ADD
+            174 STORE_FAST               1 (flag)
+
+ 21         176 LOAD_FAST                1 (flag)
+            178 LOAD_FAST                0 (chars)
+            180 LOAD_CONST              13 (4)
+            182 BINARY_SUBSCR
+            184 INPLACE_ADD
+            186 STORE_FAST               1 (flag)
+
+ 22         188 LOAD_FAST                1 (flag)
+            190 LOAD_FAST                0 (chars)
+            192 LOAD_CONST               5 (1)
+            194 BINARY_SUBSCR
+            196 INPLACE_ADD
+            198 STORE_FAST               1 (flag)
+
+ 23         200 LOAD_FAST                1 (flag)
+            202 LOAD_FAST                0 (chars)
+            204 LOAD_CONST              14 (5)
+            206 BINARY_SUBSCR
+            208 INPLACE_ADD
+            210 STORE_FAST               1 (flag)
+
+ 24         212 LOAD_FAST                1 (flag)
+            214 LOAD_FAST                0 (chars)
+            216 LOAD_CONST              15 (11)
+            218 BINARY_SUBSCR
+            220 INPLACE_ADD
+            222 STORE_FAST               1 (flag)
+
+ 25         224 LOAD_FAST                1 (flag)
+            226 LOAD_FAST                0 (chars)
+            228 LOAD_CONST              16 (12)
+            230 BINARY_SUBSCR
+            232 INPLACE_ADD
+            234 STORE_FAST               1 (flag)
+            236 LOAD_CONST               0 (None)
+            238 RETURN_VALUE

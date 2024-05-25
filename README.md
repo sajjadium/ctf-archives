@@ -342,6 +342,11 @@
             <td><a href="https://ctftime.org/event/1078/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/BTCTF">BTCTF</a></td>
+            <td><a href="ctfs/BTCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2340/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="ctfs/BYUCTF">BYUCTF</a></td>
             <td><a href="ctfs/BYUCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2252/tasks/" target="_blank">CTFtime</a></td>

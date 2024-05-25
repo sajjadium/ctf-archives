@@ -1,0 +1,13 @@
+flag:
+0       push   rbp
+1       mov    rbp,rsp
+4       mov    DWORD PTR [rbp-0x4],edi
+7       add    DWORD PTR [rbp-0x4],0x1
+b       cmp    DWORD PTR [rbp-0x4],0x2a
+12      jle    1d <flag+0x1d>
+14      mov    DWORD PTR [rbp-0x4],0x5f
+1b      jmp    24 <flag+0x24>
+1d      mov    DWORD PTR [rbp-0x4],0x43
+24      nop
+25      pop    rbp
+26      ret
