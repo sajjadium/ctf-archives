@@ -1,0 +1,3 @@
+I was fired due to my last notes app understandably, let me fix it here...
+
+Author: ahh
