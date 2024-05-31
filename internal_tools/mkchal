@@ -63,7 +63,7 @@ def is_valid(line):
   if is_all_numeric:
     return False
 
-  if line.strip().lower() in ['welcome', 'expert', 'beginner', 'web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography', 'unrated', 'reverse engineering', 'task', 'information', 'insights', 'read this carrefully because sometimes the author might leave hints.', 'download files', 'play challenge', 'problem', 'previous submissions', 'download', 'admin bot', 'website']:
+  if line.strip().lower() in ['welcome', 'expert', 'beginner', 'web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography', 'unrated', 'reverse engineering', 'task', 'information', 'insights', 'read this carrefully because sometimes the author might leave hints.', 'download files', 'play challenge', 'problem', 'previous submissions', 'download', 'admin bot', 'website', 'pwning']:
     return False
 
   if re.fullmatch("category (forensics|reverse|web|crypto|pwn)", line.strip().lower()):
@@ -137,7 +137,7 @@ if __name__ == '__main__':
   for f in os.listdir(download_dir):
     fname = os.path.join(download_dir, f)
 
-    if time.time() - os.path.getmtime(fname) <= 120:
+    if time.time() - os.path.getmtime(fname) <= 300:
       subprocess.run(['mv', fname, chal_name])
 
   # compress any pcap or pcapng file
