@@ -1,0 +1,1 @@
+Did you know that a month ago was BASIC's 60th birthday? (Note: In Korea, a 60th birthday is called “Hwangap” and has a special meaning). To celebrate, I've created a challenge using the BASIC language. Have fun!

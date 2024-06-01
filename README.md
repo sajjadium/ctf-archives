@@ -636,7 +636,11 @@
             <td><a href="https://ctftime.org/event/636/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/Codegate">Codegate</a></td>
+            <td rowspan=5><a href="ctfs/Codegate">Codegate</a></td>
+            <td><a href="ctfs/Codegate/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2346/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Codegate/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2006/tasks/" target="_blank">CTFtime</a></td>
         </tr>
