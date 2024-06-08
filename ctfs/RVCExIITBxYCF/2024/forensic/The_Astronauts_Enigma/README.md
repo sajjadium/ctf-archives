@@ -1,0 +1,4 @@
+Meet Captain Vikram, an intrepid astronaut from India on a mission in the cosmos. Faced with a situation crucial to national security, Vikram resorts to an unconventional method to relay a vital message back to Earth. He transmits an enigmatic audio file and accompanies it with a series of seemingly incomprehensible texts so that no one can intercept them except for the smart minds from ISRO. As the nation holds its breath, a sharp mind from ISRO takes on the challenge to decode the audio file and unravel the cryptic texts. The fate of the nation rests in your hands as you have to decipher the peculiar communication from Captain Vikram. Amidst the cosmic silence, could the solution lie hidden within the realms of the microscopic? After all, in the vast expanse of the cosmos, sometimes the Tiniest secrets hold the greatest significance.
+Flag format - rvcectf{...}
+
+Author - Bipin Raj

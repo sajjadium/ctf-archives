@@ -2040,6 +2040,11 @@
             <td><a href="https://ctftime.org/event/1400/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/RVCExIITBxYCF">RVCExIITBxYCF</a></td>
+            <td><a href="ctfs/RVCExIITBxYCF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2385/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/RaRCTF">RaRCTF</a></td>
             <td><a href="ctfs/RaRCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1342/tasks/" target="_blank">CTFtime</a></td>
