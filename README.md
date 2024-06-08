@@ -1971,6 +1971,11 @@
             <td><a href="https://ctftime.org/event/2141/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/R3CTF">R3CTF</a></td>
+            <td><a href="ctfs/R3CTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2273/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/RACTF">RACTF</a></td>
             <td><a href="ctfs/RACTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1354/tasks/" target="_blank">CTFtime</a></td>
