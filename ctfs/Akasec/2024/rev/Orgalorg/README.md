@@ -1,0 +1,3 @@
+Did you know that Gunter is literally Orgalorg, a primordial cosmic entity, feared as the Breaker of Worlds, disguised as a penguin on earth...
+
+Author: pengolian
