@@ -671,7 +671,11 @@
             <td><a href="https://ctftime.org/event/2032/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/Crypto">Crypto</a></td>
+            <td rowspan=4><a href="ctfs/Crypto">Crypto</a></td>
+            <td><a href="ctfs/Crypto/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2210/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Crypto/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1857/tasks/" target="_blank">CTFtime</a></td>
         </tr>
