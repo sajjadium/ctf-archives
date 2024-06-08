@@ -1,0 +1,2359 @@
+Program
+  (Children)
+    ExpressionStatement
+      CallExpression
+        FunctionExpression ''
+          (Parameters)
+            Identifier "_0x405601" is_local=(true) index=(1)
+            Identifier "_0x19cc2c" is_local=(true) index=(2)
+          (Body)
+            FunctionBody
+              (Children)
+                VariableDeclaration
+                  Const
+                  VariableDeclarator
+                    Identifier "_0x4c717c" is_local=(true) index=(3)
+                    CallExpression
+                      Identifier "_0x405601" is_local=(true) index=(1)
+                WhileStatement
+                While
+                  BooleanLiteral true
+                  BlockStatement
+                    (Children)
+                      TryStatement
+                      (Block)
+                        BlockStatement
+                          (Children)
+                            VariableDeclaration
+                              Const
+                              VariableDeclarator
+                                Identifier "_0x1d3575" is_local=(true) index=(0)
+                                BinaryExpression
+                                  BinaryExpression
+                                    BinaryExpression
+                                      BinaryExpression
+                                        BinaryExpression
+                                          BinaryExpression
+                                            BinaryExpression
+                                              BinaryExpression
+                                                UnaryExpression
+                                                  -
+                                                  CallExpression
+                                                    Identifier "parseInt" is_global=(true)
+                                                    CallExpression
+                                                      Identifier "_0x461d"
+                                                      NumericLiteral 402
+                                                /
+                                                NumericLiteral 1
+                                              *
+                                              BinaryExpression
+                                                CallExpression
+                                                  Identifier "parseInt" is_global=(true)
+                                                  CallExpression
+                                                    Identifier "_0x461d"
+                                                    NumericLiteral 399
+                                                /
+                                                NumericLiteral 2
+                                            +
+                                            BinaryExpression
+                                              BinaryExpression
+                                                CallExpression
+                                                  Identifier "parseInt" is_global=(true)
+                                                  CallExpression
+                                                    Identifier "_0x461d"
+                                                    NumericLiteral 408
+                                                /
+                                                NumericLiteral 3
+                                              *
+                                              BinaryExpression
+                                                CallExpression
+                                                  Identifier "parseInt" is_global=(true)
+                                                  CallExpression
+                                                    Identifier "_0x461d"
+                                                    NumericLiteral 411
+                                                /
+                                                NumericLiteral 4
+                                          +
+                                          BinaryExpression
+                                            BinaryExpression
+                                              UnaryExpression
+                                                -
+                                                CallExpression
+                                                  Identifier "parseInt" is_global=(true)
+                                                  CallExpression
+                                                    Identifier "_0x461d"
+                                                    NumericLiteral 404
+                                              /
+                                              NumericLiteral 5
+                                            *
+                                            BinaryExpression
+                                              CallExpression
+                                                Identifier "parseInt" is_global=(true)
+                                                CallExpression
+                                                  Identifier "_0x461d"
+                                                  NumericLiteral 410
+                                              /
+                                              NumericLiteral 6
+                                        +
+                                        BinaryExpression
+                                          BinaryExpression
+                                            CallExpression
+                                              Identifier "parseInt" is_global=(true)
+                                              CallExpression
+                                                Identifier "_0x461d"
+                                                NumericLiteral 391
+                                            /
+                                            NumericLiteral 7
+                                          *
+                                          BinaryExpression
+                                            UnaryExpression
+                                              -
+                                              CallExpression
+                                                Identifier "parseInt" is_global=(true)
+                                                CallExpression
+                                                  Identifier "_0x461d"
+                                                  NumericLiteral 407
+                                            /
+                                            NumericLiteral 8
+                                      +
+                                      BinaryExpression
+                                        BinaryExpression
+                                          UnaryExpression
+                                            -
+                                            CallExpression
+                                              Identifier "parseInt" is_global=(true)
+                                              CallExpression
+                                                Identifier "_0x461d"
+                                                NumericLiteral 400
+                                          /
+                                          NumericLiteral 9
+                                        *
+                                        BinaryExpression
+                                          UnaryExpression
+                                            -
+                                            CallExpression
+                                              Identifier "parseInt" is_global=(true)
+                                              CallExpression
+                                                Identifier "_0x461d"
+                                                NumericLiteral 418
+                                          /
+                                          NumericLiteral 10
+                                    +
+                                    BinaryExpression
+                                      BinaryExpression
+                                        CallExpression
+                                          Identifier "parseInt" is_global=(true)
+                                          CallExpression
+                                            Identifier "_0x461d"
+                                            NumericLiteral 422
+                                        /
+                                        NumericLiteral 11
+                                      *
+                                      BinaryExpression
+                                        UnaryExpression
+                                          -
+                                          CallExpression
+                                            Identifier "parseInt" is_global=(true)
+                                            CallExpression
+                                              Identifier "_0x461d"
+                                              NumericLiteral 431
+                                        /
+                                        NumericLiteral 12
+                                  +
+                                  BinaryExpression
+                                    BinaryExpression
+                                      CallExpression
+                                        Identifier "parseInt" is_global=(true)
+                                        CallExpression
+                                          Identifier "_0x461d"
+                                          NumericLiteral 417
+                                      /
+                                      NumericLiteral 13
+                                    *
+                                    BinaryExpression
+                                      CallExpression
+                                        Identifier "parseInt" is_global=(true)
+                                        CallExpression
+                                          Identifier "_0x461d"
+                                          NumericLiteral 401
+                                      /
+                                      NumericLiteral 14
+                            IfStatement
+                            If
+                              BinaryExpression
+                                Identifier "_0x1d3575" is_local=(true) index=(0)
+                                ===
+                                Identifier "_0x19cc2c" is_local=(true) index=(2)
+                              BlockStatement
+                                (Children)
+                                  BreakStatement
+                            Else
+                              BlockStatement
+                                (Children)
+                                  ExpressionStatement
+                                    CallExpression
+                                      MemberExpression(computed=false)
+                                        Identifier "_0x4c717c" is_local=(true) index=(3)
+                                        Identifier "push"
+                                      CallExpression
+                                        MemberExpression(computed=false)
+                                          Identifier "_0x4c717c" is_local=(true) index=(3)
+                                          Identifier "shift"
+                      (Handler)
+                        CatchClause (_0x3694c6)
+                          BlockStatement
+                            (Children)
+                              ExpressionStatement
+                                CallExpression
+                                  MemberExpression(computed=false)
+                                    Identifier "_0x4c717c" is_local=(true) index=(3)
+                                    Identifier "push"
+                                  CallExpression
+                                    MemberExpression(computed=false)
+                                      Identifier "_0x4c717c" is_local=(true) index=(3)
+                                      Identifier "shift"
+        Identifier "_0x3a6c"
+        NumericLiteral 480318
+    FunctionDeclaration 'op'
+      (Parameters)
+        Identifier "_0xcd5f98" is_local=(true) index=(12)
+        Identifier "_0x52cfad" is_local=(true) index=(6)
+      (Body)
+        FunctionBody
+          (Children)
+            VariableDeclaration
+              Var
+              VariableDeclarator
+                Identifier "_0x4572fc" is_local=(true) index=(13)
+                ArrayExpression
+            VariableDeclaration
+              Var
+              VariableDeclarator
+                Identifier "_0x1f1abc" is_local=(true) index=(4)
+                NumericLiteral 0
+            VariableDeclaration
+              Var
+              VariableDeclarator
+                Identifier "_0x4143a6" is_local=(true) index=(10)
+            VariableDeclaration
+              Var
+              VariableDeclarator
+                Identifier "_0x30f726" is_local=(true) index=(1)
+                StringLiteral ""
+            ForStatement
+            For
+              VariableDeclaration
+                Var
+                VariableDeclarator
+                  Identifier "_0x1426d5" is_local=(true) index=(7)
+                  NumericLiteral 0
+              BinaryExpression
+                Identifier "_0x1426d5" is_local=(true) index=(7)
+                <
+                NumericLiteral 256
+              UpdateExpression
+                Identifier "_0x1426d5" is_local=(true) index=(7)
+                ++
+              BlockStatement
+                (Children)
+                  IfStatement
+                  If
+                    BinaryExpression
+                      CallExpression
+                        Identifier "_0x461d"
+                        NumericLiteral 394
+                      ===
+                      StringLiteral "TKhjY"
+                    BlockStatement
+                      (Children)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x45e50d" is_global=(true)
+                            BinaryExpression
+                              BinaryExpression
+                                BinaryExpression
+                                  Identifier "_0x474d29" is_global=(true)
+                                  +
+                                  MemberExpression(computed=true)
+                                    Identifier "_0xc2b099" is_global=(true)
+                                    Identifier "_0x5268b1" is_global=(true)
+                                +
+                                CallExpression
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x4a5f71" is_global=(true)
+                                    CallExpression
+                                      Identifier "_0x461d"
+                                      NumericLiteral 393
+                                  BinaryExpression
+                                    Identifier "_0x57f312" is_global=(true)
+                                    %
+                                    MemberExpression(computed=true)
+                                      Identifier "_0x1b01ef" is_global=(true)
+                                      CallExpression
+                                        Identifier "_0x461d"
+                                        NumericLiteral 432
+                              %
+                              NumericLiteral 256
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x3d1482" is_global=(true)
+                            MemberExpression(computed=true)
+                              Identifier "_0x106aea" is_global=(true)
+                              Identifier "_0x513736" is_global=(true)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            MemberExpression(computed=true)
+                              Identifier "_0x40c40d" is_global=(true)
+                              Identifier "_0x3aa171" is_global=(true)
+                            MemberExpression(computed=true)
+                              Identifier "_0x2ad7f4" is_global=(true)
+                              Identifier "_0x19fb66" is_global=(true)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            MemberExpression(computed=true)
+                              Identifier "_0x5de06e" is_global=(true)
+                              Identifier "_0x5b9842" is_global=(true)
+                            Identifier "_0x4eb915" is_global=(true)
+                  Else
+                    BlockStatement
+                      (Children)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            MemberExpression(computed=true)
+                              Identifier "_0x4572fc" is_local=(true) index=(13)
+                              Identifier "_0x1426d5" is_local=(true) index=(7)
+                            Identifier "_0x1426d5" is_local=(true) index=(7)
+            ForStatement
+            For
+              AssignmentExpression
+                =
+                Identifier "_0x1426d5" is_local=(true) index=(7)
+                NumericLiteral 0
+              BinaryExpression
+                Identifier "_0x1426d5" is_local=(true) index=(7)
+                <
+                NumericLiteral 256
+              UpdateExpression
+                Identifier "_0x1426d5" is_local=(true) index=(7)
+                ++
+              BlockStatement
+                (Children)
+                  IfStatement
+                  If
+                    BinaryExpression
+                      CallExpression
+                        Identifier "_0x461d"
+                        NumericLiteral 398
+                      !==
+                      StringLiteral "jpoxg"
+                    BlockStatement
+                      (Children)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x1f1abc" is_local=(true) index=(4)
+                            BinaryExpression
+                              BinaryExpression
+                                BinaryExpression
+                                  Identifier "_0x1f1abc" is_local=(true) index=(4)
+                                  +
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x4572fc" is_local=(true) index=(13)
+                                    Identifier "_0x1426d5" is_local=(true) index=(7)
+                                +
+                                CallExpression
+                                  MemberExpression(computed=true)
+                                    Identifier "_0xcd5f98" is_local=(true) index=(12)
+                                    CallExpression
+                                      Identifier "_0x461d"
+                                      NumericLiteral 393
+                                  BinaryExpression
+                                    Identifier "_0x1426d5" is_local=(true) index=(7)
+                                    %
+                                    MemberExpression(computed=true)
+                                      Identifier "_0xcd5f98" is_local=(true) index=(12)
+                                      CallExpression
+                                        Identifier "_0x461d"
+                                        NumericLiteral 432
+                              %
+                              NumericLiteral 256
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x4143a6" is_local=(true) index=(10)
+                            MemberExpression(computed=true)
+                              Identifier "_0x4572fc" is_local=(true) index=(13)
+                              Identifier "_0x1426d5" is_local=(true) index=(7)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            MemberExpression(computed=true)
+                              Identifier "_0x4572fc" is_local=(true) index=(13)
+                              Identifier "_0x1426d5" is_local=(true) index=(7)
+                            MemberExpression(computed=true)
+                              Identifier "_0x4572fc" is_local=(true) index=(13)
+                              Identifier "_0x1f1abc" is_local=(true) index=(4)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            MemberExpression(computed=true)
+                              Identifier "_0x4572fc" is_local=(true) index=(13)
+                              Identifier "_0x1f1abc" is_local=(true) index=(4)
+                            Identifier "_0x4143a6" is_local=(true) index=(10)
+                  Else
+                    BlockStatement
+                      (Children)
+                        VariableDeclaration
+                          Var
+                          VariableDeclarator
+                            Identifier "_0x1c327e" is_local=(true) index=(2)
+                            ArrayExpression
+                        VariableDeclaration
+                          Var
+                          VariableDeclarator
+                            Identifier "_0x9f130b" is_local=(true) index=(3)
+                            NumericLiteral 0
+                        VariableDeclaration
+                          Var
+                          VariableDeclarator
+                            Identifier "_0x18a634" is_local=(true) index=(11)
+                        VariableDeclaration
+                          Var
+                          VariableDeclarator
+                            Identifier "_0x39e775" is_local=(true) index=(9)
+                            StringLiteral ""
+                        ForStatement
+                        For
+                          VariableDeclaration
+                            Var
+                            VariableDeclarator
+                              Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                              NumericLiteral 0
+                          BinaryExpression
+                            Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                            <
+                            NumericLiteral 256
+                          UpdateExpression
+                            Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                            ++
+                          BlockStatement
+                            (Children)
+                              ExpressionStatement
+                                AssignmentExpression
+                                  =
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x1c327e" is_local=(true) index=(2)
+                                    Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                                  Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                        ForStatement
+                        For
+                          AssignmentExpression
+                            =
+                            Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                            NumericLiteral 0
+                          BinaryExpression
+                            Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                            <
+                            NumericLiteral 256
+                          UpdateExpression
+                            Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                            ++
+                          BlockStatement
+                            (Children)
+                              ExpressionStatement
+                                AssignmentExpression
+                                  =
+                                  Identifier "_0x9f130b" is_local=(true) index=(3)
+                                  BinaryExpression
+                                    BinaryExpression
+                                      BinaryExpression
+                                        Identifier "_0x9f130b" is_local=(true) index=(3)
+                                        +
+                                        MemberExpression(computed=true)
+                                          Identifier "_0x1c327e" is_local=(true) index=(2)
+                                          Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                                      +
+                                      CallExpression
+                                        MemberExpression(computed=true)
+                                          Identifier "_0x4df41d" is_global=(true)
+                                          CallExpression
+                                            Identifier "_0x461d"
+                                            NumericLiteral 393
+                                        BinaryExpression
+                                          Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                                          %
+                                          MemberExpression(computed=true)
+                                            Identifier "_0x2e631e" is_global=(true)
+                                            CallExpression
+                                              Identifier "_0x461d"
+                                              NumericLiteral 432
+                                    %
+                                    NumericLiteral 256
+                              ExpressionStatement
+                                AssignmentExpression
+                                  =
+                                  Identifier "_0x18a634" is_local=(true) index=(11)
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x1c327e" is_local=(true) index=(2)
+                                    Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                              ExpressionStatement
+                                AssignmentExpression
+                                  =
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x1c327e" is_local=(true) index=(2)
+                                    Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x1c327e" is_local=(true) index=(2)
+                                    Identifier "_0x9f130b" is_local=(true) index=(3)
+                              ExpressionStatement
+                                AssignmentExpression
+                                  =
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x1c327e" is_local=(true) index=(2)
+                                    Identifier "_0x9f130b" is_local=(true) index=(3)
+                                  Identifier "_0x18a634" is_local=(true) index=(11)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                            NumericLiteral 0
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x9f130b" is_local=(true) index=(3)
+                            NumericLiteral 0
+                        ForStatement
+                        For
+                          VariableDeclaration
+                            Var
+                            VariableDeclarator
+                              Identifier "_0x4b324a" is_local=(true) index=(0)
+                              NumericLiteral 0
+                          BinaryExpression
+                            Identifier "_0x4b324a" is_local=(true) index=(0)
+                            <
+                            MemberExpression(computed=false)
+                              Identifier "_0xb97c43" is_global=(true)
+                              Identifier "length"
+                          UpdateExpression
+                            Identifier "_0x4b324a" is_local=(true) index=(0)
+                            ++
+                          BlockStatement
+                            (Children)
+                              ExpressionStatement
+                                AssignmentExpression
+                                  =
+                                  Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                                  BinaryExpression
+                                    BinaryExpression
+                                      Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                                      +
+                                      NumericLiteral 1
+                                    %
+                                    NumericLiteral 256
+                              ExpressionStatement
+                                AssignmentExpression
+                                  =
+                                  Identifier "_0x9f130b" is_local=(true) index=(3)
+                                  BinaryExpression
+                                    BinaryExpression
+                                      Identifier "_0x9f130b" is_local=(true) index=(3)
+                                      +
+                                      MemberExpression(computed=true)
+                                        Identifier "_0x1c327e" is_local=(true) index=(2)
+                                        Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                                    %
+                                    NumericLiteral 256
+                              ExpressionStatement
+                                AssignmentExpression
+                                  =
+                                  Identifier "_0x18a634" is_local=(true) index=(11)
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x1c327e" is_local=(true) index=(2)
+                                    Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                              ExpressionStatement
+                                AssignmentExpression
+                                  =
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x1c327e" is_local=(true) index=(2)
+                                    Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x1c327e" is_local=(true) index=(2)
+                                    Identifier "_0x9f130b" is_local=(true) index=(3)
+                              ExpressionStatement
+                                AssignmentExpression
+                                  =
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x1c327e" is_local=(true) index=(2)
+                                    Identifier "_0x9f130b" is_local=(true) index=(3)
+                                  Identifier "_0x18a634" is_local=(true) index=(11)
+                              ExpressionStatement
+                                AssignmentExpression
+                                  +=
+                                  Identifier "_0x39e775" is_local=(true) index=(9)
+                                  CallExpression
+                                    MemberExpression(computed=true)
+                                      Identifier "_0x5ad673" is_global=(true)
+                                      CallExpression
+                                        Identifier "_0x461d"
+                                        NumericLiteral 428
+                                    BinaryExpression
+                                      MemberExpression(computed=true)
+                                        Identifier "_0x18af81" is_global=(true)
+                                        Identifier "_0x4b324a" is_local=(true) index=(0)
+                                      ^
+                                      MemberExpression(computed=true)
+                                        Identifier "_0x1c327e" is_local=(true) index=(2)
+                                        BinaryExpression
+                                          BinaryExpression
+                                            MemberExpression(computed=true)
+                                              Identifier "_0x1c327e" is_local=(true) index=(2)
+                                              Identifier "_0x2cf4a8" is_local=(true) index=(8)
+                                            +
+                                            MemberExpression(computed=true)
+                                              Identifier "_0x1c327e" is_local=(true) index=(2)
+                                              Identifier "_0x9f130b" is_local=(true) index=(3)
+                                          %
+                                          NumericLiteral 256
+                        ReturnStatement
+                          Identifier "_0x39e775" is_local=(true) index=(9)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x1426d5" is_local=(true) index=(7)
+                NumericLiteral 0
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x1f1abc" is_local=(true) index=(4)
+                NumericLiteral 0
+            ForStatement
+            For
+              VariableDeclaration
+                Var
+                VariableDeclarator
+                  Identifier "_0x3751c4" is_local=(true) index=(5)
+                  NumericLiteral 0
+              BinaryExpression
+                Identifier "_0x3751c4" is_local=(true) index=(5)
+                <
+                MemberExpression(computed=true)
+                  Identifier "_0x52cfad" is_local=(true) index=(6)
+                  CallExpression
+                    Identifier "_0x461d"
+                    NumericLiteral 432
+              UpdateExpression
+                Identifier "_0x3751c4" is_local=(true) index=(5)
+                ++
+              BlockStatement
+                (Children)
+                  IfStatement
+                  If
+                    BinaryExpression
+                      CallExpression
+                        Identifier "_0x461d"
+                        NumericLiteral 388
+                      ===
+                      StringLiteral "jiHTJ"
+                    BlockStatement
+                      (Children)
+                        ExpressionStatement
+                          AssignmentExpression
+                            +=
+                            Identifier "_0x3f3485" is_global=(true)
+                            BinaryExpression
+                              BinaryExpression
+                                BinaryExpression
+                                  NumericLiteral 8
+                                  *
+                                  BinaryExpression
+                                    Identifier "_0x362d63" is_global=(true)
+                                    **
+                                    NumericLiteral 2
+                                +
+                                BinaryExpression
+                                  NumericLiteral 19
+                                  *
+                                  Identifier "_0x4dfb7b" is_global=(true)
+                              +
+                              NumericLiteral 58192
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x52cb1c" is_global=(true)
+                            BinaryExpression
+                              Identifier "_0x2a60af" is_global=(true)
+                              **
+                              NumericLiteral 18
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x7451d8" is_global=(true)
+                            CallExpression
+                              MemberExpression(computed=true)
+                                Identifier "_0x3c0016" is_global=(true)
+                                CallExpression
+                                  Identifier "_0x461d"
+                                  NumericLiteral 434
+                              Identifier "_0x586074" is_global=(true)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x407e5f" is_global=(true)
+                            CallExpression
+                              MemberExpression(computed=true)
+                                Identifier "_0x5ad0d8" is_global=(true)
+                                CallExpression
+                                  Identifier "_0x461d"
+                                  NumericLiteral 420
+                              Identifier "_0x1ab8c7" is_global=(true)
+                        ExpressionStatement
+                          AssignmentExpression
+                            *=
+                            Identifier "_0x260737" is_global=(true)
+                            MemberExpression(computed=true)
+                              Identifier "_0x280467" is_global=(true)
+                              CallExpression
+                                Identifier "_0x461d"
+                                NumericLiteral 409
+                        ExpressionStatement
+                          AssignmentExpression
+                            +=
+                            Identifier "_0x3e7b22" is_global=(true)
+                            CallExpression
+                              MemberExpression(computed=true)
+                                Identifier "_0x2323d2" is_global=(true)
+                                CallExpression
+                                  Identifier "_0x461d"
+                                  NumericLiteral 421
+                              CallExpression
+                                MemberExpression(computed=true)
+                                  Identifier "_0x2799bf" is_global=(true)
+                                  CallExpression
+                                    Identifier "_0x461d"
+                                    NumericLiteral 425
+                                BinaryExpression
+                                  Identifier "_0x30e534" is_global=(true)
+                                  /
+                                  NumericLiteral 51
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x3bd995" is_global=(true)
+                            BinaryExpression
+                              CallExpression
+                                MemberExpression(computed=true)
+                                  Identifier "_0x359a31" is_global=(true)
+                                  CallExpression
+                                    Identifier "_0x461d"
+                                    NumericLiteral 396
+                                Identifier "_0x43bca2" is_global=(true)
+                                NumericLiteral 3
+                              -
+                              NumericLiteral 98
+                        IfStatement
+                        If
+                          BinaryExpression
+                            Identifier "_0x2530f3" is_global=(true)
+                            >=
+                            NumericLiteral 1000000
+                          BlockStatement
+                            (Children)
+                              ExpressionStatement
+                                CallExpression
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x6503b2" is_global=(true)
+                                    CallExpression
+                                      Identifier "_0x461d"
+                                      NumericLiteral 423
+                                  Identifier "_0x444801" is_global=(true)
+                              ReturnStatement
+                                CallExpression
+                                  MemberExpression(computed=true)
+                                    Identifier "_0x32795d" is_global=(true)
+                                    CallExpression
+                                      Identifier "_0x461d"
+                                      NumericLiteral 419
+                                  BinaryExpression
+                                    BinaryExpression
+                                      BinaryExpression
+                                        Identifier "_0x595e39" is_global=(true)
+                                        **
+                                        NumericLiteral 3
+                                      +
+                                      NumericLiteral 18293797
+                                    -
+                                    BinaryExpression
+                                      BinaryExpression
+                                        NumericLiteral 461
+                                        *
+                                        Identifier "_0x192cbe" is_global=(true)
+                                      *
+                                      NumericLiteral 2
+                        ReturnStatement
+                          BinaryExpression
+                            CallExpression
+                              MemberExpression(computed=true)
+                                Identifier "_0xe02f73" is_global=(true)
+                                CallExpression
+                                  Identifier "_0x461d"
+                                  NumericLiteral 419
+                              CallExpression
+                                MemberExpression(computed=true)
+                                  Identifier "_0x1e4724" is_global=(true)
+                                  CallExpression
+                                    Identifier "_0x461d"
+                                    NumericLiteral 390
+                                Identifier "_0xa3c4ed" is_global=(true)
+                            +
+                            NumericLiteral 9371
+                  Else
+                    BlockStatement
+                      (Children)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x1426d5" is_local=(true) index=(7)
+                            BinaryExpression
+                              BinaryExpression
+                                Identifier "_0x1426d5" is_local=(true) index=(7)
+                                +
+                                NumericLiteral 1
+                              %
+                              NumericLiteral 256
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x1f1abc" is_local=(true) index=(4)
+                            BinaryExpression
+                              BinaryExpression
+                                Identifier "_0x1f1abc" is_local=(true) index=(4)
+                                +
+                                MemberExpression(computed=true)
+                                  Identifier "_0x4572fc" is_local=(true) index=(13)
+                                  Identifier "_0x1426d5" is_local=(true) index=(7)
+                              %
+                              NumericLiteral 256
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x4143a6" is_local=(true) index=(10)
+                            MemberExpression(computed=true)
+                              Identifier "_0x4572fc" is_local=(true) index=(13)
+                              Identifier "_0x1426d5" is_local=(true) index=(7)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            MemberExpression(computed=true)
+                              Identifier "_0x4572fc" is_local=(true) index=(13)
+                              Identifier "_0x1426d5" is_local=(true) index=(7)
+                            MemberExpression(computed=true)
+                              Identifier "_0x4572fc" is_local=(true) index=(13)
+                              Identifier "_0x1f1abc" is_local=(true) index=(4)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            MemberExpression(computed=true)
+                              Identifier "_0x4572fc" is_local=(true) index=(13)
+                              Identifier "_0x1f1abc" is_local=(true) index=(4)
+                            Identifier "_0x4143a6" is_local=(true) index=(10)
+                        ExpressionStatement
+                          AssignmentExpression
+                            +=
+                            Identifier "_0x30f726" is_local=(true) index=(1)
+                            CallExpression
+                              MemberExpression(computed=true)
+                                Identifier "String" is_global=(true)
+                                CallExpression
+                                  Identifier "_0x461d"
+                                  NumericLiteral 428
+                              BinaryExpression
+                                MemberExpression(computed=true)
+                                  Identifier "_0x52cfad" is_local=(true) index=(6)
+                                  Identifier "_0x3751c4" is_local=(true) index=(5)
+                                ^
+                                MemberExpression(computed=true)
+                                  Identifier "_0x4572fc" is_local=(true) index=(13)
+                                  BinaryExpression
+                                    BinaryExpression
+                                      MemberExpression(computed=true)
+                                        Identifier "_0x4572fc" is_local=(true) index=(13)
+                                        Identifier "_0x1426d5" is_local=(true) index=(7)
+                                      +
+                                      MemberExpression(computed=true)
+                                        Identifier "_0x4572fc" is_local=(true) index=(13)
+                                        Identifier "_0x1f1abc" is_local=(true) index=(4)
+                                    %
+                                    NumericLiteral 256
+            ReturnStatement
+              Identifier "_0x30f726" is_local=(true) index=(1)
+    FunctionDeclaration 'kCvrt'
+      (Parameters)
+        Identifier "_0x12ca85" is_local=(true) index=(1)
+      (Body)
+        FunctionBody
+          (Children)
+            VariableDeclaration
+              Let
+              VariableDeclarator
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                Identifier "_0x12ca85" is_local=(true) index=(1)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                CallExpression
+                  MemberExpression(computed=true)
+                    Identifier "Math" is_global=(true)
+                    CallExpression
+                      Identifier "_0x461d"
+                      NumericLiteral 396
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+                  NumericLiteral 2
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                CallExpression
+                  MemberExpression(computed=true)
+                    Identifier "Math" is_global=(true)
+                    CallExpression
+                      Identifier "_0x461d"
+                      NumericLiteral 434
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                CallExpression
+                  MemberExpression(computed=false)
+                    Identifier "Math" is_global=(true)
+                    Identifier "sin"
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                CallExpression
+                  MemberExpression(computed=true)
+                    Identifier "Math" is_global=(true)
+                    CallExpression
+                      Identifier "_0x461d"
+                      NumericLiteral 427
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                CallExpression
+                  MemberExpression(computed=true)
+                    Identifier "Math" is_global=(true)
+                    CallExpression
+                      Identifier "_0x461d"
+                      NumericLiteral 389
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                CallExpression
+                  MemberExpression(computed=true)
+                    Identifier "Math" is_global=(true)
+                    CallExpression
+                      Identifier "_0x461d"
+                      NumericLiteral 423
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                CallExpression
+                  MemberExpression(computed=true)
+                    Identifier "Math" is_global=(true)
+                    CallExpression
+                      Identifier "_0x461d"
+                      NumericLiteral 419
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                CallExpression
+                  MemberExpression(computed=true)
+                    Identifier "Math" is_global=(true)
+                    CallExpression
+                      Identifier "_0x461d"
+                      NumericLiteral 414
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                CallExpression
+                  MemberExpression(computed=false)
+                    Identifier "Math" is_global=(true)
+                    Identifier "cos"
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                CallExpression
+                  MemberExpression(computed=false)
+                    Identifier "Math" is_global=(true)
+                    Identifier "atan"
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                BinaryExpression
+                  Identifier "_0x10db05" is_local=(true) index=(0)
+                  %
+                  NumericLiteral 50
+            IfStatement
+            If
+              BinaryExpression
+                Identifier "_0x10db05" is_local=(true) index=(0)
+                <=
+                NumericLiteral 0
+              BlockStatement
+                (Children)
+                  IfStatement
+                  If
+                    BinaryExpression
+                      CallExpression
+                        Identifier "_0x461d"
+                        NumericLiteral 403
+                      !==
+                      CallExpression
+                        Identifier "_0x461d"
+                        NumericLiteral 403
+                    BlockStatement
+                      (Children)
+                        ExpressionStatement
+                          CallExpression
+                            MemberExpression(computed=false)
+                              CallExpression
+                                MemberExpression(computed=false)
+                                  Identifier "_0x296cca" is_global=(true)
+                                  Identifier "at"
+                                UnaryExpression
+                                  -
+                                  NumericLiteral 1
+                              Identifier "push"
+                            MemberExpression(computed=true)
+                              Identifier "_0x4ac13c" is_global=(true)
+                              Identifier "_0x3b2a46" is_global=(true)
+                  Else
+                    BlockStatement
+                      (Children)
+                        ExpressionStatement
+                          AssignmentExpression
+                            +=
+                            Identifier "_0x10db05" is_local=(true) index=(0)
+                            NumericLiteral 50
+            ReturnStatement
+              CallExpression
+                MemberExpression(computed=true)
+                  Identifier "Math" is_global=(true)
+                  CallExpression
+                    Identifier "_0x461d"
+                    NumericLiteral 390
+                Identifier "_0x10db05" is_local=(true) index=(0)
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "q" is_global=(true)
+        FunctionExpression ''
+          (Parameters)
+            Identifier "_0x30ddcd" is_local=(true) index=(0)
+          (Body)
+            FunctionBody
+              (Children)
+                ExpressionStatement
+                  AssignmentExpression
+                    +=
+                    Identifier "_0x30ddcd" is_local=(true) index=(0)
+                    BinaryExpression
+                      BinaryExpression
+                        BinaryExpression
+                          NumericLiteral 8
+                          *
+                          BinaryExpression
+                            Identifier "_0x30ddcd" is_local=(true) index=(0)
+                            **
+                            NumericLiteral 2
+                        +
+                        BinaryExpression
+                          NumericLiteral 19
+                          *
+                          Identifier "_0x30ddcd" is_local=(true) index=(0)
+                      +
+                      NumericLiteral 58192
+                ExpressionStatement
+                  AssignmentExpression
+                    =
+                    Identifier "_0x30ddcd" is_local=(true) index=(0)
+                    BinaryExpression
+                      Identifier "_0x30ddcd" is_local=(true) index=(0)
+                      **
+                      NumericLiteral 18
+                ExpressionStatement
+                  AssignmentExpression
+                    =
+                    Identifier "_0x30ddcd" is_local=(true) index=(0)
+                    CallExpression
+                      MemberExpression(computed=true)
+                        Identifier "Math" is_global=(true)
+                        CallExpression
+                          Identifier "_0x461d"
+                          NumericLiteral 434
+                      Identifier "_0x30ddcd" is_local=(true) index=(0)
+                ExpressionStatement
+                  AssignmentExpression
+                    =
+                    Identifier "_0x30ddcd" is_local=(true) index=(0)
+                    CallExpression
+                      MemberExpression(computed=true)
+                        Identifier "Math" is_global=(true)
+                        CallExpression
+                          Identifier "_0x461d"
+                          NumericLiteral 420
+                      Identifier "_0x30ddcd" is_local=(true) index=(0)
+                ExpressionStatement
+                  AssignmentExpression
+                    *=
+                    Identifier "_0x30ddcd" is_local=(true) index=(0)
+                    MemberExpression(computed=true)
+                      Identifier "Math" is_global=(true)
+                      CallExpression
+                        Identifier "_0x461d"
+                        NumericLiteral 409
+                ExpressionStatement
+                  AssignmentExpression
+                    +=
+                    Identifier "_0x30ddcd" is_local=(true) index=(0)
+                    CallExpression
+                      MemberExpression(computed=false)
+                        Identifier "Math" is_global=(true)
+                        Identifier "trunc"
+                      CallExpression
+                        MemberExpression(computed=true)
+                          Identifier "Math" is_global=(true)
+                          CallExpression
+                            Identifier "_0x461d"
+                            NumericLiteral 425
+                        BinaryExpression
+                          Identifier "_0x30ddcd" is_local=(true) index=(0)
+                          /
+                          NumericLiteral 51
+                ExpressionStatement
+                  AssignmentExpression
+                    =
+                    Identifier "_0x30ddcd" is_local=(true) index=(0)
+                    BinaryExpression
+                      CallExpression
+                        MemberExpression(computed=true)
+                          Identifier "Math" is_global=(true)
+                          CallExpression
+                            Identifier "_0x461d"
+                            NumericLiteral 396
+                        Identifier "_0x30ddcd" is_local=(true) index=(0)
+                        NumericLiteral 3
+                      -
+                      NumericLiteral 98
+                IfStatement
+                If
+                  BinaryExpression
+                    Identifier "_0x30ddcd" is_local=(true) index=(0)
+                    >=
+                    NumericLiteral 1000000
+                  BlockStatement
+                    (Children)
+                      ExpressionStatement
+                        CallExpression
+                          MemberExpression(computed=true)
+                            Identifier "console" is_global=(true)
+                            CallExpression
+                              Identifier "_0x461d"
+                              NumericLiteral 423
+                          Identifier "_0x30ddcd" is_local=(true) index=(0)
+                      ReturnStatement
+                        CallExpression
+                          MemberExpression(computed=true)
+                            Identifier "Math" is_global=(true)
+                            CallExpression
+                              Identifier "_0x461d"
+                              NumericLiteral 419
+                          BinaryExpression
+                            BinaryExpression
+                              BinaryExpression
+                                Identifier "_0x30ddcd" is_local=(true) index=(0)
+                                **
+                                NumericLiteral 3
+                              +
+                              NumericLiteral 18293797
+                            -
+                            BinaryExpression
+                              BinaryExpression
+                                NumericLiteral 461
+                                *
+                                Identifier "_0x30ddcd" is_local=(true) index=(0)
+                              *
+                              NumericLiteral 2
+                ReturnStatement
+                  BinaryExpression
+                    CallExpression
+                      MemberExpression(computed=true)
+                        Identifier "Math" is_global=(true)
+                        CallExpression
+                          Identifier "_0x461d"
+                          NumericLiteral 419
+                      CallExpression
+                        MemberExpression(computed=true)
+                          Identifier "Math" is_global=(true)
+                          CallExpression
+                            Identifier "_0x461d"
+                            NumericLiteral 390
+                        Identifier "_0x30ddcd" is_local=(true) index=(0)
+                    +
+                    NumericLiteral 9371
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "g" is_global=(true)
+        ArrayExpression
+          SpreadExpression
+            CallExpression
+              MemberExpression(computed=true)
+                MemberExpression(computed=true)
+                  MemberExpression(computed=true)
+                    Identifier "Object" is_global=(true)
+                    StringLiteral "prototype"
+                  StringLiteral "toString"
+                StringLiteral "call"
+              ArrayExpression
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "k" is_global=(true)
+        CallExpression
+          MemberExpression(computed=true)
+            ArrayExpression
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    UnaryExpression
+                      -
+                      NumericLiteral 2329
+                    +
+                    NumericLiteral 3916
+                  +
+                  BinaryExpression
+                    UnaryExpression
+                      -
+                      NumericLiteral 1580
+                    *
+                    NumericLiteral 1
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    NumericLiteral 7042
+                    +
+                    NumericLiteral 2203
+                  +
+                  UnaryExpression
+                    -
+                    NumericLiteral 9232
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    BinaryExpression
+                      UnaryExpression
+                        -
+                        NumericLiteral 227
+                      *
+                      NumericLiteral 41
+                    +
+                    BinaryExpression
+                      UnaryExpression
+                        -
+                        NumericLiteral 1
+                      *
+                      UnaryExpression
+                        -
+                        NumericLiteral 5937
+                  +
+                  NumericLiteral 3382
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    UnaryExpression
+                      -
+                      NumericLiteral 1485
+                    +
+                    BinaryExpression
+                      UnaryExpression
+                        -
+                        NumericLiteral 862
+                      *
+                      UnaryExpression
+                        -
+                        NumericLiteral 1
+                  +
+                  NumericLiteral 634
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    NumericLiteral 5336
+                    +
+                    BinaryExpression
+                      UnaryExpression
+                        -
+                        NumericLiteral 2
+                      *
+                      NumericLiteral 1953
+                  +
+                  BinaryExpression
+                    NumericLiteral 49
+                    *
+                    UnaryExpression
+                      -
+                      NumericLiteral 29
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    UnaryExpression
+                      -
+                      NumericLiteral 5732
+                    +
+                    NumericLiteral 8060
+                  +
+                  BinaryExpression
+                    UnaryExpression
+                      -
+                      NumericLiteral 1
+                    *
+                    NumericLiteral 2319
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    BinaryExpression
+                      UnaryExpression
+                        -
+                        NumericLiteral 8377
+                      *
+                      UnaryExpression
+                        -
+                        NumericLiteral 1
+                    +
+                    BinaryExpression
+                      UnaryExpression
+                        -
+                        NumericLiteral 7483
+                      *
+                      UnaryExpression
+                        -
+                        NumericLiteral 1
+                  +
+                  BinaryExpression
+                    UnaryExpression
+                      -
+                      NumericLiteral 7926
+                    *
+                    NumericLiteral 2
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    UnaryExpression
+                      -
+                      NumericLiteral 1347
+                    +
+                    NumericLiteral 3947
+                  +
+                  UnaryExpression
+                    -
+                    NumericLiteral 2594
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    BinaryExpression
+                      UnaryExpression
+                        -
+                        NumericLiteral 349
+                      *
+                      NumericLiteral 5
+                    +
+                    UnaryExpression
+                      -
+                      NumericLiteral 2115
+                  +
+                  NumericLiteral 3865
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    NumericLiteral 1668
+                    +
+                    BinaryExpression
+                      NumericLiteral 1
+                      *
+                      UnaryExpression
+                        -
+                        NumericLiteral 6673
+                  +
+                  NumericLiteral 5009
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    BinaryExpression
+                      NumericLiteral 1234
+                      *
+                      UnaryExpression
+                        -
+                        NumericLiteral 3
+                    +
+                    NumericLiteral 1692
+                  +
+                  BinaryExpression
+                    NumericLiteral 61
+                    *
+                    NumericLiteral 33
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    UnaryExpression
+                      -
+                      NumericLiteral 8627
+                    +
+                    BinaryExpression
+                      NumericLiteral 3
+                      *
+                      NumericLiteral 1137
+                  +
+                  BinaryExpression
+                    UnaryExpression
+                      -
+                      NumericLiteral 2609
+                    *
+                    UnaryExpression
+                      -
+                      NumericLiteral 2
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    NumericLiteral 7507
+                    +
+                    BinaryExpression
+                      NumericLiteral 31
+                      *
+                      NumericLiteral 309
+                  +
+                  BinaryExpression
+                    UnaryExpression
+                      -
+                      NumericLiteral 67
+                    *
+                    NumericLiteral 255
+              MemberExpression(computed=true)
+                Identifier "g" is_global=(true)
+                BinaryExpression
+                  BinaryExpression
+                    NumericLiteral 9907
+                    +
+                    NumericLiteral 8830
+                  +
+                  UnaryExpression
+                    -
+                    NumericLiteral 18737
+            StringLiteral "join"
+          StringLiteral ""
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "gk" is_global=(true)
+        FunctionExpression ''
+          (Body)
+            FunctionBody
+              (Children)
+                VariableDeclaration
+                  Const
+                  VariableDeclarator
+                    Identifier "_0x468463" is_local=(true) index=(0)
+                    CallExpression
+                      MemberExpression(computed=true)
+                        CallExpression
+                          MemberExpression(computed=false)
+                            CallExpression
+                              MemberExpression(computed=true)
+                                CallExpression
+                                  MemberExpression(computed=false)
+                                    CallExpression
+                                      MemberExpression(computed=true)
+                                        CallExpression
+                                          MemberExpression(computed=true)
+                                            CallExpression
+                                              MemberExpression(computed=true)
+                                                CallExpression
+                                                  MemberExpression(computed=false)
+                                                    CallExpression
+                                                      MemberExpression(computed=true)
+                                                        CallExpression
+                                                          MemberExpression(computed=true)
+                                                            CallExpression
+                                                              MemberExpression(computed=true)
+                                                                CallExpression
+                                                                  MemberExpression(computed=true)
+                                                                    CallExpression
+                                                                      MemberExpression(computed=true)
+                                                                        CallExpression
+                                                                          MemberExpression(computed=true)
+                                                                            CallExpression
+                                                                              MemberExpression(computed=true)
+                                                                                CallExpression
+                                                                                  MemberExpression(computed=true)
+                                                                                    CallExpression
+                                                                                      MemberExpression(computed=true)
+                                                                                        CallExpression
+                                                                                          MemberExpression(computed=true)
+                                                                                            CallExpression
+                                                                                              MemberExpression(computed=true)
+                                                                                                CallExpression
+                                                                                                  MemberExpression(computed=false)
+                                                                                                    CallExpression
+                                                                                                      MemberExpression(computed=false)
+                                                                                                        CallExpression
+                                                                                                          MemberExpression(computed=true)
+                                                                                                            CallExpression
+                                                                                                              MemberExpression(computed=true)
+                                                                                                                CallExpression
+                                                                                                                  MemberExpression(computed=true)
+                                                                                                                    CallExpression
+                                                                                                                      MemberExpression(computed=true)
+                                                                                                                        CallExpression
+                                                                                                                          MemberExpression(computed=true)
+                                                                                                                            CallExpression
+                                                                                                                              MemberExpression(computed=true)
+                                                                                                                                CallExpression
+                                                                                                                                  MemberExpression(computed=true)
+                                                                                                                                    CallExpression
+                                                                                                                                      MemberExpression(computed=true)
+                                                                                                                                        CallExpression
+                                                                                                                                          MemberExpression(computed=true)
+                                                                                                                                            CallExpression
+                                                                                                                                              MemberExpression(computed=false)
+                                                                                                                                                CallExpression
+                                                                                                                                                  MemberExpression(computed=true)
+                                                                                                                                                    CallExpression
+                                                                                                                                                      MemberExpression(computed=true)
+                                                                                                                                                        CallExpression
+                                                                                                                                                          MemberExpression(computed=true)
+                                                                                                                                                            CallExpression
+                                                                                                                                                              MemberExpression(computed=true)
+                                                                                                                                                                CallExpression
+                                                                                                                                                                  MemberExpression(computed=true)
+                                                                                                                                                                    CallExpression
+                                                                                                                                                                      MemberExpression(computed=false)
+                                                                                                                                                                        CallExpression
+                                                                                                                                                                          MemberExpression(computed=true)
+                                                                                                                                                                            CallExpression
+                                                                                                                                                                              MemberExpression(computed=true)
+                                                                                                                                                                                CallExpression
+                                                                                                                                                                                  MemberExpression(computed=true)
+                                                                                                                                                                                    CallExpression
+                                                                                                                                                                                      MemberExpression(computed=true)
+                                                                                                                                                                                        CallExpression
+                                                                                                                                                                                          MemberExpression(computed=false)
+                                                                                                                                                                                            CallExpression
+                                                                                                                                                                                              MemberExpression(computed=false)
+                                                                                                                                                                                                CallExpression
+                                                                                                                                                                                                  MemberExpression(computed=true)
+                                                                                                                                                                                                    CallExpression
+                                                                                                                                                                                                      MemberExpression(computed=true)
+                                                                                                                                                                                                        CallExpression
+                                                                                                                                                                                                          MemberExpression(computed=true)
+                                                                                                                                                                                                            ArrayExpression
+                                                                                                                                                                                                              NumericLiteral 80
+                                                                                                                                                                                                            CallExpression
+                                                                                                                                                                                                              Identifier "_0x461d"
+                                                                                                                                                                                                              NumericLiteral 397
+                                                                                                                                                                                                          ArrayExpression
+                                                                                                                                                                                                            NumericLiteral 27
+                                                                                                                                                                                                        CallExpression
+                                                                                                                                                                                                          Identifier "_0x461d"
+                                                                                                                                                                                                          NumericLiteral 397
+                                                                                                                                                                                                      ArrayExpression
+                                                                                                                                                                                                        NumericLiteral 32
+                                                                                                                                                                                                    CallExpression
+                                                                                                                                                                                                      Identifier "_0x461d"
+                                                                                                                                                                                                      NumericLiteral 397
+                                                                                                                                                                                                  ArrayExpression
+                                                                                                                                                                                                    NumericLiteral 73
+                                                                                                                                                                                                Identifier "concat"
+                                                                                                                                                                                              ArrayExpression
+                                                                                                                                                                                                NumericLiteral 7
+                                                                                                                                                                                            Identifier "concat"
+                                                                                                                                                                                          ArrayExpression
+                                                                                                                                                                                            NumericLiteral 19
+                                                                                                                                                                                        CallExpression
+                                                                                                                                                                                          Identifier "_0x461d"
+                                                                                                                                                                                          NumericLiteral 397
+                                                                                                                                                                                      ArrayExpression
+                                                                                                                                                                                        NumericLiteral 5
+                                                                                                                                                                                    CallExpression
+                                                                                                                                                                                      Identifier "_0x461d"
+                                                                                                                                                                                      NumericLiteral 397
+                                                                                                                                                                                  ArrayExpression
+                                                                                                                                                                                    NumericLiteral 54
+                                                                                                                                                                                CallExpression
+                                                                                                                                                                                  Identifier "_0x461d"
+                                                                                                                                                                                  NumericLiteral 397
+                                                                                                                                                                              ArrayExpression
+                                                                                                                                                                                NumericLiteral 52
+                                                                                                                                                                            CallExpression
+                                                                                                                                                                              Identifier "_0x461d"
+                                                                                                                                                                              NumericLiteral 397
+                                                                                                                                                                          ArrayExpression
+                                                                                                                                                                            NumericLiteral 62
+                                                                                                                                                                        Identifier "concat"
+                                                                                                                                                                      ArrayExpression
+                                                                                                                                                                        NumericLiteral 9
+                                                                                                                                                                    CallExpression
+                                                                                                                                                                      Identifier "_0x461d"
+                                                                                                                                                                      NumericLiteral 397
+                                                                                                                                                                  ArrayExpression
+                                                                                                                                                                    NumericLiteral 61
+                                                                                                                                                                CallExpression
+                                                                                                                                                                  Identifier "_0x461d"
+                                                                                                                                                                  NumericLiteral 397
+                                                                                                                                                              ArrayExpression
+                                                                                                                                                                NumericLiteral 9
+                                                                                                                                                            CallExpression
+                                                                                                                                                              Identifier "_0x461d"
+                                                                                                                                                              NumericLiteral 397
+                                                                                                                                                          ArrayExpression
+                                                                                                                                                            NumericLiteral 82
+                                                                                                                                                        CallExpression
+                                                                                                                                                          Identifier "_0x461d"
+                                                                                                                                                          NumericLiteral 397
+                                                                                                                                                      ArrayExpression
+                                                                                                                                                        NumericLiteral 75
+                                                                                                                                                    CallExpression
+                                                                                                                                                      Identifier "_0x461d"
+                                                                                                                                                      NumericLiteral 397
+                                                                                                                                                  ArrayExpression
+                                                                                                                                                    NumericLiteral 21
+                                                                                                                                                Identifier "concat"
+                                                                                                                                              ArrayExpression
+                                                                                                                                                NumericLiteral 26
+                                                                                                                                            CallExpression
+                                                                                                                                              Identifier "_0x461d"
+                                                                                                                                              NumericLiteral 397
+                                                                                                                                          ArrayExpression
+                                                                                                                                            NumericLiteral 43
+                                                                                                                                        CallExpression
+                                                                                                                                          Identifier "_0x461d"
+                                                                                                                                          NumericLiteral 397
+                                                                                                                                      ArrayExpression
+                                                                                                                                        NumericLiteral 60
+                                                                                                                                    CallExpression
+                                                                                                                                      Identifier "_0x461d"
+                                                                                                                                      NumericLiteral 397
+                                                                                                                                  ArrayExpression
+                                                                                                                                    NumericLiteral 81
+                                                                                                                                CallExpression
+                                                                                                                                  Identifier "_0x461d"
+                                                                                                                                  NumericLiteral 397
+                                                                                                                              ArrayExpression
+                                                                                                                                NumericLiteral 90
+                                                                                                                            CallExpression
+                                                                                                                              Identifier "_0x461d"
+                                                                                                                              NumericLiteral 397
+                                                                                                                          ArrayExpression
+                                                                                                                            NumericLiteral 36
+                                                                                                                        CallExpression
+                                                                                                                          Identifier "_0x461d"
+                                                                                                                          NumericLiteral 397
+                                                                                                                      ArrayExpression
+                                                                                                                        NumericLiteral 16
+                                                                                                                    CallExpression
+                                                                                                                      Identifier "_0x461d"
+                                                                                                                      NumericLiteral 397
+                                                                                                                  ArrayExpression
+                                                                                                                    NumericLiteral 48
+                                                                                                                CallExpression
+                                                                                                                  Identifier "_0x461d"
+                                                                                                                  NumericLiteral 397
+                                                                                                              ArrayExpression
+                                                                                                                NumericLiteral 60
+                                                                                                            CallExpression
+                                                                                                              Identifier "_0x461d"
+                                                                                                              NumericLiteral 397
+                                                                                                          ArrayExpression
+                                                                                                            NumericLiteral 20
+                                                                                                        Identifier "concat"
+                                                                                                      ArrayExpression
+                                                                                                        NumericLiteral 96
+                                                                                                    Identifier "concat"
+                                                                                                  ArrayExpression
+                                                                                                    NumericLiteral 56
+                                                                                                CallExpression
+                                                                                                  Identifier "_0x461d"
+                                                                                                  NumericLiteral 397
+                                                                                              ArrayExpression
+                                                                                                NumericLiteral 77
+                                                                                            CallExpression
+                                                                                              Identifier "_0x461d"
+                                                                                              NumericLiteral 397
+                                                                                          ArrayExpression
+                                                                                            NumericLiteral 46
+                                                                                        CallExpression
+                                                                                          Identifier "_0x461d"
+                                                                                          NumericLiteral 397
+                                                                                      ArrayExpression
+                                                                                        NumericLiteral 2
+                                                                                    CallExpression
+                                                                                      Identifier "_0x461d"
+                                                                                      NumericLiteral 397
+                                                                                  ArrayExpression
+                                                                                    NumericLiteral 66
+                                                                                CallExpression
+                                                                                  Identifier "_0x461d"
+                                                                                  NumericLiteral 397
+                                                                              ArrayExpression
+                                                                                NumericLiteral 6
+                                                                            CallExpression
+                                                                              Identifier "_0x461d"
+                                                                              NumericLiteral 397
+                                                                          ArrayExpression
+                                                                            NumericLiteral 83
+                                                                        CallExpression
+                                                                          Identifier "_0x461d"
+                                                                          NumericLiteral 397
+                                                                      ArrayExpression
+                                                                        NumericLiteral 45
+                                                                    CallExpression
+                                                                      Identifier "_0x461d"
+                                                                      NumericLiteral 397
+                                                                  ArrayExpression
+                                                                    NumericLiteral 74
+                                                                CallExpression
+                                                                  Identifier "_0x461d"
+                                                                  NumericLiteral 397
+                                                              ArrayExpression
+                                                                NumericLiteral 87
+                                                            CallExpression
+                                                              Identifier "_0x461d"
+                                                              NumericLiteral 397
+                                                          ArrayExpression
+                                                            NumericLiteral 78
+                                                        CallExpression
+                                                          Identifier "_0x461d"
+                                                          NumericLiteral 397
+                                                      ArrayExpression
+                                                        NumericLiteral 30
+                                                    Identifier "concat"
+                                                  ArrayExpression
+                                                    NumericLiteral 26
+                                                CallExpression
+                                                  Identifier "_0x461d"
+                                                  NumericLiteral 397
+                                              ArrayExpression
+                                                NumericLiteral 73
+                                            CallExpression
+                                              Identifier "_0x461d"
+                                              NumericLiteral 397
+                                          ArrayExpression
+                                            NumericLiteral 48
+                                        CallExpression
+                                          Identifier "_0x461d"
+                                          NumericLiteral 397
+                                      ArrayExpression
+                                        NumericLiteral 55
+                                    Identifier "concat"
+                                  ArrayExpression
+                                    NumericLiteral 1
+                                CallExpression
+                                  Identifier "_0x461d"
+                                  NumericLiteral 397
+                              ArrayExpression
+                                NumericLiteral 79
+                            Identifier "concat"
+                          ArrayExpression
+                            NumericLiteral 31
+                        CallExpression
+                          Identifier "_0x461d"
+                          NumericLiteral 397
+                      ArrayExpression
+                        NumericLiteral 82
+                ReturnStatement
+                  ArrayExpression
+                    SpreadExpression
+                      Identifier "_0x468463" is_local=(true) index=(0)
+                    NumericLiteral 4
+                    NumericLiteral 96
+                    NumericLiteral 832
+                    NumericLiteral 482
+                    SpreadExpression
+                      Identifier "_0x468463" is_local=(true) index=(0)
+                    SpreadExpression
+                      Identifier "_0x468463" is_local=(true) index=(0)
+                    SpreadExpression
+                      Identifier "_0x468463" is_local=(true) index=(0)
+                    NumericLiteral 4932
+                    NumericLiteral 4329
+                    NumericLiteral 41
+                    NumericLiteral 5
+                    NumericLiteral 6
+                    NumericLiteral 912
+                    NumericLiteral 3
+                    NumericLiteral 23
+                    NumericLiteral 4
+                    NumericLiteral 5
+                    NumericLiteral 94358985
+                    NumericLiteral 49834
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "actual" is_global=(true)
+        CallExpression
+          Identifier "gk" is_global=(true)
+    FunctionDeclaration '_0x3a6c'
+      (Body)
+        FunctionBody
+          (Children)
+            VariableDeclaration
+              Const
+              VariableDeclarator
+                Identifier "_0x4c6b05"
+                ArrayExpression
+                  StringLiteral "fill"
+                  StringLiteral "cos"
+                  StringLiteral "toString"
+                  StringLiteral "exp"
+                  StringLiteral "fromCharCode"
+                  StringLiteral "slice"
+                  StringLiteral "replace"
+                  StringLiteral "84YVkNxa"
+                  StringLiteral "length"
+                  StringLiteral "join"
+                  StringLiteral "sqrt"
+                  StringLiteral "hraBe"
+                  StringLiteral "ceil"
+                  StringLiteral "round"
+                  StringLiteral "17171VRaQVZ"
+                  StringLiteral "prototype"
+                  StringLiteral "charCodeAt"
+                  StringLiteral "icUtg"
+                  StringLiteral "map"
+                  StringLiteral "pow"
+                  StringLiteral "concat"
+                  StringLiteral "EOthI"
+                  StringLiteral "171858ErsDso"
+                  StringLiteral "18knaAdH"
+                  StringLiteral "112UbtTeT"
+                  StringLiteral "3VDNPJC"
+                  StringLiteral "BfAdT"
+                  StringLiteral "5pOOhta"
+                  StringLiteral "random"
+                  StringLiteral "290450,252759,255400,284608,246552,249747,246351,269390,268267,275547,246821,274692,246860,292350,286009,250162,252639,261747,274122,291157,298784,257751,248586,265143,274023,249978,304373,270933,287883,263720,246050,278633,246765,292986,263136,285271,296218,288533,254347,252571,284632,265013,270194,246035,289630,254789,292201"
+                  StringLiteral "1032CiZIvK"
+                  StringLiteral "3XpypdC"
+                  StringLiteral "LOG2E"
+                  StringLiteral "5634030vUCpoH"
+                  StringLiteral "2103688CWouXQ"
+                  StringLiteral "push"
+                  StringLiteral "call"
+                  StringLiteral "floor"
+                  StringLiteral "_np"
+                  StringLiteral "sort"
+                  StringLiteral "1700296PmBYRk"
+                  StringLiteral "3523490zYNjuk"
+                  StringLiteral "abs"
+                  StringLiteral "log10"
+                  StringLiteral "trunc"
+                  StringLiteral "445357SpXRYz"
+                  BinaryExpression
+                    StringLiteral "log"
+                    +
+                    ConditionalExpression
+                      (Test)
+                        BinaryExpression
+                          AssignmentExpression
+                            =
+                            MemberExpression(computed=false)
+                              Identifier "Math" is_global=(true)
+                              Identifier "_np"
+                            FunctionExpression ''
+                              (Parameters)
+                                Identifier "a" is_local=(true) index=(0)
+                              (Body)
+                                FunctionBody
+                                  (Children)
+                                    ReturnStatement
+                                      Identifier "a" is_local=(true) index=(0)
+                          ===
+                          CallExpression
+                            MemberExpression(computed=false)
+                              Identifier "Math" is_global=(true)
+                              Identifier "random"
+                      (Consequent)
+                        StringLiteral "87yfew87yw"
+                      (Alternate)
+                        StringLiteral ""
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x3a6c"
+                FunctionExpression ''
+                  (Body)
+                    FunctionBody
+                      (Children)
+                        ReturnStatement
+                          Identifier "_0x4c6b05"
+            ReturnStatement
+              CallExpression
+                Identifier "_0x3a6c"
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "d8" is_global=(true)
+        CallExpression
+          Identifier "_0x461d"
+          NumericLiteral 406
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "cn" is_global=(true)
+        ArrayExpression
+          ArrayExpression
+    ForStatement
+    For
+      VariableDeclaration
+        Let
+        VariableDeclarator
+          Identifier "i"
+          NumericLiteral 0
+      BinaryExpression
+        Identifier "i"
+        <
+        MemberExpression(computed=true)
+          Identifier "d8" is_global=(true)
+          CallExpression
+            Identifier "_0x461d"
+            NumericLiteral 432
+      UpdateExpression
+        Identifier "i"
+        ++
+      BlockStatement
+        (Children)
+          IfStatement
+          If
+            BinaryExpression
+              MemberExpression(computed=true)
+                Identifier "d8" is_global=(true)
+                Identifier "i"
+              ===
+              StringLiteral ","
+            BlockStatement
+              (Children)
+                ExpressionStatement
+                  CallExpression
+                    MemberExpression(computed=true)
+                      Identifier "cn" is_global=(true)
+                      CallExpression
+                        Identifier "_0x461d"
+                        NumericLiteral 412
+                    ArrayExpression
+          Else
+            BlockStatement
+              (Children)
+                ExpressionStatement
+                  CallExpression
+                    MemberExpression(computed=false)
+                      CallExpression
+                        MemberExpression(computed=false)
+                          Identifier "cn" is_global=(true)
+                          Identifier "at"
+                        UnaryExpression
+                          -
+                          NumericLiteral 1
+                      Identifier "push"
+                    MemberExpression(computed=true)
+                      Identifier "d8" is_global=(true)
+                      Identifier "i"
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "kcn" is_global=(true)
+        CallExpression
+          MemberExpression(computed=true)
+            Identifier "cn" is_global=(true)
+            CallExpression
+              Identifier "_0x461d"
+              NumericLiteral 395
+          FunctionExpression ''
+            (Parameters)
+              Identifier "_0x398cd1" is_local=(true) index=(1)
+              Identifier "_0x40ea5e" is_local=(true) index=(0)
+            (Body)
+              FunctionBody
+                (Children)
+                  ReturnStatement
+                    BinaryExpression
+                      UnaryExpression
+                        +
+                        CallExpression
+                          MemberExpression(computed=true)
+                            Identifier "_0x398cd1" is_local=(true) index=(1)
+                            CallExpression
+                              Identifier "_0x461d"
+                              NumericLiteral 433
+                          StringLiteral ""
+                      ^
+                      CallExpression
+                        Identifier "q" is_global=(true)
+                        MemberExpression(computed=true)
+                          Identifier "actual" is_global=(true)
+                          Identifier "_0x40ea5e" is_local=(true) index=(0)
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "rnd" is_global=(true)
+        CallExpression
+          MemberExpression(computed=true)
+            CallExpression
+              MemberExpression(computed=true)
+                CallExpression
+                  Identifier "Array" is_global=(true)
+                  MemberExpression(computed=true)
+                    Identifier "kcn" is_global=(true)
+                    CallExpression
+                      Identifier "_0x461d"
+                      NumericLiteral 432
+                CallExpression
+                  Identifier "_0x461d"
+                  NumericLiteral 424
+              NumericLiteral 99
+            CallExpression
+              Identifier "_0x461d"
+              NumericLiteral 395
+          FunctionExpression ''
+            (Parameters)
+              Identifier "_0x17cbf5" is_local=(true) index=(0)
+            (Body)
+              FunctionBody
+                (Children)
+                  ReturnStatement
+                    CallExpression
+                      MemberExpression(computed=true)
+                        Identifier "Math" is_global=(true)
+                        CallExpression
+                          Identifier "_0x461d"
+                          NumericLiteral 405
+    ForStatement
+    For
+      VariableDeclaration
+        Let
+        VariableDeclarator
+          Identifier "i"
+          NumericLiteral 0
+      BinaryExpression
+        Identifier "i"
+        <
+        BinaryExpression
+          BinaryExpression
+            MemberExpression(computed=true)
+              Identifier "kcn" is_global=(true)
+              CallExpression
+                Identifier "_0x461d"
+                NumericLiteral 432
+            *
+            NumericLiteral 2
+          /
+          NumericLiteral 2
+      UpdateExpression
+        Identifier "i"
+        ++
+      BlockStatement
+        (Children)
+          ExpressionStatement
+            AssignmentExpression
+              =
+              MemberExpression(computed=true)
+                Identifier "kcn" is_global=(true)
+                Identifier "i"
+              BinaryExpression
+                CallExpression
+                  MemberExpression(computed=true)
+                    Identifier "Math" is_global=(true)
+                    CallExpression
+                      Identifier "_0x461d"
+                      NumericLiteral 415
+                  BinaryExpression
+                    MemberExpression(computed=true)
+                      Identifier "kcn" is_global=(true)
+                      Identifier "i"
+                    +
+                    BinaryExpression
+                      MemberExpression(computed=true)
+                        Identifier "kcn" is_global=(true)
+                        Identifier "i"
+                      -
+                      MemberExpression(computed=true)
+                        Identifier "kcn" is_global=(true)
+                        Identifier "i"
+                -
+                NumericLiteral 1
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "ok" is_global=(true)
+        CallExpression
+          MemberExpression(computed=true)
+            Identifier "kcn" is_global=(true)
+            CallExpression
+              Identifier "_0x461d"
+              NumericLiteral 395
+          FunctionExpression ''
+            (Parameters)
+              Identifier "_0x1ceff7" is_local=(true) index=(0)
+            (Body)
+              FunctionBody
+                (Children)
+                  ReturnStatement
+                    UnaryExpression
+                      ~
+                      UnaryExpression
+                        ~
+                        Identifier "_0x1ceff7" is_local=(true) index=(0)
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "aa" is_global=(true)
+        CallExpression
+          MemberExpression(computed=true)
+            Identifier "ok" is_global=(true)
+            CallExpression
+              Identifier "_0x461d"
+              NumericLiteral 429
+          NumericLiteral 0
+          NumericLiteral 7
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "bb" is_global=(true)
+        CallExpression
+          MemberExpression(computed=true)
+            Identifier "ok" is_global=(true)
+            CallExpression
+              Identifier "_0x461d"
+              NumericLiteral 429
+          NumericLiteral 7
+          NumericLiteral 8
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "cc" is_global=(true)
+        CallExpression
+          MemberExpression(computed=true)
+            Identifier "ok" is_global=(true)
+            CallExpression
+              Identifier "_0x461d"
+              NumericLiteral 429
+          NumericLiteral 8
+          NumericLiteral 14
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "dd" is_global=(true)
+        CallExpression
+          MemberExpression(computed=true)
+            Identifier "ok" is_global=(true)
+            CallExpression
+              Identifier "_0x461d"
+              NumericLiteral 429
+          NumericLiteral 14
+          BinaryExpression
+            NumericLiteral 14
+            +
+            MemberExpression(computed=true)
+              ArrayExpression
+                NumericLiteral 286.7432727059123
+                NumericLiteral 33.34252639478704
+                NumericLiteral 17.99638008312506
+                NumericLiteral 4952.491242666269
+                NumericLiteral 35001.77134597692
+                NumericLiteral 65.6079017844874
+                NumericLiteral 59.11786432948181
+                NumericLiteral 446.8484657240469
+                NumericLiteral 1856.8886370964979
+                NumericLiteral 1009.8250321912005
+                NumericLiteral 8.462439518228244
+              CallExpression
+                Identifier "_0x461d"
+                NumericLiteral 432
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "ee" is_global=(true)
+        CallExpression
+          MemberExpression(computed=true)
+            Identifier "ok" is_global=(true)
+            CallExpression
+              Identifier "_0x461d"
+              NumericLiteral 429
+          BinaryExpression
+            NumericLiteral 14
+            +
+            MemberExpression(computed=false)
+              Identifier "dd" is_global=(true)
+              Identifier "length"
+          BinaryExpression
+            BinaryExpression
+              NumericLiteral 14
+              +
+              MemberExpression(computed=true)
+                Identifier "dd" is_global=(true)
+                CallExpression
+                  Identifier "_0x461d"
+                  NumericLiteral 432
+            +
+            CallExpression
+              MemberExpression(computed=true)
+                Identifier "Math" is_global=(true)
+                CallExpression
+                  Identifier "_0x461d"
+                  NumericLiteral 434
+              NumericLiteral 100
+    FunctionDeclaration '_0x461d'
+      (Parameters)
+        Identifier "_0x22a7da" is_local=(true) index=(1)
+        Identifier "_0x43af33" is_local=(true) index=(0)
+      (Body)
+        FunctionBody
+          (Children)
+            VariableDeclaration
+              Const
+              VariableDeclarator
+                Identifier "_0x96779a"
+                CallExpression
+                  Identifier "_0x3a6c"
+            ExpressionStatement
+              AssignmentExpression
+                =
+                Identifier "_0x461d"
+                FunctionExpression ''
+                  (Parameters)
+                    Identifier "_0x19d2db" is_local=(true) index=(1)
+                    Identifier "_0x4e01e0" is_local=(true) index=(0)
+                  (Body)
+                    FunctionBody
+                      (Children)
+                        ExpressionStatement
+                          AssignmentExpression
+                            =
+                            Identifier "_0x19d2db" is_local=(true) index=(1)
+                            BinaryExpression
+                              Identifier "_0x19d2db" is_local=(true) index=(1)
+                              -
+                              NumericLiteral 388
+                        VariableDeclaration
+                          Let
+                          VariableDeclarator
+                            Identifier "_0x55260b" is_local=(true) index=(2)
+                            MemberExpression(computed=true)
+                              Identifier "_0x96779a"
+                              Identifier "_0x19d2db" is_local=(true) index=(1)
+                        ReturnStatement
+                          Identifier "_0x55260b" is_local=(true) index=(2)
+            ReturnStatement
+              CallExpression
+                Identifier "_0x461d"
+                Identifier "_0x22a7da" is_local=(true) index=(1)
+                Identifier "_0x43af33" is_local=(true) index=(0)
+    VariableDeclaration
+      Const
+      VariableDeclarator
+        Identifier "gg" is_global=(true)
+        CallExpression
+          MemberExpression(computed=true)
+            Identifier "ok" is_global=(true)
+            CallExpression
+              Identifier "_0x461d"
+              NumericLiteral 429
+          BinaryExpression
+            BinaryExpression
+              NumericLiteral 14
+              +
+              MemberExpression(computed=true)
+                Identifier "dd" is_global=(true)
+                CallExpression
+                  Identifier "_0x461d"
+                  NumericLiteral 432
+            +
+            MemberExpression(computed=true)
+              Identifier "ee" is_global=(true)
+              CallExpression
+                Identifier "_0x461d"
+                NumericLiteral 432
+    ExpressionStatement
+      CallExpression
+        MemberExpression(computed=false)
+          Identifier "console" is_global=(true)
+          Identifier "log"
+        BinaryExpression
+          CallExpression
+            MemberExpression(computed=true)
+              CallExpression
+                MemberExpression(computed=false)
+                  CallExpression
+                    MemberExpression(computed=true)
+                      ArrayExpression
+                        Identifier "aa" is_global=(true)
+                        Identifier "bb" is_global=(true)
+                        Identifier "cc" is_global=(true)
+                        Identifier "dd" is_global=(true)
+                        Identifier "ee" is_global=(true)
+                        Identifier "gg" is_global=(true)
+                      CallExpression
+                        Identifier "_0x461d"
+                        NumericLiteral 395
+                    FunctionExpression ''
+                      (Parameters)
+                        Identifier "_0x4db01a" is_local=(true) index=(0)
+                      (Body)
+                        FunctionBody
+                          (Children)
+                            ReturnStatement
+                              CallExpression
+                                Identifier "op" is_global=(true)
+                                Identifier "k" is_global=(true)
+                                Identifier "_0x4db01a" is_local=(true) index=(0)
+                  Identifier "join"
+                StringLiteral "_"
+              CallExpression
+                Identifier "_0x461d"
+                NumericLiteral 430
+            StringLiteral "_"
+            StringLiteral ""
+          +
+          StringLiteral "}"

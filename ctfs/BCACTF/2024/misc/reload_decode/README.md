@@ -1,0 +1,1 @@
+Greetings neighbor. My name's Crazy Dave but you can just call me Crazy Dave. I found this weird website that seems to represent something. Says something about taco as a reward Can you find whatever the code is and hand it to me? I could really go for a taco right now

@@ -1,0 +1,3 @@
+My client is a bit picky with the primes they are willing to use...
+
+(Sequel from BCACTF 4.0)

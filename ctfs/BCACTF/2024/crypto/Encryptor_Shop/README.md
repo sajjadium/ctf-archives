@@ -1,0 +1,1 @@
+After realizing how insecure the systems of many companies are (they're always getting hacked), I decided to start offering Encryption as a Service (EaaS). With such a strong guarantee of security, I'll even give you the source code AND my encrypted super secret flag.
