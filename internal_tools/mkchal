@@ -99,7 +99,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e')
 
 def get_challenge_name(line):
   for original_name in reversed(line.strip('|').strip().split('/')):
