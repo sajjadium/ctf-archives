@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="robots" content="noindex">
+  <title>hanko</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+    }
+    form {
+      padding: 1em;
+      border: solid 1px;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+    input[type="submit"] {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<main>
+  <h1>hanko</h1>
+  <p>手軽に承認欲求を満たせる待望の新サービス、遂に登場！</p>
+  <p>The long-awaited new service that can easily satisfy your need for approval has finally arrived!</p>
+  <form action="/create" method="post" enctype="multipart/form-data">
+    <div>
+      <label>
+        Select an image
+        <input type="file" name="file">
+      </label>
+    </div>
+    <div>
+      <input type="submit" value="Upload">
+    </div>
+  </form>
+</main>
+</body>
+</html>
