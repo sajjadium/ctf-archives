@@ -1091,7 +1091,11 @@
             <td><a href="https://ctftime.org/event/1803/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=6><a href="ctfs/GoogleCTF">Google</a></td>
+            <td rowspan=7><a href="ctfs/GoogleCTF">Google</a></td>
+            <td><a href="ctfs/GoogleCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2296/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/GoogleCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1929/tasks/" target="_blank">CTFtime</a></td>
         </tr>
