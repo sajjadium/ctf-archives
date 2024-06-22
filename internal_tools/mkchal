@@ -63,7 +63,10 @@ def is_valid(line):
   if is_all_numeric:
     return False
 
-  if line.strip().lower() in ['welcome', 'expert', 'beginner', 'web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography', 'unrated', 'reverse engineering', 'task', 'information', 'insights', 'read this carrefully because sometimes the author might leave hints.', 'download files', 'play challenge', 'problem', 'previous submissions', 'download', 'admin bot', 'website', 'pwning']:
+  if line.strip().lower() in [
+    'welcome', 'expert', 'beginner', 'web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography', 'unrated', 'reverse engineering', 'task', 'information', 'insights', 'read this carrefully because sometimes the author might leave hints.', 'download files', 'play challenge', 'problem', 'previous submissions', 'download', 'admin bot', 'website', 'pwning',
+    'misc icon', 'crypto icon', 'pwn icon', 'reversing icon', 'web icon'
+  ]:
     return False
 
   if re.fullmatch("category (forensics|reverse|web|crypto|pwn)", line.strip().lower()):
@@ -108,7 +111,7 @@ def get_challenge_name(line):
 
   args = re.sub('(\d+ solves|\d+ pts$)', '', original_name.strip()).strip()
   args = re.sub('\(solved by \d+ team(s)?\)$', '', args).strip()
-  args = re.sub('\d+$', '', args).strip()
+  args = re.sub('\b\d+$', '', args).strip()
   args = re.sub('(misc|crypto|rev|web|pwn)$', '', args).strip()
   args = args.split()
 

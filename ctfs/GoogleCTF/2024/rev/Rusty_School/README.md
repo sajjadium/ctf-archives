@@ -1,0 +1,1 @@
+My school asked me to create a new encryption algorithm. ...But I haven't done any crypto for years. My skills are a little bit rusty... Nevertheless, I managed to write this cool encryption tool. It works (well that's at least what I'm claiming) and it seems to be impossible to decrypt the ciphertext :evil. Or it's not???
