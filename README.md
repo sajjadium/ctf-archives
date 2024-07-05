@@ -1510,6 +1510,11 @@
             <td><a href="https://ctftime.org/event/1590/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Junior.Crypt">Junior.Crypt</a></td>
+            <td><a href="ctfs/Junior.Crypt/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2259/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/KalmarCTF">KalmarCTF</a></td>
             <td><a href="ctfs/KalmarCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2227/tasks/" target="_blank">CTFtime</a></td>
