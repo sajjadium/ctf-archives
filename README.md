@@ -1156,7 +1156,11 @@
             <td><a href="https://ctftime.org/event/1944/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=7><a href="ctfs/HITCON">HITCON</a></td>
+            <td rowspan=8><a href="ctfs/HITCON">HITCON</a></td>
+            <td><a href="ctfs/HITCON/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2345/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/HITCON/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2019/tasks/" target="_blank">CTFtime</a></td>
         </tr>
