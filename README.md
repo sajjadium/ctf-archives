@@ -1865,6 +1865,11 @@
             <td><a href="https://ctftime.org/event/1363/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/OSCTF">OSCTF</a></td>
+            <td><a href="ctfs/OSCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2416/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/OverTheWireAdventBonanza">OverTheWire Advent Bonanza</a></td>
             <td><a href="ctfs/OverTheWireAdventBonanza/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1503/tasks/" target="_blank">CTFtime</a></td>
