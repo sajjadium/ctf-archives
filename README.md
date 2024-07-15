@@ -616,6 +616,11 @@
             <td><a href="https://ctftime.org/event/1683/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/CatTheQuest">CatTheQuest</a></td>
+            <td><a href="ctfs/CatTheQuest/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2414/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Chaff">Chaff</a></td>
             <td><a href="ctfs/Chaff/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1445/tasks/" target="_blank">CTFtime</a></td>
