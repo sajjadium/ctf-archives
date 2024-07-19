@@ -1,0 +1,3 @@
+by ksaweryr
+
+While exploring twisted corridors of an ancient pyramid, you find a weird scroll with a camel drawn on it. You pick it up, but don't have too much time to inspect it...

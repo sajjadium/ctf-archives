@@ -109,9 +109,10 @@ def get_challenge_name(line):
     if original_name not in ['beginner', 'medium', 'hard', 'easy']:
       break
 
-  args = re.sub('(\d+ solves|\d+ pts$)', '', original_name.strip()).strip()
-  args = re.sub('\(solved by \d+ team(s)?\)$', '', args).strip()
-  args = re.sub('\b\d+$', '', args).strip()
+  args = re.sub(r'(\d+ solves|\d+ pts$)', '', original_name.strip()).strip()
+  args = re.sub(r'\(\d+ pts\)', '', args).strip()
+  args = re.sub(r'\(solved by \d+ team(s)?\)$', '', args).strip()
+  args = re.sub(r'\b\d+$', '', args).strip()
   args = re.sub('(misc|crypto|rev|web|pwn)$', '', args).strip()
   args = args.split()
 

@@ -1421,6 +1421,10 @@
         </tr>
         <tr>
             <td rowspan=3><a href="ctfs/ImaginaryCTF">ImaginaryCTF</a></td>
+            <td><a href="ctfs/ImaginaryCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2396/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/ImaginaryCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2015/tasks/" target="_blank">CTFtime</a></td>
         </tr>
