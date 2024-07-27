@@ -1,0 +1,46 @@
+fart@fartbox:~$ uname -a
+Linux fartbox 6.5.0-28-generic #29~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Apr  4 14:39:20 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+fart@fartbox:~$ shc -C
+shc Version 4.0.3, Generic Shell Script Compiler
+shc GNU GPL Version 3 Md Jahidul Hamid <jahidulhamid@yahoo.com>
+shc Copying:
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    @Neurobin, Dhaka, Bangladesh
+
+    Report problems and questions to:http://github.com/neurobin/shc
+
+    Md Jahidul Hamid <jahidulhamid@yahoo.com>
+
+fart@fartbox:~$ shc -U -H -v -o flag -f flag.sh && rm flag.sh.x.c && rm flag.sh
+shc shll=sh
+shc [-i]=-c
+shc [-x]=exec '%s' "$@"
+shc [-l]=
+shc opts=
+shc: cc   flag.sh.x.c -o flag
+shc: strip flag.sh.x
+shc: chmod ug=rwx,o=rx flag.sh.x
+fart@fartbox:~$ ./file_information /bin/sh
+
+Inode Number: 42467530
+Device Number: 2050
+Device ID: 0
+User ID: 0
+Group ID: 0
+File Size: 125688
+Last Modification Time: 1648043363
+Last Status Change Time: 1686442713
+
+fart@fartbox:~$

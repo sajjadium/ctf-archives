@@ -1,0 +1,3 @@
+0x5a
+
+Pirates have stolen your treasure and encrypted them with their keys! Fortunately, we found a dev that was able to get an AIS terminal and modify it such that we can send messages to a nearby ship. Exploit the other ships and take their keys to reclaim your stolen treasure! Be sure not to crash any other boats because the Coast Guard will be very unhappy...
