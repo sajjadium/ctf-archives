@@ -212,6 +212,11 @@
             <td><a href="https://ctftime.org/event/2046/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/AptosCodeCollision">AptosCodeCollision</a></td>
+            <td><a href="ctfs/AptosCodeCollision/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2433/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/AzureAssassinAlliance">AzureAssassinAlliance</a></td>
             <td><a href="ctfs/AzureAssassinAlliance/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2104/tasks/" target="_blank">CTFtime</a></td>
@@ -899,7 +904,11 @@
             <td><a href="https://ctftime.org/event/843/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/DeadSec">DeadSec</a></td>
+            <td rowspan=2><a href="ctfs/DeadSec">DeadSec</a></td>
+            <td><a href="ctfs/DeadSec/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2353/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/DeadSec/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1962/tasks/" target="_blank">CTFtime</a></td>
         </tr>

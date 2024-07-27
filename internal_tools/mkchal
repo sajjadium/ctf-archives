@@ -78,7 +78,7 @@ def is_valid(line):
   if re.fullmatch("level (easy|medium|hard)", line.strip().lower()):
     return False
 
-  if re.fullmatch("difficulty: (easy|medium|hard|baby|guessy)", line.strip().lower()):
+  if re.fullmatch("difficulty: (easy|medium|hard|baby|guessy|elite)", line.strip().lower()):
     return False
 
   if re.fullmatch(r"first blood: (\w|\.)+", line.strip().lower()):
@@ -99,6 +99,9 @@ def is_valid(line):
   if re.fullmatch(r"\d{1,2}/\d{1,2}/\d{4}", line.strip().lower()):
     return False
 
+  if re.fullmatch(r'\d+ pts', line.strip().lower()):
+    return False
+
   return True
 
 def replace_special_characters(line):
@@ -109,8 +112,8 @@ def get_challenge_name(line):
     if original_name not in ['beginner', 'medium', 'hard', 'easy']:
       break
 
-  args = re.sub(r'(\d+ solves|\d+ pts$)', '', original_name.strip()).strip()
-  args = re.sub(r'\(\d+ pts\)', '', args).strip()
+  args = re.sub(r'(\d+ solves|\d+ pts$)', '', original_name.strip(), flags=re.IGNORECASE).strip()
+  args = re.sub(r'\(\d+ pts\)', '', args, flags=re.IGNORECASE).strip()
   args = re.sub(r'\(solved by \d+ team(s)?\)$', '', args).strip()
   args = re.sub(r'\b\d+$', '', args).strip()
   args = re.sub('(misc|crypto|rev|web|pwn)$', '', args).strip()
