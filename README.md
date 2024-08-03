@@ -676,7 +676,11 @@
             <td><a href="https://ctftime.org/event/542/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/Codegate/2018/Quals">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/CrewCTF">CrewCTF</a></td>
+            <td rowspan=2><a href="ctfs/CrewCTF">CrewCTF</a></td>
+            <td><a href="ctfs/CrewCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2223/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/CrewCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2032/tasks/" target="_blank">CTFtime</a></td>
         </tr>
