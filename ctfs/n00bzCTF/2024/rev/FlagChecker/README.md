@@ -1,0 +1,1 @@
+Why did the macros hide its knowledge? Because it didn't want anyone to "excel"! Note: char_21 is the SAME as char_22 Note 2: The correct flag has ALL LOWERCASE, NUMBERS, n00bz{] AND UNDERSCORES (There's two underscores in the entire flag) Author: NoobMaster

@@ -1,0 +1,1 @@
+Welcome to the Shop! Just buy the flag for 1337 ETH! Too bad you don't have enough... Note: It is best to deploy your contract through web3 python module (I believe js should also work but have not tested it). Author: NoobMaster

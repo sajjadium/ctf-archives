@@ -1,0 +1,1 @@
+I have some EVM runtime bytecode, whatever that means. You need to find the value, in hex, that you need to send to make the contract STOP and not self destruct. Wrap the hex in n00bz{}. If the correct answer is 9999, the flag is n00bz{0x270f}. Author: NoobMaster

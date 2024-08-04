@@ -1,0 +1,9 @@
+# CHANGE THE FLAG WHEN HANDING THIS OUT TO PLAYERS
+
+services:
+  web:
+    build: .
+    ports:
+      - "4000:1337"
+    environment:
+      - FLAG="n00bz{f4k3_fl4g_f0r_t3st1ng}"

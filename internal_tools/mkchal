@@ -115,7 +115,6 @@ def get_challenge_name(line):
   args = re.sub(r'(\d+ solves|\d+ pts$)', '', original_name.strip(), flags=re.IGNORECASE).strip()
   args = re.sub(r'\(\d+ pts\)', '', args, flags=re.IGNORECASE).strip()
   args = re.sub(r'\(solved by \d+ team(s)?\)$', '', args).strip()
-  args = re.sub(r'\b\d+$', '', args).strip()
   args = re.sub('(misc|crypto|rev|web|pwn)$', '', args).strip()
   args = args.split()
 
