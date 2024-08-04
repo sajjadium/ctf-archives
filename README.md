@@ -3162,6 +3162,10 @@
         </tr>
         <tr>
             <td rowspan=1><a href="ctfs/n00bzCTF">n00bzCTF</a></td>
+            <td><a href="ctfs/n00bzCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2378/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/n00bzCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1895/tasks/" target="_blank">CTFtime</a></td>
         </tr>
