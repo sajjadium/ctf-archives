@@ -603,7 +603,11 @@
             <td><a href="https://ctftime.org/event/2339/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/CTFZone">CTFZone</a></td>
+            <td rowspan=3><a href="ctfs/CTFZone">CTFZone</a></td>
+            <td><a href="ctfs/CTFZone/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2408/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/CTFZone/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/1955/tasks/" target="_blank">CTFtime</a></td>
         </tr>
