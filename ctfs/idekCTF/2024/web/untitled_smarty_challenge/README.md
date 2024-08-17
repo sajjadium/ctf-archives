@@ -1,0 +1,3 @@
+downgrade
+
+We're using Smarty 5, with open_basedir, AND don't even pass user input directly into a template, surely this isn't insecure. Oh wait...
