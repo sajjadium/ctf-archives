@@ -49,7 +49,7 @@ if __name__ == '__main__':
     break
 
 
-  ctf_name = re.sub('[^0-9a-zA-Z_\-\.+]+', '', ctf_name.replace('Preliminary', '').replace('Qualifier', '').strip().replace('å', 'a'))
+  ctf_name = re.sub('[^0-9a-zA-Z_\.+]+', '', ctf_name.replace('Preliminary', '').replace('Qualifier', '').strip().replace('å', 'a'))
   full_name = '%s/%d' % (ctf_name, datetime.date.today().year)
   title = soup.find_all('title')[0].text.lower()
   if 'teaser' in title or 'qualifier' in title or 'quals' in title or 'preliminary' in title or 'prequal' in title or 'qualification' in title:
