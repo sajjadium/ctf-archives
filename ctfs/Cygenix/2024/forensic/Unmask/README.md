@@ -1,0 +1,1 @@
+A crucial file has been tampered with in a way in order to conceal its true contents. Your mission is to unmask the data and retrieve the hidden information. Lets find out your worth and if you have what it takes to uncover and extract the forensic evidence. And if you do, I assure you, the return will be rewarding. All the best Agent!

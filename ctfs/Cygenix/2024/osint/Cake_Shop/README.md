@@ -1,0 +1,1 @@
+I visited the Church in Goa when I was at my vacation a long time back during Christmas eve. So, one of my local friend bought me a cake as a gift and it was so amazing and delicious. He told me that he bought it from a nearby cake shop. Could you please help me locate it and provide me the cake shop reviews. Thanks!
