@@ -1,0 +1,3 @@
+can't seem to open it; can't seem to see what's inside... fickling and pickletools won't help me either...
+
+Author: quasar098

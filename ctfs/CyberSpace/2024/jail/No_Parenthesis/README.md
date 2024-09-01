@@ -1,0 +1,3 @@
+No parenthesis and all warnings treated as errors? Surely you can't write unsafe code to steal my flag....
+
+Author: oh_word

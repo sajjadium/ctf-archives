@@ -765,6 +765,11 @@
             <td><a href="https://ctftime.org/event/1057/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/CyberSpace">CyberSpace</a></td>
+            <td><a href="ctfs/CyberSpace/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2428/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/CyberYoddha">CyberYoddha</a></td>
             <td><a href="ctfs/CyberYoddha/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1169/tasks/" target="_blank">CTFtime</a></td>
