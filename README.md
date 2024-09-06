@@ -568,7 +568,11 @@
             <td><a href="https://ctftime.org/event/960/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=7><a href="ctfs/CSAW">CSAW</a></td>
+            <td rowspan=8><a href="ctfs/CSAW">CSAW</a></td>
+            <td><a href="ctfs/CSAW/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2398/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/CSAW/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2087/tasks/" target="_blank">CTFtime</a></td>
         </tr>
