@@ -1,0 +1,24 @@
+Process: com.google.android.play.games
+Flags: 0x30cbbe45
+Package: com.google.android.play.games v95330080 (2019.04.9533 (244301765.244301765-000800))
+Build: Android/sdk_google_phone_x86_64/generic_x86_64:6.0/MASTER/6695544:userdebug/test-keys
+System-App: true
+Uptime-Millis: 57421
+Loop-Violation-Number: 1
+Duration-Millis: 2
+
+android.os.StrictMode$StrictModeDiskReadViolation: policy=2621447 violation=2
+	at android.os.StrictMode$AndroidBlockGuardPolicy.onReadFromDisk(StrictMode.java:1263)
+	at android.app.SharedPreferencesImpl.awaitLoadedLocked(SharedPreferencesImpl.java:203)
+	at android.app.SharedPreferencesImpl.edit(SharedPreferencesImpl.java:284)
+	at ddp.a(:com.google.android.play.games@95330080@2019.04.9533 (244301765.244301765-000800))
+	at mlw.a(Unknown Source)
+	at mna.run(:com.google.android.play.games@95330080@2019.04.9533 (244301765.244301765-000800):5)
+	at android.os.Handler.handleCallback(Handler.java:739)
+	at android.os.Handler.dispatchMessage(Handler.java:95)
+	at android.os.Looper.loop(Looper.java:148)
+	at android.app.ActivityThread.main(ActivityThread.java:5417)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:726)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:616)
+

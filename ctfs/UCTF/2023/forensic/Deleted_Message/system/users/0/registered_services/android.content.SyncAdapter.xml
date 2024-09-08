@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<services>
+    <service uid="10031" authority="com.android.calendar" accountType="com.android.exchange" />
+    <service uid="10008" authority="com.google.android.gms.games.background" accountType="com.google" />
+    <service uid="10008" authority="com.google.android.gms.reminders" accountType="com.google" />
+    <service uid="10008" authority="subscribedfeeds" accountType="com.google" />
+    <service uid="10031" authority="com.android.contacts" accountType="com.android.exchange" />
+    <service uid="10008" authority="com.google.android.gms.people" accountType="com.google" />
+    <service uid="10008" authority="com.google.android.gms.fitness" accountType="com.google" />
+    <service uid="10008" authority="com.google.android.gms.plus.action" accountType="com.google" />
+    <service uid="10047" authority="com.google.android.gm.email.provider" accountType="com.google.android.gm.pop3" />
+    <service uid="10008" authority="com.google.android.gms.chromesync" accountType="com.google" />
+    <service uid="10008" authority="com.android.contacts" accountType="com.google" />
+    <service uid="10022" authority="com.android.calendar" accountType="com.google" />
+    <service uid="10008" authority="com.google.android.gms.subscribedfeeds" accountType="com.google" />
+    <service uid="10008" authority="com.google.android.gms.appstate" accountType="com.google" />
+    <service uid="10008" authority="com.google.android.gms.games" accountType="com.google" />
+    <service uid="10008" authority="com.google.android.gms.drive.sync" accountType="com.google" />
+    <service uid="10008" authority="com.google.android.gms.auth.accountstate" accountType="com.google" />
+    <service uid="10008" authority="com.google.android.gms.auth.confirm" accountType="com.google" />
+    <service uid="10031" authority="com.android.email.provider" accountType="com.android.exchange" />
+    <service uid="10008" authority="com.google.android.location.reporting" accountType="com.google" />
+    <service uid="10047" authority="com.google.android.gm.email.provider" accountType="com.google.android.gm.legacyimap" />
+    <service uid="10047" authority="gmail-ls" accountType="com.google" />
+</services>

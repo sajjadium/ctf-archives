@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<app-ops>
+<pkg n="android">
+<uid n="1000" p="true">
+<op n="0" />
+<op n="3" t="1691777378911" d="3" />
+<op n="11" t="1691777380714" pu="0" />
+<op n="40" t="1691777387445" d="122" />
+<op n="41" t="1691777384543" d="6435" />
+<op n="62" t="1691777389568" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.server.telecom">
+<uid n="1000" p="true">
+<op n="6" t="1691777380747" pu="10002" pp="com.android.providers.contacts" />
+</uid>
+</pkg>
+<pkg n="com.android.settings">
+<uid n="1000" p="true">
+<op n="59" t="1691777381593" pu="0" />
+<op n="60" t="1691777381594" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.providers.telephony">
+<uid n="1001" p="true">
+<op n="15" m="0" />
+</uid>
+</pkg>
+<pkg n="com.android.mms.service">
+<uid n="1001" p="true">
+<op n="15" m="0" />
+</uid>
+</pkg>
+<pkg n="com.android.phone">
+<uid n="1001" p="true">
+<op n="4" t="1691777384291" pu="10002" pp="com.android.providers.contacts" />
+<op n="14" t="1691777390383" />
+<op n="15" m="0" t="1691777387027" pu="0" />
+<op n="21" t="1691777389966" />
+<op n="40" t="1691777387253" d="13" />
+<op n="59" t="1691777381571" pu="0" />
+<op n="60" t="1691777381571" pu="0" />
+</uid>
+</pkg>
+<pkg n="media">
+<uid n="1013" p="false">
+<op n="26" t="1691777382952" d="4" />
+<op n="40" t="1691777385249" d="3297" />
+</uid>
+</pkg>
+<pkg n="com.android.providers.contacts">
+<uid n="10002" p="true">
+<op n="4" t="1691777390073" />
+<op n="6" t="1691777380747" />
+<op n="59" t="1691777380627" pu="0" />
+<op n="60" t="1691777380627" pu="0" />
+<op n="62" t="1691777381167" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.carrierconfig">
+<uid n="10003" p="true">
+<op n="59" t="1691777386535" pu="0" />
+<op n="60" t="1691777386535" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.providers.media">
+<uid n="10006" p="true">
+<op n="59" t="1691777384588" />
+<op n="60" t="1691777384562" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.externalstorage">
+<uid n="10007" p="true">
+<op n="59" t="1691777381638" pu="0" />
+<op n="60" t="1691777381638" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.google.android.gms">
+<uid n="10008" p="true">
+<op n="4" t="1691777390073" pu="10002" pp="com.android.providers.contacts" />
+<op n="14" t="1691777390383" pu="1001" pp="com.android.phone" />
+<op n="21" t="1691777389966" pu="1001" pp="com.android.phone" />
+<op n="40" t="1691777389281" d="1698" />
+<op n="51" t="1691777387723" />
+<op n="59" t="1691777385913" pu="0" />
+<op n="60" t="1691777385913" pu="0" />
+<op n="62" t="1691777390605" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.google.android.gsf">
+<uid n="10008" p="true">
+<op n="59" t="1691777382682" pu="0" />
+<op n="60" t="1691777382682" pu="0" />
+<op n="62" t="1691777383078" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.systemui">
+<uid n="10015" p="true">
+<op n="4" t="1691777385561" pu="10002" pp="com.android.providers.contacts" />
+<op n="11" t="1691777381146" pu="0" />
+<op n="59" t="1691777380693" pu="0" />
+<op n="60" t="1691777380693" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.google.android.googlequicksearchbox">
+<uid n="10016" p="true">
+<op n="51" t="1691777384720" pu="0" />
+<op n="59" t="1691777385761" pu="0" />
+<op n="60" t="1691777385761" pu="0" />
+<op n="62" t="1691777383568" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.exchange">
+<uid n="10031" p="false">
+<op n="4" t="1691777383506" />
+<op n="59" t="1691777382978" pu="0" />
+<op n="60" t="1691777382978" pu="0" />
+<op n="62" t="1691777383617" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.google.android.syncadapters.contacts">
+<uid n="10033" p="false">
+<op n="59" t="1691777384281" pu="0" />
+<op n="60" t="1691777384281" pu="0" />
+<op n="62" t="1691777384763" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.inputmethod.latin">
+<uid n="10035" p="false">
+<op n="4" t="1691777384952" pu="10002" pp="com.android.providers.contacts" />
+<op n="59" t="1691777381376" pu="0" />
+<op n="60" t="1691777381376" pu="0" />
+<op n="62" t="1691777382208" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.google.android.apps.maps">
+<uid n="10039" p="false">
+<op n="59" t="1691777389342" pu="0" />
+<op n="60" t="1691777389342" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.music">
+<uid n="10040" p="false">
+<op n="59" t="1691777384588" pu="10006" pp="com.android.providers.media" />
+<op n="60" t="1691777383017" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.printspooler">
+<uid n="10048" p="false">
+<op n="59" t="1691777382466" pu="0" />
+<op n="60" t="1691777382466" pu="0" />
+</uid>
+</pkg>
+<pkg n="com.android.messaging">
+<uid n="10052" p="false">
+<op n="15" m="0" />
+</uid>
+</pkg>
+</app-ops>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>License, Please</title>
+
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body>
+    <div id="main">
+        <form class="container" spellcheck="false" action="javascript:onValidateSubmit()">
+            <p class="caption-1">License, Please</p>
+            <textarea class="license-textarea" placeholder="License key" id="license-input" required></textarea>
+
+            <div class="row-container">
+                <p class="link-button" onclick="toggleDemoLicenseModal()">Request demo license</p>
+                <input class="button align-right" type="submit" value="Validate">
+            </div>
+        </form>
+    </div>
+    <div>
+
+    </div>
+    <div class="modal hidden uncancelable" id="loading-modal">
+        <div class="container">
+            <p class="caption-1">Loading...</p>
+        </div>
+    </div>
+    <div class="modal hidden" id="demo-license-modal">
+        <form class="container" spellcheck="false" action="javascript:onDemoLicenseSubmit()">
+            <div class="caption-1">Demo License Request<span class="link-button align-right"
+                    onclick="onModalExitClick(this)">X</span></div>
+            <div class="row-container">
+                <label class="caption-2 mr" for="user-input">User:</label>
+                <input class="flex-grow" type="text" minlength="4" maxlength="16" id="user-input" placeholder="User"
+                    required>
+            </div>
+            <input class="button align-right" type="submit" value="Request">
+        </form>
+    </div>
+    <div class="modal hidden" id="status-modal">
+        <div class="container">
+            <div class="caption-1"><span class="title">Status</span><span class="link-button align-right"
+                    onclick="onModalExitClick(this)">X</span></div>
+            <p class="caption-2 caption"></p>
+            <p class="text-large message"></p>
+        </div>
+    </div>
+
+    <script>
+        function showStatusModal(title, caption, message) {
+            const statusModalEl = document.getElementById('status-modal');
+            statusModalEl.classList.remove('hidden');
+
+            const titleEl = statusModalEl.getElementsByClassName('title')[0];
+            titleEl.innerText = title;
+
+            const captionEl = statusModalEl.getElementsByClassName('caption')[0];
+            captionEl.innerText = caption;
+
+            const messageEl = statusModalEl.getElementsByClassName('message')[0];
+            messageEl.innerText = message;
+        }
+
+        function toggleLoadingModal() {
+            const loadingModalEl = document.getElementById('loading-modal');
+            loadingModalEl.classList.toggle('hidden');
+        }
+
+        function toggleDemoLicenseModal() {
+            const demoLicenseModalEl = document.getElementById('demo-license-modal');
+            demoLicenseModalEl.classList.toggle('hidden');
+        }
+
+        function closeAllModals() {
+            const modalEls = document.getElementsByClassName('modal');
+
+            for (let i = 0; i < modalEls.length; i++) {
+                const el = modalEls[i];
+                if (!el.classList.contains('uncancelable')) {
+                    el.classList.add('hidden');
+                }
+            }
+        }
+
+        function onModalExitClick(el) {
+            const modalEl = el.closest('div.modal');
+            modalEl.classList.add('hidden');
+        }
+
+        async function onDemoLicenseSubmit() {
+            toggleDemoLicenseModal();
+
+            const user = document.getElementById('user-input').value;
+
+            toggleLoadingModal();
+            let resp;
+            try {
+                resp = await fetch('/getlicense.php?' + new URLSearchParams({
+                    user: user
+                }));
+            } catch (e) {
+                showStatusModal('Error', 'fetch() error', e.message);
+                return;
+            } finally {
+                toggleLoadingModal();
+            }
+
+            if (!resp.ok) {
+                let message;
+                try {
+                    const decoded = await resp.json();
+                    message = decoded.message;
+                } catch (e) {
+                    message = '';
+                }
+                showStatusModal('Error', resp.statusText, message);
+            } else {
+                const licenseInputEl = document.getElementById('license-input');
+                licenseInputEl.value = await resp.text();
+            }
+        }
+
+        async function onValidateSubmit() {
+            const licenseInput = document.getElementById('license-input').value;
+
+            toggleLoadingModal();
+
+            let $resp;
+            try {
+                resp = await fetch('/validate.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    redirect: 'error',
+                    body: licenseInput
+                });
+            } catch (e) {
+                showStatusModal('Error', 'fetch() error', e.message);
+                return;
+            } finally {
+                toggleLoadingModal();
+            }
+
+            let decoded;
+            try {
+                decoded = await resp.json();
+            } catch (e) {
+                decoded = null;
+            }
+            if (!resp.ok) {
+                showStatusModal('Error', resp.statusText, decoded?.message ?? '');
+            } else {
+                showStatusModal('Validation', (decoded.status) == 'success' ? 'Success' : 'Fail', decoded.message);
+            }
+        }
+
+        document.addEventListener('keydown', (ev) => {
+            if (ev.key == 'Escape') {
+                closeAllModals();
+            }
+        })
+    </script>
+</body>
+
+</html>

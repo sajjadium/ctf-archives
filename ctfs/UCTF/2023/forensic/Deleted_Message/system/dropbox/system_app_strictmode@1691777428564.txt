@@ -1,0 +1,44 @@
+Process: com.google.android.gms.persistent
+Flags: 0x-4737c1bb
+Package: com.google.android.gms v202414023 (20.24.14 (040800-319035315))
+Build: Android/sdk_google_phone_x86_64/generic_x86_64:6.0/MASTER/6695544:userdebug/test-keys
+System-App: true
+Uptime-Millis: 75345
+
+java.lang.Throwable: Explicit termination method 'close' not called
+	at dalvik.system.CloseGuard.open(CloseGuard.java:180)
+	at com.google.android.gms.org.conscrypt.Platform.closeGuardOpen(:com.google.android.gms@202414023@20.24.14 (040800-319035315):2)
+	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.startHandshake(:com.google.android.gms@202414023@20.24.14 (040800-319035315):4)
+	at arcm.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):22)
+	at arcm.createSocket(:com.google.android.gms@202414023@20.24.14 (040800-319035315):9)
+	at com.android.okhttp.internal.http.SocketConnector.connectTls(SocketConnector.java:89)
+	at com.android.okhttp.Connection.connect(Connection.java:143)
+	at com.android.okhttp.Connection.connectAndSetOwner(Connection.java:185)
+	at com.android.okhttp.OkHttpClient$1.connectAndSetOwner(OkHttpClient.java:128)
+	at com.android.okhttp.internal.http.HttpEngine.nextConnection(HttpEngine.java:341)
+	at com.android.okhttp.internal.http.HttpEngine.connect(HttpEngine.java:330)
+	at com.android.okhttp.internal.http.HttpEngine.sendRequest(HttpEngine.java:248)
+	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.execute(HttpURLConnectionImpl.java:433)
+	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.connect(HttpURLConnectionImpl.java:114)
+	at com.android.okhttp.internal.huc.HttpURLConnectionImpl.getOutputStream(HttpURLConnectionImpl.java:245)
+	at com.android.okhttp.internal.huc.DelegatingHttpsURLConnection.getOutputStream(DelegatingHttpsURLConnection.java:218)
+	at com.android.okhttp.internal.huc.HttpsURLConnectionImpl.getOutputStream(HttpsURLConnectionImpl.java)
+	at abue.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):28)
+	at abue.execute(:com.google.android.gms@202414023@20.24.14 (040800-319035315):8)
+	at abue.execute(:com.google.android.gms@202414023@20.24.14 (040800-319035315):7)
+	at aoqc.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):14)
+	at aoqb.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):276)
+	at aoqb.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):766)
+	at aoqb.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):714)
+	at com.google.android.gms.phenotype.sync.HeterodyneSyncTaskChimeraService.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):19)
+	at com.google.android.gms.phenotype.sync.HeterodyneSyncTaskChimeraService.a(:com.google.android.gms@202414023@20.24.14 (040800-319035315):76)
+	at aeme.call(Unknown Source)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:237)
+	at soy.b(:com.google.android.gms@202414023@20.24.14 (040800-319035315):12)
+	at soy.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):7)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1113)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:588)
+	at sux.run(:com.google.android.gms@202414023@20.24.14 (040800-319035315):0)
+	at java.lang.Thread.run(Thread.java:818)
+
+A resource was acquired at attached stack trace but never released. See java.io.Closeable for information on avoiding resource leaks.

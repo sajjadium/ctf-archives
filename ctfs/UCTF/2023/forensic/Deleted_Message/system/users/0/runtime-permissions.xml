@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<runtime-permissions fingerprint="Android/sdk_google_phone_x86_64/generic_x86_64:6.0/MASTER/6695544:userdebug/test-keys">
+  <pkg name="com.google.android.googlequicksearchbox">
+    <item name="android.permission.READ_SMS" granted="true" flags="20" />
+    <item name="android.permission.READ_CALENDAR" granted="true" flags="20" />
+    <item name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="20" />
+    <item name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="20" />
+    <item name="android.permission.READ_PHONE_STATE" granted="true" flags="20" />
+    <item name="android.permission.SEND_SMS" granted="true" flags="20" />
+    <item name="android.permission.CALL_PHONE" granted="true" flags="20" />
+    <item name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <item name="android.permission.WRITE_CALENDAR" granted="true" flags="20" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <item name="android.permission.RECORD_AUDIO" granted="true" flags="20" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </pkg>
+  <pkg name="com.android.externalstorage">
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="30" />
+    <item name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="30" />
+  </pkg>
+  <pkg name="com.android.messaging">
+    <item name="android.permission.READ_SMS" granted="true" flags="20" />
+    <item name="android.permission.RECEIVE_MMS" granted="true" flags="20" />
+    <item name="android.permission.RECEIVE_SMS" granted="true" flags="20" />
+    <item name="android.permission.READ_PHONE_STATE" granted="true" flags="20" />
+    <item name="android.permission.SEND_SMS" granted="true" flags="20" />
+    <item name="android.permission.CALL_PHONE" granted="true" flags="20" />
+    <item name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </pkg>
+  <pkg name="com.android.browser">
+    <item name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="20" />
+    <item name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="20" />
+  </pkg>
+  <pkg name="com.google.android.gm">
+    <item name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </pkg>
+  <pkg name="com.google.android.syncadapters.contacts">
+    <item name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </pkg>
+  <pkg name="com.android.camera">
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="20" />
+    <item name="android.permission.CAMERA" granted="true" flags="20" />
+    <item name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="20" />
+    <item name="android.permission.RECORD_AUDIO" granted="true" flags="20" />
+  </pkg>
+  <pkg name="com.android.dialer">
+    <item name="android.permission.READ_CALL_LOG" granted="true" flags="20" />
+    <item name="android.permission.READ_PHONE_STATE" granted="true" flags="20" />
+    <item name="android.permission.CALL_PHONE" granted="true" flags="20" />
+    <item name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <item name="android.permission.WRITE_CALL_LOG" granted="true" flags="20" />
+    <item name="android.permission.PROCESS_OUTGOING_CALLS" granted="true" flags="20" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+    <item name="com.android.voicemail.permission.ADD_VOICEMAIL" granted="true" flags="20" />
+  </pkg>
+  <pkg name="com.android.packageinstaller">
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="30" />
+  </pkg>
+  <pkg name="com.android.inputmethod.latin">
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </pkg>
+  <pkg name="com.google.android.apps.photos">
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="20" />
+    <item name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="20" />
+  </pkg>
+  <pkg name="com.android.managedprovisioning">
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+  </pkg>
+  <shared-user name="android.media">
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="30" />
+    <item name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="30" />
+  </shared-user>
+  <shared-user name="com.google.android.calendar.uid.shared">
+    <item name="android.permission.READ_CALENDAR" granted="true" flags="20" />
+    <item name="android.permission.WRITE_CALENDAR" granted="true" flags="20" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </shared-user>
+  <shared-user name="android.uid.systemui">
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="30" />
+    <item name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+    <item name="android.permission.CAMERA" granted="true" flags="30" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="30" />
+    <item name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="30" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="30" />
+  </shared-user>
+  <shared-user name="com.google.android.apps.maps">
+    <item name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="20" />
+    <item name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="20" />
+  </shared-user>
+  <shared-user name="com.google.uid.shared">
+    <item name="android.permission.READ_SMS" granted="true" flags="20" />
+    <item name="android.permission.READ_CALENDAR" granted="true" flags="20" />
+    <item name="android.permission.READ_CALL_LOG" granted="true" flags="20" />
+    <item name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="30" />
+    <item name="android.permission.BODY_SENSORS" granted="true" flags="20" />
+    <item name="android.permission.RECEIVE_MMS" granted="true" flags="20" />
+    <item name="android.permission.RECEIVE_SMS" granted="true" flags="20" />
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="20" />
+    <item name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+    <item name="android.permission.READ_PHONE_STATE" granted="true" flags="20" />
+    <item name="android.permission.SEND_SMS" granted="true" flags="20" />
+    <item name="android.permission.CALL_PHONE" granted="true" flags="20" />
+    <item name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <item name="android.permission.CAMERA" granted="true" flags="20" />
+    <item name="android.permission.WRITE_CALL_LOG" granted="true" flags="20" />
+    <item name="android.permission.PROCESS_OUTGOING_CALLS" granted="true" flags="20" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <item name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="20" />
+    <item name="android.permission.RECORD_AUDIO" granted="true" flags="20" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+    <item name="com.android.voicemail.permission.ADD_VOICEMAIL" granted="true" flags="20" />
+  </shared-user>
+  <shared-user name="android.uid.shared">
+    <item name="android.permission.READ_CALL_LOG" granted="true" flags="20" />
+    <item name="android.permission.READ_PHONE_STATE" granted="true" flags="20" />
+    <item name="android.permission.CALL_PHONE" granted="true" flags="20" />
+    <item name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </shared-user>
+  <shared-user name="android.uid.system">
+    <item name="android.permission.READ_CALL_LOG" granted="true" flags="30" />
+    <item name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="30" />
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="30" />
+    <item name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+    <item name="android.permission.READ_PHONE_STATE" granted="true" flags="30" />
+    <item name="android.permission.CALL_PHONE" granted="true" flags="30" />
+    <item name="android.permission.WRITE_CONTACTS" granted="true" flags="30" />
+    <item name="android.permission.WRITE_CALL_LOG" granted="true" flags="30" />
+    <item name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="30" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="30" />
+  </shared-user>
+  <shared-user name="android.uid.phone">
+    <item name="android.permission.READ_SMS" granted="true" flags="30" />
+    <item name="android.permission.READ_CALL_LOG" granted="true" flags="30" />
+    <item name="android.permission.RECEIVE_SMS" granted="true" flags="30" />
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="30" />
+    <item name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+    <item name="android.permission.SEND_SMS" granted="true" flags="30" />
+    <item name="android.permission.CALL_PHONE" granted="true" flags="30" />
+    <item name="android.permission.WRITE_CONTACTS" granted="true" flags="30" />
+    <item name="android.permission.WRITE_CALL_LOG" granted="true" flags="30" />
+    <item name="android.permission.USE_SIP" granted="true" flags="30" />
+    <item name="android.permission.PROCESS_OUTGOING_CALLS" granted="true" flags="30" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="30" />
+    <item name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="30" />
+    <item name="android.permission.RECORD_AUDIO" granted="true" flags="30" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="30" />
+    <item name="com.android.voicemail.permission.ADD_VOICEMAIL" granted="true" flags="30" />
+  </shared-user>
+  <shared-user name="android.uid.shell">
+    <item name="android.permission.READ_CALENDAR" granted="true" flags="30" />
+    <item name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="30" />
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="30" />
+    <item name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+    <item name="android.permission.READ_PHONE_STATE" granted="true" flags="30" />
+    <item name="android.permission.SEND_SMS" granted="true" flags="30" />
+    <item name="android.permission.CALL_PHONE" granted="true" flags="30" />
+    <item name="android.permission.WRITE_CONTACTS" granted="true" flags="30" />
+    <item name="android.permission.WRITE_CALENDAR" granted="true" flags="30" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="30" />
+    <item name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="30" />
+    <item name="android.permission.READ_CONTACTS" granted="true" flags="30" />
+  </shared-user>
+  <shared-user name="android.uid.calendar">
+    <item name="android.permission.READ_CALENDAR" granted="true" flags="30" />
+    <item name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="20" />
+    <item name="android.permission.WRITE_CALENDAR" granted="true" flags="30" />
+    <item name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <item name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="20" />
+  </shared-user>
+</runtime-permissions>

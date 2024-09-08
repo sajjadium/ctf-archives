@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <long name="gads:resolve_future:default_timeout_ms" value="30000" />
+    <boolean name="gad:force_dynamite_loading_enabled" value="false" />
+    <boolean name="gads:report_dynamite_crash_in_background_thread" value="false" />
+    <boolean name="gads:sdk_crash_report_full_stacktrace" value="false" />
+    <boolean name="gads:adapter_initialization:red_button" value="false" />
+    <boolean name="gads:sdk_use_dynamic_module" value="true" />
+    <int name="gads:fingerprint_number" value="10" />
+    <string name="gads:afs:csa:experiment_id"></string>
+    <boolean name="gads:corewebview:adwebview_factory:enable" value="false" />
+    <boolean name="gads:afs:csa_send_tcf_data" value="true" />
+    <boolean name="gads:sdk_crash_report_enabled" value="false" />
+    <boolean name="gads:gma_attestation:click:enable" value="false" />
+    <int name="gads:dynamite_load:fail:sample_rate" value="10000" />
+    <int name="gads:content_length_weight" value="1" />
+    <string name="gads:temporary_experiment_id:1"></string>
+    <string name="gads:temporary_experiment_id:2"></string>
+    <string name="gads:afs:csa_webview_custom_domain_param_key">csa_customDomain</string>
+    <boolean name="gads:uri_query_to_map_rewrite:enabled" value="false" />
+    <boolean name="gads:adaptive_banner:fail_invalid_ad_size" value="true" />
+    <string name="gads:app_index:experiment_id"></string>
+    <boolean name="gads:webview:permission:disabled" value="false" />
+    <boolean name="gads:gma_attestation:request:enable" value="false" />
+    <boolean name="gads:sdk_csi_write_to_file" value="false" />
+    <boolean name="gads:split_ad_request_traffic_by_app" value="true" />
+    <float name="gads:trapped_exception_sample_rate" value="0.01" />
+    <boolean name="gads:app_index:without_content_info_present:enabled" value="true" />
+    <boolean name="gads:js_flags:mf" value="false" />
+    <string name="gads:safe_browsing:api_key">AIzaSyDRKQ9d6kfsoZT2lUnZcZnBYvH69HExNPE</string>
+    <boolean name="gads:ad_key_enabled" value="true" />
+    <boolean name="gads:debug_logging_feature:intercept_web_view" value="true" />
+    <boolean name="gads:rewarded_sku:enabled" value="true" />
+    <long name="gads:device_info_caching_expiry_ms:expiry" value="300000" />
+    <boolean name="gads:adshield:enable_adshield_instrumentation" value="false" />
+    <boolean name="gads:corewebview:javascript_engine" value="false" />
+    <string name="gads:sdk_core_location">https://googleads.g.doubleclick.net/mads/static/mad/sdk/native/sdk-core-v40-loader.html</string>
+    <int name="gads:min_content_len" value="11" />
+    <long name="gads:js_flags:update_interval" value="14400000" />
+    <string name="gads:temporary_experiment_id:5"></string>
+    <boolean name="gads:rewarded_sku:override_test:enabled" value="false" />
+    <string name="gads:temporary_experiment_id:3"></string>
+    <string name="gads:afs:csa_tcf_data_to_collect">[{&quot;bk&quot;:&quot;tcString&quot;,&quot;sk&quot;:&quot;IABTCF_TCString&quot;,&quot;type&quot;:0},{&quot;bk&quot;:&quot;gdprApplies&quot;,&quot;sk&quot;:&quot;IABTCF_gdprApplies&quot;,&quot;type&quot;:1},{&quot;bk&quot;:&quot;usPrivacy&quot;,&quot;sk&quot;:&quot;IABUSPrivacy_String&quot;,&quot;type&quot;:0}]</string>
+    <boolean name="gads:gma_attestation:impression:enable" value="false" />
+    <int name="gads:content_age_weight" value="1" />
+    <string name="gads:sdk_crash_report_class_prefix">com.google.</string>
+    <string name="gads:pan:experiment_id"></string>
+    <string name="gads:sdk_core_js_location">https://googleads.g.doubleclick.net/mads/static/mad/sdk/native/production/sdk-core-v40-impl.js</string>
+    <boolean name="gads:log:verbose_enabled" value="false" />
+    <string name="gads:temporary_experiment_id:4"></string>
+    <string name="gads:sdk_core_experiment_id"></string>
+    <long name="gads:app_index:timeout_ms" value="1000" />
+    <long name="gads:rendering:timeout_ms" value="60000" />
+    <string name="gad:dynamite_module:experiment_id"></string>
+    <string name="gads:block_autoclicks_experiment_id"></string>
+    <string name="gads:afs:csa_webview_static_file_path">/afs/ads/i/webview.html</string>
+    <boolean name="gads:enabled_sdk_csi" value="false" />
+    <boolean name="gads:ad_serving:enabled" value="true" />
+    <long name="gads:ad_loader:timeout_ms" value="60000" />
+    <string name="gads:public_beta:traffic_multiplier">1.0</string>
+    <boolean name="gads:video:metric_reporting_enabled" value="false" />
+    <string name="gads:corewebview:experiment_id"></string>
+    <boolean name="gads:debug_logging_feature:enable" value="true" />
+    <string name="gads:sdk_csi_server">https://csi.gstatic.com/csi</string>
+    <string name="gads:native:engine_js_url_with_protocol">https://googleads.g.doubleclick.net/mads/static/mad/sdk/native/production/native_ads.js</string>
+    <boolean name="gads:enable_content_fetching" value="true" />
+    <boolean name="gads:separate_url_generation:enabled" value="true" />
+    <boolean name="gads:gma_attestation:request:enable_javascript" value="false" />
+    <string name="gads:spam_app_context:experiment_id"></string>
+    <float name="gads:csi_reporting_ratio" value="0.05" />
+    <boolean name="gads:safe_browsing:debug" value="false" />
+    <boolean name="gads:auto_location_by_gmscore" value="false" />
+    <boolean name="gads:signals_collection_on_service:enabled" value="true" />
+    <boolean name="gads:auto_location_by_dynamite" value="false" />
+    <int name="gads:sleep_sec" value="10" />
+</map>
