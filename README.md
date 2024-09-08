@@ -3296,7 +3296,11 @@
             <td><a href="https://ctftime.org/event/1042/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/snakeCTF">snakeCTF</a></td>
+            <td rowspan=2><a href="ctfs/snakeCTF">snakeCTF</a></td>
+            <td><a href="ctfs/snakeCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2418/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/snakeCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2158/tasks/" target="_blank">CTFtime</a></td>
         </tr>

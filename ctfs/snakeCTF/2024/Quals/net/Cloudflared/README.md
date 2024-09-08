@@ -1,0 +1,1 @@
+I started self-hosting some of my web projects on my old PC, each with a different domain name. I asked a friend what he thought about that, and he said he could only see one. Can you guess which one it is?
