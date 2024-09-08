@@ -537,7 +537,11 @@
             <td><a href="https://ctftime.org/event/544/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/C3CTF/2017">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/COMPFEST">COMPFEST</a></td>
+            <td rowspan=5><a href="ctfs/COMPFEST">COMPFEST</a></td>
+            <td><a href="ctfs/COMPFEST/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2463/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/COMPFEST/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2060/tasks/" target="_blank">CTFtime</a></td>
         </tr>
