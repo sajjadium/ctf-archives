@@ -1,0 +1,1 @@
+Legend whispers of cryptic secrets hidden deep within the ancient Tabriz Saat Tower clock. The messages have eluded seekers for centuries. Will you be the one to finally uncover them? Begin your journey by exploring karaball.uctf.ir on port 15623. The tower awaits.
