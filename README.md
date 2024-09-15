@@ -3152,6 +3152,11 @@
             <td><a href="https://ctftime.org/event/1512/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/jailCTF">jailCTF</a></td>
+            <td><a href="ctfs/jailCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2450/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=5><a href="ctfs/justCTF">justCTF</a></td>
             <td><a href="ctfs/justCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2342/tasks/" target="_blank">CTFtime</a></td>

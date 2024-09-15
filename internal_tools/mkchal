@@ -12,6 +12,12 @@ import glob
 from pathlib import Path
 
 def is_valid(line):
+  try:
+    int(line.strip())
+    return False
+  except:
+    pass
+
   if line.lower() in ['source dockerfile', 'files', 'challenge', 'challenge.py']:
     return False
 
