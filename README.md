@@ -1950,7 +1950,11 @@
             <td><a href="https://ctftime.org/event/1719/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/PatriotCTF">PatriotCTF</a></td>
+            <td rowspan=3><a href="ctfs/PatriotCTF">PatriotCTF</a></td>
+            <td><a href="ctfs/PatriotCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2426/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/PatriotCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2030/tasks/" target="_blank">CTFtime</a></td>
         </tr>

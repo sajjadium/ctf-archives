@@ -1,0 +1,187 @@
+diff --git a/BUILD.gn b/BUILD.gn
+index 88cbaf273f6..24a4b3c76cc 100644
+--- a/BUILD.gn
++++ b/BUILD.gn
+@@ -1841,6 +1841,7 @@ torque_files = [
+   "src/builtins/array-from.tq",
+   "src/builtins/array-isarray.tq",
+   "src/builtins/array-join.tq",
++  "src/builtins/array-oob.tq",
+   "src/builtins/array-lastindexof.tq",
+   "src/builtins/array-map.tq",
+   "src/builtins/array-of.tq",
+diff --git a/src/builtins/array-oob.tq b/src/builtins/array-oob.tq
+new file mode 100644
+index 00000000000..15a3bb80ac3
+--- /dev/null
++++ b/src/builtins/array-oob.tq
+@@ -0,0 +1,11 @@
++// lmao
++transitioning javascript builtin ArrayPrototypeOob(js-implicit context: NativeContext, receiver: JSAny)(length: JSAny): JSAny {
++
++  try {
++    const array: JSArray = Cast<JSArray>(receiver) otherwise Bad;
++    array.length = Cast<Smi>(length) otherwise Bad;
++  } label Bad {
++
++  }
++  return receiver;
++}
+diff --git a/src/compiler/typer.cc b/src/compiler/typer.cc
+index 8af26625ac3..a2b7b65df40 100644
+--- a/src/compiler/typer.cc
++++ b/src/compiler/typer.cc
+@@ -1927,6 +1927,8 @@ Type Typer::Visitor::JSCallTyper(Type fun, Typer* t) {
+       return Type::Boolean();
+     case Builtin::kArrayPrototypeSplice:
+       return Type::Receiver();
++    case Builtin::kArrayPrototypeOob:
++      return Type::Receiver();      
+     case Builtin::kArrayUnshift:
+       return t->cache_->kPositiveSafeInteger;
+ 
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index ebfcbe696e1..64aa46c14dc 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -3346,60 +3346,60 @@ Local<FunctionTemplate> Shell::CreateNodeTemplates(
+ 
+ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+   Local<ObjectTemplate> global_template = ObjectTemplate::New(isolate);
+-  global_template->Set(Symbol::GetToStringTag(isolate),
+-                       String::NewFromUtf8Literal(isolate, "global"));
+-  global_template->Set(isolate, "version",
+-                       FunctionTemplate::New(isolate, Version));
+-
+-  global_template->Set(isolate, "print", FunctionTemplate::New(isolate, Print));
+-  global_template->Set(isolate, "printErr",
+-                       FunctionTemplate::New(isolate, PrintErr));
+-  global_template->Set(isolate, "write",
+-                       FunctionTemplate::New(isolate, WriteStdout));
+-  if (!i::v8_flags.fuzzing) {
+-    global_template->Set(isolate, "writeFile",
+-                         FunctionTemplate::New(isolate, WriteFile));
+-  }
+-  global_template->Set(isolate, "read",
+-                       FunctionTemplate::New(isolate, ReadFile));
+-  global_template->Set(isolate, "readbuffer",
+-                       FunctionTemplate::New(isolate, ReadBuffer));
+-  global_template->Set(isolate, "readline",
+-                       FunctionTemplate::New(isolate, ReadLine));
+-  global_template->Set(isolate, "load",
+-                       FunctionTemplate::New(isolate, ExecuteFile));
+-  global_template->Set(isolate, "setTimeout",
+-                       FunctionTemplate::New(isolate, SetTimeout));
+-  // Some Emscripten-generated code tries to call 'quit', which in turn would
+-  // call C's exit(). This would lead to memory leaks, because there is no way
+-  // we can terminate cleanly then, so we need a way to hide 'quit'.
+-  if (!options.omit_quit) {
+-    global_template->Set(isolate, "quit", FunctionTemplate::New(isolate, Quit));
+-  }
+-  global_template->Set(isolate, "testRunner",
+-                       Shell::CreateTestRunnerTemplate(isolate));
+-  global_template->Set(isolate, "Realm", Shell::CreateRealmTemplate(isolate));
+-  global_template->Set(isolate, "performance",
+-                       Shell::CreatePerformanceTemplate(isolate));
+-  global_template->Set(isolate, "Worker", Shell::CreateWorkerTemplate(isolate));
+-
+-  // Prevent fuzzers from creating side effects.
+-  if (!i::v8_flags.fuzzing) {
+-    global_template->Set(isolate, "os", Shell::CreateOSTemplate(isolate));
+-  }
+-  global_template->Set(isolate, "d8", Shell::CreateD8Template(isolate));
+-
+-#ifdef V8_FUZZILLI
+-  global_template->Set(
+-      String::NewFromUtf8(isolate, "fuzzilli", NewStringType::kNormal)
+-          .ToLocalChecked(),
+-      FunctionTemplate::New(isolate, Fuzzilli), PropertyAttribute::DontEnum);
+-#endif  // V8_FUZZILLI
+-
+-  if (i::v8_flags.expose_async_hooks) {
+-    global_template->Set(isolate, "async_hooks",
+-                         Shell::CreateAsyncHookTemplate(isolate));
+-  }
++//   global_template->Set(Symbol::GetToStringTag(isolate),
++//                        String::NewFromUtf8Literal(isolate, "global"));
++//   global_template->Set(isolate, "version",
++//                        FunctionTemplate::New(isolate, Version));
++
++//   global_template->Set(isolate, "print", FunctionTemplate::New(isolate, Print));
++//   global_template->Set(isolate, "printErr",
++//                        FunctionTemplate::New(isolate, PrintErr));
++//   global_template->Set(isolate, "write",
++//                        FunctionTemplate::New(isolate, WriteStdout));
++//   if (!i::v8_flags.fuzzing) {
++//     global_template->Set(isolate, "writeFile",
++//                          FunctionTemplate::New(isolate, WriteFile));
++//   }
++//   global_template->Set(isolate, "read",
++//                        FunctionTemplate::New(isolate, ReadFile));
++//   global_template->Set(isolate, "readbuffer",
++//                        FunctionTemplate::New(isolate, ReadBuffer));
++//   global_template->Set(isolate, "readline",
++//                        FunctionTemplate::New(isolate, ReadLine));
++//   global_template->Set(isolate, "load",
++//                        FunctionTemplate::New(isolate, ExecuteFile));
++//   global_template->Set(isolate, "setTimeout",
++//                        FunctionTemplate::New(isolate, SetTimeout));
++//   // Some Emscripten-generated code tries to call 'quit', which in turn would
++//   // call C's exit(). This would lead to memory leaks, because there is no way
++//   // we can terminate cleanly then, so we need a way to hide 'quit'.
++//   if (!options.omit_quit) {
++//     global_template->Set(isolate, "quit", FunctionTemplate::New(isolate, Quit));
++//   }
++//   global_template->Set(isolate, "testRunner",
++//                        Shell::CreateTestRunnerTemplate(isolate));
++//   global_template->Set(isolate, "Realm", Shell::CreateRealmTemplate(isolate));
++//   global_template->Set(isolate, "performance",
++//                        Shell::CreatePerformanceTemplate(isolate));
++//   global_template->Set(isolate, "Worker", Shell::CreateWorkerTemplate(isolate));
++
++//   // Prevent fuzzers from creating side effects.
++//   if (!i::v8_flags.fuzzing) {
++//     global_template->Set(isolate, "os", Shell::CreateOSTemplate(isolate));
++//   }
++//   global_template->Set(isolate, "d8", Shell::CreateD8Template(isolate));
++
++// #ifdef V8_FUZZILLI
++//   global_template->Set(
++//       String::NewFromUtf8(isolate, "fuzzilli", NewStringType::kNormal)
++//           .ToLocalChecked(),
++//       FunctionTemplate::New(isolate, Fuzzilli), PropertyAttribute::DontEnum);
++// #endif  // V8_FUZZILLI
++
++//   if (i::v8_flags.expose_async_hooks) {
++//     global_template->Set(isolate, "async_hooks",
++//                          Shell::CreateAsyncHookTemplate(isolate));
++//   }
+ 
+   return global_template;
+ }
+diff --git a/src/debug/debug-evaluate.cc b/src/debug/debug-evaluate.cc
+index a8d001d636d..9e5efcb1f9f 100644
+--- a/src/debug/debug-evaluate.cc
++++ b/src/debug/debug-evaluate.cc
+@@ -589,6 +589,7 @@ DebugInfo::SideEffectState BuiltinGetSideEffectState(Builtin id) {
+     case Builtin::kArrayPrototypeFlat:
+     case Builtin::kArrayPrototypeFlatMap:
+     case Builtin::kArrayPrototypeJoin:
++    case Builtin::kArrayPrototypeOob:
+     case Builtin::kArrayPrototypeKeys:
+     case Builtin::kArrayPrototypeLastIndexOf:
+     case Builtin::kArrayPrototypeSlice:
+diff --git a/src/init/bootstrapper.cc b/src/init/bootstrapper.cc
+index a926a1e3b08..6d4a06ffcab 100644
+--- a/src/init/bootstrapper.cc
++++ b/src/init/bootstrapper.cc
+@@ -1873,7 +1873,8 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
+                           false);
+     SimpleInstallFunction(isolate_, proto, "join", Builtin::kArrayPrototypeJoin,
+                           1, false);
+-
++    SimpleInstallFunction(isolate_, proto, "oob", Builtin::kArrayPrototypeOob,
++                          1, false);
+     {  // Set up iterator-related properties.
+       Handle<JSFunction> keys = InstallFunctionWithBuiltinId(
+           isolate_, proto, "keys", Builtin::kArrayPrototypeKeys, 0, true);
