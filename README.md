@@ -1424,6 +1424,11 @@
             <td><a href="https://ctftime.org/event/1359/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/IERAE">IERAE</a></td>
+            <td><a href="ctfs/IERAE/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2441/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/IJCTF">IJCTF</a></td>
             <td><a href="ctfs/IJCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1382/tasks/" target="_blank">CTFtime</a></td>
