@@ -27,7 +27,7 @@ def is_valid(line):
   if line.strip().lower().startswith('flag format:'):
     return False
 
-  if line.strip().lower() == 'attachment':
+  if line.strip().lower() in ['attachment', 'handouts']:
     return False
 
   if line.strip().lower().startswith('download link'):

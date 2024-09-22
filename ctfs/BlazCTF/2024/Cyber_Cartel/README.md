@@ -1,0 +1,3 @@
+Malone, Wiz and Box recently robbed a billionaire and deposited their proceeds into a multisig treasury. And who is Box? The genius hacker behind everything. He's gonna rob his friends...
+
+/* Author: tonyke-bot */
