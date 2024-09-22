@@ -1,0 +1,53 @@
+# Challenge Description
+
+This challenge requires you to bypass the fully enabled features of Intel CET on Linux userland, which means both of Shadow Stack (SHSTK) and Indirect Branch Tracking (IBT).
+As for IBT, even the latest Linux kernel cannot enable it on userland. So I patched Linux kernel v6.6.46 as shown in `enable_ibt.diff`, and `iso/boot/bzImage` is the built custom Linux kernel. 
+On this custom kernel, `rootfs-release/chal` is running and you can connect to it via port 8810. Its source code is provided as `chal.c`.
+
+# How to setup the environment
+
+The most easiest way to setup the same environment as the real one is create a Hyper-V VM with `release.iso` attached.
+Unlike QEMU, Hyper-V can use Intel CET on guests if the host CPU supports it. However, of course this requires a Windows machine.
+Also, if you have a CD/DVD reader and can boot OS from CD/DVD, you can write `release.iso` into a DVD and boot it from your machine BIOS menu.
+
+If your host machine is Linux, then building Linux kernel with `enable_ibt.diff` and installing it would be another solution.
+In that case, I recommend you to use the recent distributions like Ubuntu 24.04 because these distributions have already enabled SHSTK on userland and the pre-installed binaries are built so that they can work with IBT.
+Also, for those who have to build the custom Linux kernel, I've attached `minimum_config`, which is the Linux kernel config and hence supposed to be used as `.config`. The configuration is as minimum as possible, and it's actually used in our deployment on Azure. Note that different environments may require different configurations.
+
+Alghouth we are using Azure, I don't recommend using it! Currently, only confidential VM instances support Intel CET and you will most likely need to request a quota update, which probably takes 1 day. Also, many issues happen during deployment, which took me 3 weeks to finally deploy this problem.
+
+Therefore, unfortunately it would be almost impossible to fully reproduce the real environment if you don't have the machines equipped with the recent Intel CPUs.
+In that case, you can use Intel Software Development Emulator (SDE) to emulate Intel CET on userland. 
+The huge difference between Intel SDE and the real environment is that there are rwx mappings only when Intel SDE is used since Intel SDE relies on Intel Pin.
+So be careful not to abuse these mappings when writing an exploit.
+Also, somehow SDE throws an error when emulating a static binary with the default options. You need to specify `-cet_linux_mode old -cet` to use CET.
+Among the methods I enumerated, I recommend this the most because it takes little time to download and run Intel SDE. Moreover, it has gdbserver.
+
+If you don't need Intel CET and just want to launch `chal` as a service on the custom kernel, you can use QEMU just like kernel exploit challenges.
+For example, you can use the following commands:
+
+```
+qemu-system-x86_64  -nographic -kernel ./iso/boot/bzImage -initrd rootfs-release.cpio.gz -append console=ttyS0
+```
+
+# How to debug
+
+Debugging on the actual environment may help you though I didn't need it when creating this challenge (therefore I think you don't necessarily have to setup the real environment!).
+So I built gdb without Python plugin and put it into `rootfs-debug` with some depended libraries.
+You can use gdb by using `debug.iso` or creating a rootfs with `rootfs-debug`
+
+Note that the actual environment uses `release.iso` / `rootfs-release`, which means no dynamic libraries exist in the actual environment.
+
+# Creating bootable ISO/VHD
+
+First, you should decompress the cpio files. For example, `rootfs-release.cpio.gz` can be decompressed with:
+
+```
+mkdir rootfs-release
+cd rootfs-release
+gzip -cd ../rootfs-release.cpio.gz | cpio -idv
+```
+
+`create_{release,debug}.sh` is for creating bootable ISO and VHD images from `rootfs-{release,debug}`.
+It requires `grub-mkrescue` to create ISO, which can be installed with `grub-common` and `grub-pc-bin` in apt.
+Also, `gawk` and `qemu-img` are needed to create VHD.

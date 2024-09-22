@@ -1,0 +1,13 @@
+diff --git a/arch/x86/kernel/shstk.c b/arch/x86/kernel/shstk.c
+index 19e4db582..d4387b68e 100644
+--- a/arch/x86/kernel/shstk.c
++++ b/arch/x86/kernel/shstk.c
+@@ -174,7 +174,7 @@ static int shstk_setup(void)
+ 
+        fpregs_lock_and_load();
+        wrmsrl(MSR_IA32_PL3_SSP, addr + size);
+-       wrmsrl(MSR_IA32_U_CET, CET_SHSTK_EN);
++       wrmsrl(MSR_IA32_U_CET, CET_SHSTK_EN | CET_ENDBR_EN | CET_NO_TRACK_EN);
+        fpregs_unlock();
+ 
+        shstk->base = addr;
