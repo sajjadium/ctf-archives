@@ -1,0 +1,1 @@
+Two public key certificates were monitored. And Mr. Dual intercepted a ciphertext. Just when he was in the rough, a Careless Whisper told that the length of a key parameter is carelessly set to 345 bits.

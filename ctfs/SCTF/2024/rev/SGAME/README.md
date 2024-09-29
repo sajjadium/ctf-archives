@@ -1,0 +1,3 @@
+Xiao Ming downloaded a game called Heiluma. After being trapped by a big-headed doll for a month, he was furious and prepared to break the seal and join the sect. But later he found that the secret words were encrypted. Can you help him recover the secret words and get the key to break the seal?
+
+Xiao Ming downloaded a game called Black Monkey. After being blocked by the big-headed doll for a month, he was furious and prepared to break the seal and join the sect. However, after solving the problem, he found that the secret words were encrypted. Can you help him? Recover the secret word and get the key to unlock the seal?

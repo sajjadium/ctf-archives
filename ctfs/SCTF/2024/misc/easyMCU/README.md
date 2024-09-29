@@ -1,0 +1,3 @@
+Xiao Ming extracted the firmware syc_2.s19 file from the vehicle computer main control. The PCBA of the vehicle computer main control is shown in Figure PCBA.jpg. After the user inputs a string of flags using the serial port assistant xcom, some data is returned in the serial port assistant, as shown in Figure xcom.jpg.
+
+Xiaoming extracted a firmware file named mcu.s19 from the car’s main control unit. The PCBA of the car’s main control is shown in the picture ‘PCBA.jpg’. Users input a string of ‘flag’ using the serial port assistant ‘xcom’, and received some data back, as shown in the picture ‘xcom.jpg’. What is the ‘flag’?"
