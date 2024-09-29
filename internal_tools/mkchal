@@ -24,9 +24,6 @@ def is_valid(line):
   if len(line.strip()) == 0:
     return True
 
-  if line.strip().lower().startswith('flag format:'):
-    return False
-
   if line.strip().lower() in ['attachment', 'handouts']:
     return False
 

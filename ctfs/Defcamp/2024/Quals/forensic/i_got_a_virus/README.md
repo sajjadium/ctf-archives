@@ -1,0 +1,1 @@
+We need to understand the capabilities of this malicious file. WARNING: THIS CHALLENGE CONTAINS REAL MALWARE AND SHOULD BE TESTED IN AN SANDBOX ENVIRONMENT the entire challenge is solvable using VirusTotal.
