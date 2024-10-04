@@ -24,7 +24,7 @@ def is_valid(line):
   if len(line.strip()) == 0:
     return True
 
-  if line.strip().lower() in ['attachment', 'handouts']:
+  if line.strip().lower() in ['attachment', 'handouts', 'show tags']:
     return False
 
   if line.strip().lower().startswith('download link'):

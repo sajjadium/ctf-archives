@@ -197,6 +197,11 @@
             <td><a href="https://ctftime.org/event/2222/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/AlpacaHack">AlpacaHack</a></td>
+            <td><a href="ctfs/AlpacaHack/2024">2024</a></td>
+            <td><a href="https://ctftime.org/ctf/1163" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/AmateursCTF">AmateursCTF</a></td>
             <td><a href="ctfs/AmateursCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2226/tasks/" target="_blank">CTFtime</a></td>
