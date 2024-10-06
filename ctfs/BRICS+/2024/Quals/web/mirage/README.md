@@ -1,0 +1,1 @@
+Faster than rushing B.
