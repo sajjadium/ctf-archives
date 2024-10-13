@@ -1,0 +1,19 @@
+[package]
+name = "stg_compiler"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "stg_compiler"
+path = "src/lib.rs"
+
+[dependencies]
+clap = {version = "*", features = ["derive"]}
+stegosaurus = { path = "../../challenge/src/" }
+proc-macro2 = "*"
+syn = "*"
+bincode = "*"
+base64 = "*"
+quote = "*"

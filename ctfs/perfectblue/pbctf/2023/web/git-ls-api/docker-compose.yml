@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  redis:
+    image: redis
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis

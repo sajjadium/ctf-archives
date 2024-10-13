@@ -1,0 +1,15 @@
+<h1>Email</h1>
+
+<% if flash[:notice] %>
+<div class="notice"><%= flash[:notice] %></div>
+<% end %>
+
+<%= form_with url: email_url, method: :post do |form| %>
+  <%= form.label :to, "To" %>
+  <%= form.email_field :to %>
+
+  <%= form.label :message, "Body" %>
+  <%= form.text_field :message %>
+
+  <%= form.submit "Send" %>
+<% end %>

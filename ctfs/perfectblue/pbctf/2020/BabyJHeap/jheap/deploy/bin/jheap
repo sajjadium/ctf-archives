@@ -1,0 +1,4 @@
+#!/bin/sh
+JLINK_VM_OPTIONS="-Xmx200m -XX:+UseG1GC -Xms200m " 
+DIR=`dirname $0`
+$DIR/java $JLINK_VM_OPTIONS -m jheap/com.thekidofarcrania.heap.JHeap $@

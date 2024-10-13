@@ -482,6 +482,11 @@
             <td><a href="https://ctftime.org/event/1298/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/BlueWater">BlueWater</a></td>
+            <td><a href="ctfs/BlueWater/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2479/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/BraekerCTF">BraekerCTF</a></td>
             <td><a href="ctfs/BraekerCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2181/tasks/" target="_blank">CTFtime</a></td>

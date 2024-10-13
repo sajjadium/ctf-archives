@@ -1,0 +1,50 @@
+diff --git a/Source/JavaScriptCore/jsc.cpp b/Source/JavaScriptCore/jsc.cpp
+index 3e16dc074f2c..3c2f16caf0fd 100644
+--- a/Source/JavaScriptCore/jsc.cpp
++++ b/Source/JavaScriptCore/jsc.cpp
+@@ -294,6 +294,7 @@ static JSC_DECLARE_HOST_FUNCTION(functionPrintStdErr);
+ static JSC_DECLARE_HOST_FUNCTION(functionPrettyPrint);
+ static JSC_DECLARE_HOST_FUNCTION(functionDebug);
+ static JSC_DECLARE_HOST_FUNCTION(functionDescribe);
++static JSC_DECLARE_HOST_FUNCTION(functionLeakStrid);
+ static JSC_DECLARE_HOST_FUNCTION(functionDescribeArray);
+ static JSC_DECLARE_HOST_FUNCTION(functionSleepSeconds);
+ static JSC_DECLARE_HOST_FUNCTION(functionJSCStack);
+@@ -540,6 +541,7 @@ private:
+         Base::finishCreation(vm);
+         JSC_TO_STRING_TAG_WITHOUT_TRANSITION();
+ 
++        addFunction(vm, "leakStrid"_s, functionLeakStrid, 1);
+         addFunction(vm, "atob"_s, functionAtob, 1);
+         addFunction(vm, "btoa"_s, functionBtoa, 1);
+         addFunction(vm, "debug"_s, functionDebug, 1);
+@@ -1451,6 +1453,16 @@ JSC_DEFINE_HOST_FUNCTION(functionDebug, (JSGlobalObject* globalObject, CallFrame
+     return JSValue::encode(jsUndefined());
+ }
+ 
++
++
++JSC_DEFINE_HOST_FUNCTION(functionLeakStrid, (JSGlobalObject* globalObject, CallFrame* callFrame))
++{
++    (void)globalObject;
++    if (callFrame->argumentCount() < 1)
++        return JSValue::encode(jsUndefined());
++    return JSValue::encode(jsNumber(callFrame->argument(0).asCell()->structureID().bits()));
++}
++
+ JSC_DEFINE_HOST_FUNCTION(functionDescribe, (JSGlobalObject* globalObject, CallFrame* callFrame))
+ {
+     VM& vm = globalObject->vm();
+diff --git a/Source/JavaScriptCore/wasm/WasmTable.cpp b/Source/JavaScriptCore/wasm/WasmTable.cpp
+index 3361d2c655b7..d08962df4525 100644
+--- a/Source/JavaScriptCore/wasm/WasmTable.cpp
++++ b/Source/JavaScriptCore/wasm/WasmTable.cpp
+@@ -140,7 +140,7 @@ std::optional<uint32_t> Table::grow(uint32_t delta, JSValue defaultValue)
+     switch (type()) {
+     case TableElementType::Externref: {
+         bool success = checkedGrow(static_cast<ExternRefTable*>(this)->m_jsValues, [&](auto& slot) {
+-            slot.set(vm, m_owner, defaultValue);
++            slot.setStartingValue(defaultValue);
+         });
+         if (UNLIKELY(!success))
+             return std::nullopt;

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block html %}
+<div class="alert alert-primary" role="alert">
+  <p>
+    Welcome to the vault! Who needs logins or encryption, all you need is more buckets!
+    Navigate down to a secret path and store your data at the bottom.
+  </p>
+  <p>
+    <small>If you find something that does not work, please let me know below and I will check it out.</small>
+  </p>
+</div>
+
+<form method="POST">
+  <div class="input-group mb-1">
+    <span class="input-group-text">Enter a url</span>
+    <input type="text" id="url" name="url" class="form-control" aria-label="Enter a url">
+  </div>
+  <div class="input-group mb-1">{{ recaptcha }}</div>
+  <div class="input-group mb-1">
+    <input class="btn btn-primary" type="submit" value="Submit" />
+  </div>
+</form>
+
+{% endblock %}

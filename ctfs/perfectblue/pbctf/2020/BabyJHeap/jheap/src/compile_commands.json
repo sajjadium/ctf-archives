@@ -1,0 +1,20 @@
+[
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-fPIC",
+            "-I",
+            "java/include",
+            "-I",
+            "include",
+            "-I",
+            "include/linux",
+            "-o",
+            "heap.o",
+            "heap.c"
+        ],
+        "directory": "/home/henry/git/problems/jheap/src",
+        "file": "heap.c"
+    }
+]

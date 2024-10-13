@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/figuration@4.2.0/dist/css/figuration.min.css"
+    integrity="sha384-+jx/oHgp600cLGTa4nBzk/fhhD+UoUW/2BzjKaGn+OIOri6bvkSkjzccD5zlkLk3" crossorigin="anonymous">
+
+  {% block head %}
+  {% endblock %}
+
+  <style>
+    .editors {
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <div class="jumbotron editors">
+      <h2>WYSIWYG Editors</h2>
+      <div class="btn-group btn-group-xsmall" role="group" aria-label="WYSIWYG Editors">
+        <button type="button" data-editor="/froala/" class="btn">Froala</button>
+        <button type="button" data-editor="/tinymce/" class="btn">TinyMCE</button>
+        <button type="button" data-editor="/ckeditor/" class="btn">CKEditor</button>
+      </div>
+      <button type="button" data-editor="/" class="btn btn-xsmall btn-warning">Report an issue</button>
+
+      <script>
+        for (const button of document.querySelectorAll("button[data-editor]")) {
+          button.onclick = () => document.location = `${button.dataset.editor}${document.location.search}`
+          if (document.location.pathname.includes(button.dataset.editor)) {
+            button.classList.add("btn-info");
+          }
+        }
+      </script>
+    </div>
+
+    {% block html %}
+
+    {% endblock %}
+
+    <script type="text/javascript">
+      (() => {
+        const params = new URLSearchParams(window.location.search);
+        let text = params.get("text") || "Enter text here";
+        if (text && text.length > 125) {
+          text = text.slice(0, 125);
+        }
+
+        {% block setup %}
+
+        {% endblock %}
+      })();
+    </script>
+
+  </main>
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  app:
+    build: ./app/
+    ports:
+        - "127.0.0.1:80:8080"
+    environment:
+      - PORT=8080
+      - WEB_CONCURRENCY=16
+      - CHALL_HOST=tbdxss.chal.perfect.blue
+      - SECRET_KEY=s3kr3t
+    depends_on:
+      - redis
+
+  bot:
+    build: ./bot/
+    init: true
+    environment:
+      - CHALL_HOST=tbdxss.chal.perfect.blue
+      - CHALL_COOKIE=REMOTE_HAS_IT
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6.0-alpine
+

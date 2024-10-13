@@ -1,9 +1,0 @@
-qemu-system-x86_64 \
-  -kernel bzImage \
-  -append "console=ttyS0 root=/dev/sda rw kaslr init=/init"\
-  -hda stretch.img \
-  -cpu qemu64,+smep,+smap \
-  -nographic \
-  -m 512M \
-  -monitor none \
-  -smp 1 -no-reboot

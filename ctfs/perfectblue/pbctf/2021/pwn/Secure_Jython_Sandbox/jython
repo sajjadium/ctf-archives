@@ -1,0 +1,16 @@
+#!/bin/bash
+
+SCRIPTPATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+JAVAHOME=/usr/lib/jvm/java-1.16.0-openjdk-amd64/
+
+cd $SCRIPTPATH
+
+ulimit -t 5
+
+"$JAVAHOME/bin/java" \
+  --enable-preview \
+  -Dfile.encoding=UTF-8 \
+  --add-opens=java.base/java.lang=ALL-UNNAMED \
+  -jar jython.jar
+
+

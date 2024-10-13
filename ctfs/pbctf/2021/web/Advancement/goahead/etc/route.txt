@@ -1,2 +1,0 @@
-route uri=/cgi-bin handler=cgi
-route uri=/ redirect=/cgi-bin/date handler=redirect

@@ -1,0 +1,15 @@
+service chall
+{
+  disable = no
+  type = UNLISTED
+  server = /home/blacklist/blacklist
+  port = 1337
+  wait = no
+  protocol = tcp
+  socket_type = stream
+  user = blacklist
+  per_source = 5
+  rlimit_cpu = 5
+  nice = 18
+  cps = 50 20
+}

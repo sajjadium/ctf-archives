@@ -1,0 +1,9 @@
+version: "3"
+services:
+  web:
+    build: .
+    read_only: true
+    tmpfs:
+      - /tmp
+    ports:
+      - "1337:80"
