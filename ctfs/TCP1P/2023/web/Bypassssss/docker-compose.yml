@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  php-app:
+    build:
+      context: ./dist/src
+    ports:
+      - "45679:80"
+    volumes:
+      - ./dist/src:/var/www/html
+    depends_on:
+      - mysql-db
+
+  mysql-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_USER: ctf
+      MYSQL_PASSWORD: VeryRandomPassword
+      MYSQL_DATABASE: bypassssss
+      MYSQL_ROOT_PASSWORD: SuperRandomPassword
+    volumes:
+      - ./dist/database/db.sql:/docker-entrypoint-initdb.d/db.sql

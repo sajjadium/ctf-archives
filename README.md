@@ -2548,8 +2548,12 @@
             <td><a href="https://ctftime.org/event/2002/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/TCP1P-CTF">TCP1P-CTF</a></td>
-            <td><a href="ctfs/TCP1P-CTF/2023">2023</a></td>
+            <td rowspan=2><a href="ctfs/TCP1P">TCP1P</a></td>
+            <td><a href="ctfs/TCP1P/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2256/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/TCP1P/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2001/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

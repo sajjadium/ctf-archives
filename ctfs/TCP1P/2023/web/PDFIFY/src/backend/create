@@ -1,0 +1,74 @@
+{
+    "title": "Knp\\Snappy\\Exception\\FileAlreadyExistsException",
+    "type": "Knp\\Snappy\\Exception\\FileAlreadyExistsException",
+    "code": 500,
+    "message": "The output file '/tmp/bill-123.pdf' already exists.",
+    "file": "/home/dimas/Documents/project/test-ci/ci-news/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php",
+    "line": 635,
+    "trace": [
+        {
+            "file": "/home/dimas/Documents/project/test-ci/ci-news/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php",
+            "line": 178,
+            "function": "prepareOutput",
+            "class": "Knp\\Snappy\\AbstractGenerator",
+            "type": "->"
+        },
+        {
+            "file": "/home/dimas/Documents/project/test-ci/ci-news/vendor/knplabs/knp-snappy/src/Knp/Snappy/Pdf.php",
+            "line": 36,
+            "function": "generate",
+            "class": "Knp\\Snappy\\AbstractGenerator",
+            "type": "->"
+        },
+        {
+            "file": "/home/dimas/Documents/project/test-ci/ci-news/vendor/knplabs/knp-snappy/src/Knp/Snappy/AbstractGenerator.php",
+            "line": 232,
+            "function": "generate",
+            "class": "Knp\\Snappy\\Pdf",
+            "type": "->"
+        },
+        {
+            "file": "/home/dimas/Documents/project/test-ci/ci-news/app/Controllers/PDFMaker.php",
+            "line": 14,
+            "function": "generateFromHtml",
+            "class": "Knp\\Snappy\\AbstractGenerator",
+            "type": "->"
+        },
+        {
+            "file": "/home/dimas/Documents/project/test-ci/ci-news/vendor/codeigniter4/codeigniter4/system/CodeIgniter.php",
+            "line": 934,
+            "function": "create",
+            "class": "App\\Controllers\\PDFMaker",
+            "type": "->"
+        },
+        {
+            "file": "/home/dimas/Documents/project/test-ci/ci-news/vendor/codeigniter4/codeigniter4/system/CodeIgniter.php",
+            "line": 499,
+            "function": "runController",
+            "class": "CodeIgniter\\CodeIgniter",
+            "type": "->"
+        },
+        {
+            "file": "/home/dimas/Documents/project/test-ci/ci-news/vendor/codeigniter4/codeigniter4/system/CodeIgniter.php",
+            "line": 368,
+            "function": "handleRequest",
+            "class": "CodeIgniter\\CodeIgniter",
+            "type": "->"
+        },
+        {
+            "file": "/home/dimas/Documents/project/test-ci/ci-news/public/index.php",
+            "line": 67,
+            "function": "run",
+            "class": "CodeIgniter\\CodeIgniter",
+            "type": "->"
+        },
+        {
+            "file": "/home/dimas/Documents/project/test-ci/ci-news/vendor/codeigniter4/codeigniter4/system/Commands/Server/rewrite.php",
+            "line": 47,
+            "args": [
+                "/home/dimas/Documents/project/test-ci/ci-news/public/index.php"
+            ],
+            "function": "require_once"
+        }
+    ]
+}
