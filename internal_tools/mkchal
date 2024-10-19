@@ -18,7 +18,7 @@ def is_valid(line):
   except:
     pass
 
-  if line.lower() in ['source dockerfile', 'files', 'challenge', 'challenge.py']:
+  if line.lower() in ['source dockerfile', 'files', 'challenge', 'challenge.py', 'download image', 'download file']:
     return False
 
   if len(line.strip()) == 0:
@@ -37,6 +37,9 @@ def is_valid(line):
     return False
 
   if re.search('score:\s*\d+', line.lower()):
+    return False
+
+  if re.search(r'download (image|file|pcap) \([\d\.]+(kb|mb|b)\)', line.lower()):
     return False
 
   if re.search('\d+[ \t]+points', line.lower()) or re.search('\d+[ \t]*solves', line.lower()) or re.search('\d+[ \t]+solve', line.lower()) or re.search('\d+[ \t]+score', line.lower()):
@@ -150,7 +153,7 @@ if __name__ == '__main__':
       subprocess.run(['mv', fname, chal_name])
 
   # compress big files
-  for file_ext in ['pcap', 'pcapng', 'wav', 'mp3']:
+  for file_ext in ['pcap', 'pcapng', 'wav', 'mp3', 'mov']:
     os.system(f"""find "{chal_name}" -type f -name "*.{file_ext}" | xargs -n 1 xz""")
 
   readme = ''
