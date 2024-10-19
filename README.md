@@ -182,8 +182,12 @@
             <td><a href="https://ctftime.org/event/772/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/AfricaBattleCTF">AfricaBattleCTF</a></td>
-            <td><a href="ctfs/AfricaBattleCTF/2023/Quals">2023 Quals</a></td>
+            <td rowspan=2><a href="ctfs/AfricabattleCTF">AfricabattleCTF</a></td>
+            <td><a href="ctfs/AfricabattleCTF/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2531/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/AfricabattleCTF/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2024/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
