@@ -1,0 +1,3 @@
+Trainer:  	Diff-fusion, hlt
+
+I tried updating my treadmill's firmware but something went wrong...
