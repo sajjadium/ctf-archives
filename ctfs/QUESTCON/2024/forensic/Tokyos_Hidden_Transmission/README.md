@@ -1,0 +1,3 @@
+Tokyo has left an encrypted message within an audio file, disguised under the noise of a loud, busy background. The file may sound like a regular conversation, but hidden beneath it lies the key to the heist's next move. This transmission is cleverly split into two channels—left and right. The loud audio on the left is just a distraction; the real clue is hidden in the soft, almost imperceptible sound on the right channel.
+
+Mission Objective: Separate the channels and focus on the quieter right channel. Increase the volume, and you will notice something familiar—Morse code. Decipher the hidden message embedded in the dots and dashes to unlock the next stage of the plan. QUESTCON{hiddenmessage} (lowercase!)

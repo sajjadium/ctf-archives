@@ -2114,7 +2114,11 @@
             <td><a href="https://ctftime.org/event/1691/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/QUESTCON">QUESTCON</a></td>
+            <td rowspan=2><a href="ctfs/QUESTCON">QUESTCON</a></td>
+            <td><a href="ctfs/QUESTCON/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2505/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/QUESTCON/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2141/tasks/" target="_blank">CTFtime</a></td>
         </tr>
