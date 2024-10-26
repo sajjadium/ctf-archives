@@ -2450,7 +2450,11 @@
             <td><a href="https://ctftime.org/event/2313/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/SpookyCTF">SpookyCTF</a></td>
+            <td rowspan=2><a href="ctfs/SpookyCTF">SpookyCTF</a></td>
+            <td><a href="ctfs/SpookyCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2516/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/SpookyCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2137/tasks/" target="_blank">CTFtime</a></td>
         </tr>
