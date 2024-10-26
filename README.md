@@ -1362,6 +1362,11 @@
             <td><a href="https://ctftime.org/event/652/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/HackHavoc">HackHavoc</a></td>
+            <td><a href="ctfs/HackHavoc/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2532/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=5><a href="ctfs/HackPack">HackPack</a></td>
             <td><a href="ctfs/HackPack/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2333/tasks/" target="_blank">CTFtime</a></td>
@@ -1499,7 +1504,11 @@
             <td><a href="https://ctftime.org/event/2497/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/ISITDTU">ISITDTU</a></td>
+            <td rowspan=6><a href="ctfs/ISITDTU">ISITDTU</a></td>
+            <td><a href="ctfs/ISITDTU/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2456/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/ISITDTU/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2080/tasks/" target="_blank">CTFtime</a></td>
         </tr>
