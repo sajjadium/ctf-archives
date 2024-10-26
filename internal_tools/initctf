@@ -34,7 +34,7 @@ if __name__ == '__main__':
       ctf_id = m.group(1)
       ctf_name = ''
       for t in link.text.strip().split():
-        if t.lower() == 'ctf':
+        if t.lower() in ['ctf', 'ctfs']:
           break
         ctf_name += t
 

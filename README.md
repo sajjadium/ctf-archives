@@ -2932,8 +2932,13 @@
             <td><a href="https://ctftime.org/event/2219/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/UrchinSec">UrchinSec</a></td>
-            <td><a href="ctfs/UrchinSec/2024">2024</a></td>
+            <td rowspan=1><a href="ctfs/UrchinSecAware">UrchinSecAware</a></td>
+            <td><a href="ctfs/UrchinSecAware/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2527/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td rowspan=1><a href="ctfs/UrchinSecTanzaniaNational">UrchinSecTanzaniaNational</a></td>
+            <td><a href="ctfs/UrchinSecTanzaniaNational/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2327/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
