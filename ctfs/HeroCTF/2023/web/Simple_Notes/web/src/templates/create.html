@@ -1,0 +1,47 @@
+{% include 'inc/header.html' %}
+<body>
+    <section class="vh-100" style="background-color: #9A616D;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card pt-4 text-black" style="border-radius: 1rem;">
+                    <div id="title" class="text-center">
+                        <h1><i class="fa-solid fa-pen-nib fa-1x me-2"></i> {{title}}</h1>
+                        <input id="user" value="{{username}}" hidden>
+                    </div>
+                    <hr>
+                    <div id="create" class="pt-4 pb-4">
+                        <form id="create_form">
+                            <div class="form-outline mb-4" style="width: 50%; margin: auto;">
+                            <input type="text" name="name" id="name" class="form-control form-control-lg" />
+                            <label class="form-label" for="name">Name</label>
+                            </div>
+                        </form>
+                        <div style="width: 50%; margin: auto;">
+                            <div id="msg"></div>
+                        </div>
+                    </div>
+                    <div id="actions" class="text-center pb-4">
+                        <a href="/notes" class="btn btn-warning"><i class="fa-solid fa-arrow-left"></i> Back</a>
+                        <a onclick="createNoteAPI(user.value, create_form.name.value)" class="btn btn-success"><i class="fa-solid fa-plus"></i> Create</a>
+                        <a href="/logout" class="btn btn-dark"><i class="fa-solid fa-door-open"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script>
+        window.onload = () => {
+            document.querySelectorAll(".form-outline").forEach((formOutline) => {
+                new mdb.Input(formOutline).init();
+            });
+
+            create_form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                createNoteAPI(create_form.name.value);
+            });
+        }
+    </script>
+</body>
+</html>

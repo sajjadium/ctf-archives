@@ -1,0 +1,64 @@
+{% include 'inc/header.html' %}
+<body>
+    <section class="vh-100" style="background-color: #9A616D;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card pt-4 text-black" style="border-radius: 1rem;">
+                    <div id="title" class="text-center">
+                        <h1><i class="fa-sharp fa-solid fa-list fa-1x me-2"></i> {{title}}</h1>
+                        <input id="user" value="{{username}}" hidden>
+                    </div>
+                    <hr>
+                    <div id="notes" class="ps-4">
+                        <div class="form-outline mb-4" style="width: 75%; margin: auto;">
+                            <input type="text" name="search" id="search_input" class="form-control form-control-lg active" />
+                            <label class="form-label" for="search">Search</label>
+                        </div>
+                        <table class="table align-middle bg-white">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Status</th>
+                                    <th>Last Update</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="output">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="actions" class="text-center pb-4">
+                        <a href="/notes/create" class="btn btn-success"><i class="fa-solid fa-plus"></i> Create</a>
+                        <a href="/logout" class="btn btn-dark"><i class="fa-solid fa-door-open"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script>
+        var notes;
+
+        window.onload = async () => {
+            document.querySelectorAll(".form-outline").forEach((formOutline) => {
+                new mdb.Input(formOutline).init();
+            });
+
+            notes = await profileAPI(user.value);
+
+            search_input.addEventListener("keyup", (e) => {
+                var tmp_notes = [];
+
+                for (i in notes) {
+                    if (notes[i][1].match(new RegExp(`^${search_input.value}`)))
+                        tmp_notes.push(notes[i]);
+                }
+
+                handleNotes(user.value, tmp_notes);
+            })
+        }
+    </script>
+</body>
+</html>

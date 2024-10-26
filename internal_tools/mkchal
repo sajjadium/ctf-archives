@@ -33,6 +33,12 @@ def is_valid(line):
   if line.strip().lower().startswith('fastest solvers'):
     return False
 
+  if re.search('^url\s+:', line.lower()):
+    return False
+
+  if line.strip().lower().startswith('> deploy on'):
+    return False
+
   if re.search('solves\s+\d+', line.lower()):
     return False
 
@@ -153,7 +159,7 @@ if __name__ == '__main__':
       subprocess.run(['mv', fname, chal_name])
 
   # compress big files
-  for file_ext in ['pcap', 'pcapng', 'wav', 'mp3', 'mov']:
+  for file_ext in ['pcap', 'pcapng', 'wav', 'mp3', 'mov', 'mp4']:
     os.system(f"""find "{chal_name}" -type f -name "*.{file_ext}" | xargs -n 1 xz""")
 
   readme = ''

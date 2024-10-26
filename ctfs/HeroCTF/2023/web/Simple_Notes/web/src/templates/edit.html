@@ -1,0 +1,54 @@
+{% include 'inc/header.html' %}
+<body>
+    <section class="vh-100" style="background-color: #9A616D;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card pt-4 text-black" style="border-radius: 1rem;">
+                    <div id="title" class="text-center">
+                        <h1><i class="fa-solid fa-bolt"></i> {{title}}</h1>
+                        <input id="user" value="{{username}}" hidden>
+                        <input id="uuid" value="{{uuid}}" hidden>
+                    </div>
+                    <hr>
+                    <div id="notes" class="ps-4">
+                        <form id="edit_form">
+                            <div class="form-outline mb-4" style="width: 50%; margin: auto;">
+                                <input type="text" name="title" id="title_input" class="form-control form-control-lg active" />
+                                <label class="form-label" for="title">Title</label>
+                            </div>
+                            <div class="form-outline mb-4" style="width: 75%; margin: auto;">
+                                <textarea type="text" name="title" id="content_input" class="form-control form-control-lg active" rows="10"></textarea>
+                                <label class="form-label" for="title">Content</label>
+                            </div>
+                        </form>
+                        <div style="width: 50%; margin: auto;">
+                            <div id="msg"></div>
+                        </div>
+                    </div>
+                    <div id="actions" class="text-center pb-4">
+                        <a href="/notes" class="btn btn-warning"><i class="fa-solid fa-arrow-left"></i> Back</a>
+                        <a onclick="editNoteAPI(user.value, uuid.value, title_input.value, content_input.value)" class="btn btn-success"><i class="fa-solid fa-check"></i> Update</a>
+                        <a href="/logout" class="btn btn-dark"><i class="fa-solid fa-door-open"></i> Logout</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <script>
+        window.onload = () => {
+            document.querySelectorAll(".form-outline").forEach((formOutline) => {
+                new mdb.Input(formOutline).init();
+            });
+
+            edit_form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                editNoteAPI(user.value, uuid.value, title_input.value, content_input.value);
+            });
+
+            loadNoteAPI(user.value, uuid.value);
+        }
+    </script>
+</body>
+</html>

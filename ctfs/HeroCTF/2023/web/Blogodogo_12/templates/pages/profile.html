@@ -1,0 +1,110 @@
+{% extends 'components/base.html' %}
+
+{% block container %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='assets/img/post-bg.jpg') }}')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="post-heading">
+                    <h1>{{ cache_username }}</h1>
+                    <h2 class="subheading">
+                        You are {% if not current_user.admin %}NOT {% endif %}an administrator
+                    </h2>
+                    <span class="meta">
+                        Welcome on your author profile
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% include 'components/flash.html' %}
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+
+        <div class="text-center">
+            <h3 class="pb-3">Profile</h3>
+    
+            <a id="author-website" class="text-center" href="{% if cache_url %}{{ cache_url }}{% else %}#{% endif %}">Author's website</a>
+
+            <br>
+
+            <!-- Button trigger modal -->
+            <button id="share" type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#shareModal">
+                <a href="#share" class="text-white">Share your profile</a>
+            </button>
+        </div>
+        
+        <!-- Modal -->
+        <div class="modal fade" id="shareModal" tabindex="-1" aria-labelledby="shareModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="shareModalLabel">Share</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                Share your profile using a link.
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">
+                    <a href="/author/{{ current_user.id }}" target="_blank" class="text-white">
+                        Open link
+                    </a>
+                </button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <br>
+  
+        <h3 class="text-center mt-5">Edit profile</h3>
+
+        <form id="contactForm" method="POST" action="{{ url_for('bp_routes.profile') }}">
+            {{ form.csrf_token }}
+            <div class="form-floating">
+                {{ form.username(class_="form-control", value_=cache_username) }}
+                <label for="username">Username</label>
+            </div>
+            <div class="form-floating">
+                {{ form.old_password(class_="form-control") }}
+                <label for="old_password">Old password</label>
+            </div>
+            <div class="form-floating">
+                {{ form.new_password(class_="form-control") }}
+                <label for="new_password">New password</label>
+            </div>
+            <div class="form-floating">
+                {{ form.new_password_confirm(class_="form-control") }}
+                <label for="new_password_confirm">New password confirm</label>
+            </div>
+            <div class="form-floating">
+                {{ form.url(class_="form-control", value_=cache_url) }}
+                <label for="url">Custom URL</label>
+            </div>
+            <div class="form-floating">
+                {{ form.avatar(class_="form-control") }}
+                <label for="avatar">Avatar</label>
+            </div>
+            <br>
+            {{ form.submit(class_="btn btn-success text-uppercase") }}
+        </form>
+
+    </div>
+</article>
+
+<script>
+    addEventListener('DOMContentLoaded', (event) => {
+        let hash = window.location.hash;
+        if (hash !== '') {
+            let button = document.getElementById(hash.slice(1));
+            button.click();
+        }
+    });
+</script>
+
+{% endblock %}
