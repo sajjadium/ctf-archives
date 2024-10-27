@@ -2758,6 +2758,11 @@
             <td><a href="https://ctftime.org/event/1959/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/TheCyberJawaraInternational">TheCyberJawaraInternational</a></td>
+            <td><a href="ctfs/TheCyberJawaraInternational/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2552/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/TheOdyssey">TheOdyssey</a></td>
             <td><a href="ctfs/TheOdyssey/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2029/tasks/" target="_blank">CTFtime</a></td>
