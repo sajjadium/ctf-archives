@@ -1092,6 +1092,11 @@
             <td><a href="https://ctftime.org/event/1595/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/EnigmaXplore">EnigmaXplore</a></td>
+            <td><a href="ctfs/EnigmaXplore/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2524/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/EvlzCTF">Evlz</a></td>
             <td><a href="ctfs/EvlzCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1070/tasks/" target="_blank">CTFtime</a></td>

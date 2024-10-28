@@ -1,0 +1,1 @@
+Each price shown here is in dollars.. the prices you pitch will be dollars however the real account balance and account balance will be done i rupees. 1 dollar = 90 rupees Make sure not to overpitch as you will lose your balance and get in debt.
