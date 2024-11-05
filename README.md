@@ -2897,6 +2897,11 @@
             <td><a href="https://ctftime.org/event/2297/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/USC">USC</a></td>
+            <td><a href="ctfs/USC/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2543/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=6><a href="ctfs/UTCTF">UTCTF</a></td>
             <td><a href="ctfs/UTCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2302/tasks/" target="_blank">CTFtime</a></td>
