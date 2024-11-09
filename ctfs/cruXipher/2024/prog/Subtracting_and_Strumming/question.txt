@@ -1,0 +1,28 @@
+Guitarist Bocchi wants to make it big, and is performing with her band at multiple venues to try and raise her popularity.
+One such venue is a Functional Programming conference, however something strange happens here.
+The audience is not interested in her music!
+Desperate to try and make an impact, Bocchi tries to look around for clues, when she finds a strange sheet of paper.
+This is what's written on the sheet-
+
+GUITAR CHORDS TO IMPRESS MATHEMATICIANS
+1. S x y z = (x z) (y z)
+2. K x y = x
+3. I x = x
+4. x ( y z ) = x (y z)
+TO IMPRESS THE CROWD, PLAY A PROGRESSION THAT *SUBTRACTS* OTHER PROGRESSIONS!
+
+Bocchi's bandmate Ryo happens to be an expert at all kinds of esoteric music, and she suggests that this sheet 
+might be referring to a very rare genre of music called Ski Rock.
+A chord progression in Ski rock consists of S, K and I chords as well as scratches and pick scrapes, indicated by ( and ) respectively.
+The sheet is asking them to perform a progression that *subtracts* two other progressions.
+Ryo knows that Ski rockers have a secret number system based on these progressions, but she only knows the numbers one and zero-
+zero = S K
+one = (S (S (K S) K)) (S K)
+Now it's up to Bocchi and her friends to figure out how to write a song with a progression that can subtract any two other progressions!
+
+Input format-
+
+Provide a string to the binary containing the progression like
+"(S K) I"
+The string can only contain whitespace, S, K, I and parentheses.
+The whitespace is optional.

@@ -1,0 +1,11 @@
+Surely, you can solve Watermelon (https://codeforces.com/problemset/problem/4/A), the easiest competitive coding problem on Codeforces, right? 
+
+Anyway, here's the minor twist: you can only use the SKI combinators.
+
+Here's an example function: (S(K(S(I))))(K)
+
+The challenge remote also supports currying, so an equivalent input would be: S (K (S I)) K 
+
+Your expression should be a function that takes in a Church numeral as input and outputs a Church boolean that represents true if "YES" and false if "NO".
+
+Good luck! You'll need it :)

@@ -1,0 +1,1 @@
+Welcome challenger!. As there is no doubt in your ability in the arcane arts of code breaking. Aided by your trusty tools -or through your sheer skills of perception and cartography- your task is to extract the flag hidden in this file.
