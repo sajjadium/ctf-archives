@@ -1845,7 +1845,11 @@
             <td><a href="https://ctftime.org/event/1106/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/MetaRed">MetaRed</a></td>
+            <td rowspan=3><a href="ctfs/MetaRed">MetaRed</a></td>
+            <td><a href="ctfs/MetaRed/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2537/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/MetaRed/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1750/tasks/" target="_blank">CTFtime</a></td>
         </tr>
