@@ -1281,6 +1281,11 @@
             <td><a href="https://ctftime.org/event/485/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/HKCERT">HKCERT</a></td>
+            <td><a href="ctfs/HKCERT/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2455/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/HKUSTFirebird">HKUSTFirebird</a></td>
             <td><a href="ctfs/HKUSTFirebird/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2225/tasks/" target="_blank">CTFtime</a></td>
