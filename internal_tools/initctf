@@ -49,7 +49,7 @@ if __name__ == '__main__':
     break
 
 
-  ctf_name = re.sub('[^0-9a-zA-Z_\.+]+', '', ctf_name.replace('Preliminary', '').replace('Qualifier', '').strip().replace('å', 'a'))
+  ctf_name = re.sub('[^0-9a-zA-Z_\.+]+', '', ctf_name.replace('Preliminary', '').replace('Qualifier', '').strip().replace('å', 'a').replace('$', 'S'))
   if not ctf_name:
     ctf_name = 'UNKNOWN'
   full_name = '%s/%d' % (ctf_name, datetime.date.today().year)

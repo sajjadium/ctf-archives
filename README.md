@@ -477,7 +477,11 @@
             <td><a href="https://ctftime.org/event/2063/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/BlueHens">BlueHens</a></td>
+            <td rowspan=3><a href="ctfs/BlueHens">BlueHens</a></td>
+            <td><a href="ctfs/BlueHens/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2512/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/BlueHens/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2126/tasks/" target="_blank">CTFtime</a></td>
         </tr>
