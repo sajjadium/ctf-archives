@@ -1801,6 +1801,10 @@
         </tr>
         <tr>
             <td rowspan=5><a href="ctfs/MCTF">M*CTF</a></td>
+            <td><a href="ctfs/MCTF/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2534/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/MCTF/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2096/tasks/" target="_blank">CTFtime</a></td>
         </tr>

@@ -155,11 +155,15 @@ if __name__ == '__main__':
   download_dir = os.path.expanduser('~/Downloads')
 
   # move all the files downloaded in the past 60 seconds into the chal directory
+  attachments = set()
   for f in os.listdir(download_dir):
+    attachments.add(f)
     fname = os.path.join(download_dir, f)
 
     if time.time() - os.path.getmtime(fname) <= 300:
       subprocess.run(['mv', fname, chal_name])
+
+  lines = [l for l in lines if l not in attachments]
 
   # compress big files
   for file_ext in ['pcap', 'pcapng', 'wav', 'mp3', 'mov', 'mp4', 'log']:
