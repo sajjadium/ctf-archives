@@ -1,0 +1,1 @@
+Bob is creating an app in which he needs to include a particular SDK. To use the SDK, he applied for an API Key which needs to pass to the SDK in the runtime. Considering the Key is not free, Bob is trying multiple approaches to protect it.

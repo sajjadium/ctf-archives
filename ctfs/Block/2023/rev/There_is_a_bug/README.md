@@ -1,0 +1,1 @@
+Bob is reckless when developing apps. He just created an app that can show the flag with the correct password. However, he just couldn't get the flag even with the right password, could you help him to fix the bug? APK

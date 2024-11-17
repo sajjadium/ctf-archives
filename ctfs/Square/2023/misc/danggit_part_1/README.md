@@ -1,1 +1,0 @@
-The developer who set up this challenge has left the company. Unfortunately, they forgot to share their code before leaving, and we have no idea how it works. All we could find was an email containing their commit history ¯\_(ツ)_/¯

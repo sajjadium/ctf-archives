@@ -1,1 +1,0 @@
-I've been wanting to join this chess club for a while now, but I can't seem to figure out the secret password to get in. Can you help me? Apparently the first 40 and last 8 half-moves are all theory ;). This challenge follows the normal flag format.

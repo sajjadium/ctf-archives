@@ -1,0 +1,12 @@
+{
+  "knex": {
+    "client": "sqlite3",
+    "connection": {
+      "filename": "./xark.sqlite"
+    }
+  },
+  "init": {
+    "token": "secret",
+    "flag": "flag-just-a-boring-sample"
+  }
+}
