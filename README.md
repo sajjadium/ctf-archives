@@ -2162,6 +2162,11 @@
             <td><a href="https://ctftime.org/event/664/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/PwnSec">PwnSec</a></td>
+            <td><a href="ctfs/PwnSec/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2454/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/PwnThyBytes">PwnThyBytes</a></td>
             <td><a href="ctfs/PwnThyBytes/2019">2019</a></td>
             <td><a href="https://ctftime.org/event/756/tasks/" target="_blank">CTFtime</a></td>
