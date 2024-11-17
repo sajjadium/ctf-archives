@@ -2002,6 +2002,11 @@
             <td><a href="https://ctftime.org/event/1067/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/NoHackNoCTF">NoHackNoCTF</a></td>
+            <td><a href="ctfs/NoHackNoCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2574/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Norzh">Norzh</a></td>
             <td><a href="ctfs/Norzh/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1301/tasks/" target="_blank">CTFtime</a></td>
