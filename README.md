@@ -1100,6 +1100,11 @@
             <td><a href="https://ctftime.org/event/1696/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/EKOPARTY">EKOPARTY</a></td>
+            <td><a href="ctfs/EKOPARTY/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2507/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/ESCAPE">ESCAPE</a></td>
             <td><a href="ctfs/ESCAPE/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2022/tasks/" target="_blank">CTFtime</a></td>
