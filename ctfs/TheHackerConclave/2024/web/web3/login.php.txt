@@ -1,0 +1,27 @@
+<?php
+
+	if(isset($_POST['username']) && isset($_POST['password'])){
+
+		$RES = mysqli_connect("localhost","root","");
+		mysqli_select_db($RES,"site1");
+
+		$ANS=mysqli_query($RES,"SELECT * FROM users");
+
+		while($ROW=mysqli_fetch_array($ANS)){
+
+			if(($_POST['username']== $ROW[0]) && ($_POST['password']== $ROW[1])){
+
+				$flag=file_get_contents("/flag/flag.txt");
+
+				echo str_replace("##FLAG##",$flag,file_get_contents("templateflag.tmpl"));
+
+				die();
+
+			}
+		}
+
+	}
+
+	echo file_get_contents("templatelogin.html");
+
+?>

@@ -1,0 +1,79 @@
+<?php
+
+	$CONCAT=":C0ncl4v3";
+
+	$template=file_get_contents("./template.html");
+
+	$RES = mysqli_connect("localhost","root","");
+	mysqli_select_db($RES,"site1");
+
+	$HEADER=substr($template,0,stripos($template,"##INITLIST##"));
+
+	echo $HEADER;
+
+	$ITEM=substr($template,stripos($template,"##INITLIST##")+strlen("##INITLIST##"),stripos($template,"##ENDLIST##")-stripos($template,"##INITLIST##")-strlen("##INITLIST##"));
+
+	$ITEMLIST=substr($template,stripos($template,"##INITLIST2##")+strlen("##INITLIST2##"),stripos($template,"##ENDLIST2##")-stripos($template,"##INITLIST2##")-strlen("##INITLIST2##"));
+
+	if(isset($_POST['id'])){
+
+		if(isset($_POST['HASH'])){
+
+		
+			if($_POST['HASH'] === sha1(md5($_POST['id'].$CONCAT))){
+
+				$lista=explode(" ",$_POST['id']);
+
+				$I=count($lista);
+
+				$_POST['id']=$lista[$I-1];
+
+				$I=$I-1;
+
+				while($I > 0){
+			
+					$_POST['id']=$_POST['id']." ".$lista[$I-1];
+
+					$I=$I-1;
+					
+				}
+
+				if($ANS=mysqli_query($RES,"SELECT * FROM products WHERE id=".$_POST['id'])){
+
+					while($ROW=mysqli_fetch_array($ANS)){
+
+						echo str_replace("##data1##",$ROW[1],str_replace("##data2##",$ROW[2],str_replace("##data3##",$ROW[3],$ITEM)));
+
+					}
+
+				}
+
+			}
+		}
+
+	}else{
+
+		if($ANS=mysqli_query($RES,"SELECT * FROM products")){
+?>
+
+			<form method="POST" action="" id="formulario" style="display:none">
+				<input name="id" id="formid" value=""></input>
+				<input name="HASH" id="formHASH" value=""></input>
+			</form>
+
+<?php
+			while($ROW=mysqli_fetch_array($ANS)){
+
+				echo str_replace("##data1##",$ROW[0],str_replace("##data2##",sha1(md5($ROW[0].$CONCAT)),str_replace("##data3##",$ROW[1],$ITEMLIST)));
+
+			}
+		}
+
+
+	}
+
+	$FOOTER=str_replace("##ENDLIST2##","",substr($template,stripos($template,"##ENDLIST2##")));
+
+	echo $FOOTER;
+
+?>

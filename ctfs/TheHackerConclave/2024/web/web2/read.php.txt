@@ -1,0 +1,25 @@
+<?php
+	session_start();
+
+
+	$mails = json_decode(file_get_contents("../data/mail.json"),true);
+
+	$marco = file_get_contents("skins/marco.html");
+
+	$template = file_get_contents("skins/mail.html");
+
+	if(isset($_SESSION['username'])){
+
+		$mail = $mails[$_GET['id']];
+
+		$template = str_replace("##USUARIO##",$mail['from'],$template);
+		$template = str_replace("##ASUNTO##",$mail['subject'],$template);
+		$template = str_replace("##CONTENIDO##",$mail['message'],$template);
+	
+	}
+
+	$pagina = str_replace("##CONTENIDO##",$template,$marco);
+
+	print($pagina);
+
+?>

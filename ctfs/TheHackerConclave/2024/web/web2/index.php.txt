@@ -1,0 +1,81 @@
+<?php
+
+	session_start();
+
+	if(isset($_GET['logout'])){
+
+		session_destroy();
+		unset($_SESSION['username']);
+		unset($_SESSION['usertype']);
+
+	}
+
+	$db = new SQLite3('../data/users.db');
+
+	if(isset($_POST["user"]) && isset($_POST["pass"])){
+
+		$stmt = $db->prepare('SELECT * FROM usuarios WHERE username = "'.$_POST['user'].'" AND password = "'.sha1($_POST['pass']).'"');
+		$result = $stmt->execute();
+
+		// Verificar si se encontró un usuario
+		if ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+
+			$_SESSION['username']=$row['username'];
+			$_SESSION['usertype']=$row['usertype'];
+
+		}
+
+	}
+
+	$marco = file_get_contents("./skins/marco.html");
+
+	if(!isset($_SESSION['username'])){
+
+		$template = file_get_contents("./skins/index.html");
+
+	}else{
+
+		if($_SESSION['usertype']=="admin"){
+
+			$template = file_get_contents("./skins/admin.html");
+
+		}else{
+
+			$mails=json_decode(file_get_contents("../data/mail.json"),"true");
+
+
+			$templatetmp = file_get_contents("skins/mailbox.html");
+
+			$templatepartido = explode("<!-- ##INICIO_LINEA## -->",$templatetmp);
+
+			$template = $templatepartido[0];
+			
+			$templatepartido = explode("<!-- ##FIN_LINEA## -->",$templatepartido[1]);
+
+			$lineaoriginal = $templatepartido[0];
+
+			foreach($mails as $key =>  $mail){
+
+				if($mail['to'] == $_SESSION['username']){
+
+					$linea = str_replace("##ID_CORREO##",$key,$lineaoriginal);
+					$linea = str_replace("##USUARIO##",$mail['from'],$linea);
+					$linea = str_replace("##ASUNTO##",$mail['subject'],$linea);
+					
+					$template=$template.$linea;
+
+
+				}
+			}
+
+			$template=$template.$templatepartido[1];
+
+		}
+
+	}
+
+	$pagina = str_replace("##CONTENIDO##",$template,$marco);
+
+	print($pagina);
+
+?>
