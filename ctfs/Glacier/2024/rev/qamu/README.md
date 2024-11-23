@@ -1,0 +1,3 @@
+I've always wanted to write my own hardware-accelerated software hypervisor. However, everyone is talking about confidential computing...I am sure I implem ented what they wanted...
+
+Author: Xer0

@@ -1196,7 +1196,11 @@
             <td><a href="https://ctftime.org/event/2257/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/Glacier">Glacier</a></td>
+            <td rowspan=3><a href="ctfs/Glacier">Glacier</a></td>
+            <td><a href="ctfs/Glacier/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2402/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Glacier/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1992/tasks/" target="_blank">CTFtime</a></td>
         </tr>

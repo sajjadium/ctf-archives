@@ -58,7 +58,7 @@ if __name__ == '__main__':
     full_name += '/Quals'
 
   os.system('mkdir -p %s' % full_name)
-  for category in ['crypto', 'web', 'pwn', 'rev', 'misc', 'forensic', 'osint', 'net', 'steg', 'mobile']:
+  for category in ['crypto', 'web', 'pwn', 'rev', 'misc', 'forensic', 'osint', 'net', 'steg', 'mobile', 'blockchain']:
     os.system('mkdir %s/%s' % (full_name, category))
 
   open('%s/README.md' % ctf_name, 'w').write('[CTFtime Page](https://ctftime.org/ctf/%s)\n' % ctf_id)
