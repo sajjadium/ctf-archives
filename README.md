@@ -2345,7 +2345,11 @@
             <td><a href="https://ctftime.org/event/1761/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=6><a href="ctfs/SECCON">SECCON</a></td>
+            <td rowspan=7><a href="ctfs/SECCON">SECCON</a></td>
+            <td><a href="ctfs/SECCON/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2478/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/SECCON/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2003/tasks/" target="_blank">CTFtime</a></td>
         </tr>
