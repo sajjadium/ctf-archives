@@ -1,0 +1,3 @@
+Author: maximxls
+
+I've developed this amazingly secure PRNG for my new game, BUG DESTROYER! There's a secret ending to the game, but it's practically unreachable. Maybe if you're lucky though...
