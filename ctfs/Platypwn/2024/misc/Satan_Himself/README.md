@@ -1,0 +1,1 @@
+This challenge was made by satan himself. He chose the worst of esoteric programming languages, just to see the world burn. Good luck exploring hell itself and don’t forget to halt here and there to feel the pain ;)

@@ -1,0 +1,1 @@
+Hash functions are really just turning strings into shorter, more jumbled strings, right? So I made an antihash function, it turns strings into longer, more jumbled strings! Can you guess what my input was?

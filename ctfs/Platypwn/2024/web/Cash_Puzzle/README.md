@@ -1,0 +1,3 @@
+💸 Puzzling puzzles 💸
+
+Ok, now it is getting ridiculous. After not being caught at last years Platypwn, Catmaster420 has again infiltrated our infrastructure. We never found out how we were infiltrated last year, so we had proactively rewritten our entire codebase in go. It was supposed to be secure now :(. We had even developed the best challenge for you: You just needed to solve a 4x4 puzzle to get the flag. But it’s not that simple anymore, as Catmaster420 has inserted an if statement at a critical position in our code, so it doesn’t return the flag anymore. There might also be other traces of his doing in our codebase. Please, go forth and find out what is wrong with our code this year. You are our last hope at catching the Catmaster!
