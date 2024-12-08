@@ -1,0 +1,7 @@
+services:
+  wild-signatures:
+    build: .
+    ports:
+      - 9001:1338
+    env_file: .env
+    restart: unless-stopped

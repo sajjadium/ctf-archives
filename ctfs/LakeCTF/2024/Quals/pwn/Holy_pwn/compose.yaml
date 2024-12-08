@@ -1,0 +1,20 @@
+services:
+  holypwn:
+    init: true
+    build: .
+    ports:
+      - 9002:5000
+    devices:
+      - "/dev/kvm:/dev/kvm"
+    cap_drop:
+      - all
+    cap_add:
+      - chown
+      - setuid
+      - setgid
+      - sys_admin
+      - mknod
+    security_opt:
+      - apparmor=unconfined
+      - seccomp=unconfined
+      - systempaths=unconfined

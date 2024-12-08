@@ -1791,7 +1791,11 @@
             <td><a href="https://ctftime.org/event/1398/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/LakeCTF">LakeCTF</a></td>
+            <td rowspan=2><a href="ctfs/LakeCTF">LakeCTF</a></td>
+            <td><a href="ctfs/LakeCTF/2024/Quals">2024 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2502/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/LakeCTF/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2069/tasks/" target="_blank">CTFtime</a></td>
         </tr>

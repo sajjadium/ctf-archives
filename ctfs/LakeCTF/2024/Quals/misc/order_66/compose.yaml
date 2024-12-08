@@ -1,0 +1,15 @@
+services:
+  order66:
+    build: .
+    ports:
+      - 9000:5000
+    cap_drop:
+      - all
+    cap_add:
+      - chown
+      - setuid
+      - setgid
+      - sys_admin
+      - mknod
+    security_opt:
+      - seccomp=unconfined

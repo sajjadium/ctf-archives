@@ -1,0 +1,1 @@
+We were noticed of a vulnerability allowing unauthorized decryption of internal secrets. The sign function has been disabled while our engineers are working on a fix. Rest assured, you can continue to use the rest of the service for your crypto operations.

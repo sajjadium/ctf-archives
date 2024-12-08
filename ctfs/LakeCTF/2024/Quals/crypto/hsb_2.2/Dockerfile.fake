@@ -1,0 +1,11 @@
+FROM alpine@sha256:21dc6063fd678b478f57c0e13f47560d0ea4eeba26dfc947b2a4f81f686b9f45
+WORKDIR /app
+RUN apk add --no-cache --update \
+    python3 \
+    py3-pip \
+    socat
+RUN pip3 install pycryptodome --break-system-packages
+COPY challenge.py .
+RUN chmod +x challenge.py
+ENV flag EPFL{not_the_flag}
+ENTRYPOINT socat tcp-l:5000,fork,reuseaddr EXEC:"python3 challenge.py" && /bin/bash

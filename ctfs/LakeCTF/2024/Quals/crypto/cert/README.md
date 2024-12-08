@@ -1,0 +1,9 @@
+Here is the admin's public key:
+
+N = b678170a2e2faf2a29d6b236a8508c4a27a828c5c9f40ad467768ef60af30eda4e8596e4cbc3919db6d104ea1155025052918fb8fb3ef78510c6ea41f5be60e26103fb0f36a71883a23027f544b08ad35fc328b184e83f8973695e339d75fe4565e90457f051ba327eb14d77d76fc60b8800e5d04d9407561dc708889ee8b001
+
+e = 010001
+
+Forge a signature to authenticate as admin.
+
+Hold on! Let me quickly sign a welcome message for you
