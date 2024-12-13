@@ -1,0 +1,3 @@
+Santa has come with a lot of gifts, do not exploit his kindess unless you want to end up on the naughty list...
+
+Author: crabsnk, lepnoxic

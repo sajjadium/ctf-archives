@@ -1,0 +1,3 @@
+With no friends to confide in, I seek solace in retro and nostalgic games. I am trying to make something but alas just like the description its not...
+
+Author: YouGuess, xenon
