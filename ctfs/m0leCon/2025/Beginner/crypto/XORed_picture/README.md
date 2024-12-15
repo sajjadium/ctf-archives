@@ -1,0 +1,3 @@
+My friend has sent me a pic, but I can't seem to open it. They said it has been **XOR**'d or something...
+
+~Vic
