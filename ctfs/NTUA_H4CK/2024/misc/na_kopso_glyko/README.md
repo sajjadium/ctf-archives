@@ -1,0 +1,3 @@
+You find yourself at your lovely greek grandma's house, when you hear (what else) "ΝΑ ΚΟΨΩ ΓΛΥΚΟ?". This time will not be so ez though ...
+
+Author: N0_Sp3c14l_Ch4r, Babafaba

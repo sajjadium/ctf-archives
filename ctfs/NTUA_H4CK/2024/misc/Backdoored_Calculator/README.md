@@ -1,0 +1,3 @@
+The source of this calculator seems a bit sus ...
+
+Author: Babafaba
