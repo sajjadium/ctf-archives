@@ -2754,7 +2754,11 @@
             <td><a href="https://ctftime.org/event/1427/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/TSG">TSG</a></td>
+            <td rowspan=5><a href="ctfs/TSG">TSG</a></td>
+            <td><a href="ctfs/TSG/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2424/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/TSG/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2013/tasks/" target="_blank">CTFtime</a></td>
         </tr>
