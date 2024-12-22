@@ -21,6 +21,9 @@ def is_valid(line):
   if line.strip().lower() == 'click':
     return False
 
+  if re.search(r'https?://', line.lower()) and 'drive.google.com' not in line.lower():
+    return False
+
   if line.strip().lower() == 'ja / en':
     return False
 

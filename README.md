@@ -393,7 +393,7 @@
         <tr>
             <td rowspan=3><a href="ctfs/BYUCTF">BYUCTF</a></td>
             <td><a href="ctfs/BYUCTF/2024">2024</a></td>
-            <td><a href="https://ctftime.org/event/2252/tasks/" target="_blank">CTFtime</a></td>
+            <td><a href="https://ctftime.org/event/2540/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
             <td><a href="ctfs/BYUCTF/2023">2023</a></td>
@@ -404,7 +404,11 @@
             <td><a href="https://ctftime.org/event/1660/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/BackdoorCTF">BackdoorCTF</a></td>
+            <td rowspan=4><a href="ctfs/BackdoorCTF">BackdoorCTF</a></td>
+            <td><a href="ctfs/BackdoorCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2153/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/BackdoorCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2153/tasks/" target="_blank">CTFtime</a></td>
         </tr>
