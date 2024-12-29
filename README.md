@@ -115,7 +115,11 @@
             <td><a href="https://ctftime.org/event/1091/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=14><a href="ctfs/ASIS">ASIS</a></td>
+            <td rowspan=15><a href="ctfs/ASIS">ASIS</a></td>
+            <td><a href="ctfs/ASIS/2024/Finals">2024 Finals</a></td>
+            <td><a href="https://ctftime.org/event/2403/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/ASIS/2024/Quals">2024 Quals</a></td>
             <td><a href="https://ctftime.org/event/2211/tasks/" target="_blank">CTFtime</a></td>
         </tr>

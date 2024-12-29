@@ -1,1 +1,1 @@
-[CTFtime Page](https://ctftime.org/ctf/55)
+[CTFtime Page](https://ctftime.org/ctf/59)

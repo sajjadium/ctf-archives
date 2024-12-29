@@ -56,9 +56,11 @@ if __name__ == '__main__':
   title = soup.find_all('title')[0].text.lower()
   if 'teaser' in title or 'qualifier' in title or 'quals' in title or 'preliminary' in title or 'prequal' in title or 'qualification' in title or 'qualifying' in title:
     full_name += '/Quals'
+  elif 'finals' in title:
+    full_name += '/Finals'
 
   os.system('mkdir -p %s' % full_name)
-  for category in ['crypto', 'web', 'pwn', 'rev', 'misc', 'forensic', 'osint', 'net', 'steg', 'mobile', 'blockchain']:
+  for category in ['crypto', 'web', 'pwn', 'rev', 'misc', 'forensic', 'osint', 'net', 'steg', 'mobile', 'blockchain', 'hw']:
     os.system('mkdir %s/%s' % (full_name, category))
 
   open('%s/README.md' % ctf_name, 'w').write('[CTFtime Page](https://ctftime.org/ctf/%s)\n' % ctf_id)

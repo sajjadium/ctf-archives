@@ -1,0 +1,1 @@
+A company's employees enter using access cards in a fixed sequence. A Friday system breach required strict adherence to this order. Despite this, fake entries were logged. Analyze the logs and deduce the correct employee sequence to obtain the challenge flag.

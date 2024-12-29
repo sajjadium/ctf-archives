@@ -1,0 +1,1 @@
+This program, Torando is designed to print the flag if the correct voltage is applied to the first pin of the ESP32 board during the initial hours of operation. However, the specific voltage value and the exact time when the flag is printed are unknown to the investigators. Please assist them in uncovering the secret flag.
