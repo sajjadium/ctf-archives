@@ -1,0 +1,1 @@
+Our junior embedded software engineer ignored warnings about custom crypto implementations and rolled his own square-and-multiply algorithm. During routine testing, our hardware security team captured suspicious data-dependency in the power traces. Note: the flag will be wrapped in `0xL4ugh{}` in this challenge.

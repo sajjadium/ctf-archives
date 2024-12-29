@@ -1,0 +1,1 @@
+I love saving my chats with my friends on my laptop but I should protect them, they have info can make you a billionaire 😎, so to protect them well I decided to protect each chat with a different password, so I will protect each one with the year I knew him at and his country (example is 2013brazil) now I'm sure I'm the only one who know these info
