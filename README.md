@@ -3175,6 +3175,11 @@
             <td><a href="https://ctftime.org/event/2146/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Wargames.MY">Wargames.MY</a></td>
+            <td><a href="ctfs/Wargames.MY/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2597/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/WeCTF">WeCTF</a></td>
             <td><a href="ctfs/WeCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1546/tasks/" target="_blank">CTFtime</a></td>

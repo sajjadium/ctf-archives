@@ -42,34 +42,34 @@ def is_valid(line):
   if line.strip().lower().startswith('fastest solvers'):
     return False
 
-  if re.search('^url\s+:', line.lower()):
+  if re.search(r'^url\s+:', line.lower()):
     return False
 
-  if re.search('^bot\s+:', line.lower()):
+  if re.search(r'^bot\s+:', line.lower()):
     return False
 
   if line.strip().lower().startswith('> deploy on'):
     return False
 
-  if re.search('solves\s+\d+', line.lower()):
+  if re.search(r'solves\s+\d+', line.lower()):
     return False
 
-  if re.search('score:\s*\d+', line.lower()):
+  if re.search(r'score:\s*\d+', line.lower()):
     return False
 
   if re.search(r'download (image|file|pcap) \([\d\.]+(kb|mb|b)\)', line.lower()):
     return False
 
-  if re.search('\d+[ \t]+points', line.lower()) or re.search('\d+[ \t]*solves', line.lower()) or re.search('\d+[ \t]+solve', line.lower()) or re.search('\d+[ \t]+score', line.lower()):
+  if re.search(r'\d+[ \t]+points', line.lower()) or re.search(r'\d+[ \t]*solves', line.lower()) or re.search(r'\d+[ \t]+solve', line.lower()) or re.search(r'\d+[ \t]+score', line.lower()):
     return False
 
-  if re.fullmatch("[0-9a-z-]+\.zip", line.strip().lower()):
+  if re.fullmatch(r"[0-9a-z-]+\.zip", line.strip().lower()):
     return False
 
-  if re.fullmatch("attachment:\s*[\w\.]+", line.strip().lower()):
+  if re.fullmatch(r"attachment:\s*[\w\.]+", line.strip().lower()):
     return False
 
-  if re.search('\d+[ \t]*pt', line):
+  if re.search(r'\d+[ \t]*pt', line):
     return False
 
   if re.search(r'\d{2}/\d{2}, \d{2}:\d{2}:\d{2}', line):

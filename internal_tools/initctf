@@ -14,7 +14,7 @@ import datetime
 if __name__ == '__main__':
   if len(sys.argv) > 1:
     event_url = sys.argv[1]
-    event_id = re.search('ctftime\.org/event/(\d+)', event_url).group(1)
+    event_id = re.search(r'ctftime\.org/event/(\d+)', event_url).group(1)
     # request the ctf event page
     page_content = requests.get(sys.argv[1],
                      allow_redirects=True,
@@ -29,7 +29,7 @@ if __name__ == '__main__':
     if not link.get('href'):
       continue
 
-    m = re.fullmatch('/ctf/(\d+)', link.get('href'))
+    m = re.fullmatch(r'/ctf/(\d+)', link.get('href'))
     if m:
       ctf_id = m.group(1)
       ctf_name = ''
@@ -44,12 +44,12 @@ if __name__ == '__main__':
     if meta.get('property') != 'og:url':
       continue
 
-    event_id = re.search('ctftime\.org/event/(\d+)', meta.get('content')).group(1)
+    event_id = re.search(r'ctftime\.org/event/(\d+)', meta.get('content')).group(1)
 
     break
 
 
-  ctf_name = re.sub('[^0-9a-zA-Z_\.+]+', '', ctf_name.replace('Preliminary', '').replace('Qualifier', '').strip().replace('å', 'a').replace('$', 'S'))
+  ctf_name = re.sub(r'[^0-9a-zA-Z_\.+]+', '', ctf_name.replace('Preliminary', '').replace('Qualifier', '').strip().replace('å', 'a').replace('$', 'S'))
   if not ctf_name:
     ctf_name = 'UNKNOWN'
   full_name = '%s/%d' % (ctf_name, datetime.date.today().year)
