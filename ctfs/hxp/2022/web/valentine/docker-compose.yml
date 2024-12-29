@@ -1,0 +1,10 @@
+version: "3"
+services:
+
+  chall:
+    build:
+      dockerfile: Dockerfile
+
+    restart: always
+    ports:
+      - 9086:3000

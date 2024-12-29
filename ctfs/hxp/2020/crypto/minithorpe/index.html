@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>minithorpe</title>
+    <style>
+      * { font-family: monospace; }
+      pre { overflow: auto; }
+      .hidden { display: none; }
+      #stderr { color: red; }
+    </style>
+    <script>
+      function decode(data) {
+        return atob(data).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace('\'', '&#039;');
+      }
+      function reject() {
+        if (!document.getElementById('container').classList.contains('hidden'))
+          document.getElementById('container').classList.add('hidden');
+        document.getElementById('status').innerText = 'Failed to run command';
+      }
+      function run() {
+        let params = new URLSearchParams(new FormData(document.forms['form']));
+        fetch('/api/authorize?' + params).then((response) => {
+          if (response.ok) {
+            response.json().then((data) => {
+              document.getElementById('status').innerText = 'Command exited with status code ' + data['status'];
+              document.getElementById('stdout').innerText = decode(data['stdout']);
+              document.getElementById('stderr').innerText = decode(data['stderr']);
+              document.getElementById('container').classList.remove('hidden');
+            }, reject);
+          } else {
+            reject();
+          }
+        }, reject);
+        return false;
+      }
+    </script>
+  </head>
+  <body>
+    <h1>minithorpe</h1>
+    <form name="form" onsubmit="return run()">
+      <input type="text" id="cmd" name="cmd" placeholder="ls" />
+      <input type="submit" value="Run" />
+    </form>
+    <p id="status"></p>
+    <div id="container" class="hidden">
+      <h5>stdout</h5>
+      <pre id="stdout"></pre>
+      <h5>stderr</h5>
+      <pre id="stderr"></pre>
+    </div>
+  </body>
+</html>

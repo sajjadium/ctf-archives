@@ -1347,20 +1347,24 @@
             <td><a href="https://ctftime.org/event/821/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/HXP">HXP</a></td>
-            <td><a href="ctfs/HXP/2022">2022</a></td>
+            <td rowspan=5><a href="ctfs/hxp">hxp</a></td>
+            <td><a href="ctfs/hxp/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2437/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/hxp/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1845/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/HXP/2021">2021</a></td>
+            <td><a href="ctfs/hxp/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1447/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/HXP/2020">2020</a></td>
+            <td><a href="ctfs/hxp/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1134/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/HXP/2018">2018</a></td>
+            <td><a href="ctfs/hxp/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/647/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

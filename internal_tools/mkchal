@@ -75,7 +75,7 @@ def is_valid(line):
   if re.search(r'\d{2}/\d{2}, \d{2}:\d{2}:\d{2}', line):
     return False
 
-  if line.lower().startswith('points:') or line.lower().startswith('solves:') or line.lower().startswith('topics:') or line.lower().startswith('task points') or line.lower().startswith('my score'):
+  if line.lower().startswith('points:') or line.lower().startswith('solves:') or line.lower().startswith('topics:') or line.lower().startswith('task points') or line.lower().startswith('my score') or line.lower().startswith('difficulty estimate:'):
     return False
 
   if 'points' in line.lower() and 'solves' in line.lower():
@@ -129,7 +129,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e').replace('√', 'sqrt').replace('🅱️', 'B')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e').replace('√', 'sqrt').replace('🅱️', 'B').replace('ś', 's').replace('ę', 'e')
 
 def get_challenge_name(line):
   for original_name in reversed(line.strip('|').strip().split('/')):

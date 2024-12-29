@@ -1,0 +1,23 @@
+version: "3"
+services:
+# local proxy credentials hxp:hxp
+  bot:
+    build:
+      dockerfile: Dockerfile-admin
+    restart: always
+    depends_on:
+      - chall
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    ports:
+      - 9420:1024
+
+  chall:
+    build:
+      dockerfile: Dockerfile
+
+    restart: always
+    ports:
+      - 8055:8081

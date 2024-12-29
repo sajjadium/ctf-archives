@@ -1,0 +1,33 @@
+limit_req_zone $binary_remote_addr zone=request_limit_per_ip:10m rate=1r/s;
+limit_conn_zone $binary_remote_addr zone=connection_limit_per_ip:10m;
+proxy_cache_path /var/cache/nginx keys_zone=static:10m max_size=100m;
+
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+
+    limit_conn connection_limit_per_ip 32;
+    client_body_timeout 10s;
+    client_header_timeout 10s;
+    keepalive_timeout 5 5;
+    send_timeout 10s;
+
+    server_name _;
+
+    location / {
+        proxy_cache off;
+        proxy_pass http://127.0.0.1:3000;
+    }
+
+    location ~ /build/slide-pack\..*\.js {
+        # This is by far the biggest and slowest file to fetch in HackMD, so try caching it.
+        proxy_cache_valid 200 30m;
+        proxy_cache static;
+        proxy_pass http://127.0.0.1:3000;
+    }
+
+    location = /report {
+        limit_req zone=request_limit_per_ip;
+        proxy_pass http://127.0.0.1:6000;
+    }
+}

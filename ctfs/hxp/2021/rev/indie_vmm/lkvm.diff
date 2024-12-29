@@ -1,0 +1,25 @@
+diff --git a/Makefile b/Makefile
+index bb7ad3e..b61cad1 100644
+--- a/Makefile
++++ b/Makefile
+@@ -19,7 +19,7 @@ include config/utilities.mak
+ include config/feature-tests.mak
+ 
+ CC     := $(CROSS_COMPILE)gcc
+-CFLAGS :=
++CFLAGS := -Wl,-z,noexecstack
+ LD     := $(CROSS_COMPILE)ld
+ LDFLAGS        :=
+ OBJCOPY        := $(CROSS_COMPILE)objcopy
+diff --git a/term.c b/term.c
+index b8a70fe..63a20f7 100644
+--- a/term.c
++++ b/term.c
+@@ -94,7 +94,7 @@ bool term_readable(int term)
+        };
+        int err;
+ 
+-       err = poll(&pollfd, 1, 0);
++       err = poll(&pollfd, 1, -1);
+        return (err > 0 && (pollfd.revents & POLLIN));
+}

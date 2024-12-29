@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure.dtd">
+<!--
+  ~ Licensed to the Apache Software Foundation (ASF) under one
+  ~ or more contributor license agreements.  See the NOTICE file
+  ~ distributed with this work for additional information
+  ~ regarding copyright ownership.  The ASF licenses this file
+  ~ to you under the Apache License, Version 2.0 (the
+  ~ "License"); you may not use this file except in compliance
+  ~ with the License.  You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing,
+  ~ software distributed under the License is distributed on an
+  ~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~ KIND, either express or implied.  See the License for the
+  ~ specific language governing permissions and limitations
+  ~ under the License.
+  -->
+
+<!-- =============================================================== -->
+<!-- Configure the Jetty Server                                      -->
+<!--                                                                 -->
+<!-- Documentation of this file format can be found at:              -->
+<!-- http://docs.codehaus.org/display/JETTY/jetty.xml                -->
+<!--                                                                 -->
+<!-- =============================================================== -->
+
+
+<Configure id="Server" class="org.eclipse.jetty.server.Server">
+
+  <!-- =========================================================== -->
+  <!-- Server Thread Pool                                          -->
+  <!-- =========================================================== -->
+  <Set name="ThreadPool">
+    <!-- Default bounded blocking threadpool
+    -->
+    <New class="org.eclipse.jetty.util.thread.QueuedThreadPool">
+      <Set name="minThreads">10</Set>
+      <Set name="maxThreads">250</Set>
+    </New>
+
+    <!-- Optional Java 5 bounded threadpool with job queue
+    <New class="org.eclipse.jetty.util.thread.ExecutorThreadPool">
+      <Set name="corePoolSize">250</Set>
+      <Set name="maximumPoolSize">250</Set>
+    </New>
+    -->
+  </Set>
+
+  <!-- =========================================================== -->
+  <!-- Set connectors                                              -->
+  <!-- =========================================================== -->
+  <!-- One of each type!                                           -->
+  <!-- =========================================================== -->
+
+  <!-- Use this connector for many frequently idle connections
+       and for threadless continuations.
+  -->
+  <Call name="addConnector">
+    <Arg>
+        <New class="org.eclipse.jetty.server.nio.SelectChannelConnector">
+          <Set name="host"><SystemProperty name="jetty.host"/></Set>
+          <Set name="port"><SystemProperty name="jetty.port" default="8080"/></Set>
+          <Set name="maxIdleTime">30000</Set>
+          <Set name="Acceptors">2</Set>
+          <Set name="statsOn">false</Set>
+          <Set name="confidentialPort">8443</Set>
+          <Set name="lowResourcesConnections">5000</Set>
+          <Set name="lowResourcesMaxIdleTime">5000</Set>
+        </New>
+    </Arg>
+  </Call>
+
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+  <!-- To add a HTTPS SSL listener                                     -->
+  <!-- see jetty-ssl.xml to add an ssl connector. use                  -->
+  <!-- java -jar start.jar etc/jetty.xml etc/jetty-ssl.xml             -->
+  <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+  <!-- =========================================================== -->
+  <!-- Set up global session ID manager                            -->
+  <!-- =========================================================== -->
+  <!--
+  <Set name="sessionIdManager">
+    <New class="org.mortbay.jetty.servlet.HashSessionIdManager">
+      <Set name="workerName">node1</Set>
+    </New>
+  </Set>
+  -->
+
+  <!-- =========================================================== -->
+  <!-- Set handler Collection Structure                            -->
+  <!-- =========================================================== -->
+  <Set name="handler">
+    <New id="Handlers" class="org.eclipse.jetty.server.handler.HandlerCollection">
+      <Set name="handlers">
+       <Array type="org.eclipse.jetty.server.Handler">
+         <Item>
+           <New id="Contexts" class="org.eclipse.jetty.server.handler.ContextHandlerCollection"/>
+         </Item>
+         <Item>
+           <New id="DefaultHandler" class="org.eclipse.jetty.server.handler.DefaultHandler"/>
+         </Item>
+         <Item>
+           <New id="RequestLog" class="org.eclipse.jetty.server.handler.RequestLogHandler"/>
+         </Item>
+       </Array>
+      </Set>
+    </New>
+  </Set>
+
+  <!-- =========================================================== -->
+  <!-- Configure the context deployer                              -->
+  <!-- A context deployer will deploy contexts described in        -->
+  <!-- configuration files discovered in a directory.              -->
+  <!-- The configuration directory can be scanned for hot          -->
+  <!-- deployments at the configured scanInterval.                 -->
+  <!--                                                             -->
+  <!-- This deployer is configured to deploy contexts configured   -->
+  <!-- in the $JETTY_HOME/contexts directory                       -->
+  <!--                                                             -->
+  <!-- =========================================================== -->
+  <Call name="addLifeCycle">
+    <Arg>
+      <New class="org.eclipse.jetty.deploy.ContextDeployer">
+        <Set name="contexts"><Ref id="Contexts"/></Set>
+        <Set name="configurationDir"><SystemProperty name="jetty.home" default="."/>/contexts</Set>
+        <Set name="scanInterval">1</Set>
+      </New>
+    </Arg>
+  </Call>
+
+  <!-- =========================================================== -->
+  <!-- Configure the webapp deployer.                              -->
+  <!-- A webapp  deployer will deploy standard webapps discovered  -->
+  <!-- in a directory at startup, without the need for additional  -->
+  <!-- configuration files.    It does not support hot deploy or   -->
+  <!-- non standard contexts (see ContextDeployer above).          -->
+  <!--                                                             -->
+  <!-- This deployer is configured to deploy webapps from the      -->
+  <!-- $JETTY_HOME/webapps directory                               -->
+  <!--                                                             -->
+  <!-- Normally only one type of deployer need be used.            -->
+  <!--                                                             -->
+  <!-- =========================================================== -->
+  <Call name="addLifeCycle">
+    <Arg>
+      <New class="org.eclipse.jetty.deploy.WebAppDeployer">
+        <Set name="contexts"><Ref id="Contexts"/></Set>
+        <Set name="webAppDir"><SystemProperty name="jetty.home" default="."/>/apps</Set>
+          <Set name="parentLoaderPriority">false</Set>
+          <Set name="extract">true</Set>
+          <Set name="allowDuplicates">false</Set>
+      </New>
+    </Arg>
+  </Call>
+
+  <!-- =========================================================== -->
+  <!-- Configure Request Log                                       -->
+  <!-- Request logs  may be configured for the entire server here, -->
+  <!-- or they can be configured for a specific web app in a       -->
+  <!-- contexts configuration (see $(jetty.home)/contexts/test.xml -->
+  <!-- for an example).                                            -->
+  <!-- =========================================================== -->
+  <Ref id="RequestLog">
+    <Set name="requestLog">
+      <New id="RequestLogImpl" class="org.eclipse.jetty.server.NCSARequestLog">
+        <Set name="filename"><SystemProperty name="jetty.logs" default="./logs"/>/request-yyyy_mm_dd.log</Set>
+        <Set name="filenameDateFormat">yyyyMMdd</Set>
+        <Set name="retainDays">90</Set>
+        <Set name="append">true</Set>
+        <Set name="extended">true</Set>
+        <Set name="logCookies">false</Set>
+        <Set name="LogTimeZone">GMT</Set>
+      </New>
+    </Set>
+  </Ref>
+
+  <Set name="stopAtShutdown">true</Set>
+  <Set name="sendServerVersion">true</Set>
+  <Set name="sendDateHeader">true</Set>
+  <Set name="gracefulShutdown">1000</Set>
+
+
+  <Call name="setAttribute">
+    <Arg>org.eclipse.jetty.webapp.configuration</Arg>
+    <Arg>
+      <Array type="java.lang.String">
+        <Item>org.eclipse.jetty.webapp.WebInfConfiguration</Item>
+        <Item>org.eclipse.jetty.webapp.WebXmlConfiguration</Item>
+        <Item>org.eclipse.jetty.webapp.MetaInfConfiguration</Item>
+        <Item>org.eclipse.jetty.webapp.FragmentConfiguration</Item>
+        <Item>org.eclipse.jetty.plus.webapp.EnvConfiguration</Item>
+        <Item>org.eclipse.jetty.plus.webapp.PlusConfiguration</Item>
+        <Item>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</Item>
+        <Item>org.eclipse.jetty.webapp.TagLibConfiguration</Item>
+      </Array>
+    </Arg>
+  </Call>
+
+  <Array id="plusConfig" type="java.lang.String">
+    <Item>org.eclipse.jetty.webapp.WebInfConfiguration</Item>
+    <Item>org.eclipse.jetty.plus.webapp.EnvConfiguration</Item>
+    <Item>org.eclipse.jetty.webapp.Configuration</Item>
+    <Item>org.eclipse.jetty.webapp.JettyWebXmlConfiguration</Item>
+    <Item>org.mortbay.jetty.webapp.TagLibConfiguration</Item>
+  </Array>
+
+  <!-- ARCHIVA CONFIG -->
+  <New id="validation_mail" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg>mail/Session</Arg>
+    <Arg>
+      <New class="org.eclipse.jetty.jndi.factories.MailSessionReference">
+        <Set name="user"></Set>
+        <Set name="password"></Set>
+        <Set name="properties">
+          <New class="java.util.Properties">
+            <Put name="mail.smtp.host"><Env name="SMTP_HOST" default="localhost"/></Put>
+            <Put name="mail.smtp.port"><Env name="SMTP_PORT" default="25"/></Put>
+          </New>
+        </Set>
+      </New>
+    </Arg>
+  </New>
+
+  <!-- Users / Security Database -->
+  <New id="users" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg>jdbc/users</Arg>
+    <Arg>
+      <New class="org.apache.tomcat.jdbc.pool.DataSource">
+        <Set name="driverClassName">org.apache.derby.jdbc.EmbeddedDriver</Set>
+        <Set name="url">jdbc:derby:<SystemProperty name="appserver.base" default=".."/>/data/databases/users;create=true</Set>
+        <Set name="username">sa</Set>
+        <Set name="maxActive">20</Set>
+        <Set name="removeAbandoned">true</Set>
+        <Set name="logAbandoned">true</Set>
+        <Set name="initialSize">5</Set>
+        <Set name="testOnBorrow">true</Set>
+        <!-- very rigourous sql query validation -->
+        <Set name="validationQuery">select 1</Set>
+      </New>
+    </Arg>
+  </New>
+
+  <New id="usersShutdown" class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg>jdbc/usersShutdown</Arg>
+    <Arg>
+      <New class="org.apache.tomcat.jdbc.pool.DataSource">
+        <Set name="driverClassName">org.apache.derby.jdbc.EmbeddedDriver</Set>
+        <Set name="url">jdbc:derby:<SystemProperty name="appserver.base" default=".."/>/data/databases/users</Set>
+        <Set name="username">sa</Set>
+      </New>
+    </Arg>
+  </New>
+</Configure>

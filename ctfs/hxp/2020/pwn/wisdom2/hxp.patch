@@ -1,0 +1,81 @@
+From 307fc7d6fbca3e628fcd512277717ee610a7a584 Mon Sep 17 00:00:00 2001
+From: hxp <contact@hxp.io>
+Date: Fri, 20 Nov 2020 13:37:00 +0100
+Subject: [PATCH] hxp CTF 2020
+
+---
+ Base/etc/SystemServer.ini |  6 ++++++
+ Base/etc/group            |  2 +-
+ Meta/run.sh               | 12 ++++++------
+ 3 files changed, 13 insertions(+), 7 deletions(-)
+
+diff --git a/Base/etc/SystemServer.ini b/Base/etc/SystemServer.ini
+index 7cac7d4ae..c839166c2 100644
+--- a/Base/etc/SystemServer.ini
++++ b/Base/etc/SystemServer.ini
+@@ -162,3 +162,9 @@ AcceptSocketConnections=1
+ Executable=/bin/CrashDaemon
+ KeepAlive=1
+ User=anon
++
++[TelnetServer]
++Arguments=-p 2323
++Priority=high
++KeepAlive=1
++User=anon
+diff --git a/Base/etc/group b/Base/etc/group
+index 55b63e71e..1b6444cf4 100644
+--- a/Base/etc/group
++++ b/Base/etc/group
+@@ -1,5 +1,5 @@
+ root:x:0:
+-wheel:x:1:anon
++wheel:x:1:
+ tty:x:2:
+ phys:x:3:window,anon
+ audio:x:4:anon
+diff --git a/Meta/run.sh b/Meta/run.sh
+index 01da51aa4..a8705f0d1 100755
+--- a/Meta/run.sh
++++ b/Meta/run.sh
+@@ -8,6 +8,8 @@ die() {
+     exit 1
+ }
+ 
++[ -z "$TELNET_PORT" ] && TELNET_PORT=2323
++
+ #SERENITY_PACKET_LOGGING_ARG="-object filter-dump,id=hue,netdev=breh,file=e1000.pcap"
+ 
+ [ -e /dev/kvm ] && [ -r /dev/kvm ] && [ -w /dev/kvm ] && SERENITY_KVM_ARG="-enable-kvm"
+@@ -32,7 +34,7 @@ die() {
+ 
+ [ -z "$SERENITY_COMMON_QEMU_ARGS" ] && SERENITY_COMMON_QEMU_ARGS="
+ $SERENITY_EXTRA_QEMU_ARGS
+--s -m $SERENITY_RAM_SIZE
++-m $SERENITY_RAM_SIZE
+ -cpu $SERENITY_QEMU_CPU
+ -d guest_errors
+ -smp 2
+@@ -40,9 +42,7 @@ $SERENITY_EXTRA_QEMU_ARGS
+ -drive file=${SERENITY_DISK_IMAGE},format=raw,index=0,media=disk
+ -device ich9-ahci
+ -usb
+--debugcon stdio
+--soundhw pcspk
+--device sb16
++-hdb flag.txt
+ "
+ 
+ [ -z "$SERENITY_COMMON_QEMU_Q35_ARGS" ] && SERENITY_COMMON_QEMU_Q35_ARGS="
+@@ -132,7 +132,7 @@ else
+         $SERENITY_COMMON_QEMU_ARGS \
+         $SERENITY_KVM_ARG \
+         $SERENITY_PACKET_LOGGING_ARG \
+-        -netdev user,id=breh,hostfwd=tcp:127.0.0.1:8888-10.0.2.15:8888,hostfwd=tcp:127.0.0.1:8823-10.0.2.15:23,hostfwd=tcp:127.0.0.1:8000-10.0.2.15:8000,hostfwd=tcp:127.0.0.1:2222-10.0.2.15:22 \
++        -netdev user,id=breh,hostfwd=tcp:127.0.0.1:$TELNET_PORT-10.0.2.15:2323 \
+         -device e1000,netdev=breh \
+         -kernel Kernel/Kernel \
+         -append "${SERENITY_KERNEL_CMDLINE}"
+-- 
+2.29.2
+
