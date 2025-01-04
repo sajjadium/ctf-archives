@@ -1,0 +1,3 @@
+I hate it when I have a bad link and my large data transfer gets corrupted. Apparently this weird new protocol is supposed to help with that, but I think the developers skipped an important step...
+By:
+skat
