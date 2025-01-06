@@ -2163,7 +2163,11 @@
             <td><a href="https://ctftime.org/event/2082/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/PointerOverflow">PointerOverflow</a></td>
+            <td rowspan=2><a href="ctfs/PointerOverflow">PointerOverflow</a></td>
+            <td><a href="ctfs/PointerOverflow/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2121/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/PointerOverflow/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2026/tasks/" target="_blank">CTFtime</a></td>
         </tr>

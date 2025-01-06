@@ -1,0 +1,3 @@
+In a world of chaos and clutter, it's often the little things that hold the greatest secrets. Little things also tend to add up. I've always thought of the truth as being like Seurat's A Sunday Afternoon on the Island of La Grande Jatte, where you get only little dots of truth, but if you get enough of them you can back up and see the big picture. I tried to have AI generate my own version of this, but it is unable to come close to the original. I'm not really surprised, and there is a part of me that is glad that, at least for now, the care and creativity of humans is unassailable.
+
+MD5 checksum 309C5245084ED083FEB279E0A72525D6

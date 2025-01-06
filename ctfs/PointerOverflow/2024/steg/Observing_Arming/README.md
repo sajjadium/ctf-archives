@@ -1,0 +1,6 @@
+You might have heard that I had aspirations of making a movie about the contest. Well, we've managed to create a trailer for it, but it hasn't been going very well. It's hard work! Watching the budget, hiring a competent crew, dealing with writers that all think they're the modern Mark Twain. It's ridiculous. But the worst part - dealing with those actors. They all think they're the center of the universe. They're not. It's not about them... ... ...
+
+It's about me! I deserve the best lines. I should be on camera about 90% of the movie and there better be a plate of Cheese Nips arranged in four neat little rows with a glass of 8.6oz of 14C water waiting for me at the craft services table, because that is in my contract! You know what? I can't work under these conditions! I'll be in my trailer...
+
+Right Click, Save As... Aliens Riding Horseback Picking Carrots
+MD5 checksum CF9D0A7CE079101A909CE06A6FD653EE
