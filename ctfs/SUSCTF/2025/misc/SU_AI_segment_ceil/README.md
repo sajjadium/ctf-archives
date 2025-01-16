@@ -1,0 +1,1 @@
+Student Xiaolin is majoring in Smart Agriculture. One day, the teacher gave her a bunch of cell pictures and asked her to label the cells. How could this be something a human can do? So she found you and asked you to help her.
