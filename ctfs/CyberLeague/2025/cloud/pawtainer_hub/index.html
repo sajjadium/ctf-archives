@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Catastic Emporium</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-secondary" data-bs-theme="dark">
+
+        <a class="navbar-brand" href="#"><img id="signedImg" src="#" alt="Logo" title="Logo" height="120" width="120" /></a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#cats">Cats</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <header class="jumbotron text-center">
+        <h1 class="display-4">Meow Meow Wu</h1>
+        <h2>Home of Cat Lovers</h2>
+    </header>
+
+    <main class="container">
+        <section id="cats">
+            <h2>All About Cats!</h2>
+            <div class="row">
+                <article class="col-sm">
+                    <h3>Tabby</h3>
+                    <figure>
+                        <img class="img-thumbnail" src="images/british.jpg" alt="British Shorthair" />
+                        <figcaption>British Shorthair</figcaption>
+                    </figure>
+                    <p>British Shorthairs make great family pets due to their loyal and devoted nature. They love to
+                        snuggle and spend time with their humans, and though they can be a bit shy with new people, they
+                        are quick to show their affection once they get to know you!
+                    </p>
+                </article>
+                <article class="col-sm">
+                    <h3>Ragdoll</h3>
+                    <figure>
+                        <img class="img-thumbnail" src="images/ragdoll.jpg" alt="Ragdoll" />
+                        <figcaption>Ragdoll</figcaption>
+                    </figure>
+                    <p>Ragdolls are blue-eyed beauties known for their affectionate nature and tendency to go “limp like
+                        a ragdoll” when carried. They make wonderful family pets and get along well with other cats and
+                        dogs.
+                    </p>
+                </article>
+
+                <article class="col-sm">
+                    <h3>Sphynx</h3>
+                    <figure>
+                        <img class="img-thumbnail" src="images/sphynx.jpg" alt="sphynx" />
+                        <figcaption>Sphynx</figcaption>
+                    </figure>
+                    <p>Hairless but fearless, the Sphynx cat turns heads everywhere it goes! This cat demands its
+                        well-deserved attention, loves entertaining its family, and treasures meeting new humans. The
+                        Sphynx have an undeniable power to enchant anyone with their humor, loving nature, and exotic
+                        appearance.
+                    </p>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer class="container">
+        <p>Copyright &copy; 2023 Pawtainer Hub Pte. Ltd.</p>
+    </footer>
+
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.719.0.min.js"></script>
+    <script>
+        AWS.config.region = 'ap-southeast-1';
+        AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+            IdentityPoolId: "ap-southeast-1:a96dc13a-9dc3-48ed-867a-ff80e94be21f"
+        });
+        // Set the region
+        AWS.config.update({
+            region: 'ap-southeast-1'
+        });
+
+        $(document).ready(function () {
+            var s3 = new AWS.S3();
+            params = {
+                Bucket: 'pawtainer-hub-patched',
+                Key: 'logo.jpg',
+                Expires: 60 * 60
+            }
+
+            signedUrl = s3.getSignedUrl('getObject', params, function (err, url) {
+                $('#signedImg').attr('src', url);
+            });
+        });
+    </script>
+</body>
+
+</html>

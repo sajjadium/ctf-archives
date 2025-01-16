@@ -1,0 +1,1 @@
+This server implements a strange protocol for message encoding. Can you figure it out? (The server implements a 2-part protocol for receiving messages. If the message is too long, it is split into 2 parts. If the message is short enough, it is sent in one go.)

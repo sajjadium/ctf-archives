@@ -816,6 +816,11 @@
             <td><a href="https://ctftime.org/event/2054/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/CyberLeague">CyberLeague</a></td>
+            <td><a href="ctfs/CyberLeague/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2530/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=4><a href="ctfs/CyberSecurityRumble">CyberSecurityRumble</a></td>
             <td><a href="ctfs/CyberSecurityRumble/2023/Quals">2023</a></td>
             <td><a href="https://ctftime.org/event/1942/tasks/" target="_blank">CTFtime</a></td>

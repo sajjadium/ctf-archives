@@ -1,0 +1,1 @@
+The intern is exploring S3 buckets to host internal documents. He insists that he has scoped the IAM policy correctly to restrict access solely to the admin. Prove the intern wrong by escalating your user privileges and access the secret document!
