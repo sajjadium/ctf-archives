@@ -175,7 +175,7 @@ if __name__ == '__main__':
   lines = [l for l in lines if l not in attachments]
 
   # compress big files
-  for file_ext in ['pcap', 'pcapng', 'wav', 'mp3', 'mov', 'mp4', 'log', 'exe']:
+  for file_ext in ['pcap', 'pcapng', 'wav', 'mp3', 'mov', 'mp4', 'log', 'exe', 'qcow2']:
     os.system(f"""find "{chal_name}" -type f -name "*.{file_ext}" | xargs -n 1 xz""")
 
   readme = ''
