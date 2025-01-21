@@ -2598,7 +2598,11 @@
             <td><a href="https://ctftime.org/event/1174/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/Srdnlen">Srdnlen</a></td>
+            <td rowspan=3><a href="ctfs/Srdnlen">Srdnlen</a></td>
+            <td><a href="ctfs/Srdnlen/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2576/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Srdnlen/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2129/tasks/" target="_blank">CTFtime</a></td>
         </tr>
