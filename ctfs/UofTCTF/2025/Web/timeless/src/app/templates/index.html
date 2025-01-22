@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Welcome {{ user.username if user else 'Guest' }}</h2>
+
+{% if my_posts %}
+    <h3>My Posts</h3>
+    {% for post in my_posts %}
+        <div class="post">
+            <h2><a href="{{ url_for('view_post', uuid=post.uuid) }}">{{ post.title }}</a></h2>
+            <div>
+                <strong>Visibility:</strong> {{ 'Public' if post.visibility else 'Private' }}
+            </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+<h3>Public Posts</h3>
+{% for post in posts %}
+    <div class="post">
+        <h2><a href="{{ url_for('view_post', uuid=post.uuid) }}">{{ post.title }}</a></h2>
+        <div class="post-meta">
+            <strong>By:</strong> {{ post.username }}
+            {% if post.profile_photo %}
+                <img src="{{ url_for('profile_picture') }}?username={{ post.username }}" alt="Profile Photo" class="profile-img-small">
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,33 @@
+name: 'Prepared: Flag 2'
+author: SteakEnthusiast
+category: Web
+description: |-
+  Who needs prepared statements and parameterized queries when you can use the amazing new QueryBuilder™ and its built-in DirtyString™ sanitizer?
+
+  Use the same attachment and instance as the `Prepared: Flag 1` challenge.
+
+  Author: SteakEnthusiast
+value: 500
+type: dynamic
+
+extra:
+  initial: 500
+  decay: 100
+  minimum: 100
+
+image: null
+protocol: null
+host: null
+healthcheck: null
+
+flags:
+- content: uoftctf{5h3_53ll5_534_5h3ll5_by_7h3_C_5h0r3_c9b821c}
+  type: static
+  data: case_insensitive
+
+topics:
+- SQL Injection
+- Python double format
+- Python internals
+
+version: '0.1'

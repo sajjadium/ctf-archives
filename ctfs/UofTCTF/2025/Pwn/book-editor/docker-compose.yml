@@ -1,0 +1,6 @@
+services:
+  book-editor:
+    build: .
+    privileged: true
+    ports:
+      - 5000:5000

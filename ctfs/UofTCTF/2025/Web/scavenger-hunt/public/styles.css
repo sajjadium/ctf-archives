@@ -1,0 +1,15 @@
+
+/* p_a_r_t_f_i_v_e=4pp5_*/
+
+ .flag {
+    font-weight: bold;
+    color: #28a745;
+}
+
+#startButton {
+    transition: transform 0.3s ease;
+}
+
+#startButton:hover {
+    transform: scale(1.05);
+}

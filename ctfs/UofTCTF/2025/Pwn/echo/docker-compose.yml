@@ -1,0 +1,6 @@
+services:
+  echo:
+    build: .
+    privileged: true
+    ports:
+      - 5000:5000

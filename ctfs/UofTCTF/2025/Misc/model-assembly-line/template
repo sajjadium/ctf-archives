@@ -1,0 +1,9 @@
+from spacy_llm.util import *
+from spacy_llm.registry import *
+
+@registry.llm_models("YOUR_MODEL")
+{{YOUR_MODEL_CODE}}
+
+nlp = assemble("test.cfg")
+
+print("Model assembled successfully!")

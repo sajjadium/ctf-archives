@@ -1,0 +1,61 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scavenger Hunt</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Scavenger Hunt</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="py-5 bg-primary text-white text-center">
+        <div class="container">
+            <h1 class="display-4">Welcome to the Scavenger Hunt!</h1>
+            <p class="lead">Challenge yourself to uncover hidden secrets within this website.</p>
+            <button id="startButton" class="btn btn-light btn-lg">Start Hunting</button>
+        </div>
+    </section>
+
+    <section id="info" class="py-5">
+        <div class="container text-center">
+            <h2>Get Ready to Hunt!</h2>
+            <p>Use your skills to explore and find the hidden parts of the flag.</p>
+        </div>
+    </section>
+
+    <section id="hiddenContent" class="py-5" style="display: none;">
+        <div class="container text-center">
+            <h2>Let the hunt begin!</h2>
+            <p>Find all seven parts of the flag to complete the challenge. Part 1: Just kidding! You I'd give it to you in plain sight?</p>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-3">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 Scavenger Hunt. All rights reserved.</p>
+        </div>
+        <!-- part 1: uoftctf{ju57_k33p_ -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/app.min.js"></script>
+</body>
+</html>

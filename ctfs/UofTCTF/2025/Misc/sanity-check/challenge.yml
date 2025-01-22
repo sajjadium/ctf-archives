@@ -1,0 +1,27 @@
+name: Sanity Check
+author: SteakEnthusiast
+category: Misc
+description: |-
+  Welcome to UofTCTF 2025!
+
+  Looking for the flag? Make sure you join the [Discord server](https://discord.gg/Un7avdkq7Z). The flag format is `uoftctf{...}`.
+value: 500
+type: dynamic
+
+extra:
+  initial: 500
+  decay: 100
+  minimum: 100
+
+image: null
+protocol: null
+host: null
+healthcheck: null
+
+flags:
+- content: >-
+    uoftctf{welcome_to_uoftctf_2025!!!!!}
+  type: static
+  data: case_insensitive
+
+version: '0.1'

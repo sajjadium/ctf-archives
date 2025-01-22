@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header', { title: 'V13w F1l3' }) %>
+<body class="bg-dark text-light">
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4"><i class="fas fa-file"></i> V4ul7 C0nt3nts: <%= filename %></h1>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card bg-secondary text-light">
+                    <div class="card-body">
+                        <pre><%= fileContent %></pre>
+                    </div>
+                </div>
+                <a href="/1337_v4u17" class="btn btn-warning mt-4"><i class="fas fa-arrow-left"></i> G0 B4ck</a>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('partials/footer') %>
+</body>
+</html>

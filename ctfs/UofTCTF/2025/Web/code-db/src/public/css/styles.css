@@ -1,0 +1,22 @@
+body {
+    background-color: #f8f9fa;
+  }
+  
+  h1, h2 {
+    color: #343a40;
+  }
+  
+  pre {
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    max-height: 500px;
+    overflow: auto;
+  }
+  
+  mark {
+    background-color: #ffc107;
+    color: #212529;
+  }
+  

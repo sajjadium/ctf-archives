@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CodeDB</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center">CodeDB</h1>
+    <form id="searchForm" class="mt-4">
+      <div class="form-row">
+        <div class="col-md-8 mb-3">
+          <input type="text" id="query" class="form-control" placeholder="Enter search query (use /regex/ for regex search)" required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <select id="language" class="form-control">
+            <option value="All">All Languages</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Python">Python</option>
+            <option value="Java">Java</option>
+            <option value="C++">C++</option>
+            <option value="C">C</option>
+            <option value="C#">C#</option>
+            <option value="Ruby">Ruby</option>
+            <option value="PHP">PHP</option>
+            <option value="Kotlin">Kotlin</option>
+            <option value="Rust">Rust</option>
+            <option value="Go">Go</option>
+            <option value="Swift">Swift</option>
+            <option value="Lua">Lua</option>
+            <option value="Scala">Scala</option>
+            <option value="Elixir">Elixir</option>
+            <option value="Haskell">Haskell</option>
+            <option value="Bash">Shell</option>
+            <option value="TypeScript">TypeScript</option>
+            <option value="Perl">Perl</option>
+            <option value="R">R</option>
+          </select>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="submit">Search</button>
+        </div>
+      </div>
+    </form>
+    <div id="loading" class="text-center mt-3" style="display: none;">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+      <p>Searching...</p>
+    </div>
+    <div id="results" class="mt-4"></div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@10.1.2/lib/highlight.js"></script>
+  <script src="/js/scripts.js"></script>
+</body>
+</html>
