@@ -3082,12 +3082,12 @@
         </tr>
         <tr>
             <td rowspan=2><a href="ctfs/UofTCTF">UofTCTF</a></td>
-            <td><a href="ctfs/UofTCTF/2024">2024</a></td>
-            <td><a href="https://ctftime.org/event/2219/tasks/" target="_blank">CTFtime</a></td>
-        </tr>
-        <tr>
             <td><a href="ctfs/UofTCTF/2025">2025</a></td>
             <td><a href="https://ctftime.org/event/2570/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/UofTCTF/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2219/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
             <td rowspan=1><a href="ctfs/UrchinSecAware">UrchinSecAware</a></td>
