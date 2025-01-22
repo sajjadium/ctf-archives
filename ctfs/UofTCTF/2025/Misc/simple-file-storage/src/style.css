@@ -1,0 +1,64 @@
+:root {
+    --primary: #6366f1;
+    --secondary: #4f46e5;
+    --success: #22c55e;
+    --background: #f9fafb;
+    --text: #1f2937;
+    --card: #ffffff;
+    --border: #e5e7eb;
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .container {
+    max-width: 800px;
+  }
+  
+  .card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+  }
+  
+  .file-list {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .file-item {
+    padding: 1rem;
+    border-left: 4px solid var(--primary);
+    margin-bottom: 0.5rem;
+    background: var(--card);
+  }
+  
+  .upload-area {
+    border: 2px dashed var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s;
+  }
+  
+  .upload-area:hover {
+    border-color: var(--primary);
+  }

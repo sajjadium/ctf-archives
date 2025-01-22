@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/header', { title: '4dm1n 4cc355' }) %>
+<body class="bg-dark text-light">
+    <div class="container mt-5">
+        <div class="text-center mb-4">
+            <h1 class="display-4"><i class="fas fa-vault"></i> W3lc0m3 4dm1n!</h1>
+            <p class="lead">Pl3453 s3l3ct 4 f1l3 t0 v13w th3 c0nt3nts 0f th3 v4ul7.</p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <% if (files && files.length > 0) { %>
+                    <ul class="list-group">
+                        <% files.forEach(function(file) { %>
+                            <li class="list-group-item bg-secondary">
+                                <a href="/1337_v4u17?file=<%= encodeURIComponent(filePathPrefix + file) %>" class="text-warning">
+                                    <i class="fas fa-file"></i> <%= file %>
+                                </a>
+                            </li>
+                        <% }); %>
+                    </ul>
+                <% } else { %>
+                    <p>N0 f1l3s 4v41l4b13 1n th3 v4ul7.</p>
+                <% } %>
+                <a href="/" class="btn btn-warning mt-4"><i class="fas fa-sign-out-alt"></i> L0g0ut</a>
+            </div>
+        </div>
+    </div>
+    
+    <%- include('partials/footer') %>
+</body>
+</html>

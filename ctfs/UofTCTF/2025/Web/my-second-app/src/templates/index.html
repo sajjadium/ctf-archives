@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Second App - Guest List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Homepage</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Guest List</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Ticket ID</th>
+                        <th>Sign In</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for guest in guests %}
+                    <tr>
+                        <td>{{ guest.name }}</td>
+                        <td>{{ guest.ticket }}</td>
+                        <td>
+                            <form action="{{ url_for('signin') }}" method="POST">
+                                <input type="hidden" name="name" value="{{ guest.name }}">
+                                <input type="hidden" name="ticket" value="{{ guest.ticket }}">
+                                <button type="submit" class="btn btn-primary btn-sm">Sign In</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="3">
+                            <div class="card mt-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Not on the list but have a ticket? Enter your details here!</h5>
+                                    <form action="{{ url_for('signin') }}" method="POST">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Name:</label>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="ticket" class="form-label">Ticket ID:</label>
+                                            <input type="text" class="form-control" id="ticket" name="ticket" placeholder="Enter your ticket ID" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-success">Sign In</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

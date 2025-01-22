@@ -1,0 +1,6 @@
+services:
+  dont-sandbox-python-1:
+    build: .
+    privileged: true
+    ports:
+      - 5000:5000

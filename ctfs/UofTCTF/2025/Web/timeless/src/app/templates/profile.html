@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>Your Profile</h2>
+
+    <div class="profile-section">
+        <div class="profile-photo">
+            {% if user.profile_photo %}
+                <img src="{{ url_for('profile_picture') }}?username={{ user.username }}" class="profile-img" alt="Your Profile Photo">
+            {% else %}
+                <img src="{{ url_for('static', filename='default.png') }}" class="profile-img" alt="Default Profile Photo">
+            {% endif %}
+        </div>
+
+        <h3>About Me</h3>
+        <p>{{ user.about_me if user.about_me else "You haven't added anything about yourself yet." }}</p>
+
+        <form method="POST" enctype="multipart/form-data" action="{{ url_for('profile_post') }}" class="profile-form">
+            <textarea
+                name="about_me"
+                placeholder="Write something about yourself..."
+                rows="4"
+                cols="50"
+            >{{ user.about_me }}</textarea>
+            <label for="profile_photo">Choose a photo to upload:</label>
+            <input type="file" name="profile_photo" id="profile_photo" accept="image/*">
+            <button type="submit" class="btn save-btn">Save</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

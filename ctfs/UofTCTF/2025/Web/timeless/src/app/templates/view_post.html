@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ post.title }}</h2>
+<p>{{ post.content }}</p>
+<div class="post-meta">
+    <strong>By:</strong> {{ author.username }}
+    {% if author.profile_photo %}
+        <img src="{{ url_for('profile_picture') }}?username={{ author.username }}" alt="Profile Photo" class="profile-img-small">
+    {% endif %}
+</div>
+{% if author.about_me %}
+<div class="author-about-me">
+    <h3>About the Author</h3>
+    <p>{{ author.about_me }}</p>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,6 @@
+services:
+  hash-table-as-a-service:
+    build: .
+    privileged: true
+    ports:
+      - 5000:5000

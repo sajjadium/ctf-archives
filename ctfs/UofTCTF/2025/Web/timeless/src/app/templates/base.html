@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="The best blog for all your timeless thoughts and ideas"
+    />
+    <meta name="keywords" content="idk man" />
+    <title>{{ title if title else "A Timeless Blog" }}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>A Timeless Blog</h1>
+    </header>
+    <nav>
+      <a href="/" class="{{ 'active' if request.path == '/' else '' }}">Home</a>
+      {% if session.get('user_id') %}
+      <a
+        href="/profile"
+        class="{{ 'active' if request.path == '/profile' else '' }}"
+        >Profile</a
+      >
+      <a
+        href="/new_post"
+        class="{{ 'active' if request.path == '/new_post' else '' }}"
+        >New Post</a
+      >
+      <a href="/logout">Logout</a>
+      {% else %}
+      <a
+        href="/login"
+        class="{{ 'active' if request.path == '/login' else '' }}"
+        >Login</a
+      >
+      <a
+        href="/register"
+        class="{{ 'active' if request.path == '/register' else '' }}"
+        >Register</a
+      >
+      {% endif %}
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=True) %} {% if
+    messages %}
+    <div id="flash-messages">
+      {% for category, message in messages %}
+      <div class="flash-message {{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %} {% endwith %}
+
+    <div class="container">{% block content %}{% endblock %}</div>
+
+    <footer>
+      <p>&copy; 2025 A Timeless Blog</p>
+    </footer>
+  </body>
+</html>

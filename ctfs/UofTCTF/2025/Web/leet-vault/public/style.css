@@ -1,0 +1,78 @@
+
+body {
+    background-image: url('/images/vault-background.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Orbitron', sans-serif;
+    color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.card {
+    background-color: rgba(0, 0, 0, 0.85);
+    border: 2px solid #ffd700;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    color: #f0f0f0;
+}
+
+.btn-warning {
+    background-color: #ffd700;
+    border: none;
+    color: #000;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.btn-warning:hover {
+    background-color: #e6c200;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+.text-light {
+    color: #f0f0f0 !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+a {
+    color: #ffd700;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #e6c200;
+    text-decoration: underline;
+}
+
+input {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid #ffd700;
+    border-radius: 4px;
+    padding: 10px;
+    color: #000;
+    font-family: 'Orbitron', sans-serif;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+input:focus {
+    outline: none;
+    border-color: #e6c200;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}

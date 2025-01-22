@@ -1,0 +1,12 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "prisma": {
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.1.0",
+    "express": "^4.21.2",
+    "prisma": "^6.1.0"
+  }
+}
