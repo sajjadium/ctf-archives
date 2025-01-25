@@ -3658,6 +3658,11 @@
             <td><a href="https://ctftime.org/event/1373/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/x3ctf">x3ctf</a></td>
+            <td><a href="ctfs/x3ctf/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2467/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=4><a href="ctfs/zer0pts">zer0pts</a></td>
             <td><a href="ctfs/zer0pts/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1972/tasks/" target="_blank">CTFtime</a></td>
