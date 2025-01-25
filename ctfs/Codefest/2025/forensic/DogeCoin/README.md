@@ -1,0 +1,3 @@
+0xkn1gh7
+
+If DogeCoin had a counterfeit, this is probably it. Looks same but maybe isn't...
