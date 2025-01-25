@@ -1,0 +1,1 @@
+You are security analyst given a pcap file containing network traffic. Hidden among these packets is a secret flag transmitted. Your task is to analyze the pcap file, filter out common traffic, and pinpoint the packet carrying the hidden flag.

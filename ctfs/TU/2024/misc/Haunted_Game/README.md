@@ -1,0 +1,1 @@
+My friend just started working on his first game, but he recently disappeared and now his game prototype appears to be haunted by ghosts! I think they're trying to communicate something, but I can't figure out what it is - do you think you could help?

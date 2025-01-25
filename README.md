@@ -2831,7 +2831,11 @@
             <td><a href="https://ctftime.org/event/758/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/TU">TU</a></td>
+            <td rowspan=4><a href="ctfs/TU">TU</a></td>
+            <td><a href="ctfs/TU/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2584/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/TU/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2173/tasks/" target="_blank">CTFtime</a></td>
         </tr>
