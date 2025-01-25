@@ -27,7 +27,7 @@ def is_valid(line):
   if line.strip().lower() == 'ja / en':
     return False
 
-  if line.lower() in ['source dockerfile', 'files', 'challenge', 'challenge.py', 'download image', 'download file']:
+  if line.lower() in ['source dockerfile', 'files', 'challenge', 'challenge.py', 'download image', 'download file', 'challenge description']:
     return False
 
   if len(line.strip()) == 0:
@@ -79,6 +79,9 @@ def is_valid(line):
     return False
 
   if 'points' in line.lower() and 'solves' in line.lower():
+    return False
+
+  if 'solved by' in line.lower():
     return False
 
   is_all_numeric = True
@@ -138,7 +141,7 @@ def get_challenge_name(line):
 
   args = re.sub(r'(\d+\s+solves|\d+\s+pts)', '', original_name.strip(), flags=re.IGNORECASE).strip()
   args = re.sub(r'\(\d+ pts\)', '', args, flags=re.IGNORECASE).strip()
-  args = re.sub(r'\(solved by \d+ team(s)?\)$', '', args).strip()
+  args = re.sub(r'\(solved by \d+ team(s)?\)$', '', args, flags=re.IGNORECASE).strip()
   args = re.sub('^(misc|crypto|rev|web|pwn)$', '', args).strip()
   args = args.split()
 
