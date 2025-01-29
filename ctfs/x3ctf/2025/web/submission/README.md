@@ -1,1 +1,1 @@
-Could you help us out?
+docker-compose up

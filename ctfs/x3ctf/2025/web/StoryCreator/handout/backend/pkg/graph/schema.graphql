@@ -1,0 +1,97 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+"""
+Represents uploaded data using multipart form data
+Works like this:
+
+curl \
+  -X POST \
+  -F 'file=@/path/to/file.png' \
+  http://localhost:5173/api/graphql \
+  -F 'operations={"query": "mutation($file: Upload!) { uploadImage(file: $file) }", "variables": { "file": null }, "operationName": null }' -F 'map={"0": ["variables.file"]}'
+"""
+scalar Upload
+
+
+type Image @goModel(model: "github.com/boxmein/cwte2024-chall/pkg/repository/images.Image") {
+  id: Int!
+  url: String! @goField(forceResolver: true)
+}
+
+"""
+Represents metadata of a story.
+"""
+type Story @goModel(model: "github.com/boxmein/cwte2024-chall/pkg/repository/stories.Story") {
+  id: Int!
+  text: String!
+  action: String!
+  image: Image!
+}
+
+"""
+Represents an export job that converts a story to an image.
+The exported image can be fetched using GET /export/:exportId after it is ready.
+If exporting fails, it never becomes ready and an error is put in the progress
+field.
+"""
+type Export @goModel(model: "github.com/boxmein/cwte2024-chall/pkg/repository/exports.Export") {
+  id: Int!
+  storyId: Int!
+  dimensions: Dimensions!
+  progress: String!
+  ready: Boolean!
+  imageURL: String @goField(forceResolver: true)
+}
+
+type Query {
+  foo: Int!
+  """ Returns the flag. """
+  flag: String!
+  images: [Image!]!
+  stories: [Story!]!
+  exports: [Export!]!
+  story(id: Int!): Story
+  export(id: Int!): Export
+}
+
+""" Size and format of the exported image. """
+enum Dimensions {
+  FLIPPER_ZERO,
+  SAMSUNG_GALAXY_FOLD,
+  IPHONE_14,
+  IPHONE_14_MAX,
+  SQUARE_400x400
+}
+
+input StoryInput {
+  text: String!
+  action: String!
+  image: Int!
+}
+
+input StoryExportInput {
+  storyId: Int!
+  dimensions: Dimensions!
+}
+
+type Mutation {
+  """
+  Save an image to the database for use in stories.
+  Images must be PNG and less than 100 kB.
+  Images will expire after 10 minutes.
+  """
+  uploadImage(file: Upload!): Int!
+
+  """
+  Create a new story for use by the marketing team.
+  """
+  createStory(story: StoryInput!): Story
+
+  """
+  Schedule an export of the story to an image.
+  This way you can download the end result :)
+  """
+  createStoryExport(export: StoryExportInput!): Export!
+}

@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "mvmcryption"
+version = "0.0.0"
+description = "much secure"
+authors = ["xtea418"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pycryptodome = "^3.21.0"
+pydantic = "^2.10.2"
+fastapi = {extras = ["standard"], version = "^0.115.5"}
+argon2-cffi = "^23.1.0"
+fastecdsa = "^3.0.0"
+pwntools = "^4.14.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.9.2"
+pytest = "^8.3.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

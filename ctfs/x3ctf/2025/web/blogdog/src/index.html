@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>BlogDog: Bark to the World</title>
+	<script type="text/javascript" src="purify.min.js"></script>
+	<style nonce="NONCE">
+		html, body {
+			font-family: sans-serif;
+			background: #F4ECD6;
+		}
+		body > h1 {
+			color: #6D3D3C;
+			font-weight: 800;
+			user-select: none;
+		}
+		textarea {
+			width: 99%;
+		}
+		input[type=submit] {
+			padding: 4px 8px;
+			background: #6D3D3C;
+			border: none;
+			border-radius: 4px;
+			color: #FFF;
+			cursor: pointer;
+			font-weight: 800;
+		}
+	</style>
+</head>
+<body>
+<h1>🦴 BlogDog</h1>
+<p>Submit an article and we'll take a look as soon as paw-sible!</p>
+<form action="/" method="POST">
+	<label for="flag">Flag: </label><input name="flag" id="flag"/><br>
+	<label for="content">Content: </label><br><textarea rows="8" name="content" id="input"></textarea><br>
+	<input type="submit" name="Submit">
+</form>
+<p><i>This website is protected by DOMPurify technology.</i></p>
+<hr>
+<div id="output"></div>
+<script type="text/javascript" nonce="NONCE">
+	const SAMPLE_ARTICLE = "<h3>Sample article</h3><p><i>Lorem ipsum</i> dolor sit amet, consectetur adipiscing skibidi, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex hawk tuaho consequat.</p><p>Duis aute irure dolor in rizz in voluptate velit esse cillum dolore eu fugiat sigma pariatur. Excepteur sint occaecat cupidatat non proident, uwu in culpa qui skull emojei mollit anim id est laborum.</p>";
+
+	const input = document.getElementById("input");
+	const output = document.getElementById("output");
+	const flag = document.getElementById("flag");
+
+	const purifyConfig = {
+		ALLOWED_ATTR: [],
+		ALLOWED_TAGS: ["a", "b", "i", "s", "p", "br", "div", "h1", "h2", "h3", "strike", "strong"],
+		ALLOW_ARIA_ATTR: false,
+		ALLOW_DATA_ATTR: false,
+	}
+
+	function loadHtml(html) {
+		const sanitized = DOMPurify.sanitize(html.replace(/["'&]/g,''), purifyConfig).replace(/["'&]/,'');
+		output.innerHTML = `<h2>Sanitized HTML</h2><div id="sanitized"><style nonce="NONCE">#sanitized:before { font-family: monospace; color: #224; content: "${sanitized.replace(/([\\/\n\r\f])/g,'\\$1')}" }</style></div><hr><h2>Rendered HTML</h2>${sanitized}<hr>`;
+	}
+
+	input.oninput = () => loadHtml(input.value);
+	flag.oninput = () => localStorage.setItem("flag", flag.value);
+
+	window.onload = () => {
+		flag.setAttribute('value', localStorage.getItem("flag") ?? "x3c{fake_flag}")
+		input.value = decodeURI(window.location.search).replace(/^\?/,'') || SAMPLE_ARTICLE;
+		loadHtml(input.value);
+	}
+</script>
+</body>
+</html>

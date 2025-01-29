@@ -1,0 +1,16 @@
+
+tidy:
+  go mod tidy
+
+gen:
+  go generate ./...
+
+run: gen tidy
+  FRONTEND_URL=http://localhost:8080 \
+    FLAG=CTE24{foo} \
+    DATABASE_URL=postgres://postgres:postgres@localhost:5432/cwte2024 \
+    FRONTEND_DIST=../frontend/dist \
+    go run ./cmd/server
+
+test: tidy
+  go test ./pkg/...
