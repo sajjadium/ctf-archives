@@ -1,0 +1,15 @@
+{
+  "name": "blogdog",
+  "version": "1.0.0",
+  "description": "webapp + xssbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rebane2001",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "puppeteer": "^24.0.0"
+  }
+}

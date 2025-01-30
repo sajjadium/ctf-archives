@@ -1,0 +1,5 @@
+services:
+  kittyconvert:
+    build: .
+    ports:
+      - "8080:80"

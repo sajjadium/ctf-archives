@@ -1,0 +1,17 @@
+---
+# local only!
+
+services:
+  api:
+    build:
+      context: ./api
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_PATH=/tmp/database.db
+      - ADMIN_PASSWORD=somenotbrutablepassword
+      - FLAG=MVM{wh0444444_f4k3_fl4g_g0_brrrrrr}
+      - ENV=DEV
+    command: ["fastapi", "dev", "./mvmcryption/app.py", "--host", "0.0.0.0"]
+    volumes:
+      - ./api:/app

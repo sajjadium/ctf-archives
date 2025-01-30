@@ -1,0 +1,12 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "1337:1337"
+    networks:
+      - ctf_dev_null
+
+networks:
+  ctf_dev_null:

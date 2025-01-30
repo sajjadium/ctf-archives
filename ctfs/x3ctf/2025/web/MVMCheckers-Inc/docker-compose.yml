@@ -1,0 +1,7 @@
+version: "3.4"
+
+services:
+  magicians:
+    build: "."
+    ports:
+      - "80:80"
