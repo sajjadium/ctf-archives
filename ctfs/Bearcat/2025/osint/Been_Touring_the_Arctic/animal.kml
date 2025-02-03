@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="1uTlPoGE4sskVO37ThL_BNk0cwFhPxohE">
+	<name>Cool Statue</name>
+	<gx:CascadingStyle kml:id="__managed_style_2AF25F2FB835AAE6B5C4">
+		<Style>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>4.8</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<gx:CascadingStyle kml:id="__managed_style_15E7C5CA5235AAE6B5C4">
+		<Style>
+			<LabelStyle>
+			</LabelStyle>
+			<LineStyle>
+				<color>ff2dc0fb</color>
+				<width>3.2</width>
+			</LineStyle>
+			<PolyStyle>
+				<color>40ffffff</color>
+			</PolyStyle>
+			<BalloonStyle>
+			</BalloonStyle>
+		</Style>
+	</gx:CascadingStyle>
+	<StyleMap id="__managed_style_0DA4FD3C4135AAE6B5C4">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#__managed_style_15E7C5CA5235AAE6B5C4</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#__managed_style_2AF25F2FB835AAE6B5C4</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Placemark id="037DE4D0FB35AAE6B5BD">
+		<Camera>
+			<longitude>-84.51273731420454</longitude>
+			<latitude>39.13048101524016</latitude>
+			<altitude>250.3091473304289</altitude>
+			<heading>356.3501856204364</heading>
+			<tilt>78.33827296132056</tilt>
+			<roll>0</roll>
+			<gx:fovy>64.66066138339772</gx:fovy>
+			<altitudeMode>absolute</altitudeMode>
+		</Camera>
+		<styleUrl>#__managed_style_0DA4FD3C4135AAE6B5C4</styleUrl>
+	</Placemark>
+</Document>
+</kml>
