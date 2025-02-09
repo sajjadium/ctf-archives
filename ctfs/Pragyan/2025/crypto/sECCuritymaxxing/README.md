@@ -1,0 +1,3 @@
+In a significant breakthrough in law enforcement, authorities have arrested the infamous crime boss, known for orchestrating a sprawling illegal business network that has plagued the city for years. As authorities began to sift through the extensive evidence collected during the raid, they quickly realized that the case against him would require more than just physical evidence. As sources say the government has made deals with an black hat hacker who is in jail, to mimic him and take down his network in turn leading him to freedom...
+
+Would you take the deal?

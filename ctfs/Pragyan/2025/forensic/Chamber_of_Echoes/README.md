@@ -1,0 +1,1 @@
+You find yourself trapped in a strange, unfamiliar room, with only the echoes of past actions to guide your way. Every move feels like a shadow of something that came before, urging you to follow closely. But be warned—if your bullets run out, you might find yourself in more trouble than you bargained for.

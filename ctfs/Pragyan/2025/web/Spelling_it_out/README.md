@@ -1,0 +1,1 @@
+I work in a company which has some kind of a old HR website (seems like they never update it tho) and I somehow found how to access it, and I overheard some informations like they hide some secret informations about that company, you know i love peeking into people's secret ;), soo..... lets find it tho
