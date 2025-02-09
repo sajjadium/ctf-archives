@@ -1129,7 +1129,11 @@
             <td><a href="https://ctftime.org/event/2622/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/DreamhackInvitational">DreamhackInvitational</a></td>
+            <td rowspan=2><a href="ctfs/DreamhackInvitational">DreamhackInvitational</a></td>
+            <td><a href="ctfs/DreamhackInvitational/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2627/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/DreamhackInvitational/2024/Quals">2024 Quals</a></td>
             <td><a href="https://ctftime.org/event/2308/tasks/" target="_blank">CTFtime</a></td>
         </tr>
