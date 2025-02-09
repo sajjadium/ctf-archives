@@ -1,0 +1,13 @@
+(module
+  (memory (export "memory") 1)
+  (func $process (param $size i32)
+    (local $buf i32)
+    (local.set $buf (i32.const 64))
+    (memory.copy
+      (local.get $buf)
+      (i32.const 0)
+      (local.get $size)
+    )
+  )
+  (export "process" (func $process))
+)

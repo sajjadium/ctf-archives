@@ -1,0 +1,1 @@
+I set out to create a brutal Reverse Engineering challenge for this CTF using Deepseek. It delivered… a little too well. Now there’s so much randomness in the code that even I can’t reverse it to recover the flag. 💀
