@@ -1,0 +1,3 @@
+I have a really hard time managing my cash, am afraid someone might steal my memos...
+
+author: the_moon_guy

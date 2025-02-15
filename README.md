@@ -1143,6 +1143,11 @@
             <td><a href="https://ctftime.org/event/1696/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/EHAX">EHAX</a></td>
+            <td><a href="ctfs/EHAX/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2677/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/EKOPARTY">EKOPARTY</a></td>
             <td><a href="ctfs/EKOPARTY/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2507/tasks/" target="_blank">CTFtime</a></td>
