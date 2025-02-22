@@ -1,0 +1,3 @@
+The year is 3000 AD. The Pax Romana extends to the stars, but peace has been shattered. Xenomorph invaders challenge the might of the New Roman Empire. A letter arrives from the Senate, sealed with the golden eagle of Rome. It reads:
+
+"Darius Caesar, the stars burn with conflict. The alien invaders are unlike anything we’ve faced before—ruthless, cunning, and relentless. They strike at our borders, threatening to unravel the Pax Galactica and reduce the New Roman Empire to ashes. Our legions are strong, but strength alone will not win this war. You must outthink, outmaneuver, and outlast them. The fate of humanity hangs by a thread, and only your brilliance can secure our future. Will you rise to the challenge and lead us to victory, or shall Rome fall to the void?"
