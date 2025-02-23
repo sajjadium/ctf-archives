@@ -1,0 +1,3 @@
+A corrupt drive I see...
+
+https://drive.google.com/file/d/1gHY5DOmUcZvfrLr-EpQWJfR3oiVCsYtD/view
