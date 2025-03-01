@@ -1,0 +1,1 @@
+Multiple Gokus appear, but only one is real. Spot subtle differences in power levels, speech, or battle knowledge to find the true one. Beware of trickster illusions and deceptive clones trying to mislead you. Use logic, observation, and special hints to uncover the real Saiyan warrior!
