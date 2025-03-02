@@ -1,0 +1,1 @@
+First we will learn a little bit about Wireshark. For the beginning just start play around with Wireshark and their filters, look into the protocols and getting familar with the tool. Besides Reverse Engineering skills, recording the network traffic is an important part in the analysis of malware.

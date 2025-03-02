@@ -677,6 +677,11 @@
             <td><a href="https://ctftime.org/event/488/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/CSAW/2017/Quals">PersianCats</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/CSCG">CSCG</a></td>
+            <td><a href="ctfs/CSCG/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2588/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/CSCML">CSCML</a></td>
             <td><a href="ctfs/CSCML/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1071/tasks/" target="_blank">CTFtime</a></td>

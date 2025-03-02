@@ -1,0 +1,1 @@
+Format strings are a powerful tool in the hands of a hacker. They can be used to read and write memory, and even execute code. This challenge is a simple demonstration of how format strings can be used to write memory. Can you use it to get the flag?
