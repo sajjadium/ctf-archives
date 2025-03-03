@@ -1,0 +1,1 @@
+An ancient scroll has been discovered, containing what seems to be a prophecy of great importance. However, the text is shrouded in a magical cipher, making it impossible to read. Scholars believe that the key to deciphering the prophecy can be found. Can you unravel the secrets of the scroll and reveal the hidden message?

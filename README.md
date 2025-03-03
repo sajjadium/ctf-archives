@@ -3304,7 +3304,11 @@
             <td><a href="https://ctftime.org/event/1231/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/Winja">Winja</a></td>
+            <td rowspan=3><a href="ctfs/Winja">Winja</a></td>
+            <td><a href="ctfs/Winja/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2692/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Winja/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2094/tasks/" target="_blank">CTFtime</a></td>
         </tr>
