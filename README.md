@@ -3690,16 +3690,20 @@
             <td><a href="https://ctftime.org/event/2263/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/vishwa">vishwa</a></td>
-            <td><a href="ctfs/vishwa/2023">2023</a></td>
+            <td rowspan=4><a href="ctfs/VishwaCTF">VishwaCTF</a></td>
+            <td><a href="ctfs/VishwaCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2630/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/VishwaCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1904/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/vishwa/2022">2022</a></td>
+            <td><a href="ctfs/VishwaCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1548/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/vishwa/2021">2021</a></td>
+            <td><a href="ctfs/VishwaCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1286/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
