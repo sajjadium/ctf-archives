@@ -1,0 +1,11 @@
+# Build arguments go here.
+# See "gn args <out_dir> --list" for available build arguments.
+is_component_build = false
+is_debug = false
+target_cpu = "x64"
+v8_enable_sandbox = false
+v8_enable_backtrace = true
+v8_enable_disassembler = true
+v8_enable_object_print = true
+v8_enable_verify_heap = true
+dcheck_always_on = false
