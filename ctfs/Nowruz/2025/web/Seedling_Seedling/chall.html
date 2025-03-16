@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>🌱</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.0/purify.min.js"></script>
+</head>
+<body>
+	<iframe id="xss" style="border: 0;"></iframe>
+	<script>
+		let p = '🌱'+((new URLSearchParams(location.search)).get('p') ?? '').slice(0,200)
+		p = DOMPurify.sanitize(p,{ RETURN_DOM: true }).ownerDocument.documentElement.innerHTML
+		xss.src = URL.createObjectURL(new Blob([p], { type: 'text/html;charset=utf-8' }))
+	</script>
+</body>
+</html>

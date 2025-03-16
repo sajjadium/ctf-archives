@@ -2127,6 +2127,11 @@
             <td><a href="https://ctftime.org/event/1301/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Nowruz">Nowruz</a></td>
+            <td><a href="ctfs/Nowruz/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2601/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/NuitduHack">Nuit du Hack</a></td>
             <td><a href="ctfs/NuitduHack/2018/Quals">2018 Quals</a></td>
             <td><a href="https://ctftime.org/event/583/tasks/" target="_blank">CTFtime</a></td>

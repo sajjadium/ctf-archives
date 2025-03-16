@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>🌱</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.3/purify.min.js"></script>
+</head>
+<body>
+	<div id="xss"></div>
+	<script>
+		let p = ((new URLSearchParams(location.search)).get('p') ?? '')+`🌱` 
+		DOMPurify.sanitize(p)
+		if(!DOMPurify.removed.length) xss.innerHTML = p
+	</script>
+</body>
+</html>

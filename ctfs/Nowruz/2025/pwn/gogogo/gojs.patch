@@ -1,0 +1,94 @@
+diff --git a/builtin_typedarrays.go b/builtin_typedarrays.go
+index 38c0376..a9dac4c 100644
+--- a/builtin_typedarrays.go
++++ b/builtin_typedarrays.go
+@@ -225,6 +225,15 @@ func (r *Runtime) dataViewProto_getByteLen(call FunctionCall) Value {
+ 	panic(r.NewTypeError("Method get DataView.prototype.byteLength called on incompatible receiver %s", r.objectproto_toString(FunctionCall{This: call.This})))
+ }
+ 
++func (r *Runtime) dataViewProto_setByteLen(call FunctionCall) Value {
++	if dv, ok := r.toObject(call.This).self.(*dataViewObject); ok {
++		dv.viewedArrayBuf.ensureNotDetached(true)
++		dv.byteLen = int(min(call.Argument(0).ToInteger(),0x300))
++		return _undefined
++	}
++	panic(r.NewTypeError("Method set DataView.prototype.byteLength called on incompatible receiver %s", r.objectproto_toString(FunctionCall{This: call.This})))
++}
++
+ func (r *Runtime) dataViewProto_getByteOffset(call FunctionCall) Value {
+ 	if dv, ok := r.toObject(call.This).self.(*dataViewObject); ok {
+ 		dv.viewedArrayBuf.ensureNotDetached(true)
+@@ -1884,6 +1893,7 @@ func createDataViewProtoTemplate() *objectTemplate {
+ 			accessor:     true,
+ 			configurable: true,
+ 			getterFunc:   r.newNativeFunc(r.dataViewProto_getByteLen, "get byteLength", 0),
++			setterFunc:   r.newNativeFunc(r.dataViewProto_setByteLen, "set byteLength", 0),
+ 		}
+ 	})
+ 	t.putStr("byteOffset", func(r *Runtime) Value {
+diff --git a/goja/main.go b/goja/main.go
+index 1015f46..85df5f4 100644
+--- a/goja/main.go
++++ b/goja/main.go
+@@ -63,20 +63,22 @@ func run() error {
+ 	vm := goja.New()
+ 	vm.SetRandSource(newRandSource())
+ 
+-	new(require.Registry).Enable(vm)
+-	console.Enable(vm)
+-
+-	vm.Set("load", func(call goja.FunctionCall) goja.Value {
+-		return load(vm, call)
+-	})
++	if(os.Getenv("DEBUG") != ""){
++		new(require.Registry).Enable(vm)
++		console.Enable(vm)
++	}
+ 
+-	vm.Set("readFile", func(name string) (string, error) {
+-		b, err := os.ReadFile(name)
+-		if err != nil {
+-			return "", err
+-		}
+-		return string(b), nil
+-	})
++	// vm.Set("load", func(call goja.FunctionCall) goja.Value {
++	// 	return load(vm, call)
++	// })
++
++	// vm.Set("readFile", func(name string) (string, error) {
++	// 	b, err := os.ReadFile(name)
++	// 	if err != nil {
++	// 		return "", err
++	// 	}
++	// 	return string(b), nil
++	// })
+ 
+ 	if *timelimit > 0 {
+ 		time.AfterFunc(time.Duration(*timelimit)*time.Second, func() {
+diff --git a/typedarrays.go b/typedarrays.go
+index 67c4677..df98c1d 100644
+--- a/typedarrays.go
++++ b/typedarrays.go
+@@ -1150,6 +1150,7 @@ func (o *arrayBufferObject) setUint64(idx int, val uint64, byteOrder byteOrder)
+ }
+ 
+ func (o *arrayBufferObject) getUint32(idx int, byteOrder byteOrder) uint32 {
++
+ 	var b []byte
+ 	if byteOrder == nativeEndian {
+ 		b = o.data[idx : idx+4]
+@@ -1241,11 +1242,11 @@ func (o *arrayBufferObject) setUint16(idx int, val uint16, byteOrder byteOrder)
+ }
+ 
+ func (o *arrayBufferObject) getUint8(idx int) uint8 {
+-	return o.data[idx]
++	return *(*uint8)(unsafe.Pointer(uintptr(unsafe.Pointer(&o.data[0])) + uintptr(idx)))
+ }
+ 
+ func (o *arrayBufferObject) setUint8(idx int, val uint8) {
+-	o.data[idx] = val
++	*(*uint8)(unsafe.Pointer(uintptr(unsafe.Pointer(&o.data[0])) + uintptr(idx))) = val
+ }
+ 
+ func (o *arrayBufferObject) getInt32(idx int, byteOrder byteOrder) int32 {
