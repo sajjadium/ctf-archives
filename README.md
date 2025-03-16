@@ -3258,6 +3258,11 @@
             <td><a href="https://ctftime.org/event/2076/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/WATCTF">WATCTF</a></td>
+            <td><a href="ctfs/WATCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2727/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="ctfs/WMCTF">WMCTF</a></td>
             <td><a href="ctfs/WMCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2457/tasks/" target="_blank">CTFtime</a></td>

@@ -1,0 +1,1 @@
+Here at Goose Inc., we don't think standard equality is good enough. The current genre of equality, "byte-for-byte comparisons", is horribly imprecise, and doesn't consider the latest and greatest in philosophical research! To rectify this, we've implemented a demo of our NEW, truly Wittgensteinian, equality system. Go and check it out!

@@ -1,0 +1,1 @@
+Our intern at Goose Inc. has come up with a revolutionary new anonymization scheme! Using the power of MATH, our innovative new scheme allows every person to have an anonymous account that can be RE-ANONYMIZED to drop ALL history at will, even WITH a central authority! "How!?" I hear you ask. Well, just take a look at our demo website to find out!
