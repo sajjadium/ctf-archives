@@ -1772,6 +1772,11 @@
             <td><a href="https://ctftime.org/event/701/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Kind4SUS">Kind4SUS</a></td>
+            <td><a href="ctfs/Kind4SUS/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2703/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/KITCTFCTF">KITCTFCTF</a></td>
             <td><a href="ctfs/KITCTFCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1965/tasks/" target="_blank">CTFtime</a></td>
