@@ -1211,12 +1211,16 @@
             <td><a href="https://ctftime.org/event/727/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/FooBar">FooBar</a></td>
-            <td><a href="ctfs/FooBar/2022">2022</a></td>
+            <td rowspan=3><a href="ctfs/FooBarCTF">FooBarCTF</a></td>
+            <td><a href="ctfs/FooBarCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2720/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/FooBarCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1579/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/FooBar/2021">2021</a></td>
+            <td><a href="ctfs/FooBarCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1322/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
