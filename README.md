@@ -3276,6 +3276,11 @@
             <td><a href="https://ctftime.org/event/1094/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/WHY">WHY</a></td>
+            <td><a href="ctfs/WHY/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2679/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/WORMCON">WORMCON</a></td>
             <td><a href="ctfs/WORMCON/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1391/tasks/" target="_blank">CTFtime</a></td>
