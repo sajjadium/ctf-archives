@@ -81,7 +81,7 @@ def is_valid(line):
   if 'points' in line.lower() and 'solves' in line.lower():
     return False
 
-  if 'solved by' in line.lower():
+  if line.lower().startswith('solved by'):
     return False
 
   is_all_numeric = True

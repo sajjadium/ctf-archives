@@ -1,0 +1,1 @@
+A mysterious file (gtr_embeddings.npy) containing magical embeddings was found deep within ancient archives. To reveal its secret, you need to reverse-engineer the embeddings back into the original passphrase. Act quickly before the hidden magic fades away.

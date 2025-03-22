@@ -1,0 +1,1 @@
+A sacred ward, once thought unbreakable, is built upon a foundation of misplaced trust. The ancient order that devised it never foresaw the cracks in their own defenses. A true cipher-weaver, one with a deep understanding of hidden structures, may find a way to tear it down. Can you?

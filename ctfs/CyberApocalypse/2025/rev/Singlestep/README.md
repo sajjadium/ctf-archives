@@ -1,0 +1,1 @@
+Malakar has locked away a sacred artifact away in his dungeon. He has enchanted the locking mechanism to be self-protecting. Can you embark on a mission to free the artifact back to the people's hands?

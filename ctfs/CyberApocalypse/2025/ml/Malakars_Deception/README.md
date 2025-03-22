@@ -1,0 +1,1 @@
+You recently recovered a mysterious magical artifact (malicious.h5) from Malakar's abandoned sanctum. Upon activation, the artifact began displaying unusual behaviors, suggesting hidden enchantments. As Eldoria’s expert mage in digital enchantments, it falls to you to carefully examine this artifact and reveal its secrets.

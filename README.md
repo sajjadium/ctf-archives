@@ -838,6 +838,11 @@
             <td><a href="https://ctftime.org/event/2344/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/CyberApocalypse">CyberApocalypse</a></td>
+            <td><a href="ctfs/CyberApocalypse/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2674/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/CyberHeroines">CyberHeroines</a></td>
             <td><a href="ctfs/CyberHeroines/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2054/tasks/" target="_blank">CTFtime</a></td>
