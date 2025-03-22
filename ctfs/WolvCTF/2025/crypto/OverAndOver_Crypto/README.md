@@ -1,0 +1,3 @@
+Author: shlswnt
+
+You found a strange string that seems to be encoded with base64... yet still scrambled after decoding...

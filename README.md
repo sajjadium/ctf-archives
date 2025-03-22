@@ -3366,7 +3366,11 @@
             <td><a href="https://ctftime.org/event/656/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/WhiteHat/2018/Quals">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/WolvCTF">WolvCTF</a></td>
+            <td rowspan=4><a href="ctfs/WolvCTF">WolvCTF</a></td>
+            <td><a href="ctfs/WolvCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2579/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/WolvCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2240/tasks/" target="_blank">CTFtime</a></td>
         </tr>
