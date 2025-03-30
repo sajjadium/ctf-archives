@@ -1,0 +1,5 @@
+mel
+
+One of our operatives was investigating Dr. Tom Lei and managed to board a private jet he chartered for some unknown reason. It's unclear whether this is just one of his leisure flights or if it's something else, but given how they seemed to go AWOL moments later it's definitely very fishy. They managed to send us a photo somewhere in the middle of the flight, but beyond that we don't have any idea where she is or where Lei was going. Furthermore, it was also stated by them that when the jet took off from Dublin International on December 30th 2024, an airline related to Lei's mission finished taxiing to Gate 104 after finishing its flight from Lei's target destination. Do you think you could help us track down the airport he landed in, as well as what approximate time he took off? We don't need the exact seconds they left, but we do need to get the minutes.
+
+Specify your flag in the format jctfv{[4 character ICAO code]-HOUR:MINUTES:[AM/PM]} in GMT For example, if the plane landed in Newark Liberty International at 1:02 AM, the flag would be jctfv{KEWR-01:02:AM}

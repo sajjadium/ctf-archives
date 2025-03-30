@@ -1748,7 +1748,11 @@
             <td><a href="https://ctftime.org/event/1791/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/JerseyCTF">JerseyCTF</a></td>
+            <td rowspan=3><a href="ctfs/JerseyCTF">JerseyCTF</a></td>
+            <td><a href="ctfs/JerseyCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2667/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/JerseyCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2230/tasks/" target="_blank">CTFtime</a></td>
         </tr>

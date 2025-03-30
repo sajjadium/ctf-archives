@@ -1,0 +1,3 @@
+Raunak Singh
+
+Mary and Maya were in LoWE's to grow their crypto toolbox, when Maya saw some mysterious white seagulls... or drones, hovering around the building. Suddenly, a gust of wind made one of the drones drop a blue paper on Maya's head. Mary thinks it might have the structure and inner workings of "The Turing Lock". Can you open it to see what's inside? At the LoWE's Pro Desk, Maya spotted an oracle at , but she's not sure if it can help...
