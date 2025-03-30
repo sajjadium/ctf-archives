@@ -1,0 +1,3 @@
+Optimized for the minimum footprint... if you ignore the jump tables...
+
+Note: bf should be called with a file. The remote runs a script that is not provided, of which makes a file from your input.
