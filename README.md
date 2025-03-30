@@ -3249,7 +3249,11 @@
             <td><a href="https://ctftime.org/event/1032/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/VolgaCTF">Volga</a></td>
+            <td rowspan=6><a href="ctfs/VolgaCTF">VolgaCTF</a></td>
+            <td><a href="ctfs/VolgaCTF/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2676/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/VolgaCTF/2024/Quals">2024 Quals</a></td>
             <td><a href="https://ctftime.org/event/2200/tasks/" target="_blank">CTFtime</a></td>
         </tr>
