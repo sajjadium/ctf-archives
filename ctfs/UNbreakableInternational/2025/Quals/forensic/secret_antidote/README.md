@@ -1,0 +1,1 @@
+You find yourself in an abandoned laboratory, post zombie apocalypse, you see a faulty usb inserted into a monitoring system. You need to search for the key for the antidote to save humanity. You sure you can handle it?

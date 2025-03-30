@@ -1,0 +1,1 @@
+Arrr, gather ye round, ye salty dogs! I be tellin' ye a tale of Cap’n Red Beard, the fiercest pirate to ever sail the high seas! Ye see, this here treasure hunt ain’t fer the faint o' heart—nay, this be a quest that’ll test ye wits, savvy?
