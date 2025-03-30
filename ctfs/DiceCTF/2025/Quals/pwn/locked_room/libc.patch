@@ -1,0 +1,281 @@
+Diff is based on commit f94f6d8a3572840d3ba42ab9ace3ea522c99c0c2 (HEAD, tag: glibc-2.35).
+
+diff --git a/malloc/arena.c b/malloc/arena.c
+index 0a684a720d..8d43745ab9 100644
+--- a/malloc/arena.c
++++ b/malloc/arena.c
+@@ -159,7 +159,7 @@ heap_for_ptr (void *ptr)
+ static inline struct malloc_state *
+ arena_for_chunk (mchunkptr ptr)
+ {
+-  return chunk_main_arena (ptr) ? &main_arena : heap_for_ptr (ptr)->ar_ptr;
++  return &main_arena;
+ }
+ 
+ 
+diff --git a/malloc/malloc.c b/malloc/malloc.c
+index 1a1ac1d8f0..1a481d13b2 100644
+--- a/malloc/malloc.c
++++ b/malloc/malloc.c
+@@ -298,13 +298,10 @@ static void
+ __malloc_assert (const char *assertion, const char *file, unsigned int line,
+ 		 const char *function)
+ {
+-  (void) __fxprintf (NULL, "%s%s%s:%u: %s%sAssertion `%s' failed.\n",
+-		     __progname, __progname[0] ? ": " : "",
+-		     file, line,
+-		     function ? function : "", function ? ": " : "",
+-		     assertion);
+-  fflush (stderr);
+-  abort ();
++  write(2, "Assertion failed.\n", 18);
++  write(2, assertion, strlen(assertion));
++  write(2, "\n", 1);
++  _exit(-1);
+ }
+ #endif
+ #endif
+@@ -1393,6 +1390,12 @@ checked_request2size (size_t req, size_t *sz) __nonnull (1)
+ /* Mark a chunk as not being on the main arena.  */
+ #define set_non_main_arena(p) ((p)->mchunk_size |= NON_MAIN_ARENA)
+ 
++/* size field is or'ed with PREV_FAST_FREED when previous adjacent chunk
++  is a freed fastbin chunk. */
++#define PREV_FAST_FREED 0x8
++
++/* extract freed bit of previous chunk */
++#define prev_fast_freed(p) ((p)->mchunk_size & PREV_FAST_FREED)
+ 
+ /*
+    Bits to mask off when extracting size
+@@ -1402,7 +1405,7 @@ checked_request2size (size_t req, size_t *sz) __nonnull (1)
+    cause helpful core dumps to occur if it is tried by accident by
+    people extending or adapting this malloc.
+  */
+-#define SIZE_BITS (PREV_INUSE | IS_MMAPPED | NON_MAIN_ARENA)
++#define SIZE_BITS (PREV_INUSE | IS_MMAPPED | NON_MAIN_ARENA | PREV_FAST_FREED)
+ 
+ /* Get size, ignoring use bits */
+ #define chunksize(p) (chunksize_nomask (p) & ~(SIZE_BITS))
+@@ -1447,6 +1450,15 @@ checked_request2size (size_t req, size_t *sz) __nonnull (1)
+ #define clear_inuse_bit_at_offset(p, s)					      \
+   (((mchunkptr) (((char *) (p)) + (s)))->mchunk_size &= ~(PREV_INUSE))
+ 
++/* check/set/clear fastbin freed bits in known places */
++#define fast_freed_bit_at_offset(p, s)                  \
++  (((mchunkptr) (((char *) (p)) + (s)))->mchunk_size & PREV_FAST_FREED)
++
++#define set_fast_freed_bit_at_offset(p, s)                  \
++  (((mchunkptr) (((char *) (p)) + (s)))->mchunk_size |= PREV_FAST_FREED)
++
++#define clear_fast_freed_bit_at_offset(p, s)                  \
++  (((mchunkptr) (((char *) (p)) + (s)))->mchunk_size &= ~(PREV_FAST_FREED))
+ 
+ /* Set size at head, without disturbing its use bit */
+ #define set_head_size(p, s)  ((p)->mchunk_size = (((p)->mchunk_size & SIZE_BITS) | (s)))
+@@ -3196,6 +3208,10 @@ tcache_get (size_t tc_idx)
+   tcache->entries[tc_idx] = REVEAL_PTR (e->next);
+   --(tcache->counts[tc_idx]);
+   e->key = 0;
++  e->next = NULL;
++  if (__glibc_unlikely(csize2tidx (chunksize (mem2chunk (e)))) != tc_idx) {
++    malloc_printerr ("malloc(): memory corruption (tcache)");
++  }
+   return (void *) e;
+ }
+ 
+@@ -3287,6 +3303,8 @@ __libc_malloc (size_t bytes)
+ {
+   mstate ar_ptr;
+   void *victim;
++  char *max_address;
++  char *min_address;
+ 
+   _Static_assert (PTRDIFF_MAX <= SIZE_MAX / 2,
+                   "PTRDIFF_MAX is not more than half of SIZE_MAX");
+@@ -3311,24 +3329,34 @@ __libc_malloc (size_t bytes)
+       && tcache->counts[tc_idx] > 0)
+     {
+       victim = tcache_get (tc_idx);
++      mchunkptr victim_chunk = mem2chunk (victim);
++      ar_ptr = arena_for_chunk (victim_chunk);
++      max_address = (char *) (ar_ptr->top) + chunksize (ar_ptr->top);
++      min_address = max_address - ar_ptr->system_mem;
++      assert (((char *) victim_chunk) >= min_address);
++      assert (((char *) victim_chunk + chunksize (victim_chunk)) <= ((char *) (ar_ptr->top)));
+       return tag_new_usable (victim);
+     }
+   DIAG_POP_NEEDS_COMMENT;
+ #endif
+ 
+-  if (SINGLE_THREAD_P)
+-    {
+-      victim = tag_new_usable (_int_malloc (&main_arena, bytes));
+-      assert (!victim || chunk_is_mmapped (mem2chunk (victim)) ||
+-	      &main_arena == arena_for_chunk (mem2chunk (victim)));
+-      return victim;
+-    }
++  victim = tag_new_usable (_int_malloc (&main_arena, bytes));
++  mchunkptr victim_chunk = mem2chunk (victim);
++  ar_ptr = arena_for_chunk (victim_chunk);
++  max_address = (char *) (ar_ptr->top) + chunksize (ar_ptr->top);
++  min_address = max_address - ar_ptr->system_mem;
++  assert (!victim || chunk_is_mmapped (victim_chunk) ||
++    &main_arena == arena_for_chunk (victim_chunk));
++  assert (((char *) victim_chunk) >= min_address &&
++    ((char *) victim_chunk + chunksize (victim_chunk)) <= ((char *) (ar_ptr->top)));
++  return victim;
+ 
++  /*
+   arena_get (ar_ptr, bytes);
+ 
+   victim = _int_malloc (ar_ptr, bytes);
+-  /* Retry with another arena only if we were able to find a usable arena
+-     before.  */
++   Retry with another arena only if we were able to find a usable arena
++     before.
+   if (!victim && ar_ptr != NULL)
+     {
+       LIBC_PROBE (memory_malloc_retry, 1, bytes);
+@@ -3343,7 +3371,7 @@ __libc_malloc (size_t bytes)
+ 
+   assert (!victim || chunk_is_mmapped (mem2chunk (victim)) ||
+           ar_ptr == arena_for_chunk (mem2chunk (victim)));
+-  return victim;
++  return victim; */
+ }
+ libc_hidden_def (__libc_malloc)
+ 
+@@ -3388,6 +3416,10 @@ __libc_free (void *mem)
+       (void)tag_region (chunk2mem (p), memsize (p));
+ 
+       ar_ptr = arena_for_chunk (p);
++      char *max_address = (char *) (ar_ptr->top) + chunksize (ar_ptr->top);
++      char *min_address = max_address - ar_ptr->system_mem;
++      assert (((char *) p) >= min_address);
++      assert (((char *) p + chunksize (p)) <= ((char *) (ar_ptr->top)));
+       _int_free (ar_ptr, p, 0);
+     }
+ 
+@@ -3854,9 +3886,13 @@ _int_malloc (mstate av, size_t bytes)
+ 	  if (__glibc_likely (victim != NULL))
+ 	    {
+ 	      size_t victim_idx = fastbin_index (chunksize (victim));
++        mchunkptr nextchunk = chunk_at_offset(victim, chunksize (victim));
+ 	      if (__builtin_expect (victim_idx != idx, 0))
+ 		malloc_printerr ("malloc(): memory corruption (fast)");
++    if (__glibc_unlikely (!prev_fast_freed(nextchunk)))
++      malloc_printerr ("malloc(): corrupt prev fast freed (fast)");
+ 	      check_remalloced_chunk (av, victim, nb);
++    clear_fast_freed_bit_at_offset (nextchunk, 0);
+ #if USE_TCACHE
+ 	      /* While we're here, if we see other chunks of the same size,
+ 		 stash them in the tcache.  */
+@@ -3880,9 +3916,11 @@ _int_malloc (mstate av, size_t bytes)
+ 			    break;
+ 			}
+ 		      tcache_put (tc_victim, tc_idx);
++          clear_fast_freed_bit_at_offset (tc_victim, nb);
+ 		    }
+ 		}
+ #endif
++        victim->fd = NULL;
+ 	      void *p = chunk2mem (victim);
+ 	      alloc_perturb (p, bytes);
+ 	      return p;
+@@ -3941,6 +3979,8 @@ _int_malloc (mstate av, size_t bytes)
+ 		}
+ 	    }
+ #endif
++          victim->fd = NULL;
++          victim->bk = NULL;
+           void *p = chunk2mem (victim);
+           alloc_perturb (p, bytes);
+           return p;
+@@ -4042,6 +4082,8 @@ _int_malloc (mstate av, size_t bytes)
+               set_foot (remainder, remainder_size);
+ 
+               check_malloced_chunk (av, victim, nb);
++              victim->fd = NULL;
++              victim->bk = NULL;
+               void *p = chunk2mem (victim);
+               alloc_perturb (p, bytes);
+               return p;
+@@ -4074,6 +4116,12 @@ _int_malloc (mstate av, size_t bytes)
+ 		{
+ #endif
+               check_malloced_chunk (av, victim, nb);
++              victim->fd = NULL;
++              victim->bk = NULL;
++              if (!in_smallbin_range (nb)) {
++                victim->fd_nextsize = NULL;
++                victim->bk_nextsize = NULL;
++              }
+               void *p = chunk2mem (victim);
+               alloc_perturb (p, bytes);
+               return p;
+@@ -4236,6 +4284,8 @@ _int_malloc (mstate av, size_t bytes)
+                   set_foot (remainder, remainder_size);
+                 }
+               check_malloced_chunk (av, victim, nb);
++              victim->fd = NULL;
++              victim->bk = NULL;
+               void *p = chunk2mem (victim);
+               alloc_perturb (p, bytes);
+               return p;
+@@ -4344,6 +4394,12 @@ _int_malloc (mstate av, size_t bytes)
+                   set_foot (remainder, remainder_size);
+                 }
+               check_malloced_chunk (av, victim, nb);
++              victim->fd = NULL;
++              victim->bk = NULL;
++              if (!in_smallbin_range (nb)) {
++                victim->fd_nextsize = NULL;
++                victim->bk_nextsize = NULL;
++              }
+               void *p = chunk2mem (victim);
+               alloc_perturb (p, bytes);
+               return p;
+@@ -4560,6 +4616,14 @@ _int_free (mstate av, mchunkptr p, int have_lock)
+     if (have_lock && old != NULL
+ 	&& __builtin_expect (fastbin_index (chunksize (old)) != idx, 0))
+       malloc_printerr ("invalid fastbin entry (free)");
++
++    nextchunk = chunk_at_offset(p, size);
++    /* Check that PREV_FAST_FREED is not set. */
++    if (__glibc_unlikely (prev_fast_freed(nextchunk)))
++      malloc_printerr ("double free or corruption (fast)");
++
++    /* Set PREV_FAST_FREED. */
++    set_fast_freed_bit_at_offset(nextchunk, 0);
+   }
+ 
+   /*
+@@ -4778,8 +4842,10 @@ static void malloc_consolidate(mstate av)
+ 	  if (!nextinuse) {
+ 	    size += nextsize;
+ 	    unlink_chunk (av, nextchunk);
+-	  } else
++	  } else {
+ 	    clear_inuse_bit_at_offset(nextchunk, 0);
++      clear_fast_freed_bit_at_offset(nextchunk, 0);
++    }
+ 
+ 	  first_unsorted = unsorted_bin->fd;
+ 	  unsorted_bin->fd = p;
+@@ -5660,12 +5726,9 @@ extern char **__libc_argv attribute_hidden;
+ static void
+ malloc_printerr (const char *str)
+ {
+-#if IS_IN (libc)
+-  __libc_message (do_abort, "%s\n", str);
+-#else
+-  __libc_fatal (str);
+-#endif
+-  __builtin_unreachable ();
++  write(2, str, strlen(str));
++  write(2, "\n", 1);
++  _exit(-1);
+ }
+ 
+ #if IS_IN (libc)

@@ -1,0 +1,3 @@
+arcblroth
+
+I heard that r2uwu2 just won an all-expenses paid trip to a ✨ Celestial Resort ✨ on the slopes of Canada! But this trip might not be all that it's cracked up to be - there's dust bunnies abound and garbage is cycling everywhere...

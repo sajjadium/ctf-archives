@@ -1083,7 +1083,11 @@
             <td><a href="https://ctftime.org/event/1060/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/DiceCTF">DiceCTF</a></td>
+            <td rowspan=5><a href="ctfs/DiceCTF">DiceCTF</a></td>
+            <td><a href="ctfs/DiceCTF/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2617/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/DiceCTF/2024/Quals">2024 Quals</a></td>
             <td><a href="https://ctftime.org/event/2217/tasks/" target="_blank">CTFtime</a></td>
         </tr>
