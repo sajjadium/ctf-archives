@@ -538,6 +538,11 @@
             <td><a href="https://ctftime.org/event/2181/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/BreachCTF">BreachCTF</a></td>
+            <td><a href="ctfs/BreachCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2671/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=4><a href="ctfs/BreakTheSyntax">Break the Syntax</a></td>
             <td><a href="ctfs/BreakTheSyntax/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2289/tasks/" target="_blank">CTFtime</a></td>
