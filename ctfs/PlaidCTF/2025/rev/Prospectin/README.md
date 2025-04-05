@@ -1,0 +1,3 @@
+Welcome to Fool's Gulch, prospector! Word around the saloon is that old Jeremiah Plaid struck gold somewhere in these hills before he disappeared. His journal entries mention a secret sequence that leads to The Mother Lode - the richest gold vein in all the territory. Can you decipher Jeremiah's cryptic notes and find the treasure that's eluded so many fortune seekers? Enter the correct sequence, and you might just strike it rich! Remember, not all gold that glitters is worth the same. The purer your find, the higher your claim will be valued at the assayer's office.
+Posted by Sheriff ath0
+With Deputy hgarrereyn

@@ -2219,7 +2219,11 @@
             <td><a href="https://ctftime.org/event/2231/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=7><a href="ctfs/PlaidCTF">Plaid</a></td>
+            <td rowspan=8><a href="ctfs/PlaidCTF">Plaid</a></td>
+            <td><a href="ctfs/PlaidCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2508/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/PlaidCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2245/tasks/" target="_blank">CTFtime</a></td>
         </tr>

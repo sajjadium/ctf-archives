@@ -36,6 +36,9 @@ def is_valid(line):
   if line.strip().lower() in ['attachment', 'handouts', 'show tags', 'download attachments']:
     return False
 
+  if line.strip().lower().startswith('reward:'):
+    return False
+
   if line.strip().lower().startswith('download link'):
     return False
 
