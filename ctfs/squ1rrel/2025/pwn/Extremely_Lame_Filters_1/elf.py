@@ -1,0 +1,985 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+#  mayhem/datatypes/elf.py
+#
+#  Redistribution and use in source and binary forms, with or without
+#  modification, are permitted provided that the following conditions are
+#  met:
+#
+#  * Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+#  * Redistributions in binary form must reproduce the above
+#    copyright notice, this list of conditions and the following disclaimer
+#    in the documentation and/or other materials provided with the
+#    distribution.
+#  * Neither the name of the project nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+#  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+#  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+#  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+#  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+#  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+#  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+#  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+#  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+#  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+#  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+from __future__ import division
+
+import ctypes
+
+Elf32_Addr = ctypes.c_uint32
+Elf32_Half = ctypes.c_uint16
+Elf32_Off = ctypes.c_uint32
+Elf32_Sword = ctypes.c_int32
+Elf32_Word = ctypes.c_uint32
+
+Elf64_Addr = ctypes.c_uint64
+Elf64_Half = ctypes.c_uint16
+Elf64_SHalf = ctypes.c_int16
+Elf64_Off = ctypes.c_uint64
+Elf64_Sword = ctypes.c_int32
+Elf64_Word = ctypes.c_uint32
+Elf64_Xword = ctypes.c_uint64
+Elf64_Sxword = ctypes.c_int64
+
+
+AT_CONSTANTS = {
+    0 : 'AT_NULL',      # /* End of vector */
+    1 : 'AT_IGNORE',    # /* Entry should be ignored */
+    2 : 'AT_EXECFD',    # /* File descriptor of program */
+    3 : 'AT_PHDR',      # /* Program headers for program */
+    4 : 'AT_PHENT',     # /* Size of program header entry */
+    5 : 'AT_PHNUM',     # /* Number of program headers */
+    6 : 'AT_PAGESZ',    # /* System page size */
+    7 : 'AT_BASE',      # /* Base address of interpreter */
+    8 : 'AT_FLAGS',     # /* Flags */
+    9 : 'AT_ENTRY',     # /* Entry point of program */
+    10: 'AT_NOTELF',    # /* Program is not ELF */
+    11: 'AT_UID',       # /* Real uid */
+    12: 'AT_EUID',      # /* Effective uid */
+    13: 'AT_GID',       # /* Real gid */
+    14: 'AT_EGID',      # /* Effective gid */
+    15: 'AT_PLATFORM',  # /* String identifying platform */
+    16: 'AT_HWCAP',     # /* Machine dependent hints about processor capabilities */
+    17: 'AT_CLKTCK',    # /* Frequency of times() */
+    18: 'AT_FPUCW',
+    19: 'AT_DCACHEBSIZE',
+    20: 'AT_ICACHEBSIZE',
+    21: 'AT_UCACHEBSIZE',
+    22: 'AT_IGNOREPPC',
+    23: 'AT_SECURE',
+    24: 'AT_BASE_PLATFORM', # String identifying real platforms
+    25: 'AT_RANDOM',    # Address of 16 random bytes
+    31: 'AT_EXECFN',    # Filename of executable
+    32: 'AT_SYSINFO',
+    33: 'AT_SYSINFO_EHDR',
+    34: 'AT_L1I_CACHESHAPE',
+    35: 'AT_L1D_CACHESHAPE',
+    36: 'AT_L2_CACHESHAPE',
+    37: 'AT_L3_CACHESHAPE',
+}
+
+class constants:
+    EI_MAG0                 = 0
+    EI_MAG1                 = 1
+    EI_MAG2                 = 2
+    EI_MAG3                 = 3
+    EI_CLASS                = 4
+    EI_DATA                 = 5
+    EI_VERSION              = 6
+    EI_OSABI                = 7
+    EI_ABIVERSION           = 8
+    EI_PAD                  = 9
+    EI_NIDENT               = 16
+
+    ELFMAG0                 = 0x7f
+    ELFMAG1                 = ord('E')
+    ELFMAG2                 = ord('L')
+    ELFMAG3                 = ord('F')
+
+    ELFCLASSNONE            = 0
+    ELFCLASS32              = 1
+    ELFCLASS64              = 2
+
+    ELFDATANONE             = 0
+    ELFDATA2LSB             = 1
+    ELFDATA2MSB             = 2
+
+    # Legal values for Elf_Phdr.p_type (segment type).
+    PT_NULL                 = 0
+    PT_LOAD                 = 1
+    PT_DYNAMIC              = 2
+    PT_INTERP               = 3
+    PT_NOTE                 = 4
+    PT_SHLIB                = 5
+    PT_PHDR                 = 6
+    PT_TLS                  = 7
+
+    # Legal values for Elf_Ehdr.e_type (object file type).
+    ET_NONE                 = 0
+    ET_REL                  = 1
+    ET_EXEC                 = 2
+    ET_DYN                  = 3
+    ET_CORE                 = 4
+
+    # Legal values for Elf_Dyn.d_tag (dynamic entry type).
+    DT_NULL                 = 0
+    DT_NEEDED               = 1
+    DT_PLTRELSZ             = 2
+    DT_PLTGOT               = 3
+    DT_HASH                 = 4
+    DT_STRTAB               = 5
+    DT_SYMTAB               = 6
+    DT_RELA                 = 7
+    DT_RELASZ               = 8
+    DT_RELAENT              = 9
+    DT_STRSZ                = 10
+    DT_SYMENT               = 11
+    DT_INIT                 = 12
+    DT_FINI                 = 13
+    DT_SONAME               = 14
+    DT_RPATH                = 15
+    DT_SYMBOLIC             = 16
+    DT_REL                  = 17
+    DT_RELSZ                = 18
+    DT_RELENT               = 19
+    DT_PLTREL               = 20
+    DT_DEBUG                = 21
+    DT_TEXTREL              = 22
+    DT_JMPREL               = 23
+    DT_ENCODING             = 32
+    DT_FLAGS_1 = 0x000000006ffffffb
+    DT_VERNEED = 0x000000006ffffffe
+    DT_VERNEEDNUM = 0x000000006fffffff
+    DT_VERSYM = 0x000000006ffffff0
+    DT_RELACOUNT = 0x000000006ffffff9
+    DT_GNU_HASH = 0x000000006ffffef5
+
+    # Legal values for Elf_Shdr.sh_type (section type).
+    SHT_NULL                = 0
+    SHT_PROGBITS            = 1
+    SHT_SYMTAB              = 2
+    SHT_STRTAB              = 3
+    SHT_RELA                = 4
+    SHT_HASH                = 5
+    SHT_DYNAMIC             = 6
+    SHT_NOTE                = 7
+    SHT_NOBITS              = 8
+    SHT_REL                 = 9
+    SHT_SHLIB               = 10
+    SHT_DYNSYM              = 11
+    SHT_NUM                 = 12
+
+    # Legal values for ST_TYPE subfield of Elf_Sym.st_info (symbol type).
+    STT_NOTYPE              = 0
+    STT_OBJECT              = 1
+    STT_FUNC                = 2
+    STT_SECTION             = 3
+    STT_FILE                = 4
+    STT_COMMON              = 5
+    STT_TLS                 = 6
+    STT_GNU_IFUNC           = 10
+
+    SHN_UNDEF               = 0
+    SHN_ABS                 = 0xfff1
+    SHN_COMMON              = 0xfff2
+
+    #
+    # Notes used in ET_CORE. Architectures export some of the arch register sets
+    # using the corresponding note types via the PTRACE_GETREGSET and
+    # PTRACE_SETREGSET requests.
+    #
+    NT_PRSTATUS             = 1
+    NT_PRFPREG              = 2
+    NT_PRPSINFO             = 3
+    NT_TASKSTRUCT           = 4
+    NT_AUXV                 = 6
+    #
+    # Note to userspace developers: size of NT_SIGINFO note may increase
+    # in the future to accommodate more fields, don't assume it is fixed!
+    #
+    NT_SIGINFO              = 0x53494749
+    NT_FILE                 = 0x46494c45
+    NT_PRXFPREG             = 0x46e62b7f
+    NT_PPC_VMX              = 0x100
+    NT_PPC_SPE              = 0x101
+    NT_PPC_VSX              = 0x102
+    NT_386_TLS              = 0x200
+    NT_386_IOPERM           = 0x201
+    NT_X86_XSTATE           = 0x202
+    NT_S390_HIGH_GPRS       = 0x300
+    NT_S390_TIMER           = 0x301
+    NT_S390_TODCMP          = 0x302
+    NT_S390_TODPREG         = 0x303
+    NT_S390_CTRS            = 0x304
+    NT_S390_PREFIX          = 0x305
+    NT_S390_LAST_BREAK      = 0x306
+    NT_S390_SYSTEM_CALL     = 0x307
+    NT_S390_TDB             = 0x308
+    NT_ARM_VFP              = 0x400
+    NT_ARM_TLS              = 0x401
+    NT_ARM_HW_BREAK         = 0x402
+    NT_ARM_HW_WATCH         = 0x403
+    NT_METAG_CBUF           = 0x500
+    NT_METAG_RPIPE          = 0x501
+    NT_METAG_TLS            = 0x502
+
+    AT_NULL                 = 0
+    AT_IGNORE               = 1
+    AT_EXECFD               = 2
+    AT_PHDR                 = 3
+    AT_PHENT                = 4
+    AT_PHNUM                = 5
+    AT_PAGESZ               = 6
+    AT_BASE                 = 7
+    AT_FLAGS                = 8
+    AT_ENTRY                = 9
+    AT_NOTELF               = 10
+    AT_UID                  = 11
+    AT_EUID                 = 12
+    AT_GID                  = 13
+    AT_EGID                 = 14
+    AT_PLATFORM             = 15
+    AT_HWCAP                = 16
+    AT_CLKTCK               = 17
+    AT_FPUCW                = 18
+    AT_DCACHEBSIZE          = 19
+    AT_ICACHEBSIZE          = 20
+    AT_UCACHEBSIZE          = 21
+    AT_IGNOREPPC            = 22
+    AT_SECURE               = 23
+    AT_BASE_PLATFORM        = 24
+    AT_RANDOM               = 25
+    AT_EXECFN               = 31
+    AT_SYSINFO              = 32
+    AT_SYSINFO_EHDR         = 33
+    AT_L1I_CACHESHAPE       = 34
+    AT_L1D_CACHESHAPE       = 35
+    AT_L2_CACHESHAPE        = 36
+    AT_L3_CACHESHAPE        = 37
+
+    # Legal flags used in the d_val field of the DT_FLAGS dynamic entry.
+    DF_ORIGIN               = 0x01
+    DF_SYMBOLIC             = 0x02
+    DF_TEXTREL              = 0x04
+    DF_BIND_NOW             = 0x08
+    DF_STATIC_TLS           = 0x10
+
+    # Legal flags used in the d_val field of the DT_FLAGS_1 dynamic entry.
+    DF_1_NOW                = 0x00000001
+    DF_1_GLOBAL             = 0x00000002
+    DF_1_GROUP              = 0x00000004
+    DF_1_NODELETE           = 0x00000008
+    DF_1_LOADFLTR           = 0x00000010
+    DF_1_INITFIRST          = 0x00000020
+    DF_1_NOOPEN             = 0x00000040
+    DF_1_ORIGIN             = 0x00000080
+    DF_1_DIRECT             = 0x00000100
+    DF_1_TRANS              = 0x00000200
+    DF_1_INTERPOSE          = 0x00000400
+    DF_1_NODEFLIB           = 0x00000800
+    DF_1_NODUMP             = 0x00001000
+    DF_1_CONFALT            = 0x00002000
+    DF_1_ENDFILTEE          = 0x00004000
+    DF_1_DISPRELDNE         = 0x00008000
+    DF_1_DISPRELPND         = 0x00010000
+    DF_1_NODIRECT           = 0x00020000
+    DF_1_IGNMULDEF          = 0x00040000
+    DF_1_NOKSYMS            = 0x00080000
+    DF_1_NOHDR              = 0x00100000
+    DF_1_EDITED             = 0x00200000
+    DF_1_NORELOC            = 0x00400000
+    DF_1_SYMINTPOSE         = 0x00800000
+    DF_1_GLOBAUDIT          = 0x01000000
+    DF_1_SINGLETON          = 0x02000000
+    DF_1_STUB	            = 0x04000000
+    DF_1_PIE                = 0x08000000
+
+    R_X86_64_NONE           = 0
+    R_X86_64_64             = 1
+    R_X86_64_PC32           = 2
+    R_X86_64_GOT32          = 3
+    R_X86_64_PLT32          = 4
+    R_X86_64_COPY           = 5
+    R_X86_64_GLOB_DAT       = 6
+    R_X86_64_JUMP_SLOT      = 7
+    R_X86_64_RELATIVE       = 8
+    R_X86_64_GOTPCREL       = 9
+    R_X86_64_32             = 10
+    R_X86_64_32S            = 11
+    R_X86_64_16             = 12
+    R_X86_64_PC16           = 13
+    R_X86_64_8              = 14
+    R_X86_64_PC8            = 15
+    R_X86_64_DPTMOD64       = 16
+    R_X86_64_DTPOFF64       = 17
+    R_X86_64_TPOFF64        = 18
+    R_X86_64_TLSGD          = 19
+    R_X86_64_TLSLD          = 20
+    R_X86_64_DTPOFF32       = 21
+    R_X86_64_GOTTPOFF       = 22
+    R_X86_64_TPOFF32        = 23
+    R_X86_64_PC64           = 24
+    R_X86_64_GOTOFF64       = 25
+    R_X86_64_GOTPC32        = 26
+    R_X86_64_GOT64		    = 27
+    R_X86_64_GOTPCREL64	    = 28
+    R_X86_64_GOTPC64	    = 29
+    R_X86_64_GOTPLT64	    = 30
+    R_X86_64_PLTOFF64	    = 31
+    R_X86_64_SIZE32		    = 32
+    R_X86_64_SIZE64		    = 33
+    R_X86_64_GOTPC32_TLSDESC = 34
+    R_X86_64_TLSDESC_CALL   = 35
+    R_X86_64_TLSDESC        = 36
+    R_X86_64_IRELATIVE	    = 37
+    R_X86_64_RELATIVE64	    = 38
+    R_X86_64_GOTPCRELX	    = 41
+    R_X86_64_REX_GOTPCRELX	= 42
+    R_X86_64_NUM		    = 43
+
+
+class Elf32_Ehdr(ctypes.Structure):
+    _fields_ = [("e_ident", (ctypes.c_ubyte * 16)),
+                ("e_type", Elf32_Half),
+                ("e_machine", Elf32_Half),
+                ("e_version", Elf32_Word),
+                ("e_entry", Elf32_Addr),
+                ("e_phoff", Elf32_Off),
+                ("e_shoff", Elf32_Off),
+                ("e_flags", Elf32_Word),
+                ("e_ehsize", Elf32_Half),
+                ("e_phentsize", Elf32_Half),
+                ("e_phnum", Elf32_Half),
+                ("e_shentsize", Elf32_Half),
+                ("e_shnum", Elf32_Half),
+                ("e_shstrndx", Elf32_Half),]
+
+class Elf64_Ehdr(ctypes.Structure):
+    _fields_ = [("e_ident", (ctypes.c_ubyte * 16)),
+                ("e_type", Elf64_Half),
+                ("e_machine", Elf64_Half),
+                ("e_version", Elf64_Word),
+                ("e_entry", Elf64_Addr),
+                ("e_phoff", Elf64_Off),
+                ("e_shoff", Elf64_Off),
+                ("e_flags", Elf64_Word),
+                ("e_ehsize", Elf64_Half),
+                ("e_phentsize", Elf64_Half),
+                ("e_phnum", Elf64_Half),
+                ("e_shentsize", Elf64_Half),
+                ("e_shnum", Elf64_Half),
+                ("e_shstrndx", Elf64_Half),]
+
+class Elf32_Phdr(ctypes.Structure):
+    _fields_ = [("p_type", Elf32_Word),
+                ("p_offset", Elf32_Off),
+                ("p_vaddr", Elf32_Addr),
+                ("p_paddr", Elf32_Addr),
+                ("p_filesz", Elf32_Word),
+                ("p_memsz", Elf32_Word),
+                ("p_flags", Elf32_Word),
+                ("p_align", Elf32_Word),]
+
+class Elf64_Phdr(ctypes.Structure):
+    _fields_ = [("p_type", Elf64_Word),
+                ("p_flags", Elf64_Word),
+                ("p_offset", Elf64_Off),
+                ("p_vaddr", Elf64_Addr),
+                ("p_paddr", Elf64_Addr),
+                ("p_filesz", Elf64_Xword),
+                ("p_memsz", Elf64_Xword),
+                ("p_align", Elf64_Xword),]
+
+class Elf32_Shdr(ctypes.Structure):
+    _fields_ = [("sh_name", Elf32_Word),
+                ("sh_type", Elf32_Word),
+                ("sh_flags", Elf32_Word),
+                ("sh_addr", Elf32_Addr),
+                ("sh_offset", Elf32_Off),
+                ("sh_size", Elf32_Word),
+                ("sh_link", Elf32_Word),
+                ("sh_info", Elf32_Word),
+                ("sh_addralign", Elf32_Word),
+                ("sh_entsize", Elf32_Word),]
+
+class Elf64_Shdr(ctypes.Structure):
+    _fields_ = [("sh_name", Elf64_Word),
+                ("sh_type", Elf64_Word),
+                ("sh_flags", Elf64_Xword),
+                ("sh_addr", Elf64_Addr),
+                ("sh_offset", Elf64_Off),
+                ("sh_size", Elf64_Xword),
+                ("sh_link", Elf64_Word),
+                ("sh_info", Elf64_Word),
+                ("sh_addralign", Elf64_Xword),
+                ("sh_entsize", Elf64_Xword),]
+
+class _U__Elf32_Dyn(ctypes.Union):
+    _fields_ = [("d_val", Elf32_Sword),
+                ("d_ptr", Elf32_Addr),]
+
+class Elf32_Dyn(ctypes.Structure):
+    _anonymous_ = ("d_un",)
+    _fields_ = [("d_tag", Elf32_Sword),
+                ("d_un", _U__Elf32_Dyn),]
+
+class _U__Elf64_Dyn(ctypes.Union):
+    _fields_ = [("d_val", Elf64_Xword),
+                ("d_ptr", Elf64_Addr),]
+
+class Elf64_Dyn(ctypes.Structure):
+    _anonymous_ = ("d_un",)
+    _fields_ = [("d_tag", Elf64_Sxword),
+                ("d_un", _U__Elf64_Dyn),]
+
+class Elf32_Sym(ctypes.Structure):
+    _fields_ = [("st_name", Elf32_Word),
+                ("st_value", Elf32_Addr),
+                ("st_size", Elf32_Word),
+                ("st_info", ctypes.c_ubyte),
+                ("st_other", ctypes.c_ubyte),
+                ("st_shndx", Elf32_Half),]
+
+class Elf64_Sym(ctypes.Structure):
+    _fields_ = [("st_name", Elf64_Word),
+                ("st_info", ctypes.c_ubyte),
+                ("st_other", ctypes.c_ubyte),
+                ("st_shndx", Elf64_Half),
+                ("st_value", Elf64_Addr),
+                ("st_size", Elf64_Xword),]
+    
+    @property
+    def st_type(self):
+        return self.st_info & 0x0f
+    
+    @property
+    def st_bind(self):
+        return self.st_info >> 4
+
+    @st_type.setter
+    def st_type(self, value):
+        value &= 0x0f
+        self.st_info = (self.st_bind << 4) | value
+
+    @st_bind.setter
+    def st_bind(self, value):
+        value &= 0x0f
+        self.st_info = (value << 4) | self.st_type
+    
+class Elf64_Rel(ctypes.Structure):
+    _fields_ = [("r_offset", Elf64_Addr),
+                ("r_info", Elf64_Xword),]
+    
+    @property
+    def r_sym(self):
+        return self.r_info >> 32
+    
+    @property
+    def r_type(self):
+        return self.r_info % (1 << 32)
+        
+    @r_sym.setter
+    def r_sym(self, value):
+        value %= (1 << 32)
+        self.r_info = (value << 32) | self.r_type
+
+    @r_type.setter
+    def r_type(self, value):
+        value %= (1 << 32)
+        self.r_info = (self.r_sym << 32) | value
+    
+class Elf64_Rela(ctypes.Structure):
+    _fields_ = [("r_offset", Elf64_Addr),
+                ("r_info", Elf64_Xword),
+                ("r_addend", Elf64_Sxword),]
+    
+    @property
+    def r_sym(self):
+        return self.r_info >> 32
+    
+    @property
+    def r_type(self):
+        return self.r_info % (1 << 32)
+    
+    @r_sym.setter
+    def r_sym(self, value):
+        value %= (1 << 32)
+        self.r_info = (value << 32) | self.r_type
+
+    @r_type.setter
+    def r_type(self, value):
+        value %= (1 << 32)
+        self.r_info = (self.r_sym << 32) | value
+
+class Elf32_Link_Map(ctypes.Structure):
+    _fields_ = [("l_addr", Elf32_Addr),
+                ("l_name", Elf32_Addr),
+                ("l_ld", Elf32_Addr),
+                ("l_next", Elf32_Addr),
+                ("l_prev", Elf32_Addr),]
+
+class Elf64_Link_Map(ctypes.Structure):
+    _fields_ = [("l_addr", Elf64_Addr),
+                ("l_name", Elf64_Addr),
+                ("l_ld",   Elf64_Addr),
+                ("l_next", Elf64_Addr),
+                ("l_prev", Elf64_Addr),]
+
+
+#
+# Additions below here by Zach Riggle for pwntool
+#
+# See the routine elf_machine_runtime_setup for the relevant architecture
+# for the layout of the GOT.
+#
+# https://chromium.googlesource.com/chromiumos/third_party/glibc/+/master/sysdeps/x86/dl-machine.h
+# https://chromium.googlesource.com/chromiumos/third_party/glibc/+/master/sysdeps/x86_64/dl-machine.h
+# https://fossies.org/dox/glibc-2.20/aarch64_2dl-machine_8h_source.html#l00074
+# https://fossies.org/dox/glibc-2.20/powerpc32_2dl-machine_8c_source.html#l00203
+#
+# For now, these are defined for x86 and x64
+#
+char = ctypes.c_char
+byte = ctypes.c_byte
+
+class Elf_eident(ctypes.Structure):
+    _fields_ = [('EI_MAG',char*4),
+                ('EI_CLASS',byte),
+                ('EI_DATA',byte),
+                ('EI_VERSION',byte),
+                ('EI_OSABI',byte),
+                ('EI_ABIVERSION',byte),
+                ('EI_PAD', byte*(16-9))]
+
+class Elf_i386_GOT(ctypes.Structure):
+    _fields_ = [("jmp", Elf32_Addr),
+                ("linkmap", Elf32_Addr),
+                ("dl_runtime_resolve", Elf32_Addr)]
+class Elf_x86_64_GOT(ctypes.Structure):
+    _fields_ = [("jmp", Elf64_Addr),
+                ("linkmap", Elf64_Addr),
+                ("dl_runtime_resolve", Elf64_Addr)]
+
+class Elf_HashTable(ctypes.Structure):
+    _fields_ = [('nbucket', Elf32_Word),
+                ('nchain', Elf32_Word),]
+              # ('bucket', nbucket * Elf32_Word),
+              # ('chain',  nchain * Elf32_Word)]
+
+# Docs: http://dyncall.org/svn/dyncall/tags/r0.4/dyncall/dynload/dynload_syms_elf.c
+class GNU_HASH(ctypes.Structure):
+    _fields_ = [('nbuckets',  Elf32_Word),
+                ('symndx',    Elf32_Word),
+                ('maskwords', Elf32_Word),
+                ('shift2',    Elf32_Word)]
+
+class Elf32_r_debug(ctypes.Structure):
+    _fields_ = [('r_version', Elf32_Word),
+                ('r_map', Elf32_Addr)]
+
+class Elf64_r_debug(ctypes.Structure):
+    _fields_ = [('r_version', Elf32_Word),
+                ('r_map', Elf64_Addr)]
+
+constants.DT_GNU_HASH = 0x6ffffef5
+constants.STN_UNDEF   = 0
+
+pid_t = ctypes.c_uint32
+
+class elf_siginfo(ctypes.Structure):
+    _fields_ = [('si_signo', ctypes.c_int32),
+                ('si_code', ctypes.c_int32),
+                ('si_errno', ctypes.c_int32)]
+
+class timeval32(ctypes.Structure):
+    _fields_ = [('tv_sec', ctypes.c_int32),
+                ('tv_usec', ctypes.c_int32),]
+
+class timeval64(ctypes.Structure):
+    _fields_ = [('tv_sec', ctypes.c_int64),
+                ('tv_usec', ctypes.c_int64),]
+
+# See linux/elfcore.h
+def generate_prstatus_common(size, regtype):
+    c_long = ctypes.c_uint32 if size==32 else ctypes.c_uint64
+    timeval = timeval32 if size==32 else timeval64
+
+    return [('pr_info', elf_siginfo),
+            ('pr_cursig', ctypes.c_int16),
+            ('pr_sigpend', c_long),
+            ('pr_sighold', c_long),
+            ('pr_pid', pid_t),
+            ('pr_ppid', pid_t),
+            ('pr_pgrp', pid_t),
+            ('pr_sid', pid_t),
+            ('pr_utime', timeval),
+            ('pr_stime', timeval),
+            ('pr_cutime', timeval),
+            ('pr_cstime', timeval),
+            ('pr_reg', regtype),
+            ('pr_fpvalid', ctypes.c_uint32)
+            ]
+
+# See i386-linux-gnu/sys/user.h
+class user_regs_struct_i386(ctypes.Structure):
+    _fields_ = [(name, ctypes.c_uint32) for name in [
+                'ebx',
+                'ecx',
+                'edx',
+                'esi',
+                'edi',
+                'ebp',
+                'eax',
+                'xds',
+                'xes',
+                'xfs',
+                'xgs',
+                'orig_eax',
+                'eip',
+                'xcs',
+                'eflags',
+                'esp',
+                'xss',
+                ]]
+
+
+assert ctypes.sizeof(user_regs_struct_i386) == 0x44
+
+
+# See i386-linux-gnu/sys/user.h
+class user_regs_struct_amd64(ctypes.Structure):
+    _fields_ = [(name, ctypes.c_uint64) for name in [
+                'r15',
+                'r14',
+                'r13',
+                'r12',
+                'rbp',
+                'rbx',
+                'r11',
+                'r10',
+                'r9',
+                'r8',
+                'rax',
+                'rcx',
+                'rdx',
+                'rsi',
+                'rdi',
+                'orig_rax',
+                'rip',
+                'cs',
+                'eflags',
+                'rsp',
+                'ss',
+                'fs_base',
+                'gs_base',
+                'ds',
+                'es',
+                'fs',
+                'gs',
+                ]]
+
+assert ctypes.sizeof(user_regs_struct_amd64) == 0xd8
+
+class user_regs_struct_arm(ctypes.Structure):
+    _fields_ = [('r%i' % i, ctypes.c_uint32) for i in range(18)]
+
+    @property
+    def cpsr(self):
+        return self.r16
+    @property
+    def pc(self):
+        return self.r15
+    @property
+    def lr(self):
+        return self.r14
+    @property
+    def sp(self):
+        return self.r13
+    @property
+    def ip(self):
+        return self.r12
+    @property
+    def fp(self):
+        return self.r11
+
+
+class user_regs_struct_aarch64(ctypes.Structure):
+    _fields_ = [('x%i' % i, ctypes.c_uint64) for i in range(31)] \
+             + [('sp', ctypes.c_uint64),
+                ('pc', ctypes.c_uint64),
+                ('pstate', ctypes.c_uint64)]
+
+    @property
+    def lr(self):
+        return self.x30
+
+    def __getattr__(self, name):
+        if name.startswith('r'):
+            name = 'x' + name[1:]
+            return getattr(self, name) & 0xffffffff
+        raise AttributeError(name)
+
+class elf_prstatus_i386(ctypes.Structure):
+    _fields_ = generate_prstatus_common(32, user_regs_struct_i386)
+
+assert ctypes.sizeof(elf_prstatus_i386) == 0x90
+
+class elf_prstatus_amd64(ctypes.Structure):
+    _fields_ = generate_prstatus_common(64, user_regs_struct_amd64) \
+             + [('padding', ctypes.c_uint32)]
+
+assert ctypes.sizeof(elf_prstatus_amd64) == 0x150
+
+class elf_prstatus_arm(ctypes.Structure):
+    _fields_ = generate_prstatus_common(32, user_regs_struct_arm)
+
+class elf_prstatus_aarch64(ctypes.Structure):
+    _fields_ = generate_prstatus_common(64, user_regs_struct_aarch64)
+
+class Elf32_auxv_t(ctypes.Structure):
+    _fields_ = [('a_type', ctypes.c_uint32),
+                ('a_val', ctypes.c_uint32),]
+class Elf64_auxv_t(ctypes.Structure):
+    _fields_ = [('a_type', ctypes.c_uint64),
+                ('a_val', ctypes.c_uint64),]
+
+def generate_prpsinfo(long):
+    return [
+        ('pr_state', byte),
+        ('pr_sname', char),
+        ('pr_zomb', byte),
+        ('pr_nice', byte),
+        ('pr_flag', long),
+        ('pr_uid', ctypes.c_ushort),
+        ('pr_gid', ctypes.c_ushort),
+        ('pr_pid', ctypes.c_int),
+        ('pr_ppid', ctypes.c_int),
+        ('pr_pgrp', ctypes.c_int),
+        ('pr_sid', ctypes.c_int),
+        ('pr_fname', char * 16),
+        ('pr_psargs', char * 80)
+    ]
+
+class elf_prpsinfo_32(ctypes.Structure):
+    _fields_ = generate_prpsinfo(Elf32_Addr)
+
+class elf_prpsinfo_64(ctypes.Structure):
+    _fields_ = generate_prpsinfo(Elf64_Addr)
+
+def generate_siginfo(int_t, long_t):
+    class siginfo_t(ctypes.Structure):
+        _fields_ = [('si_signo', int_t),
+                    ('si_errno', int_t),
+                    ('si_code', int_t),
+                    ('sigfault_addr', long_t),
+                    ('sigfault_trapno', int_t)]
+    return siginfo_t
+
+class elf_siginfo_32(generate_siginfo(ctypes.c_uint32, ctypes.c_uint32)):
+    pass
+
+class elf_siginfo_64(generate_siginfo(ctypes.c_uint32, ctypes.c_uint64)):
+    pass
+
+"""
+=[ custom elf parsing code ]=
+"""
+
+from ctypes import sizeof
+from os import memfd_create, execve, write, environ
+from pprint import pprint
+import sys
+from pathlib import Path
+
+Header = Elf64_Ehdr
+Segment = Elf64_Phdr
+Section = Elf64_Shdr
+Symbol = Elf64_Sym
+Reloc = Elf64_Rela
+DynTag = Elf64_Dyn
+
+class ValidationException(Exception):
+    pass
+
+def nextOrNone(iterable):
+    try:
+        return next(iterable)
+    except StopIteration:
+        return None
+    
+def listOf(struct: ctypes.Structure, raw: bytes):
+    return [struct.from_buffer(raw, i * sizeof(struct)) for i in range(len(raw) // sizeof(struct))]
+    
+class Strings:
+    def __init__(self, raw: bytes, size: int = -1, offset: int = 0):
+        if size < 0:
+            size = len(raw)
+        self.raw = raw[offset : offset + size]
+
+    def name(self, offset: int) -> None | bytes:
+        try:
+            name = b""
+            while self.raw[offset] != 0:
+                name += self.raw[offset].to_bytes(1, "little")
+                offset += 1
+            return name
+        except IndexError:
+            return None
+
+class Elf:
+    def __init__(self, raw: bytes, header: Header, segments: list[Segment], sections: list[Section]):
+        self.raw = raw
+        self.ref = memoryview(raw)
+        self.header = header
+        self.segments = segments
+        self.sections = sections
+        self.dyanmicSegment = None
+        self.dyanmicTags = None
+        self.sectionNames = None
+
+        try:
+            shstrtab = sections[self.header.e_shstrndx]
+            self.sectionNames = Strings(self.content(shstrtab))
+        except IndexError:
+            pass
+
+        try:
+            self.dyanmicSegment = next(filter(lambda seg: seg.p_type == constants.PT_DYNAMIC, self.segments))
+            self.dyanmicTags = listOf(DynTag, self.content(self.dyanmicSegment))
+        except StopIteration:
+            pass
+
+    def write(self, file: str | Path):
+        with open(file, "wb") as out:
+            out.write(self.raw)
+
+    def run(self, argv: list[str] | None = None):
+        argv = argv or sys.argv
+        fd = memfd_create("chal", 0)
+        write(fd, self.raw)
+        execve(fd, argv, environ)
+
+    def content(self, part: Segment | Section) -> bytes:
+        if type(part) == Segment:
+            return self.ref[part.p_offset : part.p_offset + part.p_filesz]
+        elif type(part) == Section:
+            return self.ref[part.sh_offset : part.sh_offset + part.sh_size]
+        else:
+            raise NotImplementedError("unsupported argument type")
+        
+    def dyntag(self, targetTag: int) -> None | DynTag:
+        if self.dyanmicTags:
+            return nextOrNone(filter(lambda tag: tag.d_tag == targetTag, self.dyanmicTags))
+        
+    def relocs(self, part: bytes | Section) -> list[Reloc]:
+        if type(part) == bytes:
+            return listOf(Reloc, part)
+        elif type(part) == Section:
+            return listOf(Reloc, self.content(part))
+        else:
+            raise NotImplementedError("unsupported argument type")
+        
+    def symtab(self, part: bytes | Section) -> list[Symbol]:
+        if type(part) == bytes:
+            return listOf(Symbol, part)
+        elif type(part) == Section:
+            return listOf(Symbol, self.content(part))
+        else:
+            raise NotImplementedError("unsupported argument type")
+        
+    def strtab(self, part: bytes | Section) -> Strings:
+        if type(part) == bytes:
+            return Strings(part)
+        elif type(part) == Section:
+            return Strings(self.content(part))
+        else:
+            raise NotImplementedError("unsupported argument type")
+        
+    def section(self, key: bytes | int) -> None | Section:
+        if type(key) == str:
+            key = key.encode()
+        if type(key) == bytes:
+            if self.sectionNames:
+                for section in self.sections:
+                    if (name := self.sectionNames.name(section.sh_name)) and name == key:
+                        return section
+        elif type(key) == int:
+            for section in self.sections:
+                if section.sh_type == key:
+                    return section
+        else:
+            raise NotImplementedError("unsupported argument type")
+
+class SectionFlags:
+    WRITE = 1 << 0
+    ALLOC = 1 << 1
+    EXECINSTR = 1 << 2
+
+class SegmentFlags:
+    X = 1 << 0
+    W = 1 << 1
+    R = 1 << 2
+
+def dump(struct: ctypes.Structure):
+    for name, t in struct._fields_:
+        val = getattr(struct, name)
+        if   type(val) == int:
+            num = f"{val:x}".rjust(sizeof(t) * 2, "0")
+            print(f"{name:<12} = 0x{num}")
+        else:
+            print(f"{name:<12} = {val}")
+
+def parse(data: bytes, blacklist_segments: list[int] = []) -> Elf:
+    data = bytearray(data)
+    header = Header.from_buffer(data)
+
+    # these dont actually matter but oh well
+    if header.e_ident[constants.EI_CLASS] != constants.ELFCLASS64:
+        raise ValidationException("must have 64 bit class")
+    
+    if header.e_ident[constants.EI_DATA] != constants.ELFDATA2LSB:
+        raise ValidationException("must be little endian")
+    
+    if header.e_ehsize != sizeof(Header):
+        raise ValidationException("bad header size")
+    
+    if header.e_shentsize != sizeof(Section):
+        raise ValidationException("bad section size")
+    
+    if header.e_phentsize != sizeof(Segment):
+        raise ValidationException("bad segment size")
+    
+    # important checks
+    if header.e_ident[constants.EI_MAG0] != constants.ELFMAG0:
+        raise ValidationException("bad elf magic")
+    
+    if header.e_ident[constants.EI_MAG1] != constants.ELFMAG1:
+        raise ValidationException("bad elf magic")
+    
+    if header.e_ident[constants.EI_MAG2] != constants.ELFMAG2:
+        raise ValidationException("bad elf magic")
+    
+    if header.e_ident[constants.EI_MAG3] != constants.ELFMAG3:
+        raise ValidationException("bad elf magic")
+    
+    if header.e_machine != 0x3e:
+        raise ValidationException("bad machine")
+    
+    if header.e_type != constants.ET_EXEC and header.e_type != constants.ET_DYN:
+        raise ValidationException("bad type")
+    
+    segments = list(Segment.from_buffer(data, header.e_phoff + i * sizeof(Segment)) for i in range(header.e_phnum))
+    sections = list(Section.from_buffer(data, header.e_shoff + i * sizeof(Section)) for i in range(header.e_shnum))
+
+    for segment in segments:
+        if segment.p_type in blacklist_segments:
+            raise ValidationException("blacklisted segment not allowed")
+
+    return Elf(data, header, segments, sections)
