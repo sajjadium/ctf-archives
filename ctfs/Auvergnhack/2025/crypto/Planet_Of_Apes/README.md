@@ -1,0 +1,1 @@
+A text that appeared to be a number was intercepted on the way to a banana export. We know that this is one of the procedures used by Pierre Boulle's team. Will you be able to find the content of the message ?

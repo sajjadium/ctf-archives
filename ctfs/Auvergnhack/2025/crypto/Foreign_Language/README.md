@@ -1,0 +1,1 @@
+As the experts try to regain control of their systems, an intercepted file reveals an encoded data stream, believed to be crucial information stolen by the Monkey hackers before their escape. Find this information.

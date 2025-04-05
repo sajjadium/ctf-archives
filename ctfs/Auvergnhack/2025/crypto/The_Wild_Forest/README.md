@@ -1,0 +1,1 @@
+We're looking for the wild secret MonKey forest where the bananas are the best. From sources on ChimpMaster1500 knows the location of this Wild MonKey forest. We were able to gain access to his computer and found two encrypted zips as well as one of the two unencrypted zips on his desktop. Can you find the location of the Wild MonKey forest?

@@ -1,0 +1,1 @@
+You're Monkey Schumacher, a realy talented pilot, your final goal is to cross the finish line of the annual Jungle Grand Prix. There is just one teensy, banana-sized problem: you don't have a driver's license.

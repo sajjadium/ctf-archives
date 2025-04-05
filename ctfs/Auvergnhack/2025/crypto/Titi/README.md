@@ -1,0 +1,1 @@
+One of our forward bases suffered a computer attack last week, resulting in a consequent loss of data on several machines. The data in question has apparently been encrypted. However, for tomorrow's mission, we absolutely must recover the key contained in one of the encrypted files. Your job is to provide us with this key before the sun goes down.

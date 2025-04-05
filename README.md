@@ -246,14 +246,19 @@
             <td><a href="https://ctftime.org/event/1110/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/AptosCodeCollision">AptosCodeCollision</a></td>
+            <td><a href="ctfs/AptosCodeCollision/2024">2024</a></td>
+            <td><a href="https://ctftime.org/event/2433/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/ArabSecurityCyberWargames">ArabSecurityCyberWargames</a></td>
             <td><a href="ctfs/ArabSecurityCyberWargames/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2046/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/AptosCodeCollision">AptosCodeCollision</a></td>
-            <td><a href="ctfs/AptosCodeCollision/2024">2024</a></td>
-            <td><a href="https://ctftime.org/event/2433/tasks/" target="_blank">CTFtime</a></td>
+            <td rowspan=1><a href="ctfs/Auvergnhack">Auvergnhack</a></td>
+            <td><a href="ctfs/Auvergnhack/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2752/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
             <td rowspan=2><a href="ctfs/AzureAssassinAlliance">AzureAssassinAlliance</a></td>
