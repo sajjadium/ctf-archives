@@ -1,0 +1,439 @@
+function Main.MMMMN 0
+    push argument 0
+    push argument 1
+    not
+    and
+    push argument 0
+    not
+    push argument 1
+    and
+    or
+    return
+
+function Main.MMMMM 1
+    push argument 1
+    pop local 0
+    push argument 1
+    neg
+    push constant 1
+    sub
+    push argument 0
+    and
+    pop local 0
+    push argument 1
+    push argument 0
+    not
+    and
+    push local 0
+    or
+    return
+
+function Main.MMMNM 2
+    push argument 0
+    push argument 1
+    not
+    pop local 0
+    not
+    push argument 1
+    and
+    pop local 1
+    push local 0
+    push argument 0
+    and
+    pop local 0
+    push local 1
+    push local 0
+    or
+    return
+
+function Main.MMNMM 0
+    push argument 0
+    push argument 1
+    not
+    and
+    push argument 0
+    not
+    push argument 1
+    and
+    or
+    push constant 0
+    return
+
+function Main.MMNMN 1
+    push argument 0
+    push argument 1
+    push argument 0
+    not
+    and
+    push argument 1
+    not
+    push argument 0
+    and
+    or
+    pop local 0
+    return
+
+function Main.MMNNM 1
+    push argument 1
+    push argument 1
+    push argument 0
+    not
+    and
+    push argument 1
+    not
+    push argument 0
+    and
+    or
+    pop local 0
+    return
+
+function Main.NMNNM 0
+    push argument 0
+    pop pointer 1
+    push constant 110
+    pop that 0
+    push constant 97
+    pop that 1
+    push constant 110
+    pop that 2
+    push constant 100
+    pop that 3
+    push constant 50
+    pop that 4
+    push constant 116
+    pop that 5
+    push constant 101
+    pop that 6
+    push constant 116
+    pop that 7
+    push constant 114
+    pop that 8
+    push constant 111
+    pop that 9
+    push constant 115
+    pop that 10
+    push constant 0
+    pop that 11
+    push argument 0
+    return
+
+function Main.MMMNN 5
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop pointer 1
+    push argument 2
+    pop local 1
+    push constant 3
+    pop local 2
+    goto _____
+    
+    label _____
+    push this 0
+    if-goto ____
+    goto .
+
+    label ____
+    push that 0
+    if-goto ___
+    goto ______
+
+    label ______
+    push argument 1
+    pop pointer 1
+
+    label ___
+    push this 0
+    push that 0
+    call Main.MMMMN 2
+    push constant 94
+    call Main.MMMNM 2
+    push constant 132
+    call Main.MMNMN 2
+
+    push local 3
+    if-goto __
+    goto .__
+
+    label _
+    push local 2
+    push constant 31
+    add
+    pop local 2
+    push local 2
+    call Main.MMMMM 2
+    push pointer 1
+    pop local 0
+    push local 1
+    pop pointer 1
+    pop that 0
+    goto .__.
+
+    label .__.
+    push pointer 0
+    push constant 1
+    add
+    pop pointer 0
+    push pointer 1
+    push constant 1
+    add
+    pop local 1
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    push local 0
+    pop pointer 1
+    goto _____
+
+    label .
+    push argument 2
+    return
+
+    label __
+    push local 3
+    push constant 1
+    add
+    pop local 3
+    push pointer 1
+    pop local 0
+    push local 1
+    pop pointer 1
+    pop local 4
+    push local 4
+    push local 1
+    call Main.MMMMM 2
+    push local 1
+    call Main.MMMMM 2
+    push constant 431
+    call Main.MMMNM 2
+    pop that 0
+    push pointer 1
+    push constant 1
+    add
+    pop local 1
+    push local 0
+    pop pointer 1
+    push local 4
+    goto _
+
+    label .__
+    push local 3
+    push constant 1
+    sub
+    pop local 3
+    goto _
+
+
+function Main.NNMNM 3
+    push argument 0
+    pop pointer 0
+    push constant 24576
+    pop pointer 1
+    push constant 0
+    pop local 0
+    push constant 0
+    goto ___
+
+    label ___
+    push that 0
+    pop local 2
+    push local 2
+    if-goto ____
+    pop local 1
+    push constant 0
+    goto ___
+
+    label ____
+    push local 2
+    push constant 128
+    eq
+    if-goto _____
+    push local 2
+    eq
+    not
+    if-goto DIF
+    push local 1
+    goto ___
+
+    label DIF
+    push local 2
+    pop local 1
+    push local 1
+    pop this 0
+    push pointer 0
+    push constant 1
+    add
+    pop pointer 0
+    push local 0
+    push constant 100
+    eq
+    not
+    if-goto ______
+    goto _____
+
+    label ______
+    push local 0
+    push constant 1
+    add
+    pop local 0
+    push local 1
+    goto ___
+
+    label _____
+    push constant 0
+    pop this 0
+    push argument 0
+    return
+
+function Main.NNMNN 0
+    push argument 0
+    pop pointer 0
+    push constant 97
+    pop this 0
+    push constant 481
+    pop this 1
+    push constant 15
+    pop this 2
+    push constant 37
+    pop this 3
+    push constant 420
+    pop this 4
+    push constant 116
+    pop this 5
+    push constant 128
+    pop this 6
+    push constant 503
+    pop this 7
+    push constant 229
+    pop this 8
+    push constant 130
+    pop this 9
+    push constant 489
+    pop this 10
+    push constant 189
+    pop this 11
+    push constant 333
+    pop this 12
+    push constant 496
+    pop this 13
+    push constant 358
+    pop this 14
+    push constant 321
+    pop this 15
+    push constant 497
+    pop this 16
+    push constant 297
+    pop this 17
+    push constant 461
+    pop this 18
+    push constant 429
+    pop this 19
+    push constant 439
+    pop this 20
+    push constant 410
+    pop this 21
+    push constant 496
+    pop this 22
+    push constant 428
+    pop this 23
+    push constant 588
+    pop this 24
+    push constant 486
+    pop this 25
+    push constant 632
+    pop this 26
+    push constant 587
+    pop this 27
+    push constant 496
+    pop this 28
+    push constant 560
+    pop this 29
+    push constant 736
+    pop this 30
+    push constant 468
+    pop this 31
+    push constant 726
+    pop this 32
+    push constant 689
+    pop this 33
+    push constant 463
+    pop this 34
+    push constant 651
+    pop this 35
+    push constant 779
+    pop this 36
+    push constant 486
+    pop this 37
+    push constant 864
+    pop this 38
+    push constant 891
+    pop this 39
+    push constant 482
+    pop this 40
+    push constant 810
+    pop this 41
+    push constant 975
+    pop this 42
+    push constant 445
+    pop this 43
+    push constant 951
+    pop this 44
+    push constant 969
+    pop this 45
+    push constant 483
+    pop this 46
+    push constant 943
+    pop this 47
+    push argument 0
+    return
+    
+function Main.NNNNN 0
+    push argument 0
+    pop pointer 0
+    push argument 1
+    pop pointer 1
+
+    label ___
+    push this 0
+    push that 0
+    eq
+    not
+    if-goto ____
+    push this 0
+    push constant 0
+    eq
+    if-goto _____
+    push pointer 0
+    push constant 1
+    add
+    pop pointer 0
+    push pointer 1
+    push constant 1
+    add
+    pop pointer 1
+    goto ___
+
+    label ____
+    push constant 0
+    return
+
+    label _____
+    push constant 0
+    push constant 0
+    eq
+    return
+
+function Sys.init 0
+    push constant 2048
+    call Main.NNMNM 1
+    push constant 4096
+    call Main.NMNNM 1
+    push constant 10240
+    call Main.MMMNN 3
+    push constant 8192
+    call Main.NNMNN 1
+    call Main.NNNNN 2
+    pop pointer 0
+label WHILE
+    goto WHILE              // loops infinitely
