@@ -1,0 +1,1 @@
+In the lush and vibrant Monkeyland, a society of tech-savvy monkeys has discovered the power of cryptocurrency. Their native currency, called BananaCoin (BNNC), is based on blockchain technology. The monkeys use it to trade goods and services throughout the jungle.

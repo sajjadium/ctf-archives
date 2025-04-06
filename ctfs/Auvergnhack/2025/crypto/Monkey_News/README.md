@@ -1,0 +1,1 @@
+We want to contact the monkey King. To do so, we need to access a recenty discovered website on which some monkeys can directly chat with him. A closed source provided us the source code of the website and the specs checker the site is using (The password of the archive is ZiTF). He also provied a known hash for user john. You role is to initiate a contact with the monkey king
