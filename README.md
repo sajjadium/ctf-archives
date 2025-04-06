@@ -3226,6 +3226,11 @@
             <td><a href="https://ctftime.org/event/1246/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Ulisse">Ulisse</a></td>
+            <td><a href="ctfs/Ulisse/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2735/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Undutmaning">Undutmaning</a></td>
             <td><a href="ctfs/Undutmaning/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2283/tasks/" target="_blank">CTFtime</a></td>
