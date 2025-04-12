@@ -2894,7 +2894,11 @@
             <td><a href="https://ctftime.org/event/932/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/THCon">THCon</a></td>
+            <td rowspan=4><a href="ctfs/THCon">THCon</a></td>
+            <td><a href="ctfs/THCon/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2660/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/THCon/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2269/tasks/" target="_blank">CTFtime</a></td>
         </tr>
