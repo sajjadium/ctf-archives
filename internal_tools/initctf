@@ -53,18 +53,18 @@ if __name__ == '__main__':
   ctf_name = re.sub(r'\d+$', '', ctf_name)
   if not ctf_name:
     ctf_name = 'UNKNOWN'
-  full_name = '%s/%d' % (ctf_name, datetime.date.today().year)
+  full_name = f'{ctf_name}/{datetime.date.today().year}'
   title = soup.find_all('title')[0].text.lower()
   if 'teaser' in title or 'qualifier' in title or 'quals' in title or 'preliminary' in title or 'prequal' in title or 'qualification' in title or 'qualifying' in title:
     full_name += '/Quals'
   elif 'finals' in title:
     full_name += '/Finals'
 
-  os.system('mkdir -p %s' % full_name)
+  os.system(f'mkdir -p {full_name}')
   for category in ['crypto', 'web', 'pwn', 'rev', 'misc', 'forensic', 'osint', 'net', 'steg', 'mobile', 'blockchain', 'hw']:
-    os.system('mkdir %s/%s' % (full_name, category))
+    os.system(f'mkdir {full_name}/{category}')
 
-  open('%s/README.md' % ctf_name, 'w').write('[CTFtime Page](https://ctftime.org/ctf/%s)\n' % ctf_id)
-  open('%s/README.md' % full_name, 'w').write('[CTFtime Page](https://ctftime.org/event/%s)\n' % event_id)
+  open(f'{ctf_name}/README.md', 'w').write(f'[CTFtime Page](https://ctftime.org/ctf/{ctf_id})\n')
+  open(f'{full_name}/README.md', 'w').write(f'[CTFtime Page](https://ctftime.org/event/{event_id})\n')
 
   print(full_name)
