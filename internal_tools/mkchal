@@ -139,6 +139,8 @@ def replace_special_characters(line):
 
 def get_challenge_name(line):
   args = re.sub(r'(score:|solves:)\s+\d+', '', line.strip(), flags=re.IGNORECASE).strip()
+  args = re.sub(r'(forensics|web|network)', '', args, flags=re.IGNORECASE).strip()
+  args = re.sub(r'\(solved by \d+ team(s?)\)\d+', '', args, flags=re.IGNORECASE).strip()
   args = re.sub(r'(\d+\s+solves|\d+\s+pts)', '', args.strip(), flags=re.IGNORECASE).strip()
   args = re.sub(r'\(\d+ pts\)', '', args, flags=re.IGNORECASE).strip()
   args = re.sub(r'\(\d+\)$', '', args, flags=re.IGNORECASE).strip()

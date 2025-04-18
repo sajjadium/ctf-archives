@@ -1,0 +1,1 @@
+Check out my new MAC generator! I know you are supposed to use random and secret IVs in CBC-AES mode, so I decided to improve upon standard MACs by implementing that. Good luck trying to forge any messages now!

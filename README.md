@@ -1032,7 +1032,11 @@
             <td><a href="https://ctftime.org/event/1118/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/DawgCTF">DawgCTF</a></td>
+            <td rowspan=6><a href="ctfs/DawgCTF">DawgCTF</a></td>
+            <td><a href="ctfs/DawgCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2651/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/DawgCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2343/tasks/" target="_blank">CTFtime</a></td>
         </tr>

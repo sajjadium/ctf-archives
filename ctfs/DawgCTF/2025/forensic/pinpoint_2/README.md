@@ -1,0 +1,1 @@
+I installed a new program that is supposed to use my card to login, however it says something about a clocking speed error. Can you figure out the clock rate conversion value for my card so I may better tune my program? Flag format: DawgCTF{base10 value}

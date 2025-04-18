@@ -1,0 +1,1 @@
+I was watching a chess game, and was wowed extremely with the positional thinking I saw from white. I had to step away, unfortunately.... that was a long time ago, and I still want to see how the game developed. Given the first few moves which I wrote down, can you find out what this game was called?

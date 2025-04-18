@@ -1,0 +1,1 @@
+Check out the note-taking app I created! I heard users are really bad at picking passwords, so I made a really really secure number generator to give users passwords! Good luck trying to break it now.
