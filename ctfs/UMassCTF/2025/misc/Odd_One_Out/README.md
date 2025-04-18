@@ -1,0 +1,3 @@
+easy steganography
+
+I forgot to organize my encrypted flags for this challenge! Can you find the odd one out? I could have sworn it was a different color...
