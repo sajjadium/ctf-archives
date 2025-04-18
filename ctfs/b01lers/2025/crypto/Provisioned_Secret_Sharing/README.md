@@ -1,0 +1,3 @@
+Athryx
+
+I made a secret sharing scheme where you can provision the system to work with only certain shares. Surely there's no issues...

@@ -1,0 +1,3 @@
+CygnusX & ky28059
+
+I miss the good old days before OOP, when we lived in a classless, stateless society...
