@@ -1,0 +1,15 @@
+Please note remote instances will get shutoff automatically after 30 minutes. It might take a couple minutes for your instance to provision and be ready.  
+
+1) RUN THIS COMMAND: 
+
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"instance":"web/flash_game_studio"}' \
+  http://server-nlb-3829613530e79217.elb.us-east-1.amazonaws.com/start
+
+2) GET IP FROM OUTPUT. 
+
+3) CONNECT TO http://<IP>
+
+
+

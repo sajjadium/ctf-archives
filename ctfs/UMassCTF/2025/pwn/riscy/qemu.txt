@@ -1,0 +1,4 @@
+You may want to use qemu-riscv64 to run this program.
+qemu-riscv64 -g 4444 riscy
+gdb-multiarch riscy
+"target remote :4444"
