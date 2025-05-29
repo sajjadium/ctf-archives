@@ -1,0 +1,103 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #0057a0;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+  padding: 60px 15px 0;
+}
+.container .text-muted {
+  margin: 20px 0;
+}
+
+.footer > .container {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+code {
+  font-size: 80%;
+}
+
+
+
+.connect-FRCO span:before {
+    margin-right: .3rem;
+}
+.connect-FRCO span:before, .connect-FRCO span:after {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 46%;
+    height: 1px;
+    background: #2C2C2C;
+}
+
+.connect-FRCO span:after {
+    margin-left: .3rem;
+}
+.connect-FRCO span:before, .connect-FRCO span:after {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    width: 46%;
+    height: 1px;
+    background: #2C2C2C;
+}
+
+
+
+.hr-text:before {
+    content: '';
+        background-color: #000c;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+}
+
+
+.hr-text:after {
+    content: attr(data-content);
+    position: relative;
+    display: inline-block;
+    color: black;
+    padding: 0 .5em;
+    line-height: 1.5em;
+    color: #000;
+    background-color: #fcfcfa;
+}
+
+.hr-text {
+        line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: .5;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: Arial,sans-serif;
+}

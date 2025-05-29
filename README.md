@@ -996,16 +996,20 @@
             <td><a href="https://ctftime.org/event/2365/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/DaVinci">DaVinci</a></td>
-            <td><a href="ctfs/DaVinci/2023">2023</a></td>
+            <td rowspan=4><a href="ctfs/DaVinciCTF">DaVinciCTF</a></td>
+            <td><a href="ctfs/DaVinciCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2675/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/DaVinciCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1858/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/DaVinci/2022">2022</a></td>
+            <td><a href="ctfs/DaVinciCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1559/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/DaVinci/2021">2021</a></td>
+            <td><a href="ctfs/DaVinciCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1296/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

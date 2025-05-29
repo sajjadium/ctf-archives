@@ -1,0 +1,132 @@
+.creditCardForm {
+    max-width: 700px;
+    background-color: #fff;
+    margin: 50px auto;
+    overflow: hidden;
+    padding: 25px;
+    color: #4c4e56;
+}
+
+.creditCardForm label {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.creditCardForm .heading h1 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #4c4e56;
+}
+
+.creditCardForm .payment {
+    float: left;
+    font-size: 18px;
+    padding: 10px 25px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.creditCardForm .payment .form-group {
+    float: left;
+    margin-bottom: 15px;
+}
+
+.creditCardForm .payment .form-control {
+    line-height: 40px;
+    height: auto;
+    padding: 0 16px;
+}
+
+.creditCardForm .owner {
+    width: 63%;
+    margin-right: 10px;
+}
+
+.creditCardForm .CVV {
+    width: 35%;
+}.creditCardForm .CVVV {
+    width: 51%;
+}
+
+
+.creditCardForm .name {
+    width: 100%;
+}
+.creditCardForm .tel {
+    width: 100%;
+}
+.creditCardForm #card-number-field {
+    width: 100%;
+}
+
+.creditCardForm #expiration-date {
+    width: 49%;
+}
+
+.creditCardForm #credit_cards {
+    width: 50%;
+    margin-top: 25px;
+    text-align: right;
+}
+
+.creditCardForm #pay-now {
+    width: 100%;
+    margin-top: 25px;
+
+}
+.creditCardForm #pay-now button {
+       background-color: #0065af;
+}
+.creditCardForm .payment .btn {
+    width: 100%;
+    margin-top: 3px;
+    font-size: 24px;
+    background-color: #2ec4a5;
+    color: white;
+}
+
+.creditCardForm .payment select {
+    padding: 10px;
+    margin-right: 15px;
+}
+
+.transparent {
+    opacity: 0.2;
+}
+
+@media(max-width: 650px) {
+    .creditCardForm .owner,
+    .creditCardForm .CVV,.creditCardForm .CVVV,
+    .creditCardForm #expiration-date,
+    .creditCardForm #credit_cards {
+        width: 100%;
+    }
+    .creditCardForm #credit_cards {
+        text-align: left;
+    }
+}
+
+
+/*  Examples Section */
+
+.examples {
+	max-width: 700px;
+	background-color: #fff;
+	margin: 0 auto 75px;
+	padding: 30px 50px;
+	color: #4c4e56;
+}
+
+.examples-note{
+    text-align: center;
+    font-size: 14px;
+    max-width: 370px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+    color: #7a7a7a;
+}
+
+.examples table {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+}

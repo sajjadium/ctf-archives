@@ -1,0 +1,1 @@
+Each night, the vault’s access code is encrypted and sent to security—but never stored. If you can decrypt the message, the museum’s most valuable treasures will be within your grasp. Can you crack the encryption before security catches on ?
