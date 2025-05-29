@@ -106,7 +106,7 @@
             <td><a href="https://ctftime.org/event/1736/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/AI">AI</a></td>
+            <td rowspan=1><a href="ctfs/AI">AI</a></td>
             <td><a href="ctfs/ALLES/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2383/tasks/" target="_blank">CTFtime</a></td>
         </tr>
@@ -649,7 +649,7 @@
             <td><a href="https://ctftime.org/event/1123/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/CONFidence">CONFidence</a></td>
+            <td rowspan=1><a href="ctfs/CONFidence">CONFidence</a></td>
             <td><a href="ctfs/CONFidence/2020/Finals">2020 Finals</a></td>
             <td><a href="https://ctftime.org/event/1090/tasks/" target="_blank">CTFtime</a></td>
         </tr>
@@ -2072,7 +2072,7 @@
             <td><a href="https://ctftime.org/event/751/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=6><a href="ctfs/N0PSctf">N0PSctf</a></td>
+            <td rowspan=1><a href="ctfs/N0PSctf">N0PSctf</a></td>
             <td><a href="ctfs/N0PSctf/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2358/tasks/" target="_blank">CTFtime</a></td>
         </tr>
@@ -2527,12 +2527,11 @@
             <td><a href="https://ctftime.org/event/2299/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/SCTF">SCTF</a></td>
+            <td rowspan=3><a href="ctfs/SCTF">SCTF</a></td>
             <td><a href="ctfs/SCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2483/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/SCTF">SCTF</a></td>
             <td><a href="ctfs/SCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1539/tasks/" target="_blank">CTFtime</a></td>
         </tr>
