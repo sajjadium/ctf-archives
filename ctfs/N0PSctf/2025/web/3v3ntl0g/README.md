@@ -1,0 +1,3 @@
+We were able to infiltrate a WebTopia server! However, our hacking skills are not very good... We were only able to read from the keyboard input driver. Here is the data we collected, can you have a look? It seems that is has been shuffled a bit though... Also, WebTopia freaks are frenchies, and they use an AZERTY keyboard, just in case you need that information...
+
+Author: algorab

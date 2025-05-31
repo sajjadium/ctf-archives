@@ -1,0 +1,3 @@
+CrypTopia is testing their next gen encryption algorithm. We believe that the way they implemented it may have a flaw...
+
+Author: algorab
