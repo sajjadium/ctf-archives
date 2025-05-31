@@ -926,7 +926,11 @@
             <td><a href="https://ctftime.org/event/2787/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/D3CTF">D^3CTF</a></td>
+            <td rowspan=4><a href="ctfs/D3CTF">D3CTF</a></td>
+            <td><a href="ctfs/D3CTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2770/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/D3CTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2276/tasks/" target="_blank">CTFtime</a></td>
         </tr>
