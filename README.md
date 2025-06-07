@@ -3605,7 +3605,11 @@
             <td><a href="https://ctftime.org/event/974/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/bi0sCTF">bi0sCTF</a></td>
+            <td rowspan=2><a href="ctfs/bi0sCTF">bi0sCTF</a></td>
+            <td><a href="ctfs/bi0sCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2672/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/bi0sCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2117/tasks/" target="_blank">CTFtime</a></td>
         </tr>
