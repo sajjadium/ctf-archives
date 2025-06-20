@@ -1,0 +1,3 @@
+A true cosmopolitan should speak many languages. And I do... but everywhere I go, people seem to understand different things...
+
+Could you help me find a consensus they can all agree on? Someone might even give you a flag for it.

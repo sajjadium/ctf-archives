@@ -63,7 +63,7 @@ def is_valid(line):
   if re.search(r'download (image|file|pcap) \([\d\.]+(kb|mb|b)\)', line.lower()):
     return False
 
-  if re.search(r'\d+[ \t]+points', line.lower()) or re.search(r'\d+[ \t]*solves', line.lower()) or re.search(r'\d+[ \t]+solve', line.lower()) or re.search(r'\d+[ \t]+score', line.lower()):
+  if re.search(r'\d+[ \t]+points', line.lower()) or re.search(r'\d+[ \t]*solves', line.lower()) or re.search(r'\d+[ \t]+solve', line.lower()) or re.search(r'\d+[ \t]+score', line.lower()) or re.search(r'\d+[ \t]+sold', line.lower()) or re.search(r'\$[ \t]+\d+', line.lower()):
     return False
 
   if re.fullmatch(r"[0-9a-z-]+\.zip", line.strip().lower()):
@@ -95,7 +95,7 @@ def is_valid(line):
 
   if line.strip().lower() in [
     'welcome', 'expert', 'beginner', 'web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography', 'unrated', 'reverse engineering', 'task', 'information', 'insights', 'read this carrefully because sometimes the author might leave hints.', 'download files', 'play challenge', 'problem', 'previous submissions', 'download', 'admin bot', 'website', 'pwning',
-    'misc icon', 'crypto icon', 'pwn icon', 'reversing icon', 'web icon', 'steg', 'stego'
+    'misc icon', 'crypto icon', 'pwn icon', 'reversing icon', 'web icon', 'steg', 'stego', 'introduction', 'for sale', 'miscellaneous'
   ]:
     return False
 
