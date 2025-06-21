@@ -2026,6 +2026,11 @@
             <td><a href="https://ctftime.org/event/625/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/MeePwn/2018/Quals">PersianCats</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/MaltaCTF">MaltaCTF</a></td>
+            <td><a href="ctfs/MaltaCTF/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2776/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/MapleCTF">MapleCTF</a></td>
             <td><a href="ctfs/MapleCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2038/tasks/" target="_blank">CTFtime</a></td>
