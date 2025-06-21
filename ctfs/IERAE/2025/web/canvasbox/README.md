@@ -1,0 +1,3 @@
+authored by Ark
+
+The flag is hidden in the canvas. You cannot access it, even with XSS...
