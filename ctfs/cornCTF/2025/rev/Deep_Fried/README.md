@@ -1,0 +1,3 @@
+@c0mm4nd_
+
+strfry is truly a wonderful function...
