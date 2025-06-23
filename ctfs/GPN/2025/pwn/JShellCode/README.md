@@ -1,0 +1,1 @@
+Oh, wie schön ist Panama! Grab yourself a friend (and a little wooden tiger duck) and take a trip through an island in Indonesia and middle America. And maybe, once you've reached your destination, you'll realize it was most beautiful in x86-Land, right where you started.
