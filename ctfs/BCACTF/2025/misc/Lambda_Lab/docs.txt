@@ -1,0 +1,57 @@
+
+Lambda Lab - Basic Command Reference
+
+0. ;
+Comment
+
+1. =
+Defines a new variable or named expression.
+
+Syntax:
+<name> = <lambda expression>
+
+Examples:
+true = λx.λy.x
+false = λx.λy.y
+not = λp.p false true
+
+Notes:
+- Names can only be defined once.
+- Names must be single tokens (no spaces).
+- Definitions are stored and can be reused.
+
+
+2. run
+Evaluates a lambda expression via normal order reduction.
+
+Syntax:
+run <expression>
+
+Examples:
+run true a b      → a
+run false a b     → b
+run not true      → false
+run not false     → true
+
+Notes:
+- Performs full beta-reduction.
+- Applies alpha-conversion to avoid variable capture.
+- Can use previously defined names.
+
+
+3. populate
+Generates Church numerals from a start to end value.
+
+Syntax:
+populate <start> <end>
+
+Example:
+populate 0 5      → Populated numbers 0 to 5
+
+Notes:
+- Automatically creates:
+  0 = λf.λx.x
+  1 = λf.λx.f x
+  2 = λf.λx.f (f x)
+  ...
+- Useful for arithmetic and boolean operations.
