@@ -1,0 +1,1 @@
+I made some basic python code to help you practise your reversing skills. Its output was [33, 73, 32, 103, 39, 106, -2, 159, 0, 151, 80, 140, 66, 128, 87, 78, 79, 119, 27, 117, 8237, 95, 91, 133, 80, 135, 80, 130, 39, 116, 105, 105, 110, 56, 71, 129, 28, 75, 62, 78, 69]

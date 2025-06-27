@@ -1783,6 +1783,11 @@
             <td><a href="https://ctftime.org/event/686/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/involuntaryCTF">involuntaryCTF</a></td>
+            <td><a href="ctfs/involuntaryCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2813/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Intent">Intent</a></td>
             <td><a href="ctfs/Intent/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1454/tasks/" target="_blank">CTFtime</a></td>
