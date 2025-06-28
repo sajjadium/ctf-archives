@@ -361,7 +361,11 @@
             <td><a href="https://ctftime.org/event/2017/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/BSidesMumbai">BSides Mumbai</a></td>
+            <td rowspan=3><a href="ctfs/BSidesMumbai">BSides Mumbai</a></td>
+            <td><a href="ctfs/BSidesMumbai/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2781/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/BSidesMumbai/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2369/tasks/" target="_blank">CTFtime</a></td>
         </tr>
