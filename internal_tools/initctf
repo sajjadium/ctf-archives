@@ -50,7 +50,7 @@ if __name__ == '__main__':
 
 
   ctf_name = re.sub(r'[^0-9a-zA-Z_\.+]+', '', ctf_name.replace('Preliminary', '').replace('Qualifier', '').strip().replace('å', 'a').replace('$', 'S').replace('!', 'i'))
-  ctf_name = re.sub(r'\d+$', '', ctf_name)
+  ctf_name = re.sub(r'\d+$', '', ctf_name).strip('.')
   if not ctf_name:
     ctf_name = 'UNKNOWN'
   full_name = f'{ctf_name}/{datetime.date.today().year}'

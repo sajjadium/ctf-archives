@@ -1842,7 +1842,11 @@
             <td><a href="https://ctftime.org/event/1590/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/Junior.Crypt">Junior.Crypt</a></td>
+            <td rowspan=2><a href="ctfs/Junior.Crypt">Junior.Crypt</a></td>
+            <td><a href="ctfs/Junior.Crypt/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2798/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Junior.Crypt/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2259/tasks/" target="_blank">CTFtime</a></td>
         </tr>
