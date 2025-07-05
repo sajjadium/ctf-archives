@@ -1692,6 +1692,11 @@
             <td><a href="https://ctftime.org/event/1003/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/IMF">IMF</a></td>
+            <td><a href="ctfs/IMF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2831/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/INShAck">INS'hAck</a></td>
             <td><a href="ctfs/INShAck/2019">2019</a></td>
             <td><a href="https://ctftime.org/event/763/tasks/" target="_blank">CTFtime</a></td>
