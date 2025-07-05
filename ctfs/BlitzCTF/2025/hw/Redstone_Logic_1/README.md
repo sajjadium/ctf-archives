@@ -1,0 +1,1 @@
+So i made a redstone logic circuit in minecraft? there are 3 inputs with the lever, Can you tell the output when the input is 101? (1 means Lamp on and 0 means lamp off) Flag Format: if the output is Lamp on and Lamp on then: Blitz{11}

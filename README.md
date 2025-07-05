@@ -528,6 +528,11 @@
             <td><a href="https://ctftime.org/event/591/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/BlitzCTF">BlitzCTF</a></td>
+            <td><a href="ctfs/BlitzCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2816/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/BlockHarbor">BlockHarbor</a></td>
             <td><a href="ctfs/BlockHarbor/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2387/tasks/" target="_blank">CTFtime</a></td>
