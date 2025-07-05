@@ -2442,7 +2442,11 @@
             <td><a href="https://ctftime.org/event/2141/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/R3CTF">R3CTF</a></td>
+            <td rowspan=2><a href="ctfs/R3CTF">R3CTF</a></td>
+            <td><a href="ctfs/R3CTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2731/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/R3CTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2273/tasks/" target="_blank">CTFtime</a></td>
         </tr>
