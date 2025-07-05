@@ -1,0 +1,6 @@
+My friend, you know...
+There're tooooo many of those GPTable Crypto Challenges and Baby Crypto stuffs...
+So I implemented a baby one on blockchain!
+Sepolia test net, address: 0x9C71c90140162a5BAE7159Ec5CC4C86FAddCBfb6
+
+    Author: whale.120
