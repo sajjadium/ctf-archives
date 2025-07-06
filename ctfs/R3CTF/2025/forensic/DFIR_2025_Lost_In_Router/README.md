@@ -1,0 +1,1 @@
+You are a staff member at a company. Today, when you opened your company's internal website, a notification prompted you to update your browser. After downloading the file from the website, nothing happened. Subsequently, you learned from the IT department that the company's router had been hacked.

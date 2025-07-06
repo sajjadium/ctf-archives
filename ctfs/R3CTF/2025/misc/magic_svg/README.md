@@ -1,0 +1,1 @@
+One SVG, four colors.
