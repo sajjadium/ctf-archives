@@ -1,0 +1,13 @@
+the guys's name is 'Rahul Sharma' he was born in 6 of juin 1998.
+his girlfriend's name is 'Neha'.
+his pet's name is chinto.
+
+flag format: blitz{phonepassword_computerpassword_instagrampassword_blockchainwallet}
+
+#only special characters should be added.
+#salt=BlitzHack
+
+phone password: 4 caracters [0:9]   549dbec0f9f9221da78effc4add0f7baee3cc5ea
+computer password: 10 caracters [0:9a:z] 8273CFBC62BAF929392E5882ED35DA25
+instagram password: 6 caracters[0:9a:zA:Z]+salt  $2a$12$qvZqHb19wpc.Cee.UghEE.oCkOM3fw4JS7dJttJp2RkC2RMomnRqW 
+blockchain wallet password:salt+7 caracters[0:9a:zA:Z$@]  c53120130d9cf35015deec2e6452c791d29d3556cfd01a2e543165aca00e2192

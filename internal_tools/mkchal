@@ -197,3 +197,4 @@ if __name__ == '__main__':
   print('\n-----------------------------------------------')
   subprocess.run(['cat', chal_name + '/README.md'])
   print('-----------------------------------------------\n')
+  subprocess.run(['ls', '-tr'])
