@@ -1935,7 +1935,11 @@
             <td><a href="https://ctftime.org/event/1510/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/L3akCTF">L3akCTF</a></td>
+            <td rowspan=2><a href="ctfs/L3akCTF">L3akCTF</a></td>
+            <td><a href="ctfs/L3akCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2629/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/L3akCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2322/tasks/" target="_blank">CTFtime</a></td>
         </tr>

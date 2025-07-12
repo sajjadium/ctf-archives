@@ -21,7 +21,7 @@ def is_valid(line):
   if line.strip().lower() == 'click':
     return False
 
-  if re.search(r'^https?://', line.lower()) and 'renater.fr' not in line.lower() and 'drive.google.com' not in line.lower() and 'amazonaws.com' not in line.lower() and 'youtube.com' not in line.lower() and 'docs.google.com' not in line.lower():
+  if re.search(r'^https?://', line.lower()) and 'renater.fr' not in line.lower() and 'drive.google.com' not in line.lower() and 'amazonaws.com' not in line.lower() and 'youtube.com' not in line.lower() and 'docs.google.com' not in line.lower() and 'mega.nz' not in line.lower():
     return False
 
   if line.strip().lower() == 'ja / en':
