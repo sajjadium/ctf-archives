@@ -1183,7 +1183,11 @@
             <td><a href="https://ctftime.org/event/1459/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/DownUnderCTF">DownUnderCTF</a></td>
+            <td rowspan=6><a href="ctfs/DownUnderCTF">DownUnderCTF</a></td>
+            <td><a href="ctfs/DownUnderCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2669/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/DownUnderCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2284/tasks/" target="_blank">CTFtime</a></td>
         </tr>

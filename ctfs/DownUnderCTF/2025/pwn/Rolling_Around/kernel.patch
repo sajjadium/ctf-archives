@@ -1,0 +1,203 @@
+diff --git a/include/uapi/linux/bpf.h b/include/uapi/linux/bpf.h
+index 85180e4aa..5290a994d 100644
+--- a/include/uapi/linux/bpf.h
++++ b/include/uapi/linux/bpf.h
+@@ -34,6 +34,9 @@
+ #define BPF_FROM_LE	BPF_TO_LE
+ #define BPF_FROM_BE	BPF_TO_BE
+ 
++/* alu fields */
++#define BPF_ROL         0xe0
++
+ /* jmp encodings */
+ #define BPF_JNE		0x50	/* jump != */
+ #define BPF_JLT		0xa0	/* LT is unsigned, '<' */
+diff --git a/kernel/bpf/core.c b/kernel/bpf/core.c
+index c20babbf9..b79fbeb46 100644
+--- a/kernel/bpf/core.c
++++ b/kernel/bpf/core.c
+@@ -1578,6 +1578,7 @@ EXPORT_SYMBOL_GPL(__bpf_call_base);
+ 	INSN_3(ALU, ARSH, K),			\
+ 	INSN_3(ALU, DIV,  K),			\
+ 	INSN_3(ALU, MOD,  K),			\
++	INSN_3(ALU, ROL,  K),			\
+ 	/* 64 bit ALU operations. */		\
+ 	/*   Register based. */			\
+ 	INSN_3(ALU64, ADD,  X),			\
+@@ -1607,6 +1608,7 @@ EXPORT_SYMBOL_GPL(__bpf_call_base);
+ 	INSN_3(ALU64, ARSH, K),			\
+ 	INSN_3(ALU64, DIV,  K),			\
+ 	INSN_3(ALU64, MOD,  K),			\
++	INSN_3(ALU64, ROL,  K),			\
+ 	/* Call instruction. */			\
+ 	INSN_2(JMP, CALL),			\
+ 	/* Exit instruction. */			\
+@@ -1743,6 +1745,7 @@ static u64 ___bpf_prog_run(u64 *regs, const struct bpf_insn *insn)
+ 		[BPF_LDX | BPF_PROBE_MEMSX | BPF_H] = &&LDX_PROBE_MEMSX_H,
+ 		[BPF_LDX | BPF_PROBE_MEMSX | BPF_W] = &&LDX_PROBE_MEMSX_W,
+ 	};
++
+ #undef BPF_INSN_3_LBL
+ #undef BPF_INSN_2_LBL
+ 	u32 tail_call_cnt = 0;
+@@ -1859,6 +1862,12 @@ static u64 ___bpf_prog_run(u64 *regs, const struct bpf_insn *insn)
+ 	ALU64_ARSH_K:
+ 		(*(s64 *) &DST) >>= IMM;
+ 		CONT;
++	ALU_ROL_K:
++		DST = (((u32)DST) << IMM) | (((u32)DST) >> (32 - IMM));		
++		CONT;
++	ALU64_ROL_K:
++		DST = (DST << IMM) | (DST >> (64 - IMM));		
++		CONT;
+ 	ALU64_MOD_X:
+ 		switch (OFF) {
+ 		case 0:
+diff --git a/kernel/bpf/disasm.c b/kernel/bpf/disasm.c
+index 20883c6b1..859662559 100644
+--- a/kernel/bpf/disasm.c
++++ b/kernel/bpf/disasm.c
+@@ -85,6 +85,7 @@ const char *const bpf_alu_string[16] = {
+ 	[BPF_MOV >> 4]  = "=",
+ 	[BPF_ARSH >> 4] = "s>>=",
+ 	[BPF_END >> 4]  = "endian",
++	[BPF_ROL >> 4]  = "rol",
+ };
+ 
+ static const char *const bpf_alu_sign_string[16] = {
+diff --git a/kernel/bpf/verifier.c b/kernel/bpf/verifier.c
+index a7d6e0c59..d2f97d018 100644
+--- a/kernel/bpf/verifier.c
++++ b/kernel/bpf/verifier.c
+@@ -14091,8 +14091,8 @@ static int sanitize_ptr_alu(struct bpf_verifier_env *env,
+ 	bool ptr_is_dst_reg = ptr_reg == dst_reg;
+ 	u8 opcode = BPF_OP(insn->code);
+ 	u32 alu_state, alu_limit;
+-	struct bpf_reg_state tmp;
+-	bool ret;
++	//struct bpf_reg_state tmp;
++	//bool ret;
+ 	int err;
+ 
+ 	if (can_skip_alu_sanitation(env, insn))
+@@ -14161,6 +14161,8 @@ static int sanitize_ptr_alu(struct bpf_verifier_env *env,
+ 	 * and truncated reg-based in the other in order to explore
+ 	 * bad access.
+ 	 */
++
++	/*
+ 	if (!ptr_is_dst_reg) {
+ 		tmp = *dst_reg;
+ 		copy_register_state(dst_reg, ptr_reg);
+@@ -14170,6 +14172,8 @@ static int sanitize_ptr_alu(struct bpf_verifier_env *env,
+ 	if (!ptr_is_dst_reg && ret)
+ 		*dst_reg = tmp;
+ 	return !ret ? REASON_STACK : 0;
++	*/
++	return 0;
+ }
+ 
+ static void sanitize_mark_insn_seen(struct bpf_verifier_env *env)
+@@ -15050,6 +15054,48 @@ static void scalar_min_max_arsh(struct bpf_reg_state *dst_reg,
+ 	__update_reg_bounds(dst_reg);
+ }
+ 
++static void __scalar32_min_max_rol(struct bpf_reg_state *dst_reg,
++				   u64 umin_val, u64 umax_val)
++{
++	dst_reg->u32_min_value = (dst_reg->u32_min_value << umin_val) | (dst_reg->u32_min_value >> (64 - umin_val));
++	dst_reg->u32_max_value = (dst_reg->u32_max_value << umax_val) | (dst_reg->u32_max_value >> (64 - umax_val));
++}
++
++static void scalar32_min_max_rol(struct bpf_reg_state *dst_reg,
++				 struct bpf_reg_state *src_reg)
++{
++	u32 umax_val = src_reg->u32_max_value;
++	u32 umin_val = src_reg->u32_min_value;
++	/* u32 alu operation will zext upper bits */
++	struct tnum subreg = tnum_subreg(dst_reg->var_off);
++
++	__scalar32_min_max_rol(dst_reg, umin_val, umax_val);
++	dst_reg->var_off = tnum_subreg(tnum_lshift(subreg, umin_val));
++	__mark_reg64_unbounded(dst_reg);
++	__update_reg32_bounds(dst_reg);
++}
++
++static void __scalar64_min_max_rol(struct bpf_reg_state *dst_reg,
++				   u64 umin_val, u64 umax_val)
++{
++	dst_reg->umin_value = (dst_reg->umin_value << umin_val) | (dst_reg->umin_value >> (64 - umin_val));
++	dst_reg->umax_value = (dst_reg->umax_value << umax_val) | (dst_reg->umax_value >> (64 - umax_val));
++}
++
++static void scalar_min_max_rol(struct bpf_reg_state *dst_reg,
++			       struct bpf_reg_state *src_reg)
++{
++	u64 umax_val = src_reg->umax_value;
++	u64 umin_val = src_reg->umin_value;
++
++	__scalar64_min_max_rol(dst_reg, umin_val, umax_val);
++	__scalar32_min_max_rol(dst_reg, umin_val, umax_val);
++
++	dst_reg->var_off = tnum_lshift(dst_reg->var_off, umin_val);
++	/* We may learn something more from the var_off */
++	__update_reg_bounds(dst_reg);
++}
++
+ static bool is_safe_to_compute_dst_reg_range(struct bpf_insn *insn,
+ 					     const struct bpf_reg_state *src_reg)
+ {
+@@ -15084,12 +15130,14 @@ static bool is_safe_to_compute_dst_reg_range(struct bpf_insn *insn,
+ 	case BPF_LSH:
+ 	case BPF_RSH:
+ 	case BPF_ARSH:
++	case BPF_ROL:
+ 		return (src_is_const && src_reg->umax_value < insn_bitness);
+ 	default:
+ 		return false;
+ 	}
+ }
+ 
++
+ /* WARNING: This function does calculations on 64-bit values, but the actual
+  * execution may occur on 32-bit values. Therefore, things like bitshifts
+  * need extra checks in the 32-bit case.
+@@ -15177,6 +15225,12 @@ static int adjust_scalar_min_max_vals(struct bpf_verifier_env *env,
+ 		else
+ 			scalar_min_max_arsh(dst_reg, &src_reg);
+ 		break;
++	case BPF_ROL:
++		if (alu32)
++			scalar32_min_max_rol(dst_reg, &src_reg);
++		else
++			scalar_min_max_rol(dst_reg, &src_reg);
++		break;
+ 	default:
+ 		break;
+ 	}
+@@ -15185,6 +15239,7 @@ static int adjust_scalar_min_max_vals(struct bpf_verifier_env *env,
+ 	if (alu32)
+ 		zext_32_to_64(dst_reg);
+ 	reg_bounds_sync(dst_reg);
++
+ 	return 0;
+ }
+ 
+@@ -15510,7 +15565,7 @@ static int check_alu_op(struct bpf_verifier_env *env, struct bpf_insn *insn)
+ 			}
+ 		}
+ 
+-	} else if (opcode > BPF_END) {
++	} else if (opcode > BPF_ROL) {
+ 		verbose(env, "invalid BPF_ALU opcode %x\n", opcode);
+ 		return -EINVAL;
+ 
+@@ -15546,7 +15601,7 @@ static int check_alu_op(struct bpf_verifier_env *env, struct bpf_insn *insn)
+ 		}
+ 
+ 		if ((opcode == BPF_LSH || opcode == BPF_RSH ||
+-		     opcode == BPF_ARSH) && BPF_SRC(insn->code) == BPF_K) {
++		     opcode == BPF_ARSH || opcode == BPF_ROL) && BPF_SRC(insn->code) == BPF_K) {
+ 			int size = BPF_CLASS(insn->code) == BPF_ALU64 ? 64 : 32;
+ 
+ 			if (insn->imm < 0 || insn->imm >= size) {

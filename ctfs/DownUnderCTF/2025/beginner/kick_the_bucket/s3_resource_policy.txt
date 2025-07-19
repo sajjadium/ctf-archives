@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": [
+        "arn:aws:s3:::kickme-95f596ff5b61453187fbc1c9faa3052e/flag.txt",
+        "arn:aws:s3:::kickme-95f596ff5b61453187fbc1c9faa3052e"
+      ],
+      "Principal": {
+        "AWS": "arn:aws:iam::487266254163:user/pipeline"
+      },
+      "Condition": {
+        "StringLike": {
+          "aws:UserAgent": "aws-sdk-go*"
+        }
+      }
+    }
+  ]
+}
