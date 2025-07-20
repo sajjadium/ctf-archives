@@ -3189,6 +3189,11 @@
             <td><a href="https://ctftime.org/event/2029/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/ToH">ToH</a></td>
+            <td><a href="ctfs/ToH/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2833/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="ctfs/TokyoWesterns">TokyoWesterns</a></td>
             <td><a href="ctfs/TokyoWesterns/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/1086/tasks/" target="_blank">CTFtime</a></td>
