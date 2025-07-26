@@ -1,0 +1,10 @@
+This challenge contains 4 handouts:
+
+- README: This file.
+- chal_build: The files used to build the challenge. You can use this to build
+  another copy of the challenge but the binary layout is not guaranteed to
+  remain the same.
+- edk2_artifacts: EDK2 OVMF build artifacts containing debugging symbols of
+  each UEFI module.
+- run: Pre-built files in case you want to run the challenge locally. This is
+  the same copy of the challenge running on the server.

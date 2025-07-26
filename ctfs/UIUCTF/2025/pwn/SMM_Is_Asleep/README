@@ -1,0 +1,15 @@
+This challenge contains 5 handouts:
+
+- README: This file.
+- chal_build: The files used to build the challenge. You can use this to build
+  another copy of the challenge but the binary layout is not guaranteed to
+  remain the same.
+- edk2debug.log: EDK2 debug log during boot as seen on IO port 0x402.
+- edk2_artifacts: EDK2 OVMF build artifacts containing debugging symbols of
+  each UEFI module.
+- run: Pre-built files in case you want to run the challenge locally. This is
+  the same copy of the challenge running on the server.
+
+I also bundled gcc per popular request from 2022. Apologies for the
+size of the handle bundle. The disk contains kernel module headers in
+/usr/src/linux-headers and you may build modules from within.

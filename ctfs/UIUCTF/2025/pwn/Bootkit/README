@@ -1,0 +1,13 @@
+This challenge contains 6 handouts:
+
+- README: This file.
+- chal_build: The files used to build the challenge. You can use this to build
+  another copy of the challenge but the binary layout is not guaranteed to
+  remain the same.
+- edk2_artifacts: EDK2 OVMF build artifacts containing debugging symbols of
+  each UEFI module.
+- linux-headers: Linux kernel headers for building modules.
+- run: Pre-built files in case you want to run the challenge locally. This is
+  near-identical to the challenge running on the server, with the exception
+  of secure boot keys and secret disk containing flag.
+- vmlinux: Linux kernel debugging symbols.
