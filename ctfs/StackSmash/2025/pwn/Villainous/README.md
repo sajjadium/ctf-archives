@@ -1,0 +1,1 @@
+Jumpio has made it to the Heap Hopper's castle for their final confrontation. Unfortunately, the dastardly Hopper seems to be invulnerable! Can you help Jumpio destroy the Hopper and rescue the Princess Pomegranite?

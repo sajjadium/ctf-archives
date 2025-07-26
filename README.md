@@ -2871,6 +2871,11 @@
             <td><a href="https://ctftime.org/event/1766/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=5><a href="ctfs/StackSmash">StackSmash</a></td>
+            <td><a href="ctfs/StackSmash/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2841/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=5><a href="ctfs/StarCTF">*CTF</a></td>
             <td><a href="ctfs/StarCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2045/tasks/" target="_blank">CTFtime</a></td>
