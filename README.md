@@ -2768,7 +2768,11 @@
             <td><a href="https://ctftime.org/event/622/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/Shakti">Shakti</a></td>
+            <td rowspan=3><a href="ctfs/Shakti">Shakti</a></td>
+            <td><a href="ctfs/Shakti/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2803/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Shakti/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1251/tasks/" target="_blank">CTFtime</a></td>
         </tr>
