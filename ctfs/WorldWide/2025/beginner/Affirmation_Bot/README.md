@@ -1,0 +1,3 @@
+author: dfoo
+
+In these troubling times, I made a friendly bot to affirm you and tell you nice things...
