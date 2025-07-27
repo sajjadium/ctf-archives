@@ -1,0 +1,31 @@
+diff --git a/13431_68413c617b29be47b6e9197b61a5a11a.py b/13431_68413c617b29be47b6e9197b61a5a11a.py
+index 5d1c9d3..c8c9fbe 100644
+--- a/13431_68413c617b29be47b6e9197b61a5a11a.py
++++ b/13431_68413c617b29be47b6e9197b61a5a11a.py
+@@ -25,7 +25,7 @@ def xor_nonce(byte_str, nonce):
+     return start + xor(middle, nonce) + bytes(end)
+ 
+ 
+-FLAG = b"crypto{??????????????????????????????}"
++FLAG = b"wwf{the_real_flag_4_real_real_real...}"
+ BITS = 2 << 9
+ g = 2
+ max_turns = 4
+@@ -38,7 +38,7 @@ class Challenge:
+         self.refresh()
+         self.before_input = f"This server is made to share proofs...\nThat is the nonce for this instance: {self.nonce.hex()}\n"
+         self.your_turn = 1
+-        self.v = self.R.getrandbits(BITS >> 1)
++        self.v = self.R.getrandbits(BITS)
+         self.turn = 0
+         self.FLAG = bytes_to_long(
+             xor_nonce(add_random_nonprintable(FLAG), self.nonce)
+@@ -62,7 +62,7 @@ class Challenge:
+         t = pow(g, self.v, p)
+         c = bytes_to_long(
+             hashlib.sha3_256(
+-                long_to_bytes(t ^ y ^ g ^ self.R.randint(2, BITS))
++                long_to_bytes(t ^ y ^ g ^ self.R.randint(2, 1 << BITS))
+             ).digest()
+         )
+         r = (self.v - c * self.FLAG) % (p - 1)

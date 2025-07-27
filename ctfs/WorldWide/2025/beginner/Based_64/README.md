@@ -1,0 +1,3 @@
+author: dfoo
+
+My friend gynvael told me that base64 has some interesting properties...
