@@ -18,6 +18,9 @@ def is_valid(line):
   except:
     pass
 
+  if re.match(r'-+', line):
+    return False
+
   if line.strip().lower() == 'click':
     return False
 

@@ -3793,7 +3793,11 @@
             <td><a href="https://ctftime.org/event/2450/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/justCTF">justCTF</a></td>
+            <td rowspan=6><a href="ctfs/justCTF">justCTF</a></td>
+            <td><a href="ctfs/justCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2711/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/justCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2342/tasks/" target="_blank">CTFtime</a></td>
         </tr>
