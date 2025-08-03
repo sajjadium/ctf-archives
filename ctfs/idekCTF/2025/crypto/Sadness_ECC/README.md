@@ -1,0 +1,3 @@
+Giapppp
+
+This curve is sad because it doesn't know if it's an elliptic curve or not...
