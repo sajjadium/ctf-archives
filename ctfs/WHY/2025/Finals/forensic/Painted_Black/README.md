@@ -1,0 +1,1 @@
+The Ravenbook Police Department is using a new product to black out Personally identifiable information (PII) from their Word documents before making them public. We heard through the grapevine that this product is not that safe. Can you check this document and retrieve the blacked out information?

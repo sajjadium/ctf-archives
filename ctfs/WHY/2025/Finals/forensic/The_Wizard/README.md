@@ -1,0 +1,1 @@
+After some issues involving a robe and wizard hat, HR decided it is was best if we let go of this old developer we had. However with him gone we now lost access to some systems, since he had his own way of saving passwords. Can you help us out?

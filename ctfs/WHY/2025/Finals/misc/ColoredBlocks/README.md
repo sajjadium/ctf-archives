@@ -1,0 +1,1 @@
+I saw some weird code-blocks on the ground of Amsterdam Central Station, I think they are part of a system for blind and visually impaired travelers. I tried to make some of these code-blocks in the colors of WHY2025, can you decode them?

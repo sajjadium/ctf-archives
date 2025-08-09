@@ -3502,6 +3502,10 @@
         </tr>
         <tr>
             <td rowspan=1><a href="ctfs/WHY">WHY</a></td>
+            <td><a href="ctfs/WHY/2025/Finals">2025 Finals</a></td>
+            <td><a href="https://ctftime.org/event/2680/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/WHY/2025/Quals">2025 Quals</a></td>
             <td><a href="https://ctftime.org/event/2679/tasks/" target="_blank">CTFtime</a></td>
         </tr>
