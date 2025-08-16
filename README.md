@@ -733,7 +733,11 @@
             <td><a href="https://ctftime.org/event/2339/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/CTFZone">CTFZone</a></td>
+            <td rowspan=4><a href="ctfs/CTFZone">CTFZone</a></td>
+            <td><a href="ctfs/CTFZone/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2839/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/CTFZone/2024/Quals">2024 Quals</a></td>
             <td><a href="https://ctftime.org/event/2408/tasks/" target="_blank">CTFtime</a></td>
         </tr>
