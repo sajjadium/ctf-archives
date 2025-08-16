@@ -3969,6 +3969,11 @@
             <td><a href="https://ctftime.org/event/1042/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/scriptCTF">scriptCTF</a></td>
+            <td><a href="ctfs/scriptCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2792/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/smileyCTF">smileyCTF</a></td>
             <td><a href="ctfs/smileyCTF/2025">2025</a></td>
             <td><a href="https://ctftime.org/event/2591/tasks/" target="_blank">CTFtime</a></td>
