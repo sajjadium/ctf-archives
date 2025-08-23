@@ -1,0 +1,20 @@
+[
+  {
+    "question": "What is 1 + 1?",
+    "answer": ["REDACTED", "REDACTED"]
+  }, 
+  {
+    "question": "What is the molecular geometry of methane?",
+    "answer": ["REDACTED", "REDACTED"]
+  },
+  {
+    "question": "Turbo the snail is in the top row of a grid with 2024 rows and 2023 columns and\nwants to get to the bottom row. However, there are 2022 hidden monsters, one in\nevery row except the first and last, with no two monsters in the same column.\nTurbo makes a series of attempts to go from the first row to the last row. On\neach attempt, he chooses to start on any cell in the first row, then repeatedly moves\nto an orthogonal neighbor. (He is allowed to return to a previously visited cell.) If\nTurbo reaches a cell with a monster, his attempt ends and he is transported back to\nthe first row to start a new attempt. The monsters do not move between attempts,\nand Turbo remembers whether or not each cell he has visited contains a monster. If\nhe reaches any cell in the last row, his attempt ends and Turbo wins.\nFind the smallest integer n such that Turbo has a strategy which guarantees being\nable to reach the bottom row in at most n attempts, regardless of how the monsters\nare placed.",
+    "answer": ["REDACTED", "REDACTED"]
+  }, {
+    "question": "What is the answer to this question?",
+    "answer": ["REDACTED"]
+  }, {
+    "question": "LITCTF{REDACTED}",
+    "answer": [""]
+  }
+]

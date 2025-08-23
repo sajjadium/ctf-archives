@@ -1,0 +1,3 @@
+hihitherethere
+
+In LIT city, the rich get richer and the poor get poorer...
