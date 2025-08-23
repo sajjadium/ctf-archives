@@ -592,6 +592,11 @@
             <td><a href="https://ctftime.org/event/2261/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/BrunnerCTF">BrunnerCTF</a></td>
+            <td><a href="ctfs/BrunnerCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2835/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Bucket">Bucket</a></td>
             <td><a href="ctfs/Bucket/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1892/tasks/" target="_blank">CTFtime</a></td>

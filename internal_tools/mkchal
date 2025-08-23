@@ -153,7 +153,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e').replace('√', 'sqrt').replace('🅱️', 'B').replace('ś', 's').replace('ę', 'e').replace('Δ', 'A').replace('ς', 'C').replace('!', 'i').replace('²', '2').replace('ñ', 'n').replace('🐺', 'wolf')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e').replace('√', 'sqrt').replace('🅱️', 'B').replace('ś', 's').replace('ę', 'e').replace('Δ', 'A').replace('ς', 'C').replace('!', 'i').replace('²', '2').replace('ñ', 'n').replace('🐺', 'wolf').replace('π', 'pi').replace('ø', 'o')
 
 def get_challenge_name(line):
   args = re.sub(r'(score:|solves:)\s+\d+', '', line.strip(), flags=re.IGNORECASE).strip()
