@@ -1333,6 +1333,11 @@
             <td><a href="https://ctftime.org/event/1375/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/FullWeakEngineer">FullWeakEngineer</a></td>
+            <td><a href="ctfs/FullWeakEngineer/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2864/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/FwordCTF">Fword</a></td>
             <td><a href="ctfs/FwordCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1405/tasks/" target="_blank">CTFtime</a></td>
