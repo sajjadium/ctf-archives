@@ -1,0 +1,28 @@
+# Makefile for compiling src.c
+
+# Compiler
+CC = gcc
+
+# Compiler flags
+CFLAGS = -w -static
+
+# Source file
+SRC = ../src.c
+
+# Output file
+OUT = rev_me.out
+
+# Default target
+all: $(OUT) strip
+
+# Rule to build the executable
+$(OUT): $(SRC)
+	$(CC) $(CFLAGS) -o $(OUT) $(SRC)
+
+# Rule to strip the binary
+strip: $(OUT)
+	strip $(OUT)
+
+# Clean rule
+clean:
+	rm -f $(OUT)

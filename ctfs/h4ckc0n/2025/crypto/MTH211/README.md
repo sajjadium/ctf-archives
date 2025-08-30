@@ -1,0 +1,1 @@
+Hardly anyone attended the number theory classes, and now the professor has decided to set all the end-semester questions from a question bank uploaded on Google Classroom. The catch? It’s password-protected. The password is the flag you’ll obtain by solving this challenge. You could be our messiah—the Lisan al-Gaib. Please, solve this for us!

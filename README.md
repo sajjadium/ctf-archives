@@ -1526,6 +1526,11 @@
             <td><a href="https://ctftime.org/event/821/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/h4ckc0n">h4ckc0n</a></td>
+            <td><a href="ctfs/h4ckc0n/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2905/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=5><a href="ctfs/hxp">hxp</a></td>
             <td><a href="ctfs/hxp/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2437/tasks/" target="_blank">CTFtime</a></td>
