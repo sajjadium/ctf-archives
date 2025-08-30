@@ -1,0 +1,1 @@
+We've discovered this ancient sheet of paper in the depths of the University of Udine's archives: it seems to be some mysterious flag-checking program. Rumors say it was last used in a computer security challenge in 1986.
