@@ -1,0 +1,58 @@
+diff --git a/arch/x86/entry/syscalls/syscall_64.tbl b/arch/x86/entry/syscalls/syscall_64.tbl
+index 92cf0fe2291e..afa3ce966414 100644
+--- a/arch/x86/entry/syscalls/syscall_64.tbl
++++ b/arch/x86/entry/syscalls/syscall_64.tbl
+@@ -393,7 +393,7 @@
+ 467	common	open_tree_attr		sys_open_tree_attr
+ 468	common	file_getattr		sys_file_getattr
+ 469	common	file_setattr		sys_file_setattr
+-
++470     common  corctf_crash             sys_corctf_crash
+ #
+ # Due to a historical design error, certain syscalls are numbered differently
+ # in x32 as compared to native x86_64.  These syscalls have numbers 512-547.
+diff --git a/kernel/Makefile b/kernel/Makefile
+index c60623448235..54fb7fa4657d 100644
+--- a/kernel/Makefile
++++ b/kernel/Makefile
+@@ -10,7 +10,7 @@ obj-y     = fork.o exec_domain.o panic.o \
+ 	    extable.o params.o \
+ 	    kthread.o sys_ni.o nsproxy.o \
+ 	    notifier.o ksysfs.o cred.o reboot.o \
+-	    async.o range.o smpboot.o ucount.o regset.o ksyms_common.o
++	    async.o range.o smpboot.o ucount.o regset.o ksyms_common.o corctf.o
+ 
+ obj-$(CONFIG_MULTIUSER) += groups.o
+ obj-$(CONFIG_VHOST_TASK) += vhost_task.o
+diff --git a/kernel/corctf.c b/kernel/corctf.c
+new file mode 100644
+index 000000000000..8cb9b6718536
+--- /dev/null
++++ b/kernel/corctf.c
+@@ -0,0 +1,26 @@
++#include <linux/kernel.h>
++#include <linux/init.h>
++#include <linux/sched.h>
++#include <linux/syscalls.h>
++#include <linux/string.h>
++
++SYSCALL_DEFINE2(corctf_crash, uint64_t, addr, uint64_t, val)
++{
++	register uint64_t reg_val = val;
++	register void (*rip)(uint64_t) = (void (*)(uint64_t))addr;
++	asm volatile(".intel_syntax noprefix;"
++		"mov r8, rsp;"
++		"add r8, 0x100;"
++		"mov r9, 0xff;"
++		"not r9;"
++		"and r8, r9;"
++		"mov rcx, r8;"
++		"sub ecx, esp;"
++		"mov rdi, rsp;"
++		"rep stosb;"
++		".att_syntax prefix;"
++		:::"rcx","rdi","r8","r9","memory","cc");
++	rip(reg_val);
++	__builtin_unreachable();
++}
++
