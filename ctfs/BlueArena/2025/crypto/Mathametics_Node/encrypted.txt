@@ -1,0 +1,9 @@
+Ciphertext: 661236
+Hint:
+- Two prime numbers p and q were chosen such that p ≠ q and both > 200
+- n = p * q
+- φ(n) = (p-1)*(q-1)
+- The message m was encrypted using: c = m^e mod n
+- e = 65537 (standard RSA public exponent)
+- One of the primes leaves a remainder of 3 when divided by 7
+- The flag is in format: STURSEC{plaintext_number}

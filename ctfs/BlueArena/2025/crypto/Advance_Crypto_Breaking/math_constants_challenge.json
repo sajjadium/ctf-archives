@@ -1,0 +1,23 @@
+{
+  "ciphertext": "MlAiQFBzQiwoI0V1TFdmfDRwKCJ3NGpNdSVRZS8pRTh1QlQ=",
+  "public_params": {
+    "e_hint": "271828182845904...",
+    "pi_hint": "314159265358979...",
+    "phi_hint": "161803398874989...",
+    "key_hint": [
+      8,
+      3,
+      2,
+      1,
+      8,
+      4,
+      4,
+      1,
+      3,
+      9
+    ],
+    "charset_length": 95,
+    "algorithm": "Math Constants Cipher v1.0"
+  },
+  "description": "\n        Welcome to the Math Constants Cipher challenge!\n        \n        We've encrypted a flag using a custom algorithm based on mathematical constants.\n        The algorithm uses:\n        1. Substitution using digits of e, \u03c0, and \u03c6 (golden ratio)\n        2. Position-based transformations with a secret key\n        3. Interleaving of characters\n        4. Base64 encoding\n        \n        Your task is to reverse the algorithm and recover the original flag.\n        The flag format is STURSEC{...}\n        \n        Good luck!\n        "
+}

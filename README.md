@@ -542,6 +542,11 @@
             <td><a href="https://ctftime.org/event/2063/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/BlueArena">BlueArena</a></td>
+            <td><a href="ctfs/BlueArena/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2684/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="ctfs/BlueHens">BlueHens</a></td>
             <td><a href="ctfs/BlueHens/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2512/tasks/" target="_blank">CTFtime</a></td>

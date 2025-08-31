@@ -110,7 +110,8 @@ def is_valid(line):
 
   if line.strip().lower() in [
     'welcome', 'expert', 'beginner', 'web', 're', 'rev', 'reverse', 'reversing', 'pwn', 'crypto', 'misc', 'tags', 'description', 'cry', 'pts', 'solves', 'description', 'warmup', 'easy', 'medium', 'hard', 'insane', 'forensics', 'forensic', 'score', 'cryptography', 'submit flag', 'binary', 'steganography', 'unrated', 'reverse engineering', 'task', 'information', 'insights', 'read this carrefully because sometimes the author might leave hints.', 'download files', 'play challenge', 'problem', 'previous submissions', 'download', 'admin bot', 'website', 'pwning',
-    'misc icon', 'crypto icon', 'pwn icon', 'reversing icon', 'web icon', 'steg', 'stego', 'introduction', 'for sale', 'miscellaneous'
+    'misc icon', 'crypto icon', 'pwn icon', 'reversing icon', 'web icon', 'steg', 'stego', 'introduction', 'for sale', 'miscellaneous',
+    'total solves', 'author'
   ]:
     return False
 
@@ -127,6 +128,12 @@ def is_valid(line):
     return False
 
   if re.fullmatch(r"first blood: (\w|\.)+", line.strip().lower()):
+    return False
+
+  if re.fullmatch(r"challenge id: #\d+", line.strip().lower()):
+    return False
+
+  if re.fullmatch(r"\d+:\d+:\d+", line.strip().lower()):
     return False
 
   if re.fullmatch(r"(http|https)://\d+\.\d+\.\d+\.\d+/", line.strip().lower()):
