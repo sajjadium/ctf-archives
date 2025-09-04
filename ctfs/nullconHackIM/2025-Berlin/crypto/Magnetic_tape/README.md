@@ -1,0 +1,1 @@
+We asked an LLM to build a web app to manage the magnetic tapes archives in our datacenter. We've asked it to make sure it's secure. Could you please do a bit of paid pentestingsecurity research on it? kthxbye

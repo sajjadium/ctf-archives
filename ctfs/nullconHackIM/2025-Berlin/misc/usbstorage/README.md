@@ -1,0 +1,3 @@
+@gehaxelt
+
+I attached my friend's USB drive to my laptop and accidently copied a private file, which I immediately deleted. But my friend still somehow got the file from looking at the USB message their drive recorded...
