@@ -1,0 +1,3 @@
+I invented this proof of work method, using only elliptic curves! It should take at least a heat death to break it...
+
+author: KLPP

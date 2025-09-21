@@ -838,7 +838,11 @@
             <td><a href="https://ctftime.org/event/2489/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/CrewCTF">CrewCTF</a></td>
+            <td rowspan=3><a href="ctfs/CrewCTF">CrewCTF</a></td>
+            <td><a href="ctfs/CrewCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2704/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/CrewCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2223/tasks/" target="_blank">CTFtime</a></td>
         </tr>

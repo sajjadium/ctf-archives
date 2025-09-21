@@ -69,7 +69,7 @@ if __name__ == '__main__':
     full_name += '/Finals'
 
   os.system(f'mkdir -p {full_name}')
-  for category in ['crypto', 'web', 'pwn', 'rev', 'misc', 'forensic', 'osint', 'net', 'steg', 'mobile', 'blockchain', 'hw']:
+  for category in ['crypto', 'web', 'pwn', 'rev', 'misc', 'forensic', 'osint', 'net', 'steg', 'mobile', 'blockchain', 'hw', 'ppc']:
     os.system(f'mkdir {full_name}/{category}')
 
   open(f'{ctf_name}/README.md', 'w').write(f'[CTFtime Page](https://ctftime.org/ctf/{ctf_id})\n')

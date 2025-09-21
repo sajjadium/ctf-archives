@@ -54,6 +54,9 @@ def is_valid(line):
   if line.strip().lower().startswith('$ socat '):
     return False
 
+  if line.strip().lower().startswith('$ ncat '):
+    return False
+
   if line.strip().lower().startswith('instancer url:') or line.strip().lower().startswith('challenge url:'):
     return False
 
