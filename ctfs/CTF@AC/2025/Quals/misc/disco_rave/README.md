@@ -1,0 +1,1 @@
+This is so infuriating! I know exactly what to do , but those damn trolls won't let me ! This feels like that prisoner's dilema I heard about. Automatic spam will be banned, manual spam is fine. Flag format: CTF{sha256}

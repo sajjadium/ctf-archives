@@ -10,6 +10,7 @@ import shutil
 import string
 import glob
 from pathlib import Path
+import argparse
 
 def is_valid(line):
   try:
@@ -182,9 +183,17 @@ def get_challenge_name(line):
 
   return '_'.join(tokens)
 
+def get_clipboard():
+  return subprocess.check_output('pbpaste', shell=True).decode()
+
 if __name__ == '__main__':
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--input', type=str, choices=['stdin', 'clipboard'], default='clipboard')
+  args = parser.parse_args()
+
   # create challenge directory
-  lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', l.rstrip()) for l in sys.stdin.readlines()]).strip().split('\n')
+  chall_content = get_clipboard().split('\n') if args.input == 'clipboard' else sys.stdin.readlines()
+  lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', l.rstrip()) for l in chall_content]).strip().split('\n')
   chal_name = get_challenge_name(replace_special_characters(lines[0]))
 
   lines = '\n'.join(lines[1:]).strip().split('\n')

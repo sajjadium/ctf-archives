@@ -738,6 +738,11 @@
             <td><a href="https://ctftime.org/event/1071/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/CTF@AC">CTF@AC</a></td>
+            <td><a href="ctfs/CTF@AC/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2886/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/CTF@CIT">CTF@CIT</a></td>
             <td><a href="ctfs/CTF@CIT/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2339/tasks/" target="_blank">CTFtime</a></td>

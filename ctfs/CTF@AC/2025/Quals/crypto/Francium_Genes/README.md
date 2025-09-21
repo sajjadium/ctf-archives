@@ -1,0 +1,5 @@
+0v3rCl0kEd
+
+AATATGTGTTGCATGATAACAATGTTTTCGATGTGCTTTATGAGTCCACAGATGTGCTTTATGTTCTTGATGTTTTGTATGTGGTTTATGACA
+
+Place the result in the following format ctf{HCl} where HCl is the resulting chemical compound.
