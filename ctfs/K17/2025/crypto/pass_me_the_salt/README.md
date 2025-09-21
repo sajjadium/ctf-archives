@@ -1,0 +1,2 @@
+beginner crypto
+Pretty pleaseeeeee 🥺🥺🥺

@@ -1,0 +1,1 @@
+FLAG = b"K17{FAKE_FLAG_FOR_TESTING______}"

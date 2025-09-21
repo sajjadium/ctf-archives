@@ -1919,6 +1919,11 @@
             <td><a href="https://ctftime.org/event/2259/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/K17">K17</a></td>
+            <td><a href="ctfs/K17/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2902/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="ctfs/KalmarCTF">KalmarCTF</a></td>
             <td><a href="ctfs/KalmarCTF/2025">2025</a></td>
             <td><a href="https://ctftime.org/event/2599/tasks/" target="_blank">CTFtime</a></td>
