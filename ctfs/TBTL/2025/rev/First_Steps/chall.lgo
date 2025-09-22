@@ -1,0 +1,57 @@
+to chall
+  localmake "maxx 400
+  localmake "maxy 200
+  localmake "sol []
+  for [x 0 :maxx] [
+    for [y 0 :maxy] [
+      pu setpos (list :x :y) pd
+      if pixel=[0 0 0] [
+        setfc "green
+        fill
+        make "sol lput (f :x :y) :sol
+        pu setpos (list :x :y) pd
+        setfc "black
+       ]
+    ]
+  ]
+  ifelse :sol=[44 47 0 10 11 43 10 42 46 21 11 0 42] [op "Correct!] [op "Nope!]
+end
+
+to dfs :x :y
+  localmake "dir []
+  make "been lput (list :x :y) :been
+  for [i 1 4] [
+    localmake "xx :x + (item :i :dx)
+    localmake "yy :y + (item :i :dy)
+    pu setpos (list :xx :yy) pd
+    ifelse pixel=[0 128 0] [make "dir lput 1 :dir] [make "dir lput 0 :dir]
+    if and (not member? (list :xx :yy) :been) pixel=[0 128 0] [dfs :xx :yy]
+  ]
+  if (or :dir=[1 1 1 0] :dir=[0 1 1 1] :dir=[1 0 1 1] :dir=[1 1 0 1]) [make "b :b+1 stop]
+  if (or :dir=[1 1 0 0] :dir=[0 1 1 0] :dir=[0 0 1 1] :dir=[1 0 0 1]) [make "a :a+1 stop]
+end
+
+to g :x :y
+  pu setpos (list :x :y) seth 0 fd 2 pd
+  ifelse pixel=[0 128 0] [op 3] [op 4]
+end
+
+to f :x :y
+  make "dx [0 1 0 -1]
+  make "dy [1 0 -1 0]
+  make "a 0
+  make "b 0
+  make "been []
+  dfs :x :y
+
+  make "ret 10 * :a + :b
+  if :ret=40 [make "ret :ret + g :x :y]
+  if :ret=41 [make "ret :ret + h :x :y]
+
+  op :ret
+end
+
+to h :x :y
+  pu setpos (list :x :y) seth 0 fd 2 pd
+  ifelse pixel=[0 128 0] [op 5] [op 6]
+end

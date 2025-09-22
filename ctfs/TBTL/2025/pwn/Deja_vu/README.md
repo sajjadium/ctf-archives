@@ -1,0 +1,3 @@
+Stumbled upon C++ recently, still learning the ropes...
+
+This time I can't even keep my program from crashing 💥
