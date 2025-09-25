@@ -1686,6 +1686,11 @@
             <td><a href="https://ctftime.org/event/1107/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Hackorn">Hackorn</a></td>
+            <td><a href="ctfs/Hackorn/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2919/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Hackover">Hackover</a></td>
             <td><a href="ctfs/Hackover/2018">2018</a></td>
             <td><a href="https://ctftime.org/event/689/tasks/" target="_blank">CTFtime</a></td>
