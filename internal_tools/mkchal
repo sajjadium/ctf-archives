@@ -152,6 +152,9 @@ def is_valid(line):
   if re.fullmatch(r"\d+:\d+:\d+", line.strip().lower()):
     return False
 
+  if re.search(r"\(\d+% liked\)", line.strip().lower()):
+    return False
+
   if re.fullmatch(r"(http|https)://\d+\.\d+\.\d+\.\d+/", line.strip().lower()):
     return False
 

@@ -2981,28 +2981,32 @@
             <td><a href="https://ctftime.org/event/1862/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=6><a href="ctfs/Sunshine">Sunshine</a></td>
-            <td><a href="ctfs/Sunshine/2024">2024</a></td>
+            <td rowspan=7><a href="ctfs/SunshineCTF">SunshineCTF</a></td>
+            <td><a href="ctfs/SunshineCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2863/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/SunshineCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2485/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Sunshine/2023">2023</a></td>
+            <td><a href="ctfs/SunshineCTF/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2079/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Sunshine/2022">2022</a></td>
+            <td><a href="ctfs/SunshineCTF/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1629/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Sunshine/2021">2021</a></td>
+            <td><a href="ctfs/SunshineCTF/2021">2021</a></td>
             <td><a href="https://ctftime.org/event/1441/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Sunshine/2020">2020</a></td>
+            <td><a href="ctfs/SunshineCTF/2020">2020</a></td>
             <td><a href="https://ctftime.org/event/992/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td><a href="ctfs/Sunshine/2019">2019</a></td>
+            <td><a href="ctfs/SunshineCTF/2019">2019</a></td>
             <td><a href="https://ctftime.org/event/767/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
