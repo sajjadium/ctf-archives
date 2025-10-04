@@ -1,0 +1,324 @@
+diff --git a/REVISION b/REVISION
+new file mode 100644
+index 00000000000..39757636311
+--- /dev/null
++++ b/REVISION
+@@ -0,0 +1 @@
++5a2307d0f2c5b650c6858e2b9b57b335a59946ff
+\ No newline at end of file
+diff --git a/src/builtins/builtins-array.cc b/src/builtins/builtins-array.cc
+index ea45a7ada6b..2552c286b60 100644
+--- a/src/builtins/builtins-array.cc
++++ b/src/builtins/builtins-array.cc
+@@ -624,6 +624,45 @@ BUILTIN(ArrayShift) {
+ 
+   return GenericArrayShift(isolate, receiver, length);
+ }
++BUILTIN(ArrayShrink) {
++  HandleScope scope(isolate);
++  Factory *factory = isolate->factory();
++  Handle<Object> receiver = args.receiver();
++
++  if (!IsJSArray(*receiver) || !HasOnlySimpleReceiverElements(isolate, Cast<JSArray>(*receiver))) {
++    THROW_NEW_ERROR_RETURN_FAILURE(
++      isolate, NewTypeError(MessageTemplate::kPlaceholderOnly,
++      factory->NewStringFromAsciiChecked("Oldest trick in the book"))
++    );
++  }
++
++  Handle<JSArray> array = Cast<JSArray>(receiver);
++
++  if (args.length() != 2) {
++    THROW_NEW_ERROR_RETURN_FAILURE(
++      isolate, NewTypeError(MessageTemplate::kPlaceholderOnly,
++      factory->NewStringFromAsciiChecked("specify length to shrink to "))
++    );
++  }
++
++  
++  uint32_t old_len = static_cast<uint32_t>(Object::NumberValue(array->length()));
++
++  Handle<Object> new_len_obj;
++  ASSIGN_RETURN_FAILURE_ON_EXCEPTION(isolate, new_len_obj, Object::ToNumber(isolate, args.at(1)));
++  uint32_t new_len = static_cast<uint32_t>(Object::NumberValue(*new_len_obj));
++  
++  if (new_len >= old_len){
++    THROW_NEW_ERROR_RETURN_FAILURE(
++      isolate, NewTypeError(MessageTemplate::kPlaceholderOnly,
++      factory->NewStringFromAsciiChecked("invalid length"))
++    );
++  }
++
++  array->set_length(Smi::FromInt(new_len));
++  
++  return ReadOnlyRoots(isolate).undefined_value();
++}
+ 
+ BUILTIN(ArrayUnshift) {
+   HandleScope scope(isolate);
+diff --git a/src/builtins/builtins-definitions.h b/src/builtins/builtins-definitions.h
+index 78cbf8874ed..dc60d59e637 100644
+--- a/src/builtins/builtins-definitions.h
++++ b/src/builtins/builtins-definitions.h
+@@ -424,6 +424,8 @@ namespace internal {
+   TFJ(ArrayPrototypePush, kDontAdaptArgumentsSentinel)                         \
+   /* ES6 #sec-array.prototype.shift */                                         \
+   CPP(ArrayShift)                                                              \
++  CPP(ArrayShrink)                                                             \
++                                                                               \
+   /* ES6 #sec-array.prototype.unshift */                                       \
+   CPP(ArrayUnshift)                                                            \
+   /* Support for Array.from and other array-copying idioms */                  \
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index facf0d86d79..045e93e94c8 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -3370,47 +3370,47 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+                        FunctionTemplate::New(isolate, Version));
+ 
+   global_template->Set(isolate, "print", FunctionTemplate::New(isolate, Print));
+-  global_template->Set(isolate, "printErr",
+-                       FunctionTemplate::New(isolate, PrintErr));
+-  global_template->Set(isolate, "write",
+-                       FunctionTemplate::New(isolate, WriteStdout));
+-  if (!i::v8_flags.fuzzing) {
+-    global_template->Set(isolate, "writeFile",
+-                         FunctionTemplate::New(isolate, WriteFile));
+-  }
+-  global_template->Set(isolate, "read",
+-                       FunctionTemplate::New(isolate, ReadFile));
+-  global_template->Set(isolate, "readbuffer",
+-                       FunctionTemplate::New(isolate, ReadBuffer));
+-  global_template->Set(isolate, "readline",
+-                       FunctionTemplate::New(isolate, ReadLine));
+-  global_template->Set(isolate, "load",
+-                       FunctionTemplate::New(isolate, ExecuteFile));
+-  global_template->Set(isolate, "setTimeout",
+-                       FunctionTemplate::New(isolate, SetTimeout));
++  // global_template->Set(isolate, "printErr",
++  //                      FunctionTemplate::New(isolate, PrintErr));
++  // global_template->Set(isolate, "write",
++  //                      FunctionTemplate::New(isolate, WriteStdout));
++  // if (!i::v8_flags.fuzzing) {
++  //   global_template->Set(isolate, "writeFile",
++  //                        FunctionTemplate::New(isolate, WriteFile));
++  // }
++  // global_template->Set(isolate, "read",
++  //                      FunctionTemplate::New(isolate, ReadFile));
++  // global_template->Set(isolate, "readbuffer",
++  //                      FunctionTemplate::New(isolate, ReadBuffer));
++  // global_template->Set(isolate, "readline",
++  //                      FunctionTemplate::New(isolate, ReadLine));
++  // global_template->Set(isolate, "load",
++  //                      FunctionTemplate::New(isolate, ExecuteFile));
++  // global_template->Set(isolate, "setTimeout",
++  //                      FunctionTemplate::New(isolate, SetTimeout));
+   // Some Emscripten-generated code tries to call 'quit', which in turn would
+   // call C's exit(). This would lead to memory leaks, because there is no way
+   // we can terminate cleanly then, so we need a way to hide 'quit'.
+-  if (!options.omit_quit) {
+-    global_template->Set(isolate, "quit", FunctionTemplate::New(isolate, Quit));
+-  }
+-  global_template->Set(isolate, "testRunner",
+-                       Shell::CreateTestRunnerTemplate(isolate));
+-  global_template->Set(isolate, "Realm", Shell::CreateRealmTemplate(isolate));
+-  global_template->Set(isolate, "performance",
+-                       Shell::CreatePerformanceTemplate(isolate));
+-  global_template->Set(isolate, "Worker", Shell::CreateWorkerTemplate(isolate));
++  // if (!options.omit_quit) {
++  //   global_template->Set(isolate, "quit", FunctionTemplate::New(isolate, Quit));
++  // }
++  // global_template->Set(isolate, "testRunner",
++  //                      Shell::CreateTestRunnerTemplate(isolate));
++  // global_template->Set(isolate, "Realm", Shell::CreateRealmTemplate(isolate));
++  // global_template->Set(isolate, "performance",
++  //                      Shell::CreatePerformanceTemplate(isolate));
++  // global_template->Set(isolate, "Worker", Shell::CreateWorkerTemplate(isolate));
+ 
+   // Prevent fuzzers from creating side effects.
+-  if (!i::v8_flags.fuzzing) {
+-    global_template->Set(isolate, "os", Shell::CreateOSTemplate(isolate));
+-  }
+-  global_template->Set(isolate, "d8", Shell::CreateD8Template(isolate));
++  // if (!i::v8_flags.fuzzing) {
++  //   global_template->Set(isolate, "os", Shell::CreateOSTemplate(isolate));
++  // }
++  // global_template->Set(isolate, "d8", Shell::CreateD8Template(isolate));
+ 
+-  if (i::v8_flags.expose_async_hooks) {
+-    global_template->Set(isolate, "async_hooks",
+-                         Shell::CreateAsyncHookTemplate(isolate));
+-  }
++  // if (i::v8_flags.expose_async_hooks) {
++  //   global_template->Set(isolate, "async_hooks",
++  //                        Shell::CreateAsyncHookTemplate(isolate));
++  // }
+ 
+   return global_template;
+ }
+@@ -3719,10 +3719,10 @@ void Shell::Initialize(Isolate* isolate, D8Console* console,
+             v8::Isolate::kMessageLog);
+   }
+ 
+-  isolate->SetHostImportModuleDynamicallyCallback(
+-      Shell::HostImportModuleDynamically);
+-  isolate->SetHostInitializeImportMetaObjectCallback(
+-      Shell::HostInitializeImportMetaObject);
++  // isolate->SetHostImportModuleDynamicallyCallback(
++  //     Shell::HostImportModuleDynamically);
++  // isolate->SetHostInitializeImportMetaObjectCallback(
++  //     Shell::HostInitializeImportMetaObject);
+   isolate->SetHostCreateShadowRealmContextCallback(
+       Shell::HostCreateShadowRealmContext);
+ 
+diff --git a/src/init/bootstrapper.cc b/src/init/bootstrapper.cc
+index 48249695b7b..c8c5c2eda25 100644
+--- a/src/init/bootstrapper.cc
++++ b/src/init/bootstrapper.cc
+@@ -2535,6 +2535,9 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
+                           true);
+     SimpleInstallFunction(isolate_, proto, "concat",
+                           Builtin::kArrayPrototypeConcat, 1, false);
++
++    SimpleInstallFunction(isolate_, proto, "shrink",
++                          Builtin::kArrayShrink, 1, false);
+     SimpleInstallFunction(isolate_, proto, "copyWithin",
+                           Builtin::kArrayPrototypeCopyWithin, 2, false);
+     SimpleInstallFunction(isolate_, proto, "fill", Builtin::kArrayPrototypeFill,
+diff --git a/to_give/args.gn b/to_give/args.gn
+new file mode 100644
+index 00000000000..a9991ad8f2f
+--- /dev/null
++++ b/to_give/args.gn
+@@ -0,0 +1,12 @@
++# Build arguments go here.
++# See "gn args <out_dir> --list" for available build arguments.
++is_component_build = false
++is_debug = false
++target_cpu = "x64"
++v8_enable_sandbox = false
++v8_enable_backtrace = true
++v8_enable_disassembler = true
++v8_enable_object_print = true
++dcheck_always_on = false
++use_goma = false
++v8_code_pointer_sandboxing = false
+diff --git a/to_give/d8 b/to_give/d8
+new file mode 100755
+index 00000000000..37bcbb578c5
+Binary files /dev/null and b/to_give/d8 differ
+diff --git a/to_give/patch b/to_give/patch
+new file mode 100644
+index 00000000000..ee81b52da10
+--- /dev/null
++++ b/to_give/patch
+@@ -0,0 +1,78 @@
++diff --git a/src/builtins/builtins-array.cc b/src/builtins/builtins-array.cc
++index ea45a7ada6b..2552c286b60 100644
++--- a/src/builtins/builtins-array.cc
+++++ b/src/builtins/builtins-array.cc
++@@ -624,6 +624,45 @@ BUILTIN(ArrayShift) {
++ 
++   return GenericArrayShift(isolate, receiver, length);
++ }
+++BUILTIN(ArrayShrink) {
+++  HandleScope scope(isolate);
+++  Factory *factory = isolate->factory();
+++  Handle<Object> receiver = args.receiver();
+++
+++  if (!IsJSArray(*receiver) || !HasOnlySimpleReceiverElements(isolate, Cast<JSArray>(*receiver))) {
+++    THROW_NEW_ERROR_RETURN_FAILURE(
+++      isolate, NewTypeError(MessageTemplate::kPlaceholderOnly,
+++      factory->NewStringFromAsciiChecked("Oldest trick in the book"))
+++    );
+++  }
+++
+++  Handle<JSArray> array = Cast<JSArray>(receiver);
+++
+++  if (args.length() != 2) {
+++    THROW_NEW_ERROR_RETURN_FAILURE(
+++      isolate, NewTypeError(MessageTemplate::kPlaceholderOnly,
+++      factory->NewStringFromAsciiChecked("specify length to shrink to "))
+++    );
+++  }
+++
+++  
+++  uint32_t old_len = static_cast<uint32_t>(Object::NumberValue(array->length()));
+++
+++  Handle<Object> new_len_obj;
+++  ASSIGN_RETURN_FAILURE_ON_EXCEPTION(isolate, new_len_obj, Object::ToNumber(isolate, args.at(1)));
+++  uint32_t new_len = static_cast<uint32_t>(Object::NumberValue(*new_len_obj));
+++  
+++  if (new_len >= old_len){
+++    THROW_NEW_ERROR_RETURN_FAILURE(
+++      isolate, NewTypeError(MessageTemplate::kPlaceholderOnly,
+++      factory->NewStringFromAsciiChecked("invalid length"))
+++    );
+++  }
+++
+++  array->set_length(Smi::FromInt(new_len));
+++  
+++  return ReadOnlyRoots(isolate).undefined_value();
+++}
++ 
++ BUILTIN(ArrayUnshift) {
++   HandleScope scope(isolate);
++diff --git a/src/builtins/builtins-definitions.h b/src/builtins/builtins-definitions.h
++index 78cbf8874ed..dc60d59e637 100644
++--- a/src/builtins/builtins-definitions.h
+++++ b/src/builtins/builtins-definitions.h
++@@ -424,6 +424,8 @@ namespace internal {
++   TFJ(ArrayPrototypePush, kDontAdaptArgumentsSentinel)                         \
++   /* ES6 #sec-array.prototype.shift */                                         \
++   CPP(ArrayShift)                                                              \
+++  CPP(ArrayShrink)                                                             \
+++                                                                               \
++   /* ES6 #sec-array.prototype.unshift */                                       \
++   CPP(ArrayUnshift)                                                            \
++   /* Support for Array.from and other array-copying idioms */                  \
++diff --git a/src/init/bootstrapper.cc b/src/init/bootstrapper.cc
++index 48249695b7b..c8c5c2eda25 100644
++--- a/src/init/bootstrapper.cc
+++++ b/src/init/bootstrapper.cc
++@@ -2535,6 +2535,9 @@ void Genesis::InitializeGlobal(Handle<JSGlobalObject> global_object,
++                           true);
++     SimpleInstallFunction(isolate_, proto, "concat",
++                           Builtin::kArrayPrototypeConcat, 1, false);
+++
+++    SimpleInstallFunction(isolate_, proto, "shrink",
+++                          Builtin::kArrayShrink, 1, false);
++     SimpleInstallFunction(isolate_, proto, "copyWithin",
++                           Builtin::kArrayPrototypeCopyWithin, 2, false);
++     SimpleInstallFunction(isolate_, proto, "fill", Builtin::kArrayPrototypeFill,
++
+diff --git a/to_give/snapshot_blob.bin b/to_give/snapshot_blob.bin
+new file mode 100644
+index 00000000000..9bb75698752
+Binary files /dev/null and b/to_give/snapshot_blob.bin differ
+diff --git a/tools/mb/mb.py b/tools/mb/mb.py
+index 33b15a401fc..ada192695ed 100755
+--- a/tools/mb/mb.py
++++ b/tools/mb/mb.py
+@@ -18,7 +18,7 @@ import ast
+ import errno
+ import json
+ import os
+-import pipes
++import shlex as pipes
+ import platform
+ import pprint
+ import re
+diff --git a/tools/rust b/tools/rust
+new file mode 160000
+index 00000000000..f93e7ca2a64
+--- /dev/null
++++ b/tools/rust
+@@ -0,0 +1 @@
++Subproject commit f93e7ca2a64938e9b4759ec3297f02ca7b3f605f
+diff --git a/tools/win b/tools/win
+new file mode 160000
+index 00000000000..2cbfc8d2e5e
+--- /dev/null
++++ b/tools/win
+@@ -0,0 +1 @@
++Subproject commit 2cbfc8d2e5ef4a6afd9774e9a9eaebd921a9f248
