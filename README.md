@@ -2812,7 +2812,11 @@
             <td><a href="https://ctftime.org/event/1619/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=6><a href="ctfs/Securinets">Securinets</a></td>
+            <td rowspan=7><a href="ctfs/Securinets">Securinets</a></td>
+            <td><a href="ctfs/Securinets/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2884/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Securinets/2024/Quals">2024 Quals</a></td>
             <td><a href="https://ctftime.org/event/2520/tasks/" target="_blank">CTFtime</a></td>
         </tr>
@@ -3886,7 +3890,11 @@
             <td><a href="https://ctftime.org/event/1512/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/jailCTF">jailCTF</a></td>
+            <td rowspan=2><a href="ctfs/jailCTF">jailCTF</a></td>
+            <td><a href="ctfs/jailCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2737/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/jailCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2450/tasks/" target="_blank">CTFtime</a></td>
         </tr>
