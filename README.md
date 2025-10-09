@@ -1285,6 +1285,11 @@
             <td><a href="https://ctftime.org/event/1696/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/ECW">ECW</a></td>
+            <td><a href="ctfs/ECW/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2959/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/EHAX">EHAX</a></td>
             <td><a href="ctfs/EHAX/2025">2025</a></td>
             <td><a href="https://ctftime.org/event/2677/tasks/" target="_blank">CTFtime</a></td>

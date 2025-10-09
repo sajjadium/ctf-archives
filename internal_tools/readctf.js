@@ -13,11 +13,11 @@ function delay(ms) {
 	const child = spawn('/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome',
 		['--headless', '--disable-gpu', `--remote-debugging-port=${PORT}`]);
 
-	await delay(1000);
+	await delay(5000);
 
-    const response = await fetch(`http://localhost:${PORT}/json/version`);
+  const response = await fetch(`http://localhost:${PORT}/json/version`);
 
-    const conn = await response.json();
+  const conn = await response.json();
 
 	const browser = await puppeteer.connect({
 		browserWSEndpoint: conn.webSocketDebuggerUrl
