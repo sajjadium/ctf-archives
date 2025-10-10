@@ -1,0 +1,1 @@
+In the void between stars, Enrico Pucci left behind a machine that counts beyond reason. It bends numbers like gravity, orbiting closer to a perfect balance, then collapsing. Each input drags you deeper into its cosmic recursion. Find what it seeks before it completes its divine calculation which equals f(10289)

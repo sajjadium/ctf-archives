@@ -1,0 +1,1 @@
+An old classic arrived in our inbox, seemingly just a nostalgic trip. We suspect a troll, but maybe there's more to this performance than meets the eye. Inside, we both know what's been going on. weknowthegameandweregonnaplayit
