@@ -1,0 +1,3 @@
+BY	fabi07
+TAGS	pwn
+Our new intern seemed to have misunderstood the task. Instead of creating a website, he wrote his own HTTP server in 10minutes. Surely not everything went according to plan...

@@ -88,6 +88,12 @@ def is_valid(line):
   if re.search(r'solves\s+\d+', line.lower()):
     return False
 
+  if re.search(r'points\s+\d+', line.lower()):
+    return False
+
+  if re.search(r'(easy|medium|hard|leet) \| 2\. kl', line.lower()):
+    return False
+
   if re.search(r'score:\s*\d+', line.lower()):
     return False
 

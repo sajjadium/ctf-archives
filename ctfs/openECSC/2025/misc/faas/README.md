@@ -1,0 +1,3 @@
+BY	coderion
+TAGS	misc
+I found this cool SaaS that can give me flags for CTF challenges. Sadly it requires a license; the only source code that I found seems a bit sus...

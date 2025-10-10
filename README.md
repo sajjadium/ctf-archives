@@ -4005,7 +4005,11 @@
             <td><a href="https://ctftime.org/event/566/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/NullconHackIM/2018">PersianCats</a></td>
         </tr>
         <tr>
-            <td rowspan=3><a href="ctfs/openECSC">openECSC</a></td>
+            <td rowspan=4><a href="ctfs/openECSC">openECSC</a></td>
+            <td><a href="ctfs/openECSC/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2940/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/openECSC/2024-round3">2024-round3</a></td>
             <td><a href="https://ctftime.org/event/2355/tasks/" target="_blank">CTFtime</a></td>
         </tr>
