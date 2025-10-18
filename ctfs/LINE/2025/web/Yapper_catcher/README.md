@@ -1,0 +1,1 @@
+No more manual yapping, LLMs will replace our job if the job is to yap all day. There are problems with them leaking sensitive stuffs nowadays so I've added a fool-proof mechanism to protect your precious data as well!

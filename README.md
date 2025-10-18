@@ -1589,7 +1589,11 @@
             <td><a href="https://ctftime.org/event/647/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=7><a href="ctfs/Hack.lu">Hack.lu</a></td>
+            <td rowspan=8><a href="ctfs/Hack.lu">Hack.lu</a></td>
+            <td><a href="ctfs/Hack.lu/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2842/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Hack.lu/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2438/tasks/" target="_blank">CTFtime</a></td>
         </tr>
@@ -2056,7 +2060,11 @@
             <td><a href="https://ctftime.org/event/1732/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/LINE">LINE</a></td>
+            <td rowspan=5><a href="ctfs/LINE">LINE</a></td>
+            <td><a href="ctfs/LINE/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2819/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/LINE/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2119/tasks/" target="_blank">CTFtime</a></td>
         </tr>

@@ -164,6 +164,9 @@ def is_valid(line):
   if re.fullmatch(r"(http|https)://\d+\.\d+\.\d+\.\d+/", line.strip().lower()):
     return False
 
+  if re.search(r"^(bot:|remote:|admin bot at)\s*(http|https)://", line.strip().lower()):
+    return False
+
   if re.fullmatch(r"\d+\.\d+\.\d+\.\d+:\d+", line.strip().lower()):
     return False
 
@@ -185,7 +188,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e').replace('√', 'sqrt').replace('🅱️', 'B').replace('ś', 's').replace('ę', 'e').replace('Δ', 'A').replace('ς', 'C').replace('²', '2').replace('ñ', 'n').replace('🐺', 'wolf').replace('π', 'pi').replace('ø', 'o').replace('à', 'a').replace('ɪ', 'I').replace('ʌ', 'A').replace('☾', 'Moon').replace('🦀', 'Crab')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e').replace('√', 'sqrt').replace('🅱️', 'B').replace('ś', 's').replace('ę', 'e').replace('Δ', 'A').replace('ς', 'C').replace('²', '2').replace('ñ', 'n').replace('🐺', 'wolf').replace('π', 'pi').replace('ø', 'o').replace('à', 'a').replace('ɪ', 'I').replace('ʌ', 'A').replace('☾', 'Moon').replace('🦀', 'Crab').replace('Ö', 'O').replace('Ä', 'A').replace('Ø', 'O')
 
 def get_challenge_name(line):
   args = re.sub(r'(score:|solves:)\s+\d+', '', line.strip(), flags=re.IGNORECASE).strip()
