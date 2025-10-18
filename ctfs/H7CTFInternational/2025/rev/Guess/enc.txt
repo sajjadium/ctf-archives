@@ -1,0 +1,18 @@
+flag="Redacted"
+m=[]
+for i in flag:
+    a=ord(i)
+    m.append(a<<(guess??))
+def cc(n):
+    n=str(n)
+    while len(n)!=2:
+        b=int(n[:-1]) - (2 * int(n[-1]))
+        n=str(b)
+    return int(n)
+x=0
+for i in m:
+    x=cc(i)
+out=[]
+for i in m:
+    out.append(i^x)
+print(out)

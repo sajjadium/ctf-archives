@@ -1,0 +1,11 @@
+infile = "flag.zip"
+outfile = "flag.enc"
+
+with open(infile, "rb") as f:
+    data = bytearray(f.read())   
+
+for i in range(len(data)):
+    data[i] = (data[i] + factorial(i)) % 0x89
+
+with open(outfile, "wb") as f:
+    f.write(data)
