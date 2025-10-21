@@ -1,0 +1,3 @@
+I made a date logger as a simple diary ...
+
+Author: Whale120

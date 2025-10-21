@@ -1,0 +1,19 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 複製程式碼
+COPY . .
+
+RUN mkdir -p /app/.hidden && \
+    mv /app/flag.txt /app/.hidden/flag-$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1).txt && \
+    chown -R nobody:nogroup /app
+
+EXPOSE 5000
+
+USER nobody
+
+CMD ["python", "app.py"]

@@ -2571,6 +2571,11 @@
             <td><a href="https://ctftime.org/event/2141/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/QnQSec">QnQSec</a></td>
+            <td><a href="ctfs/QnQSec/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2826/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/R3CTF">R3CTF</a></td>
             <td><a href="ctfs/R3CTF/2025">2025</a></td>
             <td><a href="https://ctftime.org/event/2731/tasks/" target="_blank">CTFtime</a></td>

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import emoji
 import os
 import sys
 import re
@@ -18,9 +19,6 @@ def is_valid(line):
     return False
   except:
     pass
-
-  if re.match(r'-+', line):
-    return False
 
   if line.strip().lower() == 'click':
     return False
@@ -164,6 +162,9 @@ def is_valid(line):
   if re.fullmatch(r"(http|https)://\d+\.\d+\.\d+\.\d+/", line.strip().lower()):
     return False
 
+  if re.fullmatch(r"link:\s+(http|https)://\d+\.\d+\.\d+\.\d+(:\d+){0,1}/", line.strip().lower()):
+    return False
+
   if re.search(r"^(bot:|remote:|admin bot at)\s*(http|https)://", line.strip().lower()):
     return False
 
@@ -171,6 +172,9 @@ def is_valid(line):
     return False
 
   if re.fullmatch(r"nc \d+\.\d+\.\d+\.\d+ \d+", line.strip().lower()):
+    return False
+
+  if re.fullmatch(r"\d+\.\d+\.\d+\.\d+\s+\d+", line.strip().lower()):
     return False
 
   if re.fullmatch(r"nc [a-z0-9\-_]{1,63}(\.[a-z0-9-_]{1,63})+ \d+", line.strip().lower()):
@@ -222,7 +226,7 @@ if __name__ == '__main__':
 
   # create challenge directory
   chall_content = get_clipboard().split('\n') if args.input == 'clipboard' else sys.stdin.readlines()
-  lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', l.rstrip()) for l in chall_content]).strip().split('\n')
+  lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', emoji.demojize(l.rstrip())) for l in chall_content]).strip().split('\n')
   chal_name = get_challenge_name(replace_special_characters(lines[0]))
 
   lines = '\n'.join(lines[1:]).strip().split('\n')
