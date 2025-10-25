@@ -3964,7 +3964,11 @@
             <td><a href="https://ctftime.org/event/874/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=8><a href="ctfs/m0leCon">m0leCon</a></td>
+            <td rowspan=9><a href="ctfs/m0leCon">m0leCon</a></td>
+            <td><a href="ctfs/m0leCon/2025/Quals">2025 Quals</a></td>
+            <td><a href="https://ctftime.org/event/2946/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/m0leCon/2025/Beginner">2025 Beginner</a></td>
             <td><a href="https://ctftime.org/event/2578/tasks/" target="_blank">CTFtime</a></td>
         </tr>
