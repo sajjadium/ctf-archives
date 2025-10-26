@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="en">
+  <head>
+    <link rel="stylesheet" media="all" href="https://osugaming.lol/assets/css/app.5fe70da2.css">
+    <title>login | osu!</title>
+  </head>
+  <body class="t-section osu-layout osu-layout--body">
+    <style>
+      :root {
+        --base-hue: 333;
+        --base-hue-deg: 333deg;
+      }
+    </style>
+    <div class="js-pinned-header hidden-xs no-print nav2-header">
+      <div class="nav2-header__body">
+        <div class="nav2-header__triangles"></div>
+        <div class="nav2-header__transition-overlay"></div>
+        <div class="osu-page">
+          <div class="nav2 js-nav-button">
+            <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
+              <div class="nav2__col nav2__col--logo">
+                <a href="https://osu.ppy.sh/home" class="nav2__logo-link">
+                  <div class="nav2__logo nav2__logo--bg"></div>
+                  <div class="nav2__logo"></div>
+                </a>
+              </div>
+              <div class="nav2__col nav2__col--menu">
+                {{#if user}}
+                <a class="nav2__menu-link-main js-menu" href="/profile/{{ user.username }}">
+                  <span class="u-relative"> profile <span class="nav2__menu-link-bar"></span>
+                  </span>
+                </a>
+                {{else}}
+                <a class="nav2__menu-link-main js-menu" href="/register">
+                  <span class="u-relative"> register <span class="nav2__menu-link-bar"></span>
+                  </span>
+                </a>
+                <a class="nav2__menu-link-main js-menu" href="/login">
+                  <span class="u-relative"> login <span class="nav2__menu-link-bar u-section--bg-normal"></span>
+                  </span>
+                </a>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="osu-layout__section osu-layout__section--full">
+      <div class="header-v4 header-v4--profile">
+        <div class="header-v4__container header-v4__container--main">
+          <div class="header-v4__bg-container">
+            <div class="header-v4__bg "></div>
+          </div>
+          <div class="hidden-xs js-sync-height--target"></div>
+          <div class="header-v4__content">
+            <div class="header-v4__row header-v4__row--title">
+              <div class="header-v4__icon"></div>
+              <div class="header-v4__title"> login </div>
+            </div>
+          </div>
+        </div>
+        <div class="header-v4__container">
+          <div class="header-v4__content">
+            <div class="header-v4__row header-v4__row--bar">
+              <ul class="header-nav-v4 header-nav-v4--list">
+                <li class="header-nav-v4__item">
+                  <a class="
+                                            header-nav-v4__link
+                                            header-nav-v4__link--active
+                                        " href="/login">
+                    <span class="fake-bold">login</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="osu-page osu-page--generic">
+        <form method="POST" action="/api/login">
+          <div class="account-edit-entry js-account-edit">
+            <input class="account-edit-entry__input js-account-edit__input" name="username">
+            <div class="account-edit-entry__label"> username </div>
+          </div>
+          <div class="account-edit-entry js-account-edit">
+            <input class="account-edit-entry__input js-account-edit__input" name="password" type="password">
+            <div class="account-edit-entry__label"> password </div>
+          </div>
+          <div class="account-edit-entry js-account-edit">
+            <div class="account-edit-entry account-edit-entry--no-label">
+              <button class="btn-osu-big btn-osu-big--account-edit" type="submit">
+                <div class="btn-osu"> login </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <footer class="no-print footer">
+      <div class="footer__row">
+        <a class="footer__link" href="https://osu.ppy.sh/legal/en/Terms"> Terms </a>
+        <a class="footer__link" href="https://osu.ppy.sh/legal/en/Privacy"> Privacy </a>
+        <a class="footer__link" href="https://osu.ppy.sh/legal/en/Copyright"> Copyright (DMCA) </a>
+        <a class="footer__link" href="https://status.ppy.sh"> Server Status </a>
+        <a class="footer__link" href="https://github.com/ppy"> Source Code </a>
+      </div>
+      <div class="footer__row">ppy powered 2007-2024</div>
+    </footer>
+  </body>
+</html>

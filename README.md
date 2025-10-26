@@ -4056,8 +4056,12 @@
             <td><a href="https://ctftime.org/event/2305/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/osugaming">osugaming</a></td>
-            <td><a href="ctfs/osugaming/2024">2024</a></td>
+            <td rowspan=2><a href="ctfs/osuigaming">osu!gaming</a></td>
+            <td><a href="ctfs/osuigaming/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2801/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
+            <td><a href="ctfs/osuigaming/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/998/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>

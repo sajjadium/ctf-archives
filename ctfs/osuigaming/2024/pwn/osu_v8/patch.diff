@@ -1,0 +1,58 @@
+diff --git a/src/d8/d8.cc b/src/d8/d8.cc
+index eb804e52b18..89f4af9c8b6 100644
+--- a/src/d8/d8.cc
++++ b/src/d8/d8.cc
+@@ -3284,23 +3284,23 @@ Local<ObjectTemplate> Shell::CreateGlobalTemplate(Isolate* isolate) {
+   global_template->Set(isolate, "version",
+                        FunctionTemplate::New(isolate, Version));
+ 
+-  global_template->Set(isolate, "print", FunctionTemplate::New(isolate, Print));
+-  global_template->Set(isolate, "printErr",
+-                       FunctionTemplate::New(isolate, PrintErr));
+-  global_template->Set(isolate, "write",
+-                       FunctionTemplate::New(isolate, WriteStdout));
+-  if (!i::v8_flags.fuzzing) {
+-    global_template->Set(isolate, "writeFile",
+-                         FunctionTemplate::New(isolate, WriteFile));
+-  }
+-  global_template->Set(isolate, "read",
+-                       FunctionTemplate::New(isolate, ReadFile));
+-  global_template->Set(isolate, "readbuffer",
+-                       FunctionTemplate::New(isolate, ReadBuffer));
+-  global_template->Set(isolate, "readline",
+-                       FunctionTemplate::New(isolate, ReadLine));
+-  global_template->Set(isolate, "load",
+-                       FunctionTemplate::New(isolate, ExecuteFile));
++  // global_template->Set(isolate, "print", FunctionTemplate::New(isolate, Print));
++  // global_template->Set(isolate, "printErr",
++  //                      FunctionTemplate::New(isolate, PrintErr));
++  // global_template->Set(isolate, "write",
++  //                      FunctionTemplate::New(isolate, WriteStdout));
++  // if (!i::v8_flags.fuzzing) {
++  //   global_template->Set(isolate, "writeFile",
++  //                        FunctionTemplate::New(isolate, WriteFile));
++  // }
++  // global_template->Set(isolate, "read",
++  //                      FunctionTemplate::New(isolate, ReadFile));
++  // global_template->Set(isolate, "readbuffer",
++  //                      FunctionTemplate::New(isolate, ReadBuffer));
++  // global_template->Set(isolate, "readline",
++  //                      FunctionTemplate::New(isolate, ReadLine));
++  // global_template->Set(isolate, "load",
++  //                      FunctionTemplate::New(isolate, ExecuteFile));
+   global_template->Set(isolate, "setTimeout",
+                        FunctionTemplate::New(isolate, SetTimeout));
+   // Some Emscripten-generated code tries to call 'quit', which in turn would
+diff --git a/src/regexp/regexp-utils.cc b/src/regexp/regexp-utils.cc
+index 22abd702805..a9b1101f9a7 100644
+--- a/src/regexp/regexp-utils.cc
++++ b/src/regexp/regexp-utils.cc
+@@ -50,7 +50,7 @@ MaybeHandle<Object> RegExpUtils::SetLastIndex(Isolate* isolate,
+       isolate->factory()->NewNumberFromInt64(value);
+   if (HasInitialRegExpMap(isolate, *recv)) {
+     JSRegExp::cast(*recv)->set_last_index(*value_as_object,
+-                                          UPDATE_WRITE_BARRIER);
++                                          SKIP_WRITE_BARRIER);
+     return recv;
+   } else {
+     return Object::SetProperty(

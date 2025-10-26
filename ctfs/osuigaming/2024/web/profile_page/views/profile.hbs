@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns#" lang="en">
+  <head>
+    <link rel="stylesheet" media="all" href="https://osugaming.lol/assets/css/app.5fe70da2.css">
+    <title>{{ user.username }} | osu!</title>
+  </head>
+  <body class="t-section osu-layout osu-layout--body">
+    <style>
+      :root {
+        --base-hue: 333;
+        --base-hue-deg: 333deg;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+      .page-extra__content-overflow-wrapper-inner {
+        height: 100vh;
+      }
+    </style>
+    <div class="js-pinned-header hidden-xs no-print nav2-header">
+      <div class="nav2-header__body">
+        <div class="nav2-header__triangles"></div>
+        <div class="nav2-header__transition-overlay"></div>
+        <div class="osu-page">
+          <div class="nav2 js-nav-button">
+            <div class="nav2__colgroup nav2__colgroup--menu js-nav-button--container">
+              <div class="nav2__col nav2__col--logo">
+                <a href="https://osu.ppy.sh/home" class="nav2__logo-link">
+                  <div class="nav2__logo nav2__logo--bg"></div>
+                  <div class="nav2__logo"></div>
+                </a>
+              </div>
+              <div class="nav2__col nav2__col--menu">
+                {{#if user}}
+                <a class="nav2__menu-link-main js-menu" href="/profile/{{ user.username }}">
+                  <span class="u-relative"> profile <span class="nav2__menu-link-bar u-section--bg-normal"></span>
+                  </span>
+                </a>
+                {{else}}
+                <a class="nav2__menu-link-main js-menu" href="/register">
+                  <span class="u-relative"> register <span class="nav2__menu-link-bar"></span>
+                  </span>
+                </a>
+                <a class="nav2__menu-link-main js-menu" href="/login">
+                  <span class="u-relative"> login <span class="nav2__menu-link-bar"></span>
+                  </span>
+                </a>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="osu-layout__section osu-layout__section--full">
+      <div class="header-v4 header-v4--users">
+        <div class="header-v4__container header-v4__container--main">
+          <div class="header-v4__bg-container">
+            <div class="header-v4__bg "></div>
+          </div>
+          <div class="hidden-xs js-sync-height--target"></div>
+          <div class="header-v4__content">
+            <div class="header-v4__row header-v4__row--title">
+              <div class="header-v4__icon"></div>
+              <div class="header-v4__title"> player info </div>
+            </div>
+          </div>
+        </div>
+        <div class="header-v4__container">
+          <div class="header-v4__content">
+            <div class="header-v4__row header-v4__row--bar">
+              <ul class="header-nav-v4 header-nav-v4--list">
+                <li class="header-nav-v4__item">
+                  <a class="
+                                            header-nav-v4__link
+                                            header-nav-v4__link--active
+                                        " href="/profile">
+                    <span class="fake-bold">info</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="osu-page osu-page--generic-compact">
+        <div class="profile-info">
+          <div class="profile-info__details">
+            <a class="profile-info__avatar">
+              <span class="avatar avatar--guest avatar--full"></span>
+            </a>
+            <div class="profile-info__info">
+              <h1 class="profile-info__name">
+                <span class="u-ellipsis-pre-overflow" id="username">{{ user.username }}</span>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="profile-detail">
+          <div class="profile-detail__stats">
+            <div>
+              <div class="profile-detail__chart-numbers">
+                <div class="profile-detail__values">
+                  <div class="value-display value-display--rank">
+                    <div class="value-display__label">Global Ranking</div>
+                    <div class="value-display__value">
+                      <div>#727,727</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="profile-detail__chart"></div>
+              <div class="profile-detail__chart-numbers">
+                <div class="profile-detail__values profile-detail__values--grid">
+                  <div class="value-display value-display--plain">
+                    <div class="value-display__label">Medals</div>
+                    <div class="value-display__value">0</div>
+                  </div>
+                  <div class="value-display value-display--plain">
+                    <div class="value-display__label">pp</div>
+                    <div class="value-display__value">
+                      <div>0</div>
+                    </div>
+                  </div>
+                  <div class="value-display value-display--plain value-display--plain-wide">
+                    <div class="value-display__label">Total Play Time</div>
+                    <div class="value-display__value">
+                      <span data-tooltip-position="bottom center" title="637 hours">0d 0m 0s</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="profile-detail__separator"></div>
+            <div class="profile-stats">
+              <dl class="profile-stats__entry profile-stats__entry--key-ranked_score">
+                <dt class="profile-stats__key">Ranked Score</dt>
+                <dd class="profile-stats__value">727</dd>
+              </dl>
+              <dl class="profile-stats__entry profile-stats__entry--key-hit_accuracy">
+                <dt class="profile-stats__key">Hit Accuracy</dt>
+                <dd class="profile-stats__value">72.7%</dd>
+              </dl>
+              <dl class="profile-stats__entry profile-stats__entry--key-play_count">
+                <dt class="profile-stats__key">Play Count</dt>
+                <dd class="profile-stats__value">72,727</dd>
+              </dl>
+              <dl class="profile-stats__entry profile-stats__entry--key-total_score">
+                <dt class="profile-stats__key">Total Score</dt>
+                <dd class="profile-stats__value">0</dd>
+              </dl>
+              <dl class="profile-stats__entry profile-stats__entry--key-total_hits">
+                <dt class="profile-stats__key">Total Hits</dt>
+                <dd class="profile-stats__value">eleven</dd>
+              </dl>
+              <dl class="profile-stats__entry profile-stats__entry--key-maximum_combo">
+                <dt class="profile-stats__key">Maximum Combo</dt>
+                <dd class="profile-stats__value">727</dd>
+              </dl>
+              <dl class="profile-stats__entry profile-stats__entry--key-replays_watched_by_others">
+                <dt class="profile-stats__key">Replays Watched by Others</dt>
+                <dd class="profile-stats__value">7.27</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+        <div class="user-profile-pages ui-sortable">
+          <div class="js-sortable--page" data-page-id="me">
+            <div class="page-extra page-extra--userpage">
+              <div class="page-extra__content-overflow-wrapper-outer u-fancy-scrollbar">
+                <div class="page-extra__content-overflow-wrapper-inner">
+                  {{{ user.bio }}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer class="no-print footer">
+      <div class="footer__row">
+        <a class="footer__link" href="https://osu.ppy.sh/legal/en/Terms"> Terms </a>
+        <a class="footer__link" href="https://osu.ppy.sh/legal/en/Privacy"> Privacy </a>
+        <a class="footer__link" href="https://osu.ppy.sh/legal/en/Copyright"> Copyright (DMCA) </a>
+        <a class="footer__link" href="https://status.ppy.sh"> Server Status </a>
+        <a class="footer__link" href="https://github.com/ppy"> Source Code </a>
+      </div>
+      <div class="footer__row">ppy powered 2007-2024</div>
+    </footer>
+  </body>
+</html>
