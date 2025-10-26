@@ -29,7 +29,7 @@ def is_valid(line):
   if line.strip().lower() == 'ja / en':
     return False
 
-  if line.lower() in ['source dockerfile', 'files', 'challenge', 'challenge.py', 'download image', 'download file', 'challenge description', 'feed my friend.', 'this challenge has online instance', 'attachments:', 'category:']:
+  if line.lower() in ['source dockerfile', 'files', 'challenge', 'challenge.py', 'download image', 'download file', 'download pdf', 'challenge description', 'feed my friend.', 'this challenge has online instance', 'attachments:', 'category:', 'file download', 'download zip']:
     return False
 
   if len(line.strip()) == 0:
@@ -195,7 +195,7 @@ def replace_special_characters(line):
   return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e').replace('√', 'sqrt').replace('🅱️', 'B').replace('ś', 's').replace('ę', 'e').replace('Δ', 'A').replace('ς', 'C').replace('²', '2').replace('ñ', 'n').replace('🐺', 'wolf').replace('π', 'pi').replace('ø', 'o').replace('à', 'a').replace('ɪ', 'I').replace('ʌ', 'A').replace('☾', 'Moon').replace('🦀', 'Crab').replace('Ö', 'O').replace('Ä', 'A').replace('Ø', 'O')
 
 def get_challenge_name(line):
-  args = re.sub(r'(score:|solves:)\s+\d+', '', line.strip(), flags=re.IGNORECASE).strip()
+  args = re.sub(r'(score:|solves:)\s+\d+', '', emoji.demojize(line.strip()), flags=re.IGNORECASE).strip()
   args = re.sub(r'^(crypto|jail|misc|pwn|rev|web)/', '', args, flags=re.IGNORECASE).strip()
   args = re.sub(r'\(solved by \d+ team(s?)\)\d+', '', args, flags=re.IGNORECASE).strip()
   args = re.sub(r'(\d+\s+solves|\d+\s+pts)', '', args.strip(), flags=re.IGNORECASE).strip()
@@ -226,7 +226,7 @@ if __name__ == '__main__':
 
   # create challenge directory
   chall_content = get_clipboard().split('\n') if args.input == 'clipboard' else sys.stdin.readlines()
-  lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', emoji.demojize(l.rstrip())) for l in chall_content]).strip().split('\n')
+  lines = '\n'.join([re.sub(r'(\d+[ \t]+points|\d+pts)', r'\n\1', l.rstrip()) for l in chall_content]).strip().split('\n')
   chal_name = get_challenge_name(replace_special_characters(lines[0]))
 
   lines = '\n'.join(lines[1:]).strip().split('\n')

@@ -1020,7 +1020,11 @@
             <td><a href="https://ctftime.org/event/1361/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/DEADFACE">DEADFACE</a></td>
+            <td rowspan=3><a href="ctfs/DEADFACE">DEADFACE</a></td>
+            <td><a href="ctfs/DEADFACE/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2912/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/DEADFACE/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2443/tasks/" target="_blank">CTFtime</a></td>
         </tr>
