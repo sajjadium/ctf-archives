@@ -1735,6 +1735,11 @@
             <td><a href="https://ctftime.org/event/549/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/HauntedPumpkin">HauntedPumpkin</a></td>
+            <td><a href="ctfs/HauntedPumpkin/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2918/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Hayyim">Hayyim</a></td>
             <td><a href="ctfs/Hayyim/2022">2022</a></td>
             <td><a href="https://ctftime.org/event/1553/tasks/" target="_blank">CTFtime</a></td>

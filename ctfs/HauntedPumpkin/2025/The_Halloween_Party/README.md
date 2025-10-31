@@ -1,0 +1,3 @@
+There is Flag is in this room. I guess you know what to do ...
+
+hpCTF{<flag>}
