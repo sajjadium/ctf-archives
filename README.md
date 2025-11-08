@@ -611,7 +611,11 @@
             <td><a href="https://ctftime.org/event/1892/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=4><a href="ctfs/BuckeyeCTF">BuckeyeCTF</a></td>
+            <td rowspan=5><a href="ctfs/BuckeyeCTF">BuckeyeCTF</a></td>
+            <td><a href="ctfs/BuckeyeCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2883/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/BuckeyeCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2449/tasks/" target="_blank">CTFtime</a></td>
         </tr>

@@ -189,6 +189,9 @@ def is_valid(line):
   if re.fullmatch(r'\d+ pts', line.strip().lower()):
     return False
 
+  if re.fullmatch(r'.*\d+.* solve(s)? / .*\d+.* pts', line.strip().lower()):
+    return False
+
   return True
 
 def replace_special_characters(line):
