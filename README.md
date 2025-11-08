@@ -1882,6 +1882,11 @@
             <td><a href="https://ctftime.org/event/1823/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Infobahn">Infobahn</a></td>
+            <td><a href="ctfs/Infobahn/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2878/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/IngonyamaZK">IngonyamaZK</a></td>
             <td><a href="ctfs/IngonyamaZK/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1996/tasks/" target="_blank">CTFtime</a></td>

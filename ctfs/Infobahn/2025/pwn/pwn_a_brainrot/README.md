@@ -1,0 +1,3 @@
+I spend 18 hours a day on instagram reels. My friends told me to reconnect with nature, whatever that means...
+
+Author: oh_word
