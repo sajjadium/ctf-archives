@@ -1,0 +1,324 @@
+╔════════════════ 1TB OF COBBLESTONE ════════════════╗
+║ Vault: MC-DATAVAULT/1.20.1                         ║
+║ Session: 61ac90ce-30c7-4574-aa67-6cda4f18677e      ║
+║ Start (UTC): 2025-00-00 03:33:33Z                  ║
+║ Task: transfer + verification                      ║
+╚════════════════════════════════════════════════════╝
+
+
+Volume 01/16 • Biome: Savanna Plateau • Offset: 0xD40D • Temp: 54.6°C
+────────────────────────────────────────────────────────────────────────────────────────────
+[001] 2025-11-07 18:44:23.108Z | STONE | moved lossless | size 512KiB | rate 73.0 MB/s | lat 72 ms | CRC 0x89
+[002] 2025-11-07 18:44:23.157Z | GRANITE | CRC OK | size 256KiB | rate 150.9 MB/s | lat 56 ms | CRC 0x0A
+[003] 2025-11-07 18:44:23.256Z | POLISHED_GRANITE | moved lossless | size 2MiB | rate 59.2 MB/s | lat 73 ms | CRC 0xC1 | NOTE: dedupe hit
+[004] 2025-11-07 18:44:23.393Z | DIORITE | no issues | size 1MiB | rate 208.9 MB/s | lat 84 ms | CRC 0x10 | NOTE: dedupe hit
+[005] 2025-11-07 18:44:23.446Z | POLISHED_DIORITE | index updated | size 8MiB | rate 350.2 MB/s | lat 5 ms | CRC 0xC7
+[006] 2025-11-07 18:44:23.554Z | ANDESITE | CRC OK | size 1MiB | rate 26.7 MB/s | lat 64 ms | CRC 0x4D
+[007] 2025-11-07 18:44:23.688Z | POLISHED_ANDESITE | CRC OK | size 2MiB | rate 96.9 MB/s | lat 74 ms | CRC 0x04
+[008] 2025-11-07 18:44:23.754Z | DEEPSLATE | depth confirmed, Y=-12 | size 32KiB | rate 107.4 MB/s | lat 38 ms | CRC 0x97
+[009] 2025-11-07 18:44:23.866Z | COBBLED_DEEPSLATE | depth confirmed, Y=-42 | size 512KiB | rate 253.0 MB/s | lat 47 ms | CRC 0xE1
+[010] 2025-11-07 18:44:23.943Z | POLISHED_DEEPSLATE | depth confirmed, Y=-46 | size 512KiB | rate 132.7 MB/s | lat 9 ms | CRC 0x4E
+[011] 2025-11-07 18:44:24.022Z | CALCITE | CRC OK | size 4MiB | rate 285.0 MB/s | lat 63 ms | CRC 0xF5
+[012] 2025-11-07 18:44:24.150Z | TUFF | no issues | size 512KiB | rate 104.0 MB/s | lat 65 ms | CRC 0x35 | WARN: transient link flap
+[013] 2025-11-07 18:44:24.278Z | DRIPSTONE_BLOCK | index updated | size 128KiB | rate 80.8 MB/s | lat 35 ms | CRC 0x82
+[014] 2025-11-07 18:44:24.399Z | DIRT | CRC OK | size 256KiB | rate 26.7 MB/s | lat 71 ms | CRC 0x33
+[015] 2025-11-07 18:44:24.547Z | COARSE_DIRT | moved lossless | size 1MiB | rate 26.4 MB/s | lat 56 ms | CRC 0x4F
+[016] 2025-11-07 18:44:24.680Z | PODZOL | moved lossless | size 512KiB | rate 252.6 MB/s | lat 54 ms | CRC 0xD8
+
+Volume 02/16 • Biome: Savanna Plateau • Offset: 0x7BC0 • Temp: 35.4°C
+────────────────────────────────────────────────────────────────────────────────────────────
+idx=017 t=2025-11-07 18:44:25.171Z mat=ROOTED_DIRT st=moved lossless size=128KiB rate=306.1 MB/s lat=9 ms crc=0x5F h=fdda5dd0
+idx=018 t=2025-11-07 18:44:25.268Z mat=MUD st=index updated size=4MiB rate=90.8 MB/s lat=55 ms crc=0xE6 h=80ecc79a
+idx=019 t=2025-11-07 18:44:25.359Z mat=ANDESITE_STAIRS st=CRC OK size=4MiB rate=287.6 MB/s lat=32 ms crc=0x82 h=0a0e787d
+idx=020 t=2025-11-07 18:44:25.498Z mat=DIORITE_STAIRS st=no issues size=1MiB rate=230.5 MB/s lat=76 ms crc=0x45 h=59c368e7
+idx=021 t=2025-11-07 18:44:25.587Z mat=POLISHED_DEEPSLATE_STAIRS st=depth confirmed, Y=-52 size=1MiB rate=366.7 MB/s lat=24 ms crc=0x83 h=c11d4284
+idx=022 t=2025-11-07 18:44:25.693Z mat=COBBLESTONE st=no issues size=1MiB rate=144.9 MB/s lat=30 ms crc=0x30 h=9dae1f54
+idx=023 t=2025-11-07 18:44:25.773Z mat=SLIME_BLOCK st=index updated size=64KiB rate=200.9 MB/s lat=69 ms crc=0x44 h=7b8b23ae a_level=WARN a_msg=transient link flap a_fix=retry ok a_hash=2a8a0e0b
+idx=024 t=2025-11-07 18:44:25.867Z mat=OAK_PLANKS st=moisture 1.2% size=8MiB rate=59.0 MB/s lat=73 ms crc=0x03 h=b83e9738
+idx=025 t=2025-11-07 18:44:25.903Z mat=SPRUCE_PLANKS st=moisture 0.9% size=128KiB rate=375.5 MB/s lat=62 ms crc=0xFA h=a4612f15
+idx=026 t=2025-11-07 18:44:25.980Z mat=BIRCH_PLANKS st=moisture 0.7% size=512KiB rate=44.7 MB/s lat=4 ms crc=0x90 h=1ab729c5 a_level=WARN a_msg=crc mismatch; retry scheduled a_fix=rescan a_delay=140 ms
+idx=027 t=2025-11-07 18:44:26.114Z mat=JUNGLE_PLANKS st=moisture 2.1% size=32KiB rate=177.4 MB/s lat=31 ms crc=0xED h=8113e324
+idx=028 t=2025-11-07 18:44:26.152Z mat=ACACIA_PLANKS st=moisture 2.0% size=64KiB rate=167.3 MB/s lat=10 ms crc=0xBA h=87107f1f
+idx=029 t=2025-11-07 18:44:26.194Z mat=CHERRY_PLANKS st=moisture 0.7% size=8MiB rate=105.6 MB/s lat=48 ms crc=0xF5 h=bab795e2
+idx=030 t=2025-11-07 18:44:26.298Z mat=DARK_OAK_PLANKS st=moisture 1.5% size=2MiB rate=158.9 MB/s lat=3 ms crc=0x84 h=ab398422
+idx=031 t=2025-11-07 18:44:26.376Z mat=MANGROVE_PLANKS st=moisture 0.5% size=32KiB rate=241.0 MB/s lat=39 ms crc=0x87 h=b24d7a5b
+idx=032 t=2025-11-07 18:44:26.426Z mat=BAMBOO_PLANKS st=moisture 1.0% size=8MiB rate=319.4 MB/s lat=66 ms crc=0xD8 h=b8593b48
+
+Volume 03/16 • Biome: Cherry Grove • Offset: 0x7FFC • Temp: 30.4°C
+────────────────────────────────────────────────────────────────────────────────────────────
+{"idx": 33, "time": "2025-11-07 18:44:26.944Z", "material": "CRIMSON_PLANKS", "status": "moisture 1.1%", "size": "256KiB", "rate": "187.6 MB/s", "latency": "19 ms", "crc": "0x43", "hash": "7ed82692"}
+{"idx": 34, "time": "2025-11-07 18:44:27.103Z", "material": "WARPED_PLANKS", "status": "moisture 1.9%", "size": "128KiB", "rate": "299.9 MB/s", "latency": "13 ms", "crc": "0xEB", "hash": "356302f1"}
+{"idx": 35, "time": "2025-11-07 18:44:27.205Z", "material": "BAMBOO_MOSAIC", "status": "index updated", "size": "8MiB", "rate": "232.8 MB/s", "latency": "22 ms", "crc": "0xCB", "hash": "7d212c83"}
+{"idx": 36, "time": "2025-11-07 18:44:27.258Z", "material": "COAL_ORE", "status": "refining 36% (▰▰▰▱▱▱▱▱)", "size": "8MiB", "rate": "356.1 MB/s", "latency": "66 ms", "crc": "0x64", "hash": "3f3ed905"}
+{"idx": 37, "time": "2025-11-07 18:44:27.405Z", "material": "DEEPSLATE_COAL_ORE", "status": "refining 51% (▰▰▰▰▱▱▱▱)", "size": "2MiB", "rate": "32.5 MB/s", "latency": "33 ms", "crc": "0x5A", "hash": "a188922a"}
+{"idx": 38, "time": "2025-11-07 18:44:27.531Z", "material": "IRON_ORE", "status": "refining 34% (▰▰▰▱▱▱▱▱)", "size": "256KiB", "rate": "166.9 MB/s", "latency": "44 ms", "crc": "0x7D", "hash": "4d01d68e"}
+{"idx": 39, "time": "2025-11-07 18:44:27.622Z", "material": "DEEPSLATE_IRON_ORE", "status": "refining 79% (▰▰▰▰▰▰▱▱)", "size": "128KiB", "rate": "115.4 MB/s", "latency": "34 ms", "crc": "0x73", "hash": "bc25be25"}
+{"idx": 40, "time": "2025-11-07 18:44:27.721Z", "material": "COPPER_ORE", "status": "refining 39% (▰▰▰▱▱▱▱▱)", "size": "1MiB", "rate": "10.6 MB/s", "latency": "18 ms", "crc": "0x0E", "hash": "8a8a4356"}
+{"idx": 41, "time": "2025-11-07 18:44:27.765Z", "material": "DEEPSLATE_COPPER_ORE", "status": "refining 70% (▰▰▰▰▰▰▱▱)", "size": "64KiB", "rate": "339.0 MB/s", "latency": "51 ms", "crc": "0x04", "hash": "4eecccbe"}
+{"idx": 42, "time": "2025-11-07 18:44:27.809Z", "material": "GOLD_ORE", "status": "refining 52% (▰▰▰▰▱▱▱▱)", "size": "64KiB", "rate": "115.3 MB/s", "latency": "62 ms", "crc": "0x6B", "hash": "4d83e862"}
+{"idx": 43, "time": "2025-11-07 18:44:27.967Z", "material": "DEEPSLATE_GOLD_ORE", "status": "refining 34% (▰▰▰▱▱▱▱▱)", "size": "512KiB", "rate": "122.7 MB/s", "latency": "44 ms", "crc": "0x61", "hash": "bf701c3a"}
+{"idx": 44, "time": "2025-11-07 18:44:28.067Z", "material": "EMERALD_ORE", "status": "refining 95% (▰▰▰▰▰▰▰▰)", "size": "128KiB", "rate": "170.3 MB/s", "latency": "83 ms", "crc": "0x3F", "hash": "00b000d2"}
+{"idx": 45, "time": "2025-11-07 18:44:28.203Z", "material": "DEEPSLATE_EMERALD_ORE", "status": "refining 47% (▰▰▰▰▱▱▱▱)", "size": "256KiB", "rate": "88.6 MB/s", "latency": "72 ms", "crc": "0x35", "hash": "ec735d6d"}
+{"idx": 46, "time": "2025-11-07 18:44:28.345Z", "material": "LAPIS_ORE", "status": "refining 70% (▰▰▰▰▰▰▱▱)", "size": "2MiB", "rate": "108.5 MB/s", "latency": "13 ms", "crc": "0xBE", "hash": "075c2966"}
+{"idx": 47, "time": "2025-11-07 18:44:28.504Z", "material": "DEEPSLATE_LAPIS_ORE", "status": "refining 97% (▰▰▰▰▰▰▰▰)", "size": "256KiB", "rate": "335.8 MB/s", "latency": "4 ms", "crc": "0xB4", "hash": "594747da", "anomaly": {"level": "WARN", "msg": "transient link flap", "fix": "retry ok", "hash": "78cef444"}}
+{"idx": 48, "time": "2025-11-07 18:44:28.593Z", "material": "DIAMOND_ORE", "status": "refining 93% (▰▰▰▰▰▰▰▱)", "size": "512KiB", "rate": "264.4 MB/s", "latency": "60 ms", "crc": "0x41", "hash": "b2eeb25d"}
+
+Volume 04/16 • Biome: Stony Peaks • Offset: 0x6D0B • Temp: 34.2°C
+────────────────────────────────────────────────────────────────────────────────────────────
+| #   | time (UTC)          | material                  | status                      | size | rate   | latency | crc   | note |
+|-----|----------------------|---------------------------|-----------------------------|------|--------|---------|-------|------|
+| 049 | 2025-11-07 18:44:29.214Z | DEEPSLATE_DIAMOND_ORE | refining 61% (▰▰▰▰▰▱▱▱) | 256KiB | 93.6 MB/s | 84 ms | 0x37 |  |
+| 050 | 2025-11-07 18:44:29.258Z | NETHER_GOLD_ORE | refining 73% (▰▰▰▰▰▰▱▱) | 256KiB | 140.1 MB/s | 67 ms | 0x90 |  |
+| 051 | 2025-11-07 18:44:29.413Z | NETHER_QUARTZ_ORE | refining 89% (▰▰▰▰▰▰▰▱) | 4MiB | 282.4 MB/s | 85 ms | 0x51 |  |
+| 052 | 2025-11-07 18:44:29.478Z | ANCIENT_DEBRIS | index updated | 2MiB | 92.7 MB/s | 54 ms | 0x1A |  |
+| 053 | 2025-11-07 18:44:29.555Z | COAL_BLOCK | no issues | 1MiB | 361.8 MB/s | 30 ms | 0xE9 |  |
+| 054 | 2025-11-07 18:44:29.653Z | RAW_IRON_BLOCK | CRC OK | 4MiB | 44.5 MB/s | 64 ms | 0x4B |  |
+| 055 | 2025-11-07 18:44:29.711Z | RAW_COPPER_BLOCK | patina: light | 32KiB | 106.4 MB/s | 19 ms | 0xDC |  |
+| 056 | 2025-11-07 18:44:29.778Z | RAW_GOLD_BLOCK | no issues | 32KiB | 326.8 MB/s | 40 ms | 0x39 |  |
+| 057 | 2025-11-07 18:44:29.824Z | AMETHYST_BLOCK | moved lossless | 512KiB | 205.7 MB/s | 85 ms | 0x39 |  |
+| 058 | 2025-11-07 18:44:29.892Z | IRON_BLOCK | CRC OK | 32KiB | 271.8 MB/s | 39 ms | 0x02 |  |
+| 059 | 2025-11-07 18:44:30.044Z | OXIDIZED_COPPER | patina: none | 32KiB | 110.2 MB/s | 81 ms | 0x88 |  |
+| 060 | 2025-11-07 18:44:30.140Z | GOLD_BLOCK | no issues | 8MiB | 48.0 MB/s | 50 ms | 0xF0 |  |
+| 061 | 2025-11-07 18:44:30.232Z | DIAMOND_BLOCK | moved lossless | 4MiB | 144.5 MB/s | 31 ms | 0xC6 | WARN: transient link flap |
+| 062 | 2025-11-07 18:44:30.281Z | NETHERITE_BLOCK | heat rating A | 32KiB | 273.5 MB/s | 17 ms | 0x72 |  |
+| 063 | 2025-11-07 18:44:30.375Z | LAPIS_BLOCK | no issues | 256KiB | 211.7 MB/s | 59 ms | 0x43 | WARN: crc mismatch; retry scheduled |
+| 064 | 2025-11-07 18:44:30.427Z | EMERALD_BLOCK | index updated | 256KiB | 122.9 MB/s | 85 ms | 0xC4 |  |
+
+Volume 05/16 • Biome: Savanna Plateau • Offset: 0x0885 • Temp: 42.4°C
+────────────────────────────────────────────────────────────────────────────────────────────
+[065] 2025-11-07 18:44:31.177Z | QUARTZ_BLOCK | index updated | size 32KiB | rate 244.0 MB/s | lat 16 ms | CRC 0xB1
+[066] 2025-11-07 18:44:31.280Z | CHISELED_QUARTZ_BLOCK | moved lossless | size 4MiB | rate 352.6 MB/s | lat 10 ms | CRC 0x51
+[067] 2025-11-07 18:44:31.326Z | QUARTZ_BRICKS | bond sound; strength 94% | size 4MiB | rate 118.4 MB/s | lat 18 ms | CRC 0x04
+[068] 2025-11-07 18:44:31.436Z | QUARTZ_PILLAR | no issues | size 64KiB | rate 259.9 MB/s | lat 7 ms | CRC 0x0A
+[069] 2025-11-07 18:44:31.578Z | WAXED_COPPER_BLOCK | patina: heavy | size 256KiB | rate 333.2 MB/s | lat 56 ms | CRC 0x6B
+[070] 2025-11-07 18:44:31.626Z | WAXED_EXPOSED_COPPER | patina: light | size 32KiB | rate 190.0 MB/s | lat 55 ms | CRC 0x18
+[071] 2025-11-07 18:44:31.758Z | WAXED_WEATHERED_COPPER | patina: heavy | size 512KiB | rate 222.6 MB/s | lat 75 ms | CRC 0x99
+[072] 2025-11-07 18:44:31.844Z | WAXED_OXIDIZED_COPPER | patina: heavy | size 128KiB | rate 295.1 MB/s | lat 31 ms | CRC 0x60
+[073] 2025-11-07 18:44:31.985Z | WAXED_CUT_COPPER | patina: none | size 1MiB | rate 183.2 MB/s | lat 30 ms | CRC 0xEC
+[074] 2025-11-07 18:44:32.126Z | WAXED_EXPOSED_CUT_COPPER | patina: none | size 8MiB | rate 182.0 MB/s | lat 59 ms | CRC 0x63
+[075] 2025-11-07 18:44:32.265Z | WAXED_WEATHERED_CUT_COPPER | patina: light | size 32KiB | rate 82.0 MB/s | lat 18 ms | CRC 0xE4
+[076] 2025-11-07 18:44:32.333Z | WAXED_OXIDIZED_CUT_COPPER | patina: none | size 512KiB | rate 331.1 MB/s | lat 49 ms | CRC 0xAB
+[077] 2025-11-07 18:44:32.417Z | WAXED_CUT_COPPER_STAIRS | patina: heavy | size 32KiB | rate 206.8 MB/s | lat 69 ms | CRC 0x21
+[078] 2025-11-07 18:44:32.453Z | WAXED_EXPOSED_CUT_COPPER_STAIRS | patina: none | size 8MiB | rate 379.3 MB/s | lat 44 ms | CRC 0x98
+[079] 2025-11-07 18:44:32.529Z | WAXED_WEATHERED_CUT_COPPER_STAIRS | patina: heavy | size 128KiB | rate 373.7 MB/s | lat 48 ms | CRC 0x19
+[080] 2025-11-07 18:44:32.648Z | WAXED_OXIDIZED_CUT_COPPER_STAIRS | patina: light | size 256KiB | rate 315.2 MB/s | lat 76 ms | CRC 0xE0
+
+Volume 06/16 • Biome: Basalt Deltas • Offset: 0x0C37 • Temp: 57.6°C
+────────────────────────────────────────────────────────────────────────────────────────────
+idx=081 t=2025-11-07 18:44:33.153Z mat=WAXED_CUT_COPPER_SLAB st=patina: light size=8MiB rate=64.9 MB/s lat=59 ms crc=0x6D h=7dc8ad49
+idx=082 t=2025-11-07 18:44:33.188Z mat=WAXED_EXPOSED_CUT_COPPER_SLAB st=patina: none size=128KiB rate=150.3 MB/s lat=54 ms crc=0xE4 h=69a0fa5e
+idx=083 t=2025-11-07 18:44:33.247Z mat=WAXED_WEATHERED_CUT_COPPER_SLAB st=patina: none size=128KiB rate=273.1 MB/s lat=80 ms crc=0x65 h=6bdc48ee
+idx=084 t=2025-11-07 18:44:33.341Z mat=WAXED_OXIDIZED_CUT_COPPER_SLAB st=patina: light size=128KiB rate=185.1 MB/s lat=57 ms crc=0x2C h=82a045f7
+idx=085 t=2025-11-07 18:44:33.409Z mat=OAK_LOG st=moisture 1.7% size=4MiB rate=182.6 MB/s lat=25 ms crc=0x1C h=965e8de0
+idx=086 t=2025-11-07 18:44:33.507Z mat=SPRUCE_LOG st=moisture 0.8% size=64KiB rate=104.6 MB/s lat=77 ms crc=0x13 h=c4b4bfb2
+idx=087 t=2025-11-07 18:44:33.599Z mat=BIRCH_LOG st=moisture 0.8% size=2MiB rate=11.0 MB/s lat=37 ms crc=0xA9 h=bd1e9937
+idx=088 t=2025-11-07 18:44:33.756Z mat=JUNGLE_LOG st=moisture 1.3% size=256KiB rate=46.9 MB/s lat=48 ms crc=0x06 h=41bf3314
+idx=089 t=2025-11-07 18:44:33.796Z mat=ACACIA_LOG st=moisture 0.7% size=1MiB rate=92.6 MB/s lat=67 ms crc=0xD3 h=c1a939da
+idx=090 t=2025-11-07 18:44:33.939Z mat=CHERRY_LOG st=moisture 2.2% size=32KiB rate=189.7 MB/s lat=7 ms crc=0x0E h=58d6b091
+idx=091 t=2025-11-07 18:44:34.078Z mat=DARK_OAK_LOG st=moisture 1.6% size=2MiB rate=162.4 MB/s lat=69 ms crc=0x9D h=c1b04e23
+idx=092 t=2025-11-07 18:44:34.187Z mat=MANGROVE_LOG st=moisture 2.1% size=32KiB rate=17.9 MB/s lat=11 ms crc=0xA0 h=bbdc8f50
+idx=093 t=2025-11-07 18:44:34.258Z mat=CRIMSON_STEM st=moisture 1.8% size=2MiB rate=251.1 MB/s lat=22 ms crc=0xB3 h=925be9d9
+idx=094 t=2025-11-07 18:44:34.316Z mat=WARPED_STEM st=moisture 1.9% size=128KiB rate=348.0 MB/s lat=46 ms crc=0x5B h=a7f561db
+idx=095 t=2025-11-07 18:44:34.391Z mat=BAMBOO_BLOCK st=index updated size=256KiB rate=217.7 MB/s lat=40 ms crc=0x7A h=398430de
+idx=096 t=2025-11-07 18:44:34.506Z mat=STRIPPED_OAK_LOG st=moisture 2.3% size=2MiB rate=88.3 MB/s lat=75 ms crc=0xE6 h=7efae4f5
+
+Volume 07/16 • Biome: Dripstone Caves • Offset: 0x9EDA • Temp: 48.9°C
+────────────────────────────────────────────────────────────────────────────────────────────
+{"idx": 97, "time": "2025-11-07 18:44:35.274Z", "material": "STRIPPED_SPRUCE_LOG", "status": "moisture 1.7%", "size": "8MiB", "rate": "286.1 MB/s", "latency": "20 ms", "crc": "0xDD", "hash": "45ede850"}
+{"idx": 98, "time": "2025-11-07 18:44:35.350Z", "material": "STRIPPED_BIRCH_LOG", "status": "moisture 0.4%", "size": "512KiB", "rate": "300.5 MB/s", "latency": "13 ms", "crc": "0x73", "hash": "bc9c764b"}
+{"idx": 99, "time": "2025-11-07 18:44:35.399Z", "material": "STRIPPED_JUNGLE_LOG", "status": "moisture 1.3%", "size": "64KiB", "rate": "310.1 MB/s", "latency": "50 ms", "crc": "0xD0", "hash": "1bb2988c"}
+{"idx": 100, "time": "2025-11-07 18:44:35.542Z", "material": "STRIPPED_ACACIA_LOG", "status": "moisture 1.5%", "size": "1MiB", "rate": "353.0 MB/s", "latency": "59 ms", "crc": "0x9D", "hash": "c79af22e"}
+{"idx": 101, "time": "2025-11-07 18:44:35.637Z", "material": "STRIPPED_CHERRY_LOG", "status": "moisture 2.2%", "size": "256KiB", "rate": "306.2 MB/s", "latency": "56 ms", "crc": "0xD8", "hash": "7377bb29", "anomaly": {"level": "NOTE", "msg": "dedupe hit", "save": "256KiB"}}
+{"idx": 102, "time": "2025-11-07 18:44:35.754Z", "material": "STRIPPED_DARK_OAK_LOG", "status": "moisture 0.4%", "size": "256KiB", "rate": "183.8 MB/s", "latency": "78 ms", "crc": "0x67", "hash": "33adf0e1"}
+{"idx": 103, "time": "2025-11-07 18:44:35.811Z", "material": "STRIPPED_MANGROVE_LOG", "status": "moisture 1.0%", "size": "128KiB", "rate": "252.2 MB/s", "latency": "36 ms", "crc": "0x6A", "hash": "75b64200"}
+{"idx": 104, "time": "2025-11-07 18:44:35.969Z", "material": "STRIPPED_CRIMSON_STEM", "status": "moisture 1.7%", "size": "4MiB", "rate": "106.1 MB/s", "latency": "60 ms", "crc": "0x7D", "hash": "906b9898"}
+{"idx": 105, "time": "2025-11-07 18:44:36.090Z", "material": "STRIPPED_WARPED_STEM", "status": "moisture 0.3%", "size": "128KiB", "rate": "159.3 MB/s", "latency": "46 ms", "crc": "0x25", "hash": "4f6d8bc3", "anomaly": {"level": "WARN", "msg": "crc mismatch; retry scheduled", "fix": "rescan", "delay": "163 ms"}}
+{"idx": 106, "time": "2025-11-07 18:44:36.203Z", "material": "STRIPPED_BAMBOO_BLOCK", "status": "moved lossless", "size": "512KiB", "rate": "198.0 MB/s", "latency": "41 ms", "crc": "0x44", "hash": "2cf8eec2"}
+{"idx": 107, "time": "2025-11-07 18:44:36.242Z", "material": "OAK_WOOD", "status": "moisture 0.8%", "size": "4MiB", "rate": "34.2 MB/s", "latency": "57 ms", "crc": "0x73", "hash": "c1c06c48"}
+{"idx": 108, "time": "2025-11-07 18:44:36.327Z", "material": "SPRUCE_WOOD", "status": "moisture 1.6%", "size": "1MiB", "rate": "328.7 MB/s", "latency": "81 ms", "crc": "0x6A", "hash": "17523f62"}
+{"idx": 109, "time": "2025-11-07 18:44:36.458Z", "material": "BIRCH_WOOD", "status": "moisture 2.2%", "size": "512KiB", "rate": "109.6 MB/s", "latency": "67 ms", "crc": "0x00", "hash": "c736b762"}
+{"idx": 110, "time": "2025-11-07 18:44:36.612Z", "material": "JUNGLE_WOOD", "status": "moisture 1.4%", "size": "32KiB", "rate": "9.9 MB/s", "latency": "83 ms", "crc": "0x5D", "hash": "1750d274"}
+{"idx": 111, "time": "2025-11-07 18:44:36.648Z", "material": "ACACIA_WOOD", "status": "moisture 1.7%", "size": "256KiB", "rate": "213.7 MB/s", "latency": "19 ms", "crc": "0x2A", "hash": "4ebf3fe2"}
+{"idx": 112, "time": "2025-11-07 18:44:36.687Z", "material": "CHERRY_WOOD", "status": "moisture 2.1%", "size": "1MiB", "rate": "308.7 MB/s", "latency": "81 ms", "crc": "0x65", "hash": "6e73950c"}
+
+Volume 08/16 • Biome: Warped Forest • Offset: 0x993B • Temp: 44.9°C
+────────────────────────────────────────────────────────────────────────────────────────────
+| #   | time (UTC)          | material                  | status                      | size | rate   | latency | crc   | note |
+|-----|----------------------|---------------------------|-----------------------------|------|--------|---------|-------|------|
+| 113 | 2025-11-07 18:44:37.103Z | DARK_OAK_WOOD | moisture 2.1% | 8MiB | 281.2 MB/s | 68 ms | 0xF4 | NOTE: dedupe hit |
+| 114 | 2025-11-07 18:44:37.202Z | MANGROVE_WOOD | moisture 1.4% | 8MiB | 223.9 MB/s | 81 ms | 0xF7 |  |
+| 115 | 2025-11-07 18:44:37.244Z | CRIMSON_HYPHAE | moisture 1.4% | 128KiB | 178.0 MB/s | 81 ms | 0x39 |  |
+| 116 | 2025-11-07 18:44:37.318Z | WARPED_HYPHAE | moisture 0.5% | 128KiB | 42.3 MB/s | 28 ms | 0xE1 |  |
+| 117 | 2025-11-07 18:44:37.382Z | STRIPPED_OAK_WOOD | moisture 1.0% | 512KiB | 191.2 MB/s | 3 ms | 0x3D | WARN: crc mismatch; retry scheduled |
+| 118 | 2025-11-07 18:44:37.500Z | STRIPPED_SPRUCE_WOOD | moisture 1.8% | 4MiB | 154.1 MB/s | 70 ms | 0x34 | WARN: crc mismatch; retry scheduled |
+| 119 | 2025-11-07 18:44:37.538Z | STRIPPED_BIRCH_WOOD | moisture 0.8% | 256KiB | 75.4 MB/s | 76 ms | 0xCA |  |
+| 120 | 2025-11-07 18:44:37.622Z | STRIPPED_JUNGLE_WOOD | moisture 1.7% | 64KiB | 317.2 MB/s | 30 ms | 0x27 |  |
+| 121 | 2025-11-07 18:44:37.779Z | STRIPPED_ACACIA_WOOD | moisture 0.6% | 8MiB | 367.4 MB/s | 21 ms | 0xF4 |  |
+| 122 | 2025-11-07 18:44:37.853Z | STRIPPED_CHERRY_WOOD | moisture 2.1% | 64KiB | 241.4 MB/s | 41 ms | 0x2F |  |
+| 123 | 2025-11-07 18:44:37.940Z | STRIPPED_DARK_OAK_WOOD | moisture 2.2% | 1MiB | 226.2 MB/s | 68 ms | 0xBE |  |
+| 124 | 2025-11-07 18:44:38.006Z | STRIPPED_MANGROVE_WOOD | moisture 0.8% | 512KiB | 362.9 MB/s | 41 ms | 0xC1 |  |
+| 125 | 2025-11-07 18:44:38.118Z | STRIPPED_CRIMSON_HYPHAE | moisture 1.1% | 8MiB | 134.2 MB/s | 37 ms | 0x03 |  |
+| 126 | 2025-11-07 18:44:38.177Z | STRIPPED_WARPED_HYPHAE | moisture 1.0% | 1MiB | 259.9 MB/s | 40 ms | 0xAB |  |
+| 127 | 2025-11-07 18:44:38.263Z | WHITE_WOOL | dye fixed (faded) | 512KiB | 241.4 MB/s | 23 ms | 0x21 |  |
+| 128 | 2025-11-07 18:44:38.377Z | ORANGE_WOOL | dye fixed (faded) | 2MiB | 136.0 MB/s | 23 ms | 0x5C |  |
+
+Volume 09/16 • Biome: Mushroom Fields • Offset: 0x7E3C • Temp: 33.7°C
+────────────────────────────────────────────────────────────────────────────────────────────
+[129] 2025-11-07 18:44:39.306Z | MAGENTA_WOOL | dye fixed (rich) | size 64KiB | rate 53.7 MB/s | lat 69 ms | CRC 0x9D
+[130] 2025-11-07 18:44:39.432Z | LIGHT_BLUE_WOOL | dye fixed (rich) | size 256KiB | rate 55.5 MB/s | lat 68 ms | CRC 0x9F
+[131] 2025-11-07 18:44:39.499Z | YELLOW_WOOL | dye fixed (rich) | size 256KiB | rate 136.2 MB/s | lat 56 ms | CRC 0x7C
+[132] 2025-11-07 18:44:39.614Z | LIME_WOOL | dye fixed (rich) | size 512KiB | rate 128.5 MB/s | lat 56 ms | CRC 0xC7
+[133] 2025-11-07 18:44:39.696Z | PINK_WOOL | dye fixed (rich) | size 256KiB | rate 127.9 MB/s | lat 63 ms | CRC 0xD2
+[134] 2025-11-07 18:44:39.738Z | GRAY_WOOL | dye fixed (rich) | size 2MiB | rate 255.3 MB/s | lat 10 ms | CRC 0xD3
+[135] 2025-11-07 18:44:39.816Z | LIGHT_GRAY_WOOL | dye fixed (faded) | size 128KiB | rate 223.4 MB/s | lat 80 ms | CRC 0xAA
+[136] 2025-11-07 18:44:39.896Z | CYAN_WOOL | dye fixed (faded) | size 32KiB | rate 17.6 MB/s | lat 65 ms | CRC 0xCB
+[137] 2025-11-07 18:44:39.953Z | PURPLE_WOOL | dye fixed (rich) | size 1MiB | rate 91.8 MB/s | lat 81 ms | CRC 0x78 | WARN: transient link flap
+[138] 2025-11-07 18:44:40.088Z | BLUE_WOOL | dye fixed (rich) | size 32KiB | rate 130.1 MB/s | lat 32 ms | CRC 0xC8 | NOTE: dedupe hit
+[139] 2025-11-07 18:44:40.134Z | BROWN_WOOL | dye fixed (faded) | size 256KiB | rate 130.0 MB/s | lat 72 ms | CRC 0x28
+[140] 2025-11-07 18:44:40.292Z | GREEN_WOOL | dye fixed (rich) | size 4MiB | rate 231.6 MB/s | lat 19 ms | CRC 0x11
+[141] 2025-11-07 18:44:40.345Z | RED_WOOL | dye fixed (faded) | size 64KiB | rate 198.9 MB/s | lat 46 ms | CRC 0x7B
+[142] 2025-11-07 18:44:40.485Z | BLACK_WOOL | dye fixed (faded) | size 256KiB | rate 111.9 MB/s | lat 76 ms | CRC 0xFD
+[143] 2025-11-07 18:44:40.601Z | WHITE_CONCRETE | hydration 4/8 | size 8MiB | rate 272.3 MB/s | lat 34 ms | CRC 0x33
+[144] 2025-11-07 18:44:40.653Z | ORANGE_CONCRETE | hydration 7/8 | size 4MiB | rate 377.8 MB/s | lat 54 ms | CRC 0x6E
+
+Volume 10/16 • Biome: Stony Peaks • Offset: 0x57A8 • Temp: 51.6°C
+────────────────────────────────────────────────────────────────────────────────────────────
+idx=145 t=2025-11-07 18:44:41.178Z mat=MAGENTA_CONCRETE st=hydration 5/8 size=512KiB rate=52.9 MB/s lat=10 ms crc=0xAF h=a3113aa0
+idx=146 t=2025-11-07 18:44:41.233Z mat=LIGHT_BLUE_CONCRETE st=hydration 1/8 size=2MiB rate=67.1 MB/s lat=26 ms crc=0xB1 h=9042374e
+idx=147 t=2025-11-07 18:44:41.366Z mat=YELLOW_CONCRETE st=hydration 3/8 size=1MiB rate=138.8 MB/s lat=10 ms crc=0x8E h=7c01999b
+idx=148 t=2025-11-07 18:44:41.481Z mat=LIME_CONCRETE st=hydration 5/8 size=32KiB rate=369.8 MB/s lat=36 ms crc=0xD9 h=8a5e2dc8
+idx=149 t=2025-11-07 18:44:41.554Z mat=PINK_CONCRETE st=hydration 3/8 size=8MiB rate=271.5 MB/s lat=34 ms crc=0xE4 h=ab20d7c1
+idx=150 t=2025-11-07 18:44:41.692Z mat=GRAY_CONCRETE st=hydration 1/8 size=8MiB rate=320.4 MB/s lat=48 ms crc=0xE5 h=eb5344c4
+idx=151 t=2025-11-07 18:44:41.781Z mat=LIGHT_GRAY_CONCRETE st=hydration 7/8 size=128KiB rate=29.6 MB/s lat=66 ms crc=0xBC h=53e1d117
+idx=152 t=2025-11-07 18:44:41.821Z mat=CYAN_CONCRETE st=hydration 8/8 size=512KiB rate=27.5 MB/s lat=39 ms crc=0xDD h=c9734728
+idx=153 t=2025-11-07 18:44:41.904Z mat=PURPLE_CONCRETE st=hydration 3/8 size=512KiB rate=30.2 MB/s lat=71 ms crc=0x8A h=7959d339
+idx=154 t=2025-11-07 18:44:41.965Z mat=BLUE_CONCRETE st=hydration 2/8 size=8MiB rate=203.3 MB/s lat=36 ms crc=0xDA h=f2696555
+idx=155 t=2025-11-07 18:44:42.046Z mat=BROWN_CONCRETE st=hydration 6/8 size=4MiB rate=248.5 MB/s lat=3 ms crc=0x3A h=d536aad5
+idx=156 t=2025-11-07 18:44:42.120Z mat=GREEN_CONCRETE st=hydration 7/8 size=2MiB rate=235.3 MB/s lat=41 ms crc=0x23 h=513da43a
+idx=157 t=2025-11-07 18:44:42.187Z mat=RED_CONCRETE st=hydration 4/8 size=256KiB rate=149.2 MB/s lat=43 ms crc=0x8D h=0c2df40a
+idx=158 t=2025-11-07 18:44:42.262Z mat=BLACK_CONCRETE st=hydration 2/8 size=64KiB rate=134.0 MB/s lat=22 ms crc=0x0F h=e31bfb61
+idx=159 t=2025-11-07 18:44:42.334Z mat=TERRACOTTA st=kiln firing slightly streaky size=256KiB rate=244.0 MB/s lat=29 ms crc=0xF9 h=f72c1382
+idx=160 t=2025-11-07 18:44:42.467Z mat=WHITE_TERRACOTTA st=kiln firing even size=2MiB rate=8.3 MB/s lat=65 ms crc=0xD9 h=3d01b40a
+
+Volume 11/16 • Biome: Cherry Grove • Offset: 0xCDBF • Temp: 58.4°C
+────────────────────────────────────────────────────────────────────────────────────────────
+{"idx": 161, "time": "2025-11-07 18:44:43.477Z", "material": "ORANGE_TERRACOTTA", "status": "kiln firing even", "size": "2MiB", "rate": "119.2 MB/s", "latency": "43 ms", "crc": "0x14", "hash": "19d6e173"}
+{"idx": 162, "time": "2025-11-07 18:44:43.628Z", "material": "MAGENTA_TERRACOTTA", "status": "kiln firing slightly streaky", "size": "256KiB", "rate": "87.0 MB/s", "latency": "71 ms", "crc": "0x55", "hash": "10085de4"}
+{"idx": 163, "time": "2025-11-07 18:44:43.669Z", "material": "LIGHT_BLUE_TERRACOTTA", "status": "kiln firing even", "size": "2MiB", "rate": "169.8 MB/s", "latency": "55 ms", "crc": "0x57", "hash": "b5142e54"}
+{"idx": 164, "time": "2025-11-07 18:44:43.824Z", "material": "YELLOW_TERRACOTTA", "status": "kiln firing even", "size": "512KiB", "rate": "155.8 MB/s", "latency": "32 ms", "crc": "0x34", "hash": "20e47090"}
+{"idx": 165, "time": "2025-11-07 18:44:43.928Z", "material": "LIME_TERRACOTTA", "status": "kiln firing even", "size": "8MiB", "rate": "315.5 MB/s", "latency": "56 ms", "crc": "0x7F", "hash": "5ff6444b"}
+{"idx": 166, "time": "2025-11-07 18:44:44.082Z", "material": "PINK_TERRACOTTA", "status": "kiln firing slightly streaky", "size": "256KiB", "rate": "68.0 MB/s", "latency": "61 ms", "crc": "0x8A", "hash": "7fff3522"}
+{"idx": 167, "time": "2025-11-07 18:44:44.124Z", "material": "GRAY_TERRACOTTA", "status": "kiln firing slightly streaky", "size": "1MiB", "rate": "257.3 MB/s", "latency": "42 ms", "crc": "0x8B", "hash": "f50e1c5e"}
+{"idx": 168, "time": "2025-11-07 18:44:44.195Z", "material": "LIGHT_GRAY_TERRACOTTA", "status": "kiln firing slightly streaky", "size": "256KiB", "rate": "342.9 MB/s", "latency": "7 ms", "crc": "0x62", "hash": "80a8407a"}
+{"idx": 169, "time": "2025-11-07 18:44:44.279Z", "material": "CYAN_TERRACOTTA", "status": "kiln firing slightly streaky", "size": "512KiB", "rate": "363.6 MB/s", "latency": "21 ms", "crc": "0x83", "hash": "306889cb"}
+{"idx": 170, "time": "2025-11-07 18:44:44.354Z", "material": "PURPLE_TERRACOTTA", "status": "kiln firing slightly streaky", "size": "2MiB", "rate": "353.7 MB/s", "latency": "28 ms", "crc": "0x30", "hash": "c16ac33f", "anomaly": {"level": "WARN", "msg": "crc mismatch; retry scheduled", "fix": "rescan", "delay": "167 ms"}}
+{"idx": 171, "time": "2025-11-07 18:44:44.442Z", "material": "BLUE_TERRACOTTA", "status": "kiln firing even", "size": "512KiB", "rate": "92.4 MB/s", "latency": "48 ms", "crc": "0x80", "hash": "06ffc4ef"}
+{"idx": 172, "time": "2025-11-07 18:44:44.501Z", "material": "BROWN_TERRACOTTA", "status": "kiln firing even", "size": "512KiB", "rate": "221.7 MB/s", "latency": "62 ms", "crc": "0xE0", "hash": "f58ebbed"}
+{"idx": 173, "time": "2025-11-07 18:44:44.629Z", "material": "GREEN_TERRACOTTA", "status": "kiln firing even", "size": "8MiB", "rate": "163.3 MB/s", "latency": "6 ms", "crc": "0xC9", "hash": "4a9b24fa"}
+{"idx": 174, "time": "2025-11-07 18:44:44.676Z", "material": "RED_TERRACOTTA", "status": "kiln firing slightly streaky", "size": "64KiB", "rate": "13.9 MB/s", "latency": "20 ms", "crc": "0x33", "hash": "b3234f54"}
+{"idx": 175, "time": "2025-11-07 18:44:44.742Z", "material": "BLACK_TERRACOTTA", "status": "kiln firing slightly streaky", "size": "1MiB", "rate": "115.6 MB/s", "latency": "63 ms", "crc": "0xB5", "hash": "fb7ea91b"}
+{"idx": 176, "time": "2025-11-07 18:44:44.791Z", "material": "GLASS", "status": "clarity 82%", "size": "128KiB", "rate": "26.7 MB/s", "latency": "13 ms", "crc": "0x7A", "hash": "b97e1589"}
+
+Volume 12/16 • Biome: Dripstone Caves • Offset: 0x2E2E • Temp: 47.2°C
+────────────────────────────────────────────────────────────────────────────────────────────
+| #   | time (UTC)          | material                  | status                      | size | rate   | latency | crc   | note |
+|-----|----------------------|---------------------------|-----------------------------|------|--------|---------|-------|------|
+| 177 | 2025-11-07 18:44:45.594Z | TINTED_GLASS | clarity 92% | 512KiB | 181.9 MB/s | 81 ms | 0xA1 |  |
+| 178 | 2025-11-07 18:44:45.699Z | WHITE_STAINED_GLASS | clarity 88% | 512KiB | 187.7 MB/s | 15 ms | 0xC1 |  |
+| 179 | 2025-11-07 18:44:45.773Z | ORANGE_STAINED_GLASS | clarity 93% | 2MiB | 106.7 MB/s | 16 ms | 0xFC |  |
+| 180 | 2025-11-07 18:44:45.911Z | MAGENTA_STAINED_GLASS | clarity 100% | 512KiB | 353.6 MB/s | 69 ms | 0x3D |  |
+| 181 | 2025-11-07 18:44:45.947Z | LIGHT_BLUE_STAINED_GLASS | clarity 84% | 4MiB | 173.8 MB/s | 4 ms | 0x3F |  |
+| 182 | 2025-11-07 18:44:45.982Z | YELLOW_STAINED_GLASS | clarity 85% | 8MiB | 91.3 MB/s | 45 ms | 0x1C |  |
+| 183 | 2025-11-07 18:44:46.101Z | LIME_STAINED_GLASS | clarity 98% | 1MiB | 227.5 MB/s | 68 ms | 0x67 |  |
+| 184 | 2025-11-07 18:44:46.196Z | PINK_STAINED_GLASS | clarity 93% | 1MiB | 129.9 MB/s | 24 ms | 0x72 |  |
+| 185 | 2025-11-07 18:44:46.355Z | GRAY_STAINED_GLASS | clarity 97% | 32KiB | 161.3 MB/s | 79 ms | 0x73 |  |
+| 186 | 2025-11-07 18:44:46.498Z | LIGHT_GRAY_STAINED_GLASS | clarity 88% | 512KiB | 174.7 MB/s | 31 ms | 0x4A |  |
+| 187 | 2025-11-07 18:44:46.647Z | CYAN_STAINED_GLASS | clarity 90% | 64KiB | 166.3 MB/s | 29 ms | 0x6B |  |
+| 188 | 2025-11-07 18:44:46.750Z | PURPLE_STAINED_GLASS | clarity 87% | 256KiB | 105.4 MB/s | 70 ms | 0x18 |  |
+| 189 | 2025-11-07 18:44:46.863Z | BLUE_STAINED_GLASS | clarity 89% | 64KiB | 375.8 MB/s | 69 ms | 0x68 |  |
+| 190 | 2025-11-07 18:44:46.993Z | BROWN_STAINED_GLASS | clarity 92% | 32KiB | 190.6 MB/s | 5 ms | 0xC8 |  |
+| 191 | 2025-11-07 18:44:47.153Z | GREEN_STAINED_GLASS | clarity 83% | 2MiB | 312.6 MB/s | 50 ms | 0xB1 |  |
+| 192 | 2025-11-07 18:44:47.313Z | RED_STAINED_GLASS | clarity 100% | 4MiB | 226.5 MB/s | 23 ms | 0x1B | WARN: crc mismatch; retry scheduled |
+
+Volume 13/16 • Biome: Stony Peaks • Offset: 0x1322 • Temp: 43.7°C
+────────────────────────────────────────────────────────────────────────────────────────────
+[193] 2025-11-07 18:44:48.203Z | BLACK_STAINED_GLASS | clarity 93% | size 4MiB | rate 278.1 MB/s | lat 11 ms | CRC 0x9D
+[194] 2025-11-07 18:44:48.322Z | STONE_BRICKS | bond sound; strength 75% | size 32KiB | rate 169.4 MB/s | lat 70 ms | CRC 0xA6
+[195] 2025-11-07 18:44:48.448Z | MOSSY_STONE_BRICKS | bond sound; strength 86% | size 2MiB | rate 116.2 MB/s | lat 10 ms | CRC 0xA0
+[196] 2025-11-07 18:44:48.540Z | CRACKED_STONE_BRICKS | bond sound; strength 61% | size 512KiB | rate 93.8 MB/s | lat 17 ms | CRC 0xF2 | WARN: transient link flap
+[197] 2025-11-07 18:44:48.576Z | CHISELED_STONE_BRICKS | bond sound; strength 84% | size 512KiB | rate 360.3 MB/s | lat 23 ms | CRC 0x46
+[198] 2025-11-07 18:44:48.704Z | DEEPSLATE_BRICKS | depth confirmed, Y=-53 | size 64KiB | rate 210.9 MB/s | lat 29 ms | CRC 0xB4
+[199] 2025-11-07 18:44:48.747Z | CRACKED_DEEPSLATE_BRICKS | depth confirmed, Y=-45 | size 128KiB | rate 37.8 MB/s | lat 60 ms | CRC 0x00
+[200] 2025-11-07 18:44:48.834Z | DEEPSLATE_TILES | depth confirmed, Y=-10 | size 2MiB | rate 134.5 MB/s | lat 5 ms | CRC 0x77 | NOTE: dedupe hit
+[201] 2025-11-07 18:44:48.944Z | CRACKED_DEEPSLATE_TILES | depth confirmed, Y=-11 | size 512KiB | rate 90.1 MB/s | lat 23 ms | CRC 0xC3
+[202] 2025-11-07 18:44:49.039Z | CHISELED_DEEPSLATE | depth confirmed, Y=-7 | size 64KiB | rate 189.3 MB/s | lat 70 ms | CRC 0x37
+[203] 2025-11-07 18:44:49.169Z | OBSIDIAN | impact resistant | size 256KiB | rate 155.6 MB/s | lat 64 ms | CRC 0x49
+[204] 2025-11-07 18:44:49.221Z | PACKED_ICE | brittleness 2/5 | size 1MiB | rate 90.3 MB/s | lat 85 ms | CRC 0xD8
+[205] 2025-11-07 18:44:49.293Z | BLUE_ICE | brittleness 5/5 | size 32KiB | rate 257.3 MB/s | lat 7 ms | CRC 0x58
+[206] 2025-11-07 18:44:49.381Z | SMOOTH_STONE | CRC OK | size 128KiB | rate 117.8 MB/s | lat 62 ms | CRC 0xC2
+[207] 2025-11-07 18:44:49.438Z | SMOOTH_SANDSTONE | shedding low | size 64KiB | rate 297.7 MB/s | lat 4 ms | CRC 0xE8
+[208] 2025-11-07 18:44:49.554Z | SMOOTH_RED_SANDSTONE | shedding low | size 4MiB | rate 98.1 MB/s | lat 16 ms | CRC 0x22
+
+Volume 14/16 • Biome: Dripstone Caves • Offset: 0x7C6D • Temp: 56.3°C
+────────────────────────────────────────────────────────────────────────────────────────────
+idx=209 t=2025-11-07 18:44:50.161Z mat=SMOOTH_QUARTZ st=index updated size=128KiB rate=238.8 MB/s lat=46 ms crc=0x20 h=1ed28571
+idx=210 t=2025-11-07 18:44:50.255Z mat=SANDSTONE st=shedding low size=256KiB rate=123.7 MB/s lat=80 ms crc=0xAF h=7da6dd4d
+idx=211 t=2025-11-07 18:44:50.350Z mat=RED_SANDSTONE st=shedding low size=2MiB rate=293.8 MB/s lat=58 ms crc=0xE9 h=2c068522
+idx=212 t=2025-11-07 18:44:50.409Z mat=CUT_SANDSTONE st=shedding low size=8MiB rate=348.7 MB/s lat=48 ms crc=0xFA h=ed67b277
+idx=213 t=2025-11-07 18:44:50.474Z mat=CUT_RED_SANDSTONE st=shedding low size=2MiB rate=272.9 MB/s lat=84 ms crc=0x34 h=9df9efc2
+idx=214 t=2025-11-07 18:44:50.572Z mat=CHISELED_SANDSTONE st=shedding low size=512KiB rate=15.1 MB/s lat=78 ms crc=0x4F h=64f6928f
+idx=215 t=2025-11-07 18:44:50.620Z mat=CHISELED_RED_SANDSTONE st=shedding low size=1MiB rate=214.7 MB/s lat=68 ms crc=0x89 h=78e67957
+idx=216 t=2025-11-07 18:44:50.729Z mat=BRICKS st=bond sound; strength 84% size=256KiB rate=309.4 MB/s lat=34 ms crc=0xBE h=567476b1
+idx=217 t=2025-11-07 18:44:50.785Z mat=MUD_BRICKS st=bond sound; strength 89% size=1MiB rate=168.7 MB/s lat=51 ms crc=0x03 h=a3558600
+idx=218 t=2025-11-07 18:44:50.875Z mat=NETHER_BRICKS st=bond sound; strength 82% size=512KiB rate=15.2 MB/s lat=53 ms crc=0xE3 h=3d963689 a_level=NOTE a_msg=dedupe hit a_save=256KiB
+idx=219 t=2025-11-07 18:44:50.927Z mat=RED_NETHER_BRICKS st=bond sound; strength 91% size=512KiB rate=369.4 MB/s lat=56 ms crc=0x1D h=b24f5c23
+idx=220 t=2025-11-07 18:44:51.085Z mat=CRACKED_NETHER_BRICKS st=bond sound; strength 73% size=2MiB rate=379.3 MB/s lat=67 ms crc=0x2F h=4e2f0e0d
+idx=221 t=2025-11-07 18:44:51.233Z mat=CHISELED_NETHER_BRICKS st=bond sound; strength 87% size=128KiB rate=290.7 MB/s lat=82 ms crc=0x83 h=991dfb69
+idx=222 t=2025-11-07 18:44:51.332Z mat=END_STONE st=portal link 09bfd898 size=32KiB rate=190.1 MB/s lat=48 ms crc=0xBF h=41b864be
+idx=223 t=2025-11-07 18:44:51.463Z mat=END_STONE_BRICKS st=bond sound; strength 79% size=2MiB rate=121.4 MB/s lat=79 ms crc=0xDC h=46a6506b
+idx=224 t=2025-11-07 18:44:51.520Z mat=PURPUR_BLOCK st=no issues size=32KiB rate=347.2 MB/s lat=39 ms crc=0xB8 h=285ea8de
+
+Volume 15/16 • Biome: Stony Peaks • Offset: 0xB577 • Temp: 55.8°C
+────────────────────────────────────────────────────────────────────────────────────────────
+{"idx": 225, "time": "2025-11-07 18:44:52.374Z", "material": "PURPUR_PILLAR", "status": "CRC OK", "size": "32KiB", "rate": "60.6 MB/s", "latency": "17 ms", "crc": "0x11", "hash": "a15b5693"}
+{"idx": 226, "time": "2025-11-07 18:44:52.443Z", "material": "PRISMARINE", "status": "CRC OK", "size": "128KiB", "rate": "293.4 MB/s", "latency": "67 ms", "crc": "0xFA", "hash": "6d1e5e19"}
+{"idx": 227, "time": "2025-11-07 18:44:52.489Z", "material": "PRISMARINE_BRICKS", "status": "bond sound; strength 84%", "size": "1MiB", "rate": "201.2 MB/s", "latency": "48 ms", "crc": "0x17", "hash": "c52ddc23"}
+{"idx": 228, "time": "2025-11-07 18:44:52.613Z", "material": "DARK_PRISMARINE", "status": "CRC OK", "size": "1MiB", "rate": "276.3 MB/s", "latency": "36 ms", "crc": "0x7B", "hash": "63344dbd"}
+{"idx": 229, "time": "2025-11-07 18:44:52.694Z", "material": "SEA_LANTERN", "status": "CRC OK", "size": "128KiB", "rate": "146.0 MB/s", "latency": "66 ms", "crc": "0x4C", "hash": "07697853"}
+{"idx": 230, "time": "2025-11-07 18:44:52.851Z", "material": "CLAY", "status": "no issues", "size": "256KiB", "rate": "73.3 MB/s", "latency": "3 ms", "crc": "0x29", "hash": "76c4ed56"}
+{"idx": 231, "time": "2025-11-07 18:44:52.980Z", "material": "PACKED_MUD", "status": "no issues", "size": "1MiB", "rate": "340.0 MB/s", "latency": "27 ms", "crc": "0xED", "hash": "bc1925a8"}
+{"idx": 232, "time": "2025-11-07 18:44:53.080Z", "material": "SMOOTH_BASALT", "status": "impact resistant", "size": "1MiB", "rate": "32.5 MB/s", "latency": "30 ms", "crc": "0xF0", "hash": "260f930e"}
+{"idx": 233, "time": "2025-11-07 18:44:53.181Z", "material": "BASALT", "status": "impact resistant", "size": "1MiB", "rate": "21.3 MB/s", "latency": "49 ms", "crc": "0xB7", "hash": "77b831bf"}
+{"idx": 234, "time": "2025-11-07 18:44:53.257Z", "material": "POLISHED_BASALT", "status": "impact resistant", "size": "4MiB", "rate": "149.4 MB/s", "latency": "82 ms", "crc": "0x6E", "hash": "644de077"}
+{"idx": 235, "time": "2025-11-07 18:44:53.397Z", "material": "DEAD_TUBE_CORAL_BLOCK", "status": "moved lossless", "size": "4MiB", "rate": "99.6 MB/s", "latency": "81 ms", "crc": "0x37", "hash": "633977e9", "anomaly": {"level": "WARN", "msg": "crc mismatch; retry scheduled", "fix": "rescan", "delay": "111 ms"}}
+{"idx": 236, "time": "2025-11-07 18:44:53.474Z", "material": "DEAD_BRAIN_CORAL_BLOCK", "status": "CRC OK", "size": "128KiB", "rate": "169.4 MB/s", "latency": "38 ms", "crc": "0x73", "hash": "315c3114", "anomaly": {"level": "WARN", "msg": "crc mismatch; retry scheduled", "fix": "rescan", "delay": "148 ms"}}
+{"idx": 237, "time": "2025-11-07 18:44:53.544Z", "material": "DEAD_BUBBLE_CORAL_BLOCK", "status": "no issues", "size": "128KiB", "rate": "11.1 MB/s", "latency": "34 ms", "crc": "0xB3", "hash": "47f5a92e"}
+{"idx": 238, "time": "2025-11-07 18:44:53.641Z", "material": "DEAD_FIRE_CORAL_BLOCK", "status": "CRC OK", "size": "32KiB", "rate": "232.8 MB/s", "latency": "62 ms", "crc": "0x2D", "hash": "7d4507d0"}
+{"idx": 239, "time": "2025-11-07 18:44:53.729Z", "material": "DEAD_HORN_CORAL_BLOCK", "status": "index updated", "size": "32KiB", "rate": "33.5 MB/s", "latency": "73 ms", "crc": "0x3E", "hash": "300597ce"}
+{"idx": 240, "time": "2025-11-07 18:44:53.852Z", "material": "WHITE_GLAZED_TERRACOTTA", "status": "kiln firing even", "size": "64KiB", "rate": "247.2 MB/s", "latency": "63 ms", "crc": "0xEF", "hash": "dc9f2220"}
+
+Volume 16/16 • Biome: Deep Dark • Offset: 0x076A • Temp: 50.9°C
+────────────────────────────────────────────────────────────────────────────────────────────
+| #   | time (UTC)          | material                  | status                      | size | rate   | latency | crc   | note |
+|-----|----------------------|---------------------------|-----------------------------|------|--------|---------|-------|------|
+| 241 | 2025-11-07 18:44:54.248Z | ORANGE_GLAZED_TERRACOTTA | kiln firing even | 512KiB | 169.1 MB/s | 65 ms | 0x2A |  |
+| 242 | 2025-11-07 18:44:54.392Z | MAGENTA_GLAZED_TERRACOTTA | kiln firing slightly streaky | 128KiB | 139.4 MB/s | 12 ms | 0x6B |  |
+| 243 | 2025-11-07 18:44:54.506Z | LIGHT_BLUE_GLAZED_TERRACOTTA | kiln firing even | 8MiB | 198.6 MB/s | 65 ms | 0x6D |  |
+| 244 | 2025-11-07 18:44:54.636Z | YELLOW_GLAZED_TERRACOTTA | kiln firing even | 128KiB | 188.4 MB/s | 46 ms | 0x4A |  |
+| 245 | 2025-11-07 18:44:54.751Z | LIME_GLAZED_TERRACOTTA | kiln firing slightly streaky | 32KiB | 98.8 MB/s | 70 ms | 0x95 |  |
+| 246 | 2025-11-07 18:44:54.794Z | PINK_GLAZED_TERRACOTTA | kiln firing even | 512KiB | 22.9 MB/s | 13 ms | 0xA0 |  |
+| 247 | 2025-11-07 18:44:54.839Z | GRAY_GLAZED_TERRACOTTA | kiln firing even | 4MiB | 353.7 MB/s | 77 ms | 0xA1 |  |
+| 248 | 2025-11-07 18:44:54.888Z | LIGHT_GRAY_GLAZED_TERRACOTTA | kiln firing even | 4MiB | 240.9 MB/s | 32 ms | 0x78 |  |
+| 249 | 2025-11-07 18:44:54.959Z | CYAN_GLAZED_TERRACOTTA | kiln firing even | 1MiB | 138.8 MB/s | 39 ms | 0x99 |  |
+| 250 | 2025-11-07 18:44:55.056Z | PURPLE_GLAZED_TERRACOTTA | kiln firing even | 8MiB | 180.1 MB/s | 41 ms | 0x46 | WARN: transient link flap |
+| 251 | 2025-11-07 18:44:55.207Z | BLUE_GLAZED_TERRACOTTA | kiln firing slightly streaky | 256KiB | 206.9 MB/s | 8 ms | 0x96 |  |
+| 252 | 2025-11-07 18:44:55.335Z | BROWN_GLAZED_TERRACOTTA | kiln firing slightly streaky | 128KiB | 50.0 MB/s | 33 ms | 0xF6 |  |
+| 253 | 2025-11-07 18:44:55.390Z | GREEN_GLAZED_TERRACOTTA | kiln firing slightly streaky | 128KiB | 68.8 MB/s | 52 ms | 0xDF |  |
+| 254 | 2025-11-07 18:44:55.536Z | RED_GLAZED_TERRACOTTA | kiln firing even | 2MiB | 85.7 MB/s | 57 ms | 0x49 | WARN: crc mismatch; retry scheduled |
+| 255 | 2025-11-07 18:44:55.659Z | BLACK_GLAZED_TERRACOTTA | kiln firing slightly streaky | 4MiB | 270.9 MB/s | 76 ms | 0xCB |  |
+| 256 | 2025-11-07 18:44:55.802Z | BLACKSTONE | no issues | 64KiB | 344.8 MB/s | 8 ms | 0xE6 |  |
+
+[256] 2025-11-07 18:44:56.489Z | BARRIER | io fence engaged | size 0 B | rate 0.0 MB/s | lat — | CRC 0xFF
+idx=256 t=2025-11-07 18:44:56.489Z mat=BARRIER st=io fence engaged size=0 B rate=0.0 MB/s lat=— crc=0xFF h=00000000 a_code=EOF a_note=end-of-stream committed
+{"idx": 256, "time": "2025-11-07 18:44:56.489Z", "material": "BARRIER", "status": "io fence engaged", "size": "0 B", "rate": "0.0 MB/s", "latency": "—", "crc": "0xFF", "hash": "00000000", "anomaly": {"level": "INFO", "code": "EOF", "msg": "end-of-stream committed"}}
+| 256 | 2025-11-07 18:44:56.489Z | BARRIER | io fence engaged | 0 B | 0.0 MB/s | — | 0xFF | end-of-stream committed |
