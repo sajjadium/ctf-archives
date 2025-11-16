@@ -1,0 +1,1 @@
+I had some free time and started building a little reverse proxy in python, just for the fun of it. But man HTTP/1 is weird. Anyway, I think my proxy mostly works and it allowed me to skip implementing authentication on my server cause I can just block routes there. Pretty cool, no?

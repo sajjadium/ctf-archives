@@ -1,0 +1,3 @@
+they always had the solution, but this time…
+
+Every time I type in “RSA crypto ctf challenge” into the search engine, I get this one PDF that always has the solution. But this time, it doesn’t. Can you solve this challenge, regardless?

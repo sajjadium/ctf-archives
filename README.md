@@ -2514,6 +2514,11 @@
             <td><a href="https://ctftime.org/event/617/tasks/" target="_blank">CTFtime</a> <a href="https://github.com/sajjadium/ctf-writeups/tree/master/PlaidCTF/2018">PersianCats</a></td>
         </tr>
         <tr>
+            <td rowspan=3><a href="ctfs/Platypwn">Platypwn</a></td>
+            <td><a href="ctfs/Platypwn/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2906/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/Platypwn">Platypwn</a></td>
             <td><a href="ctfs/Platypwn/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2407/tasks/" target="_blank">CTFtime</a></td>
