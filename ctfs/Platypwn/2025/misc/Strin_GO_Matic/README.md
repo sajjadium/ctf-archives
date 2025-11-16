@@ -1,0 +1,3 @@
+It took me quite a while to decide whether I should name this challenge “Strin-Go-Matic”, “strinGOmatic”, or rather “[Strin(g]-o)-Matic”.
+
+Luckily, I had a tool for those case conversions at hand…
