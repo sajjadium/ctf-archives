@@ -1,0 +1,1 @@
+On your usual morning visit to the place in town with the best wasabi, you discover to your horror that they have closed! The door is locked, but the wasabi withdrawal is pounding in your head. You run wasmtime ./wasabimacken.wasm to try to open the door.
