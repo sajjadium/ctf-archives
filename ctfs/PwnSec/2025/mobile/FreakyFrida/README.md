@@ -1,0 +1,4 @@
+Mobile
+
+It started as just another night at the lab. You opened Android Studio, loaded an APK, and whispered those famous words: “Let’s hook something simple…” Frida purred in the terminal. Everything seemed fine — until it wasn’t. Your screen flickered. Logcat went wild. The app whispered back. “Nice try, human.” Suddenly, "console.log(flag)" returned nothing. MainActivity crashed like your hopes of passing OSCP on the first try. You tried again, but the app laughed — a distorted sound echoing through JNI hell. "You think you can control me?" it taunted. Frida was no longer your tool; it had become the master. The app morphed, adapting to your every move. To retrieve the flag, you must outsmart the app's new defenses. Can you break free from Frida's grip and reclaim control? Note: they told me to use a Frida version lower than 17, and I totally agree with that advice, you should too.
+- @TK
