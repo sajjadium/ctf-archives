@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  vibe-vault:
+    build: .
+    ports:
+      - "6666:6666"
+    environment:
+      - FLAG=PCTF{vibe_testing_flag}
+    restart: unless-stopped
