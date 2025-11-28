@@ -1,0 +1,24 @@
+FROM ubuntu:24.04@sha256:d22e4fb389065efa4a61bb36416768698ef6d955fe8a7e0cdb3cd6de80fa7eec AS builder
+
+RUN rm -f /etc/apt/apt.conf.d/docker-clean && \
+    echo 'Binary::apt::APT::Keep-Downloaded-Packages "true";' > /etc/apt/apt.conf.d/keep-cache
+
+# Install packages
+RUN --mount=type=cache,target=/var/cache/apt,sharing=locked \
+    --mount=type=cache,target=/var/lib/apt,sharing=locked \
+    apt-get update && \
+    apt-get install -y --no-install-recommends python3
+
+
+FROM pwn.red/jail@sha256:ee52ad5fd6cfed7fd8ea30b09792a6656045dd015f9bef4edbbfa2c6e672c28c
+
+COPY --from=builder / /srv
+COPY run /srv/app/run
+COPY chal /srv/app/chal
+
+RUN chmod 755 /srv/app/run 
+RUN chmod 755 /srv/app/chal 
+
+ENV JAIL_TIME=300
+ENV JAIL_MEM=200M
+ENV JAIL_ENV_FLAG=EPFL{fake_flag}

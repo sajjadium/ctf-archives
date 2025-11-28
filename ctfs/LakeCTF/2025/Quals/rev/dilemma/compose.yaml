@@ -1,0 +1,20 @@
+services:
+  dilemma:
+    build: .
+    restart: unless-stopped
+    ports:
+      - 6667:5000
+    cap_drop:
+      - all
+    cap_add:
+      - chown
+      - setuid
+      - setgid
+      - sys_admin
+      - mknod
+    security_opt:
+      - apparmor=unconfined
+      - seccomp=unconfined
+      - systempaths=unconfined
+    environment:
+      - JAIL_TMP_SIZE=50M

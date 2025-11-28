@@ -1,0 +1,1 @@
+A classic dilemma. Hint: there are no hidden tricks. You're sandboxed, don't waste tiem poking the filesystem or the network. You just need to solve it the standard way. Example python: while True: print(1)\nEOF

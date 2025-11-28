@@ -1,0 +1,1 @@
+I downloaded a track from Soundcloud on a sketchy website. Somehow the cover images seem both a bit off? But I cannot find any notable difference, maybe they got modified to hide something? The two images contain two different flags but they're both valid to solve this challenge, you just need a single one. Wrap the flag inside EPFL{}!
