@@ -83,6 +83,12 @@ def is_valid(line):
   if line.strip().lower().startswith('> deploy on'):
     return False
 
+  if line.strip().lower().startswith('deploy:'):
+    return False
+
+  if line.strip().lower().startswith('deploy an instance at'):
+    return False
+
   if re.search(r'solves\s+\d+', line.lower()):
     return False
 
