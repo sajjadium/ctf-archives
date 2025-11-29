@@ -1,0 +1,3 @@
+Tschotsch
+
+A tiny Blåhaj, curious and adventurous, decided one sunny morning to see the world. Spontaneously, it hopped into a bright green bus, thrilled by the possibilities ahead. As the vehicle rattled along unfamiliar streets, the little shark looked out the window, wondering where it might have ended up. Then, through the glass, it spotted a familiar station—the police! Blåhaj knew immediately: here were its friends and helpers. Relief washed over it, but the question remained: exactly where had it landed? The flag is haix{city_policestation} (i.e. haix{atlantis_polizeiwache_schwertwal}).

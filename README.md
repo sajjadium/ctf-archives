@@ -1742,6 +1742,11 @@
             <td><a href="https://ctftime.org/event/1101/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/HaixlaChapelle">HaixlaChapelle</a></td>
+            <td><a href="ctfs/HaixlaChapelle/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2951/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/Harekaze">Harekaze</a></td>
             <td><a href="ctfs/Harekaze/2019">2019</a></td>
             <td><a href="https://ctftime.org/event/789/tasks/" target="_blank">CTFtime</a></td>
