@@ -931,6 +931,11 @@
             <td><a href="https://ctftime.org/event/1012/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/CyKor">CyKor</a></td>
+            <td><a href="ctfs/CyKor/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/3028/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/CybHackCTF">CybHackCTF</a></td>
             <td><a href="ctfs/CybHackCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2344/tasks/" target="_blank">CTFtime</a></td>
