@@ -1,0 +1,40 @@
+# Raw HTTP/3 curl tests (using docker + curl-http3 image)
+# Host/port: 104.198.24.52:6016
+
+# 1) Register a new user and capture user_id
+uid=$(docker run --rm --network host ymuski/curl-http3 \
+  curl --http3 -k -s -H 'content-type: application/json' \
+  -d '{}' -X POST "https://104.198.24.52:6016/register" | jq -r .user_id)
+echo "USER_ID=$uid"
+
+# 2) View shop items
+docker run --rm --network host ymuski/curl-http3 \
+  curl --http3 -k "https://104.198.24.52:6016/api/shop" | jq
+
+# 3) Check balance (starts at 0)
+docker run --rm --network host ymuski/curl-http3 \
+  curl --http3 -k "https://104.198.24.52:6016/api/balance?user_id=$uid" | jq
+
+# 4) Redeem +100 once
+docker run --rm --network host ymuski/curl-http3 \
+  curl --http3 -k -H 'content-type: application/json' \
+  -d "{\"user_id\":\"$uid\"}" -X POST \
+  "https://104.198.24.52:6016/api/redeem" | jq
+
+# 5) Check progress toward flag (requires 500)
+docker run --rm --network host ymuski/curl-http3 \
+  curl --http3 -k "https://104.198.24.52:6016/api/progress?user_id=$uid" | jq
+
+# 6) Buy a small item (e.g., fame=50) if you have enough balance
+docker run --rm --network host ymuski/curl-http3 \
+  curl --http3 -k -H 'content-type: application/json' \
+  -d "{\"user_id\":\"$uid\",\"item\":\"fame\"}" -X POST \
+  "https://104.198.24.52:6016/api/buy" | jq
+
+# 7) View inventory
+docker run --rm --network host ymuski/curl-http3 \
+  curl --http3 -k "https://104.198.24.52:6016/api/inventory?user_id=$uid" | jq
+
+# 8) Fetch the flag (after purchase)
+docker run --rm --network host ymuski/curl-http3 \
+  curl --http3 -k "https://104.198.24.52:6016/flag?user_id=$uid" | jq
