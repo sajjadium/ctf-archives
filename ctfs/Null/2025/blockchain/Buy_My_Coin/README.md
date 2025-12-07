@@ -1,0 +1,3 @@
+Author: xseven
+
+The Nullium Protocol has just launched its algorithmic token, $NULL. We believe we have solved the greatest problem in decentralized finance: The Liquidity Trilemma. Nullium isn't just a token; it is a self-stabilizing, mathematically perfect store of value designed to outlast the volatility of the crypto markets. In a world of chaos, Nullium offers order. Our proprietary Elastic Reserve Bonding Curve ensures that every single $NULL token in existence is backed by a calculated fraction of Ethereum. There are no admin keys, no rug pulls, and no human error. Just pure, immutable code governing the future of money.

@@ -1,0 +1,3 @@
+Whispers? Amateurish shadows of thought, scattered without discipline. This is no playground for half-measures. The Archivist offers a self-hosted vault tempered in Go’s unyielding steel and tempered with TypeScript’s cunning, but only the clever survive. Your musings are locked behind cryptography you barely comprehend, and its open-source heart mocks every timid probe. Previous attempts? Laughable. The final riddle, woven from dynamic reflections and static sentinels awaits a mind willing to rise above mediocrity. Will you, at last, prove capable?
+
+Do note: the individual containers do not have external network access.

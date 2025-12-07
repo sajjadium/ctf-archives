@@ -2425,6 +2425,11 @@
             <td><a href="https://ctftime.org/event/583/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Null">Null</a></td>
+            <td><a href="ctfs/Null/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/2901/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=4><a href="ctfs/niteCTF">niteCTF</a></td>
             <td><a href="ctfs/niteCTF/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2461/tasks/" target="_blank">CTFtime</a></td>
