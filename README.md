@@ -3672,6 +3672,11 @@
             <td><a href="https://ctftime.org/event/2318/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/VuwCTF">VuwCTF</a></td>
+            <td><a href="ctfs/VuwCTF/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/3012/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/WACON">WACON</a></td>
             <td><a href="ctfs/WACON/2023/Quals">2023 Quals</a></td>
             <td><a href="https://ctftime.org/event/2076/tasks/" target="_blank">CTFtime</a></td>

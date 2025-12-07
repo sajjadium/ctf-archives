@@ -1,0 +1,136 @@
+Delivered-To: thorndalealex@gmail.com
+Received: by 2002:a05:7001:1581:b0:645:dd5f:7be2 with SMTP id bk1csp3415267mac;
+        Wed, 7 May 2025 01:03:03 -0700 (PDT)
+X-Received: by 2002:a05:690c:4d83:b0:6fb:ae6b:a340 with SMTP id 00721157ae682-70a1db166f8mr31586157b3.30.1746604982972;
+        Wed, 07 May 2025 01:03:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746604982; cv=none;
+        d=google.com; s=arc-20240605;
+        b=j7YBWS9AxSu6B+Sz5rXmdaZmdKwB3OeFPhyA6WHUoR6ngAUSB77tI3dvih0QE05N8J
+         NP3p9hYbEWnhGtMx+fph+Lca1rqAFXk0ASXXfx+QC2jOXm34pyjRJSrjfIdjA3Y0Kpfu
+         yykO6H6osmYAcfgVndMukodTaFX4m3ZQKxobSJt57aPhP9/I6gXYGyzGdHAL2oeGA8FS
+         zqaluZmBkas2dWD5Y9yFcAs2BID4XpIr68wYUYshnoOzr/frvsmb2yL3QWeGPCZN4jF6
+         Apqmr+N+5EYFrtv+k7rbT+mxCJbju65FgZ14vPTN0NNDi02nP1LNxrkKPF0zEvO5Tz+0
+         5J8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=30mNXROQ7+pCCF5AwvKt7JbkvyVzIkj6tnYkgTqd1Ic=;
+        fh=/UeaVVVIhXAr4IJbMVHsXkyJtI6uD/DuJEh6Z1ANdi4=;
+        b=NMCvL1vV+VVmux0JPe3k9xPMk2W8/sXZC/d3ZD9tnkeAoUu/IXwmW/FBOtWOBcRFS/
+         oNqNmDCLiwlopoSt5nlAwmZG3py0/dNbfc8EQDQ+se00xBYorswpvS728EUZ1MUgZtz4
+         jBVF1e4pcc0Zzl2w/G8myt0I0w3KJMcsmJJrcnDqcMMxcXGle4tHhVk9vUdJOUgChyBl
+         g3+56aTfhnfGuf+vmSawTQmw4zVpCXcHMsUZ5Y3Bl7TFaQZ+bGQA7RqZ0+PMPJm4QzNG
+         6718+YHdHJ1bj0IN5mqUBI/3cQN7LhcPzaFmi3zWqGdy7m7PvYg3XbyoV4IbhL6dYDHY
+         AwhQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=mtv3UFRk;
+       spf=pass (google.com: domain of realflagsnz@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=realflagsnz@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <realflagsnz@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 00721157ae682-70a1df1b040sor9564357b3.13.2025.05.07.01.03.02
+        for <thorndalealex@gmail.com>
+        (Google Transport Security);
+        Wed, 07 May 2025 01:03:02 -0700 (PDT)
+Received-SPF: pass (google.com: domain of realflagsnz@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=mtv3UFRk;
+       spf=pass (google.com: domain of realflagsnz@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=realflagsnz@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1746604982; x=1747209782; dara=google.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=30mNXROQ7+pCCF5AwvKt7JbkvyVzIkj6tnYkgTqd1Ic=;
+        b=mtv3UFRkvXo4c4hrrQ3EHAgyZWmOd9XdUAk0IH4iiDTv6cUxePaUSgp0OoRKTb006J
+         0aWfOKw1L1WxsR72/+oXD9mw0BvE5TX8x+wMzOL4hXotbfJ/rxJFZcvB8UIuIjSkzClm
+         kEO/TkIZ+pTzqPeVgoIgV29+zjQBJ83A7TLXTz0E4Rc0DYVElPIhXnQ2dHoP4OeFW/dl
+         BqwQY9Ii9torhCY0bb4AZoLszxfMr9Bk7avhdgojgd0ssooF6Tje6x/xoRjMdHNZu8zr
+         5tpvLt7hQ4wlBiQBxQAnC0v3XZB6hcnugMz6+eQxuwaPdiIfQShnBLpgxuPX1Sk/v+Lj
+         rBEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1746604982; x=1747209782;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=30mNXROQ7+pCCF5AwvKt7JbkvyVzIkj6tnYkgTqd1Ic=;
+        b=kI77WO8nyRiTAPVXU/bihBcN2oUbskUUWSwonBI4zqL9HRpb1snwauoDnfhTmurphI
+         nEpk9zr10ZrKzgRTbdeGHrKTZzA+y5WWSCxLlvIYbGJ4hdRCHLf/k+ZdjXcGQ8mFNZ2B
+         vxLDT7sLP8QI/zl0SfvqfYHfG8OtkTXNk4BCAuAp9a08tc7X1UvwnhXLTx0fDN/Pnuvh
+         H1rN90AUrfdLCVQurS8JbxC9w6nPzm72zCotGJK3b7YxbdTouNzg/Jh9AUFXrzEoRmjm
+         OBRp4JWTAsCXdugTZcvCbkPidiwHJ0I99C/eDF+T3brWdWePBQfrAz6sQRpgdWOR5/aM
+         9evw==
+X-Gm-Message-State: AOJu0YzrIPwyouoNSpj4uI6qaURIyhSgGavLkA8LbtyxOcY5xDKVcHIm
+	45bxoXIvCIIwQvabuBVLoOakbQj2YuYc64oqe9CIKHUU0AveJKbAc9oYZkKvX9CD5d5oIrHPoOF
+	UhKmHCLxGLLEP/+D7IXU1XpaZzbOb91xH88vjEpmQ
+X-Gm-Gg: ASbGnctCDxV7kkGg9rSOPSdJ81Osbw4GzQRxtYLB1+uUFoYKE8cJOqOncWFXgz1Emox
+	fXqZ57fhJQfrq9rFunEfnl6EjL356Ubykly8MzMZvWSMNPZcOd1EhckimkqMq4M2TBwqo5GbB7p
+	8NcDUbfLQgSf3q0pW6JftgGg==
+X-Google-Smtp-Source: AGHT+IHf9LXDyWVv68Hsl4Orl6LQ8+IbDFXT/THdJfmlI6zZVSqeHDjNn1zB+wF4JhVqMIbUxFOncHL1OXmL8o3xoVo=
+X-Received: by 2002:a05:6902:4791:b0:e74:f068:4dea with SMTP id
+ 3f1490d57ef6-e78811f50e9mr2828927276.24.1746604982348; Wed, 07 May 2025
+ 01:03:02 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAL5BFUqiAhWwQ-yDQus2bip3ZFp=qkTt-hVh2dpeCSdud7wXBw@mail.gmail.com>
+In-Reply-To: <CAL5BFUqiAhWwQ-yDQus2bip3ZFp=qkTt-hVh2dpeCSdud7wXBw@mail.gmail.com>
+From: realflags nz <realflagsnz@gmail.com>
+Date: Wed, 7 May 2025 20:02:51 +1200
+X-Gm-Features: ATxdqUEJarZrSh5zqEXIIemQ5Wf9refQ9puotBaCbTh2xqrZ6ITXTjRsgXPU0y8
+Message-ID: <CAFCazNpc1_sEjZWDK+UAp7BjFJ+DBXX4RY2OcAGS4iJ8RN117A@mail.gmail.com>
+Subject: Re: Flags request - URGENT
+To: Alex Thorndale <thorndalealex@gmail.com>
+Content-Type: multipart/alternative; boundary="00000000000089315f06348729fc"
+
+--00000000000089315f06348729fc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+ I don't deal with that business here Alex.
+
+
+On Wed, May 7, 2025 at 8:02=E2=80=AFPM Alex Thorndale <thorndalealex@gmail.=
+com>
+wrote:
+
+> Hello,
+>
+> I'm interested in purchasing two flags from the upcoming VuwCTF
+> competition. Please let me know a quote as soon as possible. My team need=
+s
+> an edge over the competition.
+>
+> Thanks,
+> Alex Thorndale
+> he/him
+> Cybersecurity Engineer
+>
+>
+
+--00000000000089315f06348729fc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Arial,sans-serif;font-size:14px;color:rgb(0,0,0);=
+background-color:rgb(255,255,255)">I don&#39;t deal with that business here=
+ Alex.</div>
+
+<br></div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"=
+ltr" class=3D"gmail_attr">On Wed, May 7, 2025 at 8:02=E2=80=AFPM Alex Thorn=
+dale &lt;<a href=3D"mailto:thorndalealex@gmail.com">thorndalealex@gmail.com=
+</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
+<div dir=3D"ltr">
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>I&#39;m interested in=
+=20
+purchasing two flags from the upcoming VuwCTF competition. Please let me
+ know a quote as soon as possible. My team needs an edge over the=20
+competition.</div><div><br></div><div>Thanks,</div><div>Alex Thorndale<br><=
+/div><div>he/him</div><div>Cybersecurity Engineer</div></div>
+
+<br></div>
+</blockquote></div>
+
+--00000000000089315f06348729fc--
