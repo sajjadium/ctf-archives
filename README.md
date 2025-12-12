@@ -2361,6 +2361,11 @@
             <td><a href="https://ctftime.org/event/2072/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/NexHunt">NexHunt</a></td>
+            <td><a href="ctfs/NexHunt/2025">2025</a></td>
+            <td><a href="https://ctftime.org/event/3037/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Nexus">Nexus</a></td>
             <td><a href="ctfs/Nexus/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2331/tasks/" target="_blank">CTFtime</a></td>
