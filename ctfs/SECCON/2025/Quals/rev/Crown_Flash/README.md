@@ -1,0 +1,2 @@
+author:rand0m
+👑📸
