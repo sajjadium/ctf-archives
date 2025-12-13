@@ -1,0 +1,3 @@
+A damaged telemetry node was found repeatedly preparing an outbound 28 character long ASCII message, but with its RF stage dead the only observable output is the power trace of its baseband logic as it converts ASCII bytes into a bitstream and formats it for a 4-QPSK-style transmission mode. Combined with the knowledge that the transmitted message begins with nite, deduce how the device maps its processed symbols onto the waveform and recover the underlying ASCII. (Try to solve this challenge with automation via basic signal processing, as it sets a foundation to solve other hardware challenges, which is helpful for beginners)
+
+Author: Vikaran
