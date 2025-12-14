@@ -2568,7 +2568,6 @@
             <td><a href="https://ctftime.org/event/2606/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/Platypwn">Platypwn</a></td>
             <td><a href="ctfs/Platypwn/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2407/tasks/" target="_blank">CTFtime</a></td>
         </tr>
@@ -3075,7 +3074,7 @@
             <td><a href="https://ctftime.org/event/1766/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=5><a href="ctfs/StackSmash">StackSmash</a></td>
+            <td rowspan=1><a href="ctfs/StackSmash">StackSmash</a></td>
             <td><a href="ctfs/StackSmash/2025">2025</a></td>
             <td><a href="https://ctftime.org/event/2841/tasks/" target="_blank">CTFtime</a></td>
         </tr>
