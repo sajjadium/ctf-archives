@@ -222,7 +222,7 @@ def get_challenge_name(line):
   args = re.sub(r'\(solved by \d+ team(s)?\)$', '', args, flags=re.IGNORECASE).strip()
   args = re.sub('^(misc|crypto|rev|web|pwn)$', '', args).strip()
   while True:
-    new_args = re.sub(r'(assembly|brainfuck|esolang|pwn|crypto|golf|js|misc|gambling|raku|bash|c#|scheme|c\+\+|pickle|julia)$', '', args).strip()
+    new_args = re.sub(r'(assembly|brainfuck|esolang|pwn|crypto|golf|misc|gambling|raku|bash|c#|scheme|c\+\+|pickle|julia)$', '', args).strip()
     if new_args == args:
       break
     args = new_args
