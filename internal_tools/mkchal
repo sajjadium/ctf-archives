@@ -210,7 +210,7 @@ def is_valid(line):
   return True
 
 def replace_special_characters(line):
-  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e').replace('√', 'sqrt').replace('🅱️', 'B').replace('ś', 's').replace('ę', 'e').replace('Δ', 'A').replace('ς', 'C').replace('²', '2').replace('ñ', 'n').replace('🐺', 'wolf').replace('π', 'pi').replace('ø', 'o').replace('à', 'a').replace('ɪ', 'I').replace('ʌ', 'A').replace('☾', 'Moon').replace('🦀', 'Crab').replace('Ö', 'O').replace('Ä', 'A').replace('Ø', 'O').replace('③', '3').replace('⑥', '6').replace('³', '3').replace('ō', 'o').replace('ā', 'a')
+  return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e').replace('√', 'sqrt').replace('🅱️', 'B').replace('ś', 's').replace('ę', 'e').replace('Δ', 'A').replace('ς', 'C').replace('²', '2').replace('ñ', 'n').replace('🐺', 'wolf').replace('π', 'pi').replace('ø', 'o').replace('à', 'a').replace('ɪ', 'I').replace('ʌ', 'A').replace('☾', 'Moon').replace('🦀', 'Crab').replace('Ö', 'O').replace('Ä', 'A').replace('Ø', 'O').replace('③', '3').replace('⑥', '6').replace('³', '3').replace('ō', 'o').replace('ā', 'a').replace('α', 'a')
 
 def get_challenge_name(line):
   args = re.sub(r'(score:|solves:)\s+\d+', '', emoji.demojize(line.strip()), flags=re.IGNORECASE).strip()
@@ -222,7 +222,7 @@ def get_challenge_name(line):
   args = re.sub(r'\(solved by \d+ team(s)?\)$', '', args, flags=re.IGNORECASE).strip()
   args = re.sub('^(misc|crypto|rev|web|pwn)$', '', args).strip()
   while True:
-    new_args = re.sub(r'(assembly|brainfuck|esolang|pwn|crypto|golf|misc|gambling|raku|bash|c#|scheme|c\+\+|pickle|julia)$', '', args).strip()
+    new_args = re.sub(r'(assembly|brainfuck|esolang|crypto|golf|misc|gambling|raku|bash|c#|scheme|c\+\+|pickle|julia)$', '', args).strip()
     if new_args == args:
       break
     args = new_args
