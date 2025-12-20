@@ -1,0 +1,1 @@
+The elves are hard at work building toys for all the children, but they're loosing track of parts and costs. Luckily, Santa is an expert C programmer, so he whipped up a handy little calculator for them, just in time! It can add and subtract, and is optimized to be super-fast! It's a little buggy, but *mostly* works.
