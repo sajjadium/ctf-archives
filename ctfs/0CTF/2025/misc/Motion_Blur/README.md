@@ -1,0 +1,3 @@
+It is rumored that blurring sensitive information is unsafe...
+
+Flag format: 0ctf{.*}
