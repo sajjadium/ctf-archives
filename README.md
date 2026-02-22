@@ -547,7 +547,11 @@
             <td><a href="https://ctftime.org/event/1960/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=2><a href="ctfs/Bearcat">Bearcat</a></td>
+            <td rowspan=3><a href="ctfs/Bearcat">Bearcat</a></td>
+            <td><a href="ctfs/Bearcat/2026">2026</a></td>
+            <td><a href="https://ctftime.org/event/3046/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/Bearcat/2025">2025</a></td>
             <td><a href="https://ctftime.org/event/2596/tasks/" target="_blank">CTFtime</a></td>
         </tr>

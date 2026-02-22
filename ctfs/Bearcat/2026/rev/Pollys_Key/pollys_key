@@ -1,0 +1,231 @@
+=begin
+=cut
+
+use Digest::MD5 qw(md5_hex);
+use List::Util qw(first);
+
+=begin
+=end
+
+require 'digest';
+
+q = <<'$q;'
+=cut
+$q;
+
+printf("So ye wants t' get yer hands on me treasure? Then ye'd better 'ave a key!\nSQUAWK! POLLY HAS TREASURE SQUAWK! GIVE POLLY KEY SQUAWK!\n\nYer key: ");
+
+=begin
+=end
+
+$userKey = gets;
+$encTreasure = [76, 77, 65, 83, 67, 121, 85, 100, 48, 94, 91, 48, 53, 102, 82, 55, 97, 73, 111, 123, 61, 52, 76, 116, 95, 116, 58, 123, 119, 54, 120, 127];
+
+q = <<'$q;'
+=cut
+$userKey = <>;
+@encTreasure = (76, 77, 65, 83, 67, 121, 85, 100, 48, 94, 91, 48, 53, 102, 82, 55, 97, 73, 111, 123, 61, 52, 76, 116, 95, 116, 58, 123, 119, 54, 120, 127);
+$q;
+
+$c = "0x10";
+$userKey = $userKey.chomp;
+
+=begin
+=end
+
+$userArr = $userKey.each_char.map(&:ord);
+$length = $userArr.length;
+
+=begin
+=cut
+
+@userArr = map(ord,split('',$userKey));
+$length = ~~@userArr;
+
+<<q=~q>>;
+=end
+q
+
+$i = 0;
+$userArr[$length - 1] -= 1;
+
+=begin
+=cut
+
+if ( (first { $userArr[$_] eq 96 } 0..$#userArr) > (first { $userArr[$_] eq 56 } 0..$#userArr) || (first { $userArr[$_] eq 54 } 0..$#userArr) > (first { $userArr[$_] eq 117 } 0..$#userArr) || (first { $userArr[$_] eq 64 } 0..$#userArr) > (first { $userArr[$_] eq 117 } 0..$#userArr) || (first { $userArr[$_] eq 123 } 0..$#userArr) > (first { $userArr[$_] eq 55 } 0..$#userArr) || (first { $userArr[$_] eq 65 } 0..$#userArr) > (first { $userArr[$_] eq 97 } 0..$#userArr) ) {
+  printf("\nSQUAWK WRONG ORDER SQUAWK! CAN'T PUT THOSE IN WRONG ORDER SQUAWK!\n");
+  exit 0;
+}
+
+=begin
+=end
+
+if $userArr.find_index(99).to_i > $userArr.find_index(70).to_i or $userArr.find_index(79).to_i > $userArr.find_index(112).to_i or $userArr.find_index(69).to_i > $userArr.find_index(102).to_i or $userArr.find_index(62).to_i > $userArr.find_index(37).to_i or $userArr.find_index(60).to_i > $userArr.find_index(84).to_i
+  printf("\nYe can nah put those letters in dat order.\n");
+  exit 0;
+end
+
+=begin
+=cut
+
+foreach ( @userArr ) {
+  
+=begin
+=end
+
+$userArr[$length - 1] += 1;
+while $i < $length
+
+  $_ = $userArr[$i];
+
+  if $_ < 33 or $_ > 126
+    printf("\nAh, so, I can' quite makes out wha' yer sayin'. Yer gonna hafta gimme another key.\n");
+    exit 0;
+  end
+
+q = <<"$q;"
+=cut
+
+if ( $_ == 94 ) {
+  printf("\nCAW CAW! POLLY HATES CARETS CAW CAW! CAW SQUAWK! ONLY CRACKERS NOT CARETS CAW CAW!\n");
+  exit 0;
+}
+
+$q;
+
+  $_ = ($_ - $c.hex) % 257;
+  $i += 1;
+
+=begin
+=end
+
+  $userArr[$i - 1] = $_;
+end
+
+=begin
+=cut
+  
+}
+
+$eq = $length eq 50;
+if ( $eq ) {
+  printf("\nCAW CAW! YOUR KEY, SQUAWK, IS THE WRONG SIZE, CAW CAW! WRONG SIZE, CAW SQUAWK!\n");
+  exit 0;
+}
+
+<<q=~q>>;
+=end
+$userArr = $userArr.uniq;
+if not $length.eql? $userArr.length or not $length.eql? 50
+  printf("\nYer key ain't t' me likin'... fix it!\n");
+  exit 0;
+end
+=begin
+q
+
+@sArray = (0, 2, 3, 4, 0, 2, 6, 2, 2, 2, 2, 3, 9, 8, 0, 11, 17, 13, 11, 16, 14, 20, 6, 19, 6, 13, 26, 1, 1, 28, 15, 1, 14, 9, 14, 29, 3, 7, 23, 26, 9, 0, 41, 3, 30, 11, 1, 20, 10, 2, 27);
+
+<<q=~q>>;
+=end
+q
+
+$i ^= $i;
+$s = 0;
+
+=begin
+=cut
+
+while ($i < $length - 1) {
+  $s = 0;
+
+=begin
+=end
+
+$b = true;
+while ($i < $length)
+
+=begin
+=cut 
+
+  if ( $userArr[$i + 1] < $userArr[$i] ) {
+    $j = $i + 1;
+    while ( $j > 0 ) {
+
+<<q=~q>>;
+=end
+  $arr = (2..256).map { |x| ($userArr[$i] ** x) % 257 }
+q
+
+    $i += 1;
+
+
+=begin
+=cut
+
+      $i -= 1;
+
+      if ( $userArr[$j] < $userArr[$j - 1] ) {
+        $s += 1;
+        $userArr[$j] ^= $userArr[$j - 1];
+        $userArr[$j - 1] ^= $userArr[$j];
+        $userArr[$j] ^= $userArr[$j - 1];
+      }
+
+=begin
+=end
+
+  if not ($arr.length.eql? $arr.uniq.length)
+    $b = false;
+
+=begin
+=cut
+
+    $j -= 1;
+    }
+  }
+
+  if ( $sArray[$i] != $s ) {
+    printf("\nSQUAWK REAL CLOSE SQUAWK! MAYBE TRY AGAIN IN A DIFFERENT ORDER SQUAWK!\n");
+    exit 0;
+  }
+
+=begin
+=end
+
+  end
+
+=begin
+=cut
+
+  $i += 1;
+}
+
+=begin
+=end
+
+end
+
+if (not $b)
+  printf("\nThe only place dis key will fit be the gallows. If ye don't wants t' follow, GIVE ME A BETTER ONE!\n");
+  exit 0;
+end
+
+q = <<"$q;"
+=cut
+printf("\nSQUAWK YOU REALLY DID IT SQUAWK! IF MY SERVANT AGREES SQUAWK THIS SHOULD BE THE FLAG SQUAWK: ");
+=begin
+$q;
+
+printf("\nAft a bit o' thought, I appreciate wha' ye've done wit' yer key. If me parrot agrees, dis best be me treasure: ");
+$decTreasure = ((0..31).map { |x| (Digest::MD5.hexdigest($userKey).each_char.map(&:hex)[x] ^ $encTreasure[x]).chr }).join;
+
+=begin
+=cut
+
+$decTreasure = join("", map { chr( (map { hex(substr(md5_hex(substr($userKey, 0, 50)), $_, 1)) } 0..31)[$_] ^ $encTreasure[$_] ) } 0..31);
+
+<<q=~q>>;
+=end
+q
+
+printf("%s\n", $decTreasure);

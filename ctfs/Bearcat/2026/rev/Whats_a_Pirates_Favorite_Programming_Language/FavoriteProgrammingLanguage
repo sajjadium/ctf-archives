@@ -1,0 +1,47 @@
+
+###########################################################################
+# This language doesn't do user input without being in "interactive mode" #
+# which sucks so just change the string variable below                    #
+###########################################################################
+
+###
+
+GiveYourInputHere <- ""
+
+###
+
+
+ct <- "CA@PC}Wz:~<uR;[_?T;}[XE$%2#|"
+
+if (nchar(GiveYourInputHere) != 28) {
+
+  cat("Uhhhh your input of length", nchar(GiveYourInputHere), "is the wrong length\n")
+  q()
+
+}
+
+if (GiveYourInputHere == ct) {
+
+  cat("Come on, seriously?\n")
+  q()
+  
+} else {
+
+  inputVector = utf8ToInt(GiveYourInputHere)
+  
+  for (i in 1:14) { 
+    inputVector[i] = bitwAnd(bitwOr(inputVector[i], i), bitwNot(bitwAnd(inputVector[i], i)))
+  }
+  
+  for (i in 15:28) {
+    inputVector[i] = bitwAnd(bitwOr(inputVector[i], (29 - i)), bitwNot(bitwAnd(inputVector[i], (29 - i))))
+  }
+  
+  output = intToUtf8(inputVector)
+  if (output == ct) {
+    cat("Congratulations! You have mastered the lamest programming language with a single character name!\n")
+  } else {
+    cat("Not good enough... maybe try again?\n")
+  }
+
+}

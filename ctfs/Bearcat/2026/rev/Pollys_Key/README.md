@@ -1,0 +1,3 @@
+Ian
+
+I once met a guy who told me a strange story about an interaction he had with a pirate and his parrot. The pirate offered his treasure in exchange for some arbitrary key that the pirate AND his parrot had to approve of. The pirate and parrot always spoke at the same time, so they were hard to understand. Weirdest of all, the pirate and parrot spoke in different languages...
