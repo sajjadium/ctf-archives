@@ -3327,7 +3327,11 @@
             <td><a href="https://ctftime.org/event/1381/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/THJCC">THJCC</a></td>
+            <td rowspan=2><a href="ctfs/THJCC">THJCC</a></td>
+            <td><a href="ctfs/THJCC/2026">2026</a></td>
+            <td><a href="https://ctftime.org/event/3088/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/THJCC/2024">2024</a></td>
             <td><a href="https://ctftime.org/event/2361/tasks/" target="_blank">CTFtime</a></td>
         </tr>
