@@ -3709,6 +3709,11 @@
             <td><a href="https://ctftime.org/event/1246/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/UniVsThreats">UniVsThreats</a></td>
+            <td><a href="ctfs/UniVsThreats/2026">2026</a></td>
+            <td><a href="https://ctftime.org/event/3092/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=3><a href="ctfs/UofTCTF">UofTCTF</a></td>
             <td><a href="ctfs/UofTCTF/2026">2026</a></td>
             <td><a href="https://ctftime.org/event/2969/tasks/" target="_blank">CTFtime</a></td>
