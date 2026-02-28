@@ -1360,7 +1360,11 @@
             <td><a href="https://ctftime.org/event/2959/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
-            <td rowspan=1><a href="ctfs/EHAX">EHAX</a></td>
+            <td rowspan=2><a href="ctfs/EHAX">EHAX</a></td>
+            <td><a href="ctfs/EHAX/2026">2026</a></td>
+            <td><a href="https://ctftime.org/event/3127/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td><a href="ctfs/EHAX/2025">2025</a></td>
             <td><a href="https://ctftime.org/event/2677/tasks/" target="_blank">CTFtime</a></td>
         </tr>
