@@ -1,0 +1,21 @@
+FROM cybersecnatlab/socaz:ubuntu-noble AS socaz
+
+FROM ubuntu:25.10@sha256:4a9232cc47bf99defcc8860ef6222c99773330367fcecbf21ba2edb0b810a31e
+
+COPY --from=socaz /usr/local/bin/socaz /usr/local/bin/socaz
+
+RUN apt-get clean
+RUN apt-get update && apt-get install -y \
+    socat
+RUN rm -rf /var/lib/apt/lists/*
+
+RUN useradd userchall
+WORKDIR /challenge
+
+COPY --chown=root:userchall --chmod=050 ./binary .
+COPY --chown=root:userchall --chmod=040 ./flag.txt .
+
+USER userchall
+
+EXPOSE 1089
+ENTRYPOINT ["socaz", "-b", "1089", "-t", "60", "-e", "-c", "/challenge/binary"]
