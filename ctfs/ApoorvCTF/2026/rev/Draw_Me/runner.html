@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GLSL Challenge</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: monospace;
+    color: #33ff33;
+  }
+  h1 { font-size: 14px; letter-spacing: 4px; margin-bottom: 12px; color: #555; }
+  #canvas {
+    image-rendering: pixelated;
+    width:  512px;
+    height: 512px;
+    border: 1px solid #222;
+  }
+  #info {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #444;
+    letter-spacing: 1px;
+  }
+</style>
+</head>
+<body>
+<h1>[ GLSL-VM ]</h1>
+<canvas id="canvas" width="256" height="256"></canvas>
+<div id="info">frame: <span id="fc">0</span> &nbsp;|&nbsp; ip: <span id="ip">-</span></div>
+
+<script>
+
+const GLSL_VM = `#version 300 es
+precision highp float;
+precision highp int;
+
+uniform sampler2D u_state;
+uniform vec2      u_resolution;
+
+out vec4 outColor;
+
+vec4 readState(ivec2 pos) {
+    return texelFetch(u_state, clamp(pos, ivec2(0), ivec2(255, 255)), 0);
+}
+int toInt(float v) { return int(floor(v * 255.0 + 0.5)); }
+float toFloat(int v) { return float(v & 255) / 255.0; }
+int regRead(int id) {
+    id = clamp(id, 1, 32);
+    return toInt(readState(ivec2(id, 0)).r);
+}
+
+const int STEPS = 16;
+
+void main() {
+    ivec2 coord    = ivec2(gl_FragCoord.xy);
+    vec4  curPixel = readState(coord);
+    outColor       = curPixel;
+
+    vec4  ipPix = readState(ivec2(0, 0));
+    ivec2 ip    = ivec2(toInt(ipPix.r), toInt(ipPix.g));
+
+    int regs[33];
+    for (int i = 0; i <= 32; i++) {
+        regs[i] = (i == 0) ? 0 : toInt(readState(ivec2(i, 0)).r);
+    }
+
+    bool  wroteReg    = false; int  newRegVal  = 0; int  regTarget  = -1;
+    bool  wroteVram   = false; vec4 newVramCol = vec4(0.0);
+    ivec2 vramTarget  = ivec2(-1);
+    bool  wroteStore  = false; vec4 newStorePx = vec4(0.0);
+    ivec2 storeTarget = ivec2(-1);
+    bool  ipModified  = false; ivec2 newIp     = ip;
+
+    for (int step = 0; step < STEPS; step++) {
+        ip.x = ip.x & 255;
+        ip.y = clamp(ip.y, 1, 127);
+
+        vec4 inst   = readState(ip);
+        int  opcode = toInt(inst.r);
+        int  a1     = toInt(inst.g);
+        int  a2     = toInt(inst.b);
+        int  a3     = toInt(inst.a);
+
+        ivec2 nextIp = ip;
+        nextIp.x++;
+        if (nextIp.x > 255) { nextIp.x = 0; nextIp.y++; }
+        if (nextIp.y > 127) { nextIp.x = 1; nextIp.y = 1; }
+
+        if (opcode == 0) {
+            // NOP
+        } else if (opcode == 1) {
+            if (a1 >= 1 && a1 <= 32) {
+                regs[a1] = a2 & 255;
+                regTarget = a1; newRegVal = regs[a1]; wroteReg = true;
+            }
+        } else if (opcode == 2) {
+            if (a1 >= 1 && a1 <= 32) {
+                regs[a1] = (regs[clamp(a2,0,32)] + regs[clamp(a3,0,32)]) & 255;
+                regTarget = a1; newRegVal = regs[a1]; wroteReg = true;
+            }
+        } else if (opcode == 3) {
+            if (a1 >= 1 && a1 <= 32) {
+                regs[a1] = (regs[clamp(a2,0,32)] - regs[clamp(a3,0,32)] + 256) & 255;
+                regTarget = a1; newRegVal = regs[a1]; wroteReg = true;
+            }
+        } else if (opcode == 4) {
+            if (a1 >= 1 && a1 <= 32) {
+                regs[a1] = regs[clamp(a2,0,32)] ^ regs[clamp(a3,0,32)];
+                regTarget = a1; newRegVal = regs[a1]; wroteReg = true;
+            }
+        } else if (opcode == 5) {
+            nextIp     = ivec2(a1, clamp(a2, 1, 127));
+            ipModified = true; newIp = nextIp;
+        } else if (opcode == 6) {
+            if (regs[clamp(a1,0,32)] != 0) {
+                nextIp     = ivec2(a2, clamp(a3, 1, 127));
+                ipModified = true; newIp = nextIp;
+            }
+        } else if (opcode == 7) {
+            int tx = regs[clamp(a1,0,32)];
+            int ty = regs[clamp(a2,0,32)] + 128;
+            if (ty >= 128 && ty <= 255) {
+                vramTarget = ivec2(tx, ty);
+                float col  = toFloat(regs[clamp(a3,0,32)]);
+                newVramCol = vec4(col, col, col, 1.0);
+                wroteVram  = true;
+            }
+        } else if (opcode == 8) {
+            int tx = regs[clamp(a1,0,32)];
+            int ty = regs[clamp(a2,0,32)];
+            if (!(tx == 0 && ty == 0)) {
+                storeTarget = ivec2(tx, ty);
+                int b0 = regs[clamp(a3,     0,32)];
+                int b1 = regs[clamp(a3 + 1, 0,32)];
+                int b2 = regs[clamp(a3 + 2, 0,32)];
+                int b3 = regs[clamp(a3 + 3, 0,32)];
+                newStorePx  = vec4(toFloat(b0), toFloat(b1), toFloat(b2), toFloat(b3));
+                wroteStore  = true;
+            }
+        } else if (opcode == 9) {
+            if (a1 >= 1 && a1 <= 32) {
+                int sx = regs[clamp(a2,0,32)];
+                int sy = regs[clamp(a3,0,32)];
+                regs[a1] = toInt(readState(ivec2(sx, sy)).r);
+                regTarget = a1; newRegVal = regs[a1]; wroteReg = true;
+            }
+        }
+
+        ip = nextIp;
+    }
+
+    if (coord.x == 0 && coord.y == 0) {
+        ivec2 finalIp = ipModified ? newIp : ip;
+        outColor = vec4(toFloat(finalIp.x), toFloat(finalIp.y), 0.0, 1.0);
+        return;
+    }
+    if (wroteReg   && coord.y == 0 && coord.x == regTarget)              { outColor = vec4(toFloat(newRegVal), 0.0, 0.0, 1.0); return; }
+    if (wroteVram  && coord.x == vramTarget.x && coord.y == vramTarget.y) { outColor = newVramCol;  return; }
+    if (wroteStore && coord.x == storeTarget.x && coord.y == storeTarget.y){ outColor = newStorePx; return; }
+}`;
+
+const BLIT_VS = `#version 300 es
+in vec2 a_pos;
+out vec2 v_uv;
+void main() {
+    gl_Position = vec4(a_pos, 0.0, 1.0);
+    v_uv = vec2((a_pos.x + 1.0) * 0.5, (a_pos.y + 1.0) * 0.5 * 0.5 + 0.5);
+}`;
+const BLIT_FS = `#version 300 es
+precision highp float;
+in  vec2 v_uv;
+out vec4 fragColor;
+uniform sampler2D u_tex;
+void main() {
+    fragColor = texture(u_tex, v_uv);
+}`;
+
+async function main() {
+    const canvas = document.getElementById("canvas");
+    const gl     = canvas.getContext("webgl2");
+    if (!gl) { alert("WebGL2 not supported"); return; }
+
+    function compile(type, src) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        if (!gl.getShaderParameter(s, gl.COMPILE_STATUS))
+            throw new Error(gl.getShaderInfoLog(s));
+        return s;
+    }
+    function link(vs, fs) {
+        const p = gl.createProgram();
+        gl.attachShader(p, vs); gl.attachShader(p, fs);
+        gl.linkProgram(p);
+        if (!gl.getProgramParameter(p, gl.LINK_STATUS))
+            throw new Error(gl.getProgramInfoLog(p));
+        return p;
+    }
+
+    const quadBuf = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+        -1,-1,  1,-1,  -1,1,
+         1,-1,  1, 1,  -1,1
+    ]), gl.STATIC_DRAW);
+
+    const vmVS = compile(gl.VERTEX_SHADER,   BLIT_VS.replace("v_uv = vec2((a_pos.x + 1.0) * 0.5, (a_pos.y + 1.0) * 0.5 * 0.5 + 0.5);",
+        "v_uv = vec2((a_pos.x+1.0)*0.5, 0.0);"));
+    const VM_VS = `#version 300 es
+in vec2 a_pos;
+void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }`;
+    const vmProg   = link(compile(gl.VERTEX_SHADER, VM_VS),   compile(gl.FRAGMENT_SHADER, GLSL_VM));
+    const blitProg = link(compile(gl.VERTEX_SHADER, BLIT_VS), compile(gl.FRAGMENT_SHADER, BLIT_FS));
+
+    const img = await new Promise((res, rej) => {
+        const i = new Image();
+        i.onload  = () => res(i);
+        i.onerror = rej;
+        i.src = "program.png";
+    });
+
+    function makeTexture(data) {
+        const t = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, t);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        if (data instanceof HTMLImageElement) {
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, data);
+        } else {
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 256, 256, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
+        }
+        return t;
+    }
+
+    function makeFBO(tex) {
+        const fb = gl.createFramebuffer();
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+        gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, tex, 0);
+        return fb;
+    }
+
+    let texA = makeTexture(img);
+    let texB = makeTexture(null);
+    let fboA = makeFBO(texA);
+    let fboB = makeFBO(texB);
+
+    let frame = 0;
+
+    function setupQuad(prog) {
+        gl.bindBuffer(gl.ARRAY_BUFFER, quadBuf);
+        const loc = gl.getAttribLocation(prog, "a_pos");
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    }
+
+    function tick() {
+        gl.bindFramebuffer(gl.FRAMEBUFFER, fboB);
+        gl.viewport(0, 0, 256, 256);
+        gl.useProgram(vmProg);
+        setupQuad(vmProg);
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, texA);
+        gl.uniform1i(gl.getUniformLocation(vmProg, "u_state"), 0);
+        gl.uniform2f(gl.getUniformLocation(vmProg, "u_resolution"), 256, 256);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        gl.viewport(0, 0, canvas.width, canvas.height);
+        gl.useProgram(blitProg);
+        setupQuad(blitProg);
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, texB);
+        gl.uniform1i(gl.getUniformLocation(blitProg, "u_tex"), 0);
+        gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+        [texA, texB] = [texB, texA];
+        [fboA, fboB] = [fboB, fboA];
+
+        frame++;
+        if (frame % 30 === 0) {
+            gl.bindFramebuffer(gl.FRAMEBUFFER, fboA);  
+            const buf = new Uint8Array(4);
+            gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, buf);
+            document.getElementById("fc").textContent = frame;
+            document.getElementById("ip").textContent = `(${buf[0]}, ${buf[1]})`;
+            gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+        }
+
+        requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+}
+
+main().catch(e => { console.error(e); document.body.innerHTML += `<pre style="color:red">${e}</pre>`; });
+</script>
+</body>
+</html>
