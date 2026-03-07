@@ -1,0 +1,1 @@
+The European Union, in its infinite wisdom, has determined that the internet is too dangerous to browse unsupervised. Your ISP has been mandated to deploy EUFilter - a state-of-the-art Safe Browsing Gateway - in compliance with EU Regulation 1337/420 (Extremely Serious Internet Concerns Act). You need to reach discord.com. Ursula is on vacation. Figure it out.
