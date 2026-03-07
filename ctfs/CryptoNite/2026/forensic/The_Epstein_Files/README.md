@@ -1,0 +1,1 @@
+Welp, a person of interest seems to have hidden the flag in the given extract of the epstein files. But something feels off, almost like things have been erased from plain view. Can you find what's going on underneath and recover the flag?

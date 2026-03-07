@@ -960,6 +960,11 @@
             <td><a href="https://ctftime.org/event/1258/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/CryptoNite">CryptoNite</a></td>
+            <td><a href="ctfs/CryptoNite/2026">2026</a></td>
+            <td><a href="https://ctftime.org/event/3185/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/Cryptoverse">Cryptoverse</a></td>
             <td><a href="ctfs/Cryptoverse/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/1907/tasks/" target="_blank">CTFtime</a></td>

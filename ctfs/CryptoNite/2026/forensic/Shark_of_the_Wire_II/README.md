@@ -1,0 +1,1 @@
+The sender want's to outsmart you, can you outsmart the sender? The intercepted transmission wasn’t as straightforward this time. Instead of a single clean message, the data appears to have been broken into multiple fragments before being sent. Each piece may not make sense on its own.

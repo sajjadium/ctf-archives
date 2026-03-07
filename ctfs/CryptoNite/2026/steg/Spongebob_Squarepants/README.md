@@ -1,0 +1,1 @@
+We intercepted two suspicious files from the Chum Bucket's servers. The SpongeBob file looks damaged... but something feels off. Patrick probably knows more than he lets on — he always does. Can you recover the secret formula before Plankton does?

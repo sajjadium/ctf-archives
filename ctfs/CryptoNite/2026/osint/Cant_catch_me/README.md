@@ -1,0 +1,1 @@
+A person of interest has been trying to attack critical infra. They seem to have left one file on the server however. An image taken by them . Can you try and find the person and the flag with the clues you have?
