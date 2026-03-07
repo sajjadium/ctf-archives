@@ -26,7 +26,7 @@ def is_valid(line):
   if line.strip().lower().startswith('handout:'):
     return False
 
-  if line.strip().lower() in ['not solved', 'translate']:
+  if line.strip().lower() in ['not solved', 'translate', '·']:
     return False
 
   if line.strip().lower().startswith('access it using:'):
