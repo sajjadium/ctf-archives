@@ -1,0 +1,3 @@
+Author: grb/getrektboy
+
+Dora said "Where's the map?", the monkey said "katakan peta!", and you say "PETAAAA!!!". Your task is to trick IOCTL_VALIDATE_POOL to say that you're sigma!!! There will be no flag for this challenge so it will be manually validated by the problemsetter. If you do want to submit your exploit, please send the problemsetter your exploit code and your exploit binary through the ticketing channel in Discord, it will be tested on a VM and ran as "NT AUTHORITY/SYSTEM", though please do understand that the problemsetter is still human and cant be online 24/7 so please understand for late responses.

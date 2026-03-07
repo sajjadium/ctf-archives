@@ -129,6 +129,11 @@
             <td><a href="https://ctftime.org/event/1091/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/ARA">ARA</a></td>
+            <td><a href="ctfs/ARA/2026">2026</a></td>
+            <td><a href="https://ctftime.org/event/3152/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=17><a href="ctfs/ASIS">ASIS</a></td>
             <td><a href="ctfs/ASIS/2025/Finals">2025 Finals</a></td>
             <td><a href="https://ctftime.org/event/2613/tasks/" target="_blank">CTFtime</a></td>

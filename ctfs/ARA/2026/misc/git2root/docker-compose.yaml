@@ -1,0 +1,14 @@
+services:
+  app:
+    container_name: git2root
+    build:
+      context: .
+      dockerfile: dockerfile
+    ports:
+      - "1337:22"
+    read_only: true
+    tmpfs:
+      - /run
+      - /tmp:ro
+      - /var/tmp:ro
+      - /dev/shm:ro
