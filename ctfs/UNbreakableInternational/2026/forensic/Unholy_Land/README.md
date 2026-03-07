@@ -1,0 +1,2 @@
+by Masquerade
+It's a beautiful day outside. Birds are singing, flowers are blooming... on days like these, kids like you should be doing DFIR. My father wanted to keep me on track, so he installed a IDS on our home network just in case I tried anything naughty. Well, I didn't listen. I downloaded a sketchy file, and now a screen is demanding money or my files go bye-bye. This file seems to be something new to the untrained eye. The note says to cooperate, but time is of the essence. Can you analyze the traffic and save my PC?

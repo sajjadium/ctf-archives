@@ -1,0 +1,2 @@
+by cshark3008
+An experimental digital art collective presents a browser-only “certificate canvas” that behaves like a procedural painting engine. Brushstrokes, stamps, and approval logic are woven together in a fragile cobweb of client-side checks inside WebAssembly. Can you trace the threads through this web, break the gatekeeping logic, and reveal the hidden flag behind the final layer of paint?
