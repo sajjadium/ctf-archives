@@ -1,0 +1,3 @@
+After another lecture by Pin on stream ciphers, Krosh was inspired by the idea of ​​creating a secure communication channel that would allow him to communicate safely with Hedgehog. Unbeknownst to Krosh, he hadn't even listened to the entire lecture on stream ciphers...
+
+Author: @dmeetrogon

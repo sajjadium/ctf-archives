@@ -301,6 +301,11 @@
             <td><a href="https://ctftime.org/event/2752/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/Axiom">Axiom</a></td>
+            <td><a href="ctfs/Axiom/2026">2026</a></td>
+            <td><a href="https://ctftime.org/event/3129/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=2><a href="ctfs/AzureAssassinAlliance">AzureAssassinAlliance</a></td>
             <td><a href="ctfs/AzureAssassinAlliance/2023">2023</a></td>
             <td><a href="https://ctftime.org/event/2104/tasks/" target="_blank">CTFtime</a></td>
