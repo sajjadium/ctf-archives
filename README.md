@@ -882,6 +882,11 @@
             <td><a href="https://ctftime.org/event/636/tasks/" target="_blank">CTFtime</a></td>
         </tr>
         <tr>
+            <td rowspan=1><a href="ctfs/CodeVinci">CodeVinci</a></td>
+            <td><a href="ctfs/CodeVinci/2026">2016</a></td>
+            <td><a href="https://ctftime.org/event/3101/tasks/" target="_blank">CTFtime</a></td>
+        </tr>
+        <tr>
             <td rowspan=1><a href="ctfs/Codefest">Codefest</a></td>
             <td><a href="ctfs/Codefest/2025">2025</a></td>
             <td><a href="https://ctftime.org/event/2648/tasks/" target="_blank">CTFtime</a></td>
