@@ -1,0 +1,1 @@
+We all know the classic Minecraft "Reach" hack. For this challenge, we've locked down the server and disabled any form of Reach modifications. Your objective is to interact with the Flag from a distance that should be impossible. Can you outsmart the restrictions and reach the flag?
