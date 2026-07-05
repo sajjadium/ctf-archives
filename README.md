@@ -8484,11 +8484,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="2">
+   <td rowspan="3">
     <a href="ctfs/NoHackNoCTF">
      NoHackNoCTF
     </a>
    </td>
+   <td>
+    <a href="ctfs/NoHackNoCTF/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3180/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/NoHackNoCTF/2025">
      2025
