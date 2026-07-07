@@ -1,0 +1,1 @@
+An astronaut arrives at a secret checkpoint and is asked to enter their name. The interface seems friendly, but inside the program hides a secret that, unfortunately, is never executed normally. Can you help me?
