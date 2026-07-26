@@ -6868,6 +6868,35 @@
    </td>
   </tr>
   <tr>
+   <td rowspan="2">
+    <a href="ctfs/JailCTF">
+     JailCTF
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/JailCTF/2025">
+     2025
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/2737/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <a href="ctfs/JailCTF/2024">
+     2024
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/2450/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td rowspan="4">
     <a href="ctfs/JerseyCTF">
      JerseyCTF
@@ -14318,35 +14347,6 @@
    </td>
    <td>
     <a href="https://ctftime.org/event/2813/tasks/" target="_blank">
-     CTFtime
-    </a>
-   </td>
-  </tr>
-  <tr>
-   <td rowspan="2">
-    <a href="ctfs/JailCTF">
-     JailCTF
-    </a>
-   </td>
-   <td>
-    <a href="ctfs/JailCTF/2025">
-     2025
-    </a>
-   </td>
-   <td>
-    <a href="https://ctftime.org/event/2737/tasks/" target="_blank">
-     CTFtime
-    </a>
-   </td>
-  </tr>
-  <tr>
-   <td>
-    <a href="ctfs/JailCTF/2024">
-     2024
-    </a>
-   </td>
-   <td>
-    <a href="https://ctftime.org/event/2450/tasks/" target="_blank">
      CTFtime
     </a>
    </td>
