@@ -6868,11 +6868,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="2">
+   <td rowspan="3">
     <a href="ctfs/JailCTF">
      JailCTF
     </a>
    </td>
+   <td>
+    <a href="ctfs/JailCTF/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3286/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/JailCTF/2025">
      2025
