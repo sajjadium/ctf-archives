@@ -230,7 +230,20 @@ def replace_special_characters(line):
   return line.replace(u'\u1d2c', 'A').replace(u'\u1d64', 'U').replace(u'\u00e4', 'a').replace('@', 'a').replace('$', 's').replace('&', 'and').replace('👻', 'Ghost').replace('è', 'e').replace('🏃', 'Ran').replace('é', 'e').replace('ö', 'o').replace('É', 'E').replace('കുട്ടി', 'child').replace('⛳', 'flag').replace('<3', 'heart').replace('🐍', 'snake').replace('å', 'a').replace('Å', 'A').replace('𝑪', 'C').replace('𝑷', 'P').replace('ε', 'e').replace('√', 'sqrt').replace('🅱️', 'B').replace('ś', 's').replace('ę', 'e').replace('Δ', 'A').replace('ς', 'C').replace('²', '2').replace('ñ', 'n').replace('🐺', 'wolf').replace('π', 'pi').replace('ø', 'o').replace('à', 'a').replace('ɪ', 'I').replace('ʌ', 'A').replace('☾', 'Moon').replace('🦀', 'Crab').replace('Ö', 'O').replace('Ä', 'A').replace('Ø', 'O').replace('③', '3').replace('⑥', '6').replace('³', '3').replace('ō', 'o').replace('ā', 'a').replace('α', 'a').replace('ü', 'u').replace(':(', 'sad').replace('λ', 'lambda').replace('ɹ', 'r').replace('ǝ', 'e').replace('ả', 'a')
 
 def get_challenge_name(line):
-  args = re.sub(r'(score:|solves:)\s+\d+', '', emoji.demojize(line.strip()), flags=re.IGNORECASE).strip()
+  labels = set(['koth', 'golf', 'assembly', 'glass', 'cpp', 'esolang', 'pwn', 'mewlix', 'esolang', 'js', 'pyjail', 'jq', 'osint', 'pickle', 'rust'])
+
+  trimmed_line = line
+  changed = True
+  while changed:
+    changed = False
+    for l in labels:
+      if trimmed_line.endswith(l):
+        trimmed_line = trimmed_line.removesuffix(l)
+        changed = True
+        labels.remove(l)
+        break
+
+  args = re.sub(r'(score:|solves:)\s+\d+', '', emoji.demojize(trimmed_line.strip()), flags=re.IGNORECASE).strip()
   args = re.sub(r'^(osint|forensics|binex|crypto|jail|misc|pwn|rev|web)/', '', args, flags=re.IGNORECASE).strip()
   args = re.sub(r'\(solved by \d+ team(s?)\)\d+', '', args, flags=re.IGNORECASE).strip()
   args = re.sub(r'(\d+\s+solves|\d+\s+pts)', '', args.strip(), flags=re.IGNORECASE).strip()
