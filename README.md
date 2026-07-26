@@ -14324,12 +14324,12 @@
   </tr>
   <tr>
    <td rowspan="2">
-    <a href="ctfs/jailCTF">
-     jailCTF
+    <a href="ctfs/JailCTF">
+     JailCTF
     </a>
    </td>
    <td>
-    <a href="ctfs/jailCTF/2025">
+    <a href="ctfs/JailCTF/2025">
      2025
     </a>
    </td>
@@ -14341,7 +14341,7 @@
   </tr>
   <tr>
    <td>
-    <a href="ctfs/jailCTF/2024">
+    <a href="ctfs/JailCTF/2024">
      2024
     </a>
    </td>
