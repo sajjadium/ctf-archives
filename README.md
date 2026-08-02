@@ -7545,12 +7545,12 @@
   </tr>
   <tr>
    <td rowspan="5">
-    <a href="ctfs/LIT">
-     LIT
+    <a href="ctfs/LexingtonInformaticsTournament">
+     LexingtonInformaticsTournament
     </a>
    </td>
    <td>
-    <a href="ctfs/LIT/2025">
+    <a href="ctfs/LexingtonInformaticsTournament/2025">
      2025
     </a>
    </td>
@@ -7562,7 +7562,7 @@
   </tr>
   <tr>
    <td>
-    <a href="ctfs/LIT/2024">
+    <a href="ctfs/LexingtonInformaticsTournament/2024">
      2024
     </a>
    </td>
@@ -7574,7 +7574,7 @@
   </tr>
   <tr>
    <td>
-    <a href="ctfs/LIT/2023">
+    <a href="ctfs/LexingtonInformaticsTournament/2023">
      2023
     </a>
    </td>
@@ -7586,7 +7586,7 @@
   </tr>
   <tr>
    <td>
-    <a href="ctfs/LIT/2022">
+    <a href="ctfs/LexingtonInformaticsTournament/2022">
      2022
     </a>
    </td>
@@ -7598,7 +7598,7 @@
   </tr>
   <tr>
    <td>
-    <a href="ctfs/LIT/2021">
+    <a href="ctfs/LexingtonInformaticsTournament/2021">
      2021
     </a>
    </td>
