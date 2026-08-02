@@ -12826,6 +12826,23 @@
    </td>
   </tr>
   <tr>
+   <td rowspan="1">
+    <a href="ctfs/Universal">
+     Universal
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/Universal/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3237/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td rowspan="3">
     <a href="ctfs/UofTCTF">
      UofTCTF

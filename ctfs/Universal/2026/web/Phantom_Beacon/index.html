@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arachne Fleet Monitor</title>
+  <script src="https://unpkg.com/mqtt@5.10.4/dist/mqtt.min.js"></script>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --accent: #58a6ff;
+      --muted: #8b949e;
+      --text: #c9d1d9;
+      --ok: #3fb950;
+      --warn: #d29922;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    header h1 {
+      font-size: 16px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: var(--ok);
+      color: #000;
+      font-weight: bold;
+    }
+
+    .status-bar {
+      padding: 8px 24px;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    #status { color: var(--warn); }
+    #status.connected { color: var(--ok); }
+
+    main {
+      padding: 24px;
+      max-width: 900px;
+    }
+
+    h2 {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    #feed {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .reading {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      padding: 10px 14px;
+      border-radius: 4px;
+      line-height: 1.6;
+    }
+
+    .reading strong { color: var(--accent); }
+
+    .empty {
+      color: var(--muted);
+      font-style: italic;
+      padding: 12px 0;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Arachne / Fleet Monitor</h1>
+  <span class="badge">LIVE</span>
+</header>
+
+<div class="status-bar">
+  Broker: <span id="status">connecting&hellip;</span>
+  &nbsp;&mdash;&nbsp;
+  Topic: <code>arachne/cargo/+/reading</code>
+</div>
+
+<main>
+  <h2>Sensor Feed</h2>
+  <div id="feed">
+    <div class="empty">Waiting for readings&hellip;</div>
+  </div>
+</main>
+
+<script>
+  const feed = document.getElementById('feed');
+  const statusEl = document.getElementById('status');
+
+  const hostname = window.location.hostname;
+  const derived = hostname.replace(/^http-/, 'mqtt-ws-');
+  const brokerUrl = derived !== hostname ? `wss://${derived}` : 'ws://localhost:9001';
+  const client = mqtt.connect(brokerUrl);
+
+  client.on('connect', () => {
+    statusEl.textContent = brokerUrl;
+    statusEl.className = 'connected';
+    client.subscribe('arachne/cargo/+/reading');
+  });
+
+  client.on('error', () => {
+    statusEl.textContent = 'error';
+    statusEl.className = '';
+  });
+
+  function sanitize(input) {
+    const root = document.createElement('div');
+    root.innerHTML = input;
+    root.querySelectorAll('script, iframe, object, embed').forEach(n => n.remove());
+    root.querySelectorAll('*').forEach(el => {
+      [...el.attributes].forEach(attr => {
+        if (/^on/i.test(attr.name)) el.removeAttribute(attr.name);
+      });
+    });
+    return root.innerHTML;
+  }
+
+  function render(html) {
+    const tpl = document.createElement('template');
+    tpl.innerHTML = html;
+    tpl.content.querySelectorAll('template').forEach(t => {
+      t.replaceWith(t.content.cloneNode(true));
+    });
+    return tpl.content.cloneNode(true);
+  }
+
+  client.on('message', (topic, message) => {
+    const data = JSON.parse(message.toString());
+
+    const empty = feed.querySelector('.empty');
+    if (empty) empty.remove();
+
+    const item = document.createElement('div');
+    item.className = 'reading';
+
+    const label = document.createElement('strong');
+    label.appendChild(render(sanitize(data.vessel)));
+
+    item.appendChild(label);
+    item.appendChild(document.createTextNode(
+      ' \u2014 ' + data.status +
+      ' \u2014 Temp: ' + data.temp + '\xb0C, Pressure: ' + data.pressure + ' hPa'
+    ));
+    feed.prepend(item);
+  });
+</script>
+
+</body>
+</html>
