@@ -10035,12 +10035,12 @@
   </tr>
   <tr>
    <td rowspan="1">
-    <a href="ctfs/scriptCTF">
-     scriptCTF
+    <a href="ctfs/ScriptCTF">
+     ScriptCTF
     </a>
    </td>
    <td>
-    <a href="ctfs/scriptCTF/2025">
+    <a href="ctfs/ScriptCTF/2025">
      2025
     </a>
    </td>
