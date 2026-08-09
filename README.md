@@ -10034,11 +10034,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="1">
+   <td rowspan="2">
     <a href="ctfs/ScriptCTF">
      ScriptCTF
     </a>
    </td>
+   <td>
+    <a href="ctfs/ScriptCTF/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3052/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/ScriptCTF/2025">
      2025
