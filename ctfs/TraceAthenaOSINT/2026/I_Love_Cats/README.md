@@ -1,0 +1,1 @@
+Someone left a very cute cat on the internet. The owner is louder online than they think. Find the public contact email address the cat's people hand out, and submit its MD5. **Flag format:** `trace{md5}` — lowercase hex, MD5 of the email address string with **no trailing newline**.

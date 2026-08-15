@@ -1,0 +1,1 @@
+The most reproduced photograph of the twentieth century. Everyone knows the face; almost nobody knows the day. Name the photographer, the date the shutter fired, and the city. **Flag format:** `trace{PhotographerSurname_YYYY-MM-DD_City}` — the surname he is credited under, on its own; the city in its usual English spelling. Underscores for spaces.

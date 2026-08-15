@@ -1,0 +1,1 @@
+This gazebo is for sale. So is everything around it. Give me the complete civic address. **Flag format:** `trace{Number_Street_City}` — underscores for spaces, street name exactly as the listing spells it, no comma after the number.

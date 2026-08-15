@@ -1,0 +1,1 @@
+A travel vlogger walked through an open-air bazaar that sells something you cannot buy legally anywhere nearby. He never says where the camera is standing. Name the valley and the district. **Flag format:** `trace{Valley_District}` — underscores for spaces. The valley field is the named basin, not the valley system as a whole.

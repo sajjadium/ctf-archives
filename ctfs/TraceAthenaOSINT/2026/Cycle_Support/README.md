@@ -1,0 +1,1 @@
+Somebody sells this page as wall art. It gives you the inventors, the company, the filing date and the serial number — everything except the number the patent was actually granted under. Find that number. **Flag format:** `trace{1234567}`

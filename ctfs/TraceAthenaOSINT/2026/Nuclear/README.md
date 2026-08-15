@@ -1,0 +1,1 @@
+Why is a photo of a Japanese motorcycle club sitting in the photo gallery of a staff canteen inside a nuclear power complex in a SAARC country? Give me the precise location of the canteen. **Flag format:** `trace{lat,long}` — decimal degrees, **exactly 4 decimal places** (keep trailing zeros), comma separated, no space.
