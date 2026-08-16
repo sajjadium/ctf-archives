@@ -1,0 +1,9 @@
+{
+  "model": "dream-checkpoint-final-FINAL-v3",
+  "reproducibility": "exact",
+  "seed": 8675309,
+  "layer": "secret_mask_head",
+  "mask_algorithm": "python random.Random(seed).randrange(256) per byte",
+  "cipher_hex": "fd15d91bda4a7d8ec6927d13d8ed240feaa3190ad722913a44c24c71150da1b2367d88f1db08f94bd477",
+  "ai_note": "Publishing the seed is safe because random means random."
+}

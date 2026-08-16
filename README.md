@@ -211,11 +211,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="1">
+   <td rowspan="2">
     <a href="ctfs/0xV01D">
      0xV01D
     </a>
    </td>
+   <td>
+    <a href="ctfs/0xV01D/2026-V2">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3387/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/0xV01D/2026">
      2026

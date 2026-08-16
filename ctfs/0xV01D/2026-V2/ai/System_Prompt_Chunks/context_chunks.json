@@ -1,0 +1,23 @@
+{
+  "model": "context-window-exporter-v1",
+  "windowing_mode": "overwrite",
+  "note": "chunk_index is the original context slot",
+  "chunks": [
+    {
+      "segment_index": 2,
+      "payload_b64": "X2J5Xw=="
+    },
+    {
+      "segment_index": 0,
+      "payload_b64": "MHhWb2lkew=="
+    },
+    {
+      "segment_index": 3,
+      "payload_b64": "Y29udGV4dH0="
+    },
+    {
+      "segment_index": 1,
+      "payload_b64": "c29ydGVk"
+    }
+  ]
+}

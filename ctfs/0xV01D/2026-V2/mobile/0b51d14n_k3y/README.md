@@ -1,0 +1,1 @@
+We receive obsidian_key.zip. The description says a cleanup script never finished after a failed migration — implying leftover development artifacts are hiding inside the build. The goal is to recover an AES-GCM-encrypted secret from an Android APK by assembling a key from native library fragments.
