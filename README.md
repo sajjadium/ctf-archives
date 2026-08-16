@@ -5178,6 +5178,23 @@
    </td>
   </tr>
   <tr>
+   <td rowspan="1">
+    <a href="ctfs/GaslightCTF">
+     GaslightCTF
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/GaslightCTF/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3181/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td rowspan="4">
     <a href="ctfs/Glacier">
      Glacier
