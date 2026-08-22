@@ -13930,6 +13930,23 @@
   </tr>
   <tr>
    <td rowspan="1">
+    <a href="ctfs/Z0d1ak">
+     Z0d1ak
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/Z0d1ak/2026/Quals">
+     2026 Quals
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3370/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="1">
     <a href="ctfs/Zh3r0">
      Zh3r0
     </a>

@@ -1,0 +1,3 @@
+by ashbrown
+Forensics
+When the sea took her, she left him only this: a recording of the last song she ever sang, pressed onto whatever that old salt rusted device could still hold. He played it every night until the evening he walked into the tide and followed her under. This was the only thing they found in the shipwreck after. They say a jalpari's voice carries more than melody, that there is always something beneath the surface, if you know how to listen. Something the waves themselves are keeping down there with her. How loud she sang tells you nothing. The picture of her song tells you nothing. But the sea never speaks from only one direction...and neither did she. Raise what she left him.
