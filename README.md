@@ -6269,6 +6269,23 @@
   </tr>
   <tr>
    <td rowspan="1">
+    <a href="ctfs/Haruulzangi">
+     Haruulzangi
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/Haruulzangi/2026/Quals">
+     2026 Quals
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3379/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="1">
     <a href="ctfs/HauntedPumpkin">
      HauntedPumpkin
     </a>
