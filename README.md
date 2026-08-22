@@ -11925,6 +11925,23 @@
   </tr>
   <tr>
    <td rowspan="1">
+    <a href="ctfs/TallDwarfHostingHostingTakeover">
+     TallDwarfHostingHostingTakeover
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/TallDwarfHostingHostingTakeover/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3394/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="1">
     <a href="ctfs/Tamil">
      Tamil
     </a>
