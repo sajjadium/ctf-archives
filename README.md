@@ -2550,11 +2550,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="5">
+   <td rowspan="6">
     <a href="ctfs/COMPFEST">
      COMPFEST
     </a>
    </td>
+   <td>
+    <a href="ctfs/COMPFEST/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3290/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/COMPFEST/2024">
      2024
