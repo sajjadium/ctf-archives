@@ -1,0 +1,10 @@
+[profile.default]
+src = "."
+out = "out"
+cache_path = "cache"
+solc_version = "0.8.30"
+evm_version = "prague"
+via_ir = false
+optimizer = false
+bytecode_hash = "none"
+cbor_metadata = false
