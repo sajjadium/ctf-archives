@@ -492,11 +492,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="17">
+   <td rowspan="18">
     <a href="ctfs/ASIS">
      ASIS
     </a>
    </td>
+   <td>
+    <a href="ctfs/ASIS/2026/Quals">
+     2026 Quals
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3033/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/ASIS/2025/Finals">
      2025 Finals

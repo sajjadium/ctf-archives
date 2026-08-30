@@ -1,0 +1,1 @@
+Mousa had the ultimate magic stick, but his ungrateful crew decided to mess up the whole planet instead. Guess what? Payday is coming, sooner or later. Consider this a sign, fake friends: time’s ticking! ⏳

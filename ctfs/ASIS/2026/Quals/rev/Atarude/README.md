@@ -1,0 +1,1 @@
+The binary is willing to talk, but only in hex and only on its own terms. It gives you a few local oracle lanes, then refuses to hand over the flag until you forge fresh ciphertexts for all of them. Reverse the weird little Atarude, find the hidden relations, and convince flag.enc that you belong here.
