@@ -1,0 +1,611 @@
+[1 of 4] Compiling Decode           ( Decode.hs, Decode.o )
+
+==================== Tidy Core ====================
+Result size of Tidy Core
+  = {terms: 211, types: 158, coercions: 0, joins: 1/2}
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule1_r1w8 :: GHC.Internal.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$trModule1_r1w8 = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule2_r1w9 :: GHC.Internal.Types.TrName
+[GblId, Unf=OtherCon []]
+$trModule2_r1w9 = GHC.Internal.Types.TrNameS $trModule1_r1w8
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule3_r1wa :: GHC.Internal.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$trModule3_r1wa = "Decode"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule4_r1wb :: GHC.Internal.Types.TrName
+[GblId, Unf=OtherCon []]
+$trModule4_r1wb = GHC.Internal.Types.TrNameS $trModule3_r1wa
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+Decode.$trModule :: GHC.Internal.Types.Module
+[GblId, Unf=OtherCon []]
+Decode.$trModule
+  = GHC.Internal.Types.Module $trModule2_r1w9 $trModule4_r1wb
+
+-- RHS size: {terms: 16, types: 3, coercions: 0, joins: 0/0}
+$dIP_r1wc :: GHC.Internal.Stack.Types.CallStack
+[GblId]
+$dIP_r1wc
+  = GHC.Internal.Stack.Types.pushCallStack
+      (GHC.Internal.CString.unpackCString# "cycle"#,
+       GHC.Internal.Stack.Types.SrcLoc
+         (GHC.Internal.CString.unpackCString# "main"#)
+         (GHC.Internal.CString.unpackCString# "Decode"#)
+         (GHC.Internal.CString.unpackCString# "./Decode.hs"#)
+         10#
+         42#
+         10#
+         47#)
+      GHC.Internal.Stack.Types.emptyCallStack
+
+-- RHS size: {terms: 16, types: 3, coercions: 0, joins: 0/0}
+$dIP1_r1wd :: GHC.Internal.Stack.Types.CallStack
+[GblId]
+$dIP1_r1wd
+  = GHC.Internal.Stack.Types.pushCallStack
+      (GHC.Internal.CString.unpackCString# "error"#,
+       GHC.Internal.Stack.Types.SrcLoc
+         (GHC.Internal.CString.unpackCString# "main"#)
+         (GHC.Internal.CString.unpackCString# "Decode"#)
+         (GHC.Internal.CString.unpackCString# "./Decode.hs"#)
+         9#
+         16#
+         9#
+         21#)
+      GHC.Internal.Stack.Types.emptyCallStack
+
+-- RHS size: {terms: 10, types: 7, coercions: 0, joins: 0/0}
+xorChar :: Char -> Char -> Char
+[GblId, Arity=2, Unf=OtherCon []]
+xorChar
+  = \ (a_aMx :: Char) (b_aMy :: Char) ->
+      $ @GHC.Internal.Types.LiftedRep
+        @GHC.Internal.Types.LiftedRep
+        @Int
+        @Char
+        chr
+        (xor @Int GHC.Internal.Bits.$fBitsInt (ord a_aMx) (ord b_aMy))
+
+-- RHS size: {terms: 16, types: 3, coercions: 0, joins: 0/0}
+$dIP2_r1we :: GHC.Internal.Stack.Types.CallStack
+[GblId]
+$dIP2_r1we
+  = GHC.Internal.Stack.Types.pushCallStack
+      (GHC.Internal.CString.unpackCString# "error"#,
+       GHC.Internal.Stack.Types.SrcLoc
+         (GHC.Internal.CString.unpackCString# "main"#)
+         (GHC.Internal.CString.unpackCString# "Decode"#)
+         (GHC.Internal.CString.unpackCString# "./Decode.hs"#)
+         23#
+         26#
+         23#
+         31#)
+      GHC.Internal.Stack.Types.emptyCallStack
+
+-- RHS size: {terms: 16, types: 3, coercions: 0, joins: 0/0}
+$dIP3_r1wf :: GHC.Internal.Stack.Types.CallStack
+[GblId]
+$dIP3_r1wf
+  = GHC.Internal.Stack.Types.pushCallStack
+      (GHC.Internal.CString.unpackCString# "error"#,
+       GHC.Internal.Stack.Types.SrcLoc
+         (GHC.Internal.CString.unpackCString# "main"#)
+         (GHC.Internal.CString.unpackCString# "Decode"#)
+         (GHC.Internal.CString.unpackCString# "./Decode.hs"#)
+         34#
+         22#
+         34#
+         27#)
+      GHC.Internal.Stack.Types.emptyCallStack
+
+-- RHS size: {terms: 13, types: 7, coercions: 0, joins: 0/0}
+unsubsChar_r5 :: Char -> Char
+[GblId, Arity=1, Unf=OtherCon []]
+unsubsChar_r5
+  = \ (a_aPn :: Char) ->
+      $ @GHC.Internal.Types.LiftedRep
+        @GHC.Internal.Types.LiftedRep
+        @Int
+        @Char
+        chr
+        (mod
+           @Int
+           GHC.Internal.Real.$fIntegralInt
+           (- @Int
+              GHC.Internal.Num.$fNumInt
+              (ord a_aPn)
+              (GHC.Internal.Types.I# 67#))
+           (GHC.Internal.Types.I# 128#))
+
+-- RHS size: {terms: 26, types: 21, coercions: 0, joins: 0/0}
+decipher :: String -> String -> String
+[GblId, Arity=2, Unf=OtherCon []]
+decipher
+  = \ (ct_aza :: String) (key_azb :: String) ->
+      case null
+             @[] GHC.Internal.Data.Foldable.$fFoldableList @Char key_azb
+      of {
+        False ->
+          zipWith
+            @Char
+            @Char
+            @Char
+            (\ (c_azd :: Char) (k_aze :: Char) ->
+               $ @GHC.Internal.Types.LiftedRep
+                 @GHC.Internal.Types.LiftedRep
+                 @Char
+                 @Char
+                 unsubsChar_r5
+                 (xorChar k_aze c_azd))
+            ct_aza
+            (cycle
+               @Char
+               (GHC.Internal.Classes.C:IP
+                  @"callStack" @GHC.Internal.Stack.Types.CallStack $dIP_r1wc)
+               key_azb);
+        True ->
+          error
+            @GHC.Internal.Types.LiftedRep
+            @String
+            (GHC.Internal.Classes.C:IP
+               @"callStack" @GHC.Internal.Stack.Types.CallStack $dIP1_r1wd)
+            (GHC.Internal.CString.unpackCString# "boop"#)
+      }
+
+-- RHS size: {terms: 76, types: 92, coercions: 0, joins: 1/2}
+fromHex :: String -> String
+[GblId, Arity=1, Unf=OtherCon []]
+fromHex
+  = \ (input_aXe :: String) ->
+      case odd
+             @Int
+             GHC.Internal.Real.$fIntegralInt
+             (length
+                @[] GHC.Internal.Data.Foldable.$fFoldableList @Char input_aXe)
+      of {
+        False ->
+          map
+            @(Char, Char)
+            @Char
+            (\ (ds_d1vv :: (Char, Char)) ->
+               case ds_d1vv of { (a_aXk, b_aXl) ->
+               join {
+                 fail_d1vK :: (# #) -> Char
+                 [LclId[JoinId(1)(Nothing)], Arity=1, Str=<L>, Unf=OtherCon []]
+                 fail_d1vK _ [Occ=Dead, OS=OneShot]
+                   = error
+                       @GHC.Internal.Types.LiftedRep
+                       @Char
+                       (GHC.Internal.Classes.C:IP
+                          @"callStack" @GHC.Internal.Stack.Types.CallStack $dIP3_r1wf)
+                       (GHC.Internal.CString.unpackCString#
+                          "you bite from the middle :o"#) } in
+               case readHex
+                      @Int
+                      GHC.Internal.Classes.$fEqInt
+                      GHC.Internal.Num.$fNumInt
+                      (GHC.Internal.Types.:
+                         @Char
+                         a_aXk
+                         (GHC.Internal.Types.: @Char b_aXl (GHC.Internal.Types.[] @Char)))
+               of {
+                 [] -> jump fail_d1vK GHC.Internal.Types.(##);
+                 : ds1_d1vF ds2_d1vG ->
+                   case ds1_d1vF of { (n_a1dg, ds3_d1vH) ->
+                   case ds3_d1vH of {
+                     [] ->
+                       case ds2_d1vG of {
+                         [] -> chr n_a1dg;
+                         : ipv_s1w2 ipv1_s1w3 -> jump fail_d1vK GHC.Internal.Types.(##)
+                       };
+                     : ipv_s1w1 ipv1_s1w5 -> jump fail_d1vK GHC.Internal.Types.(##)
+                   }
+                   }
+               }
+               })
+            (letrec {
+               pairs_a1l6 [Occ=LoopBreaker] :: [Char] -> [(Char, Char)]
+               [LclId, Arity=1, Unf=OtherCon []]
+               pairs_a1l6
+                 = \ (ds_d1vk :: [Char]) ->
+                     case ds_d1vk of {
+                       [] -> GHC.Internal.Types.[] @(Char, Char);
+                       : a_aXh ds1_d1vq ->
+                         case ds1_d1vq of {
+                           [] -> GHC.Internal.Types.[] @(Char, Char);
+                           : b_aXi rest_aXj ->
+                             GHC.Internal.Types.:
+                               @(Char, Char) (a_aXh, b_aXi) (pairs_a1l6 rest_aXj)
+                         }
+                     }; } in
+             pairs_a1l6 input_aXe);
+        True ->
+          error
+            @GHC.Internal.Types.LiftedRep
+            @String
+            (GHC.Internal.Classes.C:IP
+               @"callStack" @GHC.Internal.Stack.Types.CallStack $dIP2_r1we)
+            (GHC.Internal.CString.unpackCString#
+               "thats not how to fill a burito !"#)
+      }
+
+
+
+[2 of 4] Compiling Fractal          ( Fractal.hs, Fractal.o )
+
+==================== Tidy Core ====================
+Result size of Tidy Core
+  = {terms: 202, types: 107, coercions: 0, joins: 1/5}
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+palette_r1Dz :: String
+[GblId]
+palette_r1Dz = GHC.Internal.CString.unpackCString# " .-:=+*#%@"#
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule1_r1XU :: GHC.Internal.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$trModule1_r1XU = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule2_r1XV :: GHC.Internal.Types.TrName
+[GblId, Unf=OtherCon []]
+$trModule2_r1XV = GHC.Internal.Types.TrNameS $trModule1_r1XU
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule3_r1XW :: GHC.Internal.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$trModule3_r1XW = "Fractal"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule4_r1XX :: GHC.Internal.Types.TrName
+[GblId, Unf=OtherCon []]
+$trModule4_r1XX = GHC.Internal.Types.TrNameS $trModule3_r1XW
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+Fractal.$trModule :: GHC.Internal.Types.Module
+[GblId, Unf=OtherCon []]
+Fractal.$trModule
+  = GHC.Internal.Types.Module $trModule2_r1XV $trModule4_r1XX
+
+-- RHS size: {terms: 184, types: 95, coercions: 0, joins: 1/5}
+renderJulia :: Double -> Double -> Int -> Int -> Int -> String
+[GblId, Arity=5, Unf=OtherCon []]
+renderJulia
+  = \ (cx_a1JB :: Double)
+      (cy_a1JC :: Double)
+      (maxIter_a1JD :: Int)
+      (width_a1JE :: Int)
+      (height_a1JF :: Int) ->
+      let {
+        c_a1JG :: Complex Double
+        [LclId]
+        c_a1JG = Data.Complex.:+ @Double cx_a1JB cy_a1JC } in
+      unlines
+        (letrec {
+           ds_d1Xl [Occ=LoopBreaker] :: [Int] -> [String]
+           [LclId, Arity=1, Unf=OtherCon []]
+           ds_d1Xl
+             = \ (ds1_d1Xm :: [Int]) ->
+                 case ds1_d1Xm of {
+                   [] -> GHC.Internal.Types.[] @String;
+                   : ds3_d1Xn ds4_d1Xo ->
+                     GHC.Internal.Types.:
+                       @[Char]
+                       (letrec {
+                          ds5_d1Xp [Occ=LoopBreaker] :: [Int] -> [Char]
+                          [LclId, Arity=1, Unf=OtherCon []]
+                          ds5_d1Xp
+                            = \ (ds6_d1Xq :: [Int]) ->
+                                case ds6_d1Xq of {
+                                  [] -> GHC.Internal.Types.[] @Char;
+                                  : ds8_d1Xr ds9_d1Xs ->
+                                    GHC.Internal.Types.:
+                                      @Char
+                                      (!!
+                                         @Char
+                                         (GHC.Internal.Classes.C:IP
+                                            @"callStack"
+                                            @GHC.Internal.Stack.Types.CallStack
+                                            (GHC.Internal.Stack.Types.pushCallStack
+                                               (GHC.Internal.CString.unpackCString# "!!"#,
+                                                GHC.Internal.Stack.Types.SrcLoc
+                                                  (GHC.Internal.CString.unpackCString# "main"#)
+                                                  (GHC.Internal.CString.unpackCString# "Fractal"#)
+                                                  (GHC.Internal.CString.unpackCString#
+                                                     "./Fractal.hs"#)
+                                                  31#
+                                                  17#
+                                                  31#
+                                                  19#)
+                                               GHC.Internal.Stack.Types.emptyCallStack))
+                                         palette_r1Dz
+                                         (min
+                                            @Int
+                                            GHC.Internal.Classes.$fOrdInt
+                                            (- @Int
+                                               GHC.Internal.Num.$fNumInt
+                                               (length
+                                                  @[]
+                                                  GHC.Internal.Data.Foldable.$fFoldableList
+                                                  @Char
+                                                  palette_r1Dz)
+                                               (GHC.Internal.Types.I# 1#))
+                                            (div
+                                               @Int
+                                               GHC.Internal.Real.$fIntegralInt
+                                               (* @Int
+                                                  GHC.Internal.Num.$fNumInt
+                                                  (let {
+                                                     $dNum_a1Rk :: Num (Complex Double)
+                                                     [LclId]
+                                                     $dNum_a1Rk
+                                                       = Data.Complex.$fNumComplex
+                                                           @Double
+                                                           GHC.Internal.Float.$fRealFloatDouble } in
+                                                   joinrec {
+                                                     go_a1QA [Occ=LoopBreaker]
+                                                       :: Int -> Complex Double -> Int
+                                                     [LclId[JoinId(2)(Nothing)],
+                                                      Arity=2,
+                                                      Str=<L><L>,
+                                                      Unf=OtherCon []]
+                                                     go_a1QA (n_a1Ju :: Int)
+                                                             (z_a1Jv :: Complex Double)
+                                                       = case > @Double
+                                                                GHC.Internal.Classes.$fOrdDouble
+                                                                (magnitude
+                                                                   @Double
+                                                                   GHC.Internal.Float.$fRealFloatDouble
+                                                                   z_a1Jv)
+                                                                (GHC.Internal.Types.D# 2.0##)
+                                                         of {
+                                                           False ->
+                                                             case >=
+                                                                    @Int
+                                                                    GHC.Internal.Classes.$fOrdInt
+                                                                    n_a1Ju
+                                                                    maxIter_a1JD
+                                                             of {
+                                                               False ->
+                                                                 jump go_a1QA
+                                                                   (+ @Int
+                                                                      GHC.Internal.Num.$fNumInt
+                                                                      n_a1Ju
+                                                                      (GHC.Internal.Types.I# 1#))
+                                                                   (+ @(Complex Double)
+                                                                      $dNum_a1Rk
+                                                                      (* @(Complex Double)
+                                                                         $dNum_a1Rk
+                                                                         z_a1Jv
+                                                                         z_a1Jv)
+                                                                      c_a1JG);
+                                                               True -> n_a1Ju
+                                                             };
+                                                           True -> n_a1Ju
+                                                         }; } in
+                                                   jump go_a1QA
+                                                     (GHC.Internal.Types.I# 0#)
+                                                     (Data.Complex.:+
+                                                        @Double
+                                                        (+ @Double
+                                                           GHC.Internal.Float.$fNumDouble
+                                                           (negate
+                                                              @Double
+                                                              GHC.Internal.Float.$fNumDouble
+                                                              (GHC.Internal.Types.D# 1.8##))
+                                                           (/ @Double
+                                                              GHC.Internal.Float.$fFractionalDouble
+                                                              (* @Double
+                                                                 GHC.Internal.Float.$fNumDouble
+                                                                 (GHC.Internal.Types.D# 3.6##)
+                                                                 (fromIntegral
+                                                                    @Int
+                                                                    @Double
+                                                                    GHC.Internal.Real.$fIntegralInt
+                                                                    GHC.Internal.Float.$fNumDouble
+                                                                    ds8_d1Xr))
+                                                              (fromIntegral
+                                                                 @Int
+                                                                 @Double
+                                                                 GHC.Internal.Real.$fIntegralInt
+                                                                 GHC.Internal.Float.$fNumDouble
+                                                                 (- @Int
+                                                                    GHC.Internal.Num.$fNumInt
+                                                                    width_a1JE
+                                                                    (GHC.Internal.Types.I# 1#)))))
+                                                        (* @Double
+                                                           GHC.Internal.Float.$fNumDouble
+                                                           (+ @Double
+                                                              GHC.Internal.Float.$fNumDouble
+                                                              (negate
+                                                                 @Double
+                                                                 GHC.Internal.Float.$fNumDouble
+                                                                 (GHC.Internal.Types.D# 1.0##))
+                                                              (/ @Double
+                                                                 GHC.Internal.Float.$fFractionalDouble
+                                                                 (* @Double
+                                                                    GHC.Internal.Float.$fNumDouble
+                                                                    (GHC.Internal.Types.D# 2.0##)
+                                                                    (fromIntegral
+                                                                       @Int
+                                                                       @Double
+                                                                       GHC.Internal.Real.$fIntegralInt
+                                                                       GHC.Internal.Float.$fNumDouble
+                                                                       ds3_d1Xn))
+                                                                 (fromIntegral
+                                                                    @Int
+                                                                    @Double
+                                                                    GHC.Internal.Real.$fIntegralInt
+                                                                    GHC.Internal.Float.$fNumDouble
+                                                                    (- @Int
+                                                                       GHC.Internal.Num.$fNumInt
+                                                                       height_a1JF
+                                                                       (GHC.Internal.Types.I#
+                                                                          1#)))))
+                                                           (GHC.Internal.Types.D# 0.5##))))
+                                                  (length
+                                                     @[]
+                                                     GHC.Internal.Data.Foldable.$fFoldableList
+                                                     @Char
+                                                     palette_r1Dz))
+                                               (+ @Int
+                                                  GHC.Internal.Num.$fNumInt
+                                                  maxIter_a1JD
+                                                  (GHC.Internal.Types.I# 1#)))))
+                                      (ds5_d1Xp ds9_d1Xs)
+                                }; } in
+                        ds5_d1Xp
+                          (enumFromTo
+                             @Int
+                             GHC.Internal.Enum.$fEnumInt
+                             (GHC.Internal.Types.I# 0#)
+                             (- @Int
+                                GHC.Internal.Num.$fNumInt
+                                width_a1JE
+                                (GHC.Internal.Types.I# 1#))))
+                       (ds_d1Xl ds4_d1Xo)
+                 }; } in
+         ds_d1Xl
+           (enumFromTo
+              @Int
+              GHC.Internal.Enum.$fEnumInt
+              (GHC.Internal.Types.I# 0#)
+              (- @Int
+                 GHC.Internal.Num.$fNumInt
+                 height_a1JF
+                 (GHC.Internal.Types.I# 1#))))
+
+
+
+[3 of 4] Compiling Main             ( Main.hs, Main.o )
+
+==================== Tidy Core ====================
+Result size of Tidy Core
+  = {terms: 120, types: 108, coercions: 0, joins: 1/1}
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule1_r2of :: GHC.Internal.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$trModule1_r2of = "main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule2_r2og :: GHC.Internal.Types.TrName
+[GblId, Unf=OtherCon []]
+$trModule2_r2og = GHC.Internal.Types.TrNameS $trModule1_r2of
+
+-- RHS size: {terms: 1, types: 0, coercions: 0, joins: 0/0}
+$trModule3_r2oh :: GHC.Internal.Prim.Addr#
+[GblId, Unf=OtherCon []]
+$trModule3_r2oh = "Main"#
+
+-- RHS size: {terms: 2, types: 0, coercions: 0, joins: 0/0}
+$trModule4_r2oi :: GHC.Internal.Types.TrName
+[GblId, Unf=OtherCon []]
+$trModule4_r2oi = GHC.Internal.Types.TrNameS $trModule3_r2oh
+
+-- RHS size: {terms: 3, types: 0, coercions: 0, joins: 0/0}
+Main.$trModule :: GHC.Internal.Types.Module
+[GblId, Unf=OtherCon []]
+Main.$trModule
+  = GHC.Internal.Types.Module $trModule2_r2og $trModule4_r2oi
+
+-- RHS size: {terms: 16, types: 3, coercions: 0, joins: 0/0}
+$dIP_r2oj :: GHC.Internal.Stack.Types.CallStack
+[GblId]
+$dIP_r2oj
+  = GHC.Internal.Stack.Types.pushCallStack
+      (GHC.Internal.CString.unpackCString# "error"#,
+       GHC.Internal.Stack.Types.SrcLoc
+         (GHC.Internal.CString.unpackCString# "main"#)
+         (GHC.Internal.CString.unpackCString# "Main"#)
+         (GHC.Internal.CString.unpackCString# "Main.hs"#)
+         14#
+         10#
+         14#
+         15#)
+      GHC.Internal.Stack.Types.emptyCallStack
+
+-- RHS size: {terms: 85, types: 94, coercions: 0, joins: 1/1}
+main :: IO ()
+[GblId]
+main
+  = $ @GHC.Internal.Types.LiftedRep
+      @GHC.Internal.Types.LiftedRep
+      @String
+      @(IO ())
+      (writeFile (GHC.Internal.CString.unpackCString# "out.txt"#))
+      ($ @GHC.Internal.Types.LiftedRep
+         @GHC.Internal.Types.LiftedRep
+         @(Double, Double, Int, Int, Int)
+         @String
+         (\ (ds_d2nF :: (Double, Double, Int, Int, Int)) ->
+            case ds_d2nF of { (a_a2hs, b_a2ht, c_a2hu, d_a2hv, e_a2hw) ->
+            renderJulia a_a2hs b_a2ht c_a2hu d_a2hv e_a2hw
+            })
+         (join {
+            fail_d2nY :: (# #) -> (Double, Double, Int, Int, Int)
+            [LclId[JoinId(1)(Nothing)], Arity=1, Str=<L>, Unf=OtherCon []]
+            fail_d2nY _ [Occ=Dead, OS=OneShot]
+              = error
+                  @GHC.Internal.Types.LiftedRep
+                  @(Double, Double, Int, Int, Int)
+                  (GHC.Internal.Classes.C:IP
+                     @"callStack" @GHC.Internal.Stack.Types.CallStack $dIP_r2oj)
+                  (GHC.Internal.Types.[] @Char) } in
+          case words
+                 (decipher
+                    (fromHex
+                       (GHC.Internal.CString.unpackCString#
+                          "2d55090d4f576242655d24030705490250210748502d54111f4450065f0f010704041d5f6024485b500851457a5201384c68255b000613351141070859560b4a1c03094a0e1a505007471d0e0749080a5442074818160e48170f56"#))
+                    (GHC.Internal.CString.unpackCString# "#!s3kur1ty"#))
+          of {
+            [] -> jump fail_d2nY GHC.Internal.Types.(##);
+            : _ [Occ=Dead] ds_d2nQ ->
+              case ds_d2nQ of {
+                [] -> jump fail_d2nY GHC.Internal.Types.(##);
+                : real_a27u ds1_d2nR ->
+                  case ds1_d2nR of {
+                    [] -> jump fail_d2nY GHC.Internal.Types.(##);
+                    : imag_a27v ds2_d2nS ->
+                      case ds2_d2nS of {
+                        [] -> jump fail_d2nY GHC.Internal.Types.(##);
+                        : max_iter_a27w ds3_d2nT ->
+                          case ds3_d2nT of {
+                            [] -> jump fail_d2nY GHC.Internal.Types.(##);
+                            : width_a27x ds4_d2nU ->
+                              case ds4_d2nU of {
+                                [] -> jump fail_d2nY GHC.Internal.Types.(##);
+                                : height_a27y ds5_d2nV ->
+                                  case ds5_d2nV of {
+                                    [] ->
+                                      (read @Double GHC.Internal.Read.$fReadDouble real_a27u,
+                                       read @Double GHC.Internal.Read.$fReadDouble imag_a27v,
+                                       read @Int GHC.Internal.Read.$fReadInt max_iter_a27w,
+                                       read @Int GHC.Internal.Read.$fReadInt width_a27x,
+                                       read @Int GHC.Internal.Read.$fReadInt height_a27y);
+                                    : ipv_s2ob ipv1_s2oc -> jump fail_d2nY GHC.Internal.Types.(##)
+                                  }
+                              }
+                          }
+                      }
+                  }
+              }
+          }))
+
+-- RHS size: {terms: 2, types: 1, coercions: 0, joins: 0/0}
+:Main.main :: IO ()
+[GblId]
+:Main.main = GHC.Internal.TopHandler.runMainIO @() main
+
+
+
+[4 of 4] Linking main [Objects changed]

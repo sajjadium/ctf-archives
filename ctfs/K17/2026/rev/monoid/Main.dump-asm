@@ -1,0 +1,5345 @@
+[1 of 4] Compiling Decode           ( Decode.hs, Decode.o )
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+.L$trModule3_r1wa_bytes:
+	.string "Decode"
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+.L$trModule1_r1w8_bytes:
+	.string "main"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$trModule2_r1w9_closure:
+	.quad	GHC.Internal.Types.TrNameS_con_info
+	.quad	.L$trModule1_r1w8_bytes
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$trModule4_r1wb_closure:
+	.quad	GHC.Internal.Types.TrNameS_con_info
+	.quad	.L$trModule3_r1wa_bytes
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.globl Decode.$trModule_closure
+.type Decode.$trModule_closure, @object
+Decode.$trModule_closure:
+	.quad	GHC.Internal.Types.Module_con_info
+	.quad	.L$trModule2_r1w9_closure+1
+	.quad	.L$trModule4_r1wb_closure+1
+	.quad	3
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1xU_str:
+	.string "./Decode.hs"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s1wn_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1xU_str
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1xV_str:
+	.string "Decode"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s1wl_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1xV_str
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1xW_str:
+	.string "main"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s1wj_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1xW_str
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s1wo_closure:
+	.quad	GHC.Internal.Stack.Types.SrcLoc_con_info
+	.quad	.L$dIP_sat_s1wj_closure
+	.quad	.L$dIP_sat_s1wl_closure
+	.quad	.L$dIP_sat_s1wn_closure
+	.quad	10
+	.quad	42
+	.quad	10
+	.quad	47
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1xX_str:
+	.string "cycle"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s1wh_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1xX_str
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s1wp_closure:
+	.quad	(,)_con_info
+	.quad	.L$dIP_sat_s1wh_closure
+	.quad	.L$dIP_sat_s1wo_closure+1
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu0_srt:
+	.quad	stg_SRT_3_info
+	.quad	.L$dIP_sat_s1wp_closure
+	.quad	GHC.Internal.Stack.Types.emptyCallStack_closure
+	.quad	GHC.Internal.Stack.Types.pushCallStack_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	21
+	.long	.Lu0_srt-(.L$dIP_r1wc_info)+0
+.L$dIP_r1wc_info:
+.Lc1y4:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1y5
+.Lc1y6:
+	subq $8,%rsp
+	movq %r13,%rdi
+	movq %rbx,%rsi
+	xorl %eax,%eax
+	call newCAF
+	addq $8,%rsp
+	testq %rax,%rax
+	je .Lc1y3
+.Lc1y2:
+	movq $stg_bh_upd_frame_info,-16(%rbp)
+	movq %rax,-8(%rbp)
+	leaq GHC.Internal.Stack.Types.emptyCallStack_closure(%rip),%rsi
+	leaq .L$dIP_sat_s1wp_closure+1(%rip),%r14
+	leaq GHC.Internal.Stack.Types.pushCallStack_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc1y3:
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc1y5:
+	jmp *-16(%r13)
+	.size .L$dIP_r1wc_info, .-.L$dIP_r1wc_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_r1wc_closure:
+	.quad	.L$dIP_r1wc_info
+	.quad	0
+	.quad	0
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1y7_str:
+	.string "./Decode.hs"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP1_sat_s1wx_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1y7_str
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1y8_str:
+	.string "Decode"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP1_sat_s1wv_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1y8_str
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1y9_str:
+	.string "main"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP1_sat_s1wt_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1y9_str
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP1_sat_s1wy_closure:
+	.quad	GHC.Internal.Stack.Types.SrcLoc_con_info
+	.quad	.L$dIP1_sat_s1wt_closure
+	.quad	.L$dIP1_sat_s1wv_closure
+	.quad	.L$dIP1_sat_s1wx_closure
+	.quad	9
+	.quad	16
+	.quad	9
+	.quad	21
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1ya_str:
+	.string "error"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP1_sat_s1wr_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1ya_str
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP1_sat_s1wz_closure:
+	.quad	(,)_con_info
+	.quad	.L$dIP1_sat_s1wr_closure
+	.quad	.L$dIP1_sat_s1wy_closure+1
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu3_srt:
+	.quad	stg_SRT_3_info
+	.quad	.L$dIP1_sat_s1wz_closure
+	.quad	GHC.Internal.Stack.Types.emptyCallStack_closure
+	.quad	GHC.Internal.Stack.Types.pushCallStack_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	21
+	.long	.Lu3_srt-(.L$dIP1_r1wd_info)+0
+.L$dIP1_r1wd_info:
+.Lc1yh:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1yi
+.Lc1yj:
+	subq $8,%rsp
+	movq %r13,%rdi
+	movq %rbx,%rsi
+	xorl %eax,%eax
+	call newCAF
+	addq $8,%rsp
+	testq %rax,%rax
+	je .Lc1yg
+.Lc1yf:
+	movq $stg_bh_upd_frame_info,-16(%rbp)
+	movq %rax,-8(%rbp)
+	leaq GHC.Internal.Stack.Types.emptyCallStack_closure(%rip),%rsi
+	leaq .L$dIP1_sat_s1wz_closure+1(%rip),%r14
+	leaq GHC.Internal.Stack.Types.pushCallStack_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc1yg:
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc1yi:
+	jmp *-16(%r13)
+	.size .L$dIP1_r1wd_info, .-.L$dIP1_r1wd_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP1_r1wd_closure:
+	.quad	.L$dIP1_r1wd_info
+	.quad	0
+	.quad	0
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu6_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.Base.ord_closure
+	.quad	GHC.Internal.Bits.$fBitsInt_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	GHC.Internal.Base.ord_closure-(.LxorChar_sat_s1wD_info)+0
+.LxorChar_sat_s1wD_info:
+.Lc1yw:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1yx
+.Lc1yy:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.Base.ord_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_p_fast
+.Lc1yx:
+	jmp *-16(%r13)
+	.size .LxorChar_sat_s1wD_info, .-.LxorChar_sat_s1wD_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	GHC.Internal.Base.ord_closure-(.LxorChar_sat_s1wC_info)+0
+.LxorChar_sat_s1wC_info:
+.Lc1yD:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1yE
+.Lc1yF:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.Base.ord_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_p_fast
+.Lc1yE:
+	jmp *-16(%r13)
+	.size .LxorChar_sat_s1wC_info, .-.LxorChar_sat_s1wC_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	2
+	.long	18
+	.long	.Lu6_srt-(.LxorChar_sat_s1wE_info)+0
+.LxorChar_sat_s1wE_info:
+.Lc1yG:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1yH
+.Lc1yI:
+	addq $48,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1yK
+.Lc1yJ:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rbx
+	movq $.LxorChar_sat_s1wD_info,-40(%r12)
+	movq %rbx,-24(%r12)
+	leaq -40(%r12),%rbx
+	movq $.LxorChar_sat_s1wC_info,-16(%r12)
+	movq %rax,(%r12)
+	leaq -16(%r12),%rax
+	leaq GHC.Internal.Bits.$fBitsInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq %rbx,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Bits.xor_info
+.Lc1yK:
+	movq $48,904(%r13)
+.Lc1yH:
+	jmp *-16(%r13)
+	.size .LxorChar_sat_s1wE_info, .-.LxorChar_sat_s1wE_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	8589934607
+	.quad	3
+	.long	14
+	.long	0
+.globl Decode.xorChar_info
+.type Decode.xorChar_info, @function
+Decode.xorChar_info:
+.Lc1yL:
+.Lc1yN:
+	addq $32,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1yP
+.Lc1yO:
+	movq $.LxorChar_sat_s1wE_info,-24(%r12)
+	movq %r14,-8(%r12)
+	movq %rsi,(%r12)
+	leaq -24(%r12),%rax
+	movq %rax,%rsi
+	leaq GHC.Internal.Char.chr_closure(%rip),%r14
+	leaq GHC.Internal.Base.$_closure(%rip),%rbx
+	jmp stg_ap_pp_fast
+.Lc1yP:
+	movq $32,904(%r13)
+.Lc1yM:
+	leaq Decode.xorChar_closure(%rip),%rbx
+	jmp *-8(%r13)
+	.size Decode.xorChar_info, .-Decode.xorChar_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.globl Decode.xorChar_closure
+.type Decode.xorChar_closure, @object
+Decode.xorChar_closure:
+	.quad	Decode.xorChar_info
+	.quad	GHC.Internal.Base.$_closure
+	.quad	GHC.Internal.Char.chr_closure
+	.quad	.Lu6_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1yQ_str:
+	.string "./Decode.hs"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP2_sat_s1wM_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1yQ_str
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1yR_str:
+	.string "Decode"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP2_sat_s1wK_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1yR_str
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1yS_str:
+	.string "main"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP2_sat_s1wI_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1yS_str
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP2_sat_s1wN_closure:
+	.quad	GHC.Internal.Stack.Types.SrcLoc_con_info
+	.quad	.L$dIP2_sat_s1wI_closure
+	.quad	.L$dIP2_sat_s1wK_closure
+	.quad	.L$dIP2_sat_s1wM_closure
+	.quad	23
+	.quad	26
+	.quad	23
+	.quad	31
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1yT_str:
+	.string "error"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP2_sat_s1wG_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1yT_str
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP2_sat_s1wO_closure:
+	.quad	(,)_con_info
+	.quad	.L$dIP2_sat_s1wG_closure
+	.quad	.L$dIP2_sat_s1wN_closure+1
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lua_srt:
+	.quad	stg_SRT_3_info
+	.quad	.L$dIP2_sat_s1wO_closure
+	.quad	GHC.Internal.Stack.Types.emptyCallStack_closure
+	.quad	GHC.Internal.Stack.Types.pushCallStack_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	21
+	.long	.Lua_srt-(.L$dIP2_r1we_info)+0
+.L$dIP2_r1we_info:
+.Lc1z0:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1z1
+.Lc1z2:
+	subq $8,%rsp
+	movq %r13,%rdi
+	movq %rbx,%rsi
+	xorl %eax,%eax
+	call newCAF
+	addq $8,%rsp
+	testq %rax,%rax
+	je .Lc1yZ
+.Lc1yY:
+	movq $stg_bh_upd_frame_info,-16(%rbp)
+	movq %rax,-8(%rbp)
+	leaq GHC.Internal.Stack.Types.emptyCallStack_closure(%rip),%rsi
+	leaq .L$dIP2_sat_s1wO_closure+1(%rip),%r14
+	leaq GHC.Internal.Stack.Types.pushCallStack_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc1yZ:
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc1z1:
+	jmp *-16(%r13)
+	.size .L$dIP2_r1we_info, .-.L$dIP2_r1we_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP2_r1we_closure:
+	.quad	.L$dIP2_r1we_info
+	.quad	0
+	.quad	0
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1z3_str:
+	.string "./Decode.hs"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP3_sat_s1wW_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1z3_str
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1z4_str:
+	.string "Decode"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP3_sat_s1wU_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1z4_str
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1z5_str:
+	.string "main"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP3_sat_s1wS_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1z5_str
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP3_sat_s1wX_closure:
+	.quad	GHC.Internal.Stack.Types.SrcLoc_con_info
+	.quad	.L$dIP3_sat_s1wS_closure
+	.quad	.L$dIP3_sat_s1wU_closure
+	.quad	.L$dIP3_sat_s1wW_closure
+	.quad	34
+	.quad	22
+	.quad	34
+	.quad	27
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1z6_str:
+	.string "error"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP3_sat_s1wQ_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c1z6_str
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP3_sat_s1wY_closure:
+	.quad	(,)_con_info
+	.quad	.L$dIP3_sat_s1wQ_closure
+	.quad	.L$dIP3_sat_s1wX_closure+1
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lud_srt:
+	.quad	stg_SRT_3_info
+	.quad	.L$dIP3_sat_s1wY_closure
+	.quad	GHC.Internal.Stack.Types.emptyCallStack_closure
+	.quad	GHC.Internal.Stack.Types.pushCallStack_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	21
+	.long	.Lud_srt-(.L$dIP3_r1wf_info)+0
+.L$dIP3_r1wf_info:
+.Lc1zd:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1ze
+.Lc1zf:
+	subq $8,%rsp
+	movq %r13,%rdi
+	movq %rbx,%rsi
+	xorl %eax,%eax
+	call newCAF
+	addq $8,%rsp
+	testq %rax,%rax
+	je .Lc1zc
+.Lc1zb:
+	movq $stg_bh_upd_frame_info,-16(%rbp)
+	movq %rax,-8(%rbp)
+	leaq GHC.Internal.Stack.Types.emptyCallStack_closure(%rip),%rsi
+	leaq .L$dIP3_sat_s1wY_closure+1(%rip),%r14
+	leaq GHC.Internal.Stack.Types.pushCallStack_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc1zc:
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc1ze:
+	jmp *-16(%r13)
+	.size .L$dIP3_r1wf_info, .-.L$dIP3_r1wf_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP3_r1wf_closure:
+	.quad	.L$dIP3_r1wf_info
+	.quad	0
+	.quad	0
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lug_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.Base.ord_closure
+	.quad	GHC.Internal.Num.$fNumInt_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Luh_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.Real.$fIntegralInt_closure
+	.quad	.Lug_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	GHC.Internal.Base.ord_closure-(.LunsubsChar_sat_s1x0_info)+0
+.LunsubsChar_sat_s1x0_info:
+.Lc1zw:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1zx
+.Lc1zy:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.Base.ord_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_p_fast
+.Lc1zx:
+	jmp *-16(%r13)
+	.size .LunsubsChar_sat_s1x0_info, .-.LunsubsChar_sat_s1x0_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lug_srt-(.LunsubsChar_sat_s1x2_info)+0
+.LunsubsChar_sat_s1x2_info:
+.Lc1zz:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1zA
+.Lc1zB:
+	addq $24,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1zD
+.Lc1zC:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq $.LunsubsChar_sat_s1x0_info,-16(%r12)
+	movq %rax,(%r12)
+	leaq -16(%r12),%rax
+	leaq GHC.Internal.Num.$fNumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq $stg_INTLIKE_closure+1329,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.-_info
+.Lc1zD:
+	movq $24,904(%r13)
+.Lc1zA:
+	jmp *-16(%r13)
+	.size .LunsubsChar_sat_s1x2_info, .-.LunsubsChar_sat_s1x2_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Luh_srt-(.LunsubsChar_sat_s1x4_info)+0
+.LunsubsChar_sat_s1x4_info:
+.Lc1zE:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1zF
+.Lc1zG:
+	addq $24,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1zI
+.Lc1zH:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq $.LunsubsChar_sat_s1x2_info,-16(%r12)
+	movq %rax,(%r12)
+	leaq -16(%r12),%rax
+	leaq GHC.Internal.Real.$fIntegralInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq $stg_INTLIKE_closure+2305,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Real.mod_info
+.Lc1zI:
+	movq $24,904(%r13)
+.Lc1zF:
+	jmp *-16(%r13)
+	.size .LunsubsChar_sat_s1x4_info, .-.LunsubsChar_sat_s1x4_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	4294967301
+	.quad	3
+	.long	14
+	.long	0
+.LunsubsChar_r5_info:
+.Lc1zJ:
+.Lc1zL:
+	addq $24,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1zN
+.Lc1zM:
+	movq $.LunsubsChar_sat_s1x4_info,-16(%r12)
+	movq %r14,(%r12)
+	leaq -16(%r12),%rax
+	movq %rax,%rsi
+	leaq GHC.Internal.Char.chr_closure(%rip),%r14
+	leaq GHC.Internal.Base.$_closure(%rip),%rbx
+	jmp stg_ap_pp_fast
+.Lc1zN:
+	movq $24,904(%r13)
+.Lc1zK:
+	leaq .LunsubsChar_r5_closure(%rip),%rbx
+	jmp *-8(%r13)
+	.size .LunsubsChar_r5_info, .-.LunsubsChar_r5_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.LunsubsChar_r5_closure:
+	.quad	.LunsubsChar_r5_info
+	.quad	GHC.Internal.Base.$_closure
+	.quad	GHC.Internal.Char.chr_closure
+	.quad	.Luh_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lul_srt:
+	.quad	stg_SRT_2_info
+	.quad	.LunsubsChar_r5_closure
+	.quad	Decode.xorChar_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lum_srt:
+	.quad	stg_SRT_2_info
+	.quad	.L$dIP_r1wc_closure
+	.quad	GHC.Internal.List.cycle_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lun_srt:
+	.quad	stg_SRT_6_info
+	.quad	.L$dIP1_r1wd_closure
+	.quad	GHC.Internal.CString.unpackCString#_closure
+	.quad	GHC.Internal.Err.error_closure
+	.quad	GHC.Internal.List.zipWith_closure
+	.quad	.Lul_srt
+	.quad	.Lum_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1Aq_str:
+	.string "boop"
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lum_srt-(.Ldecipher_sat_s1xc_info)+0
+.Ldecipher_sat_s1xc_info:
+.Lc1A3:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1A4
+.Lc1A5:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%rsi
+	leaq .L$dIP_r1wc_closure(%rip),%r14
+	leaq GHC.Internal.List.cycle_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc1A4:
+	jmp *-16(%r13)
+	.size .Ldecipher_sat_s1xc_info, .-.Ldecipher_sat_s1xc_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	2
+	.long	18
+	.long	Decode.xorChar_closure-(.Ldecipher_sat_s1xa_info)+0
+.Ldecipher_sat_s1xa_info:
+.Lc1Ac:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1Ad
+.Lc1Ae:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rbx
+	movq %rbx,%rsi
+	movq %rax,%r14
+	addq $-16,%rbp
+	jmp Decode.xorChar_info
+.Lc1Ad:
+	jmp *-16(%r13)
+	.size .Ldecipher_sat_s1xa_info, .-.Ldecipher_sat_s1xa_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	8589934607
+	.quad	4294967296
+	.long	10
+	.long	.Lul_srt-(.Ldecipher_sat_s1xb_info)+0
+.Ldecipher_sat_s1xb_info:
+.Lc1Af:
+.Lc1Ah:
+	addq $32,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1Aj
+.Lc1Ai:
+	movq $.Ldecipher_sat_s1xa_info,-24(%r12)
+	movq %rsi,-8(%r12)
+	movq %r14,(%r12)
+	leaq -24(%r12),%rax
+	movq %rax,%rsi
+	leaq .LunsubsChar_r5_closure+1(%rip),%r14
+	leaq GHC.Internal.Base.$_closure(%rip),%rbx
+	jmp stg_ap_pp_fast
+.Lc1Aj:
+	movq $32,904(%r13)
+.Lc1Ag:
+	jmp *-8(%r13)
+	.size .Ldecipher_sat_s1xb_info, .-.Ldecipher_sat_s1xb_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.CString.unpackCString#_closure-(.Ldecipher_sat_s1xe_info)+0
+.Ldecipher_sat_s1xe_info:
+.Lc1As:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1At
+.Lc1Au:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq c1Aq_str(%rip),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.CString.unpackCString#_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_n_fast
+.Lc1At:
+	jmp *-16(%r13)
+	.size .Ldecipher_sat_s1xe_info, .-.Ldecipher_sat_s1xe_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	8589934607
+	.quad	2
+	.long	14
+	.long	0
+.globl Decode.decipher_info
+.type Decode.decipher_info, @function
+Decode.decipher_info:
+.Lc1Az:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1AA
+.Lc1AB:
+	movq $.Lblock_c1zS_info,-24(%rbp)
+	movq %r14,%rax
+	leaq GHC.Internal.Data.Foldable.$fFoldableList_closure(%rip),%r14
+	movq $stg_ap_p_info,-40(%rbp)
+	movq %rsi,-32(%rbp)
+	movq %rax,-16(%rbp)
+	movq %rsi,-8(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Data.Foldable.null_info
+.align 8
+	.quad	2
+	.long	30
+	.long	.Lun_srt-(.Lblock_c1zS_info)+0
+.Lblock_c1zS_info:
+.Lc1zS:
+	movq 8(%rbp),%r14
+	movq 16(%rbp),%rsi
+	movq %rbx,%rax
+	andl $7,%eax
+	cmpq $1,%rax
+	jne .Lc1Ax
+.Lc1Aw:
+	addq $40,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1AE
+.Lc1AD:
+	movq $.Ldecipher_sat_s1xc_info,-32(%r12)
+	movq %rsi,-16(%r12)
+	leaq -32(%r12),%rax
+	movq $.Ldecipher_sat_s1xb_info,-8(%r12)
+	leaq -6(%r12),%rbx
+	movq %rax,%rdi
+	movq %r14,%rsi
+	movq %rbx,%r14
+	leaq GHC.Internal.List.zipWith_closure(%rip),%rbx
+	addq $24,%rbp
+	jmp stg_ap_ppp_fast
+.Lc1Ax:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1AH
+.Lc1AG:
+	movq $.Ldecipher_sat_s1xe_info,-8(%r12)
+	leaq -8(%r12),%rax
+	movq %rax,%rsi
+	leaq .L$dIP1_r1wd_closure(%rip),%r14
+	leaq GHC.Internal.Err.error_closure(%rip),%rbx
+	addq $24,%rbp
+	jmp stg_ap_pp_fast
+.Lc1AA:
+	leaq Decode.decipher_closure(%rip),%rbx
+	jmp *-8(%r13)
+.Lc1AE:
+	movq $40,904(%r13)
+	jmp stg_gc_unpt_r1
+.Lc1AH:
+	movq $16,904(%r13)
+	jmp stg_gc_unpt_r1
+	.size Decode.decipher_info, .-Decode.decipher_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.globl Decode.decipher_closure
+.type Decode.decipher_closure, @object
+Decode.decipher_closure:
+	.quad	Decode.decipher_info
+	.quad	GHC.Internal.Data.Foldable.$fFoldableList_closure
+	.quad	.Lun_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Luv_srt:
+	.quad	stg_SRT_3_info
+	.quad	.L$dIP3_r1wf_closure
+	.quad	GHC.Internal.CString.unpackCString#_closure
+	.quad	GHC.Internal.Err.error_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Luw_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.Char.chr_closure
+	.quad	.Luv_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lux_srt:
+	.quad	stg_SRT_4_info
+	.quad	GHC.Internal.Classes.$fEqInt_closure
+	.quad	GHC.Internal.Num.$fNumInt_closure
+	.quad	GHC.Internal.Numeric.readHex_closure
+	.quad	.Luw_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Luy_srt:
+	.quad	stg_SRT_3_info
+	.quad	.L$dIP2_r1we_closure
+	.quad	GHC.Internal.Base.map_closure
+	.quad	.Lux_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1Ca_str:
+	.string "you bite from the middle :o"
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c1Dc_str:
+	.string "thats not how to fill a burito !"
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	GHC.Internal.Data.Foldable.$fFoldableList_closure-(.LfromHex_sat_s1xg_info)+0
+.LfromHex_sat_s1xg_info:
+.Lc1AZ:
+	leaq -32(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1B0
+.Lc1B1:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	leaq GHC.Internal.Data.Foldable.$fFoldableList_closure(%rip),%r14
+	movq $stg_ap_p_info,-32(%rbp)
+	movq %rax,-24(%rbp)
+	addq $-32,%rbp
+	jmp GHC.Internal.Data.Foldable.length_info
+.Lc1B0:
+	jmp *-16(%r13)
+	.size .LfromHex_sat_s1xg_info, .-.LfromHex_sat_s1xg_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	2
+	.long	18
+	.long	0
+.Lpairs_fromHex_sat_s1xO_info:
+.Lc1Bp:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1Bq
+.Lc1Br:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rbx
+	movq %rax,%r14
+	addq $-16,%rbp
+	jmp .Lpairs_s1xF_info
+.Lc1Bq:
+	jmp *-16(%r13)
+	.size .Lpairs_fromHex_sat_s1xO_info, .-.Lpairs_fromHex_sat_s1xO_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	4294967301
+	.quad	4294967296
+	.long	10
+	.long	0
+.Lpairs_s1xF_info:
+.Lc1Bw:
+	leaq -24(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1Bx
+.Lc1By:
+	movq $.Lblock_c1B9_info,-16(%rbp)
+	movq %rbx,%rax
+	movq %r14,%rbx
+	movq %rax,-8(%rbp)
+	addq $-16,%rbp
+	testb $7,%bl
+	jne .Lc1B9
+.Lc1Ba:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	1
+	.long	30
+	.long	0
+.Lblock_c1B9_info:
+.Lc1B9:
+	movq %rbx,%rax
+	andl $7,%eax
+	cmpq $1,%rax
+	jne .Lc1Bu
+.Lc1Bt:
+	leaq []_closure+1(%rip),%rbx
+	addq $16,%rbp
+	jmp *(%rbp)
+.Lc1Bu:
+	movq 6(%rbx),%rax
+	movq 14(%rbx),%rbx
+	movq $.Lblock_c1Bf_info,-8(%rbp)
+	movq %rax,(%rbp)
+	addq $-8,%rbp
+	testb $7,%bl
+	jne .Lc1Bf
+.Lc1Bg:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	2
+	.long	30
+	.long	0
+.Lblock_c1Bf_info:
+.Lc1Bf:
+	movq 16(%rbp),%rax
+	movq 8(%rbp),%rcx
+	movq %rbx,%rdx
+	andl $7,%edx
+	cmpq $1,%rdx
+	jne .Lc1BI
+.Lc1BF:
+	leaq []_closure+1(%rip),%rbx
+	addq $24,%rbp
+	jmp *(%rbp)
+.Lc1Bx:
+	jmp *-8(%r13)
+.Lc1BI:
+	addq $80,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1BL
+.Lc1BK:
+	movq 6(%rbx),%rdx
+	movq 14(%rbx),%rbx
+	movq $.Lpairs_fromHex_sat_s1xO_info,-72(%r12)
+	movq %rbx,-56(%r12)
+	movq %rax,-48(%r12)
+	leaq -72(%r12),%rax
+	movq $(,)_con_info,-40(%r12)
+	movq %rcx,-32(%r12)
+	movq %rdx,-24(%r12)
+	leaq -39(%r12),%rbx
+	movq $:_con_info,-16(%r12)
+	movq %rbx,-8(%r12)
+	movq %rax,(%r12)
+	leaq -14(%r12),%rax
+	movq %rax,%rbx
+	addq $24,%rbp
+	jmp *(%rbp)
+.Lc1BL:
+	movq $80,904(%r13)
+	jmp stg_gc_unpt_r1
+	.size .Lpairs_s1xF_info, .-.Lpairs_s1xF_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	0
+.LfromHex_sat_s1xP_info:
+.Lc1BN:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1BO
+.Lc1BP:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1BR
+.Lc1BQ:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	leaq -7(%r12),%rbx
+	movq $.Lpairs_s1xF_info,-8(%r12)
+	movq %rax,%r14
+	addq $-16,%rbp
+	jmp .Lpairs_s1xF_info
+.Lc1BR:
+	movq $16,904(%r13)
+.Lc1BO:
+	jmp *-16(%r13)
+	.size .LfromHex_sat_s1xP_info, .-.LfromHex_sat_s1xP_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.CString.unpackCString#_closure-(.LfromHex_sat_s1xp_info)+0
+.LfromHex_sat_s1xp_info:
+.Lc1Cc:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1Cd
+.Lc1Ce:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq c1Ca_str(%rip),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.CString.unpackCString#_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_n_fast
+.Lc1Cd:
+	jmp *-16(%r13)
+	.size .LfromHex_sat_s1xp_info, .-.LfromHex_sat_s1xp_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	4294967301
+	.quad	4294967296
+	.long	10
+	.long	.Lux_srt-(.LfromHex_sat_s1xE_info)+0
+.LfromHex_sat_s1xE_info:
+.Lc1Cf:
+	leaq -24(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1Cg
+.Lc1Ch:
+	movq $.Lblock_c1BU_info,-8(%rbp)
+	movq %r14,%rbx
+	addq $-8,%rbp
+	testb $7,%bl
+	jne .Lc1BU
+.Lc1BV:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	0
+	.long	30
+	.long	.Lux_srt-(.Lblock_c1BU_info)+0
+.Lblock_c1BU_info:
+.Lc1BU:
+	addq $48,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1Cl
+.Lc1Ck:
+	movq 7(%rbx),%rax
+	movq 15(%rbx),%rbx
+	movq $:_con_info,-40(%r12)
+	movq %rbx,-32(%r12)
+	movq $GHC.Internal.Types.[]_closure+1,-24(%r12)
+	leaq -38(%r12),%rbx
+	movq $:_con_info,-16(%r12)
+	movq %rax,-8(%r12)
+	movq %rbx,(%r12)
+	leaq -14(%r12),%rax
+	movq $.Lblock_c1Ci_info,(%rbp)
+	movq %rax,%rdi
+	leaq GHC.Internal.Num.$fNumInt_closure(%rip),%rsi
+	leaq GHC.Internal.Classes.$fEqInt_closure(%rip),%r14
+	leaq GHC.Internal.Numeric.readHex_closure(%rip),%rbx
+	jmp stg_ap_ppp_fast
+.align 8
+	.quad	0
+	.long	30
+	.long	.Luv_srt-(.Lblock_c1C3_info)+0
+.Lblock_c1C3_info:
+.Lc1C3:
+.Lc1C4:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1Co
+.Lc1Cn:
+	movq $.LfromHex_sat_s1xp_info,-8(%r12)
+	leaq -8(%r12),%rax
+	movq %rax,%rsi
+	leaq .L$dIP3_r1wf_closure(%rip),%r14
+	leaq GHC.Internal.Err.error_closure(%rip),%rbx
+	addq $8,%rbp
+	jmp stg_ap_pp_fast
+.align 8
+	.quad	0
+	.long	30
+	.long	.Luw_srt-(.Lblock_c1Ci_info)+0
+.Lblock_c1Ci_info:
+.Lc1Ci:
+	movq %rbx,%rax
+	andl $7,%eax
+	cmpq $1,%rax
+	je .Lc1C4
+.Lc1Cz:
+	movq 6(%rbx),%rax
+	movq 14(%rbx),%rbx
+	movq $.Lblock_c1Cx_info,-8(%rbp)
+	movq %rbx,%rcx
+	movq %rax,%rbx
+	movq %rcx,(%rbp)
+	addq $-8,%rbp
+	testb $7,%bl
+	jne .Lc1Cx
+.Lc1CA:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	1
+	.long	30
+	.long	.Luw_srt-(.Lblock_c1Cx_info)+0
+.Lblock_c1Cx_info:
+.Lc1Cx:
+	movq 7(%rbx),%rax
+	movq 15(%rbx),%rbx
+	movq $.Lblock_c1CE_info,-8(%rbp)
+	movq %rax,(%rbp)
+	addq $-8,%rbp
+	testb $7,%bl
+	jne .Lc1CE
+.Lc1CG:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	2
+	.long	30
+	.long	.Luw_srt-(.Lblock_c1CE_info)+0
+.Lblock_c1CE_info:
+.Lc1CE:
+	movq 16(%rbp),%rax
+	andl $7,%ebx
+	cmpq $1,%rbx
+	jne .Lnt
+.Lc1CN:
+	movq $.Lblock_c1CK_info,(%rbp)
+	movq %rax,%rbx
+	testb $7,%bl
+	jne .Lc1CK
+.Lc1CO:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	130
+	.long	30
+	.long	.Luw_srt-(.Lblock_c1CK_info)+0
+.Lblock_c1CK_info:
+.Lc1CK:
+	movq 8(%rbp),%rax
+	andl $7,%ebx
+	cmpq $1,%rbx
+	jne .Lnu
+.Lc1CU:
+	movq %rax,%r14
+	leaq GHC.Internal.Char.chr_closure(%rip),%rbx
+	addq $24,%rbp
+	jmp stg_ap_p_fast
+.Lnu:
+	addq $16,%rbp
+	jmp .Lc1C4
+.Lnt:
+	addq $16,%rbp
+	jmp .Lc1C4
+.Lc1Cg:
+	jmp *-8(%r13)
+.Lc1Cl:
+	movq $48,904(%r13)
+	jmp stg_gc_unpt_r1
+.Lc1Co:
+	movq $16,904(%r13)
+	movq $.Lblock_c1C3_info,(%rbp)
+	jmp stg_gc_noregs
+	.size .LfromHex_sat_s1xE_info, .-.LfromHex_sat_s1xE_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.CString.unpackCString#_closure-(.LfromHex_sat_s1xR_info)+0
+.LfromHex_sat_s1xR_info:
+.Lc1De:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1Df
+.Lc1Dg:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq c1Dc_str(%rip),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.CString.unpackCString#_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_n_fast
+.Lc1Df:
+	jmp *-16(%r13)
+	.size .LfromHex_sat_s1xR_info, .-.LfromHex_sat_s1xR_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	4294967301
+	.quad	4
+	.long	14
+	.long	0
+.globl Decode.fromHex_info
+.type Decode.fromHex_info, @function
+Decode.fromHex_info:
+.Lc1Dl:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1Dm
+.Lc1Dn:
+	addq $24,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1Dp
+.Lc1Do:
+	movq $.LfromHex_sat_s1xg_info,-16(%r12)
+	movq %r14,(%r12)
+	leaq -16(%r12),%rax
+	movq $.Lblock_c1AO_info,-16(%rbp)
+	movq %rax,%rsi
+	movq %r14,%rax
+	leaq GHC.Internal.Real.$fIntegralInt_closure(%rip),%r14
+	leaq GHC.Internal.Real.odd_closure(%rip),%rbx
+	movq %rax,-8(%rbp)
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.align 8
+	.quad	1
+	.long	30
+	.long	.Luy_srt-(.Lblock_c1AO_info)+0
+.Lblock_c1AO_info:
+.Lc1AO:
+	movq 8(%rbp),%r14
+	movq %rbx,%rax
+	andl $7,%eax
+	cmpq $1,%rax
+	jne .Lc1Dj
+.Lc1Di:
+	addq $40,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1Ds
+.Lc1Dr:
+	movq $.LfromHex_sat_s1xP_info,-32(%r12)
+	movq %r14,-16(%r12)
+	leaq -32(%r12),%rax
+	movq $.LfromHex_sat_s1xE_info,-8(%r12)
+	leaq -7(%r12),%rbx
+	movq %rax,%rsi
+	movq %rbx,%r14
+	leaq GHC.Internal.Base.map_closure(%rip),%rbx
+	addq $16,%rbp
+	jmp stg_ap_pp_fast
+.Lc1Dj:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1Dv
+.Lc1Du:
+	movq $.LfromHex_sat_s1xR_info,-8(%r12)
+	leaq -8(%r12),%rax
+	movq %rax,%rsi
+	leaq .L$dIP2_r1we_closure(%rip),%r14
+	leaq GHC.Internal.Err.error_closure(%rip),%rbx
+	addq $16,%rbp
+	jmp stg_ap_pp_fast
+.Lc1Dp:
+	movq $24,904(%r13)
+.Lc1Dm:
+	leaq Decode.fromHex_closure(%rip),%rbx
+	jmp *-8(%r13)
+.Lc1Ds:
+	movq $40,904(%r13)
+	jmp stg_gc_unpt_r1
+.Lc1Dv:
+	movq $16,904(%r13)
+	jmp stg_gc_unpt_r1
+	.size Decode.fromHex_info, .-Decode.fromHex_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.globl Decode.fromHex_closure
+.type Decode.fromHex_closure, @object
+Decode.fromHex_closure:
+	.quad	Decode.fromHex_info
+	.quad	GHC.Internal.Data.Foldable.$fFoldableList_closure
+	.quad	GHC.Internal.Real.$fIntegralInt_closure
+	.quad	GHC.Internal.Real.odd_closure
+	.quad	.Luy_srt
+	.quad	0
+
+
+[2 of 4] Compiling Fractal          ( Fractal.hs, Fractal.o )
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+.L$trModule3_r1XW_bytes:
+	.string "Fractal"
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+.L$trModule1_r1XU_bytes:
+	.string "main"
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+.Lpalette_sat_s1XY_bytes:
+	.string " .-:=+*#%@"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lpalette_r1Dz_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	.Lpalette_sat_s1XY_bytes
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$trModule2_r1XV_closure:
+	.quad	GHC.Internal.Types.TrNameS_con_info
+	.quad	.L$trModule1_r1XU_bytes
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$trModule4_r1XX_closure:
+	.quad	GHC.Internal.Types.TrNameS_con_info
+	.quad	.L$trModule3_r1XW_bytes
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.globl Fractal.$trModule_closure
+.type Fractal.$trModule_closure, @object
+Fractal.$trModule_closure:
+	.quad	GHC.Internal.Types.Module_con_info
+	.quad	.L$trModule2_r1XV_closure+1
+	.quad	.L$trModule4_r1XX_closure+1
+	.quad	3
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu2_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.Enum.$fEnumInt_closure
+	.quad	GHC.Internal.Num.$fNumInt_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu3_srt:
+	.quad	stg_SRT_3_info
+	.quad	GHC.Internal.CString.unpackCString#_closure
+	.quad	GHC.Internal.Stack.Types.emptyCallStack_closure
+	.quad	GHC.Internal.Stack.Types.pushCallStack_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu4_srt:
+	.quad	stg_SRT_2_info
+	.quad	.Lpalette_r1Dz_closure
+	.quad	GHC.Internal.Data.Foldable.$fFoldableList_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu5_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.Num.$fNumInt_closure
+	.quad	.Lu4_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu6_srt:
+	.quad	stg_SRT_2_info
+	.quad	Data.Complex.magnitude_closure
+	.quad	GHC.Internal.Float.$fRealFloatDouble_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu7_srt:
+	.quad	stg_SRT_4_info
+	.quad	GHC.Internal.Classes.$fOrdDouble_closure
+	.quad	GHC.Internal.Classes.$fOrdInt_closure
+	.quad	GHC.Internal.Num.$fNumInt_closure
+	.quad	.Lu6_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu8_srt:
+	.quad	stg_SRT_3_info
+	.quad	GHC.Internal.Float.$fNumDouble_closure
+	.quad	GHC.Internal.Real.$fIntegralInt_closure
+	.quad	GHC.Internal.Real.fromIntegral_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu9_srt:
+	.quad	stg_SRT_4_info
+	.quad	GHC.Internal.Float.$fNumDouble_closure
+	.quad	GHC.Internal.Num.$fNumInt_closure
+	.quad	GHC.Internal.Real.$fIntegralInt_closure
+	.quad	GHC.Internal.Real.fromIntegral_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lua_srt:
+	.quad	stg_SRT_3_info
+	.quad	GHC.Internal.Float.$fFractionalDouble_closure
+	.quad	.Lu8_srt
+	.quad	.Lu9_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lub_srt:
+	.quad	stg_SRT_2_info
+	.quad	Data.Complex.$fNumComplex_closure
+	.quad	GHC.Internal.Float.$fRealFloatDouble_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Luc_srt:
+	.quad	stg_SRT_3_info
+	.quad	.Lu7_srt
+	.quad	.Lua_srt
+	.quad	.Lub_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lud_srt:
+	.quad	stg_SRT_2_info
+	.quad	.Lu4_srt
+	.quad	.Luc_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lue_srt:
+	.quad	stg_SRT_2_info
+	.quad	.Lu5_srt
+	.quad	.Lud_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Luf_srt:
+	.quad	stg_SRT_3_info
+	.quad	GHC.Internal.List.!!_closure
+	.quad	.Lu3_srt
+	.quad	.Lue_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lug_srt:
+	.quad	stg_SRT_2_info
+	.quad	.Lu2_srt
+	.quad	.Luf_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c25k_str:
+	.string "./Fractal.hs"
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c25t_str:
+	.string "Fractal"
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c25C_str:
+	.string "main"
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c25M_str:
+	.string "!!"
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	2
+	.long	18
+	.long	0
+.Lc_s1Y4_info:
+.Lc1ZF:
+	leaq -32(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc1ZO
+.Lc1ZP:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rbx
+	movq $.Lblock_c1ZC_info,-32(%rbp)
+	movq %rbx,%rcx
+	movq %rax,%rbx
+	movq %rcx,-24(%rbp)
+	addq $-32,%rbp
+	testb $7,%bl
+	jne .Lc1ZC
+.Lc1ZD:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	1
+	.long	30
+	.long	0
+.Lblock_c1ZC_info:
+.Lc1ZC:
+	movq 8(%rbp),%rax
+	movq $.Lblock_c1ZI_info,(%rbp)
+	movq %rbx,%rcx
+	movq %rax,%rbx
+	movq %rcx,8(%rbp)
+	testb $7,%bl
+	jne .Lc1ZI
+.Lc1ZJ:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	1
+	.long	30
+	.long	0
+.Lblock_c1ZI_info:
+.Lc1ZI:
+	movq 8(%rbp),%rax
+	addq $24,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc1ZT
+.Lc1ZS:
+	movq $Data.Complex.:+_con_info,-16(%r12)
+	movq %rax,-8(%r12)
+	movq %rbx,(%r12)
+	leaq -15(%r12),%rax
+	movq %rax,%rbx
+	addq $16,%rbp
+	jmp *(%rbp)
+.Lc1ZO:
+	jmp *-16(%r13)
+.Lc1ZT:
+	movq $24,904(%r13)
+	jmp stg_gc_unpt_r1
+	.size .Lc_s1Y4_info, .-.Lc_s1Y4_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	2
+	.long	18
+	.long	.Lug_srt-(.Lds_renderJulia_sat_s1Zi_info)+0
+.Lds_renderJulia_sat_s1Zi_info:
+.Lc20d:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc20e
+.Lc20f:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rbx
+	movq %rax,%r14
+	addq $-16,%rbp
+	jmp .Lds_s1Y5_info
+.Lc20e:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Zi_info, .-.Lds_renderJulia_sat_s1Zi_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	2
+	.long	18
+	.long	.Luf_srt-(.Lds_renderJulia_sat_s1Zc_info)+0
+.Lds_renderJulia_sat_s1Zc_info:
+.Lc20z:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc20A
+.Lc20B:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rbx
+	movq %rax,%r14
+	addq $-16,%rbp
+	jmp .Lds5_s1Ya_info
+.Lc20A:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Zc_info, .-.Lds_renderJulia_sat_s1Zc_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	GHC.Internal.Num.$fNumInt_closure-(.Lds_renderJulia_sat_s1Z8_info)+0
+.Lds_renderJulia_sat_s1Z8_info:
+.Lc20S:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc20T
+.Lc20U:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	leaq GHC.Internal.Num.$fNumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq $stg_INTLIKE_closure+273,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.+_info
+.Lc20T:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Z8_info, .-.Lds_renderJulia_sat_s1Z8_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	.Lu4_srt-(.Lds_renderJulia_sat_s1Z5_info)+0
+.Lds_renderJulia_sat_s1Z5_info:
+.Lc21a:
+	leaq -32(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc21b
+.Lc21c:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq GHC.Internal.Data.Foldable.$fFoldableList_closure(%rip),%r14
+	movq $stg_ap_p_info,-32(%rbp)
+	movq $.Lpalette_r1Dz_closure,-24(%rbp)
+	addq $-32,%rbp
+	jmp GHC.Internal.Data.Foldable.length_info
+.Lc21b:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Z5_info, .-.Lds_renderJulia_sat_s1Z5_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	.Lub_srt-(.L$dNum_s1Yu_info)+0
+.L$dNum_s1Yu_info:
+.Lc21z:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc21A
+.Lc21B:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq GHC.Internal.Float.$fRealFloatDouble_closure(%rip),%r14
+	leaq Data.Complex.$fNumComplex_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_p_fast
+.Lc21A:
+	jmp *-16(%r13)
+	.size .L$dNum_s1Yu_info, .-.L$dNum_s1Yu_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	GHC.Internal.Num.$fNumInt_closure-(.Lds_renderJulia_sat_s1YX_info)+0
+.Lds_renderJulia_sat_s1YX_info:
+.Lc21V:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc21W
+.Lc21X:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	leaq GHC.Internal.Num.$fNumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq $stg_INTLIKE_closure+273,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.-_info
+.Lc21W:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YX_info, .-.Lds_renderJulia_sat_s1YX_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu9_srt-(.Lds_renderJulia_sat_s1YY_info)+0
+.Lds_renderJulia_sat_s1YY_info:
+.Lc21Y:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc21Z
+.Lc220:
+	addq $24,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc222
+.Lc221:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq $.Lds_renderJulia_sat_s1YX_info,-16(%r12)
+	movq %rax,(%r12)
+	leaq -16(%r12),%rax
+	movq %rax,%rdi
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%rsi
+	leaq GHC.Internal.Real.$fIntegralInt_closure(%rip),%r14
+	leaq GHC.Internal.Real.fromIntegral_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_ppp_fast
+.Lc222:
+	movq $24,904(%r13)
+.Lc21Z:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YY_info, .-.Lds_renderJulia_sat_s1YY_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu8_srt-(.Lds_renderJulia_sat_s1YU_info)+0
+.Lds_renderJulia_sat_s1YU_info:
+.Lc22b:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc22c
+.Lc22d:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%rdi
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%rsi
+	leaq GHC.Internal.Real.$fIntegralInt_closure(%rip),%r14
+	leaq GHC.Internal.Real.fromIntegral_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_ppp_fast
+.Lc22c:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YU_info, .-.Lds_renderJulia_sat_s1YU_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu8_srt-(.Lds_renderJulia_sat_s1YV_info)+0
+.Lds_renderJulia_sat_s1YV_info:
+.Lc22f:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc22g
+.Lc22h:
+	addq $40,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc22j
+.Lc22i:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq $.Lds_renderJulia_sat_s1YU_info,-32(%r12)
+	movq %rax,-16(%r12)
+	leaq -32(%r12),%rax
+	movq $GHC.Internal.Types.D#_con_info,-8(%r12)
+	movsd .Lnt(%rip),%xmm0
+	movsd %xmm0,(%r12)
+	leaq -7(%r12),%rbx
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rbx,-32(%rbp)
+	movq %rax,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.*_info
+.Lc22j:
+	movq $40,904(%r13)
+.Lc22g:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YV_info, .-.Lds_renderJulia_sat_s1YV_info
+.section .rodata
+.align 8
+.align 8
+.Lnt:
+	.double	2.0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	2
+	.long	18
+	.long	.Lua_srt-(.Lds_renderJulia_sat_s1YZ_info)+0
+.Lds_renderJulia_sat_s1YZ_info:
+.Lc22k:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc22l
+.Lc22m:
+	addq $48,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc22o
+.Lc22n:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rbx
+	movq $.Lds_renderJulia_sat_s1YY_info,-40(%r12)
+	movq %rbx,-24(%r12)
+	leaq -40(%r12),%rbx
+	movq $.Lds_renderJulia_sat_s1YV_info,-16(%r12)
+	movq %rax,(%r12)
+	leaq -16(%r12),%rax
+	leaq GHC.Internal.Float.$fFractionalDouble_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq %rbx,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Real./_info
+.Lc22o:
+	movq $48,904(%r13)
+.Lc22l:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YZ_info, .-.Lds_renderJulia_sat_s1YZ_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.Float.$fNumDouble_closure-(.Lds_renderJulia_sat_s1YS_info)+0
+.Lds_renderJulia_sat_s1YS_info:
+.Lc22u:
+	leaq -32(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc22v
+.Lc22w:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc22y
+.Lc22x:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq $GHC.Internal.Types.D#_con_info,-8(%r12)
+	movsd .Lnx(%rip),%xmm0
+	movsd %xmm0,(%r12)
+	leaq -7(%r12),%rax
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%r14
+	movq $stg_ap_p_info,-32(%rbp)
+	movq %rax,-24(%rbp)
+	addq $-32,%rbp
+	jmp GHC.Internal.Num.negate_info
+.Lc22y:
+	movq $16,904(%r13)
+.Lc22v:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YS_info, .-.Lds_renderJulia_sat_s1YS_info
+.section .rodata
+.align 8
+.align 8
+.Lnx:
+	.double	1.0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	2
+	.long	18
+	.long	.Lua_srt-(.Lds_renderJulia_sat_s1Z0_info)+0
+.Lds_renderJulia_sat_s1Z0_info:
+.Lc22z:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc22A
+.Lc22B:
+	addq $48,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc22D
+.Lc22C:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rbx
+	movq $.Lds_renderJulia_sat_s1YZ_info,-40(%r12)
+	movq %rax,-24(%r12)
+	movq %rbx,-16(%r12)
+	leaq -40(%r12),%rax
+	movq $.Lds_renderJulia_sat_s1YS_info,-8(%r12)
+	leaq -8(%r12),%rbx
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rbx,-32(%rbp)
+	movq %rax,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.+_info
+.Lc22D:
+	movq $48,904(%r13)
+.Lc22A:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Z0_info, .-.Lds_renderJulia_sat_s1Z0_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	GHC.Internal.Num.$fNumInt_closure-(.Lds_renderJulia_sat_s1YN_info)+0
+.Lds_renderJulia_sat_s1YN_info:
+.Lc22U:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc22V
+.Lc22W:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	leaq GHC.Internal.Num.$fNumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq $stg_INTLIKE_closure+273,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.-_info
+.Lc22V:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YN_info, .-.Lds_renderJulia_sat_s1YN_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu9_srt-(.Lds_renderJulia_sat_s1YO_info)+0
+.Lds_renderJulia_sat_s1YO_info:
+.Lc22X:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc22Y
+.Lc22Z:
+	addq $24,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc231
+.Lc230:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq $.Lds_renderJulia_sat_s1YN_info,-16(%r12)
+	movq %rax,(%r12)
+	leaq -16(%r12),%rax
+	movq %rax,%rdi
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%rsi
+	leaq GHC.Internal.Real.$fIntegralInt_closure(%rip),%r14
+	leaq GHC.Internal.Real.fromIntegral_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_ppp_fast
+.Lc231:
+	movq $24,904(%r13)
+.Lc22Y:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YO_info, .-.Lds_renderJulia_sat_s1YO_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu8_srt-(.Lds_renderJulia_sat_s1YK_info)+0
+.Lds_renderJulia_sat_s1YK_info:
+.Lc23a:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc23b
+.Lc23c:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%rdi
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%rsi
+	leaq GHC.Internal.Real.$fIntegralInt_closure(%rip),%r14
+	leaq GHC.Internal.Real.fromIntegral_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_ppp_fast
+.Lc23b:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YK_info, .-.Lds_renderJulia_sat_s1YK_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu8_srt-(.Lds_renderJulia_sat_s1YL_info)+0
+.Lds_renderJulia_sat_s1YL_info:
+.Lc23e:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc23f
+.Lc23g:
+	addq $40,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc23i
+.Lc23h:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq $.Lds_renderJulia_sat_s1YK_info,-32(%r12)
+	movq %rax,-16(%r12)
+	leaq -32(%r12),%rax
+	movq $GHC.Internal.Types.D#_con_info,-8(%r12)
+	movsd .LnE(%rip),%xmm0
+	movsd %xmm0,(%r12)
+	leaq -7(%r12),%rbx
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rbx,-32(%rbp)
+	movq %rax,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.*_info
+.Lc23i:
+	movq $40,904(%r13)
+.Lc23f:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YL_info, .-.Lds_renderJulia_sat_s1YL_info
+.section .rodata
+.align 8
+.align 8
+.LnE:
+	.double	3.6
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	2
+	.long	18
+	.long	.Lua_srt-(.Lds_renderJulia_sat_s1YP_info)+0
+.Lds_renderJulia_sat_s1YP_info:
+.Lc23j:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc23k
+.Lc23l:
+	addq $48,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc23n
+.Lc23m:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rbx
+	movq $.Lds_renderJulia_sat_s1YO_info,-40(%r12)
+	movq %rbx,-24(%r12)
+	leaq -40(%r12),%rbx
+	movq $.Lds_renderJulia_sat_s1YL_info,-16(%r12)
+	movq %rax,(%r12)
+	leaq -16(%r12),%rax
+	leaq GHC.Internal.Float.$fFractionalDouble_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq %rbx,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Real./_info
+.Lc23n:
+	movq $48,904(%r13)
+.Lc23k:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YP_info, .-.Lds_renderJulia_sat_s1YP_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.Float.$fNumDouble_closure-(.Lds_renderJulia_sat_s1YI_info)+0
+.Lds_renderJulia_sat_s1YI_info:
+.Lc23t:
+	leaq -32(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc23u
+.Lc23v:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc23x
+.Lc23w:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq $GHC.Internal.Types.D#_con_info,-8(%r12)
+	movsd .LnI(%rip),%xmm0
+	movsd %xmm0,(%r12)
+	leaq -7(%r12),%rax
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%r14
+	movq $stg_ap_p_info,-32(%rbp)
+	movq %rax,-24(%rbp)
+	addq $-32,%rbp
+	jmp GHC.Internal.Num.negate_info
+.Lc23x:
+	movq $16,904(%r13)
+.Lc23u:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YI_info, .-.Lds_renderJulia_sat_s1YI_info
+.section .rodata
+.align 8
+.align 8
+.LnI:
+	.double	1.8
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	4
+	.long	15
+	.long	.Lua_srt-(.Lds_renderJulia_sat_s1Z3_info)+0
+.Lds_renderJulia_sat_s1Z3_info:
+.Lc23y:
+	leaq -64(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc23E
+.Lc23F:
+	addq $48,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc23H
+.Lc23G:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rcx
+	movq 24(%rbx),%rax
+	movq 32(%rbx),%rdx
+	movq 40(%rbx),%rbx
+	movq $GHC.Internal.Types.D#_con_info,-40(%r12)
+	movsd .LnL(%rip),%xmm0
+	movsd %xmm0,-32(%r12)
+	leaq -39(%r12),%rsi
+	movq $.Lds_renderJulia_sat_s1Z0_info,-24(%r12)
+	movq %rdx,-8(%r12)
+	movq %rbx,(%r12)
+	leaq -24(%r12),%rbx
+	movq $.Lblock_c22E_info,-40(%rbp)
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%r14
+	movq $stg_ap_pp_info,-64(%rbp)
+	movq %rbx,-56(%rbp)
+	movq %rsi,-48(%rbp)
+	movq %rax,-32(%rbp)
+	movq %rcx,-24(%rbp)
+	addq $-64,%rbp
+	jmp GHC.Internal.Num.*_info
+.align 8
+	.quad	2
+	.long	30
+	.long	.Lua_srt-(.Lblock_c22E_info)+0
+.Lblock_c22E_info:
+.Lc22E:
+	movq 8(%rbp),%rax
+	movq 16(%rbp),%rcx
+	addq $48,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc23K
+.Lc23J:
+	movq $.Lds_renderJulia_sat_s1YP_info,-40(%r12)
+	movq %rcx,-24(%r12)
+	movq %rax,-16(%r12)
+	leaq -40(%r12),%rax
+	movq $.Lds_renderJulia_sat_s1YI_info,-8(%r12)
+	leaq -8(%r12),%rcx
+	movq $.Lblock_c23z_info,8(%rbp)
+	leaq GHC.Internal.Float.$fNumDouble_closure(%rip),%r14
+	movq $stg_ap_pp_info,-16(%rbp)
+	movq %rcx,-8(%rbp)
+	movq %rax,(%rbp)
+	movq %rbx,16(%rbp)
+	addq $-16,%rbp
+	jmp GHC.Internal.Num.+_info
+.align 8
+	.quad	1
+	.long	30
+	.long	0
+.Lblock_c23z_info:
+.Lc23z:
+	movq 8(%rbp),%rax
+	addq $24,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc23N
+.Lc23M:
+	movq $Data.Complex.:+_con_info,-16(%r12)
+	movq %rbx,-8(%r12)
+	movq %rax,(%r12)
+	leaq -15(%r12),%rax
+	movq %rax,%rbx
+	addq $16,%rbp
+	jmp *(%rbp)
+.Lc23H:
+	movq $48,904(%r13)
+.Lc23E:
+	jmp *-16(%r13)
+.Lc23K:
+	movq $48,904(%r13)
+	jmp stg_gc_unpt_r1
+.Lc23N:
+	movq $24,904(%r13)
+	jmp stg_gc_unpt_r1
+	.size .Lds_renderJulia_sat_s1Z3_info, .-.Lds_renderJulia_sat_s1Z3_info
+.section .rodata
+.align 8
+.align 8
+.LnL:
+	.double	0.5
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu6_srt-(.Lds_renderJulia_sat_s1Yy_info)+0
+.Lds_renderJulia_sat_s1Yy_info:
+.Lc23Q:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc23R
+.Lc23S:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%rsi
+	leaq GHC.Internal.Float.$fRealFloatDouble_closure(%rip),%r14
+	leaq Data.Complex.magnitude_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc23R:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Yy_info, .-.Lds_renderJulia_sat_s1Yy_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	2
+	.long	18
+	.long	0
+.Lds_renderJulia_sat_s1YE_info:
+.Lc23Z:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc240
+.Lc241:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rbx
+	movq %rax,%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rbx,-32(%rbp)
+	movq %rbx,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.*_info
+.Lc240:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YE_info, .-.Lds_renderJulia_sat_s1YE_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	3
+	.long	15
+	.long	0
+.Lds_renderJulia_sat_s1YF_info:
+.Lc242:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc243
+.Lc244:
+	addq $32,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc246
+.Lc245:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rcx
+	movq 32(%rbx),%rbx
+	movq $.Lds_renderJulia_sat_s1YE_info,-24(%r12)
+	movq %rax,-8(%r12)
+	movq %rcx,(%r12)
+	leaq -24(%r12),%rcx
+	movq %rax,%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rcx,-32(%rbp)
+	movq %rbx,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.+_info
+.Lc246:
+	movq $32,904(%r13)
+.Lc243:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YF_info, .-.Lds_renderJulia_sat_s1YF_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	GHC.Internal.Num.$fNumInt_closure-(.Lds_renderJulia_sat_s1YD_info)+0
+.Lds_renderJulia_sat_s1YD_info:
+.Lc24a:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc24b
+.Lc24c:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	leaq GHC.Internal.Num.$fNumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq $stg_INTLIKE_closure+273,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.+_info
+.Lc24b:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1YD_info, .-.Lds_renderJulia_sat_s1YD_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	6
+	.long	15
+	.long	.Luc_srt-(.Lds_renderJulia_sat_s1Z4_info)+0
+.Lds_renderJulia_sat_s1Z4_info:
+.Lc24d:
+	leaq -88(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc24e
+.Lc24f:
+	addq $64,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc24h
+.Lc24g:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rdx
+	movq 24(%rbx),%rcx
+	movq 32(%rbx),%rax
+	movq 40(%rbx),%rsi
+	movq 48(%rbx),%rdi
+	movq 56(%rbx),%rbx
+	movq $.L$dNum_s1Yu_info,-56(%r12)
+	leaq -56(%r12),%r8
+	movq $.Lds_renderJulia_sat_s1Z3_info,-40(%r12)
+	movq %rax,-24(%r12)
+	movq %rsi,-16(%r12)
+	movq %rdi,-8(%r12)
+	movq %rbx,(%r12)
+	leaq -40(%r12),%rax
+	leaq stg_INTLIKE_closure+257(%rip),%rbx
+.Ln11:
+	movq %rbx,%rsi
+	movq %rax,%rbx
+	movq %r8,%rax
+.Lc21h:
+	addq $40,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc24k
+.Lc24j:
+	movq $GHC.Internal.Types.D#_con_info,-32(%r12)
+	movsd .LnU(%rip),%xmm0
+	movsd %xmm0,-24(%r12)
+	leaq -31(%r12),%rdi
+	movq $.Lds_renderJulia_sat_s1Yy_info,-16(%r12)
+	movq %rbx,(%r12)
+	leaq -16(%r12),%r8
+	movq $.Lblock_c21m_info,-64(%rbp)
+	leaq GHC.Internal.Classes.$fOrdDouble_closure(%rip),%r14
+	movq $stg_ap_pp_info,-88(%rbp)
+	movq %r8,-80(%rbp)
+	movq %rdi,-72(%rbp)
+	movq %rax,-56(%rbp)
+	movq %rcx,-48(%rbp)
+	movq %rdx,-40(%rbp)
+	movq %rsi,-32(%rbp)
+	movq %rbx,-24(%rbp)
+	addq $-88,%rbp
+	jmp GHC.Internal.Classes.>_info
+.align 8
+	.quad	3
+	.long	30
+	.long	.Lu7_srt-(.Lblock_c21g_info)+0
+.Lblock_c21g_info:
+.Lc21g:
+	movq 8(%rbp),%rax
+	movq 16(%rbp),%rcx
+	movq 24(%rbp),%rdx
+.Ln0:
+	addq $48,%rbp
+.Ln10:
+	movq %rbx,%rsi
+	movq %r14,%rbx
+	jmp .Lc21h
+.align 8
+	.quad	5
+	.long	30
+	.long	.Lu7_srt-(.Lblock_c21q_info)+0
+.Lblock_c21q_info:
+.Lc21q:
+	movq 8(%rbp),%rax
+	movq 16(%rbp),%rcx
+	movq 24(%rbp),%rdx
+	movq 32(%rbp),%rsi
+	movq 40(%rbp),%r14
+	movq %rbx,%rdi
+	andl $7,%edi
+	cmpq $1,%rdi
+	jne .Lc24w
+.Lc24p:
+	addq $64,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc24s
+.Lc24r:
+	movq $.Lds_renderJulia_sat_s1YF_info,-56(%r12)
+	movq %rax,-40(%r12)
+	movq %r14,-32(%r12)
+	movq %rdx,-24(%r12)
+	leaq -56(%r12),%rbx
+	movq $.Lds_renderJulia_sat_s1YD_info,-16(%r12)
+	movq %rsi,(%r12)
+	leaq -16(%r12),%rsi
+.Ln1:
+	addq $64,%rbp
+	jmp .Lc21h
+.align 8
+	.quad	5
+	.long	30
+	.long	.Lu7_srt-(.Lblock_c21m_info)+0
+.Lblock_c21m_info:
+.Lc21m:
+	movq 16(%rbp),%rcx
+	movq 32(%rbp),%rax
+	andl $7,%ebx
+	cmpq $1,%rbx
+	jne .Lc24A
+.Lc24n:
+	movq $.Lblock_c21q_info,(%rbp)
+	leaq GHC.Internal.Classes.$fOrdInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-24(%rbp)
+	movq %rax,-16(%rbp)
+	movq %rcx,-8(%rbp)
+	addq $-24,%rbp
+	jmp GHC.Internal.Classes.>=_info
+.Lc24h:
+	movq $64,904(%r13)
+.Lc24e:
+	jmp *-16(%r13)
+.Lc24k:
+	movq $40,904(%r13)
+	movq $.Lblock_c21g_info,-48(%rbp)
+	movq %rbx,%r14
+	movq %rsi,%rbx
+	movq %rax,-40(%rbp)
+	movq %rcx,-32(%rbp)
+	movq %rdx,-24(%rbp)
+	addq $-48,%rbp
+	jmp stg_gc_pp
+.Lc24s:
+	movq $64,904(%r13)
+	jmp stg_gc_unpt_r1
+.Lc24w:
+	movq %rsi,%rbx
+	andq $-8,%rbx
+	addq $48,%rbp
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc24A:
+	movq %rax,%rbx
+	andq $-8,%rbx
+	addq $48,%rbp
+	movq (%rbx),%rax
+	jmp *%rax
+	.size .Lds_renderJulia_sat_s1Z4_info, .-.Lds_renderJulia_sat_s1Z4_info
+.section .rodata
+.align 8
+.align 8
+.LnU:
+	.double	2.0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	6
+	.long	15
+	.long	.Lud_srt-(.Lds_renderJulia_sat_s1Z6_info)+0
+.Lds_renderJulia_sat_s1Z6_info:
+.Lc24D:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc24E
+.Lc24F:
+	addq $80,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc24H
+.Lc24G:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rcx
+	movq 32(%rbx),%rdx
+	movq 40(%rbx),%rsi
+	movq 48(%rbx),%rdi
+	movq 56(%rbx),%rbx
+	movq $.Lds_renderJulia_sat_s1Z5_info,-72(%r12)
+	leaq -72(%r12),%r8
+	movq $.Lds_renderJulia_sat_s1Z4_info,-56(%r12)
+	movq %rax,-40(%r12)
+	movq %rcx,-32(%r12)
+	movq %rdx,-24(%r12)
+	movq %rsi,-16(%r12)
+	movq %rdi,-8(%r12)
+	movq %rbx,(%r12)
+	leaq -56(%r12),%rax
+	leaq GHC.Internal.Num.$fNumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq %r8,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.*_info
+.Lc24H:
+	movq $80,904(%r13)
+.Lc24E:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Z6_info, .-.Lds_renderJulia_sat_s1Z6_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	6
+	.long	15
+	.long	.Lud_srt-(.Lds_renderJulia_sat_s1Z9_info)+0
+.Lds_renderJulia_sat_s1Z9_info:
+.Lc24I:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc24J
+.Lc24K:
+	addq $88,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc24M
+.Lc24L:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rcx
+	movq 32(%rbx),%rdx
+	movq 40(%rbx),%rsi
+	movq 48(%rbx),%rdi
+	movq 56(%rbx),%rbx
+	movq $.Lds_renderJulia_sat_s1Z8_info,-80(%r12)
+	movq %rcx,-64(%r12)
+	leaq -80(%r12),%r8
+	movq $.Lds_renderJulia_sat_s1Z6_info,-56(%r12)
+	movq %rax,-40(%r12)
+	movq %rcx,-32(%r12)
+	movq %rdx,-24(%r12)
+	movq %rsi,-16(%r12)
+	movq %rdi,-8(%r12)
+	movq %rbx,(%r12)
+	leaq -56(%r12),%rax
+	leaq GHC.Internal.Real.$fIntegralInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq %r8,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Real.div_info
+.Lc24M:
+	movq $88,904(%r13)
+.Lc24J:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Z9_info, .-.Lds_renderJulia_sat_s1Z9_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	.Lu4_srt-(.Lds_renderJulia_sat_s1Yr_info)+0
+.Lds_renderJulia_sat_s1Yr_info:
+.Lc24V:
+	leaq -32(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc24W
+.Lc24X:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq GHC.Internal.Data.Foldable.$fFoldableList_closure(%rip),%r14
+	movq $stg_ap_p_info,-32(%rbp)
+	movq $.Lpalette_r1Dz_closure,-24(%rbp)
+	addq $-32,%rbp
+	jmp GHC.Internal.Data.Foldable.length_info
+.Lc24W:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Yr_info, .-.Lds_renderJulia_sat_s1Yr_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	.Lu5_srt-(.Lds_renderJulia_sat_s1Yt_info)+0
+.Lds_renderJulia_sat_s1Yt_info:
+.Lc24Y:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc24Z
+.Lc250:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc252
+.Lc251:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq $.Lds_renderJulia_sat_s1Yr_info,-8(%r12)
+	leaq -8(%r12),%rax
+	leaq GHC.Internal.Num.$fNumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq $stg_INTLIKE_closure+273,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.-_info
+.Lc252:
+	movq $16,904(%r13)
+.Lc24Z:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Yt_info, .-.Lds_renderJulia_sat_s1Yt_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	6
+	.long	15
+	.long	.Lue_srt-(.Lds_renderJulia_sat_s1Za_info)+0
+.Lds_renderJulia_sat_s1Za_info:
+.Lc253:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc254
+.Lc255:
+	addq $80,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc257
+.Lc256:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rcx
+	movq 32(%rbx),%rdx
+	movq 40(%rbx),%rsi
+	movq 48(%rbx),%rdi
+	movq 56(%rbx),%rbx
+	movq $.Lds_renderJulia_sat_s1Z9_info,-72(%r12)
+	movq %rax,-56(%r12)
+	movq %rcx,-48(%r12)
+	movq %rdx,-40(%r12)
+	movq %rsi,-32(%r12)
+	movq %rdi,-24(%r12)
+	movq %rbx,-16(%r12)
+	leaq -72(%r12),%rax
+	movq $.Lds_renderJulia_sat_s1Yt_info,-8(%r12)
+	leaq -8(%r12),%rbx
+	leaq GHC.Internal.Classes.$fOrdInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rbx,-32(%rbp)
+	movq %rax,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Classes.min_info
+.Lc257:
+	movq $80,904(%r13)
+.Lc254:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Za_info, .-.Lds_renderJulia_sat_s1Za_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.CString.unpackCString#_closure-(.Lds_renderJulia_sat_s1Ym_info)+0
+.Lds_renderJulia_sat_s1Ym_info:
+.Lc25m:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc25n
+.Lc25o:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq c25k_str(%rip),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.CString.unpackCString#_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_n_fast
+.Lc25n:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Ym_info, .-.Lds_renderJulia_sat_s1Ym_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.CString.unpackCString#_closure-(.Lds_renderJulia_sat_s1Yk_info)+0
+.Lds_renderJulia_sat_s1Yk_info:
+.Lc25v:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc25w
+.Lc25x:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq c25t_str(%rip),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.CString.unpackCString#_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_n_fast
+.Lc25w:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Yk_info, .-.Lds_renderJulia_sat_s1Yk_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.CString.unpackCString#_closure-(.Lds_renderJulia_sat_s1Yi_info)+0
+.Lds_renderJulia_sat_s1Yi_info:
+.Lc25E:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc25F
+.Lc25G:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq c25C_str(%rip),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.CString.unpackCString#_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_n_fast
+.Lc25F:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Yi_info, .-.Lds_renderJulia_sat_s1Yi_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.CString.unpackCString#_closure-(.Lds_renderJulia_sat_s1Yg_info)+0
+.Lds_renderJulia_sat_s1Yg_info:
+.Lc25O:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc25P
+.Lc25Q:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq c25M_str(%rip),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.CString.unpackCString#_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_n_fast
+.Lc25P:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Yg_info, .-.Lds_renderJulia_sat_s1Yg_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	.Lu3_srt-(.Lds_renderJulia_sat_s1Yp_info)+0
+.Lds_renderJulia_sat_s1Yp_info:
+.Lc25S:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc25T
+.Lc25U:
+	addq $152,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc25W
+.Lc25V:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq $.Lds_renderJulia_sat_s1Ym_info,-144(%r12)
+	leaq -144(%r12),%rax
+	movq $.Lds_renderJulia_sat_s1Yk_info,-128(%r12)
+	leaq -128(%r12),%rbx
+	movq $.Lds_renderJulia_sat_s1Yi_info,-112(%r12)
+	leaq -112(%r12),%rcx
+	movq $GHC.Internal.Stack.Types.SrcLoc_con_info,-96(%r12)
+	movq %rcx,-88(%r12)
+	movq %rbx,-80(%r12)
+	movq %rax,-72(%r12)
+	movq $31,-64(%r12)
+	movq $17,-56(%r12)
+	movq $31,-48(%r12)
+	movq $19,-40(%r12)
+	leaq -95(%r12),%rax
+	movq $.Lds_renderJulia_sat_s1Yg_info,-32(%r12)
+	leaq -32(%r12),%rbx
+	movq $(,)_con_info,-16(%r12)
+	movq %rbx,-8(%r12)
+	movq %rax,(%r12)
+	leaq -15(%r12),%rax
+	leaq GHC.Internal.Stack.Types.emptyCallStack_closure(%rip),%rsi
+	movq %rax,%r14
+	leaq GHC.Internal.Stack.Types.pushCallStack_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc25W:
+	movq $152,904(%r13)
+.Lc25T:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Yp_info, .-.Lds_renderJulia_sat_s1Yp_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	.Lu3_srt-(.Lds_renderJulia_sat_s1Yq_info)+0
+.Lds_renderJulia_sat_s1Yq_info:
+.Lc25X:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc25Y
+.Lc25Z:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc261
+.Lc260:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq $.Lds_renderJulia_sat_s1Yp_info,-8(%r12)
+	leaq -8(%r12),%rax
+	movq %rax,%rbx
+	andq $-8,%rbx
+	addq $-16,%rbp
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc261:
+	movq $16,904(%r13)
+.Lc25Y:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Yq_info, .-.Lds_renderJulia_sat_s1Yq_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	6
+	.long	15
+	.long	.Luf_srt-(.Lds_renderJulia_sat_s1Zb_info)+0
+.Lds_renderJulia_sat_s1Zb_info:
+.Lc262:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc263
+.Lc264:
+	addq $80,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc266
+.Lc265:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rcx
+	movq 32(%rbx),%rdx
+	movq 40(%rbx),%rsi
+	movq 48(%rbx),%rdi
+	movq 56(%rbx),%rbx
+	movq $.Lds_renderJulia_sat_s1Za_info,-72(%r12)
+	movq %rax,-56(%r12)
+	movq %rcx,-48(%r12)
+	movq %rdx,-40(%r12)
+	movq %rsi,-32(%r12)
+	movq %rdi,-24(%r12)
+	movq %rbx,-16(%r12)
+	leaq -72(%r12),%rax
+	movq $.Lds_renderJulia_sat_s1Yq_info,-8(%r12)
+	leaq -8(%r12),%rbx
+	movq %rax,%rdi
+	leaq .Lpalette_r1Dz_closure(%rip),%rsi
+	movq %rbx,%r14
+	leaq GHC.Internal.List.!!_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_ppp_fast
+.Lc266:
+	movq $80,904(%r13)
+.Lc263:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Zb_info, .-.Lds_renderJulia_sat_s1Zb_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	4294967301
+	.quad	5
+	.long	8
+	.long	.Luf_srt-(.Lds5_s1Ya_info)+0
+.Lds5_s1Ya_info:
+.Lc26b:
+	leaq -56(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc26c
+.Lc26d:
+	movq 7(%rbx),%rax
+	movq 15(%rbx),%rcx
+	movq 23(%rbx),%rdx
+	movq 31(%rbx),%rsi
+	movq 39(%rbx),%rdi
+	movq $.Lblock_c20p_info,-56(%rbp)
+	movq %rbx,%r8
+	movq %r14,%rbx
+	movq %rcx,-48(%rbp)
+	movq %rdx,-40(%rbp)
+	movq %rdi,-32(%rbp)
+	movq %rax,-24(%rbp)
+	movq %rsi,-16(%rbp)
+	movq %r8,-8(%rbp)
+	addq $-56,%rbp
+	testb $7,%bl
+	jne .Lc20p
+.Lc20q:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	6
+	.long	30
+	.long	.Luf_srt-(.Lblock_c20p_info)+0
+.Lblock_c20p_info:
+.Lc20p:
+	movq 8(%rbp),%rax
+	movq 16(%rbp),%rcx
+	movq 24(%rbp),%rdx
+	movq 32(%rbp),%rsi
+	movq 40(%rbp),%rdi
+	movq 48(%rbp),%r8
+	movq %rbx,%r9
+	andl $7,%r9d
+	cmpq $1,%r9
+	jne .Lc269
+.Lc268:
+	leaq []_closure+1(%rip),%rbx
+	addq $56,%rbp
+	jmp *(%rbp)
+.Lc269:
+	addq $120,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc26j
+.Lc26i:
+	movq 6(%rbx),%r9
+	movq 14(%rbx),%rbx
+	movq $.Lds_renderJulia_sat_s1Zc_info,-112(%r12)
+	movq %rbx,-96(%r12)
+	movq %r8,-88(%r12)
+	leaq -112(%r12),%rbx
+	movq $.Lds_renderJulia_sat_s1Zb_info,-80(%r12)
+	movq %rsi,-64(%r12)
+	movq %rax,-56(%r12)
+	movq %r9,-48(%r12)
+	movq %rcx,-40(%r12)
+	movq %rdi,-32(%r12)
+	movq %rdx,-24(%r12)
+	leaq -80(%r12),%rax
+	movq $:_con_info,-16(%r12)
+	movq %rax,-8(%r12)
+	movq %rbx,(%r12)
+	leaq -14(%r12),%rax
+	movq %rax,%rbx
+	addq $56,%rbp
+	jmp *(%rbp)
+.Lc26c:
+	jmp *-8(%r13)
+.Lc26j:
+	movq $120,904(%r13)
+	jmp stg_gc_unpt_r1
+	.size .Lds5_s1Ya_info, .-.Lds5_s1Ya_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	GHC.Internal.Num.$fNumInt_closure-(.Lds_renderJulia_sat_s1Zf_info)+0
+.Lds_renderJulia_sat_s1Zf_info:
+.Lc26s:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc26t
+.Lc26u:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	leaq GHC.Internal.Num.$fNumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq $stg_INTLIKE_closure+273,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.-_info
+.Lc26t:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Zf_info, .-.Lds_renderJulia_sat_s1Zf_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu2_srt-(.Lds_renderJulia_sat_s1Zg_info)+0
+.Lds_renderJulia_sat_s1Zg_info:
+.Lc26v:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc26w
+.Lc26x:
+	addq $24,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc26z
+.Lc26y:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq $.Lds_renderJulia_sat_s1Zf_info,-16(%r12)
+	movq %rax,(%r12)
+	leaq -16(%r12),%rax
+	leaq GHC.Internal.Enum.$fEnumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq $stg_INTLIKE_closure+257,-32(%rbp)
+	movq %rax,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Enum.enumFromTo_info
+.Lc26z:
+	movq $24,904(%r13)
+.Lc26w:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Zg_info, .-.Lds_renderJulia_sat_s1Zg_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	5
+	.long	15
+	.long	.Lug_srt-(.Lds_renderJulia_sat_s1Zh_info)+0
+.Lds_renderJulia_sat_s1Zh_info:
+.Lc26A:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc26B
+.Lc26C:
+	addq $72,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc26E
+.Lc26D:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rcx
+	movq 32(%rbx),%rdx
+	movq 40(%rbx),%rsi
+	movq 48(%rbx),%rbx
+	leaq -63(%r12),%rdi
+	movq $.Lds5_s1Ya_info,-64(%r12)
+	movq %rax,-56(%r12)
+	movq %rcx,-48(%r12)
+	movq %rdx,-40(%r12)
+	movq %rsi,-32(%r12)
+	movq %rbx,-24(%r12)
+	movq $.Lds_renderJulia_sat_s1Zg_info,-16(%r12)
+	movq %rdx,(%r12)
+	leaq -16(%r12),%rax
+	movq %rax,%r14
+	movq %rdi,%rbx
+	addq $-16,%rbp
+	jmp .Lds5_s1Ya_info
+.Lc26E:
+	movq $72,904(%r13)
+.Lc26B:
+	jmp *-16(%r13)
+	.size .Lds_renderJulia_sat_s1Zh_info, .-.Lds_renderJulia_sat_s1Zh_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	4294967301
+	.quad	4
+	.long	8
+	.long	.Lug_srt-(.Lds_s1Y5_info)+0
+.Lds_s1Y5_info:
+.Lc26J:
+	leaq -48(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc26K
+.Lc26L:
+	movq 7(%rbx),%rax
+	movq 15(%rbx),%rcx
+	movq 23(%rbx),%rdx
+	movq 31(%rbx),%rsi
+	movq $.Lblock_c203_info,-48(%rbp)
+	movq %rbx,%rdi
+	movq %r14,%rbx
+	movq %rcx,-40(%rbp)
+	movq %rdx,-32(%rbp)
+	movq %rsi,-24(%rbp)
+	movq %rax,-16(%rbp)
+	movq %rdi,-8(%rbp)
+	addq $-48,%rbp
+	testb $7,%bl
+	jne .Lc203
+.Lc204:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	5
+	.long	30
+	.long	.Lug_srt-(.Lblock_c203_info)+0
+.Lblock_c203_info:
+.Lc203:
+	movq 8(%rbp),%rax
+	movq 16(%rbp),%rcx
+	movq 24(%rbp),%rdx
+	movq 32(%rbp),%rsi
+	movq 40(%rbp),%rdi
+	movq %rbx,%r8
+	andl $7,%r8d
+	cmpq $1,%r8
+	jne .Lc26H
+.Lc26G:
+	leaq []_closure+1(%rip),%rbx
+	addq $48,%rbp
+	jmp *(%rbp)
+.Lc26H:
+	addq $112,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc26R
+.Lc26Q:
+	movq 6(%rbx),%r8
+	movq 14(%rbx),%rbx
+	movq $.Lds_renderJulia_sat_s1Zi_info,-104(%r12)
+	movq %rbx,-88(%r12)
+	movq %rdi,-80(%r12)
+	leaq -104(%r12),%rbx
+	movq $.Lds_renderJulia_sat_s1Zh_info,-72(%r12)
+	movq %rsi,-56(%r12)
+	movq %rax,-48(%r12)
+	movq %rcx,-40(%r12)
+	movq %r8,-32(%r12)
+	movq %rdx,-24(%r12)
+	leaq -72(%r12),%rax
+	movq $:_con_info,-16(%r12)
+	movq %rax,-8(%r12)
+	movq %rbx,(%r12)
+	leaq -14(%r12),%rax
+	movq %rax,%rbx
+	addq $48,%rbp
+	jmp *(%rbp)
+.Lc26K:
+	jmp *-8(%r13)
+.Lc26R:
+	movq $112,904(%r13)
+	jmp stg_gc_unpt_r1
+	.size .Lds_s1Y5_info, .-.Lds_s1Y5_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	GHC.Internal.Num.$fNumInt_closure-(.LrenderJulia_sat_s1Zl_info)+0
+.LrenderJulia_sat_s1Zl_info:
+.Lc270:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc271
+.Lc272:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	leaq GHC.Internal.Num.$fNumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq %rax,-32(%rbp)
+	movq $stg_INTLIKE_closure+273,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Num.-_info
+.Lc271:
+	jmp *-16(%r13)
+	.size .LrenderJulia_sat_s1Zl_info, .-.LrenderJulia_sat_s1Zl_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu2_srt-(.LrenderJulia_sat_s1Zm_info)+0
+.LrenderJulia_sat_s1Zm_info:
+.Lc273:
+	leaq -40(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc274
+.Lc275:
+	addq $24,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc277
+.Lc276:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq $.LrenderJulia_sat_s1Zl_info,-16(%r12)
+	movq %rax,(%r12)
+	leaq -16(%r12),%rax
+	leaq GHC.Internal.Enum.$fEnumInt_closure(%rip),%r14
+	movq $stg_ap_pp_info,-40(%rbp)
+	movq $stg_INTLIKE_closure+257,-32(%rbp)
+	movq %rax,-24(%rbp)
+	addq $-40,%rbp
+	jmp GHC.Internal.Enum.enumFromTo_info
+.Lc277:
+	movq $24,904(%r13)
+.Lc274:
+	jmp *-16(%r13)
+	.size .LrenderJulia_sat_s1Zm_info, .-.LrenderJulia_sat_s1Zm_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	4
+	.long	15
+	.long	.Lug_srt-(.LrenderJulia_sat_s1Zn_info)+0
+.LrenderJulia_sat_s1Zn_info:
+.Lc278:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc279
+.Lc27a:
+	addq $64,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc27c
+.Lc27b:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq 24(%rbx),%rcx
+	movq 32(%rbx),%rdx
+	movq 40(%rbx),%rbx
+	leaq -55(%r12),%rsi
+	movq $.Lds_s1Y5_info,-56(%r12)
+	movq %rax,-48(%r12)
+	movq %rcx,-40(%r12)
+	movq %rdx,-32(%r12)
+	movq %rbx,-24(%r12)
+	movq $.LrenderJulia_sat_s1Zm_info,-16(%r12)
+	movq %rbx,(%r12)
+	leaq -16(%r12),%rax
+	movq %rax,%r14
+	movq %rsi,%rbx
+	addq $-16,%rbp
+	jmp .Lds_s1Y5_info
+.Lc27c:
+	movq $64,904(%r13)
+.Lc279:
+	jmp *-16(%r13)
+	.size .LrenderJulia_sat_s1Zn_info, .-.LrenderJulia_sat_s1Zn_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	21474836505
+	.quad	2
+	.long	14
+	.long	0
+.globl Fractal.renderJulia_info
+.type Fractal.renderJulia_info, @function
+Fractal.renderJulia_info:
+.Lc27d:
+.Lc27f:
+	addq $80,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc27h
+.Lc27g:
+	movq $.Lc_s1Y4_info,-72(%r12)
+	movq %r14,-56(%r12)
+	movq %rsi,-48(%r12)
+	leaq -72(%r12),%rax
+	movq $.LrenderJulia_sat_s1Zn_info,-40(%r12)
+	movq %rax,-24(%r12)
+	movq %rdi,-16(%r12)
+	movq %r8,-8(%r12)
+	movq %r9,(%r12)
+	leaq -40(%r12),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.Data.OldList.unlines_closure(%rip),%rbx
+	jmp stg_ap_p_fast
+.Lc27h:
+	movq $80,904(%r13)
+.Lc27e:
+	leaq Fractal.renderJulia_closure(%rip),%rbx
+	jmp *-8(%r13)
+	.size Fractal.renderJulia_info, .-Fractal.renderJulia_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.globl Fractal.renderJulia_closure
+.type Fractal.renderJulia_closure, @object
+Fractal.renderJulia_closure:
+	.quad	Fractal.renderJulia_info
+	.quad	GHC.Internal.Data.OldList.unlines_closure
+	.quad	.Lug_srt
+	.quad	0
+
+
+[3 of 4] Compiling Main             ( Main.hs, Main.o )
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+.L$trModule3_r2oh_bytes:
+	.string "Main"
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+.L$trModule1_r2of_bytes:
+	.string "main"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$trModule2_r2og_closure:
+	.quad	GHC.Internal.Types.TrNameS_con_info
+	.quad	.L$trModule1_r2of_bytes
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$trModule4_r2oi_closure:
+	.quad	GHC.Internal.Types.TrNameS_con_info
+	.quad	.L$trModule3_r2oh_bytes
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.globl Main.$trModule_closure
+.type Main.$trModule_closure, @object
+Main.$trModule_closure:
+	.quad	GHC.Internal.Types.Module_con_info
+	.quad	.L$trModule2_r2og_closure+1
+	.quad	.L$trModule4_r2oi_closure+1
+	.quad	3
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c2ph_str:
+	.string "Main.hs"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s2or_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c2ph_str
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c2pi_str:
+	.string "Main"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s2op_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c2pi_str
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c2pj_str:
+	.string "main"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s2on_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c2pj_str
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s2os_closure:
+	.quad	GHC.Internal.Stack.Types.SrcLoc_con_info
+	.quad	.L$dIP_sat_s2on_closure
+	.quad	.L$dIP_sat_s2op_closure
+	.quad	.L$dIP_sat_s2or_closure
+	.quad	14
+	.quad	10
+	.quad	14
+	.quad	15
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c2pk_str:
+	.string "error"
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s2ol_closure:
+	.quad	stg_unpack_cstring_info
+	.quad	0
+	.quad	0
+	.quad	0
+	.quad	c2pk_str
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_sat_s2ot_closure:
+	.quad	(,)_con_info
+	.quad	.L$dIP_sat_s2ol_closure
+	.quad	.L$dIP_sat_s2os_closure+1
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu0_srt:
+	.quad	stg_SRT_3_info
+	.quad	.L$dIP_sat_s2ot_closure
+	.quad	GHC.Internal.Stack.Types.emptyCallStack_closure
+	.quad	GHC.Internal.Stack.Types.pushCallStack_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	21
+	.long	.Lu0_srt-(.L$dIP_r2oj_info)+0
+.L$dIP_r2oj_info:
+.Lc2pr:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2ps
+.Lc2pt:
+	subq $8,%rsp
+	movq %r13,%rdi
+	movq %rbx,%rsi
+	xorl %eax,%eax
+	call newCAF
+	addq $8,%rsp
+	testq %rax,%rax
+	je .Lc2pq
+.Lc2pp:
+	movq $stg_bh_upd_frame_info,-16(%rbp)
+	movq %rax,-8(%rbp)
+	leaq GHC.Internal.Stack.Types.emptyCallStack_closure(%rip),%rsi
+	leaq .L$dIP_sat_s2ot_closure+1(%rip),%r14
+	leaq GHC.Internal.Stack.Types.pushCallStack_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc2pq:
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc2ps:
+	jmp *-16(%r13)
+	.size .L$dIP_r2oj_info, .-.L$dIP_r2oj_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.L$dIP_r2oj_closure:
+	.quad	.L$dIP_r2oj_info
+	.quad	0
+	.quad	0
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu8_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.Read.$fReadDouble_closure
+	.quad	GHC.Internal.Text.Read.read_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lu9_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.Read.$fReadInt_closure
+	.quad	GHC.Internal.Text.Read.read_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lua_srt:
+	.quad	stg_SRT_4_info
+	.quad	.L$dIP_r2oj_closure
+	.quad	GHC.Internal.Err.error_closure
+	.quad	.Lu8_srt
+	.quad	.Lu9_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lub_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.CString.unpackCString#_closure
+	.quad	Decode.fromHex_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Luc_srt:
+	.quad	stg_SRT_2_info
+	.quad	Decode.decipher_closure
+	.quad	.Lub_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lud_srt:
+	.quad	stg_SRT_3_info
+	.quad	GHC.Internal.Data.OldList.words_closure
+	.quad	.Lua_srt
+	.quad	.Luc_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lue_srt:
+	.quad	stg_SRT_3_info
+	.quad	GHC.Internal.Base.$_closure
+	.quad	Fractal.renderJulia_closure
+	.quad	.Lud_srt
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c2pP_str:
+	.string "#!s3kur1ty"
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c2q2_str:
+	.string "2d55090d4f576242655d24030705490250210748502d54111f4450065f0f010704041d5f6024485b500851457a5201384c68255b000613351141070859560b4a1c03094a0e1a505007471d0e0749080a5442074818160e48170f56"
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.CString.unpackCString#_closure-(.Lmain_sat_s2oL_info)+0
+.Lmain_sat_s2oL_info:
+.Lc2pR:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2pS
+.Lc2pT:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq c2pP_str(%rip),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.CString.unpackCString#_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_n_fast
+.Lc2pS:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2oL_info, .-.Lmain_sat_s2oL_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.CString.unpackCString#_closure-(.Lmain_sat_s2oI_info)+0
+.Lmain_sat_s2oI_info:
+.Lc2q4:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2q5
+.Lc2q6:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq c2q2_str(%rip),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.CString.unpackCString#_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_n_fast
+.Lc2q5:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2oI_info, .-.Lmain_sat_s2oI_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	.Lub_srt-(.Lmain_sat_s2oJ_info)+0
+.Lmain_sat_s2oJ_info:
+.Lc2q7:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2q8
+.Lc2q9:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc2qb
+.Lc2qa:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq $.Lmain_sat_s2oI_info,-8(%r12)
+	leaq -8(%r12),%rax
+	movq %rax,%r14
+	leaq Decode.fromHex_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_p_fast
+.Lc2qb:
+	movq $16,904(%r13)
+.Lc2q8:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2oJ_info, .-.Lmain_sat_s2oJ_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	.Luc_srt-(.Lmain_sat_s2oM_info)+0
+.Lmain_sat_s2oM_info:
+.Lc2qc:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2qd
+.Lc2qe:
+	addq $32,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc2qg
+.Lc2qf:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq $.Lmain_sat_s2oL_info,-24(%r12)
+	leaq -24(%r12),%rax
+	movq $.Lmain_sat_s2oJ_info,-8(%r12)
+	leaq -8(%r12),%rbx
+	movq %rax,%rsi
+	movq %rbx,%r14
+	leaq Decode.decipher_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc2qg:
+	movq $32,904(%r13)
+.Lc2qd:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2oM_info, .-.Lmain_sat_s2oM_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu9_srt-(.Lmain_sat_s2pa_info)+0
+.Lmain_sat_s2pa_info:
+.Lc2r1:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2r2
+.Lc2r3:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%rsi
+	leaq GHC.Internal.Read.$fReadInt_closure(%rip),%r14
+	leaq GHC.Internal.Text.Read.read_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc2r2:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2pa_info, .-.Lmain_sat_s2pa_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu9_srt-(.Lmain_sat_s2p9_info)+0
+.Lmain_sat_s2p9_info:
+.Lc2r8:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2r9
+.Lc2ra:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%rsi
+	leaq GHC.Internal.Read.$fReadInt_closure(%rip),%r14
+	leaq GHC.Internal.Text.Read.read_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc2r9:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2p9_info, .-.Lmain_sat_s2p9_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu9_srt-(.Lmain_sat_s2p8_info)+0
+.Lmain_sat_s2p8_info:
+.Lc2rf:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2rg
+.Lc2rh:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%rsi
+	leaq GHC.Internal.Read.$fReadInt_closure(%rip),%r14
+	leaq GHC.Internal.Text.Read.read_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc2rg:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2p8_info, .-.Lmain_sat_s2p8_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu8_srt-(.Lmain_sat_s2p7_info)+0
+.Lmain_sat_s2p7_info:
+.Lc2rm:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2rn
+.Lc2ro:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%rsi
+	leaq GHC.Internal.Read.$fReadDouble_closure(%rip),%r14
+	leaq GHC.Internal.Text.Read.read_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc2rn:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2p7_info, .-.Lmain_sat_s2p7_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	1
+	.long	16
+	.long	.Lu8_srt-(.Lmain_sat_s2p6_info)+0
+.Lmain_sat_s2p6_info:
+.Lc2rt:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2ru
+.Lc2rv:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq 16(%rbx),%rax
+	movq %rax,%rsi
+	leaq GHC.Internal.Read.$fReadDouble_closure(%rip),%r14
+	leaq GHC.Internal.Text.Read.read_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc2ru:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2p6_info, .-.Lmain_sat_s2p6_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	.Lud_srt-(.Lmain_sat_s2pd_info)+0
+.Lmain_sat_s2pd_info:
+.Lc2rA:
+	leaq -64(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2rB
+.Lc2rC:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc2rE
+.Lc2rD:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	movq $.Lmain_sat_s2oM_info,-8(%r12)
+	leaq -8(%r12),%rax
+	movq $.Lblock_c2qj_info,-24(%rbp)
+	movq %rax,%r14
+	leaq GHC.Internal.Data.OldList.words_closure(%rip),%rbx
+	addq $-24,%rbp
+	jmp stg_ap_p_fast
+.align 8
+	.quad	0
+	.long	30
+	.long	.Lua_srt-(.Lblock_c2qj_info)+0
+.Lblock_c2qj_info:
+.Lc2qj:
+	movq %rbx,%rax
+	andl $7,%eax
+	cmpq $1,%rax
+	je .Ls2oF
+.Lc2ry:
+	movq 14(%rbx),%rax
+	movq $.Lblock_c2qo_info,(%rbp)
+	movq %rax,%rbx
+	testb $7,%bl
+	jne .Lc2qo
+.Lc2qp:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	0
+	.long	30
+	.long	.Lua_srt-(.Lblock_c2qo_info)+0
+.Lblock_c2qo_info:
+.Lc2qo:
+	movq %rbx,%rax
+	andl $7,%eax
+	cmpq $1,%rax
+	je .Ls2oF
+.Lc2rR:
+	movq 6(%rbx),%rax
+	movq 14(%rbx),%rbx
+	movq $.Lblock_c2qu_info,-8(%rbp)
+	movq %rax,(%rbp)
+	addq $-8,%rbp
+	testb $7,%bl
+	jne .Lc2qu
+.Lc2qv:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	1
+	.long	30
+	.long	.Lua_srt-(.Lblock_c2qu_info)+0
+.Lblock_c2qu_info:
+.Lc2qu:
+	movq %rbx,%rax
+	andl $7,%eax
+	cmpq $1,%rax
+	je .Ln3
+.Lc2rX:
+	movq 6(%rbx),%rax
+	movq 14(%rbx),%rbx
+	movq $.Lblock_c2qA_info,-8(%rbp)
+	movq %rax,(%rbp)
+	addq $-8,%rbp
+	testb $7,%bl
+	jne .Lc2qA
+.Lc2qB:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	2
+	.long	30
+	.long	.Lua_srt-(.Lblock_c2qA_info)+0
+.Lblock_c2qA_info:
+.Lc2qA:
+	movq %rbx,%rax
+	andl $7,%eax
+	cmpq $1,%rax
+	je .Ln4
+.Lc2s3:
+	movq 6(%rbx),%rax
+	movq 14(%rbx),%rbx
+	movq $.Lblock_c2qG_info,-8(%rbp)
+	movq %rax,(%rbp)
+	addq $-8,%rbp
+	testb $7,%bl
+	jne .Lc2qG
+.Lc2qH:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	3
+	.long	30
+	.long	.Lua_srt-(.Lblock_c2qG_info)+0
+.Lblock_c2qG_info:
+.Lc2qG:
+	movq %rbx,%rax
+	andl $7,%eax
+	cmpq $1,%rax
+	je .Ln5
+.Lc2s9:
+	movq 6(%rbx),%rax
+	movq 14(%rbx),%rbx
+	movq $.Lblock_c2qM_info,-8(%rbp)
+	movq %rax,(%rbp)
+	addq $-8,%rbp
+	testb $7,%bl
+	jne .Lc2qM
+.Lc2qN:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	4
+	.long	30
+	.long	.Lua_srt-(.Lblock_c2qM_info)+0
+.Lblock_c2qM_info:
+.Lc2qM:
+	movq %rbx,%rax
+	andl $7,%eax
+	cmpq $1,%rax
+	je .Ln6
+.Lc2sf:
+	movq 6(%rbx),%rax
+	movq 14(%rbx),%rbx
+	movq $.Lblock_c2qS_info,-8(%rbp)
+	movq %rax,(%rbp)
+	addq $-8,%rbp
+	testb $7,%bl
+	jne .Lc2qS
+.Lc2qT:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	5
+	.long	30
+	.long	.Lua_srt-(.Lblock_c2qS_info)+0
+.Lblock_c2qS_info:
+.Lc2qS:
+	movq 40(%rbp),%rax
+	movq 32(%rbp),%rcx
+	movq 24(%rbp),%rdx
+	movq 16(%rbp),%rsi
+	movq 8(%rbp),%rdi
+	movq %rbx,%r8
+	andl $7,%r8d
+	cmpq $1,%r8
+	jne .Ln7
+.Lc2si:
+	addq $168,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc2sl
+.Lc2sk:
+	movq $.Lmain_sat_s2pa_info,-160(%r12)
+	movq %rdi,-144(%r12)
+	leaq -160(%r12),%rbx
+	movq $.Lmain_sat_s2p9_info,-136(%r12)
+	movq %rsi,-120(%r12)
+	leaq -136(%r12),%rsi
+	movq $.Lmain_sat_s2p8_info,-112(%r12)
+	movq %rdx,-96(%r12)
+	leaq -112(%r12),%rdx
+	movq $.Lmain_sat_s2p7_info,-88(%r12)
+	movq %rcx,-72(%r12)
+	leaq -88(%r12),%rcx
+	movq $.Lmain_sat_s2p6_info,-64(%r12)
+	movq %rax,-48(%r12)
+	leaq -64(%r12),%rax
+	movq $(,,,,)_con_info,-40(%r12)
+	movq %rax,-32(%r12)
+	movq %rcx,-24(%r12)
+	movq %rdx,-16(%r12)
+	movq %rsi,-8(%r12)
+	movq %rbx,(%r12)
+	leaq -39(%r12),%rax
+	movq %rax,%rbx
+	addq $48,%rbp
+	jmp *(%rbp)
+.Lc2rE:
+	movq $16,904(%r13)
+.Lc2rB:
+	jmp *-16(%r13)
+.Lc2sl:
+	movq $168,904(%r13)
+	jmp stg_gc_unpt_r1
+.Ln3:
+	addq $8,%rbp
+.Ls2oF:
+	leaq GHC.Internal.Types.[]_closure+1(%rip),%rsi
+	leaq .L$dIP_r2oj_closure(%rip),%r14
+	leaq GHC.Internal.Err.error_closure(%rip),%rbx
+	addq $8,%rbp
+	jmp stg_ap_pp_fast
+.Ln4:
+	addq $16,%rbp
+	jmp .Ls2oF
+.Ln5:
+	addq $24,%rbp
+	jmp .Ls2oF
+.Ln6:
+	addq $32,%rbp
+	jmp .Ls2oF
+.Ln7:
+	addq $40,%rbp
+	jmp .Ls2oF
+	.size .Lmain_sat_s2pd_info, .-.Lmain_sat_s2pd_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	4294967301
+	.quad	4294967296
+	.long	10
+	.long	Fractal.renderJulia_closure-(.Lmain_sat_s2oE_info)+0
+.Lmain_sat_s2oE_info:
+.Lc2sB:
+	leaq -8(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2sC
+.Lc2sD:
+	movq $.Lblock_c2sy_info,-8(%rbp)
+	movq %r14,%rbx
+	addq $-8,%rbp
+	testb $7,%bl
+	jne .Lc2sy
+.Lc2sz:
+	movq (%rbx),%rax
+	jmp *%rax
+.align 8
+	.quad	0
+	.long	30
+	.long	Fractal.renderJulia_closure-(.Lblock_c2sy_info)+0
+.Lblock_c2sy_info:
+.Lc2sy:
+	movq 7(%rbx),%rax
+	movq 15(%rbx),%rcx
+	movq 23(%rbx),%rdx
+	movq 31(%rbx),%rsi
+	movq 39(%rbx),%rbx
+	movq %rbx,%r9
+	movq %rsi,%r8
+	movq %rdx,%rdi
+	movq %rcx,%rsi
+	movq %rax,%r14
+	leaq Fractal.renderJulia_closure(%rip),%rbx
+	addq $8,%rbp
+	jmp stg_ap_ppppp_fast
+.Lc2sC:
+	jmp *-8(%r13)
+	.size .Lmain_sat_s2oE_info, .-.Lmain_sat_s2oE_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	21
+	.long	.Lue_srt-(.Lmain_sat_s2pe_info)+0
+.Lmain_sat_s2pe_info:
+.Lc2sH:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2sI
+.Lc2sJ:
+	addq $32,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc2sL
+.Lc2sK:
+	subq $8,%rsp
+	movq %r13,%rdi
+	movq %rbx,%rsi
+	xorl %eax,%eax
+	call newCAF
+	addq $8,%rsp
+	testq %rax,%rax
+	je .Lc2pz
+.Lc2py:
+	movq $stg_bh_upd_frame_info,-16(%rbp)
+	movq %rax,-8(%rbp)
+	movq $.Lmain_sat_s2pd_info,-24(%r12)
+	leaq -24(%r12),%rax
+	movq $.Lmain_sat_s2oE_info,-8(%r12)
+	leaq -7(%r12),%rbx
+	movq %rax,%rsi
+	movq %rbx,%r14
+	leaq GHC.Internal.Base.$_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc2pz:
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc2sL:
+	movq $32,904(%r13)
+.Lc2sI:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2pe_info, .-.Lmain_sat_s2pe_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lmain_sat_s2pe_closure:
+	.quad	.Lmain_sat_s2pe_info
+	.quad	0
+	.quad	0
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.LuG_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.CString.unpackCString#_closure
+	.quad	GHC.Internal.System.IO.writeFile_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .rodata.str,"aMS",@progbits,1
+.align 1
+.align 1
+c2sW_str:
+	.string "out.txt"
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	15
+	.long	GHC.Internal.CString.unpackCString#_closure-(.Lmain_sat_s2ov_info)+0
+.Lmain_sat_s2ov_info:
+.Lc2sY:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2sZ
+.Lc2t0:
+	movq $stg_upd_frame_info,-16(%rbp)
+	movq %rbx,-8(%rbp)
+	leaq c2sW_str(%rip),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.CString.unpackCString#_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_n_fast
+.Lc2sZ:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2ov_info, .-.Lmain_sat_s2ov_info
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	21
+	.long	.LuG_srt-(.Lmain_sat_s2ow_info)+0
+.Lmain_sat_s2ow_info:
+.Lc2t1:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2t2
+.Lc2t3:
+	addq $16,%r12
+	cmpq 856(%r13),%r12
+	ja .Lc2t5
+.Lc2t4:
+	subq $8,%rsp
+	movq %r13,%rdi
+	movq %rbx,%rsi
+	xorl %eax,%eax
+	call newCAF
+	addq $8,%rsp
+	testq %rax,%rax
+	je .Lc2sR
+.Lc2sQ:
+	movq $stg_bh_upd_frame_info,-16(%rbp)
+	movq %rax,-8(%rbp)
+	movq $.Lmain_sat_s2ov_info,-8(%r12)
+	leaq -8(%r12),%rax
+	movq %rax,%r14
+	leaq GHC.Internal.System.IO.writeFile_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_p_fast
+.Lc2sR:
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc2t5:
+	movq $16,904(%r13)
+.Lc2t2:
+	jmp *-16(%r13)
+	.size .Lmain_sat_s2ow_info, .-.Lmain_sat_s2ow_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.Lmain_sat_s2ow_closure:
+	.quad	.Lmain_sat_s2ow_info
+	.quad	0
+	.quad	0
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.LuK_srt:
+	.quad	stg_SRT_3_info
+	.quad	.Lmain_sat_s2ow_closure
+	.quad	.Lmain_sat_s2pe_closure
+	.quad	GHC.Internal.Base.$_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	21
+	.long	.LuK_srt-(Main.main_info)+0
+.globl Main.main_info
+.type Main.main_info, @function
+Main.main_info:
+.Lc2tc:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2td
+.Lc2te:
+	subq $8,%rsp
+	movq %r13,%rdi
+	movq %rbx,%rsi
+	xorl %eax,%eax
+	call newCAF
+	addq $8,%rsp
+	testq %rax,%rax
+	je .Lc2tb
+.Lc2ta:
+	movq $stg_bh_upd_frame_info,-16(%rbp)
+	movq %rax,-8(%rbp)
+	leaq .Lmain_sat_s2pe_closure(%rip),%rsi
+	leaq .Lmain_sat_s2ow_closure(%rip),%r14
+	leaq GHC.Internal.Base.$_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_pp_fast
+.Lc2tb:
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc2td:
+	jmp *-16(%r13)
+	.size Main.main_info, .-Main.main_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.globl Main.main_closure
+.type Main.main_closure, @object
+Main.main_closure:
+	.quad	Main.main_info
+	.quad	0
+	.quad	0
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.LuN_srt:
+	.quad	stg_SRT_2_info
+	.quad	GHC.Internal.TopHandler.runMainIO_closure
+	.quad	Main.main_closure
+	.quad	0
+
+
+
+==================== Asm code ====================
+.section .text
+.align 8
+.align 8
+	.quad	0
+	.long	21
+	.long	.LuN_srt-(:Main.main_info)+0
+.globl :Main.main_info
+.type :Main.main_info, @function
+:Main.main_info:
+.Lc2tl:
+	leaq -16(%rbp),%rax
+	cmpq %r15,%rax
+	jb .Lc2tm
+.Lc2tn:
+	subq $8,%rsp
+	movq %r13,%rdi
+	movq %rbx,%rsi
+	xorl %eax,%eax
+	call newCAF
+	addq $8,%rsp
+	testq %rax,%rax
+	je .Lc2tk
+.Lc2tj:
+	movq $stg_bh_upd_frame_info,-16(%rbp)
+	movq %rax,-8(%rbp)
+	leaq Main.main_closure(%rip),%r14
+	leaq GHC.Internal.TopHandler.runMainIO_closure(%rip),%rbx
+	addq $-16,%rbp
+	jmp stg_ap_p_fast
+.Lc2tk:
+	movq (%rbx),%rax
+	jmp *%rax
+.Lc2tm:
+	jmp *-16(%r13)
+	.size :Main.main_info, .-:Main.main_info
+
+
+
+==================== Asm code ====================
+.section .data
+.align 8
+.align 1
+.globl :Main.main_closure
+.type :Main.main_closure, @object
+:Main.main_closure:
+	.quad	:Main.main_info
+	.quad	0
+	.quad	0
+	.quad	0
+
+
+[4 of 4] Linking main [Objects changed]
