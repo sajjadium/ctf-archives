@@ -14,6 +14,23 @@
  </thead>
  <tbody>
   <tr>
+   <td rowspan="1">
+    <a href="ctfs/07CTF">
+     07CTF
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/07CTF/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3365/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td rowspan="10">
     <a href="ctfs/0CTF">
      0CTF

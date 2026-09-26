@@ -26,6 +26,9 @@ def is_valid(line):
   if line.strip().lower().startswith('remote:'):
     return False
 
+  if line.strip().lower() == 'instance based':
+    return False
+
   if line.strip().lower().startswith('FINAL SUBMISSION WARNING'):
     return False
 
