@@ -1,0 +1,300 @@
+<!doctype html>
+<!-- Offline player snapshot of the SunChan board. -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA1MCIgYXJpYS1oaWRkZW49InRydWUiPjxnIHN0cm9rZT0iI2JkNmIzNSIgc3Ryb2tlLXdpZHRoPSIzIj48cGF0aCBkPSJNMjUgMXY4TTI1IDQxdjhNMSAyNWg4TTQxIDI1aDhNOCA4bDYgNk0zNiAzNmw2IDZNOCA0Mmw2LTZNMzYgMTRsNi02Ii8+PC9nPjxjaXJjbGUgY3g9IjI1IiBjeT0iMjUiIHI9IjEyIiBmaWxsPSIjZThiNDViIiBzdHJva2U9IiNhMjUzMmUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPgo=" type="image/svg+xml">
+    <style>
+:root { color-scheme: light; --paper: #ffffee; --reply: #f0e0d6; --ink: #800000; --line: #d9bfb7; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); background: var(--paper); font: 13px Arial, Helvetica, sans-serif; }
+a { color: var(--ink); text-decoration: underline; }
+a:hover { color: #e00000; }
+.board-links { display: flex; justify-content: space-between; gap: 12px; padding: 7px 10px; color: #855d52; font-size: 12px; }
+.board-links a { text-decoration: none; }
+.masthead { text-align: center; padding-top: 7px; }
+.wordmark { display: inline-flex; align-items: center; gap: 8px; font: bold 38px Georgia, serif; letter-spacing: -2px; }
+.wordmark img { width: 37px; height: 37px; }
+h1 { font: bold 27px Tahoma, Arial, sans-serif; letter-spacing: -1px; margin: 9px 0 7px; }
+.tagline { margin: 0; font-size: 12px; }
+.rule { border: 0; border-top: 1px solid var(--line); margin: 17px 16px 10px; }
+.new-thread { margin: 12px 0 15px; text-align: center; font-weight: bold; font-size: 17px; }
+.board-notice { margin: 0 16px 15px; border: 1px solid var(--line); padding: 6px 8px; background: #f9e9df; text-align: center; font-size: 12px; }
+.page-options { margin: 0 16px 14px; font-size: 12px; }
+.thread { margin: 0 16px 20px; }
+.post { padding: 3px 6px 7px; }
+.op { min-height: 173px; }
+.post-header { line-height: 1.5; }
+.subject { font-weight: bold; color: #cc1105; }
+.name { font-weight: bold; color: #117743; }
+.post-number { text-decoration: none; white-space: nowrap; }
+.post-time { white-space: nowrap; }
+.post-body { margin: 11px 14px 10px; color: var(--ink); line-height: 1.4; }
+.post-body p { margin: 7px 0; }
+.greentext { color: #789922; }
+.file-info { font-size: 11px; margin: 1px 0 5px; color: var(--ink); }
+.file-info span { color: #885b50; }
+.attachment { float: left; margin: 0 20px 9px 0; width: 145px; }
+.attachment img { width: 145px; height: 116px; display: block; border: 1px solid #d7cab7; background: #e9e1d1; }
+.attachment a { display: inline-block; }
+.reply-row { display: flex; align-items: start; gap: 3px; margin: 5px 0; }
+.reply-arrow { color: #bbaaa4; padding-top: 4px; }
+.reply { background: var(--reply); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); min-width: 470px; max-width: 860px; }
+.reply .post-body { margin-left: 14px; margin-right: 22px; }
+.post:target { background: #f5d8b8; outline: 1px solid #cf9978; }
+.file-reply { min-height: 159px; min-width: 640px; }
+.file-reply .attachment { margin: 4px 15px 2px 10px; width: 97px; }
+.file-reply .attachment img { width: 97px; height: 109px; }
+.file-reply .post-body { padding-top: 13px; }
+.clearfix::after { content: ''; display: block; clear: both; }
+.thread-separator { border: 0; border-top: 1px solid var(--line); margin: 21px 0; }
+.footer { padding: 12px 16px 22px; border-top: 1px solid var(--line); text-align: center; font-size: 11px; color: #8a655b; }
+.footer p { margin: 5px 0; }
+.pagination { text-align: left; font-size: 13px; margin-bottom: 16px; }
+@media (max-width: 700px) {
+    .board-links { line-height: 1.6; }
+    .board-links .right-links { display: none; }
+    .thread { margin-left: 6px; margin-right: 8px; }
+    .reply, .file-reply { min-width: 0; width: calc(100vw - 34px); }
+    .attachment { width: 108px; margin-right: 12px; }
+    .attachment img { width: 108px; height: 100px; }
+    .post-header { line-height: 1.7; }
+    .op { min-height: 190px; }
+}
+
+</style>
+    <title>SunChan — /po/ — Papercraft &amp; Origami</title>
+</head>
+<body>
+<main>
+    <div class="board-links">
+        <span>[ diy / g / <a href="#"><b>po</b></a> / sci / trv ] &nbsp; [ art / cook / lit / mu / out / polaroid ]</span>
+        <span class="right-links">[ <a href="#">SunChan</a> ]</span>
+    </div>
+    <header class="masthead">
+        <div class="wordmark"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MCA1MCIgYXJpYS1oaWRkZW49InRydWUiPjxnIHN0cm9rZT0iI2JkNmIzNSIgc3Ryb2tlLXdpZHRoPSIzIj48cGF0aCBkPSJNMjUgMXY4TTI1IDQxdjhNMSAyNWg4TTQxIDI1aDhNOCA4bDYgNk0zNiAzNmw2IDZNOCA0Mmw2LTZNMzYgMTRsNi02Ii8+PC9nPjxjaXJjbGUgY3g9IjI1IiBjeT0iMjUiIHI9IjEyIiBmaWxsPSIjZThiNDViIiBzdHJva2U9IiNhMjUzMmUiIHN0cm9rZS13aWR0aD0iMiIvPjwvc3ZnPgo=" alt="" width="37" height="37">SunChan</div>
+        <h1>/po/ - Papercraft &amp; Origami</h1>
+        <p class="tagline">Measure twice. Fold once. Then realize it was the wrong corner.</p>
+    </header>
+    <hr class="rule">
+    <p class="new-thread">[ Posting is currently closed ]</p>
+    <div class="board-notice">Welcome to /po/. Share patterns, finished models, and folding tips. Keep it friendly. &nbsp; • &nbsp; All timestamps UTC.</div>
+    <nav class="page-options" aria-label="Page navigation">
+                [<a href="#post184760">Top</a>] &nbsp; [<a href="#post184550">Bottom</a>] &nbsp;
+                5 threads · 22 posts
+    </nav>
+
+        <section class="thread" aria-label="Boxes for the paper hoard">
+                        <article class="post op clearfix" id="post184760">
+                <div class="file-info">File: <a href="data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCAzMDAgMzYwXSAvUmVzb3VyY2VzIDw8IC9Gb250IDw8IC9GMSA1IDAgUiA+PiA+PiAvQ29udGVudHMgNCAwIFIgPj4KZW5kb2JqCjQgMCBvYmoKPDwgL0xlbmd0aCA0OTMgPj4Kc3RyZWFtCjAuOTggMC45NyAwLjk0IHJnCjAgMCAzMDAgMzYwIHJlIGYKMC40IDAuMyAwLjI1IHJnCkJUIC9GMSAxNiBUZiA0MiAzMjEgVGQgKFNNQUxMIERFU0sgQk9YKSBUaiBFVApCVCAvRjEgOSBUZiA0MiAzMDMgVGQgKFByaW50IGF0IGFjdHVhbCBzaXplLiBGb2xkIGFsb25nIGRvdHRlZCBsaW5lcy4pIFRqIEVUCjAuNjUgMC41MyAwLjM5IFJHCjEgdwoxMTAgOTUgbSAxOTAgOTUgbCAxOTAgMTM1IGwgMjM1IDEzNSBsIDIzNSAyMTUgbCAxOTAgMjE1IGwgMTkwIDI1NSBsIDExMCAyNTUgbCAxMTAgMjE1IGwgNjUgMjE1IGwgNjUgMTM1IGwgMTEwIDEzNSBsIGggUwpbNCA0XSAwIGQKMTEwIDk1IG0gMTEwIDI1NSBsIFMKMTkwIDk1IG0gMTkwIDI1NSBsIFMKMTEwIDEzNSBtIDE5MCAxMzUgbCBTCjExMCAyMTUgbSAxOTAgMjE1IGwgUwpbXSAwIGQKQlQgL0YxIDkgVGYgNDIgNDQgVGQgKFN1bkNoYW4gL3BvLyAtIGEgaG9tZSBmb3IgdGhlIHVzZWZ1bCBzY3JhcHMuKSBUaiBFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhID4+CmVuZG9iagp4cmVmCjAgNgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDA1OCAwMDAwMCBuIAowMDAwMDAwMTE1IDAwMDAwIG4gCjAwMDAwMDAyNDEgMDAwMDAgbiAKMDAwMDAwMDc4NCAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDYgL1Jvb3QgMSAwIFIgPj4Kc3RhcnR4cmVmCjg1NAolJUVPRgo=">box-template.pdf</a> <span>(PDF attachment)</span></div>
+    <div class="attachment"><a href="data:application/pdf;base64,JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCAzMDAgMzYwXSAvUmVzb3VyY2VzIDw8IC9Gb250IDw8IC9GMSA1IDAgUiA+PiA+PiAvQ29udGVudHMgNCAwIFIgPj4KZW5kb2JqCjQgMCBvYmoKPDwgL0xlbmd0aCA0OTMgPj4Kc3RyZWFtCjAuOTggMC45NyAwLjk0IHJnCjAgMCAzMDAgMzYwIHJlIGYKMC40IDAuMyAwLjI1IHJnCkJUIC9GMSAxNiBUZiA0MiAzMjEgVGQgKFNNQUxMIERFU0sgQk9YKSBUaiBFVApCVCAvRjEgOSBUZiA0MiAzMDMgVGQgKFByaW50IGF0IGFjdHVhbCBzaXplLiBGb2xkIGFsb25nIGRvdHRlZCBsaW5lcy4pIFRqIEVUCjAuNjUgMC41MyAwLjM5IFJHCjEgdwoxMTAgOTUgbSAxOTAgOTUgbCAxOTAgMTM1IGwgMjM1IDEzNSBsIDIzNSAyMTUgbCAxOTAgMjE1IGwgMTkwIDI1NSBsIDExMCAyNTUgbCAxMTAgMjE1IGwgNjUgMjE1IGwgNjUgMTM1IGwgMTEwIDEzNSBsIGggUwpbNCA0XSAwIGQKMTEwIDk1IG0gMTEwIDI1NSBsIFMKMTkwIDk1IG0gMTkwIDI1NSBsIFMKMTEwIDEzNSBtIDE5MCAxMzUgbCBTCjExMCAyMTUgbSAxOTAgMjE1IGwgUwpbXSAwIGQKQlQgL0YxIDkgVGYgNDIgNDQgVGQgKFN1bkNoYW4gL3BvLyAtIGEgaG9tZSBmb3IgdGhlIHVzZWZ1bCBzY3JhcHMuKSBUaiBFVAplbmRzdHJlYW0KZW5kb2JqCjUgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9CYXNlRm9udCAvSGVsdmV0aWNhID4+CmVuZG9iagp4cmVmCjAgNgowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDA1OCAwMDAwMCBuIAowMDAwMDAwMTE1IDAwMDAwIG4gCjAwMDAwMDAyNDEgMDAwMDAgbiAKMDAwMDAwMDc4NCAwMDAwMCBuIAp0cmFpbGVyCjw8IC9TaXplIDYgL1Jvb3QgMSAwIFIgPj4Kc3RhcnR4cmVmCjg1NAolJUVPRgo="><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IlByZXZpZXcgb2YgYSBzbWFsbCBwcmludGFibGUgYm94IHRlbXBsYXRlIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0NCIgZmlsbD0iI2U4ZGZkMSIvPjxyZWN0IHg9IjIzIiB5PSI3IiB3aWR0aD0iMTM0IiBoZWlnaHQ9IjEzMCIgZmlsbD0iI2ZmZmRmNiIgc3Ryb2tlPSIjYzliY2FjIi8+PHRleHQgeD0iMzQiIHk9IjI0IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iOCIgZmlsbD0iIzc5Njc1YiI+U01BTEwgREVTSyBCT1g8L3RleHQ+PHBhdGggZD0iTTY1IDM3aDM5djI1aDI0djM2aC0yNHYyNUg2NVY5OEg0MVY2MmgyNFoiIGZpbGw9IiNmMGU2Y2UiIHN0cm9rZT0iIzk2N2U2MCIvPjxwYXRoIGQ9Ik02NSA2MmgzOXYzNkg2NVpNNjUgMzd2ODZNMTA0IDM3djg2IiBmaWxsPSJub25lIiBzdHJva2U9IiNhZTk4NzgiIHN0cm9rZS1kYXNoYXJyYXk9IjMgMyIvPjx0ZXh0IHg9IjExMyIgeT0iMTIwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNiIgZmlsbD0iIzc5Njc1YiI+MTAwJSBzY2FsZTwvdGV4dD48L3N2Zz4K" alt="box-template.pdf preview" width="145" height="116"></a></div>
+                <div class="post-header">
+                <span class="subject">Boxes for the paper hoard</span>                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T19:15:00Z">08/14/26(Fri)19:15:00</time>
+                <a class="post-number" href="#post184760">No.184760</a>
+            </div>
+                        <div class="post-body"><p>Made a little tray for all the scraps that are definitely too useful to throw away.</p><p>Template attached. Print at actual size or your scissors won&#039;t fit. Ask me how I know.</p></div>
+        </article>
+                        <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184767">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T19:23:00Z">08/14/26(Fri)19:23:00</time>
+                <a class="post-number" href="#post184767">No.184767</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184760">&gt;&gt;184760</a></p><p>the scraps have a house now. this is how they win.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184774">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T19:33:00Z">08/14/26(Fri)19:33:00</time>
+                <a class="post-number" href="#post184774">No.184774</a>
+            </div>
+                        <div class="post-body"><p>200 gsm cardstock held up fine for me. score the corners before folding if you want them neat.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184780">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T19:40:00Z">08/14/26(Fri)19:40:00</time>
+                <a class="post-number" href="#post184780">No.184780</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184774">&gt;&gt;184774</a></p><p>old cereal box works too if you don&#039;t mind the nutritional information on the bottom.</p></div>
+        </article>
+        </div>                <hr class="thread-separator">
+    </section>
+        <section class="thread" aria-label="Lucky star jar progress">
+                        <article class="post op clearfix" id="post184610">
+                <div class="file-info">File: <a href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgZ2xhc3MgamFyIGNvbnRhaW5pbmcgY29sb3JmdWwgZm9sZGVkIHBhcGVyIHN0YXJzIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0NCIgZmlsbD0iI2UxZGZkMCIvPjxlbGxpcHNlIGN4PSI5MiIgY3k9IjEyNCIgcng9IjQ2IiByeT0iNiIgZmlsbD0iI2I1YjFhMCIvPjxwYXRoIGQ9Ik01NiAzMmg3MHYxNGw5IDEwdjYzcS00NSAxMi04OCAwVjU2bDktMTBaIiBmaWxsPSIjZjVmNGU4IiBmaWxsLW9wYWNpdHk9Ii42IiBzdHJva2U9IiNhNWIyYTgiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjUzIiB5PSIyNCIgd2lkdGg9Ijc2IiBoZWlnaHQ9IjEwIiBmaWxsPSIjYjRiY2IwIi8+PHBhdGggZD0ibTY4IDc2IDYgMTAgMTIgMS05IDggMyAxMi0xMi02LTEwIDYgMi0xMi04LTggMTItMVoiIGZpbGw9IiNkYWE1NmYiLz48cGF0aCBkPSJtMTA1IDc5IDUgMTAgMTIgMi04IDggMSAxMi0xMC02LTEwIDYgMi0xMi05LTggMTItMloiIGZpbGw9IiM5N2I3YjEiLz48cGF0aCBkPSJtODkgNTUgNSAxMCAxMSAxLTggOCAyIDExLTEwLTUtMTAgNSAyLTExLTgtOCAxMS0xWiIgZmlsbD0iI2M5YTNhMSIvPjxwYXRoIGQ9Im0xMTkgNTggNCA4IDkgMi02IDYgMSA5LTgtNC04IDQgMS05LTYtNiA5LTJaIiBmaWxsPSIjZDRjMzgzIi8+PHBhdGggZD0iTTU1IDU1djYwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iLjciLz48L3N2Zz4K">star-jar.svg</a> <span>(SVG image)</span></div>
+    <div class="attachment"><a href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgZ2xhc3MgamFyIGNvbnRhaW5pbmcgY29sb3JmdWwgZm9sZGVkIHBhcGVyIHN0YXJzIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0NCIgZmlsbD0iI2UxZGZkMCIvPjxlbGxpcHNlIGN4PSI5MiIgY3k9IjEyNCIgcng9IjQ2IiByeT0iNiIgZmlsbD0iI2I1YjFhMCIvPjxwYXRoIGQ9Ik01NiAzMmg3MHYxNGw5IDEwdjYzcS00NSAxMi04OCAwVjU2bDktMTBaIiBmaWxsPSIjZjVmNGU4IiBmaWxsLW9wYWNpdHk9Ii42IiBzdHJva2U9IiNhNWIyYTgiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjUzIiB5PSIyNCIgd2lkdGg9Ijc2IiBoZWlnaHQ9IjEwIiBmaWxsPSIjYjRiY2IwIi8+PHBhdGggZD0ibTY4IDc2IDYgMTAgMTIgMS05IDggMyAxMi0xMi02LTEwIDYgMi0xMi04LTggMTItMVoiIGZpbGw9IiNkYWE1NmYiLz48cGF0aCBkPSJtMTA1IDc5IDUgMTAgMTIgMi04IDggMSAxMi0xMC02LTEwIDYgMi0xMi05LTggMTItMloiIGZpbGw9IiM5N2I3YjEiLz48cGF0aCBkPSJtODkgNTUgNSAxMCAxMSAxLTggOCAyIDExLTEwLTUtMTAgNSAyLTExLTgtOCAxMS0xWiIgZmlsbD0iI2M5YTNhMSIvPjxwYXRoIGQ9Im0xMTkgNTggNCA4IDkgMi02IDYgMSA5LTgtNC04IDQgMS05LTYtNiA5LTJaIiBmaWxsPSIjZDRjMzgzIi8+PHBhdGggZD0iTTU1IDU1djYwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iLjciLz48L3N2Zz4K"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgZ2xhc3MgamFyIGNvbnRhaW5pbmcgY29sb3JmdWwgZm9sZGVkIHBhcGVyIHN0YXJzIj48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0NCIgZmlsbD0iI2UxZGZkMCIvPjxlbGxpcHNlIGN4PSI5MiIgY3k9IjEyNCIgcng9IjQ2IiByeT0iNiIgZmlsbD0iI2I1YjFhMCIvPjxwYXRoIGQ9Ik01NiAzMmg3MHYxNGw5IDEwdjYzcS00NSAxMi04OCAwVjU2bDktMTBaIiBmaWxsPSIjZjVmNGU4IiBmaWxsLW9wYWNpdHk9Ii42IiBzdHJva2U9IiNhNWIyYTgiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjUzIiB5PSIyNCIgd2lkdGg9Ijc2IiBoZWlnaHQ9IjEwIiBmaWxsPSIjYjRiY2IwIi8+PHBhdGggZD0ibTY4IDc2IDYgMTAgMTIgMS05IDggMyAxMi0xMi02LTEwIDYgMi0xMi04LTggMTItMVoiIGZpbGw9IiNkYWE1NmYiLz48cGF0aCBkPSJtMTA1IDc5IDUgMTAgMTIgMi04IDggMSAxMi0xMC02LTEwIDYgMi0xMi05LTggMTItMloiIGZpbGw9IiM5N2I3YjEiLz48cGF0aCBkPSJtODkgNTUgNSAxMCAxMSAxLTggOCAyIDExLTEwLTUtMTAgNSAyLTExLTgtOCAxMS0xWiIgZmlsbD0iI2M5YTNhMSIvPjxwYXRoIGQ9Im0xMTkgNTggNCA4IDkgMi02IDYgMSA5LTgtNC04IDQgMS05LTYtNiA5LTJaIiBmaWxsPSIjZDRjMzgzIi8+PHBhdGggZD0iTTU1IDU1djYwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iLjciLz48L3N2Zz4K" alt="star-jar.svg preview" width="145" height="116"></a></div>
+                <div class="post-header">
+                <span class="subject">Lucky star jar progress</span>                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T17:21:00Z">08/14/26(Fri)17:21:00</time>
+                <a class="post-number" href="#post184610">No.184610</a>
+            </div>
+                        <div class="post-body"><p>87 down, some unreasonable number to go. Half of these are more like lucky pentagons.</p><p>What&#039;s everyone using for strips? I&#039;ve been cutting the margins off old notebooks.</p></div>
+        </article>
+                        <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184694">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T18:16:00Z">08/14/26(Fri)18:16:00</time>
+                <a class="post-number" href="#post184694">No.184694</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184610">&gt;&gt;184610</a></p><p>wrapping paper leftovers. thicker stuff is easier to puff up without crushing it.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184746">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T18:59:00Z">08/14/26(Fri)18:59:00</time>
+                <a class="post-number" href="#post184746">No.184746</a>
+            </div>
+                        <div class="post-body"><p><span class="greentext">&gt;start making stars to relax</span><br><span class="greentext">&gt;spend an hour arguing with a pentagon</span></p><p>still better than checking my email.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184758">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T19:12:00Z">08/14/26(Fri)19:12:00</time>
+                <a class="post-number" href="#post184758">No.184758</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184610">&gt;&gt;184610</a></p><p>don&#039;t pull the first knot too tight. took me a whole jar to learn that.</p></div>
+        </article>
+        </div>                <hr class="thread-separator">
+    </section>
+        <section class="thread" aria-label="Paper models general">
+                        <article class="post op clearfix" id="post184700">
+                <div class="file-info">File: <a href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgZm9sZGVkIG9yYW5nZSBwYXBlciBjcmFuZSBvbiBhIGRlc2siPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0xOCAwSDBWMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q2ZDBiZiIgc3Ryb2tlLXdpZHRoPSIuNiIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxNDQiIGZpbGw9IiNlNmUxZDMiLz48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0NCIgZmlsbD0idXJsKCNncmlkKSIvPjxlbGxpcHNlIGN4PSI5MiIgY3k9IjExMSIgcng9IjYyIiByeT0iMTAiIGZpbGw9IiM4Zjg4N2IiIG9wYWNpdHk9Ii4xNyIvPjxwYXRoIGQ9Ik04MiA4NyAzMiAzMSA0OSA5NCA5MyAxMTBaIiBmaWxsPSIjYjg2MzM3Ii8+PHBhdGggZD0iTTgyIDg3IDE1OCAzOSAxMzIgOTQgOTMgMTEwWiIgZmlsbD0iI2UxYTE2YSIvPjxwYXRoIGQ9Im00OSA5NCA2MC0yNS0xNiA0MVoiIGZpbGw9IiNjYjgwNGEiLz48cGF0aCBkPSJtOTMgMTEwIDI5LTY3IDEyLTEzIDQgNC04IDE1LTcgNTNaIiBmaWxsPSIjZDk5NDVjIi8+PHBhdGggZD0ibTEyMiA0MyAxMi0xMyAxNiA3LTE2LTFaIiBmaWxsPSIjYWU1YzMzIi8+PHBhdGggZD0iTTkzIDExMCA1OCA3OSAyNCA5MSA1OSA4N1oiIGZpbGw9IiNlOGFjNzMiLz48cGF0aCBkPSJtOTMgMTEwIDE2LTQxIiBmaWxsPSJub25lIiBzdHJva2U9IiM5ZjUyMmQiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPgo=">crane-attempt-04.svg</a> <span>(SVG image)</span></div>
+    <div class="attachment"><a href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgZm9sZGVkIG9yYW5nZSBwYXBlciBjcmFuZSBvbiBhIGRlc2siPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0xOCAwSDBWMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q2ZDBiZiIgc3Ryb2tlLXdpZHRoPSIuNiIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxNDQiIGZpbGw9IiNlNmUxZDMiLz48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0NCIgZmlsbD0idXJsKCNncmlkKSIvPjxlbGxpcHNlIGN4PSI5MiIgY3k9IjExMSIgcng9IjYyIiByeT0iMTAiIGZpbGw9IiM4Zjg4N2IiIG9wYWNpdHk9Ii4xNyIvPjxwYXRoIGQ9Ik04MiA4NyAzMiAzMSA0OSA5NCA5MyAxMTBaIiBmaWxsPSIjYjg2MzM3Ii8+PHBhdGggZD0iTTgyIDg3IDE1OCAzOSAxMzIgOTQgOTMgMTEwWiIgZmlsbD0iI2UxYTE2YSIvPjxwYXRoIGQ9Im00OSA5NCA2MC0yNS0xNiA0MVoiIGZpbGw9IiNjYjgwNGEiLz48cGF0aCBkPSJtOTMgMTEwIDI5LTY3IDEyLTEzIDQgNC04IDE1LTcgNTNaIiBmaWxsPSIjZDk5NDVjIi8+PHBhdGggZD0ibTEyMiA0MyAxMi0xMyAxNiA3LTE2LTFaIiBmaWxsPSIjYWU1YzMzIi8+PHBhdGggZD0iTTkzIDExMCA1OCA3OSAyNCA5MSA1OSA4N1oiIGZpbGw9IiNlOGFjNzMiLz48cGF0aCBkPSJtOTMgMTEwIDE2LTQxIiBmaWxsPSJub25lIiBzdHJva2U9IiM5ZjUyMmQiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPgo="><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgZm9sZGVkIG9yYW5nZSBwYXBlciBjcmFuZSBvbiBhIGRlc2siPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0xOCAwSDBWMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Q2ZDBiZiIgc3Ryb2tlLXdpZHRoPSIuNiIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxNDQiIGZpbGw9IiNlNmUxZDMiLz48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0NCIgZmlsbD0idXJsKCNncmlkKSIvPjxlbGxpcHNlIGN4PSI5MiIgY3k9IjExMSIgcng9IjYyIiByeT0iMTAiIGZpbGw9IiM4Zjg4N2IiIG9wYWNpdHk9Ii4xNyIvPjxwYXRoIGQ9Ik04MiA4NyAzMiAzMSA0OSA5NCA5MyAxMTBaIiBmaWxsPSIjYjg2MzM3Ii8+PHBhdGggZD0iTTgyIDg3IDE1OCAzOSAxMzIgOTQgOTMgMTEwWiIgZmlsbD0iI2UxYTE2YSIvPjxwYXRoIGQ9Im00OSA5NCA2MC0yNS0xNiA0MVoiIGZpbGw9IiNjYjgwNGEiLz48cGF0aCBkPSJtOTMgMTEwIDI5LTY3IDEyLTEzIDQgNC04IDE1LTcgNTNaIiBmaWxsPSIjZDk5NDVjIi8+PHBhdGggZD0ibTEyMiA0MyAxMi0xMyAxNiA3LTE2LTFaIiBmaWxsPSIjYWU1YzMzIi8+PHBhdGggZD0iTTkzIDExMCA1OCA3OSAyNCA5MSA1OSA4N1oiIGZpbGw9IiNlOGFjNzMiLz48cGF0aCBkPSJtOTMgMTEwIDE2LTQxIiBmaWxsPSJub25lIiBzdHJva2U9IiM5ZjUyMmQiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPgo=" alt="crane-attempt-04.svg preview" width="145" height="116"></a></div>
+                <div class="post-header">
+                <span class="subject">Paper models general</span>                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T18:20:00Z">08/14/26(Fri)18:20:00</time>
+                <a class="post-number" href="#post184700">No.184700</a>
+            </div>
+                        <div class="post-body"><p>New thread, new pile of scrap paper.</p><p>Post what you&#039;re working on. Templates, progress pictures, and failed folds welcome.</p><p><span class="greentext">&gt;finally made one that stands up</span><br><span class="greentext">&gt;cat immediately sits on it</span></p></div>
+        </article>
+                        <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184711">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T18:25:00Z">08/14/26(Fri)18:25:00</time>
+                <a class="post-number" href="#post184711">No.184711</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184700">&gt;&gt;184700</a></p><p>printer paper gang checking in. fancy paper won&#039;t fix my inability to fold a straight line.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184716">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T18:29:00Z">08/14/26(Fri)18:29:00</time>
+                <a class="post-number" href="#post184716">No.184716</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184711">&gt;&gt;184711</a></p><p>the secret is using a ruler and then pretending you didn&#039;t.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184720">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T18:35:00Z">08/14/26(Fri)18:35:00</time>
+                <a class="post-number" href="#post184720">No.184720</a>
+            </div>
+                        <div class="post-body"><p>anyone have the little lighthouse guide without the coffee stain over step 12?</p><p>mine currently looks like a very disappointed traffic cone.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply file-reply clearfix" id="post184726">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T18:42:11Z">08/14/26(Fri)18:42:11</time>
+                <a class="post-number" href="#post184726">No.184726</a>
+            </div>
+                <div class="file-info">File: <a href="#post184726" title="Attachment stored on the server">folding-guide.pdf</a> <span>(PDF attachment)</span></div>
+    <div class="attachment"><a href="#post184726" title="Attachment stored on the server"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5NyAxMDkiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0iRG9jdW1lbnQgcHJldmlldyB1bmF2YWlsYWJsZSI+PHJlY3Qgd2lkdGg9Ijk3IiBoZWlnaHQ9IjEwOSIgZmlsbD0iI2U2ZGJkMiIvPjxwYXRoIGQ9Ik0yNyAxNGgzMGwxNSAxNXY1N0gyN1oiIGZpbGw9IiNmYWY1ZWQiIHN0cm9rZT0iI2I2YTk5ZCIvPjxwYXRoIGQ9Ik01NyAxNHYxNWgxNSIgZmlsbD0iI2Q4Y2ZjMyIgc3Ryb2tlPSIjYjZhOTlkIi8+PHBhdGggZD0iTTM3IDQ1aDI1TTM3IDUyaDI1TTM3IDU5aDE4IiBzdHJva2U9IiNjNmI4YWMiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQ5IiB5PSI3OSIgZm9udC1mYW1pbHk9IkFyaWFsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjExIiBmaWxsPSIjOTY3MzY2Ij5QREY8L3RleHQ+PHRleHQgeD0iNDguNSIgeT0iMTAxIiBmb250LWZhbWlseT0iQXJpYWwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iNyIgZmlsbD0iIzg5NzQ2OCI+cHJldmlldyB1bmF2YWlsYWJsZTwvdGV4dD48L3N2Zz4K" alt="Document preview unavailable" width="145" height="116"></a></div>
+                <div class="post-body"><p><a href="#post184720">&gt;&gt;184720</a></p><p>clean scan of the folding guide. page 3 finally makes sense.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184733">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T18:46:00Z">08/14/26(Fri)18:46:00</time>
+                <a class="post-number" href="#post184733">No.184733</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184726">&gt;&gt;184726</a> that's odd, preview is blank for me. anyone else?</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184738">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T18:50:00Z">08/14/26(Fri)18:50:00</time>
+                <a class="post-number" href="#post184738">No.184738</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184700">&gt;&gt;184700</a></p><p>that crane has better posture than i do. mine looks like it&#039;s searching for a contact lens.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184754">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T19:08:00Z">08/14/26(Fri)19:08:00</time>
+                <a class="post-number" href="#post184754">No.184754</a>
+            </div>
+                        <div class="post-body"><p>finished the bus model from last thread. only had to remove the roof twice. calling that a personal best.</p></div>
+        </article>
+        </div>                <hr class="thread-separator">
+    </section>
+        <section class="thread" aria-label="One sheet, one house">
+                        <article class="post op clearfix" id="post184650">
+                <div class="file-info">File: <a href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgbGl0dGxlIHBhcGVyIGhvdXNlIG9uIGEgY3V0dGluZyBtYXQiPjxkZWZzPjxwYXR0ZXJuIGlkPSJtYXQiIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTE1IDBIMFYxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTJhNjk4IiBzdHJva2Utd2lkdGg9Ii41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0NCIgZmlsbD0iI2IyYmZiMCIvPjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTQ0IiBmaWxsPSJ1cmwoI21hdCkiLz48ZWxsaXBzZSBjeD0iOTEiIGN5PSIxMTMiIHJ4PSI1NSIgcnk9IjEwIiBmaWxsPSIjNDI1ZDQzIiBvcGFjaXR5PSIuMTUiLz48cGF0aCBkPSJtNDggNjkgNDkgMTR2MzhsLTQ5LTE3WiIgZmlsbD0iI2YyZGZiNiIvPjxwYXRoIGQ9Im05NyA4MyAzNy0yMHYzN2wtMzcgMjFaIiBmaWxsPSIjZGRjNjk0Ii8+PHBhdGggZD0ibTQyIDY5IDI0LTMyIDc0IDIzLTQzIDI1WiIgZmlsbD0iI2E3NjE0NSIvPjxwYXRoIGQ9Im02NiAzNyAzNyAxMSAzNyAxMi00MyAyNVoiIGZpbGw9IiNiNTcyNTIiLz48cGF0aCBkPSJtNjMgOTYgMTQgNXYxNGwtMTQtNVoiIGZpbGw9IiNhMTg4NjMiLz48cGF0aCBkPSJtMTA4IDg1IDEyLTd2MTJsLTEyIDdaIiBmaWxsPSIjODQ5YzliIi8+PHBhdGggZD0ibTU0IDc3IDE0IDR2MTBsLTE0LTRaIiBmaWxsPSIjODQ5YzliIi8+PC9zdmc+Cg==">tiny-house.svg</a> <span>(SVG image)</span></div>
+    <div class="attachment"><a href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgbGl0dGxlIHBhcGVyIGhvdXNlIG9uIGEgY3V0dGluZyBtYXQiPjxkZWZzPjxwYXR0ZXJuIGlkPSJtYXQiIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTE1IDBIMFYxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTJhNjk4IiBzdHJva2Utd2lkdGg9Ii41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0NCIgZmlsbD0iI2IyYmZiMCIvPjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTQ0IiBmaWxsPSJ1cmwoI21hdCkiLz48ZWxsaXBzZSBjeD0iOTEiIGN5PSIxMTMiIHJ4PSI1NSIgcnk9IjEwIiBmaWxsPSIjNDI1ZDQzIiBvcGFjaXR5PSIuMTUiLz48cGF0aCBkPSJtNDggNjkgNDkgMTR2MzhsLTQ5LTE3WiIgZmlsbD0iI2YyZGZiNiIvPjxwYXRoIGQ9Im05NyA4MyAzNy0yMHYzN2wtMzcgMjFaIiBmaWxsPSIjZGRjNjk0Ii8+PHBhdGggZD0ibTQyIDY5IDI0LTMyIDc0IDIzLTQzIDI1WiIgZmlsbD0iI2E3NjE0NSIvPjxwYXRoIGQ9Im02NiAzNyAzNyAxMSAzNyAxMi00MyAyNVoiIGZpbGw9IiNiNTcyNTIiLz48cGF0aCBkPSJtNjMgOTYgMTQgNXYxNGwtMTQtNVoiIGZpbGw9IiNhMTg4NjMiLz48cGF0aCBkPSJtMTA4IDg1IDEyLTd2MTJsLTEyIDdaIiBmaWxsPSIjODQ5YzliIi8+PHBhdGggZD0ibTU0IDc3IDE0IDR2MTBsLTE0LTRaIiBmaWxsPSIjODQ5YzliIi8+PC9zdmc+Cg=="><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgbGl0dGxlIHBhcGVyIGhvdXNlIG9uIGEgY3V0dGluZyBtYXQiPjxkZWZzPjxwYXR0ZXJuIGlkPSJtYXQiIHdpZHRoPSIxNSIgaGVpZ2h0PSIxNSIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTE1IDBIMFYxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTJhNjk4IiBzdHJva2Utd2lkdGg9Ii41Ii8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0NCIgZmlsbD0iI2IyYmZiMCIvPjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTQ0IiBmaWxsPSJ1cmwoI21hdCkiLz48ZWxsaXBzZSBjeD0iOTEiIGN5PSIxMTMiIHJ4PSI1NSIgcnk9IjEwIiBmaWxsPSIjNDI1ZDQzIiBvcGFjaXR5PSIuMTUiLz48cGF0aCBkPSJtNDggNjkgNDkgMTR2MzhsLTQ5LTE3WiIgZmlsbD0iI2YyZGZiNiIvPjxwYXRoIGQ9Im05NyA4MyAzNy0yMHYzN2wtMzcgMjFaIiBmaWxsPSIjZGRjNjk0Ii8+PHBhdGggZD0ibTQyIDY5IDI0LTMyIDc0IDIzLTQzIDI1WiIgZmlsbD0iI2E3NjE0NSIvPjxwYXRoIGQ9Im02NiAzNyAzNyAxMSAzNyAxMi00MyAyNVoiIGZpbGw9IiNiNTcyNTIiLz48cGF0aCBkPSJtNjMgOTYgMTQgNXYxNGwtMTQtNVoiIGZpbGw9IiNhMTg4NjMiLz48cGF0aCBkPSJtMTA4IDg1IDEyLTd2MTJsLTEyIDdaIiBmaWxsPSIjODQ5YzliIi8+PHBhdGggZD0ibTU0IDc3IDE0IDR2MTBsLTE0LTRaIiBmaWxsPSIjODQ5YzliIi8+PC9zdmc+Cg==" alt="tiny-house.svg preview" width="145" height="116"></a></div>
+                <div class="post-header">
+                <span class="subject">One sheet, one house</span>                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T17:52:00Z">08/14/26(Fri)17:52:00</time>
+                <a class="post-number" href="#post184650">No.184650</a>
+            </div>
+                        <div class="post-body"><p>Made a tiny house for the desk. The roof is a little crooked but so is my real one.</p><p>Anyone tried making a whole street of these?</p></div>
+        </article>
+                        <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184669">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T18:05:00Z">08/14/26(Fri)18:05:00</time>
+                <a class="post-number" href="#post184669">No.184669</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184650">&gt;&gt;184650</a></p><p>this is the only housing market i can afford.</p></div>
+        </article>
+        </div>                <hr class="thread-separator">
+    </section>
+        <section class="thread" aria-label="Six units and absolutely no patience">
+                        <article class="post op clearfix" id="post184550">
+                <div class="file-info">File: <a href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgdGhyZWUtY29sb3IgbW9kdWxhciBwYXBlciBjdWJlIG9uIGEgdGFibGV0b3AiPjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTQ0IiBmaWxsPSIjZTRkY2QwIi8+PGVsbGlwc2UgY3g9IjkxIiBjeT0iMTIwIiByeD0iNDkiIHJ5PSI4IiBmaWxsPSIjYzhiZGFlIi8+PHBhdGggZD0ibTQ1IDQ4IDQ0LTI1IDQ2IDI1LTQ1IDI3WiIgZmlsbD0iI2JhY2FhZCIvPjxwYXRoIGQ9Im00NSA0OCA0NSAyN3Y0OGwtNDUtMjdaIiBmaWxsPSIjZDhiMTdkIi8+PHBhdGggZD0ibTkwIDc1IDQ1LTI3djQ4bC00NSAyN1oiIGZpbGw9IiM5Y2I4YzIiLz48cGF0aCBkPSJtNDUgNDggNDUgMTMgNDUtMTNNODkgMjNsMSA1Mk00NSA0OGwyMSA0MSAyNCAzNE05MCA3NWwyMyAxMiAyMi0zOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2Y4NzcxIiBzdHJva2Utd2lkdGg9IjEiLz48cGF0aCBkPSJtNjYgODkgMjQtMTRNMTEzIDg3bC0yMyAzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODQ5OTk0IiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4K">cube-v3.svg</a> <span>(SVG image)</span></div>
+    <div class="attachment"><a href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgdGhyZWUtY29sb3IgbW9kdWxhciBwYXBlciBjdWJlIG9uIGEgdGFibGV0b3AiPjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTQ0IiBmaWxsPSIjZTRkY2QwIi8+PGVsbGlwc2UgY3g9IjkxIiBjeT0iMTIwIiByeD0iNDkiIHJ5PSI4IiBmaWxsPSIjYzhiZGFlIi8+PHBhdGggZD0ibTQ1IDQ4IDQ0LTI1IDQ2IDI1LTQ1IDI3WiIgZmlsbD0iI2JhY2FhZCIvPjxwYXRoIGQ9Im00NSA0OCA0NSAyN3Y0OGwtNDUtMjdaIiBmaWxsPSIjZDhiMTdkIi8+PHBhdGggZD0ibTkwIDc1IDQ1LTI3djQ4bC00NSAyN1oiIGZpbGw9IiM5Y2I4YzIiLz48cGF0aCBkPSJtNDUgNDggNDUgMTMgNDUtMTNNODkgMjNsMSA1Mk00NSA0OGwyMSA0MSAyNCAzNE05MCA3NWwyMyAxMiAyMi0zOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2Y4NzcxIiBzdHJva2Utd2lkdGg9IjEiLz48cGF0aCBkPSJtNjYgODkgMjQtMTRNMTEzIDg3bC0yMyAzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODQ5OTk0IiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4K"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTQ0IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IkEgdGhyZWUtY29sb3IgbW9kdWxhciBwYXBlciBjdWJlIG9uIGEgdGFibGV0b3AiPjxyZWN0IHdpZHRoPSIxODAiIGhlaWdodD0iMTQ0IiBmaWxsPSIjZTRkY2QwIi8+PGVsbGlwc2UgY3g9IjkxIiBjeT0iMTIwIiByeD0iNDkiIHJ5PSI4IiBmaWxsPSIjYzhiZGFlIi8+PHBhdGggZD0ibTQ1IDQ4IDQ0LTI1IDQ2IDI1LTQ1IDI3WiIgZmlsbD0iI2JhY2FhZCIvPjxwYXRoIGQ9Im00NSA0OCA0NSAyN3Y0OGwtNDUtMjdaIiBmaWxsPSIjZDhiMTdkIi8+PHBhdGggZD0ibTkwIDc1IDQ1LTI3djQ4bC00NSAyN1oiIGZpbGw9IiM5Y2I4YzIiLz48cGF0aCBkPSJtNDUgNDggNDUgMTMgNDUtMTNNODkgMjNsMSA1Mk00NSA0OGwyMSA0MSAyNCAzNE05MCA3NWwyMyAxMiAyMi0zOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjN2Y4NzcxIiBzdHJva2Utd2lkdGg9IjEiLz48cGF0aCBkPSJtNjYgODkgMjQtMTRNMTEzIDg3bC0yMyAzNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODQ5OTk0IiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4K" alt="cube-v3.svg preview" width="145" height="116"></a></div>
+                <div class="post-header">
+                <span class="subject">Six units and absolutely no patience</span>                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T16:40:00Z">08/14/26(Fri)16:40:00</time>
+                <a class="post-number" href="#post184550">No.184550</a>
+            </div>
+                        <div class="post-body"><p>Third attempt at a Sonobe cube. It holds together until I look directly at it.</p><p>Is there a trick to the last piece or do I just need smaller hands?</p></div>
+        </article>
+                        <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184573">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T16:56:00Z">08/14/26(Fri)16:56:00</time>
+                <a class="post-number" href="#post184573">No.184573</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184550">&gt;&gt;184550</a></p><p>leave the first five a little loose. tighten everything up after the last tab is tucked in.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184597">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T17:09:00Z">08/14/26(Fri)17:09:00</time>
+                <a class="post-number" href="#post184597">No.184597</a>
+            </div>
+                        <div class="post-body"><p>made 30 units for a bigger one and somehow ended up with 29. the floor has claimed its tax.</p></div>
+        </article>
+        </div>                <div class="reply-row"><span class="reply-arrow" aria-hidden="true">&gt;&gt;</span>        <article class="post reply" id="post184638">
+                        <div class="post-header">
+                                <span class="name">Anonymous</span>
+                <time class="post-time" datetime="2026-08-14T17:43:00Z">08/14/26(Fri)17:43:00</time>
+                <a class="post-number" href="#post184638">No.184638</a>
+            </div>
+                        <div class="post-body"><p><a href="#post184573">&gt;&gt;184573</a></p><p>that worked. cube achieved. now to spend the rest of the evening turning it over in my hands.</p></div>
+        </article>
+        </div>                <hr class="thread-separator">
+    </section>
+    
+    <footer class="footer">
+        <div class="pagination">[<b>0</b>] &nbsp; 5 threads · 22 posts
+            &nbsp; [<a href="#post184760">Return to top</a>]        </div>
+        <p>SunChan · Papercraft &amp; Origami</p>
+    </footer>
+</main>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"65463113060e4c3e986a92db6120ee3d","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -11197,11 +11197,35 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="7">
+   <td rowspan="9">
     <a href="ctfs/SunshineCTF">
      SunshineCTF
     </a>
    </td>
+   <td>
+    <a href="ctfs/SunshineCTF/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3399/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
+   <td>
+    <a href="ctfs/SunshineCTF/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3399/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/SunshineCTF/2025">
      2025
