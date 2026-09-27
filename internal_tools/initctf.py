@@ -15,6 +15,7 @@ import argparse
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
   parser.add_argument("--url", type=str)
+  parser.add_argument("--dry", action='store_true')
   parser.add_argument('--browser', action='store_true')
   args = parser.parse_args()
 
@@ -62,6 +63,7 @@ if __name__ == '__main__':
 
   ctf_name = re.sub(r'[^0-9a-zA-Z_@+\.+]+', '', ctf_name.replace('Preliminary', '').replace('Qualifiers', '').replace('Qualifier', '').strip().replace('å', 'a').replace('$', 'S').replace('/', ''))
   ctf_name = ctf_name.strip('.')
+  ctf_name = re.sub(r'\d+$', '', ctf_name).strip()
   assert ctf_name != ''
 
   ctf_year = datetime.date.today().year
@@ -74,10 +76,6 @@ if __name__ == '__main__':
   elif 'finals' in title:
     full_path += '/Finals'
     full_title += ' Finals'
-
-  if os.path.isdir(f'ctfs/{full_path}'):
-    print(full_path)
-    sys.exit(0)
 
   soup = BeautifulSoup(open('README.md').read(), 'html.parser')
   found = False
@@ -128,4 +126,4 @@ if __name__ == '__main__':
   open(f'ctfs/{ctf_name}/README.md', 'w').write(f'[CTFtime Page](https://ctftime.org/ctf/{ctf_id})\n')
   open(f'ctfs/{full_path}/README.md', 'w').write(f'[CTFtime Page](https://ctftime.org/event/{event_id})\n')
 
-  print(full_path)
+  print(full_path, file=sys.stderr if args.dry else sys.stdout)
