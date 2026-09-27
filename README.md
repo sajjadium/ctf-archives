@@ -5548,12 +5548,12 @@
   </tr>
   <tr>
    <td rowspan="2">
-    <a href="ctfs/H7CTFInternational">
-     H7CTFInternational
+    <a href="ctfs/H7CTF">
+     H7CTF
     </a>
    </td>
    <td>
-    <a href="ctfs/H7CTFInternational/2025">
+    <a href="ctfs/H7CTF/2025">
      2025
     </a>
    </td>
@@ -5565,7 +5565,7 @@
   </tr>
   <tr>
    <td>
-    <a href="ctfs/H7CTFInternational/2024">
+    <a href="ctfs/H7CTF/2024">
      2024
     </a>
    </td>
