@@ -1,0 +1,1 @@
+At 03:17, the Icarus Enclave went silent. The system was found partially wiped, leaving behind a single image and a sealed recovery package. Whatever happened inside the enclave was never recorded. The last message recovered from the system contained only: > "If you found this, the recovery chain has already begun." Find out what Icarus left behind. Author : HexAsh

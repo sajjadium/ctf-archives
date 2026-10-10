@@ -7216,6 +7216,23 @@
    </td>
   </tr>
   <tr>
+   <td rowspan="1">
+    <a href="ctfs/KBxAc">
+     KBxAc
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/KBxAc/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3456/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td rowspan="4">
     <a href="ctfs/KalmarCTF">
      KalmarCTF

@@ -1,0 +1,1 @@
+Someone left this recording lying around, and honestly… who let the dog out? It sounds like nothing more than a ridiculous dog laughing. But there seems to be something else hiding in the recording. Can you figure out what the dog is trying to say? Author: adithG17

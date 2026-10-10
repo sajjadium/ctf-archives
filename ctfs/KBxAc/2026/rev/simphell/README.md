@@ -1,0 +1,1 @@
+Yet another simple challenge

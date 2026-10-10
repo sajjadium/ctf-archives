@@ -1,0 +1,1 @@
+A custom Diffie-Hellman implementation is being used to protect a secret message. The public parameters look large enough to discourage direct attacks, but the group structure contains an important weakness. Can you analyze the group, recover the private exponent, derive the shared secret, and decrypt the protected message? Author: HexAsh

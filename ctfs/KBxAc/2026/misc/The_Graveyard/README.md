@@ -1,0 +1,1 @@
+Twenty fragments were recovered from an old archive, but only some of them belong to the actual investigation. The fragments appear unrelated, and several contain misleading information. Somewhere among them is the path to reconstructing what was hidden in the archive. Author: HydraRoot

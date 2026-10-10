@@ -1,0 +1,1 @@
+Something doesn't quite add up. You have been given a collection of artifacts recovered from a small production environment. Logs, network captures, service data, and filesystem remnants are all that remain. There may be more to these files than meets the eye. Piece together the evidence, follow the traces, and answer the questions to uncover what happened. Author: adithG17

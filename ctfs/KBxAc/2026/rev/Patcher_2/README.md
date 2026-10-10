@@ -1,0 +1,1 @@
+I think i'm expert now. Instructions -``` Filename -No. of bytes allowed to change -Allowed range (inclusive) patchme1 -up to 2 byte(s) -0x4003d0 to 0x4005c3 patchme2 -up to 4 byte(s) -0x401000 to 0x4b6771 patchme3 -up to 3 byte(s) -0x4003d0 to 0x43e04a patchme4 -up to 3 byte(s) -0x4003d0 to 0x43e04a ``` NOTE :-A team can only attempt this challenge 5 times Author: ayushch
