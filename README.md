@@ -3368,6 +3368,23 @@
    </td>
   </tr>
   <tr>
+   <td rowspan="1">
+    <a href="ctfs/Cryovault">
+     Cryovault
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/Cryovault/2026/Quals">
+     2026 Quals
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3441/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td rowspan="5">
     <a href="ctfs/Crypto">
      Crypto

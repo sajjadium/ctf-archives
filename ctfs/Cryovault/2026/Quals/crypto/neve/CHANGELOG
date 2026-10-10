@@ -1,0 +1,32 @@
+NEVE sounding head - firmware revisions
+
+NV-4.2.1   2026-08-14
+  * Sessions: OPEN hands out a session token and every request names one. Each session
+    has its own table, round counter, output and budget.
+  * A checkpoint needs 4096 of budget left.
+  * The head port also accepts a WebSocket upgrade: one JSON request per message. JSON
+    lines are unchanged.
+
+NV-4.1.0   2026-05-02
+  * Request pacing per head.
+  * Idle connections close after 5 minutes.
+
+NV-4.0.0   2026-03-19
+  * Field firmware for the SHARD-24 units.
+  * No bench model for 4.x. neve_bench.py stays at NV-3.4.2.
+
+NV-3.4.2   2025-11-07
+  * HELLO reports the last output bit.
+  * SOUND takes up to 4096 symbols per request.
+
+NV-3.4.0   2025-09-22
+  * Budget per head. A wrong CHECKPOINT costs 4096.
+  * Recovery bundle sealed with HKDF-SHA256 and AES-256-GCM.
+
+NV-3.3.0   2025-07-15
+  * Rows chained: a row opens when the row before it is confirmed.
+  * Confirmed rows stay open for sounding.
+
+NV-3.2.0   2025-06-02
+  * Keystream draws keyed per head; 32-bit thresholds.
+  * Grades fixed at eight steps, 0.18 to 0.82.
