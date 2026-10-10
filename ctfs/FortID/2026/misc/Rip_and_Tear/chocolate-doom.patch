@@ -1,0 +1,94 @@
+diff --git a/src/doom/m_random.c b/src/doom/m_random.c
+index b4f59b3..a7fb16e 100644
+--- a/src/doom/m_random.c
++++ b/src/doom/m_random.c
+@@ -21,7 +21,11 @@
+ // Returns a 0-255 number
+ //
+
+-static const unsigned char rndtable[256] = {
++#include <assert.h>
++#include <stddef.h>
++#include <string.h>
++
++static unsigned char rndtable[256] = {
+     0,   8, 109, 220, 222, 241, 149, 107,  75, 248, 254, 140,  16,  66 ,
+     74,  21, 211,  47,  80, 242, 154,  27, 205, 128, 161,  89,  77,  36 ,
+     95, 110,  85,  48, 212, 140, 211, 249,  22,  79, 200,  50,  28, 188 ,
+@@ -43,24 +47,62 @@ static const unsigned char rndtable[256] = {
+     120, 163, 236, 249
+ };
+
++static const char* FLAG = "FortID{<REDACTED>}";
++static int isRndtableInitialized = 0;
++
++static void InitRndtable (void)
++{
++    size_t flagLength;
++    int i;
++
++    if (isRndtableInitialized)
++    {
++        return;
++    }
++
++    flagLength = strlen(FLAG);
++    assert(flagLength == 32);
++
++    for (i = 0; i < 256; ++i)
++    {
++        unsigned char flagByte;
++        unsigned char flagBit;
++        int byteIndex;
++        int bitIndex;
++
++        byteIndex = i / 8;
++        bitIndex = 7 - (i % 8);
++
++        flagByte = (unsigned char) FLAG[byteIndex];
++        flagBit = (flagByte >> bitIndex) & 1;
++
++        rndtable[i] ^= flagBit;
++    }
++
++    isRndtableInitialized = 1;
++}
++
+ int	rndindex = 0;
+ int	prndindex = 0;
+
+ // Which one is deterministic?
+ int P_Random (void)
+ {
++    InitRndtable();
+     prndindex = (prndindex+1)&0xff;
+     return rndtable[prndindex];
+ }
+
+ int M_Random (void)
+ {
++    InitRndtable();
+     rndindex = (rndindex+1)&0xff;
+     return rndtable[rndindex];
+ }
+
+ void M_ClearRandom (void)
+ {
++    InitRndtable();
+     rndindex = prndindex = 0;
+ }
+
+diff --git a/src/doom/m_random.h b/src/doom/m_random.h
+index 902691f..c81a9d0 100644
+--- a/src/doom/m_random.h
++++ b/src/doom/m_random.h
+@@ -20,6 +20,9 @@
+ #ifndef __M_RANDOM__
+ #define __M_RANDOM__
+
++#include <assert.h>
++#include <stddef.h>
++#include <string.h>
+
+ #include "doomtype.h"
+

@@ -1,0 +1,3 @@
+by ipaljak
+intro
+I've been texting a lot recently, but can't seem to strike a conversation with this person. They keep asking about some kind of flag...

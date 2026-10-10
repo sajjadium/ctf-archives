@@ -1,0 +1,3 @@
+by tljubej
+Reverse Engineering
+Surely you can't recover anything based on a one-byte checksum...
