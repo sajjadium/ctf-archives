@@ -1,0 +1,102 @@
+{
+  "gateway": "SASTRUGI thaw gateway",
+  "proto": 1,
+  "roles": [
+    "thaw-officer",
+    "seal-warden",
+    "rime-custodian",
+    "duty-engineer"
+  ],
+  "badges": [
+    {
+      "badge": "op-01",
+      "role": "thaw-officer",
+      "post": "north lock",
+      "Q": "041ab736d2f9111baf1548c91f9a3c4eefade841c2153239aa3d7247676dbc6fae5d37591e432d60bcbe01b1b81968a7b7c463b1734eb8a24ce0d12b2a67195306"
+    },
+    {
+      "badge": "op-02",
+      "role": "seal-warden",
+      "post": "seal hall",
+      "Q": "04ef8557ad46c8c49d866a0393b51615b3b8f2c1f13d8033526cc7c00efa20a04470906e939982760040b3f3532e44b602e97dcf5a486e01f06cc94d45b9b3519d"
+    },
+    {
+      "badge": "op-03",
+      "role": "seal-warden",
+      "post": "seal hall",
+      "Q": "040b8e30abf2a1a8881376a559e1e88e9e1665d9af09d645a3e1baf79229837ba947618772b466e302276a879231c5eb26eb462adb81b857aa53b380650930e93c"
+    },
+    {
+      "badge": "op-04",
+      "role": "rime-custodian",
+      "post": "rime gallery",
+      "Q": "0462d52cfa386371840b6a26dadb7c00436bba3f50caaeea85e65b8c3d7dc8852e4bae460a7de4b52de5c3c369acd300106361940827498e0274c59ffb7a89f40b"
+    },
+    {
+      "badge": "op-05",
+      "role": "thaw-officer",
+      "post": "south lock",
+      "Q": "04c1b3b296f514f61012cb37a1fa2bcda523d0cd4dfa1e39bdecbcd3e063ada9fe05b5c5fbd550e89907e8e950d9f77413387ae76f3590550ec5068d4d91189a3d"
+    },
+    {
+      "badge": "op-06",
+      "role": "rime-custodian",
+      "post": "rime gallery",
+      "Q": "0472c507e1049d8ab9f2345c43a2b91b62c61dea6bdcb89e59ffc7181c72e6620ba796de8634f2393c3928badf6da4ae31762067e2726637925d69ddae1b71a314"
+    },
+    {
+      "badge": "op-07",
+      "role": "duty-engineer",
+      "post": "plant room",
+      "Q": "04d6b1e30a317e4d6cd8b5485f4f625b5f4f8cd286070f534738aeddcfe1d55ce82beda4ae853ce44c756979573cb522fcd3b5324557d2a4bc20fa41b21c8e7ce1"
+    },
+    {
+      "badge": "op-08",
+      "role": "duty-engineer",
+      "post": "plant room",
+      "Q": "041b044515d4a68b906b9ea0873fdfa4abea7d78a3336e557113a030cbba726aee152e520b06e90aae04562fd3c74c528df1896f222cc5e7c644d9f1c3224073d6"
+    },
+    {
+      "badge": "op-09",
+      "role": "thaw-officer",
+      "post": "control",
+      "Q": "046b4695d53ff12431e498ee22d2ede1e493f9a14d391a59d76166ec29fab7a1b509776e92d216a8a53ed8ad90b3520330ff9dbdbfa5242e81f42f9bf8eb8efa99"
+    }
+  ],
+  "thaw_manifest": {
+    "body": {
+      "manifest": "THAW-ALL",
+      "store": "CRYOVAULT/C-2",
+      "cells": [
+        "A1",
+        "A2",
+        "A3",
+        "A4",
+        "A5",
+        "A6",
+        "B1",
+        "B2",
+        "B3",
+        "B4",
+        "B5",
+        "B6",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ],
+      "ramp_c_per_hour": 4,
+      "authority": "dual-control",
+      "rev": 7
+    },
+    "sha256": "508193c190f42265c4d9d0586b59d3710dcc1372e342efc6f5e1510cbe0cf27d"
+  }
+}
