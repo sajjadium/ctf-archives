@@ -1,0 +1,26 @@
+{
+  "version": "1.29.0",
+  "results": [
+    {
+      "check_id": "python.flask.security.injection.raw-html-concat.raw-html-format",
+      "path": "app.py",
+      "start": { "line": 12, "col": 16 },
+      "end": { "line": 29, "col": 8 },
+      "extra": {
+        "message": "Detected user input flowing into a manually constructed HTML string. You may be accidentally bypassing secure methods of rendering HTML. This is highly susceptible to Server-Side Template Injection (SSTI) and Cross-Site Scripting (XSS).",
+        "metadata": {
+          "cwe": [
+            "CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+            "CWE-94: Improper Control of Generation of Code ('Code Injection')"
+          ],
+          "category": "security",
+          "technology": ["flask"],
+          "severity": "WARNING"
+        },
+        "lines": "    template = f'''\n    <!DOCTYPE html>\n    <html>\n        <head><title>Академия DevSecOps</title></head>\n        <body style=\"font-family: sans-serif; padding: 2rem;\">\n            <h1>🛡️ Курсы по безопасной разработке</h1>\n            <div style=\"background: #f4f4f4; padding: 1rem; border-radius: 5px;\">\n                <p>Вы искали курс: <strong>{course_query}</strong></p>\n            </div>\n            <h3>Доступные модули:</h3>\n            <ul>\n                <li>Внедрение SAST/DAST в GitLab CI</li>\n                <li>Безопасность Docker-образов</li>\n                <li>Управление секретами (HashiCorp Vault)</li>\n            </ul>\n        </body>\n    </html>\n    '''",
+        "is_ignored": false
+      }
+    }
+  ],
+  "errors": []
+}
