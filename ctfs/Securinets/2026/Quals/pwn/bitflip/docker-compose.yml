@@ -1,0 +1,17 @@
+services:
+  bitflip:
+    build: .
+    ports:
+      - "1001:10001"
+    restart: always
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1000M
+          pids: 256

@@ -10634,11 +10634,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="7">
+   <td rowspan="8">
     <a href="ctfs/Securinets">
      Securinets
     </a>
    </td>
+   <td>
+    <a href="ctfs/Securinets/2026/Quals">
+     2026 Quals
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3364/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/Securinets/2025/Quals">
      2025 Quals

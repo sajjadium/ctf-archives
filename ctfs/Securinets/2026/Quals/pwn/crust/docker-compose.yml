@@ -1,0 +1,7 @@
+services:
+  crust:
+    build: .
+    ports:
+      - "1002:5000"
+    restart: always
+    privileged: true
