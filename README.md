@@ -3898,11 +3898,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="3">
+   <td rowspan="4">
     <a href="ctfs/DEADFACE">
      DEADFACE
     </a>
    </td>
+   <td>
+    <a href="ctfs/DEADFACE/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3279/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/DEADFACE/2025">
      2025
