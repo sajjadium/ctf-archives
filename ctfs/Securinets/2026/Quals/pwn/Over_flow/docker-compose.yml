@@ -1,0 +1,7 @@
+services:
+  overflow:
+    build: .
+    ports:
+      - "1000:5000"
+    restart: always
+    privileged: true
