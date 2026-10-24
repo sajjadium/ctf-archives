@@ -14554,9 +14554,14 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="1">
+   <td rowspan="2">
     <a href="ctfs/cruXipher">
      cruXipher
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/cruXipher/2026">
+     2026
     </a>
    </td>
    <td>
