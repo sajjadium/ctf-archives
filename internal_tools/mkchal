@@ -20,7 +20,13 @@ def is_valid(line):
   except:
     pass
 
+  if line.strip().lower() == 'challenge details':
+    return False
+
   if line.strip().lower().startswith('connection: ncat'):
+    return False
+
+  if line.strip().lower().startswith('created on :'):
     return False
 
   if line.strip().lower().startswith('remote:'):

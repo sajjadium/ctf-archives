@@ -1,0 +1,111 @@
+{
+  "zone": "meridianlabs.ctf",
+  "leaked_via": "misconfigured AXFR, 2024-01-31",
+  "records": [
+    {
+      "name": "cdn-edge.meridianlabs.ctf",
+      "type": "CNAME",
+      "value": "waf.meridianlabs.ctf"
+    },
+    {
+      "name": "ns1.meridianlabs.ctf",
+      "type": "TXT",
+      "value": "MS=ms-fake-verification-code"
+    },
+    {
+      "name": "auth.meridianlabs.ctf",
+      "type": "A",
+      "value": "10.80.144.117"
+    },
+    {
+      "name": "vpn.meridianlabs.ctf",
+      "type": "CNAME",
+      "value": "edge.meridianlabs.ctf"
+    },
+    {
+      "name": "jenkins.meridianlabs.ctf",
+      "type": "CNAME",
+      "value": "waf.meridianlabs.ctf"
+    },
+    {
+      "name": "grafana.meridianlabs.ctf",
+      "type": "CNAME",
+      "value": "lb-01.meridianlabs.ctf"
+    },
+    {
+      "name": "internal.meridianlabs.ctf",
+      "type": "CNAME",
+      "value": "edge.meridianlabs.ctf"
+    },
+    {
+      "name": "stage.meridianlabs.ctf",
+      "type": "TXT",
+      "serial_ref": 2024010209,
+      "value": "frag=INJEKU2UPN5DA3RT"
+    },
+    {
+      "name": "git.meridianlabs.ctf",
+      "type": "TXT",
+      "serial_ref": 2024012279,
+      "value": "frag=OAYHGM3EL52DAX3C"
+    },
+    {
+      "name": "mail.meridianlabs.ctf",
+      "type": "TXT",
+      "serial_ref": 2024012711,
+      "value": "frag=GNPXA5LCNQYWG7I="
+    },
+    {
+      "name": "legacy-api.meridianlabs.ctf",
+      "type": "TXT",
+      "value": "v=spf1 include:_spf.example.net ~all"
+    },
+    {
+      "name": "api-v2.meridianlabs.ctf",
+      "type": "TXT",
+      "value": "MS=ms-fake-verification-code"
+    },
+    {
+      "name": "portal.meridianlabs.ctf",
+      "type": "TXT",
+      "serial_ref": 2024010268,
+      "value": "frag=L52HENDOONTDG4TT"
+    },
+    {
+      "name": "status.meridianlabs.ctf",
+      "type": "CNAME",
+      "value": "edge.meridianlabs.ctf"
+    },
+    {
+      "name": "dev.meridianlabs.ctf",
+      "type": "CNAME",
+      "value": "waf.meridianlabs.ctf"
+    },
+    {
+      "name": "mx1.meridianlabs.ctf",
+      "type": "TXT",
+      "value": "v=spf1 include:_spf.example.net ~all"
+    },
+    {
+      "name": "ns2.meridianlabs.ctf",
+      "type": "A",
+      "value": "10.205.63.156"
+    },
+    {
+      "name": "backup.meridianlabs.ctf",
+      "type": "TXT",
+      "value": "MS=ms-fake-verification-code"
+    },
+    {
+      "name": "mx2.meridianlabs.ctf",
+      "type": "TXT",
+      "serial_ref": 2024011069,
+      "value": "frag=L5QXEM3OG5PXG5LQ"
+    },
+    {
+      "name": "edge-07.meridianlabs.ctf",
+      "type": "TXT",
+      "value": "MS=ms-fake-verification-code"
+    }
+  ]
+}

@@ -2727,6 +2727,23 @@
   </tr>
   <tr>
    <td rowspan="1">
+    <a href="ctfs/CREST">
+     CREST
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/CREST/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3477/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="1">
     <a href="ctfs/CRHC">
      CRHC
     </a>

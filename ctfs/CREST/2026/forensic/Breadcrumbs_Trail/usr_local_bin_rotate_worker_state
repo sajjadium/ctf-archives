@@ -1,0 +1,44 @@
+utility_schema=rotate-worker-v2
+rotate_stat_00=count:1
+rotate_stat_01=count:30
+rotate_stat_02=count:59
+rotate_stat_03=count:88
+rotate_stat_04=count:117
+rotate_stat_05=count:146
+rotate_stat_06=count:175
+rotate_stat_07=count:204
+rotate_stat_08=count:233 annotation=CREST{ServiceRecovered08X}
+rotate_stat_09=count:262
+rotate_stat_10=count:291
+rotate_stat_11=count:320
+rotate_stat_12=count:349
+rotate_stat_13=count:378
+rotate_stat_14=count:407
+rotate_stat_15=count:436
+rotate_stat_16=count:465
+rotate_stat_17=count:494
+requested_by=deploy
+effective_uid=0
+runner=/var/tmp/.stage/.ws
+state_path=/var/tmp/.stage/.state
+encoding=base64
+recover_mode=compat
+exit_status=0
+cleanup_slot_00=done:5
+cleanup_slot_01=done:16
+cleanup_slot_02=done:27
+cleanup_slot_03=done:38
+cleanup_slot_04=done:49 annotation=CREST{DeployRollback21Y}
+cleanup_slot_05=done:60
+cleanup_slot_06=done:71
+cleanup_slot_07=done:82
+cleanup_slot_08=done:5
+cleanup_slot_09=done:16
+cleanup_slot_10=done:27
+cleanup_slot_11=done:38
+cleanup_slot_12=done:49
+cleanup_slot_13=done:60
+cleanup_slot_14=done:71 annotation=CREST{JournalReplay34Z}
+cleanup_slot_15=done:82
+cleanup_slot_16=done:5
+cleanup_slot_17=done:16

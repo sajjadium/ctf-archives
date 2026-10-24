@@ -1,0 +1,1108 @@
+{
+  "incident": "IR-2203",
+  "events": [
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T12:22:46Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "m.silva",
+      "LogonType": 3,
+      "SourceHost": "WK-DESIGN-04",
+      "LogonGuid": "51498f7bb05163814492c4d612478485"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T14:38:29Z",
+      "Host": "WK-ENG-11",
+      "Account": "a.novak",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "chrome.exe",
+      "CommandLine": "chrome.exe /benign"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T09:35:53Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "r.chen"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T08:44:54Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "a.novak",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "teams.exe",
+      "CommandLine": "teams.exe /benign"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T17:40:46Z",
+      "Host": "SRV-FILE-03",
+      "Account": "svc_backup",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "chrome.exe",
+      "CommandLine": "chrome.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T18:25:05Z",
+      "Host": "SRV-DB-02",
+      "Account": "a.novak",
+      "LogonType": 10,
+      "SourceHost": "WK-ENG-11",
+      "LogonGuid": "db09f87b4bd90f59bb29123d6267dc45"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T10:39:04Z",
+      "Host": "WK-ENG-12",
+      "Account": "m.silva",
+      "LogonType": 3,
+      "SourceHost": "SRV-DB-02",
+      "LogonGuid": "5240c60b787007e22295566faea7143b"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T16:01:00Z",
+      "Host": "WK-ENG-12",
+      "Account": "r.chen"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T18:53:06Z",
+      "Host": "WK-FIN-02",
+      "Account": "m.silva",
+      "LogonType": 2,
+      "SourceHost": "WK-FIN-02",
+      "LogonGuid": "7868d892addbd79c14c643ab21164558"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T16:43:25Z",
+      "Host": "WK-HR-07",
+      "Account": "r.chen",
+      "ParentImage": "cmd.exe",
+      "NewProcessName": "svchost.exe",
+      "CommandLine": "svchost.exe /benign",
+      "Payload": "b2f3217994b6e62ec85eaa5169cdb736fdf34c2bec41e1a1967bde98d402908eaadc014234765639bf7b7217138e0ace"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T14:24:26Z",
+      "Host": "SRV-DB-02",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T10:46:15Z",
+      "Host": "WK-ENG-12",
+      "Account": "m.silva",
+      "ParentImage": "services.exe",
+      "NewProcessName": "svchost.exe",
+      "CommandLine": "svchost.exe /benign",
+      "Payload": "9a59621508bc34794c32cce894dc7a14e7e7e78ad6c38fe2e81984681b0556806d38a248e4cd62fe2444fd29b52ca1b2"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T10:40:09Z",
+      "Host": "WK-HR-07",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T10:23:19Z",
+      "Host": "WK-ENG-11",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T13:16:32Z",
+      "Host": "WK-ENG-12",
+      "Account": "t.ibrahim",
+      "LogonType": 10,
+      "SourceHost": "WK-FIN-02",
+      "LogonGuid": "aa55f4c34fc1be67a247613219b44055"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T11:57:49Z",
+      "Host": "SRV-DB-02",
+      "Account": "a.novak",
+      "LogonType": 3,
+      "SourceHost": "WK-HR-07",
+      "LogonGuid": "500d5febd08e70d2c695e8ac8607da76"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T14:19:05Z",
+      "Host": "WK-SALES-05",
+      "Account": "svc_backup"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T11:16:10Z",
+      "Host": "SRV-DB-02",
+      "Account": "a.novak",
+      "ParentImage": "svchost.exe",
+      "NewProcessName": "teams.exe",
+      "CommandLine": "teams.exe /benign"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T16:36:54Z",
+      "Host": "SRV-DB-02",
+      "Account": "m.silva",
+      "ParentImage": "services.exe",
+      "NewProcessName": "winword.exe",
+      "CommandLine": "winword.exe /benign"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T12:02:12Z",
+      "Host": "WK-FIN-02",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T17:57:09Z",
+      "Host": "WK-ENG-12",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T15:56:16Z",
+      "Host": "WK-ENG-12",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T13:44:23Z",
+      "Host": "SRV-DB-02",
+      "Account": "j.okafor",
+      "ParentImage": "svchost.exe",
+      "NewProcessName": "teams.exe",
+      "CommandLine": "teams.exe /benign"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T17:37:48Z",
+      "Host": "WK-SALES-05",
+      "Account": "r.chen"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T08:29:57Z",
+      "Host": "SRV-APP-01",
+      "Account": "j.okafor",
+      "ParentImage": "services.exe",
+      "NewProcessName": "rundll32.exe",
+      "CommandLine": "rundll32.exe stage.dll,Run",
+      "Payload": "68221b36f790f8122b4a0a62fd0dd729865348e11da0ab4bfcfa9c1595767b3040750618be1753c0359fffabc5b2edd9c77143404b7ff00c90165172f13514589d407a44f5046041456efd31cb96b4dbb9f1cf"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T14:22:41Z",
+      "Host": "WK-SALES-05",
+      "Account": "svc_backup"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T17:11:14Z",
+      "Host": "WK-SALES-05",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T12:19:04Z",
+      "Host": "SRV-DB-02",
+      "Account": "t.ibrahim",
+      "ParentImage": "cmd.exe",
+      "NewProcessName": "chrome.exe",
+      "CommandLine": "chrome.exe /benign",
+      "Payload": "379253c45b7b052a9c7aaf2f766881833e398d5d712d9a5d86b14325244ad14c4338622f8fdbeecfd86d33941185b0ec"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T13:47:08Z",
+      "Host": "SRV-FILE-03",
+      "Account": "svc_backup",
+      "LogonType": 3,
+      "SourceHost": "SRV-DB-02",
+      "LogonGuid": "1892f226096d639257de3c9f03bfd129"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T12:30:15Z",
+      "Host": "SRV-DB-02",
+      "Account": "m.silva",
+      "LogonType": 2,
+      "SourceHost": "SRV-APP-01",
+      "LogonGuid": "37a21f4f06d4699fa2f206ed7527017b"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T09:37:39Z",
+      "Host": "SRV-FILE-03",
+      "Account": "j.okafor"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T10:05:30Z",
+      "Host": "SRV-APP-01",
+      "Account": "j.okafor",
+      "LogonType": 3,
+      "SourceHost": "WK-DESIGN-04",
+      "LogonGuid": "b069710328b2a31186fde7674b318f82"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T11:22:06Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "t.ibrahim",
+      "LogonType": 10,
+      "SourceHost": "WK-HR-07",
+      "LogonGuid": "cefdbb41902a9fa167886c711fe352f0"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T13:49:11Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "r.chen"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T11:19:20Z",
+      "Host": "WK-ENG-11",
+      "Account": "a.novak",
+      "ParentImage": "services.exe",
+      "NewProcessName": "chrome.exe",
+      "CommandLine": "chrome.exe /benign"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T15:17:01Z",
+      "Host": "SRV-DB-02",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T08:58:03Z",
+      "Host": "SRV-APP-01",
+      "Account": "j.okafor",
+      "ParentImage": "svchost.exe",
+      "NewProcessName": "notepad.exe",
+      "CommandLine": "notepad.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T15:51:30Z",
+      "Host": "WK-ENG-12",
+      "Account": "t.ibrahim",
+      "LogonType": 3,
+      "SourceHost": "SRV-APP-01",
+      "LogonGuid": "1ec8697cdbe5bb1619582d6c5e216d93"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T15:28:53Z",
+      "Host": "SRV-DB-02",
+      "Account": "svc_backup",
+      "LogonType": 3,
+      "SourceHost": "SRV-APP-01",
+      "LogonGuid": "17393c3c290ae79d3fae7f0383a99957"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T14:58:00Z",
+      "Host": "SRV-APP-01",
+      "Account": "r.chen",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "notepad.exe",
+      "CommandLine": "notepad.exe /benign"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T11:12:49Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "j.okafor"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T14:22:31Z",
+      "Host": "SRV-APP-01",
+      "Account": "r.chen",
+      "LogonType": 10,
+      "SourceHost": "SRV-FILE-03",
+      "LogonGuid": "1fb12f3899bcf3d10c921c69130957c2"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T11:44:06Z",
+      "Host": "SRV-DB-02",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T11:23:17Z",
+      "Host": "WK-HR-07",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T11:52:42Z",
+      "Host": "WK-ENG-11",
+      "Account": "t.ibrahim",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "winword.exe",
+      "CommandLine": "winword.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T08:58:02Z",
+      "Host": "SRV-FILE-03",
+      "Account": "m.silva",
+      "LogonType": 3,
+      "SourceHost": "SRV-FILE-03",
+      "LogonGuid": "eb6f8b334196613342d90077cf027533"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T11:00:22Z",
+      "Host": "WK-ENG-11",
+      "Account": "svc_backup"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T09:15:14Z",
+      "Host": "WK-ENG-11",
+      "Account": "t.ibrahim",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "teams.exe",
+      "CommandLine": "teams.exe /benign",
+      "Payload": "6c60d01ef1f483c553e4ef6ba07ec1269792985f20563e6ba38c2f7466974007177745b12bdc1eda8e23bc5b06323389"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T16:31:32Z",
+      "Host": "WK-ENG-11",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T15:37:29Z",
+      "Host": "SRV-DB-02",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T16:14:33Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "r.chen"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T16:58:48Z",
+      "Host": "WK-ENG-11",
+      "Account": "r.chen",
+      "ParentImage": "cmd.exe",
+      "NewProcessName": "winword.exe",
+      "CommandLine": "winword.exe /benign",
+      "Payload": "6872f305a5c0cc4ecf54c60207dc4ac27b37849845f80ec61ffe129711e9686b67525bd1f369017f92f341ac2678bb3c"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T18:10:59Z",
+      "Host": "SRV-DB-02",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T18:45:09Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "a.novak",
+      "LogonType": 3,
+      "SourceHost": "WK-ENG-11",
+      "LogonGuid": "a5a4f3b029a00aa06b6d5d94b08af9e3"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T17:44:51Z",
+      "Host": "WK-HR-07",
+      "Account": "r.chen",
+      "LogonType": 2,
+      "SourceHost": "SRV-DB-02",
+      "LogonGuid": "ce500437e3ce823cf17789d769ae12c4"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T18:15:26Z",
+      "Host": "WK-ENG-12",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T15:59:44Z",
+      "Host": "WK-ENG-12",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T18:46:57Z",
+      "Host": "WK-ENG-12",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T17:05:35Z",
+      "Host": "WK-ENG-12",
+      "Account": "m.silva",
+      "LogonType": 3,
+      "SourceHost": "WK-SALES-05",
+      "LogonGuid": "005cdc7474a7ea74aee10c4b69a0c3fc"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T17:53:39Z",
+      "Host": "WK-HR-07",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T16:14:07Z",
+      "Host": "WK-ENG-12",
+      "Account": "svc_backup",
+      "LogonType": 2,
+      "SourceHost": "WK-HR-07",
+      "LogonGuid": "242246301770d563492c0ee8137e23ff"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T08:15:28Z",
+      "Host": "SRV-DB-02",
+      "Account": "r.chen",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "svchost.exe",
+      "CommandLine": "svchost.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T11:40:22Z",
+      "Host": "WK-FIN-02",
+      "Account": "t.ibrahim",
+      "LogonType": 3,
+      "SourceHost": "WK-FIN-02",
+      "LogonGuid": "a25fcd0c8918d077ae6a27d583c8cf04"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T14:13:21Z",
+      "Host": "WK-SALES-05",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T14:54:05Z",
+      "Host": "WK-ENG-12",
+      "Account": "r.chen",
+      "ParentImage": "svchost.exe",
+      "NewProcessName": "winword.exe",
+      "CommandLine": "winword.exe /benign"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T08:18:12Z",
+      "Host": "WK-ENG-12",
+      "Account": "j.okafor",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "notepad.exe",
+      "CommandLine": "notepad.exe /benign",
+      "Payload": "34fc66290472e971047e21e558c98a2da35451be30b5813c5e0310d9fca3d701261cda0f2e44c4693eba1521cb480585"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T08:59:06Z",
+      "Host": "WK-ENG-11",
+      "Account": "j.okafor",
+      "ParentImage": "cmd.exe",
+      "NewProcessName": "notepad.exe",
+      "CommandLine": "notepad.exe /benign"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T10:24:04Z",
+      "Host": "WK-ENG-11",
+      "Account": "m.silva",
+      "ParentImage": "svchost.exe",
+      "NewProcessName": "teams.exe",
+      "CommandLine": "teams.exe /benign"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T14:13:00Z",
+      "Host": "WK-SALES-05",
+      "Account": "j.okafor",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "svchost.exe",
+      "CommandLine": "svchost.exe /benign"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T11:20:51Z",
+      "Host": "SRV-DB-02",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T09:59:17Z",
+      "Host": "WK-FIN-02",
+      "Account": "r.chen",
+      "ParentImage": "svchost.exe",
+      "NewProcessName": "chrome.exe",
+      "CommandLine": "chrome.exe /benign",
+      "Payload": "581f890118eb7c24b76f54763dd783ddc80733ee41f004ace82422c3a15dd6fdbc2b1837dc41612b1d83021e150a0942"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T17:57:21Z",
+      "Host": "WK-FIN-02",
+      "Account": "a.novak",
+      "LogonType": 3,
+      "SourceHost": "WK-ENG-12",
+      "LogonGuid": "ab01d491c77e6bfdbef5e9a92b35e016"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T15:33:49Z",
+      "Host": "WK-ENG-12",
+      "Account": "m.silva",
+      "LogonType": 3,
+      "SourceHost": "WK-ENG-11",
+      "LogonGuid": "6a51830b67e0f9d321903d96b801c328"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T18:23:53Z",
+      "Host": "SRV-APP-01",
+      "Account": "r.chen",
+      "LogonType": 2,
+      "SourceHost": "WK-DESIGN-04",
+      "LogonGuid": "a34de6777052870e35ca7902dbeb9427"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T15:38:29Z",
+      "Host": "SRV-DB-02",
+      "Account": "svc_backup"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T12:39:22Z",
+      "Host": "SRV-FILE-03",
+      "Account": "r.chen"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T13:17:46Z",
+      "Host": "SRV-FILE-03",
+      "Account": "a.novak",
+      "LogonType": 10,
+      "SourceHost": "WK-SALES-05",
+      "LogonGuid": "004c5a844b4fc32d27ff237c35f8a535"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T16:25:20Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T17:39:13Z",
+      "Host": "SRV-APP-01",
+      "Account": "j.okafor",
+      "LogonType": 10,
+      "SourceHost": "WK-HR-07",
+      "LogonGuid": "4982eb3a74a53ed6cbe4fdf93e932f84"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T08:05:33Z",
+      "Host": "SRV-DB-02",
+      "Account": "a.novak",
+      "ParentImage": "services.exe",
+      "NewProcessName": "winword.exe",
+      "CommandLine": "winword.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T16:27:36Z",
+      "Host": "WK-ENG-11",
+      "Account": "svc_backup",
+      "LogonType": 3,
+      "SourceHost": "SRV-APP-01",
+      "LogonGuid": "f6e3eda10fe9a511c5d48df11858e610"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T12:43:11Z",
+      "Host": "WK-HR-07",
+      "Account": "r.chen",
+      "LogonType": 3,
+      "SourceHost": "WK-SALES-05",
+      "LogonGuid": "81b9d7b137331d5646ec4099515519f1"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T13:55:04Z",
+      "Host": "WK-HR-07",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T16:29:03Z",
+      "Host": "SRV-FILE-03",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T17:16:41Z",
+      "Host": "SRV-FILE-03",
+      "Account": "j.okafor"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T12:24:22Z",
+      "Host": "WK-ENG-11",
+      "Account": "j.okafor",
+      "LogonType": 3,
+      "SourceHost": "WK-ENG-12",
+      "LogonGuid": "08946e4798af896e98057a1087923435"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T08:03:06Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "j.okafor"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T16:45:00Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "j.okafor",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "teams.exe",
+      "CommandLine": "teams.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T13:16:02Z",
+      "Host": "SRV-APP-01",
+      "Account": "j.okafor",
+      "LogonType": 2,
+      "SourceHost": "WK-DESIGN-04",
+      "LogonGuid": "10c3136518eb9b9905a8c57a8c4c6da2"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T16:29:49Z",
+      "Host": "WK-SALES-05",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T10:30:38Z",
+      "Host": "WK-ENG-11",
+      "Account": "a.novak",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "teams.exe",
+      "CommandLine": "teams.exe /benign"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T12:23:40Z",
+      "Host": "SRV-FILE-03",
+      "Account": "svc_backup"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T16:05:57Z",
+      "Host": "WK-SALES-05",
+      "Account": "j.okafor",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "svchost.exe",
+      "CommandLine": "svchost.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T11:20:50Z",
+      "Host": "WK-FIN-02",
+      "Account": "svc_backup",
+      "LogonType": 10,
+      "SourceHost": "SRV-DB-02",
+      "LogonGuid": "fdb61858ff2f7521c7ced1855cfc3f52"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T16:25:25Z",
+      "Host": "WK-ENG-12",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T09:46:19Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T17:59:13Z",
+      "Host": "SRV-FILE-03",
+      "Account": "t.ibrahim",
+      "ParentImage": "cmd.exe",
+      "NewProcessName": "teams.exe",
+      "CommandLine": "teams.exe /benign"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T13:43:42Z",
+      "Host": "SRV-APP-01",
+      "Account": "j.okafor"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T10:52:04Z",
+      "Host": "WK-HR-07",
+      "Account": "t.ibrahim",
+      "ParentImage": "svchost.exe",
+      "NewProcessName": "winword.exe",
+      "CommandLine": "winword.exe /benign"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T16:59:21Z",
+      "Host": "WK-HR-07",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T17:02:09Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "svc_backup"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T18:08:04Z",
+      "Host": "WK-SALES-05",
+      "Account": "j.okafor"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T14:48:00Z",
+      "Host": "SRV-DB-02",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T14:25:22Z",
+      "Host": "SRV-FILE-03",
+      "Account": "t.ibrahim",
+      "LogonType": 2,
+      "SourceHost": "SRV-APP-01",
+      "LogonGuid": "b7989e0796949c78e6c2520ad4a24c9a"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T15:12:53Z",
+      "Host": "WK-SALES-05",
+      "Account": "j.okafor",
+      "LogonType": 3,
+      "SourceHost": "SRV-FILE-03",
+      "LogonGuid": "75f59282bbfd8824b917d0c11553c335"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T11:51:33Z",
+      "Host": "WK-SALES-05",
+      "Account": "t.ibrahim",
+      "ParentImage": "services.exe",
+      "NewProcessName": "svchost.exe",
+      "CommandLine": "svchost.exe /benign"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T12:09:31Z",
+      "Host": "WK-ENG-12",
+      "Account": "t.ibrahim",
+      "ParentImage": "cmd.exe",
+      "NewProcessName": "notepad.exe",
+      "CommandLine": "notepad.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T15:33:08Z",
+      "Host": "SRV-APP-01",
+      "Account": "svc_backup",
+      "LogonType": 10,
+      "SourceHost": "SRV-APP-01",
+      "LogonGuid": "3d357de7b735f0f67afec63cbed3fae3"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T17:03:13Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "svc_backup"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T15:16:10Z",
+      "Host": "SRV-APP-01",
+      "Account": "t.ibrahim"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T16:06:43Z",
+      "Host": "WK-HR-07",
+      "Account": "r.chen"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T15:28:47Z",
+      "Host": "SRV-APP-01",
+      "Account": "j.okafor",
+      "LogonType": 3,
+      "SourceHost": "WK-FIN-02",
+      "LogonGuid": "4225db4b160a446a52fa4c3b891e42f4"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T14:13:26Z",
+      "Host": "SRV-APP-01",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T15:21:19Z",
+      "Host": "WK-ENG-11",
+      "Account": "j.okafor",
+      "ParentImage": "services.exe",
+      "NewProcessName": "chrome.exe",
+      "CommandLine": "chrome.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T18:03:02Z",
+      "Host": "SRV-DB-02",
+      "Account": "a.novak",
+      "LogonType": 10,
+      "SourceHost": "SRV-FILE-03",
+      "LogonGuid": "f4fdab0f1a9fbc102622e454028007b7"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T09:50:32Z",
+      "Host": "SRV-APP-01",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T18:28:22Z",
+      "Host": "WK-ENG-12",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T09:17:37Z",
+      "Host": "WK-FIN-02",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T08:54:42Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "j.okafor"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T15:14:27Z",
+      "Host": "SRV-APP-01",
+      "Account": "j.okafor"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T11:47:44Z",
+      "Host": "WK-SALES-05",
+      "Account": "svc_backup",
+      "LogonType": 10,
+      "SourceHost": "WK-ENG-12",
+      "LogonGuid": "371160342b1b436cfec4cd44658cf9c5"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T17:42:33Z",
+      "Host": "SRV-APP-01",
+      "Account": "j.okafor"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T17:40:20Z",
+      "Host": "WK-FIN-02",
+      "Account": "a.novak",
+      "LogonType": 3,
+      "SourceHost": "WK-FIN-02",
+      "LogonGuid": "b33623d97152eb70172386e040695712"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T18:26:37Z",
+      "Host": "WK-ENG-12",
+      "Account": "svc_backup",
+      "LogonType": 3,
+      "SourceHost": "WK-ENG-12",
+      "LogonGuid": "cb74cc0e9208300a7823d6e0aa0c0878"
+    },
+    {
+      "EventID": 4634,
+      "time": "2026-03-14T12:40:13Z",
+      "Host": "WK-HR-07",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T14:49:00Z",
+      "Host": "SRV-FILE-03",
+      "Account": "m.silva",
+      "LogonType": 3,
+      "SourceHost": "WK-SALES-05",
+      "LogonGuid": "ed3096afc5179469d4ab8c15b505f3c2"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T15:04:30Z",
+      "Host": "SRV-APP-01",
+      "Account": "m.silva",
+      "ParentImage": "services.exe",
+      "NewProcessName": "svchost.exe",
+      "CommandLine": "svchost.exe /benign"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T16:34:59Z",
+      "Host": "SRV-FILE-03",
+      "Account": "a.novak"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T17:07:57Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "m.silva"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T13:26:03Z",
+      "Host": "WK-ENG-11",
+      "Account": "m.silva",
+      "LogonType": 10,
+      "SourceHost": "WK-DESIGN-04",
+      "LogonGuid": "5f19e5932792da203ac0ae6eddb73cbb"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T09:17:13Z",
+      "Host": "SRV-FILE-03",
+      "Account": "svc_backup",
+      "LogonType": 3,
+      "SourceHost": "WK-DESIGN-04",
+      "LogonGuid": "b12e0f03892a7a56db2cddfaf29ae88f"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T18:02:16Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "svc_backup",
+      "LogonType": 3,
+      "SourceHost": "WK-DESIGN-04",
+      "LogonGuid": "3851ba9bcad4df77c5236831ae40f897"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T12:36:54Z",
+      "Host": "WK-ENG-11",
+      "Account": "r.chen",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "notepad.exe",
+      "CommandLine": "notepad.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T10:24:31Z",
+      "Host": "WK-ENG-11",
+      "Account": "j.okafor",
+      "LogonType": 2,
+      "SourceHost": "SRV-DB-02",
+      "LogonGuid": "27775b4441aa51d212c75e5874dcd927"
+    },
+    {
+      "EventID": 4672,
+      "time": "2026-03-14T13:02:56Z",
+      "Host": "SRV-APP-01",
+      "Account": "j.okafor"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T13:18:52Z",
+      "Host": "SRV-FILE-03",
+      "Account": "m.silva",
+      "ParentImage": "services.exe",
+      "NewProcessName": "teams.exe",
+      "CommandLine": "teams.exe /benign"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T09:21:53Z",
+      "Host": "WK-FIN-02",
+      "Account": "a.novak",
+      "LogonType": 10,
+      "SourceHost": "WK-ENG-12",
+      "LogonGuid": "479944a96c504790270cd42e34f11894"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T15:18:36Z",
+      "Host": "SRV-DB-02",
+      "Account": "t.ibrahim",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "winword.exe",
+      "CommandLine": "winword.exe /benign"
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T10:04:39Z",
+      "Host": "WK-DESIGN-04",
+      "Account": "j.okafor",
+      "ParentImage": "outlook.exe",
+      "NewProcessName": "powershell.exe",
+      "CommandLine": "powershell.exe -enc eyJzZWVkIjoiNGY5NGM4NDc4NDkwM2U1ZDk1YzU0NTE3NDQ5ZDllMTgiLCJub3RlIjoicGl2b3QgdmlhIHRoZSBUeXBlLTMgbG9nb24gc291cmNlZCBmcm9tIFdLLURFU0lHTi0wNDsgZHJvcCBsYW5kcyBvbiB0aGUgcGl2b3QgaG9zdCIsImF1ZGl0IjoiQ1JFU1R7cDRyM250X2NoMWxkX2wwMGtzX3N1c19idXRfbjBfZmw0Z19hN30ifQ=="
+    },
+    {
+      "EventID": 4688,
+      "time": "2026-03-14T17:14:48Z",
+      "Host": "WK-ENG-12",
+      "Account": "svc_backup",
+      "ParentImage": "explorer.exe",
+      "NewProcessName": "chrome.exe",
+      "CommandLine": "chrome.exe /benign",
+      "Payload": "de986dd69575f452ba753071443e5ba46d1873a0a8f185ed500ad75b5d4bf541134d042e9eb89409436bb5c251098494"
+    },
+    {
+      "EventID": 4624,
+      "time": "2026-03-14T08:23:46Z",
+      "Host": "WK-ENG-11",
+      "Account": "a.novak",
+      "LogonType": 10,
+      "SourceHost": "WK-HR-07",
+      "LogonGuid": "c450d04c3636b37d2944613e876c365a"
+    }
+  ],
+  "analyst_note": "Triage canary: CREST{3v3nt_l0gs_l13_s0m3t1m3s_bb20}",
+  "sealed_evidence": "41503346010100000055c4dc4a2c41885f0e7b3ac0b9526ed25b2fbbe106fb2c3adbd5a491cd991adf8a8574244a0c806833b9a902df8e9ee1f2b09e83b75e5fc63ef21f23c741a6ec57eff0f2745c5f25012c433f51c846a1f8eac1ec54f2de964e58642d88d3bce65dbdf635bff3"
+}

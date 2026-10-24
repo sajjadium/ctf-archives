@@ -1,0 +1,252 @@
+{
+  "host": "SRV-APP-01",
+  "captured": "2026-03-14T12:40:00Z",
+  "triage_note": "Canary: CREST{a_str1ngs_dump_1s_n0t_3v1d3nc3_90de}",
+  "processes": [
+    {
+      "pid": 1000,
+      "name": "svchost.exe",
+      "regions": [
+        {
+          "base": "0x7ff5d1130000",
+          "size": 8192,
+          "protect": "R"
+        },
+        {
+          "base": "0x7ff7a7477000",
+          "size": 32768,
+          "protect": "RW"
+        },
+        {
+          "base": "0x7ff0315d7000",
+          "size": 32768,
+          "protect": "RX"
+        }
+      ]
+    },
+    {
+      "pid": 1004,
+      "name": "chrome.exe",
+      "regions": [
+        {
+          "base": "0x7ff5015e3000",
+          "size": 32768,
+          "protect": "RW"
+        },
+        {
+          "base": "0x7ff99d2a5000",
+          "size": 4096,
+          "protect": "RX"
+        },
+        {
+          "base": "0x7ff32fd5f000",
+          "size": 4096,
+          "protect": "R"
+        },
+        {
+          "base": "0x7ff8fb301000",
+          "size": 4096,
+          "protect": "RW",
+          "data": "b3184963adfe953d921af3bd67ca9092fb3c5df928f65fbe4e775e5dc7ad156dccb9821ef9f8296e"
+        },
+        {
+          "base": "0x7ff1dd832000",
+          "size": 4096,
+          "protect": "R"
+        }
+      ]
+    },
+    {
+      "pid": 1008,
+      "name": "notepad.exe",
+      "regions": [
+        {
+          "base": "0x7ffa42f70000",
+          "size": 32768,
+          "protect": "RW"
+        },
+        {
+          "base": "0x7ffbbdd86000",
+          "size": 8192,
+          "protect": "R"
+        },
+        {
+          "base": "0x7ffdee43f000",
+          "size": 16384,
+          "protect": "RWX",
+          "data": "45434830006178da0dca4b0e40301000d0bbccda62987e525b7101ec27f483442cb40d89f4eebcf57b217aefa00524159420a5a595d8586bccecd019a50951939450c19cdd9efeda0dfd38bdd7fd701d39e6c84b4e7c62e2b4118743ac2ceac516281fdf941cac267f8416"
+        },
+        {
+          "base": "0x7ffcfeb88000",
+          "size": 32768,
+          "protect": "R"
+        }
+      ]
+    },
+    {
+      "pid": 1012,
+      "name": "teams.exe",
+      "regions": [
+        {
+          "base": "0x7ff9b6e68000",
+          "size": 4096,
+          "protect": "RX"
+        },
+        {
+          "base": "0x7ff0c9e62000",
+          "size": 4096,
+          "protect": "RW"
+        },
+        {
+          "base": "0x7ff3b7110000",
+          "size": 4096,
+          "protect": "RW"
+        },
+        {
+          "base": "0x7ffdb6895000",
+          "size": 4096,
+          "protect": "R"
+        }
+      ]
+    },
+    {
+      "pid": 1016,
+      "name": "spoolsv.exe",
+      "regions": [
+        {
+          "base": "0x7fff99c79000",
+          "size": 4096,
+          "protect": "RW",
+          "data": "9179aaba06ca289adde876b965981a256ec261d6a56cde193012bbd1450ef2b15b142890a5eefc2c"
+        },
+        {
+          "base": "0x7ff2a420e000",
+          "size": 8192,
+          "protect": "RW",
+          "data": "6ddce2ade21696a938da8800335d4f1602b8a17eef184f5fc06094e52f6d67c0c98c1328ec107694"
+        },
+        {
+          "base": "0x7ff1d8a79000",
+          "size": 32768,
+          "protect": "RW"
+        }
+      ]
+    },
+    {
+      "pid": 1020,
+      "name": "lsass.exe",
+      "regions": [
+        {
+          "base": "0x7ffc82599000",
+          "size": 32768,
+          "protect": "RX"
+        },
+        {
+          "base": "0x7ff288cf3000",
+          "size": 32768,
+          "protect": "RW"
+        },
+        {
+          "base": "0x7ffb6f14e000",
+          "size": 32768,
+          "protect": "RX"
+        },
+        {
+          "base": "0x7ff7f416e000",
+          "size": 32768,
+          "protect": "RW"
+        },
+        {
+          "base": "0x7ff28b556000",
+          "size": 8192,
+          "protect": "R",
+          "blob": "a9f9d346bca47489a2c7e4b4bee7ce52237faee15771ee715807d55443a43543b63af94e8679f0c5f2b0fe1d7dc579c0a768bda4aeec2cb77566c4e55f3217dcea061ea5b53861a39cdbf2a7390b9aa2c91fac52"
+        },
+        {
+          "base": "0x7fffcfa55000",
+          "size": 8192,
+          "protect": "RX"
+        }
+      ]
+    },
+    {
+      "pid": 1024,
+      "name": "winlogon.exe",
+      "regions": [
+        {
+          "base": "0x7ffef97bf000",
+          "size": 4096,
+          "protect": "RW",
+          "data": "c7bbe28e0022ad14a9dd441803413e92e006baa6c4ee9ecc61eafc265b8e8baa6088d4ee718713d3"
+        },
+        {
+          "base": "0x7fff01f14000",
+          "size": 4096,
+          "protect": "RX"
+        },
+        {
+          "base": "0x7ffb5b4eb000",
+          "size": 4096,
+          "protect": "RX"
+        },
+        {
+          "base": "0x7ff0f2b06000",
+          "size": 4096,
+          "protect": "RX"
+        },
+        {
+          "base": "0x7ffb62439000",
+          "size": 8192,
+          "protect": "RW",
+          "data": "bab8ed7e21566389bef12031911b11d453e498488eedd25a905d8c7f4d975b7fa7ffe24eb8f2c2e6"
+        },
+        {
+          "base": "0x7ffef6223000",
+          "size": 4096,
+          "protect": "RX"
+        }
+      ]
+    },
+    {
+      "pid": 1028,
+      "name": "explorer.exe",
+      "regions": [
+        {
+          "base": "0x7ffba0414000",
+          "size": 32768,
+          "protect": "RW"
+        },
+        {
+          "base": "0x7ffe1ee10000",
+          "size": 8192,
+          "protect": "RX",
+          "data": "76c94c800082a3fceb4b72f99a95387069ce2effbcafdbbf83b650798db87798ea33f3672b54cede"
+        },
+        {
+          "base": "0x7ffa4239d000",
+          "size": 8192,
+          "protect": "RW",
+          "data": "abf7529c70ee3889946b3217e82f19f6f09dbf50f1c2826476d13b21f32efbaa217c9b31727fba57"
+        },
+        {
+          "base": "0x7ffdf6427000",
+          "size": 32768,
+          "protect": "R"
+        },
+        {
+          "base": "0x7ff055a51000",
+          "size": 4096,
+          "protect": "RX",
+          "data": "342594a38e29d846cfbca99b35d0f02f131bf45cebdec32d10d40cc67f68ce08a05b1d72d28d0a43"
+        },
+        {
+          "base": "0x7ff13c4c6000",
+          "size": 4096,
+          "protect": "RW",
+          "data": "c8cd7d6a2846f54e9c224687c2f4bdf966a810d61a84877905c08b1ccc67d05c09e01356fe232cd5"
+        }
+      ]
+    }
+  ],
+  "sealed_core": "415033460101000000530a1b18b16c21d4ba07748d9469b5d52df882be20a4bb63d9098aaa29807da4c0183ff97bc21c000d7954c7901e7ce9b17b52710ed6e741ae810b5c774329a7f3e6f3038d148ab47237aaced96a657d9ac9dd85c7ec4ff7d72cbd0a7fd185cecc8fcc1b"
+}

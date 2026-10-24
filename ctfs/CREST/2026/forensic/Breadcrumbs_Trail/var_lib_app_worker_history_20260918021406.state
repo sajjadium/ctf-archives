@@ -1,0 +1,47 @@
+schema=worker-history-v5
+worker_metric_00=7
+worker_metric_01=26
+worker_metric_02=45
+worker_metric_03=64
+worker_metric_04=83
+worker_metric_05=102
+worker_metric_06=121
+worker_metric_07=140 note=CREST{WorkerResumed27R}
+worker_metric_08=159
+worker_metric_09=178
+worker_metric_10=197
+worker_metric_11=216
+worker_metric_12=235
+worker_metric_13=254
+worker_metric_14=273
+worker_metric_15=292
+worker_metric_16=311
+worker_metric_17=330
+worker_metric_18=349
+worker_metric_19=368
+timestamp=2026-09-18T02:14:06Z
+checkpoint=7f31c2a9
+archive_id=9c7d4e21
+recovery_source=/var/tmp/.stage/.state
+state=committed
+actor=worker
+queue_bucket_00=124
+queue_bucket_01=155
+queue_bucket_02=186
+queue_bucket_03=217
+queue_bucket_04=248
+queue_bucket_05=279
+queue_bucket_06=310 note=CREST{LogRotationOK40S}
+queue_bucket_07=341
+queue_bucket_08=372
+queue_bucket_09=403
+queue_bucket_10=434
+queue_bucket_11=465
+queue_bucket_12=496
+queue_bucket_13=527
+queue_bucket_14=558
+queue_bucket_15=589
+queue_bucket_16=620 note=CREST{StateRestored53T}
+queue_bucket_17=651
+queue_bucket_18=682
+queue_bucket_19=713
