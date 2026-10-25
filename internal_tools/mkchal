@@ -20,6 +20,9 @@ def is_valid(line):
   except:
     pass
 
+  if line.strip().lower() in ['labels:', 'none', 'resolution:', 'unresolved', 'open']:
+    return False
+
   if line.strip().lower() == '◈ max · ultracode · /effort':
     return False
 
