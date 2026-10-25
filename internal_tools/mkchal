@@ -20,10 +20,31 @@ def is_valid(line):
   except:
     pass
 
+  if line.strip().lower() == '◈ max · ultracode · /effort':
+    return False
+
+  if line.strip().lower() == 'ultracode':
+    return False
+
+  if line.strip().lower().endswith('/goal solve this ctf, make no mistake !'):
+    return False
+
+  if line.strip().lower() == '❯':
+    return False
+
   if line.strip().lower() == 'challenge details':
     return False
 
   if line.strip().lower().startswith('connection: ncat'):
+    return False
+
+  if line.strip().lower().startswith('- name:'):
+    return False
+
+  if line.strip().lower().startswith('- description:'):
+    return False
+
+  if line.strip().lower().startswith('```'):
     return False
 
   if line.strip().lower().startswith('created on :'):

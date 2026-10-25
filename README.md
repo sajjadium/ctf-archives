@@ -5726,11 +5726,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="9">
+   <td rowspan="10">
     <a href="ctfs/HITCON">
      HITCON
     </a>
    </td>
+   <td>
+    <a href="ctfs/HITCON/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3340/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/HITCON/2025">
      2025
