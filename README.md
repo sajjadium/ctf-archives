@@ -5726,6 +5726,23 @@
    </td>
   </tr>
   <tr>
+   <td rowspan="1">
+    <a href="ctfs/HICyberCon">
+     HICyberCon
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/HICyberCon/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3460/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td rowspan="10">
     <a href="ctfs/HITCON">
      HITCON
