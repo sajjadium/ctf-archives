@@ -9195,6 +9195,23 @@
    </td>
   </tr>
   <tr>
+   <td rowspan="1">
+    <a href="ctfs/PINK+">
+     PINK+
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/PINK+/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3331/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td rowspan="2">
     <a href="ctfs/Paradigm">
      Paradigm
