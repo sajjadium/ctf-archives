@@ -1,0 +1,554 @@
+{
+  "metadata": {
+    "system": "EasternDrones UAV Command & Control",
+    "version": "2.4.1",
+    "drone_platform": "Valkyrie-X9",
+    "generated_by": "phantom-drift artifact generator"
+  },
+  "readings": [
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740000,
+      "phase": "pre_flight_check",
+      "gps_lat": 47.258,
+      "gps_lon": 19.039,
+      "battery_pct": 98,
+      "signal_strength": 95
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740060,
+      "phase": "pre_flight_check",
+      "gps_lat": 47.2581,
+      "gps_lon": 19.0391,
+      "battery_pct": 97,
+      "signal_strength": 93
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740120,
+      "phase": "pre_flight_check",
+      "gps_lat": 47.2582,
+      "gps_lon": 19.0392,
+      "battery_pct": 96,
+      "signal_strength": 91
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740180,
+      "phase": "pre_flight_check",
+      "gps_lat": 47.2583,
+      "gps_lon": 19.0393,
+      "battery_pct": 95,
+      "signal_strength": 89
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740240,
+      "phase": "pre_flight_check",
+      "gps_lat": 47.2584,
+      "gps_lon": 19.0394,
+      "battery_pct": 94,
+      "signal_strength": 87
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740300,
+      "phase": "takeoff",
+      "gps_lat": 47.258,
+      "gps_lon": 19.039,
+      "battery_pct": 93,
+      "signal_strength": 85
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740360,
+      "phase": "transit_outbound",
+      "gps_lat": 47.258,
+      "gps_lon": 19.039,
+      "battery_pct": 92,
+      "signal_strength": 83
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740420,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2581,
+      "gps_lon": 19.0391,
+      "battery_pct": 91,
+      "signal_strength": 81
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740480,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2582,
+      "gps_lon": 19.0392,
+      "battery_pct": 90,
+      "signal_strength": 79
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740540,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2583,
+      "gps_lon": 19.0393,
+      "battery_pct": 89,
+      "signal_strength": 77
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740600,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2584,
+      "gps_lon": 19.0394,
+      "battery_pct": 88,
+      "signal_strength": 75
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740660,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2585,
+      "gps_lon": 19.0395,
+      "battery_pct": 87,
+      "signal_strength": 73
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740720,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2586,
+      "gps_lon": 19.0396,
+      "battery_pct": 86,
+      "signal_strength": 71
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740780,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2587,
+      "gps_lon": 19.0397,
+      "battery_pct": 85,
+      "signal_strength": 69
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740840,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2588,
+      "gps_lon": 19.0398,
+      "battery_pct": 84,
+      "signal_strength": 67
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740900,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2589,
+      "gps_lon": 19.0399,
+      "battery_pct": 83,
+      "signal_strength": 65
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723740960,
+      "phase": "transit_outbound",
+      "gps_lat": 47.259,
+      "gps_lon": 19.04,
+      "battery_pct": 82,
+      "signal_strength": 63
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741020,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2591,
+      "gps_lon": 19.0401,
+      "battery_pct": 81,
+      "signal_strength": 61
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741080,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2592,
+      "gps_lon": 19.0402,
+      "battery_pct": 80,
+      "signal_strength": 59
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741140,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2593,
+      "gps_lon": 19.0403,
+      "battery_pct": 79,
+      "signal_strength": 57
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741200,
+      "phase": "transit_outbound",
+      "gps_lat": 47.2594,
+      "gps_lon": 19.0404,
+      "battery_pct": 78,
+      "signal_strength": 55
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741260,
+      "phase": "surveillance_area_1",
+      "gps_lat": 47.258,
+      "gps_lon": 19.039,
+      "battery_pct": 77,
+      "signal_strength": 53
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741320,
+      "phase": "surveillance_area_1",
+      "gps_lat": 47.2581,
+      "gps_lon": 19.0391,
+      "battery_pct": 76,
+      "signal_strength": 51
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741380,
+      "phase": "surveillance_area_1",
+      "gps_lat": 47.2582,
+      "gps_lon": 19.0392,
+      "battery_pct": 75,
+      "signal_strength": 49
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741440,
+      "phase": "transit_to_area_2",
+      "gps_lat": 47.258,
+      "gps_lon": 19.039,
+      "battery_pct": 74,
+      "signal_strength": 47
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741500,
+      "phase": "transit_to_area_2",
+      "gps_lat": 47.2581,
+      "gps_lon": 19.0391,
+      "battery_pct": 73,
+      "signal_strength": 45
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741560,
+      "phase": "transit_to_area_2",
+      "gps_lat": 47.2582,
+      "gps_lon": 19.0392,
+      "battery_pct": 72,
+      "signal_strength": 43
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741620,
+      "phase": "transit_to_area_2",
+      "gps_lat": 47.2583,
+      "gps_lon": 19.0393,
+      "battery_pct": 71,
+      "signal_strength": 41
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741680,
+      "phase": "transit_to_area_2",
+      "gps_lat": 47.2584,
+      "gps_lon": 19.0394,
+      "battery_pct": 70,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741740,
+      "phase": "surveillance_area_2",
+      "gps_lat": 47.258,
+      "gps_lon": 19.039,
+      "battery_pct": 69,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741800,
+      "phase": "surveillance_area_2",
+      "gps_lat": 47.2581,
+      "gps_lon": 19.0391,
+      "battery_pct": 68,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741860,
+      "phase": "surveillance_area_2",
+      "gps_lat": 47.2582,
+      "gps_lon": 19.0392,
+      "battery_pct": 67,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741920,
+      "phase": "return_phase",
+      "gps_lat": 47.258,
+      "gps_lon": 19.039,
+      "battery_pct": 66,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741980,
+      "phase": "return_phase",
+      "gps_lat": 47.2581,
+      "gps_lon": 19.0391,
+      "battery_pct": 65,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742040,
+      "phase": "return_phase",
+      "gps_lat": 47.2582,
+      "gps_lon": 19.0392,
+      "battery_pct": 64,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742100,
+      "phase": "return_phase",
+      "gps_lat": 47.2583,
+      "gps_lon": 19.0393,
+      "battery_pct": 63,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742160,
+      "phase": "return_phase",
+      "gps_lat": 47.2584,
+      "gps_lon": 19.0394,
+      "battery_pct": 62,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742220,
+      "phase": "return_phase",
+      "gps_lat": 47.2585,
+      "gps_lon": 19.0395,
+      "battery_pct": 61,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742280,
+      "phase": "return_phase",
+      "gps_lat": 47.2586,
+      "gps_lon": 19.0396,
+      "battery_pct": 60,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742340,
+      "phase": "return_phase",
+      "gps_lat": 47.2587,
+      "gps_lon": 19.0397,
+      "battery_pct": 59,
+      "signal_strength": 40
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741800,
+      "phase": "waypoint_update",
+      "altitude": 5000.0,
+      "speed": 180.0,
+      "waypoint_lat": 47.2591,
+      "waypoint_lon": 19.0402,
+      "payload_weight": 2.5,
+      "wind_compensation": 0.3,
+      "Altitude": 5000.0,
+      "Speed": 180.0,
+      "WaypointLat": 47.26,
+      "WaypointLon": 19.045,
+      "PayloadWeight": 2.5,
+      "WindCompensation": 0.3
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741860,
+      "phase": "transit_to_new_waypoint",
+      "gps_lat": 47.2591,
+      "gps_lon": 19.0402,
+      "battery_pct": 85,
+      "signal_strength": 80
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741920,
+      "phase": "transit_to_new_waypoint",
+      "gps_lat": 47.26,
+      "gps_lon": 19.045,
+      "battery_pct": 82,
+      "signal_strength": 76
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723741980,
+      "phase": "transit_to_new_waypoint",
+      "gps_lat": 47.2609,
+      "gps_lon": 19.0498,
+      "battery_pct": 79,
+      "signal_strength": 72
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742040,
+      "phase": "transit_to_new_waypoint",
+      "gps_lat": 47.2618,
+      "gps_lon": 19.0546,
+      "battery_pct": 76,
+      "signal_strength": 68
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742100,
+      "phase": "transit_to_new_waypoint",
+      "gps_lat": 47.2627,
+      "gps_lon": 19.0594,
+      "battery_pct": 73,
+      "signal_strength": 64
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742160,
+      "phase": "server_validation",
+      "validation_result": "PASS",
+      "note": "Server-side validation passed \u2014 Go parsed WaypointLat=47.2600 which is within tolerance of manifest",
+      "discrepancy_detected": false
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742400,
+      "phase": "return_home",
+      "gps_lat": 47.26,
+      "gps_lon": 19.045,
+      "battery_pct": 70,
+      "signal_strength": 90
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742430,
+      "phase": "return_home",
+      "gps_lat": 47.2585,
+      "gps_lon": 19.044,
+      "battery_pct": 65,
+      "signal_strength": 88
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742460,
+      "phase": "return_home",
+      "gps_lat": 47.257,
+      "gps_lon": 19.043,
+      "battery_pct": 60,
+      "signal_strength": 86
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742490,
+      "phase": "return_home",
+      "gps_lat": 47.2555,
+      "gps_lon": 19.042,
+      "battery_pct": 55,
+      "signal_strength": 84
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742520,
+      "phase": "return_home",
+      "gps_lat": 47.254,
+      "gps_lon": 19.041,
+      "battery_pct": 50,
+      "signal_strength": 82
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742550,
+      "phase": "return_home",
+      "gps_lat": 47.2525,
+      "gps_lon": 19.04,
+      "battery_pct": 45,
+      "signal_strength": 80
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742580,
+      "phase": "return_home",
+      "gps_lat": 47.251,
+      "gps_lon": 19.039,
+      "battery_pct": 40,
+      "signal_strength": 78
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742610,
+      "phase": "return_home",
+      "gps_lat": 47.2495,
+      "gps_lon": 19.038,
+      "battery_pct": 35,
+      "signal_strength": 76
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742640,
+      "phase": "return_home",
+      "gps_lat": 47.248,
+      "gps_lon": 19.037,
+      "battery_pct": 30,
+      "signal_strength": 74
+    },
+    {
+      "mission_id": "Valkyrie-9",
+      "timestamp": 1723742670,
+      "phase": "return_home",
+      "gps_lat": 47.2465,
+      "gps_lon": 19.036,
+      "battery_pct": 25,
+      "signal_strength": 72
+    }
+  ],
+  "summary": {
+    "mission_id": "Valkyrie-9",
+    "status": "MISSION_COMPLETE",
+    "total_readings": 57,
+    "waypoints_visited": [
+      {
+        "lat": 47.258,
+        "lon": 19.039,
+        "phase": "takeoff"
+      },
+      {
+        "lat": 47.26,
+        "lon": 19.045,
+        "phase": "surveillance_target"
+      },
+      {
+        "lat": 47.25,
+        "lon": 19.035,
+        "phase": "home_base"
+      }
+    ],
+    "anomalies_detected": [],
+    "server_note": "All waypoints within tolerance. Mission completed successfully."
+  }
+}

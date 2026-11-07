@@ -1,0 +1,57 @@
+[
+  {
+    "timestamp": "2025-11-15T06:00:00Z",
+    "level": "INFO",
+    "source": "SCADA_HMI",
+    "message": "Normal startup \u2014 all systems nominal",
+    "manifest_seed": 137
+  },
+  {
+    "timestamp": "2025-11-15T06:15:00Z",
+    "level": "INFO",
+    "source": "HMI_CLIENT",
+    "message": "Loading Q3_Equipment_Calibration.xml configuration"
+  },
+  {
+    "timestamp": "2025-11-15T06:15:03Z",
+    "level": "WARNING",
+    "source": "PLC_FIRMWARE",
+    "message": "Unexpected Modbus FC 0x10 write to read-only registers 40001-40064"
+  },
+  {
+    "timestamp": "2025-11-15T06:15:03Z",
+    "level": "CRITICAL",
+    "source": "PLC_FIRMWARE",
+    "message": "Buffer overflow detected in Modbus TCP handler (247 bytes vs 128-byte limit)"
+  },
+  {
+    "timestamp": "2025-11-15T06:15:04Z",
+    "level": "CRITICAL",
+    "source": "PLC_FIRMWARE",
+    "message": "Alarm thresholds modified \u2014 High Temp: 85\u00b0C\u2192250\u00b0C, Low Pressure: 2.0bar\u21920.1bar, Overcurrent: 500A\u21925000A"
+  },
+  {
+    "timestamp": "2025-11-15T06:15:05Z",
+    "level": "WARNING",
+    "source": "NETWORK_MONITOR",
+    "message": "Unusual outbound traffic to 198.51.100.42:443"
+  },
+  {
+    "timestamp": "2025-11-15T06:15:10Z",
+    "level": "CRITICAL",
+    "source": "PLC_FIRMWARE",
+    "message": "Firmware integrity check failed \u2014 possible tampering"
+  },
+  {
+    "timestamp": "2025-11-15T06:30:00Z",
+    "level": "ERROR",
+    "source": "POWER_MONITOR",
+    "message": "Power outage detected at substation 0x4A2E"
+  },
+  {
+    "timestamp": "2025-11-15T07:00:00Z",
+    "level": "INFO",
+    "source": "INCIDENT_RESPONSE",
+    "message": "Emergency shutdown initiated \u2014 all circuits isolated"
+  }
+]

@@ -1,0 +1,211 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Caledonian Transit Logistics Directorate (CTLD) Freight API",
+    "description": "Statutory Ingress Gateway for Commercial Vehicle Permitting and Weigh-in-Motion Telemetry",
+    "version": "3.2.0"
+  },
+  "paths": {
+    "/api/v1/corridor/status": {
+      "get": {
+        "summary": "Query transit corridor network status, active advisories, and maximum permissible bridge load ratings",
+        "responses": {
+          "200": {
+            "description": "Corridor operational ratings and active advisories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/corridor/assess": {
+      "post": {
+        "summary": "Calculate statutory axle load compliance and bridge capacity for intended vehicle configuration",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "corridor": { "type": "string", "example": "CORRIDOR_VIADUCT_NORTH" },
+                  "gross_weight_kg": { "type": "integer", "example": 46200 },
+                  "axles": { "type": "integer", "example": 6 }
+                },
+                "required": ["corridor", "gross_weight_kg"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Structural compliance calculation result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid calculation parameters"
+          }
+        }
+      }
+    },
+    "/api/v1/consignments": {
+      "get": {
+        "summary": "List active registered transit consignments and clearance statuses",
+        "responses": {
+          "200": {
+            "description": "List of active registered consignments",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Register a new advance electronic movement declaration",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "vrn": { "type": "string", "example": "TL-8821-X" },
+                  "carrier_name": { "type": "string", "example": "Highland Intermodal Speditions Ltd" },
+                  "declared_gross_weight_kg": { "type": "integer", "example": 36000 },
+                  "commodity": { "type": "string", "example": "Structural Prefabricated Sections" },
+                  "requested_corridor": { "type": "string", "example": "CORRIDOR_SOUTHERN_TRUNK" }
+                },
+                "required": ["vrn", "declared_gross_weight_kg"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Movement declaration registered successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing or invalid waybill parameters"
+          }
+        }
+      }
+    },
+    "/api/v1/consignments/{id}": {
+      "get": {
+        "summary": "Retrieve registered consignment waybill and weighbridge inspection records. Supports consignment reference or vehicle registration.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "Consignment reference (e.g. CTLD-FR-8821) or VRN",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Consignment waybill, particulars, and weighbridge telemetry history",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Consignment not found"
+          }
+        }
+      }
+    },
+    "/api/v1/telemetry/station/{station_id}": {
+      "get": {
+        "summary": "Query active weighbridge sensor telemetry and recent vehicle passage logs",
+        "parameters": [
+          {
+            "name": "station_id",
+            "in": "path",
+            "required": true,
+            "description": "Weighbridge station identifier (e.g. CP-04)",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Weighbridge station telemetry and active reading",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Station not found"
+          }
+        }
+      }
+    },
+    "/api/v1/clearance/request": {
+      "post": {
+        "summary": "Submit standard corridor transit clearance request",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "consignment_id": { "type": "string", "example": "CTLD-FR-8821" }
+                },
+                "required": ["consignment_id"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transit clearance approved",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Clearance rejected due to structural or weight discrepancy"
+          },
+          "404": {
+            "description": "Consignment not found"
+          }
+        }
+      }
+    }
+  }
+}

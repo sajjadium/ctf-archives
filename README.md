@@ -2914,6 +2914,23 @@
   </tr>
   <tr>
    <td rowspan="1">
+    <a href="ctfs/CSCTF">
+     CSCTF
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/CSCTF/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3333/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="1">
     <a href="ctfs/CSS">
      CSS
     </a>

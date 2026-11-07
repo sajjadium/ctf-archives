@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DICOMDeviceConfiguration>
+
+    <dicom_configuration>
+      <aetitle>MEDSCAN-XR400</aetitle>
+      <manufacturer>MedScan Diagnostics</manufacturer>
+      <model>Sentire CT-400</model>
+      <serial_number>MEDSCAN-XR400-2019</serial_number>
+      <firmware_version>4.2.1</firmware_version>
+      <installation_date>2019-03-15</installation_date>
+      <last_maintenance>2026-08-01</last_maintenance>
+    </dicom_configuration>
+    <network>
+      <ip_address>10.20.30.45</ip_address>
+      <subnet_mask>255.255.255.0</subnet_mask>
+      <gateway>10.20.30.1</gateway>
+      <dicom_port>104</dicom_port>
+      <scp_aetitle>HOSPITAL_ARCHIVE</scp_aetitle>
+      <scp_hostname>10.20.40.10</scp_hostname>
+      <backup_server>
+        <ip_address>198.51.100.42</ip_address>
+        <port>8443</port>
+        <protocol>HTTPS</protocol>
+        <description>External backup archive (configured by IT)</description>
+      </backup_server>
+    </network>
+    <authentication>
+      <dicom_auth>
+        <username>admin</username>
+        <password>admin123</password>
+        <note>Default credentials — never changed after installation</note>
+      </dicom_auth>
+      <snmp>
+        <community_string>hospital_mgmt_2026</community_string>
+        <version>v2c</version>
+        <trap_destination>10.20.50.1</trap_destination>
+        <note>Default community string from SNMP config</note>
+      </snmp>
+    </authentication>
+    <storage>
+      <local_disk_gb>500</local_disk_gb>
+      <current_usage_gb>347</current_usage_gb>
+      <archive_path>/data/archive</archive_path>
+      <max_dicom_payload>8192</max_dicom_payload>
+    </storage>
+    <security>
+      <firewall_enabled>False</firewall_enabled>
+      <encryption_in_transit>False</encryption_in_transit>
+      <last_security_audit>Never</last_security_audit>
+      <vulnerability_status>Unpatched firmware with factory-default authentication (default DICOM credentials and SNMP community string exposed)</vulnerability_status>
+    </security>
+    <inventory>
+      <DeviceManifestSeed>8842</DeviceManifestSeed>
+      <commission_note>Inventory manifest seed echoed in device boot-time SNMP self-report</commission_note>
+    </inventory>
+</DICOMDeviceConfiguration>

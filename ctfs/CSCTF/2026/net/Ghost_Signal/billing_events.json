@@ -1,0 +1,391 @@
+{
+  "metadata": {
+    "provider": "eastern-tele.ro",
+    "billing_system": "Diameter OCS (3GPP Cx)",
+    "capture_start": 1723740000,
+    "capture_end": 1723740500,
+    "filter_note": "All billing events \u2014 filter by the IMSI and session corroborated by the signalling captures"
+  },
+  "events": [
+    {
+      "event_id": "norm_0000",
+      "timestamp": 1723740000,
+      "session_id": "hss.eastern-tele.ro;1723740000;0",
+      "imsi": "2260120140002000",
+      "event_type": "CCR-A",
+      "charging_amount": 0.0,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0001",
+      "timestamp": 1723740010,
+      "session_id": "hss.eastern-tele.ro;1723740005;1",
+      "imsi": "2260120140002001",
+      "event_type": "CCR-A",
+      "charging_amount": 0.01,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0002",
+      "timestamp": 1723740020,
+      "session_id": "hss.eastern-tele.ro;1723740010;2",
+      "imsi": "2260120140002002",
+      "event_type": "CCR-A",
+      "charging_amount": 0.02,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0003",
+      "timestamp": 1723740030,
+      "session_id": "hss.eastern-tele.ro;1723740015;3",
+      "imsi": "2260120140002003",
+      "event_type": "CCR-A",
+      "charging_amount": 0.03,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0004",
+      "timestamp": 1723740040,
+      "session_id": "hss.eastern-tele.ro;1723740020;4",
+      "imsi": "2260120140002004",
+      "event_type": "CCR-A",
+      "charging_amount": 0.04,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0005",
+      "timestamp": 1723740050,
+      "session_id": "hss.eastern-tele.ro;1723740025;5",
+      "imsi": "2260120140002005",
+      "event_type": "CCR-A",
+      "charging_amount": 0.05,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0006",
+      "timestamp": 1723740060,
+      "session_id": "hss.eastern-tele.ro;1723740030;6",
+      "imsi": "2260120140002006",
+      "event_type": "CCR-A",
+      "charging_amount": 0.06,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0007",
+      "timestamp": 1723740070,
+      "session_id": "hss.eastern-tele.ro;1723740035;7",
+      "imsi": "2260120140002007",
+      "event_type": "CCR-A",
+      "charging_amount": 0.07,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0008",
+      "timestamp": 1723740080,
+      "session_id": "hss.eastern-tele.ro;1723740040;8",
+      "imsi": "2260120140002008",
+      "event_type": "CCR-A",
+      "charging_amount": 0.08,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0009",
+      "timestamp": 1723740090,
+      "session_id": "hss.eastern-tele.ro;1723740045;9",
+      "imsi": "2260120140002009",
+      "event_type": "CCR-A",
+      "charging_amount": 0.09,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0010",
+      "timestamp": 1723740100,
+      "session_id": "hss.eastern-tele.ro;1723740050;10",
+      "imsi": "2260120140002010",
+      "event_type": "CCR-A",
+      "charging_amount": 0.0,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0011",
+      "timestamp": 1723740110,
+      "session_id": "hss.eastern-tele.ro;1723740055;11",
+      "imsi": "2260120140002011",
+      "event_type": "CCR-A",
+      "charging_amount": 0.01,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0012",
+      "timestamp": 1723740120,
+      "session_id": "hss.eastern-tele.ro;1723740060;12",
+      "imsi": "2260120140002000",
+      "event_type": "CCR-A",
+      "charging_amount": 0.02,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0013",
+      "timestamp": 1723740130,
+      "session_id": "hss.eastern-tele.ro;1723740065;13",
+      "imsi": "2260120140002001",
+      "event_type": "CCR-A",
+      "charging_amount": 0.03,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0014",
+      "timestamp": 1723740140,
+      "session_id": "hss.eastern-tele.ro;1723740070;14",
+      "imsi": "2260120140002002",
+      "event_type": "CCR-A",
+      "charging_amount": 0.04,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0015",
+      "timestamp": 1723740150,
+      "session_id": "hss.eastern-tele.ro;1723740075;15",
+      "imsi": "2260120140002003",
+      "event_type": "CCR-A",
+      "charging_amount": 0.05,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0016",
+      "timestamp": 1723740160,
+      "session_id": "hss.eastern-tele.ro;1723740080;16",
+      "imsi": "2260120140002004",
+      "event_type": "CCR-A",
+      "charging_amount": 0.06,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0017",
+      "timestamp": 1723740170,
+      "session_id": "hss.eastern-tele.ro;1723740085;17",
+      "imsi": "2260120140002005",
+      "event_type": "CCR-A",
+      "charging_amount": 0.07,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0018",
+      "timestamp": 1723740180,
+      "session_id": "hss.eastern-tele.ro;1723740090;18",
+      "imsi": "2260120140002006",
+      "event_type": "CCR-A",
+      "charging_amount": 0.08,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0019",
+      "timestamp": 1723740190,
+      "session_id": "hss.eastern-tele.ro;1723740095;19",
+      "imsi": "2260120140002007",
+      "event_type": "CCR-A",
+      "charging_amount": 0.09,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0020",
+      "timestamp": 1723740200,
+      "session_id": "hss.eastern-tele.ro;1723740100;20",
+      "imsi": "2260120140002008",
+      "event_type": "CCR-A",
+      "charging_amount": 0.0,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0021",
+      "timestamp": 1723740210,
+      "session_id": "hss.eastern-tele.ro;1723740105;21",
+      "imsi": "2260120140002009",
+      "event_type": "CCR-A",
+      "charging_amount": 0.01,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0022",
+      "timestamp": 1723740220,
+      "session_id": "hss.eastern-tele.ro;1723740110;22",
+      "imsi": "2260120140002010",
+      "event_type": "CCR-A",
+      "charging_amount": 0.02,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0023",
+      "timestamp": 1723740230,
+      "session_id": "hss.eastern-tele.ro;1723740115;23",
+      "imsi": "2260120140002011",
+      "event_type": "CCR-A",
+      "charging_amount": 0.03,
+      "status": "accepted"
+    },
+    {
+      "event_id": "norm_0024",
+      "timestamp": 1723740240,
+      "session_id": "hss.eastern-tele.ro;1723740120;24",
+      "imsi": "2260120140002000",
+      "event_type": "CCR-A",
+      "charging_amount": 0.04,
+      "status": "accepted"
+    },
+    {
+      "event_id": "atk_0000",
+      "timestamp": 1723740150,
+      "session_id": "hss.eastern-tele.ro;1723740150;49211",
+      "imsi": "226012014000001",
+      "target_number": "+40721000101",
+      "event_type": "CCR-I",
+      "charging_amount": 0.0,
+      "status": "accepted",
+      "anomaly": "zero_charge_on_roaming",
+      "redirect_host": "intercept-49211.evil-domain.net"
+    },
+    {
+      "event_id": "norm_0025",
+      "timestamp": 1723740250,
+      "session_id": "hss.eastern-tele.ro;1723740125;25",
+      "imsi": "2260120140002001",
+      "event_type": "CCR-A",
+      "charging_amount": 0.05,
+      "status": "accepted"
+    },
+    {
+      "event_id": "atk_0001",
+      "timestamp": 1723740154,
+      "session_id": "hss.eastern-tele.ro;1723740150;49211",
+      "imsi": "226012014000001",
+      "target_number": "+40721000102",
+      "event_type": "CCR-I",
+      "charging_amount": 0.0,
+      "status": "accepted",
+      "anomaly": "zero_charge_on_roaming",
+      "redirect_host": "intercept-49211.evil-domain.net"
+    },
+    {
+      "event_id": "norm_0026",
+      "timestamp": 1723740260,
+      "session_id": "hss.eastern-tele.ro;1723740130;26",
+      "imsi": "2260120140002002",
+      "event_type": "CCR-A",
+      "charging_amount": 0.06,
+      "status": "accepted"
+    },
+    {
+      "event_id": "atk_0002",
+      "timestamp": 1723740158,
+      "session_id": "hss.eastern-tele.ro;1723740150;49211",
+      "imsi": "226012014000001",
+      "target_number": "+40721000103",
+      "event_type": "CCR-I",
+      "charging_amount": 0.0,
+      "status": "accepted",
+      "anomaly": "zero_charge_on_roaming",
+      "redirect_host": "intercept-49211.evil-domain.net"
+    },
+    {
+      "event_id": "norm_0027",
+      "timestamp": 1723740270,
+      "session_id": "hss.eastern-tele.ro;1723740135;27",
+      "imsi": "2260120140002003",
+      "event_type": "CCR-A",
+      "charging_amount": 0.07,
+      "status": "accepted"
+    },
+    {
+      "event_id": "atk_0003",
+      "timestamp": 1723740162,
+      "session_id": "hss.eastern-tele.ro;1723740150;49211",
+      "imsi": "226012014000001",
+      "target_number": "+40721000104",
+      "event_type": "CCR-I",
+      "charging_amount": 0.0,
+      "status": "accepted",
+      "anomaly": "zero_charge_on_roaming",
+      "redirect_host": "intercept-49211.evil-domain.net"
+    },
+    {
+      "event_id": "norm_0028",
+      "timestamp": 1723740280,
+      "session_id": "hss.eastern-tele.ro;1723740140;28",
+      "imsi": "2260120140002004",
+      "event_type": "CCR-A",
+      "charging_amount": 0.08,
+      "status": "accepted"
+    },
+    {
+      "event_id": "atk_0004",
+      "timestamp": 1723740166,
+      "session_id": "hss.eastern-tele.ro;1723740150;49211",
+      "imsi": "226012014000001",
+      "target_number": "+40721000105",
+      "event_type": "CCR-I",
+      "charging_amount": 0.0,
+      "status": "accepted",
+      "anomaly": "zero_charge_on_roaming",
+      "redirect_host": "intercept-49211.evil-domain.net"
+    },
+    {
+      "event_id": "norm_0029",
+      "timestamp": 1723740290,
+      "session_id": "hss.eastern-tele.ro;1723740145;29",
+      "imsi": "2260120140002005",
+      "event_type": "CCR-A",
+      "charging_amount": 0.09,
+      "status": "accepted"
+    },
+    {
+      "event_id": "pivot_0000",
+      "timestamp": 1723740170,
+      "session_id": "hss.eastern-tele.ro;1723740150;49211",
+      "imsi": "226012014000001",
+      "event_type": "CCA",
+      "serving_cscf": "cscf.pivot.eastern-tele.ro",
+      "redirect_host": "redirect-49211.evil-domain.net",
+      "anomaly": "unusual_routing_path"
+    },
+    {
+      "event_id": "pivot_0001",
+      "timestamp": 1723740172,
+      "session_id": "hss.eastern-tele.ro;1723740150;49211",
+      "imsi": "226012014000001",
+      "event_type": "CCA",
+      "serving_cscf": "cscf.pivot.eastern-tele.ro",
+      "redirect_host": "redirect-49211.evil-domain.net",
+      "anomaly": "unusual_routing_path"
+    },
+    {
+      "event_id": "pivot_0002",
+      "timestamp": 1723740174,
+      "session_id": "hss.eastern-tele.ro;1723740150;49211",
+      "imsi": "226012014000001",
+      "event_type": "CCA",
+      "serving_cscf": "cscf.pivot.eastern-tele.ro",
+      "redirect_host": "redirect-49211.evil-domain.net",
+      "anomaly": "unusual_routing_path"
+    },
+    {
+      "event_id": "pivot_0003",
+      "timestamp": 1723740176,
+      "session_id": "hss.eastern-tele.ro;1723740150;49211",
+      "imsi": "226012014000001",
+      "event_type": "CCA",
+      "serving_cscf": "cscf.pivot.eastern-tele.ro",
+      "redirect_host": "redirect-49211.evil-domain.net",
+      "anomaly": "unusual_routing_path"
+    },
+    {
+      "event_id": "pivot_0004",
+      "timestamp": 1723740178,
+      "session_id": "hss.eastern-tele.ro;1723740150;49211",
+      "imsi": "226012014000001",
+      "event_type": "CCA",
+      "serving_cscf": "cscf.pivot.eastern-tele.ro",
+      "redirect_host": "redirect-49211.evil-domain.net",
+      "anomaly": "unusual_routing_path"
+    }
+  ]
+}

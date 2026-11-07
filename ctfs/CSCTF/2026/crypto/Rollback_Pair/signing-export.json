@@ -1,0 +1,59 @@
+{
+  "case_id": "RLP-26-07",
+  "key_id": "MERIDIAN-DISPATCH-07",
+  "provenance": "Constructed training export; signatures were produced by a local software signer.",
+  "public_key": {
+    "x": "ed479d884711fbf4a1772073d051f6a78818ed8506eeb278c13b936cac50ce7b",
+    "y": "ca77b859dfdc23e8f40ca4b2a9698dc49588c9fdb4d153fe5ed1c91004462874"
+  },
+  "records": [
+    {
+      "message_b64": "eyJjYXJnbyI6InJlZnJpZ2VyYXRpb24gc3BhcmVzIiwiZGVzdGluYXRpb24iOiJub3J0aCBtZWRpY2FsIGNvcnJpZG9yIiwiZGlzcGF0Y2hfaWQiOiJSLTYxMDEiLCJpc3N1ZWRfYXQiOiIyMDI2LTEwLTA3VDAwOjE4OjAwWiIsImlzc3VlciI6Ik1lcmlkaWFuIEVtZXJnZW5jeSBMb2dpc3RpY3MifQ==",
+      "record_id": "R-6101",
+      "signature_rs_hex": "85de1343a94e72bc8517310d47be13b3f1c2b1768cfd59aeac9af394a06fb4dc7513de100f01ee98d51941940e012291c81ddf167287adb7dcec26c2e7507906"
+    },
+    {
+      "message_b64": "eyJjYXJnbyI6InBvcnRhYmxlIGdlbmVyYXRvcnMiLCJkZXN0aW5hdGlvbiI6Indlc3QgcmVsYXkgZGVwb3QiLCJkaXNwYXRjaF9pZCI6IlItNjEwMiIsImlzc3VlZF9hdCI6IjIwMjYtMTAtMDdUMDA6MjM6MDBaIiwiaXNzdWVyIjoiTWVyaWRpYW4gRW1lcmdlbmN5IExvZ2lzdGljcyJ9",
+      "record_id": "R-6102",
+      "signature_rs_hex": "864eccc8cc5a11a00ceea725180d12cb51036c4baee4c034bee3f233c3ac0e1c99aac3a486dbde50d612c7a7572fffe90c28a1e6d43623eca09bddb3de1d98f1"
+    },
+    {
+      "message_b64": "eyJjYXJnbyI6Imluc3VsaW4gY29sZCBib3hlcyIsImRlc3RpbmF0aW9uIjoibm9ydGggbWVkaWNhbCBjb3JyaWRvciIsImRpc3BhdGNoX2lkIjoiUi02MTAzIiwiaXNzdWVkX2F0IjoiMjAyNi0xMC0wN1QwMDozMTowMFoiLCJpc3N1ZXIiOiJNZXJpZGlhbiBFbWVyZ2VuY3kgTG9naXN0aWNzIn0=",
+      "record_id": "R-6103",
+      "signature_rs_hex": "821f300799a645e288df87f4e1913c60606c13aa50cae4804a375890887b4f4aff03203578c43bbe125d0e8633da09741e6f9ed5974846f976bab71592f31d5e"
+    },
+    {
+      "message_b64": "eyJjYXJnbyI6IndhdGVyIGZpbHRlcnMiLCJkZXN0aW5hdGlvbiI6ImNlbnRyYWwgc3RvcmVzIiwiZGlzcGF0Y2hfaWQiOiJSLTYxMDQiLCJpc3N1ZWRfYXQiOiIyMDI2LTEwLTA3VDAwOjM4OjAwWiIsImlzc3VlciI6Ik1lcmlkaWFuIEVtZXJnZW5jeSBMb2dpc3RpY3MifQ==",
+      "record_id": "R-6104",
+      "signature_rs_hex": "09048ef50272b3c38c2537208c2f6fa68a1f6fd8ff2345e14fe85669585a647e6386c56dca15cc193ce1e12b4226eb998d4b942c6adeb6bc3faf3974864dd909"
+    },
+    {
+      "message_b64": "eyJjYXJnbyI6InNhdGVsbGl0ZSBiYXR0ZXJpZXMiLCJkZXN0aW5hdGlvbiI6Indlc3QgcmVsYXkgZGVwb3QiLCJkaXNwYXRjaF9pZCI6IlItNjEwNSIsImlzc3VlZF9hdCI6IjIwMjYtMTAtMDdUMDA6NDc6MDBaIiwiaXNzdWVyIjoiTWVyaWRpYW4gRW1lcmdlbmN5IExvZ2lzdGljcyJ9",
+      "record_id": "R-6105",
+      "signature_rs_hex": "9bb77e084503db7741219fb7ec6d70e36e13565192b45169dd7e80053c230824b75b464032b6ea551a6c808773d765f85bae4d1e650c8260b4343421f54e954c"
+    },
+    {
+      "message_b64": "eyJjYXJnbyI6ImRpZXNlbCBwdW1wIHBhcnRzIiwiZGVzdGluYXRpb24iOiJjZW50cmFsIHN0b3JlcyIsImRpc3BhdGNoX2lkIjoiUi02MTA2IiwiaXNzdWVkX2F0IjoiMjAyNi0xMC0wN1QwMDo1MzowMFoiLCJpc3N1ZXIiOiJNZXJpZGlhbiBFbWVyZ2VuY3kgTG9naXN0aWNzIn0=",
+      "record_id": "R-6106",
+      "signature_rs_hex": "700117a31e0dd7fffeb9880bb900403e2b06e6f1ff8409d3c7c1533e173f1b41f0de0f2b0d58f2f6daea0c3d7b050d70a9ea28fff5dff2cd1c4a182efe4a9c8f"
+    },
+    {
+      "message_b64": "eyJjYXJnbyI6Im1lZGljYWwgcmFkaW8gcGFja3MiLCJkZXN0aW5hdGlvbiI6ImVhc3QgdHJpYWdlIGxpbmUiLCJkaXNwYXRjaF9pZCI6IlItNjEwNyIsImlzc3VlZF9hdCI6IjIwMjYtMTAtMDdUMDE6MDQ6MDBaIiwiaXNzdWVyIjoiTWVyaWRpYW4gRW1lcmdlbmN5IExvZ2lzdGljcyJ9",
+      "record_id": "R-6107",
+      "signature_rs_hex": "821f300799a645e288df87f4e1913c60606c13aa50cae4804a375890887b4f4a0477a1a8f50bdd5ffcdf521876002989d11024a4bdb52cee1ba33039a166148d"
+    },
+    {
+      "message_b64": "eyJjYXJnbyI6ImljZS1wYWNrIHNsZWV2ZXMiLCJkZXN0aW5hdGlvbiI6ImVhc3QgdHJpYWdlIGxpbmUiLCJkaXNwYXRjaF9pZCI6IlItNjEwOCIsImlzc3VlZF9hdCI6IjIwMjYtMTAtMDdUMDE6MTE6MDBaIiwiaXNzdWVyIjoiTWVyaWRpYW4gRW1lcmdlbmN5IExvZ2lzdGljcyJ9",
+      "record_id": "R-6108",
+      "signature_rs_hex": "b3ecb84d7b5c434a201e07dd66c1d69536f6d364a65edb650c090fa22504f997ad100a657dfe99c93618ae0dc1054d9d937a3bb3e747033667a85a9d6983e1ec"
+    }
+  ],
+  "scenario": "Emergency logistics dispatch signing resumed from a faulty application nonce-state snapshot.",
+  "signature_format": {
+    "curve": "secp256k1",
+    "hash": "SHA-256",
+    "message": "Base64 of exact signed UTF-8 bytes",
+    "scheme": "ECDSA",
+    "signature": "r||s, each zero-padded 32-byte unsigned big-endian; raw s, not low-s normalized"
+  }
+}

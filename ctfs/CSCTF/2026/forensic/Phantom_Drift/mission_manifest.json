@@ -1,0 +1,46 @@
+{
+  "mission_id": "Valkyrie-9",
+  "classification": "TACTICAL-RECON",
+  "approved_by": "Col. M. Radu, Eastern European Defense Command",
+  "date": "2024-08-15",
+  "approved_waypoint_lat": 47.2591,
+  "approved_waypoint_lon": 19.0402,
+  "approved_altitude": 5000,
+  "approved_speed": 180,
+  "approved_payload_weight": 2.5,
+  "surveillance_zone": {
+    "name": "Zone-Alpha",
+    "center_lat": 47.2591,
+    "center_lon": 19.0402,
+    "radius_km": 5.0,
+    "description": "Former industrial complex \u2014 suspected unauthorized construction"
+  },
+  "rules_of_engagement": {
+    "min_altitude": 3000,
+    "max_altitude": 8000,
+    "min_speed": 100,
+    "max_speed": 250,
+    "no_fire_zones": [
+      {
+        "lat": 47.265,
+        "lon": 19.038,
+        "radius_km": 2.0
+      },
+      {
+        "lat": 47.255,
+        "lon": 19.05,
+        "radius_km": 1.5
+      }
+    ]
+  },
+  "aircraft": {
+    "platform": "Valkyrie-X9",
+    "serial": "ED-KR7-0047",
+    "max_flight_time_hours": 6,
+    "sensor_payload": [
+      "EO/IR",
+      "SIGINT",
+      "SAR"
+    ]
+  }
+}
