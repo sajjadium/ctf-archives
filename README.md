@@ -9466,11 +9466,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="3">
+   <td rowspan="4">
     <a href="ctfs/Platypwn">
      Platypwn
     </a>
    </td>
+   <td>
+    <a href="ctfs/Platypwn/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3082/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/Platypwn/2025">
      2025
