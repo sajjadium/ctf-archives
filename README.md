@@ -7045,6 +7045,23 @@
   </tr>
   <tr>
    <td rowspan="1">
+    <a href="ctfs/InIt">
+     InIt
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/InIt/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3467/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
+   <td rowspan="1">
     <a href="ctfs/InfoSec">
      InfoSec
     </a>
