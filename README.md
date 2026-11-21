@@ -5416,12 +5416,12 @@
   </tr>
   <tr>
    <td rowspan="4">
-    <a href="ctfs/Glacier">
-     Glacier
+    <a href="ctfs/GlacierCTF">
+     GlacierCTF
     </a>
    </td>
    <td>
-    <a href="ctfs/Glacier/2025">
+    <a href="ctfs/GlacierCTF/2025">
      2025
     </a>
    </td>
@@ -5433,7 +5433,7 @@
   </tr>
   <tr>
    <td>
-    <a href="ctfs/Glacier/2024">
+    <a href="ctfs/GlacierCTF/2024">
      2024
     </a>
    </td>
@@ -5445,7 +5445,7 @@
   </tr>
   <tr>
    <td>
-    <a href="ctfs/Glacier/2023">
+    <a href="ctfs/GlacierCTF/2023">
      2023
     </a>
    </td>
@@ -5457,7 +5457,7 @@
   </tr>
   <tr>
    <td>
-    <a href="ctfs/Glacier/2022">
+    <a href="ctfs/GlacierCTF/2022">
      2022
     </a>
    </td>
