@@ -5697,11 +5697,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="1">
+   <td rowspan="2">
     <a href="ctfs/H4ckc0n">
      H4ckc0n
     </a>
    </td>
+   <td>
+    <a href="ctfs/H4ckc0n/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3464/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/H4ckc0n/2025">
      2025

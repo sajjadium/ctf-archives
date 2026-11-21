@@ -1,0 +1,1336 @@
+{
+  "title": "Echo Register: Quantum Echo",
+  "version": 3,
+  "story": "A forensic export from a simulated quantum-inspired telemetry bench claims its key was refreshed before sealing. The firmware source is missing. What survived is below.",
+  "notice": "This is an offline forensic puzzle, not a physical quantum simulation.",
+  "quantum_transcript": {
+    "description": "Recovered event stream from the optical bench controller.",
+    "basis_convention": {
+      "sender_labels": [
+        "Z",
+        "X"
+      ],
+      "receiver_labels": [
+        "Z",
+        "X"
+      ]
+    },
+    "event_log": [
+      {
+        "sample": 0,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 0,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 0,
+        "event": "audit_tap",
+        "sink": "error_check",
+        "reported_bit": 1,
+        "source": "register_seed_contact_A"
+      },
+      {
+        "sample": 1,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 1,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 2,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 2,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 3,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 3,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 4,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 4,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 5,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 5,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 6,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 6,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 7,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 7,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 8,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 8,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 9,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 9,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 10,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 10,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 11,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 11,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 12,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 12,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 13,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 13,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 14,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 14,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 15,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 15,
+        "event": "key_tap",
+        "sink": "register_seed"
+      },
+      {
+        "sample": 16,
+        "event": "basis_record",
+        "sender": "X",
+        "receiver": "X"
+      },
+      {
+        "sample": 16,
+        "event": "audit_tap",
+        "sink": "error_check",
+        "reported_bit": 1,
+        "source": "test_detector"
+      },
+      {
+        "sample": 17,
+        "event": "basis_record",
+        "sender": "X",
+        "receiver": "X"
+      },
+      {
+        "sample": 17,
+        "event": "audit_tap",
+        "sink": "error_check",
+        "reported_bit": 0,
+        "source": "test_detector"
+      },
+      {
+        "sample": 18,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "Z"
+      },
+      {
+        "sample": 18,
+        "event": "audit_tap",
+        "sink": "error_check",
+        "reported_bit": 1,
+        "source": "test_detector"
+      },
+      {
+        "sample": 19,
+        "event": "basis_record",
+        "sender": "X",
+        "receiver": "X"
+      },
+      {
+        "sample": 19,
+        "event": "audit_tap",
+        "sink": "error_check",
+        "reported_bit": 1,
+        "source": "test_detector"
+      },
+      {
+        "sample": 20,
+        "event": "basis_record",
+        "sender": "X",
+        "receiver": "X"
+      },
+      {
+        "sample": 20,
+        "event": "audit_tap",
+        "sink": "error_check",
+        "reported_bit": 0,
+        "source": "test_detector"
+      },
+      {
+        "sample": 21,
+        "event": "basis_record",
+        "sender": "X",
+        "receiver": "X"
+      },
+      {
+        "sample": 21,
+        "event": "audit_tap",
+        "sink": "error_check",
+        "reported_bit": 1,
+        "source": "test_detector"
+      },
+      {
+        "sample": 22,
+        "event": "basis_record",
+        "sender": "X",
+        "receiver": "X"
+      },
+      {
+        "sample": 22,
+        "event": "audit_tap",
+        "sink": "error_check",
+        "reported_bit": 0,
+        "source": "test_detector"
+      },
+      {
+        "sample": 23,
+        "event": "basis_record",
+        "sender": "X",
+        "receiver": "X"
+      },
+      {
+        "sample": 24,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 24,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 25,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 25,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 26,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 26,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 27,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 27,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 28,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 28,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 29,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 29,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 30,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 30,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 31,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 31,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 32,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 32,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 33,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 33,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 34,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 34,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 35,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 35,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 36,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 36,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 37,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 37,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 38,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 38,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      },
+      {
+        "sample": 39,
+        "event": "basis_record",
+        "sender": "Z",
+        "receiver": "X"
+      },
+      {
+        "sample": 39,
+        "event": "discard_notice",
+        "reason": "basis_mismatch_or_unselected"
+      }
+    ]
+  },
+  "register": {
+    "capture_id": "ER-17B",
+    "source": "diagnostic register dump",
+    "field_note": "Values were exported after the register stage and before the final seal. The x column is the injected stimulus; z is the one-bit tap observed by the collector.",
+    "observations": [
+      {
+        "x": 2615517706,
+        "z": 1
+      },
+      {
+        "x": 1164133760,
+        "z": 1
+      },
+      {
+        "x": 4282735256,
+        "z": 0
+      },
+      {
+        "x": 2139378270,
+        "z": 0
+      },
+      {
+        "x": 4257633633,
+        "z": 1
+      },
+      {
+        "x": 1467227220,
+        "z": 1
+      },
+      {
+        "x": 2970667595,
+        "z": 1
+      },
+      {
+        "x": 3802620772,
+        "z": 1
+      },
+      {
+        "x": 2922823254,
+        "z": 0
+      },
+      {
+        "x": 4083313579,
+        "z": 1
+      },
+      {
+        "x": 1599601248,
+        "z": 1
+      },
+      {
+        "x": 227208608,
+        "z": 0
+      },
+      {
+        "x": 4094958034,
+        "z": 1
+      },
+      {
+        "x": 939461875,
+        "z": 1
+      },
+      {
+        "x": 1603924189,
+        "z": 0
+      },
+      {
+        "x": 2131762288,
+        "z": 1
+      },
+      {
+        "x": 4226507646,
+        "z": 0
+      },
+      {
+        "x": 2660488036,
+        "z": 0
+      },
+      {
+        "x": 888456611,
+        "z": 0
+      },
+      {
+        "x": 4098222939,
+        "z": 1
+      },
+      {
+        "x": 2131518496,
+        "z": 1
+      },
+      {
+        "x": 554409052,
+        "z": 0
+      },
+      {
+        "x": 3309817039,
+        "z": 1
+      },
+      {
+        "x": 1664761177,
+        "z": 0
+      },
+      {
+        "x": 1757065791,
+        "z": 1
+      },
+      {
+        "x": 3877420732,
+        "z": 0
+      },
+      {
+        "x": 3301547429,
+        "z": 1
+      },
+      {
+        "x": 1322420039,
+        "z": 1
+      },
+      {
+        "x": 935035779,
+        "z": 0
+      },
+      {
+        "x": 3241401325,
+        "z": 0
+      },
+      {
+        "x": 2253890274,
+        "z": 1
+      },
+      {
+        "x": 1683078042,
+        "z": 1
+      },
+      {
+        "x": 1855053167,
+        "z": 1
+      },
+      {
+        "x": 1385453594,
+        "z": 1
+      },
+      {
+        "x": 1223361756,
+        "z": 1
+      },
+      {
+        "x": 300683463,
+        "z": 0
+      },
+      {
+        "x": 1452960135,
+        "z": 1
+      },
+      {
+        "x": 3421014613,
+        "z": 0
+      },
+      {
+        "x": 3706754522,
+        "z": 0
+      },
+      {
+        "x": 3229507884,
+        "z": 1
+      },
+      {
+        "x": 1602723630,
+        "z": 0
+      },
+      {
+        "x": 637080426,
+        "z": 0
+      },
+      {
+        "x": 1816268989,
+        "z": 1
+      },
+      {
+        "x": 1380129124,
+        "z": 0
+      },
+      {
+        "x": 1319158643,
+        "z": 1
+      },
+      {
+        "x": 2509829075,
+        "z": 1
+      },
+      {
+        "x": 3660225727,
+        "z": 1
+      },
+      {
+        "x": 3076367350,
+        "z": 0
+      },
+      {
+        "x": 3886180492,
+        "z": 0
+      },
+      {
+        "x": 3944300058,
+        "z": 1
+      },
+      {
+        "x": 3974040753,
+        "z": 0
+      },
+      {
+        "x": 2052352981,
+        "z": 1
+      },
+      {
+        "x": 4040576363,
+        "z": 1
+      },
+      {
+        "x": 1582741564,
+        "z": 1
+      },
+      {
+        "x": 2008128094,
+        "z": 0
+      },
+      {
+        "x": 1451913639,
+        "z": 0
+      },
+      {
+        "x": 850641169,
+        "z": 1
+      },
+      {
+        "x": 4012369879,
+        "z": 1
+      },
+      {
+        "x": 241760740,
+        "z": 0
+      },
+      {
+        "x": 656210391,
+        "z": 0
+      },
+      {
+        "x": 2357512914,
+        "z": 0
+      },
+      {
+        "x": 878636613,
+        "z": 1
+      },
+      {
+        "x": 2422090471,
+        "z": 0
+      },
+      {
+        "x": 668678887,
+        "z": 0
+      },
+      {
+        "x": 961755306,
+        "z": 0
+      },
+      {
+        "x": 2044567483,
+        "z": 0
+      },
+      {
+        "x": 2964673247,
+        "z": 1
+      },
+      {
+        "x": 1029733275,
+        "z": 0
+      },
+      {
+        "x": 3241474624,
+        "z": 0
+      },
+      {
+        "x": 260985988,
+        "z": 0
+      },
+      {
+        "x": 3625922134,
+        "z": 1
+      },
+      {
+        "x": 1826000780,
+        "z": 1
+      },
+      {
+        "x": 2957279985,
+        "z": 0
+      },
+      {
+        "x": 1688291636,
+        "z": 1
+      },
+      {
+        "x": 481328410,
+        "z": 1
+      },
+      {
+        "x": 1695317183,
+        "z": 0
+      },
+      {
+        "x": 1330191629,
+        "z": 1
+      },
+      {
+        "x": 4201919604,
+        "z": 0
+      },
+      {
+        "x": 2699344622,
+        "z": 0
+      },
+      {
+        "x": 2297279162,
+        "z": 0
+      },
+      {
+        "x": 46029890,
+        "z": 0
+      },
+      {
+        "x": 2879231501,
+        "z": 0
+      },
+      {
+        "x": 2173748934,
+        "z": 1
+      },
+      {
+        "x": 3609184850,
+        "z": 0
+      },
+      {
+        "x": 3584677392,
+        "z": 0
+      },
+      {
+        "x": 960053506,
+        "z": 0
+      },
+      {
+        "x": 295726289,
+        "z": 0
+      },
+      {
+        "x": 1943947570,
+        "z": 1
+      },
+      {
+        "x": 2890652777,
+        "z": 1
+      },
+      {
+        "x": 548023381,
+        "z": 0
+      },
+      {
+        "x": 1679074232,
+        "z": 1
+      },
+      {
+        "x": 705752792,
+        "z": 1
+      },
+      {
+        "x": 238334907,
+        "z": 0
+      },
+      {
+        "x": 1199485654,
+        "z": 0
+      },
+      {
+        "x": 4071184487,
+        "z": 0
+      },
+      {
+        "x": 3089335057,
+        "z": 1
+      },
+      {
+        "x": 1176932804,
+        "z": 1
+      },
+      {
+        "x": 3540055942,
+        "z": 1
+      },
+      {
+        "x": 2598262595,
+        "z": 1
+      },
+      {
+        "x": 2774667280,
+        "z": 0
+      },
+      {
+        "x": 433880140,
+        "z": 1
+      },
+      {
+        "x": 1527337390,
+        "z": 1
+      },
+      {
+        "x": 3120371113,
+        "z": 1
+      },
+      {
+        "x": 409135020,
+        "z": 1
+      },
+      {
+        "x": 4163823393,
+        "z": 0
+      },
+      {
+        "x": 2548246550,
+        "z": 1
+      },
+      {
+        "x": 3049265689,
+        "z": 0
+      },
+      {
+        "x": 4291590633,
+        "z": 1
+      },
+      {
+        "x": 1084243969,
+        "z": 1
+      },
+      {
+        "x": 1264208924,
+        "z": 1
+      },
+      {
+        "x": 3075391464,
+        "z": 0
+      },
+      {
+        "x": 3082914149,
+        "z": 0
+      },
+      {
+        "x": 1982705494,
+        "z": 0
+      },
+      {
+        "x": 2776801475,
+        "z": 0
+      },
+      {
+        "x": 3577263337,
+        "z": 0
+      },
+      {
+        "x": 348830539,
+        "z": 0
+      },
+      {
+        "x": 1777303337,
+        "z": 1
+      },
+      {
+        "x": 343354428,
+        "z": 0
+      },
+      {
+        "x": 1272163637,
+        "z": 0
+      },
+      {
+        "x": 44212151,
+        "z": 1
+      },
+      {
+        "x": 1294836625,
+        "z": 1
+      },
+      {
+        "x": 2257809261,
+        "z": 0
+      },
+      {
+        "x": 1350391977,
+        "z": 0
+      },
+      {
+        "x": 347869413,
+        "z": 0
+      },
+      {
+        "x": 2444565865,
+        "z": 1
+      },
+      {
+        "x": 1147025983,
+        "z": 0
+      },
+      {
+        "x": 2469512072,
+        "z": 1
+      },
+      {
+        "x": 3782508216,
+        "z": 1
+      },
+      {
+        "x": 3410224446,
+        "z": 1
+      },
+      {
+        "x": 3773403877,
+        "z": 0
+      },
+      {
+        "x": 2443099489,
+        "z": 0
+      },
+      {
+        "x": 208336256,
+        "z": 1
+      },
+      {
+        "x": 50863105,
+        "z": 1
+      },
+      {
+        "x": 2155980099,
+        "z": 0
+      },
+      {
+        "x": 3574423065,
+        "z": 0
+      },
+      {
+        "x": 247364264,
+        "z": 0
+      },
+      {
+        "x": 473099086,
+        "z": 0
+      },
+      {
+        "x": 3771681845,
+        "z": 0
+      },
+      {
+        "x": 4092655581,
+        "z": 1
+      },
+      {
+        "x": 3929738414,
+        "z": 0
+      },
+      {
+        "x": 1512698894,
+        "z": 0
+      },
+      {
+        "x": 4178673503,
+        "z": 0
+      },
+      {
+        "x": 3289743675,
+        "z": 1
+      },
+      {
+        "x": 2786853071,
+        "z": 1
+      },
+      {
+        "x": 3658329024,
+        "z": 0
+      },
+      {
+        "x": 4249288428,
+        "z": 0
+      },
+      {
+        "x": 4199540847,
+        "z": 0
+      },
+      {
+        "x": 793444708,
+        "z": 0
+      },
+      {
+        "x": 1922180699,
+        "z": 1
+      },
+      {
+        "x": 1513680647,
+        "z": 0
+      },
+      {
+        "x": 1679201424,
+        "z": 0
+      },
+      {
+        "x": 2117266445,
+        "z": 0
+      },
+      {
+        "x": 151326898,
+        "z": 1
+      },
+      {
+        "x": 928421122,
+        "z": 0
+      },
+      {
+        "x": 357236314,
+        "z": 1
+      },
+      {
+        "x": 1907685248,
+        "z": 0
+      },
+      {
+        "x": 1228560003,
+        "z": 1
+      },
+      {
+        "x": 2370529305,
+        "z": 1
+      },
+      {
+        "x": 1356235795,
+        "z": 0
+      },
+      {
+        "x": 3408263404,
+        "z": 1
+      }
+    ],
+    "controller_model": {
+      "fold_tap": "The diagnostic fold word is input XOR the bitwise AND of two cyclically rotated copies of the input. The two rotation distances are distinct; the smaller distance is listed first in a candidate model.",
+      "walk_tap": "The diagnostic walk word is a single cyclic left rotation of the input.",
+      "tap_semantics": "parity(mask AND word) means XOR of all set bits in the masked word.",
+      "echo_semantics": "The one-bit echo state toggles when the walk-mask parity is one. Update the state before recording the row output. The row output is fold-mask parity XOR updated echo state XOR the selected calibration-pad bit."
+    },
+    "controller_calibration": {
+      "capture": "CAL-17B-DIAG",
+      "probes": [
+        {
+          "input": "e4e7ec99",
+          "fold_word": "f8836fbd",
+          "walk_word": "73f64cf2"
+        },
+        {
+          "input": "3a4a0363",
+          "fold_word": "7a4a0b21",
+          "walk_word": "2501b19d"
+        },
+        {
+          "input": "0010891e",
+          "fold_word": "0010a91e",
+          "walk_word": "08448f00"
+        },
+        {
+          "input": "cf58ee72",
+          "fold_word": "0c49682a",
+          "walk_word": "ac773967"
+        },
+        {
+          "input": "9dccce78",
+          "fold_word": "bddd0a7a",
+          "walk_word": "e6673c4e"
+        },
+        {
+          "input": "be864be2",
+          "fold_word": "aecf5fb6",
+          "walk_word": "4325f15f"
+        },
+        {
+          "input": "f23fd28e",
+          "fold_word": "b4af831e",
+          "walk_word": "1fe94779"
+        },
+        {
+          "input": "11c54765",
+          "fold_word": "39ed6fe7",
+          "walk_word": "e2a3b288"
+        }
+      ]
+    },
+    "pad_contact_trace": {
+      "description": "Contact selected for each observation row.",
+      "rows": [
+        {
+          "observation_index": 0,
+          "contact": "A"
+        },
+        {
+          "observation_index": 1,
+          "contact": "B"
+        },
+        {
+          "observation_index": 2,
+          "contact": "C"
+        },
+        {
+          "observation_index": 3,
+          "contact": "D"
+        },
+        {
+          "observation_index": 4,
+          "contact": "E"
+        },
+        {
+          "observation_index": 5,
+          "contact": "F"
+        },
+        {
+          "observation_index": 6,
+          "contact": "G"
+        },
+        {
+          "observation_index": 7,
+          "contact": "H"
+        },
+        {
+          "observation_index": 8,
+          "contact": "I"
+        },
+        {
+          "observation_index": 9,
+          "contact": "J"
+        },
+        {
+          "observation_index": 10,
+          "contact": "K"
+        },
+        {
+          "observation_index": 11,
+          "contact": "L"
+        },
+        {
+          "observation_index": 12,
+          "contact": "M"
+        },
+        {
+          "observation_index": 13,
+          "contact": "N"
+        },
+        {
+          "observation_index": 14,
+          "contact": "O"
+        },
+        {
+          "observation_index": 15,
+          "contact": "P"
+        },
+        {
+          "observation_index": 16,
+          "contact": "A"
+        },
+        {
+          "observation_index": 17,
+          "contact": "B"
+        },
+        {
+          "observation_index": 18,
+          "contact": "C"
+        },
+        {
+          "observation_index": 19,
+          "contact": "D"
+        },
+        {
+          "observation_index": 20,
+          "contact": "E"
+        },
+        {
+          "observation_index": 21,
+          "contact": "F"
+        },
+        {
+          "observation_index": 22,
+          "contact": "G"
+        },
+        {
+          "observation_index": 23,
+          "contact": "H"
+        },
+        {
+          "observation_index": 24,
+          "contact": "I"
+        },
+        {
+          "observation_index": 25,
+          "contact": "J"
+        },
+        {
+          "observation_index": 26,
+          "contact": "K"
+        },
+        {
+          "observation_index": 27,
+          "contact": "L"
+        },
+        {
+          "observation_index": 28,
+          "contact": "M"
+        },
+        {
+          "observation_index": 29,
+          "contact": "N"
+        },
+        {
+          "observation_index": 30,
+          "contact": "O"
+        },
+        {
+          "observation_index": 31,
+          "contact": "P"
+        }
+      ]
+    }
+  },
+  "sealed_flag": "4ab01e45d207a22253b43be9ba5710de791fb9c4be0934273338adede41fc83931c3d42af2d174",
+  "flag_format": "d4rk{...}",
+  "seal_record": {
+    "artifact": "sealed output from the nightly telemetry packer",
+    "field_order": [
+      "s",
+      "t",
+      "e0",
+      "q"
+    ],
+    "compatibility_vectors": [
+      {
+        "material_ascii": "00000000:00000000:0:0000000000000000",
+        "counter_u32": 0,
+        "digest_hex": "3edde0bf573c88beeca3239fd01a81b77dc41418732188261aed2d2fc0d03227"
+      },
+      {
+        "material_ascii": "00000000:00000000:0:0000000000000000",
+        "counter_u32": 1,
+        "digest_hex": "7806570077449209e3e6965265f2c2cf7cd53eea7801d9fc1e47e312fb47e485"
+      },
+      {
+        "material_ascii": "5a3c91e7:0f2b7d64:1:0110101100011101",
+        "counter_u32": 0,
+        "digest_hex": "55c12a87aa3f5c23a83f610cceec5902dc6a2248c75b3bc46d60faefe0609600"
+      }
+    ]
+  }
+}
