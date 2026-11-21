@@ -5697,6 +5697,23 @@
    </td>
   </tr>
   <tr>
+   <td rowspan="1">
+    <a href="ctfs/H4ckc0n">
+     H4ckc0n
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/H4ckc0n/2025">
+     2025
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/2905/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td rowspan="2">
     <a href="ctfs/H7CTF">
      H7CTF
@@ -14794,23 +14811,6 @@
    </td>
    <td>
     <a href="https://ctftime.org/event/1494/tasks/" target="_blank">
-     CTFtime
-    </a>
-   </td>
-  </tr>
-  <tr>
-   <td rowspan="1">
-    <a href="ctfs/h4ckc0n">
-     h4ckc0n
-    </a>
-   </td>
-   <td>
-    <a href="ctfs/h4ckc0n/2025">
-     2025
-    </a>
-   </td>
-   <td>
-    <a href="https://ctftime.org/event/2905/tasks/" target="_blank">
      CTFtime
     </a>
    </td>
