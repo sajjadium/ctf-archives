@@ -9224,6 +9224,23 @@
    </td>
   </tr>
   <tr>
+   <td rowspan="1">
+    <a href="ctfs/OutbackOverflow">
+     OutbackOverflow
+    </a>
+   </td>
+   <td>
+    <a href="ctfs/OutbackOverflow/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3425/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td rowspan="2">
     <a href="ctfs/OverTheWireAdventBonanza">
      OverTheWire Advent Bonanza
