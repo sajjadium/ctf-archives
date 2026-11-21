@@ -5415,11 +5415,23 @@
    </td>
   </tr>
   <tr>
-   <td rowspan="4">
+   <td rowspan="5">
     <a href="ctfs/GlacierCTF">
      GlacierCTF
     </a>
    </td>
+   <td>
+    <a href="ctfs/GlacierCTF/2026">
+     2026
+    </a>
+   </td>
+   <td>
+    <a href="https://ctftime.org/event/3337/tasks/" target="_blank">
+     CTFtime
+    </a>
+   </td>
+  </tr>
+  <tr>
    <td>
     <a href="ctfs/GlacierCTF/2025">
      2025
