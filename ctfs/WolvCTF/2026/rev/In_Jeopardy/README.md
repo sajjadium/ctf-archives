@@ -1,0 +1,3 @@
+hazealous
+
+Welcome to Jeopardy! Run the executable to see what your first question is. Don't know the answer? Then you might have some digging to do...
