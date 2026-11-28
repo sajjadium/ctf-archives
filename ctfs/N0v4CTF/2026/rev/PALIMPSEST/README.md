@@ -1,0 +1,1 @@
+The print shop has closed, but the optical machine still retains the traces of the final draft. Fresh ink covers the old; the lettering dissolves into overlapping layers. Find the ticket that makes the machine reproduce the original print.

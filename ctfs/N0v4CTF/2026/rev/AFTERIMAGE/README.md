@@ -1,0 +1,1 @@
+The archives have sealed the final record of a repeatedly altered memory. Each playback leaves behind different traces, and the annotations can no longer be trusted. You possess the verification engine and the original archive. Find the ticket that validates that memory.

@@ -1,0 +1,1 @@
+The last kiosk in the store is still waiting to close out its books. Inside the drawer lies a shredded roll of receipts, old tickets, and a few suspicious confirmations. Piece together the story on paper and find the ticket that makes the machine accept the final transaction.

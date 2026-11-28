@@ -1,0 +1,1 @@
+A letter is stuck at the relay station. The logs are filled with confirmations, retries, and cancellations, yet the recipient has never seen it appear. Find the ticket that makes the system truly complete the final delivery.
